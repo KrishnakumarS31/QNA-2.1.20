@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/landing_page.dart';
+import 'package:qna_test/Pages/student_selection_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +19,7 @@ class SplashScreenState extends State<SplashScreen> {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: const LandingPage(),
+                child: const StudentSelectionPage(),
               ),
     ));
 
@@ -35,7 +36,7 @@ class SplashScreenState extends State<SplashScreen> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
-          image:AssetImage("assets/images/qna_initial_page.png"),
+          image:AssetImage("assets/images/initial_page.jpg"),
         ),
       ),
     );

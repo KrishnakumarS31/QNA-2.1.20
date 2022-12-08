@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
 
+  @override
+  LandingPageState createState() => LandingPageState();
+}
+class LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -14,7 +18,7 @@ class LandingPage extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
-          image:AssetImage("assets/images/qna_splash_page.png"),
+          image:AssetImage("assets/images/initial_page.jpg"),
         ),
       ),
     );
