@@ -1,4 +1,4 @@
-# qna_test
+# sample_project
 
 A new Flutter project.
 

@@ -1,4 +1,4 @@
-package com.example.qna_test
+package com.example.sample_project
 
 import io.flutter.embedding.android.FlutterActivity
 
