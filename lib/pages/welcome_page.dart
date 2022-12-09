@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sample_project/pages/student_member_login_page.dart';
-import 'package:flutter_svg/svg.dart';
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
@@ -75,9 +74,9 @@ class _WelcomePageState extends State<WelcomePage> {
 
       ),
               Container(
-                //margin: const EdgeInsets.only(left: 40),
+                //margin: const EdgeInsets.only(left: 10,right: 50),
                 padding: const EdgeInsets.only(
-                    left: 75),
+                    left: 65),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -112,7 +111,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                               //shape: StadiumBorder(),
                               child: Text('Student',
-                                style: GoogleFonts.poppins(
+                                style: GoogleFonts.inter(
                                     color: Colors.white,
                                     fontSize: 24),
                               ),
@@ -136,7 +135,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               Container(
                 padding: const EdgeInsets.only(
-                    left: 75),
+                    left: 65),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -171,7 +170,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 ),
                                 //shape: StadiumBorder(),
                                 child: Text('Teacher',
-                                  style: GoogleFonts.poppins(
+                                  style: GoogleFonts.inter(
                                       color: Colors.white,
                                       fontSize: 24),
                                 ),
@@ -208,7 +207,7 @@ class _WelcomePageState extends State<WelcomePage> {
               Container(
                 // margin: const EdgeInsets.all(15),
                 padding: const EdgeInsets.only(
-                    left: 120),
+                    left: 100),
                 child:  Row(
                   children:  [
                     IconButton(
@@ -218,16 +217,13 @@ class _WelcomePageState extends State<WelcomePage> {
                         ), onPressed: () {
                     },
                     ),
-                    SizedBox(
-                      height: localHeight * 0.12,
-                    ),
                     Text("Select Language",
                       style: Theme.of(context).primaryTextTheme.bodyText1
                           ?.merge(const TextStyle(
                           color: Color.fromRGBO(48, 145, 139, 1),
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          fontSize: 16)),),
+                          fontSize: 16))),
                   ],
                 )
                 // ListTile(
@@ -239,7 +235,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 //   leading:
                 //   const Icon(Icons.g_translate_sharp,color: Color.fromRGBO(141, 167, 167, 1)),
                 //   title: Text("Select Language",
-                //       style: GoogleFonts.poppins(
+                //       style: GoogleFonts.inter(
                 //           color: const Color.fromRGBO(48, 145, 139, 1),
                 //           fontSize: MediaQuery.of(context).size.height * 0.018)),
                 // ),
