@@ -1,6 +1,6 @@
 {
-    "name": "sample_project",
-    "short_name": "sample_project",
+    "name": "QnATest",
+    "short_name": "QnATest",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sample_project/pages/student_member_login_page.dart';
+import 'student_member_login_page.dart';
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
@@ -11,8 +11,8 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
-    var localHeight = MediaQuery.of(context).size.height;
-    var localWidth = MediaQuery.of(context).size.width;
+    double localHeight = MediaQuery.of(context).size.height;
+    double localWidth = MediaQuery.of(context).size.width;
     const iconAsset = "assets/images/welcome.png";
     return Scaffold(
         body:
@@ -75,8 +75,7 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
               Container(
                 //margin: const EdgeInsets.only(left: 10,right: 50),
-                padding: const EdgeInsets.only(
-                    left: 65),
+                padding: const EdgeInsets.only(left: 40,right: 30),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -134,8 +133,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 height: localHeight * 0.06,
               ),
               Container(
-                padding: const EdgeInsets.only(
-                    left: 65),
+                padding: const EdgeInsets.only(left: 40,right: 30),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -212,7 +210,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   children:  [
                     IconButton(
                         icon: const Icon(
-                          Icons.g_translate_sharp,
+                          Icons.translate,
                           color: Color.fromRGBO(141, 167, 167, 1),
                         ), onPressed: () {
                     },

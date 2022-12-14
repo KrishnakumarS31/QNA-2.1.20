@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'student_MemLoged_Start.dart';
 
 
 
@@ -20,6 +19,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
+    const iconAsset = "assets/images/question_mark_logo.png";
     return Scaffold(
         body:
         SingleChildScrollView(
@@ -95,7 +95,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     children: [
                       Align(alignment: Alignment.center,
                         child:
-                        Text("MEMBER STUDENT",
+                        Text("STUDENT MEMBER",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
@@ -239,7 +239,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const StudentMemLogedStart(),
+                              builder: (context) => const StudentMemberLoginPage(),
                             ),
                           );},
                       ),

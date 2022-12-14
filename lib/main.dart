@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_project/pages/welcome_page.dart';
+import 'package:QnATest/pages/welcome_page.dart';
 void main() {
   runApp(const MyApp());
 }

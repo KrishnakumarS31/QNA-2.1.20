@@ -1,17 +1,18 @@
+import 'package:QnATest/pages/hamBurger_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'student_MemLoged_Start.dart';
 
 
 
-class StudentMemberLoginPage extends StatefulWidget {
-  const StudentMemberLoginPage({super.key});
+class StudentMemLogedStart extends StatefulWidget {
+  const StudentMemLogedStart({super.key});
 
 
   @override
-  StudentMemberLoginPageState createState() => StudentMemberLoginPageState();
+  StudentMemLogedStartState createState() => StudentMemLogedStartState();
 }
-class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
+class StudentMemLogedStartState extends State<StudentMemLogedStart> {
+  TextEditingController assessmentID = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -52,11 +53,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                       alignment: Alignment.topLeft,
                       child: IconButton(
                         icon:const Icon(
-                          Icons.chevron_left,
+                          Icons.menu_outlined,
                           size: 40.0,
                           color: Color.fromRGBO(255, 255, 255, 0.8)
                         ), onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) {
+                            return const HamBurgerMenu();
+                          }),
+                        );
                       },
                       ),
                     ),
@@ -95,20 +101,33 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     children: [
                       Align(alignment: Alignment.center,
                         child:
-                        Text("MEMBER STUDENT",
+                        Text("WELCOME",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge(const TextStyle(
                               color: Color.fromRGBO(28, 78, 80, 1),
                               fontFamily: 'Inter',
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w400,
                               letterSpacing: -0.02,
-                              fontSize: 30)),),
+                              fontSize: 24)),),
                       ),
                       SizedBox(
-                        height: localHeight * 0.03,
+                        height: localHeight * 0.02,
                       ),
+                Text("StudentName  ",
+                  style: Theme.of(context)
+                      .primaryTextTheme
+                      .bodyText1
+                      ?.merge(const TextStyle(
+                      color: Color.fromRGBO(28, 78, 80, 1),
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.02,
+                      fontSize: 24)),),
+              SizedBox(
+                height: localHeight * 0.03,
+              ),
                     ]),
 
               ),
@@ -121,7 +140,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                       Align(
                         alignment: Alignment.topLeft,
                         child:
-                        Text("REGISTRATION ID OR EMAIL ID",
+                        Text("ENTER TEST ASSESSMENT ID",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
@@ -136,15 +155,22 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         height: localHeight * 0.02,
                       ),
                       Column(
-                        children: const [
+                        children:  [
                           Align(alignment: Alignment.center,
-                            child: TextField(
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
+                            child: TextFormField(
+                              controller: assessmentID,
+                              validator: (value) {
+                                if (assessmentID.text == null) {
+                                  return "Assessment ID is required";
+                                }
+                                return null;
+                              },
+                                keyboardType: TextInputType.text,
+                                  decoration: const InputDecoration(
                                     helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
-                                      hintText: "Your Reg ID / Email ID",
+                                      hintText: "Assessment ID",
                                     prefixIcon: Icon(
-                                       Icons.contacts_outlined,color: Color.fromRGBO(82, 165, 160, 1)),
+                                       Icons.event_note_outlined,color: Color.fromRGBO(82, 165, 160, 1)),
                                   )
                               )
                             ),
@@ -154,67 +180,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
 
               ),
               SizedBox(
-                height: localHeight * 0.02,
-              ),
-              Container(
-                padding: const EdgeInsets.only(left: 30,right: 30),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child:
-                        Text("PASSWORD",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(102, 102, 102, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14)),),
-
-                      ),
-                      Column(
-                        children: const [
-                          Align(alignment: Alignment.center,
-                                child: TextField(
-                                    keyboardType: TextInputType.text,
-                                    decoration: InputDecoration(
-                                        helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
-                                        hintText: "Your Password",
-                                        prefixIcon: Icon(
-                                            Icons.lock_outline_rounded,color: Color.fromRGBO(82, 165, 160, 1)),
-                                    )
-                                )
-                            ),
-                        ],
-                      ),
-
-                    ]),
-
-              ),
-              SizedBox(
-                height: localHeight * 0.02,
-              ),
-              Container(
-                // margin: const EdgeInsets.all(15),
-                  padding: const EdgeInsets.only(
-                      left: 230),
-                  child:  Row(
-                    children:  [
-                      Text("Forget password?",
-                          style: Theme.of(context).primaryTextTheme.bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14))),
-                    ],
-                  )
-              ),
-              SizedBox(
-                height: localHeight * 0.02,
+                height: localHeight * 0.08,
               ),
               Column(
                 children: [
@@ -229,20 +195,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           ),
                         ),
                         //shape: StadiumBorder(),
-                        child: Text('Login',
+                        child: Text('Start',
                           style: GoogleFonts.inter(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 24),
                         ),
                         onPressed: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const StudentMemLogedStart(),
-                            ),
-                          );},
-                      ),
+
+                        }
+                        ),
                     ),
                   )
                 ],
@@ -253,23 +215,23 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
               Container(
                 // margin: const EdgeInsets.all(15),
                   padding: const EdgeInsets.only(
-                      left: 130),
+                      left: 108),
                   child:  Row(
                     children:  [
                       IconButton(
                         icon: const Icon(
-                          Icons.edit_note_sharp,
+                          Icons.search,
                           color: Color.fromRGBO(141, 167, 167, 1),
                         ), onPressed: () {
                       },
                       ),
-                      Text("Register",
+                      Text("Search Library",
                           style: Theme.of(context).primaryTextTheme.bodyText1
                               ?.merge(const TextStyle(
                               color: Color.fromRGBO(48, 145, 139, 1),
                               fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18))),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16))),
                     ],
                   )
               ),
