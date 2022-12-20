@@ -1,12 +1,19 @@
-import 'package:QnATest/pages/hamBurger_menu.dart';
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+
+import 'Student_Quest_ReviseAns.dart';
+import 'hamBurger_menu.dart';
+
 
 
 
 class StudentMemLogedStart extends StatefulWidget {
-  const StudentMemLogedStart({super.key});
-
+  const StudentMemLogedStart({
+    Key? key,
+    required this.regNumber
+  }) : super(key: key);
+  final String regNumber;
 
   @override
   StudentMemLogedStartState createState() => StudentMemLogedStartState();
@@ -99,18 +106,15 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                 margin: const EdgeInsets.all(15),
                 child: Column(
                     children: [
-                      Align(alignment: Alignment.center,
+                      const Align(alignment: Alignment.center,
                         child:
                         Text("WELCOME",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge(const TextStyle(
+                          style: TextStyle(
                               color: Color.fromRGBO(28, 78, 80, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               letterSpacing: -0.02,
-                              fontSize: 24)),),
+                              fontSize: 24),),
                       ),
                       SizedBox(
                         height: localHeight * 0.02,
@@ -137,18 +141,15 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Align(
+                      const Align(
                         alignment: Alignment.topLeft,
                         child:
                         Text("ENTER TEST ASSESSMENT ID",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge(const TextStyle(
+                          style: TextStyle(
                               color: Color.fromRGBO(102, 102, 102, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w600,
-                              fontSize: 14)),),
+                              fontSize: 14),),
 
                       ),
                       SizedBox(
@@ -159,12 +160,6 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                           Align(alignment: Alignment.center,
                             child: TextFormField(
                               controller: assessmentID,
-                              validator: (value) {
-                                if (assessmentID.text == null) {
-                                  return "Assessment ID is required";
-                                }
-                                return null;
-                              },
                                 keyboardType: TextInputType.text,
                                   decoration: const InputDecoration(
                                     helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
@@ -185,7 +180,6 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
               Column(
                 children: [
                   Align(alignment: Alignment.center,
-                    child: Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -195,45 +189,48 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                           ),
                         ),
                         //shape: StadiumBorder(),
-                        child: Text('Start',
-                          style: GoogleFonts.inter(
+                        child: const Text('Start',
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: 24,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24),
+                              fontWeight: FontWeight.w600
+                          )
                         ),
                         onPressed: () async {
-
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: StudReviseQuest(),
+                            ),
+                          );
                         }
                         ),
-                    ),
                   )
                 ],
               ),
               SizedBox(
                 height: localHeight * 0.02,
               ),
-              Container(
-                // margin: const EdgeInsets.all(15),
-                  padding: const EdgeInsets.only(
-                      left: 108),
-                  child:  Row(
-                    children:  [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          color: Color.fromRGBO(141, 167, 167, 1),
-                        ), onPressed: () {
-                      },
-                      ),
-                      Text("Search Library",
-                          style: Theme.of(context).primaryTextTheme.bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16))),
-                    ],
-                  )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  IconButton(
+                    icon: const Icon(
+                      Icons.search,
+                      color: Color.fromRGBO(141, 167, 167, 1),
+                    ),
+                    onPressed: () {},
+                  ),
+                  const Text("Search Library",
+                      style: TextStyle(
+                          color: Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16)),
+                ],
               ),
               SizedBox(
                 height: localHeight * 0.03,

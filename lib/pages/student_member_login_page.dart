@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'student_registration_page.dart';
 import 'student_MemLoged_Start.dart';
 
 
@@ -12,6 +13,12 @@ class StudentMemberLoginPage extends StatefulWidget {
   StudentMemberLoginPageState createState() => StudentMemberLoginPageState();
 }
 class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
+  TextEditingController regNumberController =TextEditingController();
+  TextEditingController passWordController =TextEditingController();
+  String regNumber = "";
+  String passWord = "";
+  final formKey=GlobalKey<FormState>();
+  bool agree = false;
   @override
   void initState() {
     super.initState();
@@ -47,7 +54,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 child: Column(
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   children : [
-                    const SizedBox(height:50.0),
+                    SizedBox(height: localHeight * 0.050),
                     Align(
                       alignment: Alignment.topLeft,
                       child: IconButton(
@@ -63,8 +70,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     Align(
                       alignment: Alignment.topCenter,
                       child:
-                      Container(
-                        padding: const EdgeInsets.all(0.0),
+                      SizedBox(
                         height: localHeight * 0.20,
                         width: localWidth * 0.30,
                         // decoration:  const BoxDecoration(
@@ -83,38 +89,39 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         // child: Image.asset("assets/images\question_mark_logo.png"),
                       ),
                     ),
-                    const SizedBox(height: 25.0),
+                     SizedBox(height: localHeight * 0.025),
 
                   ],
                 ),
               ),
-              Container(
-                width: 149,
-                margin: const EdgeInsets.all(15),
-                child: Column(
-                    children: [
-                      Align(alignment: Alignment.center,
-                        child:
-                        Text("MEMBER STUDENT",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(28, 78, 80, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -0.02,
-                              fontSize: 30)),),
-                      ),
-                      SizedBox(
-                        height: localHeight * 0.03,
-                      ),
-                    ]),
 
-              ),
+                //Column(
+                   // children: [
+                     // Align(
+                        //alignment: Alignment.center,
+                       // child:
+              SizedBox(height: localHeight * 0.03),
+                        const Text("MEMBER STUDENT",
+                            style: TextStyle(
+                              fontSize: 32.0,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w800,
+                            ),
+                        ),
+                    //  ),
+                    //   SizedBox(
+                    //     height: localHeight * 0.03,
+                    //   ),
+                //    ]
+
+
+            //  ),
+              SizedBox(height: localHeight * 0.06),
               Container(
                 //margin: const EdgeInsets.only(left: 10,right: 50),
-                padding: const EdgeInsets.only(left: 30,right: 30),
+                padding: EdgeInsets.only(left: localHeight * 0.030,right: localHeight * 0.030),
+          child: Form(
+                key: formKey,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -122,28 +129,34 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         alignment: Alignment.topLeft,
                         child:
                         Text("REGISTRATION ID OR EMAIL ID",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(102, 102, 102, 1),
+                          style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w600,
-                              fontSize: 14)),),
+                              fontSize: localHeight * 0.014),),
 
                       ),
                       SizedBox(
                         height: localHeight * 0.02,
                       ),
                       Column(
-                        children: const [
+                        children:  [
                           Align(alignment: Alignment.center,
-                            child: TextField(
+                            child: TextFormField(
                                   keyboardType: TextInputType.text,
+                                  controller: regNumberController,
+                                validator: (value){
+                                  if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                                    return "Register ID is required";
+                                  }
+                                  else{
+                                    return null;
+                                  }
+                                },
                                   decoration: InputDecoration(
-                                    helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
+                                    helperStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                       hintText: "Your Reg ID / Email ID",
-                                    prefixIcon: Icon(
+                                    prefixIcon: const Icon(
                                        Icons.contacts_outlined,color: Color.fromRGBO(82, 165, 160, 1)),
                                   )
                               )
@@ -151,13 +164,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         ],
                       ),
                     ]),
+          ),
 
               ),
               SizedBox(
-                height: localHeight * 0.02,
+                height: localHeight * 0.04,
               ),
               Container(
-                padding: const EdgeInsets.only(left: 30,right: 30),
+                padding: EdgeInsets.only(left: localHeight * 0.030,right: localHeight * 0.030),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -165,25 +179,35 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         alignment: Alignment.topLeft,
                         child:
                         Text("PASSWORD",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(102, 102, 102, 1),
+                          style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w600,
-                              fontSize: 14)),),
+                              fontSize: localHeight * 0.014),),
 
                       ),
+                      SizedBox(
+                        height: localHeight * 0.02,
+                      ),
                       Column(
-                        children: const [
+                        children: [
                           Align(alignment: Alignment.center,
-                                child: TextField(
+                                child: TextFormField(
                                     keyboardType: TextInputType.text,
+                                    obscureText: true,
+                                    validator: (value){
+                                      if(value!.isEmpty){
+                                        return "Registration ID or Roll Number not found";
+                                      }
+                                      else{
+                                        return null;
+                                      }
+                                    },
+                                    controller: passWordController,
                                     decoration: InputDecoration(
-                                        helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
+                                        helperStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localWidth * 0.016),
                                         hintText: "Your Password",
-                                        prefixIcon: Icon(
+                                        prefixIcon: const Icon(
                                             Icons.lock_outline_rounded,color: Color.fromRGBO(82, 165, 160, 1)),
                                     )
                                 )
@@ -195,21 +219,20 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
 
               ),
               SizedBox(
-                height: localHeight * 0.02,
+                height: localHeight * 0.03,
               ),
               Container(
-                // margin: const EdgeInsets.all(15),
-                  padding: const EdgeInsets.only(
-                      left: 230),
+                //margin: const EdgeInsets.only(left: ),
+                  padding: EdgeInsets.only(
+                      left: localHeight * 0.300),
                   child:  Row(
                     children:  [
                       Text("Forget password?",
-                          style: Theme.of(context).primaryTextTheme.bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(48, 145, 139, 1),
+                          style:  TextStyle(
+                              color: const Color.fromRGBO(48, 145, 139, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
-                              fontSize: 14))),
+                              fontSize: localHeight * 0.014)),
                     ],
                   )
               ),
@@ -217,9 +240,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 height: localHeight * 0.02,
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(alignment: Alignment.center,
-                    child: Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -230,46 +253,63 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         ),
                         //shape: StadiumBorder(),
                         child: Text('Login',
-                          style: GoogleFonts.inter(
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: localHeight * 0.024,
                               color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 24),
-                        ),
-                        onPressed: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const StudentMemLogedStart(),
-                            ),
-                          );},
+                            fontWeight: FontWeight.w600
+                          )),
+                        onPressed: () {
+                          if(formKey.currentState!.validate()) {
+                              regNumber = regNumberController.text;
+                              passWord = passWordController.text;
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: StudentMemLogedStart(regNumber : regNumber),
+                                ),
+                              );
+                            }
+                        },
+
+                        // {
+                        //   Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => const StudentMemLogedStart(),
+                        //     ),
+                        //   );},
                       ),
-                    ),
                   )
                 ],
               ),
               SizedBox(
                 height: localHeight * 0.02,
               ),
-              Container(
-                // margin: const EdgeInsets.all(15),
-                  padding: const EdgeInsets.only(
-                      left: 130),
+              MaterialButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  const StudentRegistrationPage(),
+                      ),
+                    );},
                   child:  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
                       IconButton(
                         icon: const Icon(
                           Icons.edit_note_sharp,
                           color: Color.fromRGBO(141, 167, 167, 1),
-                        ), onPressed: () {
-                      },
+                        ), onPressed: () {  },
                       ),
                       Text("Register",
-                          style: Theme.of(context).primaryTextTheme.bodyText1
-                              ?.merge(const TextStyle(
-                              color: Color.fromRGBO(48, 145, 139, 1),
+                          style:  TextStyle(
+                              color: const Color.fromRGBO(48, 145, 139, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w600,
-                              fontSize: 18))),
+                              fontSize: localHeight * 0.018)),
                     ],
                   )
               ),
