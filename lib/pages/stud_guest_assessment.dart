@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/stud_guest_question01.dart';
 import 'package:qna_test/Pages/verify_otp_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../Components/custom_alert_box.dart';
 import '../Components/custom_incorrect_popup.dart';
-
+import '../Components/custom_radio_button.dart';
+import '../Components/custom_text_field.dart';
+import '../Components/popup_alerts.dart';
+//AppLocalizations.of(context)!.agree_privacy_terms
 class StudGuestAssessment extends StatefulWidget {
-  const StudGuestAssessment({
+  StudGuestAssessment({
     Key? key,
     required this.name
   }) : super(key: key);
@@ -16,6 +22,7 @@ class StudGuestAssessment extends StatefulWidget {
 
 class StudGuestAssessmentState extends State<StudGuestAssessment> {
   final formKey=GlobalKey<FormState>();
+  TextEditingController assessmentIdController= TextEditingController();
 
   @override
   void initState() {
@@ -103,9 +110,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                   child: Column(
                     children:  [
                       Text(
-                        "WELCOME",
+                        AppLocalizations.of(context)!.welcome,
                         style: TextStyle(
-                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          color: Color.fromRGBO(82, 165, 160, 1),
                           fontSize: height * 0.036,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
@@ -115,7 +122,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                       Text(
                         widget.name,
                         style:  TextStyle(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          color: Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.033,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
@@ -130,12 +137,12 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                             Align(
                               alignment: Alignment.topLeft,
                               child:
-                              Text("ASSESSMENT ID",
+                              Text(AppLocalizations.of(context)!.assessment_id,
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodyText1
                                     ?.merge( TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                    color: Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                     fontSize: height * 0.017)),),
@@ -146,20 +153,21 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                             ),
                             Align(alignment: Alignment.center,
                                 child: TextFormField(
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
-                                    helperStyle: const TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
-                                    hintText: "Enter Test Paper ID",
-                                    prefixIcon: Icon(
-                                      Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.04,),
-                                  ),
+                                  controller: assessmentIdController,
+                                    keyboardType: TextInputType.text,
+                                    decoration: InputDecoration(
+                                      helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
+                                      hintText: AppLocalizations.of(context)!.enter_paper_id,
+                                      prefixIcon: Icon(
+                                          Icons.account_box_outlined,color: Color.fromRGBO(82, 165, 160, 1),size: height * 0.04,),
+                                    ),
                                   validator: (value){
-                                    if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
-                                      return "Assessment ID not found";
-                                    }
-                                    else{
-                                      return null;
-                                    }
+                                      if(value!.isEmpty || !RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value)){
+                                        return AppLocalizations.of(context)!.assessment_id_not_found;
+                                      }
+                                      else{
+                                        return null;
+                                      }
                                   },
                                 )
                             ),
@@ -184,28 +192,28 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                         ),
                         onPressed: () {
                           bool valid=formKey.currentState!.validate();
-                          if(valid){
+                          if(assessmentIdController.text.length==8){
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: VerifyOtpPage(),
+                                child: StudGuestQuestion(assessmentId: assessmentIdController.text),
                               ),
                             );
                           }
-                          else {
+                            else {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: const CustomDialog(title: 'Assessment ID not found', content: '', button: 'Retry',),
+                                child: CustomDialog(title: AppLocalizations.of(context)!.invalid_assessment_iD, content: '', button: AppLocalizations.of(context)!.retry,),
                               ),
                             );
                           }
 
                         },
                         child: Text(
-                          'Start',
+                          AppLocalizations.of(context)!.start,
                           style: TextStyle(
                               fontSize: height * 0.024,
                               fontFamily: "Inter",
@@ -231,14 +239,19 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                         ),
                         onPressed: () {},
                       ),
-                      const Text("Search Library",
-                          style: TextStyle(
+                      Text(AppLocalizations.of(context)!.search_library,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyText1
+                              ?.merge(const TextStyle(
                               color: Color.fromRGBO(48, 145, 139, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
-                              fontSize: 16)),
+                              fontSize: 16))),
                     ],
                   )),
             ]));
   }
 }
+
+

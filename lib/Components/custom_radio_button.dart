@@ -69,6 +69,9 @@ class CustomRadioButton<T> extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: width * 0.2,
+            ),
             _buildLabel(),
             const SizedBox(width: 10),
             _buildText(),

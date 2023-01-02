@@ -18,8 +18,8 @@ class VerifyOtpPage extends StatefulWidget {
 
 class VerifyOtpPageState extends State<VerifyOtpPage> {
   final formKey=GlobalKey<FormState>();
-  TextEditingController otpController = TextEditingController();
-  late String otp;
+TextEditingController otpController = TextEditingController();
+late String otp;
   bool error =false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
@@ -27,7 +27,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   void initState() {
     error =false;
     countdownTimer =
-        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
     super.initState();
   }
   void setCountDown() {
@@ -53,40 +53,89 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("VERIFY OTP",
-            style: TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
-              fontSize: 18.0,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w600,
-            ),),
-          leading: IconButton(
-            icon:const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ), onPressed: () {
-            Navigator.of(context).pop();
-          },
-          ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomRight,
-                    begin: Alignment.topLeft,
-                    colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
-            ),
-          ),
-        ),
+        // appBar: AppBar(
+        //   centerTitle: true,
+        //   title: const Text("VERIFY OTP",
+        //     style: TextStyle(
+        //       color: Color.fromRGBO(255, 255, 255, 1),
+        //       fontSize: 18.0,
+        //       fontFamily: "Inter",
+        //       fontWeight: FontWeight.w600,
+        //     ),),
+        //   leading: IconButton(
+        //     icon:const Icon(
+        //       Icons.chevron_left,
+        //       size: 40.0,
+        //       color: Colors.white,
+        //     ), onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        //   ),
+        //   flexibleSpace: Container(
+        //     decoration: const BoxDecoration(
+        //       gradient: LinearGradient(
+        //           end: Alignment.bottomRight,
+        //           begin: Alignment.topLeft,
+        //           colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
+        //     ),
+        //   ),
+        // ),
         body: Column(
             children: [
+              Container(
+                height: height * 0.26,
+                width: width,
+                decoration: BoxDecoration(
+                  // color: Theme.of(context).primaryColor,
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(0, 106, 100, 1),
+                      Color.fromRGBO(82, 165, 160, 1)
+                    ],
+                  ),
+                  borderRadius: BorderRadius.vertical(
+                      bottom: Radius.elliptical(
+                          width ,
+                          height * 0.30)
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children : [
+
+                    Container(
+                      width: width * 0.03,
+
+                    ),
+                    Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(0.0),
+                        height: height * 0.22,
+                        width: width * 0.22,
+                        // decoration: BoxDecoration(
+                        //     //color: Colors.yellow[100],
+                        //     border: Border.all(
+                        //       color: Colors.red,
+                        //       width: 1,
+                        //     )),
+                        child: Image.asset("assets/images/question_mark_logo.png"),
+                      ),
+                    ),
+                    Container(
+                      width: width * 0.03,
+                    )
+
+                  ],
+                ),
+              ),
+              SizedBox(height:height * 0.03),
               SizedBox(height:height * 0.04),
               Form(
                 key: formKey,
                 child: Container(
-                  height: height * 0.75,
+                  height: height * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:  [
@@ -138,12 +187,12 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 const Icon(Icons.circle,color: Color.fromRGBO(141, 167, 167, 1),size: 6,),
                                 const SizedBox(width: 4,),
                                 const Text("The OTP will be expired in",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(153, 153, 153, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14)
-                                ),
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(153, 153, 153, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14)
+                                  ),
                                 Text(" $minutes:$seconds",
                                     style: const TextStyle(
                                         color: Colors.black,
@@ -157,7 +206,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 const Icon(Icons.circle,color: Color.fromRGBO(141, 167, 167, 1),size: 6,),
-                                const SizedBox(width: 4,),
+                                SizedBox(width: 4,),
                                 const Text("Don't receive OTP?",
                                   style: TextStyle(
                                       color: Color.fromRGBO(153, 153, 153, 1),
@@ -169,11 +218,11 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
 
                                 },
                                     child: const Text("   Resend OTP",
-                                        style: TextStyle(
-                                            color: Color.fromRGBO(82, 165, 160, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 14)))
+                                    style: TextStyle(
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14)))
                               ],
                             )
                           ],
@@ -196,8 +245,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 Navigator.push(
                                   context,
                                   PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: showAlertDialog(context)
+                                    type: PageTransitionType.fade,
+                                    child: showAlertDialog(context)
                                   ),
                                 );
                               }
@@ -234,17 +283,17 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          Icon(Icons.check_circle,size: height * 0.04,color: const Color.fromRGBO(66, 194, 0, 1),),
+          Icon(Icons.check_circle,size: height * 0.04,color: Color.fromRGBO(66, 194, 0, 1),),
           SizedBox(width: height * 0.002,),
-          const Text("Success!",
-            style: TextStyle(
-                color: Color.fromRGBO(51, 51, 51, 1),
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: 20),),
+          Text("Success!",
+          style: TextStyle(
+              color: Color.fromRGBO(51, 51, 51, 1),
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+              fontSize: 20),),
         ],
       ),
-      content: const Text("Your registration has been successfully completed.",style: TextStyle(
+      content: Text("Your registration has been successfully completed.",style: TextStyle(
           color: Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
@@ -272,3 +321,5 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     );
   }
 }
+
+

@@ -36,7 +36,7 @@ class CustomAlertDialog {
                             color: Colors.white,
                             shape: BoxShape.rectangle,
                             borderRadius: BorderRadius.circular(17),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black26,
                                 blurRadius: 10.0,

@@ -10,7 +10,7 @@ class CustomSuccessPopup{
   //
   //   // set up the AlertDialog
   //   AlertDialog alert = AlertDialog(
-  //     title: Text("My title"),
+  //     title: const Text("My title"),
   //     content: Text("This is my message."),
   //     actions: [
   //       okButton,
