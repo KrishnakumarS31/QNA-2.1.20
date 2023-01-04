@@ -4,21 +4,21 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
-class ResetPassword extends StatefulWidget {
-  ResetPassword({
+class StudentForgotPassword extends StatefulWidget {
+  StudentForgotPassword({
     Key? key,
   }) : super(key: key);
 
 
   @override
-  ResetPasswordState createState() => ResetPasswordState();
+  StudentForgotPasswordState createState() => StudentForgotPasswordState();
 }
 
-class ResetPasswordState extends State<ResetPassword> {
+class StudentForgotPasswordState extends State<StudentForgotPassword> {
   final formKey=GlobalKey<FormState>();
   TextEditingController oldPassword= TextEditingController();
   TextEditingController newPassword= TextEditingController();
-  TextEditingController reNewPassword= TextEditingController();
+
 
   @override
   void initState() {
@@ -167,36 +167,7 @@ class ResetPasswordState extends State<ResetPassword> {
                               },
                             ),
                           ),
-                          SizedBox(height: height * 0.03,),
-                          Padding(
-                            padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
-                            child: TextFormField(
-                              controller: reNewPassword,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.confirm_new_password_caps,
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                                hintText: AppLocalizations.of(context)!.confirm_new_password,
-                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
-                                focusedBorder:  OutlineInputBorder(
-                                    borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
-                                    borderRadius: BorderRadius.circular(15)
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                              ),
-                              validator: (value){
-                                if(newPassword.text!=reNewPassword.text)
-                                {
-                                  return AppLocalizations.of(context)!.mis_match_password;
-                                }
-                                else{
-                                  return null;
-                                }
-                              },
-                            ),
-                          ),
+
                         ],
                       ),
 
@@ -210,26 +181,26 @@ class ResetPasswordState extends State<ResetPassword> {
                         ),
                         onPressed: () async{
                           bool valid=formKey.currentState!.validate();
-                          if(valid || newPassword.text==reNewPassword.text){
-                           int statusCode=await QnaService.updatePassword(oldPassword.text, newPassword.text);
-                           if(statusCode==200){
-                             Navigator.push(
-                               context,
-                               PageTransition(
-                                   type: PageTransitionType.fade,
-                                   child: showAlertDialog(context)
-                               ),
-                             );
-                           }
-                           else{
-                             Navigator.push(
-                               context,
-                               PageTransition(
-                                 type: PageTransitionType.rightToLeft,
-                                 child: CustomDialog(title: 'Incorrect Password', content: 'Your Password has not been changed', button: AppLocalizations.of(context)!.retry,),
-                               ),
-                             );
-                           }
+                          if(valid){
+                            int statusCode=await QnaService.updatePassword(oldPassword.text, newPassword.text);
+                            if(statusCode==200){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: showAlertDialog(context)
+                                ),
+                              );
+                            }
+                            else{
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(title: 'Incorrect Password', content: 'Your Password has not been changed', button: AppLocalizations.of(context)!.retry,),
+                                ),
+                              );
+                            }
 
                           }
 

@@ -5,7 +5,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
 import '../DataSource/app_user_repo.dart';
-import '../Entity/app_user.dart';
 
 
 
@@ -96,53 +95,41 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                         for (int j=0; j<languages.length; j++)
                           GestureDetector(
                             onTap: () async {
-                              late String selectedLocale;
                               setState(() {
                                 selected=languages[j];
                               });
                               if(selected=='வணக்கம் (Tamil)'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'ta'));
-                                selectedLocale='ta';
                               }
                               else if(selected=='नमस्ते (Hindi)'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'hi'));
-                                selectedLocale='hi';
                               }
                               else if(selected=='ಕನ್ನಡ (Kannada)'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'ka'));
-                                selectedLocale='ka';
                               }
                               else if(selected=='नमस्कार Marati'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'mr'));
-                                selectedLocale='mr';
                               }
                               else if(selected=='Hola (Spanish)'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'es'));
-                                selectedLocale='es';
                               }
                               else if(selected=='హలో (Telugu)'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'te'));
-                                selectedLocale='te';
                               }
                               else if(selected =='ഹലോ (Malayalam)'){
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'ml'));
-                                selectedLocale='ml';
                               }
                               else{
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(Locale.fromSubtags(languageCode: 'en'));
-                                selectedLocale='en';
                               }
-                              int i = await AppUserRepo().createUserDetail(AppUser(
-                                  locale: selectedLocale,
-                                  id: 35));
                               Navigator.push(
                                 context,
                                 PageTransition(

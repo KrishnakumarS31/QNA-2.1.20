@@ -1,23 +1,26 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../Providers/question_num_provider.dart';
 import '../Entity/question_model.dart';
+import 'Student_Quest_ReviseAns.dart';
 
 
 
-class StudGuestQuestion extends StatefulWidget {
-  StudGuestQuestion({
+class StudMemQuestion extends StatefulWidget {
+  const StudMemQuestion({
     Key? key,
     required this.assessmentId
   }) : super(key: key);
   final String assessmentId;
 
   @override
-  StudGuestQuestionState createState() => StudGuestQuestionState();
+  StudMemQuestionState createState() => StudMemQuestionState();
 }
 
-class StudGuestQuestionState extends State<StudGuestQuestion> {
+class StudMemQuestionState extends State<StudMemQuestion> {
   Timer? countdownTimer;
   Duration myDuration = const Duration(hours: 1);
   List<dynamic> selected=[];
@@ -141,12 +144,12 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
   dynamic select;
   late Map tempQuesAns = {};
   List<int> tilecount=[1];
-  Color colorCode=Color.fromRGBO(179, 179, 179, 1);
+  Color colorCode=const Color.fromRGBO(179, 179, 179, 1);
 
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 0)).then((_) {
+    Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
             borderRadius:  BorderRadius.only(
@@ -160,7 +163,7 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                   border: Border.all(
                     color: Colors.white,
                   ),
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
               ),
               height: MediaQuery.of(context).copyWith().size.height * 0.3025,
               child: Padding(
@@ -170,17 +173,17 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                     SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
                     Padding(
                       padding:  EdgeInsets.only(right: MediaQuery.of(context).copyWith().size.width * 0.055),
-                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.055,), onPressed: () { Navigator.of(context).pop(); },),),
+                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.055,), onPressed: () { Navigator.of(context).pop(); },),),
                     ),
                     ListTile(
                       leading: Stack(
                         children:  [
-                          Icon(Icons.mode_comment_outlined,color: Color.fromRGBO(255, 153, 0, 1),),
+                          const Icon(Icons.mode_comment_outlined,color: Color.fromRGBO(255, 153, 0, 1),),
                           Positioned(
                               left: MediaQuery.of(context).copyWith().size.width * 0.008,
                               top: MediaQuery.of(context).copyWith().size.height * 0.005,
                               child: Icon(Icons.question_mark,
-                                color: Color.fromRGBO(255, 153, 0, 1),
+                                color: const Color.fromRGBO(255, 153, 0, 1),
                                 size: MediaQuery.of(context).copyWith().size.height*0.014,))
                         ],
                       ),
@@ -189,21 +192,21 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                             .primaryTextTheme
                             .bodyText1
                             ?.merge( TextStyle(
-                            color: Color.fromRGBO(51, 51, 51, 1),
+                            color: const Color.fromRGBO(51, 51, 51, 1),
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                     ),
                     ListTile(
                       leading:
-                      Icon(Icons.skip_next_outlined,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.height * 0.036,),
+                      Icon(Icons.skip_next_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.height * 0.036,),
                       title:
                       Text("Skip to End of question paper",
                         style: Theme.of(context)
                             .primaryTextTheme
                             .bodyText1
                             ?.merge( TextStyle(
-                            color: Color.fromRGBO(51, 51, 51, 1),
+                            color: const Color.fromRGBO(51, 51, 51, 1),
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -213,13 +216,13 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.square,color: Color.fromRGBO(188, 191, 8, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(188, 191, 8, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Test",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -228,13 +231,13 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                         ),
                         //Image.asset("assets/images/testIcon.png"),
                         // SvgPicture.asset('assets/icons/test.svg'),
-                        Icon(Icons.square,color: Color.fromRGBO(255, 157, 77, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(255, 157, 77, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Practice",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -250,7 +253,7 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
     context.read<Questions>().createQuesAns(question.length);
     context.read<QuestionNumProvider>().reset();
     countdownTimer =
-        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
     super.initState();
   }
 
@@ -289,16 +292,16 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
           centerTitle: true,
           title: Text(widget.assessmentId,
             style: TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.025,
               fontFamily: "Inter",
               fontWeight: FontWeight.w600,
             ),),
           flexibleSpace: Banner(
-            color: Color.fromRGBO(255, 157, 77, 1),
+            color: const Color.fromRGBO(255, 157, 77, 1),
             message: "Practice",
             textStyle: TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.015,
               fontFamily: "Inter",
               fontWeight: FontWeight.w600,
@@ -328,7 +331,7 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                           .primaryTextTheme
                           .bodyText1
                           ?.merge( TextStyle(
-                          color: Color.fromRGBO(82, 165, 160, 1),
+                          color: const Color.fromRGBO(82, 165, 160, 1),
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
                           fontSize: height * 0.02)),),
@@ -451,23 +454,23 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                             Card(
                                 color: Colors.white,
                                 child: Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: TextField(
                                     onChanged: (ans){
                                       if(ansController.text.isEmpty){
-                                        context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(219, 35, 35, 1),false);
+                                        context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(219, 35, 35, 1),false);
                                       }
                                       else{
                                         selected =[];
                                         ans=ansController.text;
                                         selected.add(ans);
-                                        context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(82, 165, 160, 1),false);
+                                        context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(82, 165, 160, 1),false);
 
                                       }
 
                                     },
                                     controller: ansController,
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       hintText: "Enter your text here",
                                       border: OutlineInputBorder(
                                           borderSide: BorderSide(color: Colors.black54)
@@ -491,13 +494,13 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                                 GestureDetector(
                                   onTap: (){
                                     if(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]==false){
-                                      context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(239, 218, 30, 1),true);
+                                      context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(239, 218, 30, 1),true);
                                     }
                                     else if(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][0]!=[]){
-                                      context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(82, 165, 160, 1),false);
+                                      context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(82, 165, 160, 1),false);
                                     }
                                     else{
-                                      context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(219, 35, 35, 1),false);
+                                      context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(219, 35, 35, 1),false);
                                     }
                                   },
                                   child: Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
@@ -530,19 +533,19 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       context.watch<QuestionNumProvider>().questionNum<=1?
-                      IconButton(icon: Icon(Icons.arrow_circle_left,color:Color.fromRGBO(209, 209, 209, 1),size: height * 0.06,), onPressed: () {  },):
+                      IconButton(icon: Icon(Icons.arrow_circle_left,color:const Color.fromRGBO(209, 209, 209, 1),size: height * 0.06,), onPressed: () {  },):
                       IconButton(
-                        icon: Icon(Icons.arrow_circle_left,color: context.watch<QuestionNumProvider>().questionNum==1?Color.fromRGBO(209, 209, 209, 1):Color.fromRGBO(82, 165, 160, 1),size: height * 0.06,),
+                        icon: Icon(Icons.arrow_circle_left,color: context.watch<QuestionNumProvider>().questionNum==1?const Color.fromRGBO(209, 209, 209, 1):const Color.fromRGBO(82, 165, 160, 1),size: height * 0.06,),
                         onPressed: () {
                           context.read<QuestionNumProvider>().decrement();
                           if(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1}'][2]==true){
-                            context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1,selected,Color.fromRGBO(239, 218, 30, 1),true);
+                            context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1,selected,const Color.fromRGBO(239, 218, 30, 1),true);
                           }
                           else if(selected.isNotEmpty){
-                            context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1,selected,Color.fromRGBO(82, 165, 160, 1),false);
+                            context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1,selected,const Color.fromRGBO(82, 165, 160, 1),false);
                           }
                           else{
-                            context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1,selected,Color.fromRGBO(219, 35, 35, 1),false);
+                            context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum+1,selected,const Color.fromRGBO(219, 35, 35, 1),false);
                           }
                         },
                       ),
@@ -580,18 +583,25 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                       // ),
 
                       context.watch<QuestionNumProvider>().questionNum>=question.length?
-                      IconButton(icon: Icon(Icons.arrow_circle_right,color:Color.fromRGBO(209, 209, 209, 1),size: height * 0.06,), onPressed: () {  },):
+                      IconButton(icon: Icon(Icons.arrow_circle_right,color:const Color.fromRGBO(82, 165, 160, 1),size: height * 0.06,), onPressed: () {
+                        Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: const StudReviseQuest(),
+                        ),
+                      ); },):
                       IconButton(
                           onPressed: () {
                             context.read<QuestionNumProvider>().increment();
                             if(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1}'][2]==true){
-                              context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1,selected,Color.fromRGBO(239, 218, 30, 1),true);
+                              context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1,selected,const Color.fromRGBO(239, 218, 30, 1),true);
                             }
                             else if(selected.isNotEmpty){
-                              context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1,selected,Color.fromRGBO(82, 165, 160, 1),false);
+                              context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1,selected,const Color.fromRGBO(82, 165, 160, 1),false);
                             }
                             else{
-                              context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1,selected,Color.fromRGBO(219, 35, 35, 1),false);
+                              context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1,selected,const Color.fromRGBO(219, 35, 35, 1),false);
                             }
                             if(tilecount.contains(Provider.of<QuestionNumProvider>(context, listen: false).questionNum))
                             {}
@@ -601,7 +611,7 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                           },
                           icon: Icon(Icons.arrow_circle_right,
                             color: context.watch<QuestionNumProvider>().questionNum==question.length?
-                            Color.fromRGBO(209, 209, 209, 1):Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(209, 209, 209, 1):const Color.fromRGBO(82, 165, 160, 1),
                             size: height * 0.06,)),
                     ],
                   ),
@@ -636,15 +646,15 @@ class ChooseWidget extends StatelessWidget {
               if(selected.contains(j)){
                 selected.remove(j);
                 if(selected.isEmpty){
-                  context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(219, 35, 35, 1),false);
+                  context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(219, 35, 35, 1),false);
                 }
                 else{
-                  context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(82, 165, 160, 1),false);
+                  context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(82, 165, 160, 1),false);
                 }
               }
               else{
                 selected.add(j);
-                context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,Color.fromRGBO(82, 165, 160, 1),false);
+                context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(82, 165, 160, 1),false);
               }
             },
             child: Padding(
@@ -694,7 +704,7 @@ class NotSureDisabled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children:  [
-        Icon(Icons.mode_comment_outlined,color: Color.fromRGBO(255, 153, 0, 1),size: height*0.03),
+        Icon(Icons.mode_comment_outlined,color: const Color.fromRGBO(255, 153, 0, 1),size: height*0.03),
         Positioned(
             left: width * 0.015,
             top: height * 0.005,
@@ -719,7 +729,7 @@ class NotSureEnabled extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children:  [
-        Icon(Icons.mode_comment_sharp,color: Color.fromRGBO(255, 153, 0, 1),size: height*0.03),
+        Icon(Icons.mode_comment_sharp,color: const Color.fromRGBO(255, 153, 0, 1),size: height*0.03),
         Positioned(
             left: width * 0.015,
             top: height * 0.005,

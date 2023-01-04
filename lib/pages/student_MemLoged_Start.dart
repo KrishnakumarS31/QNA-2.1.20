@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'Student_Quest_ReviseAns.dart';
 import 'hamBurger_menu.dart';
+import 'reset_passwordStudent.dart';
+import 'stud_mem_question01.dart';
 
 
 
@@ -105,7 +108,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             padding: EdgeInsets.only(left: localWidth * 0.09),
                             child: Text(
                                 AppLocalizations.of(context)!.student,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromRGBO(221, 221, 221, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w500,
@@ -176,6 +179,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: ResetPasswordStudent(),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -290,7 +300,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         const Icon(
                             Icons.power_settings_new,
                             color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.logout,style: TextStyle(
+                        title: Text(AppLocalizations.of(context)!.logout,style: const TextStyle(
                             color: Color.fromRGBO(226, 68, 0, 1),
                             //Color.fromRGBO(48, 145, 139, 1),
                             fontFamily: 'Inter',
@@ -391,7 +401,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             alignment: Alignment.topLeft,
                             child:
                             Text(AppLocalizations.of(context)!.enter_assId,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromRGBO(102, 102, 102, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w600,
@@ -417,9 +427,9 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                                         ],
                                         keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
-                                          helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
+                                          helperStyle: const TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
                                           hintText: AppLocalizations.of(context)!.assessment_id,
-                                          prefixIcon: Icon(
+                                          prefixIcon: const Icon(
                                               Icons.event_note_outlined,color: Color.fromRGBO(82, 165, 160, 1)),
                                         )
                                     )
@@ -445,29 +455,52 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             ),
                             //shape: StadiumBorder(),
                             child: Text(AppLocalizations.of(context)!.start,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: 'Inter',
                                     fontSize: 24,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600
                                 )
                             ),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: const StudReviseQuest(),
-                                  ),
-                                );
-                              }
-                              else {
-                                setState(() {
-                                  autoValidate = true;
-                                });
-                              }
-                            }),
+                          onPressed: () {
+                            bool valid=formKey.currentState!.validate();
+                            if(assessmentID.text.length >= 8){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: StudMemQuestion(assessmentId: assessmentID.text),
+                                ),
+                              );
+                            }
+                            else {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(title: AppLocalizations.of(context)!.invalid_assessment_iD, content: '', button: AppLocalizations.of(context)!.retry,),
+                                ),
+                              );
+                            }
+
+                          },
+                            // onPressed: () async {
+                            //   if (formKey.currentState!.validate()) {
+                            //     Navigator.push(
+                            //       context,
+                            //       PageTransition(
+                            //         type: PageTransitionType.rightToLeft,
+                            //         child: const StudReviseQuest(),
+                            //       ),
+                            //     );
+                            //   }
+                            //   else {
+                            //     setState(() {
+                            //       autoValidate = true;
+                            //     });
+                            //   }
+                            // }
+                            ),
                       )
                     ],
                   ),
@@ -486,7 +519,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         onPressed: () {},
                       ),
                        Text(AppLocalizations.of(context)!.search_library,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Color.fromRGBO(48, 145, 139, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,

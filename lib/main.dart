@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/opening_page.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import 'DataSource/app_user_repo.dart';

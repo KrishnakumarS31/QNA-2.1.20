@@ -4,17 +4,17 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
-class ResetPassword extends StatefulWidget {
-  ResetPassword({
+class ResetPasswordStudent extends StatefulWidget {
+  ResetPasswordStudent({
     Key? key,
   }) : super(key: key);
 
 
   @override
-  ResetPasswordState createState() => ResetPasswordState();
+  ResetPasswordStudentState createState() => ResetPasswordStudentState();
 }
 
-class ResetPasswordState extends State<ResetPassword> {
+class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   final formKey=GlobalKey<FormState>();
   TextEditingController oldPassword= TextEditingController();
   TextEditingController newPassword= TextEditingController();

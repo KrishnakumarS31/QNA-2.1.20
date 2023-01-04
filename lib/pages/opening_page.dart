@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/forgot_password_email.dart';
 
-import 'package:qna_test/Pages/reset_password.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
-import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
 

@@ -5,26 +5,27 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_forgot_password.dart';
 
 
-class VerifyOtpPage extends StatefulWidget {
-  VerifyOtpPage({
+class TeacherVerifyOtpPage extends StatefulWidget {
+  TeacherVerifyOtpPage({
     Key? key,
     required this.email
   }) : super(key: key);
 
   final String email;
   @override
-  VerifyOtpPageState createState() => VerifyOtpPageState();
+  TeacherVerifyOtpPageState createState() => TeacherVerifyOtpPageState();
 }
 
-class VerifyOtpPageState extends State<VerifyOtpPage> {
+class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
   final formKey=GlobalKey<FormState>();
-TextEditingController otpController = TextEditingController();
-late String otp;
+  TextEditingController otpController = TextEditingController();
+  late String otp;
   bool error =false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
   @override
   void initState() {
+    print("teacher");
     error =false;
     countdownTimer =
         Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
@@ -187,12 +188,12 @@ late String otp;
                                 const Icon(Icons.circle,color: Color.fromRGBO(141, 167, 167, 1),size: 6,),
                                 const SizedBox(width: 4,),
                                 const Text("The OTP will be expired in",
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(153, 153, 153, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14)
-                                  ),
+                                    style: TextStyle(
+                                        color: Color.fromRGBO(153, 153, 153, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14)
+                                ),
                                 Text(" $minutes:$seconds",
                                     style: const TextStyle(
                                         color: Colors.black,
@@ -218,11 +219,11 @@ late String otp;
 
                                 },
                                     child: const Text("   Resend OTP",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14)))
+                                        style: TextStyle(
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14)))
                               ],
                             )
                           ],
@@ -241,12 +242,13 @@ late String otp;
                           onPressed: () {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
+                              //QnaTestRepo.updatePasswordOtp(widget.email, otp, 'password');
                               if (otp != "1234") {
                                 Navigator.push(
                                   context,
                                   PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: showAlertDialog(context)
+                                      type: PageTransitionType.fade,
+                                      child: showAlertDialog(context)
                                   ),
                                 );
                               }
@@ -293,11 +295,11 @@ late String otp;
           Icon(Icons.check_circle,size: height * 0.04,color: Color.fromRGBO(66, 194, 0, 1),),
           SizedBox(width: height * 0.002,),
           Text("Success!",
-          style: TextStyle(
-              color: Color.fromRGBO(51, 51, 51, 1),
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w500,
-              fontSize: 20),),
+            style: TextStyle(
+                color: Color.fromRGBO(51, 51, 51, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 20),),
         ],
       ),
       content: Text("Your registration has been successfully completed.",style: TextStyle(

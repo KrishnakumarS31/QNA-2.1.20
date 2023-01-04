@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/verify_otp_page.dart';
+import 'package:qna_test/Pages/teacher_verify_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
-class ForgotPasswordEmail extends StatefulWidget {
-  ForgotPasswordEmail({
+class TeacherForgotPasswordEmail extends StatefulWidget {
+  TeacherForgotPasswordEmail({
     Key? key,
   }) : super(key: key);
 
 
   @override
-  ForgotPasswordEmailState createState() => ForgotPasswordEmailState();
+  TeacherForgotPasswordEmailState createState() => TeacherForgotPasswordEmailState();
 }
 
-class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
+class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> {
   final formKey=GlobalKey<FormState>();
   TextEditingController _controller= TextEditingController();
 
@@ -104,24 +104,24 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                         padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
                         child: TextFormField(
                           controller: _controller,
-                            keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.text,
 
-                            decoration: InputDecoration(
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
-                              labelText: AppLocalizations.of(context)!.enter_email_id,
-                              labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                              helperText: AppLocalizations.of(context)!.email_helper_text,
-                              helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w500,fontSize: height * 0.015),
-                              hintText: AppLocalizations.of(context)!.email_hint,
-                              hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
-                              focusedBorder:  OutlineInputBorder(
-                                  borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
-                                  borderRadius: BorderRadius.circular(15)
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15)),
+                          decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            labelText: AppLocalizations.of(context)!.enter_email_id,
+                            labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                            helperText: AppLocalizations.of(context)!.email_helper_text,
+                            helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w500,fontSize: height * 0.015),
+                            hintText: AppLocalizations.of(context)!.email_hint,
+                            hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                            focusedBorder:  OutlineInputBorder(
+                                borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                borderRadius: BorderRadius.circular(15)
                             ),
-                            validator: (value){
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          validator: (value){
                             if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)){
                               return AppLocalizations.of(context)!.enter_valid_email;
@@ -147,7 +147,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                               context,
                               PageTransition(
                                   type: PageTransitionType.fade,
-                                  child: showAlertDialog(context)
+                                  child: showAlertDialog(height)
                               ),
                             );
                           }
@@ -197,9 +197,9 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
               ),
             ]));
   }
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(double height) {
     // set up the button
-    double height = MediaQuery.of(context).size.height;
+    //double height = MediaQuery.of(context).size.height;
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -231,7 +231,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: VerifyOtpPage(email:_controller.text),
+                child: TeacherVerifyOtpPage(email:_controller.text),
               ),
             );
           },

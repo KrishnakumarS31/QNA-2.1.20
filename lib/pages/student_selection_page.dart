@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/Pages/student_guest_login_page.dart';
 import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -9,8 +10,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_radio_button.dart';
 
 class StudentSelectionPage extends StatefulWidget {
-  const StudentSelectionPage({super.key});
-
+  const StudentSelectionPage({super.key,required this.setLocale});
+  final void Function(Locale locale) setLocale;
   @override
   StudentSelectionPageState createState() => StudentSelectionPageState();
 }
@@ -62,7 +63,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                 child: Column(
                   //crossAxisAlignment: CrossAxisAlignment.center,
                 children : [
-                  const SizedBox(height:9.0),
+                   SizedBox(height:height*0.02),
                   Align(
                     alignment: Alignment.topLeft,
                     child: IconButton(
@@ -91,7 +92,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                   child: Image.asset("assets/images/question_mark_logo.png"),
                 ),
                   ),
-                  const SizedBox(height: 6.0),
+                  SizedBox(height: height * 0.01),
                   Text(
                     'QNA',
                     style: TextStyle(
@@ -114,7 +115,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const SizedBox(height:30.0),
+                SizedBox(height:height * 0.03),
             Text(
               AppLocalizations.of(context)!.studentCaps,
             style: TextStyle(
@@ -127,26 +128,26 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
           SizedBox(
             height: height * 0.030,
           ),
-          CustomRadioButton<String>(
-            value: '1',
-            groupValue: _groupValue,
-            onChanged: _valueChangedHandler(),
-            label: '1',
-            text: '${AppLocalizations.of(context)!.guest}    ',
-            height: height,
-            width: width,
-            context: context,
-          ),
-          CustomRadioButton<String>(
-            value: '2',
-            groupValue: _groupValue,
-            onChanged: _valueChangedHandler(),
-            label: '2',
-            text: AppLocalizations.of(context)!.member,
-            height: height,
-            width: width,
-            context: context,
-          ),
+                CustomRadioButton<String>(
+                  value: '1',
+                  groupValue: _groupValue,
+                  onChanged: _valueChangedHandler(),
+                  label: '1',
+                  text: '${AppLocalizations.of(context)!.guest}    ',
+                  height: height,
+                  width: width,
+                  context: context,
+                ),
+                CustomRadioButton<String>(
+                  value: '2',
+                  groupValue: _groupValue,
+                  onChanged: _valueChangedHandler(),
+                  label: '2',
+                  text: AppLocalizations.of(context)!.member,
+                  height: height,
+                  width: width,
+                  context: context,
+                ),
 
           SizedBox(height: height * 0.05,),
           ElevatedButton(
@@ -189,26 +190,37 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
             height: height * 0.09,
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: const Icon(
-                  Icons.g_translate_sharp,
-                  color: Color.fromRGBO(141, 167, 167, 1),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: SettingsLanguages(setLocale: widget.setLocale),
                 ),
-                onPressed: () {},
-              ),
-              Text(AppLocalizations.of(context)!.select_language,
-                  style: Theme.of(context)
-                      .primaryTextTheme
-                      .bodyText1
-                      ?.merge( TextStyle(
-                          color: Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: height * 0.02))),
-            ],
+              );
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  icon: const Icon(
+                    Icons.g_translate_sharp,
+                    color: Color.fromRGBO(141, 167, 167, 1),
+                  ),
+                  onPressed: () {},
+                ),
+                Text(AppLocalizations.of(context)!.select_language,
+                    style: Theme.of(context)
+                        .primaryTextTheme
+                        .bodyText1
+                        ?.merge( TextStyle(
+                            color: Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: height * 0.02))),
+              ],
+            ),
           ),
 
               ],

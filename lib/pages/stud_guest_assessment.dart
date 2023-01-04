@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/stud_guest_question01.dart';
-import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import '../Components/custom_alert_box.dart';
 import '../Components/custom_incorrect_popup.dart';
-import '../Components/custom_radio_button.dart';
-import '../Components/custom_text_field.dart';
-import '../Components/popup_alerts.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class StudGuestAssessment extends StatefulWidget {
   StudGuestAssessment({
@@ -191,7 +186,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           ),
                         ),
                         onPressed: () {
-                          bool valid=formKey.currentState!.validate();
                           if(assessmentIdController.text.length==8){
                             Navigator.push(
                               context,

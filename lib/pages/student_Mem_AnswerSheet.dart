@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/student_result_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class StudentMemAnswerSheet extends StatefulWidget {

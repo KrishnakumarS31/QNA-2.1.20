@@ -10,46 +10,46 @@ class StudReviseQuest extends StatefulWidget {
 }
 
 class StudReviseQuestState extends State<StudReviseQuest> {
-  List<Question> questionList = [
-    Question(
+  List<QuestionModel> questionList = [
+    QuestionModel(
         qnNumber: "1",
         question:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
         answer: "a. Lorem ipsum dolor sit amet, consectetur adipiscing ",
         mark: "5"),
-    Question(
+    QuestionModel(
         qnNumber: "2",
         question:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in  rhoncus lectus efficitur",
         answer: "*** not answered ***",
         mark: "10"),
-    Question(
+    QuestionModel(
         qnNumber: "3",
         question:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies",
         answer: "b. Option 2",
         mark: "10"),
-    Question(
+    QuestionModel(
         qnNumber: "4",
         question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         answer: "b. Option 3",
         mark: "5"),
-    Question(
+    QuestionModel(
         qnNumber: "5",
         question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         answer: "*** not answered ***",
         mark: "5"),
-    Question(
+    QuestionModel(
         qnNumber: "6",
         question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         answer: "*** not answered ***",
         mark: "15"),
-    Question(
+    QuestionModel(
         qnNumber: "7",
         question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         answer: "a. Lorem ipsum dolor sit amet, consectetur adipiscing ",
         mark: "10"),
-    Question(
+    QuestionModel(
         qnNumber: "8",
         question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         answer: "*** not answered ***",
@@ -480,9 +480,9 @@ class StudReviseQuestState extends State<StudReviseQuest> {
   }
 }
 
-class Question {
+class QuestionModel {
   String qnNumber, question, answer, mark;
-  Question(
+  QuestionModel(
       {required this.qnNumber,
         required this.question,
         required this.answer,

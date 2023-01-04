@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/stud_guest_assessment.dart';
+import 'package:qna_test/Pages/teacher_forgot_password_email.dart';
+import 'package:qna_test/Pages/teacher_registration_page.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
+import 'package:qna_test/Services/qna_service.dart';
 
-import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
-import '../DataSource/qna_test_repo.dart';
 import '../Entity/custom_http_response.dart';
 
 class TeacherLogin extends StatefulWidget {
@@ -23,20 +23,221 @@ class TeacherLoginState extends State<TeacherLogin> {
   TextEditingController passwordController=TextEditingController();
   bool agree = false;
   String name='';
-  late Future<Response> userDetails;
+  late Response userDetails;
+  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+
   @override
   void initState() {
-    userDetails=QnaTestRepo.getData();
+
+    getUserDetails();
     super.initState();
   }
-
+getUserDetails() async {
+  userDetails=await QnaService.getUserDataService();
+}
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 30,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          backgroundColor: const Color.fromRGBO(0,106,100,1),
+        ),
+        endDrawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    gradient:  LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ],
+                    )
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50),
+                    Container(
+                      alignment: Alignment.center,
+                      height: height / 6,
+                      child:
+                      Row(
+                          children:  [
+                            CircleAvatar(
+                              backgroundColor: const Color.fromRGBO(0,106,100,0),
+                              radius: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.15,
+                              child: Image.asset(
+                                "assets/images/ProfilePic_Avatar.png",
+                              ),
+                            ),
+                            const SizedBox(height: 2.0),
+                            Text(
+                              "Teacher Name",
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyText1
+                                  ?.merge(const TextStyle(
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.02,
+                                  fontSize: 16)),
+                            ),
+                          ]),
+                    ),
+                    const SizedBox(height: 0.022),
+                    Column(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: width * 0.09),
+                            child: Text(
+                              AppLocalizations.of(context)!.teacher,
+                              style: const TextStyle(
+                                  color: Color.fromRGBO(221, 221, 221, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 12),
+                            )
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: width * 0.09),
+                            child: const Text(
+                              "teacher@gmail.com",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(221, 221, 221, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 12),
+                            )
+                        ),
+                      ],
+                    ),
+                    //    )
+                  ],
+                ),
+              ),
+              Flexible(
+                child: ListView(
+                  children: [
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.translate,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.verified_user_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.note_alt_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.perm_contact_calendar_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.about_us,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyText1
+                              ?.merge(TextStyle(
+                              color: textColor,
+                              //Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 16)),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.help_outline,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        onTap: () async {
+                        }),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
@@ -66,29 +267,29 @@ class TeacherLoginState extends State<TeacherLogin> {
                     //crossAxisAlignment: CrossAxisAlignment.center,
                     children : [
                       SizedBox(height:height * 0.03),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.chevron_left,
-                              size: height * 0.035,
-                              color: Colors.white,
-                            ), onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          ),
-                          IconButton(
-                            icon: Icon(
-                              Icons.menu,
-                              size: height * 0.035,
-                              color: Colors.white,
-                            ), onPressed: () {
-                            // Navigator.of(context).pop();
-                          },
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     IconButton(
+                      //       icon: Icon(
+                      //         Icons.chevron_left,
+                      //         size: height * 0.035,
+                      //         color: Colors.white,
+                      //       ), onPressed: () {
+                      //       Navigator.of(context).pop();
+                      //     },
+                      //     ),
+                      //     IconButton(
+                      //       icon: Icon(
+                      //         Icons.menu,
+                      //         size: height * 0.035,
+                      //         color: Colors.white,
+                      //       ), onPressed: () {
+                      //       // Navigator.of(context).pop();
+                      //     },
+                      //     ),
+                      //   ],
+                      // ),
                       Align(
                         alignment: Alignment.topCenter,
                         child:
@@ -224,17 +425,28 @@ class TeacherLoginState extends State<TeacherLogin> {
                         ),
                         SizedBox(height:height * 0.025),
 
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(AppLocalizations.of(context)!.forgot_password,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1
-                                ?.merge( TextStyle(
-                                color: Color.fromRGBO(48, 145, 139, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: height * 0.017)),),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: TeacherForgotPasswordEmail(),
+                              ),
+                            );
+                          },
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(AppLocalizations.of(context)!.forgot_password,
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyText1
+                                  ?.merge( TextStyle(
+                                  color: Color.fromRGBO(48, 145, 139, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: height * 0.017)),),
+                          ),
                         ),
                         SizedBox(height:height * 0.052),
                       ],
@@ -251,6 +463,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () {
+                    print(userDetails.data.userProfile[0].emailId);
                     bool valid=formKey.currentState!.validate();
                     if(valid){
                       Navigator.push(
@@ -266,38 +479,49 @@ class TeacherLoginState extends State<TeacherLogin> {
                   child: Text(
                     AppLocalizations.of(context)!.login,
                     style: TextStyle(
-                        fontSize: height * 0.032,
+                        fontSize: height * 0.027,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w800),
                   ),
                 ),
                 SizedBox(height:height * 0.061),
-                Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: TeacherRegistrationPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
 
-                        IconButton(
-                          icon:  Icon(
-                            Icons.edit_note_sharp,
-                            color: Color.fromRGBO(141, 167, 167, 1),
-                            size: height * 0.034,
+                          IconButton(
+                            icon:  Icon(
+                              Icons.edit_note_sharp,
+                              color: Color.fromRGBO(141, 167, 167, 1),
+                              size: height * 0.034,
+                            ),
+                            onPressed: () {
+
+                            },
                           ),
-                          onPressed: () {
-
-                          },
-                        ),
-                        Text(AppLocalizations.of(context)!.register,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1
-                                ?.merge(const TextStyle(
-                                color: Color.fromRGBO(48, 145, 139, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16))),
-                      ],
-                    )),
+                          Text(AppLocalizations.of(context)!.register,
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyText1
+                                  ?.merge( TextStyle(
+                                  color: Color.fromRGBO(48, 145, 139, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: height * 0.0225))),
+                        ],
+                      )),
+                ),
 
 
 

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/DataSource/app_user_repo.dart';
-import 'package:qna_test/Entity/app_user.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/Pages/teacher_login.dart';
 import 'student_selection_page.dart';
@@ -183,10 +181,12 @@ class _WelcomePageState extends State<WelcomePage> {
                           onPressed: () async {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (context) => const StudentSelectionPage(),
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child:StudentSelectionPage(setLocale: widget.setLocale),
                               ),
-                            );},
+                            );
+                            },
                         ),
                       ),
                     )]),
