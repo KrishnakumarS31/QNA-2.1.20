@@ -5,6 +5,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
 import '../DataSource/app_user_repo.dart';
+import '../Entity/app_user.dart';
 
 
 
@@ -73,7 +74,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
           padding:  EdgeInsets.only(right: width * 0.08,left:width * 0.08 ,top: height * 0.035),
           child: Container(
             child: Column(
-             crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding:  EdgeInsets.only(bottom: height * 0.025),
@@ -89,92 +90,104 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                 Container(
                   height: height * 0.72,
                   child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child:Column(
-                      children: [
-                        for (int j=0; j<languages.length; j++)
-                          GestureDetector(
-                            onTap: () async {
-                              setState(() {
-                                selected=languages[j];
-                              });
-                              if(selected=='வணக்கம் (Tamil)'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'ta'));
-                              }
-                              else if(selected=='नमस्ते (Hindi)'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'hi'));
-                              }
-                              else if(selected=='ಕನ್ನಡ (Kannada)'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'ka'));
-                              }
-                              else if(selected=='नमस्कार Marati'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'mr'));
-                              }
-                              else if(selected=='Hola (Spanish)'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'es'));
-                              }
-                              else if(selected=='హలో (Telugu)'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'te'));
-                              }
-                              else if(selected =='ഹലോ (Malayalam)'){
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'ml'));
-                              }
-                              else{
-                                AppUserRepo().deleteUserDetail();
-                                widget.setLocale(Locale.fromSubtags(languageCode: 'en'));
-                              }
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child:WelcomePage(setLocale: widget.setLocale),
-                                ),
-                              );
-
-                            },
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(width: 1.0, color: Color.fromRGBO(0, 0, 0, 0.15)),
-                                )
-                              ),
-                                width: width * 0.833,
-                                height: height * 0.0775,
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(languages[j],
-                                        style: TextStyle(
-                                          color: selected==languages[j]? selectedColor:notSelectedColor,
-                                          fontSize: height * 0.0162,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700,
-                                        ),),
-                                      selected==languages[j]?Icon(Icons.check,color: selectedColor,):SizedBox(height: 0,)
-                                    ],
+                      scrollDirection: Axis.vertical,
+                      child:Column(
+                        children: [
+                          for (int j=0; j<languages.length; j++)
+                            GestureDetector(
+                              onTap: () async {
+                                late String selectedLocale;
+                                setState(() {
+                                  selected=languages[j];
+                                });
+                                if(selected=='வணக்கம் (Tamil)'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'ta'));
+                                  selectedLocale='ta';
+                                }
+                                else if(selected=='नमस्ते (Hindi)'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'hi'));
+                                  selectedLocale='hi';
+                                }
+                                else if(selected=='ಕನ್ನಡ (Kannada)'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'ka'));
+                                  selectedLocale='ka';
+                                }
+                                else if(selected=='नमस्कार Marati'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'mr'));
+                                  selectedLocale='mr';
+                                }
+                                else if(selected=='Hola (Spanish)'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'es'));
+                                  selectedLocale='es';
+                                }
+                                else if(selected=='హలో (Telugu)'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'te'));
+                                  selectedLocale='te';
+                                }
+                                else if(selected =='ഹലോ (Malayalam)'){
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'ml'));
+                                  selectedLocale='ml';
+                                }
+                                else{
+                                  AppUserRepo().deleteUserDetail();
+                                  widget.setLocale(Locale.fromSubtags(languageCode: 'en'));
+                                  selectedLocale='en';
+                                }
+                                int i = await AppUserRepo().createUserDetail(AppUser(
+                                    locale: selectedLocale,
+                                    id: 35));
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child:WelcomePage(setLocale: widget.setLocale),
                                   ),
-                                )
+                                );
+
+                              },
+                              child: Container(
+                                  decoration: const BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(width: 1.0, color: Color.fromRGBO(0, 0, 0, 0.15)),
+                                      )
+                                  ),
+                                  width: width * 0.833,
+                                  height: height * 0.0775,
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(languages[j],
+                                          style: TextStyle(
+                                            color: selected==languages[j]? selectedColor:notSelectedColor,
+                                            fontSize: height * 0.0162,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w700,
+                                          ),),
+                                        selected==languages[j]?Icon(Icons.check,color: selectedColor,):SizedBox(height: 0,)
+                                      ],
+                                    ),
+                                  )
+                              ),
                             ),
-                          ),
 
 
 
-                      ],
-                    )
+                        ],
+                      )
                   ),
                 ),
               ],
             ),
-    ),
+          ),
         ));
   }
 

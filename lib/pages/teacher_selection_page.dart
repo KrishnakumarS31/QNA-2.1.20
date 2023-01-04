@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/reset_passwordStudent.dart';
 import 'package:qna_test/pages/reset_password.dart';
+import 'package:qna_test/pages/teacher_result_landing_page.dart';
 
 
 class TeacherSelectionPage extends StatefulWidget {
@@ -538,27 +539,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   //shape: StadiumBorder(),
                   onPressed: () {
 
-                    // if(agree){
-                    //   if(formKey.currentState!.validate()) {
-                    //     name = emailController.text;
-                    //     Navigator.push(
-                    //       context,
-                    //       PageTransition(
-                    //         type: PageTransitionType.rightToLeft,
-                    //         child: StudGuestAssessment(name: name),
-                    //       ),
-                    //     );
-                    //   }
-                    // }
-                    // else{
-                    //   Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //       type: PageTransitionType.rightToLeft,
-                    //       child: CustomDialog(title: AppLocalizations.of(context)!.agree_privacy_terms, content: AppLocalizations.of(context)!.error, button: AppLocalizations.of(context)!.retry),
-                    //     ),
-                    //   );
-                    // }
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: TeacherResultLanding(),
+                      ),
+                    );
                   },
                   child: Text(
                     'Results',

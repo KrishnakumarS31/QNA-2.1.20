@@ -1,23 +1,25 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/student_forgot_password.dart';
-import 'package:qna_test/pages/teacher_forgot_password.dart';
+
+import '../Components/custom_incorrect_popup.dart';
 
 
-class TeacherVerifyOtpPage extends StatefulWidget {
-  TeacherVerifyOtpPage({
+class TeacherRegistrationOtpPage extends StatefulWidget {
+  TeacherRegistrationOtpPage({
     Key? key,
-    required this.email
+
   }) : super(key: key);
 
-  final String email;
+
   @override
-  TeacherVerifyOtpPageState createState() => TeacherVerifyOtpPageState();
+  TeacherRegistrationOtpPageState createState() => TeacherRegistrationOtpPageState();
 }
 
-class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
+class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> {
   final formKey=GlobalKey<FormState>();
   TextEditingController otpController = TextEditingController();
   late String otp;
@@ -244,12 +246,12 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
                               //QnaTestRepo.updatePasswordOtp(widget.email, otp, 'password');
-                              if (otp != "7089") {
+                              if (otp != "1234") {
                                 Navigator.push(
                                   context,
                                   PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: showAlertDialog(context)
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(title: 'Incorrect Otp', content: 'Entered OTP does not match', button: AppLocalizations.of(context)!.retry,),
                                   ),
                                 );
                               }
@@ -258,7 +260,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.fade,
-                                      child: TeacherForgotPassword(email: widget.email, otp: otp,)
+                                      child: showAlertDialog(context)
                                   ),
                                 );
 

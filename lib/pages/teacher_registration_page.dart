@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:intl/intl.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/teacher_verify_page.dart';
+import 'package:qna_test/pages/teacher_registration_verify_page.dart';
+
+import '../Services/qna_service.dart';
 
 class TeacherRegistrationPage extends StatefulWidget {
   const TeacherRegistrationPage({super.key});
@@ -597,7 +602,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                   ),
                 ),
                 onPressed: () {
-
+                  QnaService.sendOtp();
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                        type: PageTransitionType.fade,
+                        child: TeacherRegistrationOtpPage()
+                    ),
+                  );
                 },
                 child: Text(
                   'Send OTP',

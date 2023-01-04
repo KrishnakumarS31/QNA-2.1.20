@@ -4,20 +4,20 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 
-class StudentForgotPassword extends StatefulWidget {
-  StudentForgotPassword({
+class TeacherForgotPassword extends StatefulWidget {
+  TeacherForgotPassword({
     Key? key,
     required this.email,
     required this.otp
   }) : super(key: key);
 
-final String email;
-final String otp;
+  final String email;
+  final String otp;
   @override
-  StudentForgotPasswordState createState() => StudentForgotPasswordState();
+  TeacherForgotPasswordState createState() => TeacherForgotPasswordState();
 }
 
-class StudentForgotPasswordState extends State<StudentForgotPassword> {
+class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
   final formKey=GlobalKey<FormState>();
   TextEditingController oldPassword= TextEditingController();
   TextEditingController newPassword= TextEditingController();
@@ -25,7 +25,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
 
   @override
   void initState() {
-    QnaService.sendOtp();
+    //QnaService.sendOtp();
     super.initState();
   }
 

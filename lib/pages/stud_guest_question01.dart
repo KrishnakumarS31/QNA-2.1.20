@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../Providers/question_num_provider.dart';
 import '../Entity/question_model.dart';
+import 'guestReviseQuest.dart';
 
 
 
@@ -580,7 +582,14 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                       // ),
 
                       context.watch<QuestionNumProvider>().questionNum>=question.length?
-                      IconButton(icon: Icon(Icons.arrow_circle_right,color:Color.fromRGBO(209, 209, 209, 1),size: height * 0.06,), onPressed: () {  },):
+                      IconButton(icon: Icon(Icons.arrow_circle_right,color:const Color.fromRGBO(82, 165, 160, 1),size: height * 0.06,), onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const guestReviseQuest(),
+                          ),
+                        ); },):
                       IconButton(
                           onPressed: () {
                             context.read<QuestionNumProvider>().increment();

@@ -22,6 +22,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   String passWord = "";
   final formKey = GlobalKey<FormState>();
   bool agree = false;
+  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   @override
   void initState() {
     super.initState();
@@ -32,6 +33,204 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+        appBar: AppBar(
+          //elevation: 10,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 30,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          backgroundColor: const Color.fromRGBO(0,106,100,1),
+        ),
+        endDrawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    gradient:  LinearGradient(
+                      // begin: Alignment.topLeft,
+                      // end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ],
+                    )
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 50),
+                    Container(
+                      alignment: Alignment.center,
+                      height: localHeight / 6,
+                      child:
+                      Row(
+                          children:  [
+                            CircleAvatar(
+                              backgroundColor: const Color.fromRGBO(0,106,100,0),
+                              radius: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.15,
+                              child: Image.asset(
+                                "assets/images/ProfilePic_Avatar.png",
+                              ),
+                            ),
+                            const SizedBox(height: 2.0),
+                            Text(
+                              "Student Name",
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyText1
+                                  ?.merge(const TextStyle(
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.02,
+                                  fontSize: 16)),
+                            ),
+                          ]),
+                    ),
+                    const SizedBox(height: 0.022),
+                    Column(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: localWidth * 0.09),
+                            child: Text(
+                              AppLocalizations.of(context)!.student,
+                              style: const TextStyle(
+                                  color: Color.fromRGBO(221, 221, 221, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 12),
+                            )
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: localWidth * 0.09),
+                            child: const Text(
+                              "student@gmail.com",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(221, 221, 221, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 12),
+                            )
+                        ),
+                      ],
+                    ),
+                    //    )
+                  ],
+                ),
+              ),
+              Flexible(
+                child: ListView(
+                  children: [
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.translate,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.verified_user_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.note_alt_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.perm_contact_calendar_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.about_us,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyText1
+                              ?.merge(TextStyle(
+                              color: textColor,
+                              //Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 16)),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.help_outline,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        onTap: () async {
+                        }),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
             child: Column(children: [
@@ -54,17 +253,17 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                   //crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: localHeight * 0.050),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: IconButton(
-                        icon: const Icon(Icons.chevron_left,
-                            size: 40.0,
-                            color: Color.fromRGBO(255, 255, 255, 0.8)),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ),
+                    // Align(
+                    //   alignment: Alignment.topLeft,
+                    //   child: IconButton(
+                    //     icon: const Icon(Icons.chevron_left,
+                    //         size: 40.0,
+                    //         color: Color.fromRGBO(255, 255, 255, 0.8)),
+                    //     onPressed: () {
+                    //       Navigator.of(context).pop();
+                    //     },
+                    //   ),
+                    // ),
                     Align(
                       alignment: Alignment.topCenter,
                       child: SizedBox(
@@ -233,7 +432,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
               ),
               Container(
                   //margin: const EdgeInsets.only(left: ),
-                  padding: EdgeInsets.only(left: localHeight * 0.300),
+                  padding: EdgeInsets.only(left: localHeight * 0.35),
                   child: Row(
                     children: [
                       GestureDetector(

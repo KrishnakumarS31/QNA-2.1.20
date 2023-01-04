@@ -241,7 +241,7 @@ late String otp;
                           onPressed: () {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
-                              if (otp != "1234") {
+                              if (otp != "7089") {
                                 Navigator.push(
                                   context,
                                   PageTransition(
@@ -255,7 +255,7 @@ late String otp;
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.fade,
-                                      child: StudentForgotPassword()
+                                      child: StudentForgotPassword(email: widget.email, otp: otp,)
                                   ),
                                 );
 
@@ -284,8 +284,6 @@ late String otp;
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
-
-
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
