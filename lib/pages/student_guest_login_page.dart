@@ -66,12 +66,12 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                         onTap:(){
                           Navigator.of(context).pop();
                           },
-                        child: Container(
+                        child: SizedBox(
                           width: width * 0.05,
 
                           child: Column(
                             children: [
-                             SizedBox(height: height * 0.03,),
+                              SizedBox(height: height * 0.03,),
                               IconButton(
                                 icon:const Icon(
                                   Icons.chevron_left,
@@ -109,7 +109,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                 ),
 
                 SizedBox(height:height * 0.03),
-                 Text(
+                Text(
                   '${AppLocalizations.of(context)!.guestCaps} ${AppLocalizations.of(context)!.studentCaps}',
                   style: TextStyle(
                     fontSize: height* 0.03,
@@ -135,7 +135,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     .primaryTextTheme
                                     .bodyText1
                                     ?.merge( TextStyle(
-                                    color: Color.fromRGBO(102, 102, 102, 1),
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                     fontSize: height * 0.017)),),
@@ -150,9 +150,9 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   controller: nameController,
                                   decoration: InputDecoration(
                                     hintText: AppLocalizations.of(context)!.your_name,
-                                    hintStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                    hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                                     prefixIcon: Icon(
-                                        Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
+                                      Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
                                   validator: (value){
                                     if(value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
@@ -178,7 +178,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     .primaryTextTheme
                                     .bodyText1
                                     ?.merge( TextStyle(
-                                    color: Color.fromRGBO(102, 102, 102, 1),
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                     fontSize: height * 0.017)),),
@@ -193,7 +193,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
                                     hintText: AppLocalizations.of(context)!.enter_id,
-                                    hintStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                    hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
 
                                     prefixIcon: Icon(
                                         Icons.assignment_ind_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03),
@@ -218,7 +218,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 .primaryTextTheme
                                 .bodyText1
                                 ?.merge( TextStyle(
-                                color: Color.fromRGBO(102, 102, 102, 1),
+                                color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w600,
                                 fontSize: height * 0.015)),),
@@ -247,9 +247,11 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               },
                             ),
                             const SizedBox(width: 5,),
-                             Text(AppLocalizations.of(context)!.privacy_policy, textAlign: TextAlign.left,style: TextStyle(
-                               fontSize: height *0.013
-                             ),)
+                             Expanded(
+                               child: Text(AppLocalizations.of(context)!.privacy_policy, textAlign: TextAlign.left,style: TextStyle(
+                                 fontSize: height *0.013
+                               ),),
+                             )
                           ],
                         )
                       ],

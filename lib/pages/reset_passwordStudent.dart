@@ -5,7 +5,7 @@ import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ResetPasswordStudent extends StatefulWidget {
-  ResetPasswordStudent({
+  const ResetPasswordStudent({
     Key? key,
   }) : super(key: key);
 
@@ -33,7 +33,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: Column(
             children: [
@@ -89,7 +89,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
               Text(
                 AppLocalizations.of(context)!.reset_password_caps,
                 style: TextStyle(
-                  color: Color.fromRGBO(82, 165, 160, 1),
+                  color: const Color.fromRGBO(82, 165, 160, 1),
                   fontSize: height * 0.027,
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w600,
@@ -100,7 +100,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
               ),
               Form(
                 key: formKey,
-                child: Container(
+                child: SizedBox(
                   height: height*0.55,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -208,10 +208,10 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        onPressed: () async{
+                        onPressed: () {
                           bool valid=formKey.currentState!.validate();
                           if(valid || newPassword.text==reNewPassword.text){
-                           int statusCode=await QnaService.updatePassword(oldPassword.text, newPassword.text);
+                           int statusCode= QnaService.updatePassword(oldPassword.text, newPassword.text);
                            if(statusCode==200){
                              Navigator.push(
                                context,
@@ -257,25 +257,25 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          Icon(Icons.check_circle,size: height * 0.04,color: Color.fromRGBO(66, 194, 0, 1),),
+          Icon(Icons.check_circle,size: height * 0.04,color: const Color.fromRGBO(66, 194, 0, 1),),
           SizedBox(width: height * 0.002,),
           Text("Success",
             style: TextStyle(
-                color: Color.fromRGBO(51, 51, 51, 1),
+                color: const Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
                 fontSize: height * 0.02),),
         ],
       ),
       content: Text("Your Password has been changed Successfully",style: TextStyle(
-          color: Color.fromRGBO(51, 51, 51, 1),
+          color: const Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
           fontSize: height * 0.018),),
       actions: [
         TextButton(
           child:  Text("OK",style: TextStyle(
-              color: Color.fromRGBO(48, 145, 139, 1),
+              color: const Color.fromRGBO(48, 145, 139, 1),
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: height * 0.018),),

@@ -1,5 +1,7 @@
 import '../DataSource/qna_test_repo.dart';
 import '../Entity/custom_http_response.dart';
+import '../Entity/question_paper_model.dart';
+import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
 
 class QnaService{
@@ -34,5 +36,17 @@ class QnaService{
 
   static logOut() async{
     return await QnaTestRepo.logOut();
+  }
+
+  static Future<QuestionPaperModel> getQuestion() async{
+    return await QnaTestRepo.getQuestionPaper();
+  }
+
+  static Future<ResponseEntity> getOQuestion() async{
+    return await QnaTestRepo.getOQuestionPaper();
+  }
+
+  static verifyOtp(String email,String otp) async{
+    return await QnaTestRepo.verifyOtp(email,otp);
   }
 }

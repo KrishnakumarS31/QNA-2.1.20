@@ -36,7 +36,7 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: Column(
             children: [

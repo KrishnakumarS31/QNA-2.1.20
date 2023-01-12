@@ -4,13 +4,13 @@ import 'package:qna_test/Pages/teacher_forgot_password_email.dart';
 import 'package:qna_test/Pages/teacher_registration_page.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
-import '../Entity/custom_http_response.dart';
+import '../Components/custom_incorrect_popup.dart';
+import 'settings_languages.dart';
 
 class TeacherLogin extends StatefulWidget {
-  const TeacherLogin({super.key});
+  const TeacherLogin({super.key, required this.setLocale});
+  final void Function(Locale locale) setLocale;
 
   @override
   TeacherLoginState createState() => TeacherLoginState();
@@ -23,17 +23,20 @@ class TeacherLoginState extends State<TeacherLogin> {
   TextEditingController passwordController=TextEditingController();
   bool agree = false;
   String name='';
-  late Response userDetails;
+  //late Response userDetails;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
   @override
   void initState() {
+    //getUserDetails();
 
-    getUserDetails();
     super.initState();
   }
+
+
+
 getUserDetails() async {
-  userDetails=await QnaService.getUserDataService();
+  //userDetails=await QnaService.getUserDataService();
 }
   @override
   Widget build(BuildContext context) {
@@ -159,6 +162,13 @@ getUserDetails() async {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: SettingsLanguages(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -337,7 +347,7 @@ getUserDetails() async {
                                     .primaryTextTheme
                                     .bodyText1
                                     ?.merge( TextStyle(
-                                    color: Color.fromRGBO(102, 102, 102, 1),
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                     fontSize: height * 0.017)),),
@@ -352,7 +362,7 @@ getUserDetails() async {
                                   controller: emailController,
                                   decoration: InputDecoration(
                                     hintText: AppLocalizations.of(context)!.email_id,
-                                    hintStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                    hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                                     prefixIcon: Icon(
                                       Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
@@ -381,7 +391,7 @@ getUserDetails() async {
                                     .primaryTextTheme
                                     .bodyText1
                                     ?.merge( TextStyle(
-                                    color: Color.fromRGBO(102, 102, 102, 1),
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                     fontSize: height * 0.017)),),
@@ -405,7 +415,7 @@ getUserDetails() async {
                                             });
                                           }),
                                     hintText: AppLocalizations.of(context)!.your_password,
-                                    hintStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                    hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
 
                                     prefixIcon: Icon(
 
@@ -431,7 +441,7 @@ getUserDetails() async {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: TeacherForgotPasswordEmail(),
+                                child: const TeacherForgotPasswordEmail(),
                               ),
                             );
                           },
@@ -442,7 +452,7 @@ getUserDetails() async {
                                   .primaryTextTheme
                                   .bodyText1
                                   ?.merge( TextStyle(
-                                  color: Color.fromRGBO(48, 145, 139, 1),
+                                  color: const Color.fromRGBO(48, 145, 139, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.017)),),
@@ -462,17 +472,42 @@ getUserDetails() async {
                     ),
                   ),
                   //shape: StadiumBorder(),
-                  onPressed: () {
-                    print(userDetails.data.userProfile[0].emailId);
+                  onPressed: () async {
+                    //print(userDetails.data.userProfile[0].emailId);
                     bool valid=formKey.currentState!.validate();
-                    if(valid){
+                    showDialog(context: context, builder: (context){
+                      return const Center(child: CircularProgressIndicator(
+                        color: Color.fromRGBO(48, 145, 139, 1),
+                      ));
+                    });
+                    int statusCode =
+                        await QnaService.logInUser(emailController.text.trim(), passwordController.text.trim());
+                    Navigator.of(context).pop();
+                    if(statusCode == 200){
                       Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: TeacherSelectionPage(name: name),
+                                  child: TeacherSelectionPage(name: name,setLocale: widget.setLocale),
                                 ),
-                              );
+                              ).then((value) {
+                        emailController.clear();
+                        passwordController.clear();
+                      });
+                    }
+                    else{
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: CustomDialog(
+                            title: 'Incorrect Email Id / Password',
+                            content:
+                            'Entered Email ID or password is not valid',
+                            button: AppLocalizations.of(context)!.retry,
+                          ),
+                        ),
+                      );
                     }
 
                   },
@@ -491,36 +526,35 @@ getUserDetails() async {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherRegistrationPage(),
+                        child: const TeacherRegistrationPage(),
                       ),
                     );
                   },
-                  child: Container(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
 
-                          IconButton(
-                            icon:  Icon(
-                              Icons.edit_note_sharp,
-                              color: Color.fromRGBO(141, 167, 167, 1),
-                              size: height * 0.034,
-                            ),
-                            onPressed: () {
+                      IconButton(
+                        icon:  Icon(
+                          Icons.edit_note_sharp,
+                          color: const Color.fromRGBO(141, 167, 167, 1),
+                          size: height * 0.034,
+                        ),
+                        onPressed: () {
 
-                            },
-                          ),
-                          Text(AppLocalizations.of(context)!.register,
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyText1
-                                  ?.merge( TextStyle(
-                                  color: Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: height * 0.0225))),
-                        ],
-                      )),
+                        },
+                      ),
+                      Text(AppLocalizations.of(context)!.register,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyText1
+                              ?.merge( TextStyle(
+                              color: const Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              fontSize: height * 0.0225))),
+                    ],
+                  ),
                 ),
 
 

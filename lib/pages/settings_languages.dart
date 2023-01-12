@@ -40,7 +40,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(

@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-import '../Entity/question_model.dart';
 import 'Student_Quest_ReviseAns.dart';
 
 
@@ -12,15 +11,18 @@ import 'Student_Quest_ReviseAns.dart';
 class StudMemQuestion extends StatefulWidget {
   const StudMemQuestion({
     Key? key,
-    required this.assessmentId
+    required this.assessmentId,
+    required this.ques
   }) : super(key: key);
   final String assessmentId;
+  final QuestionPaperModel ques;
 
   @override
   StudMemQuestionState createState() => StudMemQuestionState();
 }
 
 class StudMemQuestionState extends State<StudMemQuestion> {
+  late QuestionPaperModel values;
   Timer? countdownTimer;
   Duration myDuration = const Duration(hours: 1);
   List<dynamic> selected=[];
@@ -28,119 +30,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
   Color notSureColor1=const Color.fromRGBO(255, 255, 255, 1);
   Color notSureColor2=const Color.fromRGBO(255, 153, 0, 1);
   IconData notSureIcon=Icons.mode_comment_outlined;
-  List<Question> question=getData();
-  static List<Question> getData() {
-    const data=[
-      {
-        "id":1,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":2,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "Option 1","Option 2","Option 3"
-        ]
-      },
-      {
-        "id":3,
-        "questionType":"choose",
-        "mark":25,
-        "question":"If you could only eat one food for the rest of your life, what would it be?",
-        "options":[
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },
-      {
-        "id":4,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":5,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id": 6,
-        "questionType":"choose",
-        "mark": 25,
-        "question": "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },{
-        "id":7,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":8,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "Option 1","Option 2","Option 3"
-        ]
-      },
-      {
-        "id":9,
-        "questionType":"choose",
-        "mark":25,
-        "question":"If you could only eat one food for the rest of your life, what would it be?",
-        "options":[
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },
-      {
-        "id":10,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":11,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id": 12,
-        "questionType":"choose",
-        "mark": 25,
-        "question": "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      }
-    ];
-    return data.map<Question>(Question.fromJson).toList();
-  }
+
   dynamic select;
   late Map tempQuesAns = {};
   List<int> tilecount=[1];
@@ -249,8 +139,8 @@ class StudMemQuestionState extends State<StudMemQuestion> {
             );
           });
     });
-
-    context.read<Questions>().createQuesAns(question.length);
+    values=widget.ques;
+    context.read<Questions>().createQuesAns(values.data.assessment.questions.length);
     context.read<QuestionNumProvider>().reset();
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
@@ -285,7 +175,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
     ansController.text=Provider.of<Questions>(context, listen: false).totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0].toString();
     // });
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -299,7 +189,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
             ),),
           flexibleSpace: Banner(
             color: const Color.fromRGBO(255, 157, 77, 1),
-            message: "Practice",
+            message: values.data.assessment.assessmentType,
             textStyle: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.015,
@@ -326,7 +216,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Question ${context.watch<QuestionNumProvider>().questionNum}/${question.length}",
+                    Text("Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data.assessment.questions.length}",
                       style: Theme.of(context)
                           .primaryTextTheme
                           .bodyText1
@@ -377,11 +267,11 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
+                            SizedBox(
                               height: height * 0.0625,
                               width: width * 0.2277,
                               child: Center(
-                                child: Text("${question[context.watch<QuestionNumProvider>().questionNum-1].id}",
+                                child: Text("${values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].questionId}",
                                   style: Theme.of(context)
                                       .primaryTextTheme
                                       .bodyText1
@@ -402,7 +292,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("${question[context.watch<QuestionNumProvider>().questionNum-1].mark}",
+                                  Text("${values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].questionMarks}",
                                     style: Theme.of(context)
                                         .primaryTextTheme
                                         .bodyText1
@@ -428,12 +318,12 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                         SizedBox(height: height * 0.02,),
                         Padding(
                           padding: EdgeInsets.only(left: height * 0.02,right: height * 0.02,bottom: height * 0.025),
-                          child: Container(
+                          child: SizedBox(
                             height: height * 0.16,
                             width: width * 0.744,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
-                              child: Text(question[context.watch<QuestionNumProvider>().questionNum-1].question,
+                              child: Text(values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].question,
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodyText1
@@ -446,11 +336,11 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                             ),
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           height: height * 0.32,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
-                            child: question[context.watch<QuestionNumProvider>().questionNum-1].questionType=="descriptive"?
+                            child: values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].questionType=="descriptive"?
                             Card(
                                 color: Colors.white,
                                 child: Padding(
@@ -480,7 +370,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                                   ),
                                 )
                             )
-                                :ChooseWidget(question: question, selected: selected, height: height, width: width),
+                                :ChooseWidget(question: values, selected: selected, height: height, width: width),
                           ),
                         ),
 
@@ -582,15 +472,15 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                       //     )
                       // ),
 
-                      context.watch<QuestionNumProvider>().questionNum>=question.length?
+                      context.watch<QuestionNumProvider>().questionNum>=values.data.assessment.questions.length?
                       IconButton(icon: Icon(Icons.arrow_circle_right,color:const Color.fromRGBO(82, 165, 160, 1),size: height * 0.06,), onPressed: () {
                         Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: const StudReviseQuest(),
-                        ),
-                      ); },):
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child:  StudReviseQuest(questions: values,),
+                          ),
+                        ); },):
                       IconButton(
                           onPressed: () {
                             context.read<QuestionNumProvider>().increment();
@@ -610,7 +500,7 @@ class StudMemQuestionState extends State<StudMemQuestion> {
                             }
                           },
                           icon: Icon(Icons.arrow_circle_right,
-                            color: context.watch<QuestionNumProvider>().questionNum==question.length?
+                            color: context.watch<QuestionNumProvider>().questionNum==values.data.assessment.questions.length?
                             const Color.fromRGBO(209, 209, 209, 1):const Color.fromRGBO(82, 165, 160, 1),
                             size: height * 0.06,)),
                     ],
@@ -631,7 +521,7 @@ class ChooseWidget extends StatelessWidget {
     required this.width,
   }) : super(key: key);
 
-  final List<Question> question;
+  final QuestionPaperModel question;
   final List selected;
   final double height;
   final double width;
@@ -640,7 +530,7 @@ class ChooseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j=0; j<question[context.watch<QuestionNumProvider>().questionNum-1].options.length; j++)
+        for (int j=1; j<=question.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].choices.length; j++)
           GestureDetector(
             onTap: (){
               if(selected.contains(j)){
@@ -673,13 +563,15 @@ class ChooseWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(width: width * 0.02,),
-                        Text(question[context.watch<QuestionNumProvider>().questionNum - 1].options[j],
-                          style: TextStyle(
-                            color: (selected.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: height * 0.0162,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),),
+                        Expanded(
+                          child: Text(question.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum - 1].choices[j-1].choiceText,
+                            style: TextStyle(
+                              color: (selected.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.0162,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),),
+                        ),
                       ])
               ),
             ),

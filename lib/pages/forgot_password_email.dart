@@ -4,7 +4,7 @@ import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ForgotPasswordEmail extends StatefulWidget {
-  ForgotPasswordEmail({
+  const ForgotPasswordEmail({
     Key? key,
   }) : super(key: key);
 
@@ -15,7 +15,7 @@ class ForgotPasswordEmail extends StatefulWidget {
 
 class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
   final formKey=GlobalKey<FormState>();
-  TextEditingController _controller= TextEditingController();
+  final TextEditingController _controller= TextEditingController();
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: Column(
             children: [
@@ -83,7 +83,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
               Text(
                 AppLocalizations.of(context)!.forgot_password,
                 style: TextStyle(
-                  color: Color.fromRGBO(82, 165, 160, 1),
+                  color: const Color.fromRGBO(82, 165, 160, 1),
                   fontSize: height * 0.027,
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w600,
@@ -95,7 +95,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
 
               Form(
                 key: formKey,
-                child: Container(
+                child: SizedBox(
                   height: height*0.45,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -172,28 +172,27 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                 onTap: (){
                   Navigator.of(context).pop();
                 },
-                child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.chevron_left,
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                          ),
-                          onPressed: () {},
-                        ),
-                        Text(AppLocalizations.of(context)!.back,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1
-                                ?.merge(const TextStyle(
-                                color: Color.fromRGBO(48, 145, 139, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16))),
-                      ],
-                    )),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        color: Color.fromRGBO(82, 165, 160, 1),
+                      ),
+                      onPressed: () {},
+                    ),
+                    Text(AppLocalizations.of(context)!.back,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .bodyText1
+                            ?.merge(const TextStyle(
+                            color: Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16))),
+                  ],
+                ),
               ),
             ]));
   }
@@ -204,25 +203,25 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          Icon(Icons.check_circle,size: height * 0.04,color: Color.fromRGBO(66, 194, 0, 1),),
+          Icon(Icons.check_circle,size: height * 0.04,color: const Color.fromRGBO(66, 194, 0, 1),),
           SizedBox(width: height * 0.002,),
           Text("OTP Sent!",
             style: TextStyle(
-                color: Color.fromRGBO(51, 51, 51, 1),
+                color: const Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
                 fontSize: height * 0.02),),
         ],
       ),
       content: Text("If this email ID is registered with us you will receive OTP",style: TextStyle(
-          color: Color.fromRGBO(51, 51, 51, 1),
+          color: const Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
           fontSize: height * 0.018),),
       actions: [
         TextButton(
           child:  Text("Enter OTP",style: TextStyle(
-              color: Color.fromRGBO(48, 145, 139, 1),
+              color: const Color.fromRGBO(48, 145, 139, 1),
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: height * 0.018),),

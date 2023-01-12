@@ -63,11 +63,11 @@ class CustomRadioButton<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8),
+      margin: EdgeInsets.only(left: height * 0.068, bottom: height * 0.008,top: height * 0.008),
       child: InkWell(
         onTap: () => onChanged(value),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Container(
             //   width: width * 0.2,

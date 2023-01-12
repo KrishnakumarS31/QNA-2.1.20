@@ -1,22 +1,25 @@
 import 'dart:async';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_forgot_password.dart';
 
 
+import '../Components/custom_incorrect_popup.dart';
+import '../Services/qna_service.dart';
 
-class TeacherVerifyOtpPage extends StatefulWidget {
-  const TeacherVerifyOtpPage({
+
+class StudentRegisVerifyOtpPage extends StatefulWidget {
+  const StudentRegisVerifyOtpPage({
     Key? key,
     required this.email
   }) : super(key: key);
 
   final String email;
   @override
-  TeacherVerifyOtpPageState createState() => TeacherVerifyOtpPageState();
+  StudentRegisVerifyOtpPageState createState() => StudentRegisVerifyOtpPageState();
 }
 
-class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
+class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
   final formKey=GlobalKey<FormState>();
   TextEditingController otpController = TextEditingController();
   late String otp;
@@ -51,7 +54,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
 
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         // appBar: AppBar(
         //   centerTitle: true,
@@ -238,11 +241,11 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          onPressed: () {
+                          onPressed: ()  {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
-                              //QnaTestRepo.updatePasswordOtp(widget.email, otp, 'password');
-                              if (otp != "7089") {
+                              int statusCode= QnaService.verifyOtp(widget.email,otp);
+                              if (statusCode==200) {
                                 Navigator.push(
                                   context,
                                   PageTransition(
@@ -250,15 +253,17 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                       child: showAlertDialog(context)
                                   ),
                                 );
+
                               }
                               else{
                                 Navigator.push(
                                   context,
                                   PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: TeacherForgotPassword(email: widget.email, otp: otp,)
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(title: 'Incorrect Otp', content: 'Entered OTP does not match', button: AppLocalizations.of(context)!.retry,),
                                   ),
                                 );
+
 
                               }
                             }
@@ -285,8 +290,6 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
-
-
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -301,20 +304,24 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                 fontSize: 20),),
         ],
       ),
-      content: const Text("Your registration has been successfully completed.",style: TextStyle(
+      content: const Text("Your registration has been\nsuccessfully completed.",style: TextStyle(
           color: Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
           fontSize: 15),),
       actions: [
         TextButton(
-          child: const Text("Login",style: TextStyle(
+          child: const Text("Ok",style: TextStyle(
               color: Color.fromRGBO(48, 145, 139, 1),
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: 15),),
           onPressed: () {
-            Navigator.of(context).pop();
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 3;
+            });
+
           },
         )
       ],

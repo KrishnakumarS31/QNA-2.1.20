@@ -3,12 +3,17 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_mem_Advisor.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
+import '../Entity/question_paper_model.dart';
 
 
 class StudentResultPage extends StatefulWidget {
-  const StudentResultPage({super.key});
-
-
+  const StudentResultPage({Key? key,
+    required this.totalMarks,required this.date,required this.time,required this.questions
+  }) : super(key: key);
+  final int totalMarks;
+  final QuestionPaperModel questions;
+  final String date;
+  final String time;
 
   @override
   StudentResultPageState createState() => StudentResultPageState();
@@ -17,10 +22,13 @@ class StudentResultPageState extends State<StudentResultPage> {
   TextEditingController assessmentID = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool autoValidate = false;
+  late QuestionPaperModel values;
+
 
   @override
   void initState() {
     super.initState();
+    values = widget.questions;
   }
   @override
   Widget build(BuildContext context) {
@@ -54,26 +62,26 @@ class StudentResultPageState extends State<StudentResultPage> {
                       alignment: Alignment.topCenter,
                       child:
                       Container(
-                        padding: const EdgeInsets.all(0.0),
-                        height: localHeight * 0.20,
-                        width: localWidth * 0.30,
-                        child: Column(
-                          children: [
-                            Text(AppLocalizations.of(context)!.result_card,
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: localHeight * 0.024),),
-                            const SizedBox(height: 10.0),
-                            Text("AssID23515A225",
+                          padding: const EdgeInsets.all(0.0),
+                          height: localHeight * 0.20,
+                          width: localWidth * 0.30,
+                          child: Column(
+                            children: [
+                              Text(AppLocalizations.of(context)!.result_card,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: localHeight* 0.016)),
-                          ],
-                        )
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: localHeight * 0.024),),
+                              const SizedBox(height: 10.0),
+                              Text("AssID23515A225",
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(255, 255, 255, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: localHeight* 0.016)),
+                            ],
+                          )
                       ),
                     ),
                                       ],
@@ -117,7 +125,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const StudMemAdvisor(),
+                            child: StudMemAdvisor(questions: values),
                           ),
                         );
                       }
@@ -165,12 +173,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                           fontWeight: FontWeight.w600,
                           fontSize: localHeight* 0.024)),
                       const SizedBox(height: 25.0),
-                      Text('69',
+                      Text('${widget.totalMarks}',
                           style: TextStyle(
-                          color: const Color.fromRGBO(255, 153, 0, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: localHeight* 0.096)),
+                              color: const Color.fromRGBO(255, 153, 0, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              fontSize: localHeight* 0.096)),
                       const SizedBox(height: 15.0),
                       Text(AppLocalizations.of(context)!.mark_scored,
                           style: TextStyle(
@@ -212,20 +220,20 @@ class StudentResultPageState extends State<StudentResultPage> {
                       Row(
                         children: [
                           const SizedBox(width: 25.0),
-                          Text('26/12/2022',
+                          Text(widget.date,
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: localHeight* 0.022)),
+                          const SizedBox(width: 20.0),
+                          Text(widget.time,
                               style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w500,
                                   fontSize: localHeight* 0.022)),
                           const SizedBox(width: 25.0),
-                          Text('11:11',
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: localHeight* 0.022)),
-                          const SizedBox(width: 60.0),
                           Text('05:23',
                               style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
@@ -256,12 +264,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(left: localWidth * 0.33),
-                            child: Text(AppLocalizations.of(context)!.good,
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: localHeight * 0.024),),
+                              child: Text(AppLocalizations.of(context)!.good,
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(255, 255, 255, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: localHeight * 0.024),),
                             ),
                           ],
                         ),

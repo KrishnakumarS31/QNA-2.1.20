@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_verify_page.dart';
-import 'package:qna_test/pages/teacher_registration_verify_page.dart';
+import 'package:qna_test/Pages/teacher_registration_verify_page.dart';
+
 
 import '../Services/qna_service.dart';
 
@@ -607,7 +607,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                     context,
                     PageTransition(
                         type: PageTransitionType.fade,
-                        child: TeacherRegistrationOtpPage()
+                        child: const TeacherRegistrationOtpPage()
                     ),
                   );
                 },

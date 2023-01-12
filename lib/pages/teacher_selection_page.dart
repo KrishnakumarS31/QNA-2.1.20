@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/reset_passwordStudent.dart';
 import 'package:qna_test/pages/reset_password.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
+import 'settings_languages.dart';
 
 
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage({
     Key? key,
-    required this.name
+    required this.name, required this.setLocale
   }) : super(key: key);
 
   final String name;
+  final void Function(Locale locale) setLocale;
 
   @override
   TeacherSelectionPageState createState() => TeacherSelectionPageState();
@@ -228,6 +228,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: SettingsLanguages(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -391,7 +398,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   AppLocalizations.of(context)!.welcome,
                   style: TextStyle(
                     fontSize: height* 0.037,
-                    color: Color.fromRGBO(28, 78, 80, 1),
+                    color: const Color.fromRGBO(28, 78, 80, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400,
                   ),
@@ -401,7 +408,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   'Subash',
                   style: TextStyle(
                     fontSize: height* 0.04,
-                    color: Color.fromRGBO(28, 78, 80, 1),
+                    color: const Color.fromRGBO(28, 78, 80, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w800,
                   ),
@@ -411,7 +418,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   'PREPARE',
                   style: TextStyle(
                     fontSize: height* 0.018,
-                    color: Color.fromRGBO(209, 209, 209, 1),
+                    color: const Color.fromRGBO(209, 209, 209, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400,
                   ),
@@ -466,7 +473,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   'view/EDIT/PREPARE',
                   style: TextStyle(
                     fontSize: height* 0.018,
-                    color: Color.fromRGBO(209, 209, 209, 1),
+                    color: const Color.fromRGBO(209, 209, 209, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400,
                   ),
@@ -520,7 +527,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   'VIEW RESULTS',
                   style: TextStyle(
                     fontSize: height* 0.018,
-                    color: Color.fromRGBO(209, 209, 209, 1),
+                    color: const Color.fromRGBO(209, 209, 209, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400,
                   ),

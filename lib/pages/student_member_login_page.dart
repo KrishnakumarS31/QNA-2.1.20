@@ -9,7 +9,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 //AppLocalizations.of(context)!.guest
 
 class StudentMemberLoginPage extends StatefulWidget {
-  const StudentMemberLoginPage({super.key});
+  const StudentMemberLoginPage({super.key, required this.setLocale});
+  final void Function(Locale locale) setLocale;
 
   @override
   StudentMemberLoginPageState createState() => StudentMemberLoginPageState();
@@ -247,7 +248,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                   ),
                   borderRadius: BorderRadius.vertical(
                       bottom:
-                          Radius.elliptical(localWidth, localHeight * 0.35)),
+                      Radius.elliptical(localWidth, localHeight * 0.35)),
                 ),
                 child: Column(
                   //crossAxisAlignment: CrossAxisAlignment.center,
@@ -276,7 +277,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         //   ),
                         // ),
                         child:
-                            Image.asset("assets/images/question_mark_logo.png"),
+                        Image.asset("assets/images/question_mark_logo.png"),
                         // decoration: BoxDecoration(
                         //     //color: Colors.yellow[100],
                         //     border: Border.all(
@@ -363,14 +364,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       prefixIcon: const Icon(
                                           Icons.contacts_outlined,
                                           color:
-                                              Color.fromRGBO(82, 165, 160, 1)),
+                                          Color.fromRGBO(82, 165, 160, 1)),
                                     ))),
                           ],
                         ),
                       ]),
                 ),
               ),
-  //  demo.qna@viewwiser.com
+              //  demo.qna@viewwiser.com
               //password
               SizedBox(
                 height: localHeight * 0.04,
@@ -431,7 +432,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 height: localHeight * 0.03,
               ),
               Container(
-                  //margin: const EdgeInsets.only(left: ),
+                //margin: const EdgeInsets.only(left: ),
                   padding: EdgeInsets.only(left: localHeight * 0.35),
                   child: Row(
                     children: [
@@ -482,17 +483,26 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         if (formKey.currentState!.validate()) {
                           regNumber = regNumberController.text;
                           passWord = passWordController.text;
-                          String statusCode =
-                              await QnaService.logInUser(regNumber, passWord);
-                          if (statusCode == "200") {
+                          showDialog(context: context, builder: (context){
+                            return Center(child: CircularProgressIndicator(
+                              color: Color.fromRGBO(48, 145, 139, 1),
+                            ));
+                          });
+                          int statusCode =
+                          await QnaService.logInUser(regNumber, passWord);
+                          Navigator.of(context).pop();
+                          if (statusCode == 200) {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child:
-                                    const StudentMemLogedStart(),
+                                StudentMemLogedStart(regNumber: regNumber,setLocale: widget.setLocale),
                               ),
-                            );
+                            ).then((value) {
+                              regNumberController.clear();
+                              passWordController.clear();
+                            });
                           } else {
                             Navigator.push(
                               context,
@@ -501,7 +511,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 child: CustomDialog(
                                   title: 'Incorrect Email Id / Password',
                                   content:
-                                      'Entered Email ID or password is not valid',
+                                  'Entered Email ID or password is not valid',
                                   button: AppLocalizations.of(context)!.retry,
                                 ),
                               ),

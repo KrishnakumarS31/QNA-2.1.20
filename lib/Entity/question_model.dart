@@ -8,8 +8,8 @@ import 'dart:convert';
 //
 // String questionToJson(Question data) => json.encode(data.toJson());
 
-class Question {
-  Question({
+class Ques {
+  Ques({
     required this.id,
     required this.questionType,
     required this.mark,
@@ -25,7 +25,7 @@ class Question {
   List<String> options;
   int selectedOptions;
 
-  factory Question.fromJson(Map<String, dynamic> json) => Question(
+  factory Ques.fromJson(Map<String, dynamic> json) => Ques(
     id: json["id"],
       questionType: json["questionType"],
     mark: json["mark"],

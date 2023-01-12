@@ -1,80 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
+
+import '../Entity/question_paper_model.dart';
+import '../Providers/question_num_provider.dart';
 
 class StudentMemAnswerSheet extends StatefulWidget {
-  const StudentMemAnswerSheet({super.key});
-
+  const StudentMemAnswerSheet({Key? key, required this.questions})
+      : super(key: key);
+  final QuestionPaperModel questions;
   @override
   StudentMemAnswerSheetState createState() => StudentMemAnswerSheetState();
 }
 
 class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
-  List<Question> questionList = [
-    Question(
-        qnNumber: "1",
-        question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        answer: "a. Lorem ipsum dolor sit amet, consectetur adipiscing ",
-        remarks: "What a terrific learner you are!",
-        chapterNo: "5",
-        mark: "5"),
-    Question(
-        qnNumber: "2",
-        question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in  rhoncus lectus efficitur",
-        answer: "*** not answered ***",
-        remarks: "This thesis statement is superb!",
-        chapterNo: "6",
-        mark: "10"),
-    Question(
-        qnNumber: "3",
-        question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies",
-        answer: "b. Option 2",
-        remarks: "You rocked this essay!",
-        chapterNo: "7",
-        mark: "10"),
-    Question(
-        qnNumber: "4",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "b. Option 3",
-        remarks: "This thesis statement is superb!",
-        chapterNo: "3",
-        mark: "5"),
-    Question(
-        qnNumber: "5",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "*** not answered ***",
-        chapterNo: "2",
-        remarks:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        mark: "5"),
-    Question(
-        qnNumber: "6",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "*** not answered ***",
-        remarks: "Keep up the incredible work!",
-        chapterNo: "3",
-        mark: "15"),
-    Question(
-        qnNumber: "7",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "a. Lorem ipsum dolor sit amet, consectetur adipiscing ",
-        remarks: "You rocked this essay!",
-        chapterNo: "15",
-        mark: "10"),
-    Question(
-        qnNumber: "8",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "*** not answered ***",
-        chapterNo: "20",
-        remarks: "Way to stay focused! I’m proud of you!",
-        mark: "10")
-  ];
+  late QuestionPaperModel values;
 
   @override
   void initState() {
     super.initState();
+    values = widget.questions;
   }
 
   @override
@@ -84,14 +29,15 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
 
     return Scaffold(
         appBar: AppBar(
-          leading:  IconButton(
-            icon:const Icon(
+          leading: IconButton(
+            icon: const Icon(
               Icons.chevron_left,
               size: 40.0,
               color: Colors.white,
-            ), onPressed: () {
-            Navigator.of(context).pop();
-          },
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
           toolbarHeight: localHeight * 0.100,
           centerTitle: true,
@@ -106,7 +52,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
               ),
             ),
             Text(
-              "AssID23515A225",
+              values.data.assessment.assessmentCode,
               style: TextStyle(
                 color: const Color.fromRGBO(255, 255, 255, 1),
                 fontSize: localHeight * 0.016,
@@ -155,128 +101,119 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                           size: localHeight * 0.02,
                           color: const Color.fromRGBO(48, 145, 139, 1),
                         ),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                     )
                   ],
                 ),
                 SizedBox(height: localHeight * 0.020),
                 //SizedBox(height: localHeight * 0.030),
-                Column(
-                  children: questionList.map((question) {
-                    return Container(
+                Column(children: [
+                  for (int index = 1;
+                      index < context.watch<QuestionNumProvider>().questionNum;
+                      index++)
+                    Container(
                         //decoration: BoxDecoration(border: Border.all()),
                         margin: const EdgeInsets.all(5),
                         padding: const EdgeInsets.all(5),
                         //color: const Color.fromRGBO(255, 255, 255, 1),
                         child: ListTile(
-                          title: Column(
+                            title: Column(
                               //mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(children: [
-                                  Text("Q${question.qnNumber}",
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(children: [
+                                    Text(
+                                        "Q${values.data.assessment.questions[index].questionId}",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: localHeight * 0.012)),
+                                    SizedBox(width: localHeight * 0.020),
+                                    Text(
+                                      "(${values.data.assessment.questions[index].questionId}${AppLocalizations.of(context)!.marks})",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
-                                              82, 165, 160, 1),
+                                              179, 179, 179, 1),
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: localHeight * 0.012)),
-                                  SizedBox(width: localHeight * 0.020),
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: localHeight * 0.012),
+                                    )
+                                  ]),
+                                  SizedBox(height: localHeight * 0.010),
                                   Text(
-                                    "(${question.mark} ${AppLocalizations.of(context)!.marks})",
+                                    values.data.assessment.questions[index]
+                                        .question,
+                                    textAlign: TextAlign.start,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            179, 179, 179, 1),
+                                        color:
+                                            const Color.fromRGBO(51, 51, 51, 1),
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: localHeight * 0.012),
-                                  )
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: localHeight * 0.013),
+                                  ),
+                                  SizedBox(height: localHeight * 0.015),
                                 ]),
-                                SizedBox(height: localHeight * 0.010),
-                                Text(
-                                  question.question,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                      color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: localHeight * 0.013),
-                                ),
-                                SizedBox(height: localHeight * 0.015),
-                              ]),
-                          subtitle: Column(children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                  question.answer == "*** not answered ***"
-                                  ? question.answer
-                                  : "${AppLocalizations.of(context)!.answer}: ${question.answer}",
-                                  style:
-                                      question.answer == "*** not answered ***"
-                                          ? TextStyle(
+                            subtitle: Column(children: [
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: Text(
+                                    Provider.of<Questions>(context, listen: false)
+                                                .totalQuestion['$index'][1] ==
+                                            const Color(0xff52a5a0)
+                                        ? values.data.assessment.questions[index].choices[index].choiceText
+                                        : "Not Answered",
+                                    style: Provider.of<Questions>(context,
+                                                    listen: false)
+                                                .totalQuestion['$index'][1] !=
+                                            const Color(0xff52a5a0)
+                                        ? TextStyle(
+                                            color: const Color.fromRGBO(
+                                                238, 71, 0, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.014)
+                                        : TextStyle(
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.014)),
+                              ),
+                              SizedBox(height: localHeight * 0.015),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    RichText(
+                                        text: TextSpan(children: [
+                                      TextSpan(
+                                          text:
+                                              "${AppLocalizations.of(context)!.study_chapter} ${values.data.assessment.subtopic} \t",
+                                          style: TextStyle(
                                               color: const Color.fromRGBO(
-                                                  238, 71, 0, 1),
+                                                  51, 51, 51, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.014)
-                                          : TextStyle(
+                                              fontSize: localHeight * 0.015)),
+                                      TextSpan(
+                                          text: values.data.assessment
+                                              .questions[index].advisorText,
+                                          style: TextStyle(
                                               color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
+                                                  51, 51, 51, 1),
                                               fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.014)),
-                            ),
-                          SizedBox(height: localHeight * 0.015),
-                          Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              children: [
-                            RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                      text:
-                                      "${AppLocalizations.of(context)!.study_chapter} ${question.chapterNo + ""}"
-                                          "\t",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              51, 51, 51, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize:
-                                          localHeight * 0.015)),
-                                  TextSpan(
-                                      text: question.remarks,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              51, 51, 51, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize:
-                                          localHeight * 0.015)),
-                                ])),
-                            const Divider(
-                              thickness: 2,
-                            ),
-                          ]),
-                        ])));
-                  }).toList(),
-                ),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: localHeight * 0.015)),
+                                    ])),
+                                    const Divider(
+                                      thickness: 2,
+                                    ),
+                                  ]),
+                            ])))
+                ]),
                 SizedBox(height: localHeight * 0.030),
               ])
             ])));
   }
-}
-
-class Question {
-  String qnNumber, question, answer, mark,remarks,chapterNo;
-  Question(
-      {required this.qnNumber,
-      required this.question,
-      required this.answer,
-      required this.remarks,
-      required this.chapterNo,
-      required this.mark});
 }

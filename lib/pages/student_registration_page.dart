@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/student.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
-import 'package:qna_test/Services/qna_service.dart';
+import 'package:qna_test/Pages/student_regis_verify_otp.dart';
 import '../Entity/custom_http_response.dart';
 
 class StudentRegistrationPage extends StatefulWidget {
@@ -24,6 +25,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   TextEditingController studentOrganisationNameController = TextEditingController();
   TextEditingController studentIsTeacherController = TextEditingController();
   TextEditingController studentPasswordController = TextEditingController();
+  TextEditingController studentconfirmPasswordController = TextEditingController();
   bool tocCheck = false;
   bool pPCheck = false;
   bool error =true;
@@ -630,7 +632,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                           alignment: Alignment.topLeft,
                           child:
                           TextFormField(
-                              controller: studentPasswordController,
+                              controller: studentconfirmPasswordController,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -668,8 +670,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   {
                   bool valid=formKey.currentState!.validate();
                   if(valid) {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          child: StudentRegisVerifyOtpPage(email: studentEmailController.text,)
+                      ),
+                    );
                     //print("------------> ${studentEmailController.text}");
-                    QnaService.postUserDetailsService(student);
+                    //QnaService.postUserDetailsService(student);
                   }
                   },
                 child: Text(
@@ -690,4 +699,5 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
       ),
       //)
     );}
+
 }

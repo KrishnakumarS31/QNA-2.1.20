@@ -9,7 +9,7 @@ import '../Components/custom_card.dart';
 
 
 class TeacherResultLanding extends StatefulWidget {
-  TeacherResultLanding({
+  const TeacherResultLanding({
     Key? key,
 
   }) : super(key: key);
@@ -25,7 +25,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
 
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 0)).then((_) {
+    super.initState();
+    Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
             borderRadius:  BorderRadius.only(
@@ -39,7 +40,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                   border: Border.all(
                     color: Colors.white,
                   ),
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
               ),
               height: MediaQuery.of(context).copyWith().size.height * 0.245,
               child: Padding(
@@ -50,17 +51,17 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                     SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
                     Padding(
                       padding:  EdgeInsets.only(right: MediaQuery.of(context).copyWith().size.width * 0.055),
-                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () { Navigator.of(context).pop(); },),),
+                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () { Navigator.of(context).pop(); },),),
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.square,color: Color.fromRGBO(5, 169, 203, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(5, 169, 203, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Total Number of Participant",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -73,26 +74,26 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.square,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Submitted",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width * 0.18,
                         ),
-                        Icon(Icons.square,color: Color.fromRGBO(106, 160, 204, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(106, 160, 204, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Retries",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -102,26 +103,26 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.square,color: Color.fromRGBO(255, 153, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(255, 153, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  In Progress",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width * 0.16,
                         ),
-                        Icon(Icons.square,color: Color.fromRGBO(179, 179, 179, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.square,color: const Color.fromRGBO(179, 179, 179, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Not Started",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -144,7 +145,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
           actions: [
@@ -215,14 +216,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                 children: [
                   Row(
                       children: <Widget>[
-                        Expanded(
+                        const Expanded(
                             child: Divider(
                               color: Color.fromRGBO(233, 233, 233, 1),
                               thickness: 2,
                             )
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 10,left: 10),
+                          padding: const EdgeInsets.only(right: 10,left: 10),
                             child: Text(
                               'DEC 2022',
                               style: TextStyle(
@@ -231,7 +232,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                   fontWeight: FontWeight.w700),
                             ),
                         ),
-                        Expanded(
+                        const Expanded(
                             child: Divider(
                               color: Color.fromRGBO(233, 233, 233, 1),
                               thickness: 2,
@@ -277,24 +278,33 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                           ),
                         );
                       },
-                      child: Container(
-                        height: height * 0.027,
-                        width: width * 0.23,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'View All',
-                              style: TextStyle(
-                                  color: Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.0187,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600),
+                      child:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+
+
+                          Text(
+                          'View All',
+                          style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0187,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600),
+                          ),
+                          IconButton(
+                            icon:  Icon(
+                              Icons.chevron_right,
+                              color: const Color.fromRGBO(141, 167, 167, 1),
+                              size: height * 0.034,
                             ),
-                            Icon(Icons.chevron_right,color: Color.fromRGBO(28, 78, 80, 1),size: width * 0.07,)
-                          ],
-                        ),
+                            onPressed: () {
+
+                            },
+                          ),
+                        ],
                       ),
+
                     ),
                   ),
                   SizedBox(height: height * 0.02,),
@@ -303,14 +313,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
 
                   Row(
                       children: <Widget>[
-                        Expanded(
+                        const Expanded(
                             child: Divider(
                               color: Color.fromRGBO(233, 233, 233, 1),
                               thickness: 2,
                             )
                         ),
                         Padding(
-                          padding: EdgeInsets.only(right: 10,left: 10),
+                          padding: const EdgeInsets.only(right: 10,left: 10),
                           child: Text(
                             'NOV 2022',
                             style: TextStyle(
@@ -319,7 +329,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                 fontWeight: FontWeight.w700),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                             child: Divider(
                               color: Color.fromRGBO(233, 233, 233, 1),
                               thickness: 2,
@@ -360,7 +370,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                           ),
                         );
                       },
-                      child: Container(
+                      child: SizedBox(
                         height: height * 0.027,
                         width: width * 0.23,
                         child: Row(
@@ -369,12 +379,12 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                             Text(
                               'View All',
                               style: TextStyle(
-                                  color: Color.fromRGBO(28, 78, 80, 1),
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.0187,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600),
                             ),
-                            Icon(Icons.chevron_right,color: Color.fromRGBO(28, 78, 80, 1),size: width * 0.07,)
+                            Icon(Icons.chevron_right,color: const Color.fromRGBO(28, 78, 80, 1),size: width * 0.07,)
                           ],
                         ),
                       ),

@@ -3,12 +3,18 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_mem_Advisor.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
+import '../Entity/question_paper_model.dart';
+
 
 
 class GuestResultPage extends StatefulWidget {
-  const GuestResultPage({super.key});
-
-
+  const GuestResultPage({Key? key,
+    required this.totalMarks,required this.date,required this.time,required this.questions
+  }) : super(key: key);
+  final int totalMarks;
+  final QuestionPaperModel questions;
+  final String date;
+  final String time;
 
   @override
   GuestResultPageState createState() => GuestResultPageState();
@@ -17,10 +23,13 @@ class GuestResultPageState extends State<GuestResultPage> {
   TextEditingController assessmentID = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool autoValidate = false;
+  late QuestionPaperModel values;
+
 
   @override
   void initState() {
     super.initState();
+    values = widget.questions;
   }
   @override
   Widget build(BuildContext context) {
@@ -80,7 +89,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                 ),
               ),
               ),
-              const SizedBox(height: 15.0),
+              SizedBox(height: localHeight* 0.015),
               Expanded(child: Column(
                 children: [
                   const SizedBox(height: 240.0),
@@ -90,7 +99,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
                           fontSize: localHeight* 0.018)),
-                  const SizedBox(height: 10.0),
+                  SizedBox(height: localHeight* 0.010),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -117,12 +126,12 @@ class GuestResultPageState extends State<GuestResultPage> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const StudMemAdvisor(),
+                            child: StudMemAdvisor(questions: values),
                           ),
                         );
                       }
                   ),
-                  const SizedBox(height: 10.0),
+                  SizedBox(height: localHeight* 0.010),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -165,7 +174,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                               fontWeight: FontWeight.w600,
                               fontSize: localHeight* 0.024)),
                       const SizedBox(height: 25.0),
-                      Text('69',
+                      Text('${widget.totalMarks}',
                           style: TextStyle(
                               color: const Color.fromRGBO(255, 153, 0, 1),
                               fontFamily: 'Inter',
@@ -212,20 +221,20 @@ class GuestResultPageState extends State<GuestResultPage> {
                       Row(
                         children: [
                           const SizedBox(width: 25.0),
-                          Text('26/12/2022',
+                          Text(widget.date,
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: localHeight* 0.022)),
+                          const SizedBox(width: 20.0),
+                          Text(widget.time,
                               style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w500,
                                   fontSize: localHeight* 0.022)),
                           const SizedBox(width: 25.0),
-                          Text('11:11',
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: localHeight* 0.022)),
-                          const SizedBox(width: 60.0),
                           Text('05:23',
                               style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),

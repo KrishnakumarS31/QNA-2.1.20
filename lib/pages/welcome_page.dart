@@ -241,7 +241,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => const TeacherLogin(),
+                                  builder: (context) => TeacherLogin(setLocale: widget.setLocale),
                                 ),
                               );
                             },

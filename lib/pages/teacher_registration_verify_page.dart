@@ -9,7 +9,7 @@ import '../Components/custom_incorrect_popup.dart';
 
 
 class TeacherRegistrationOtpPage extends StatefulWidget {
-  TeacherRegistrationOtpPage({
+  const TeacherRegistrationOtpPage({
     Key? key,
 
   }) : super(key: key);
@@ -28,14 +28,13 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
   Duration myDuration = const Duration(minutes: 5);
   @override
   void initState() {
-    print("teacher");
     error =false;
     countdownTimer =
-        Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
     super.initState();
   }
   void setCountDown() {
-    final reduceSecondsBy = 1;
+    const reduceSecondsBy = 1;
     setState(() {
       final seconds = myDuration.inSeconds - reduceSecondsBy;
       if (seconds < 0) {
@@ -55,7 +54,7 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         // appBar: AppBar(
         //   centerTitle: true,
@@ -138,12 +137,12 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
               SizedBox(height:height * 0.04),
               Form(
                 key: formKey,
-                child: Container(
+                child: SizedBox(
                   height: height * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:  [
-                      Container(
+                      SizedBox(
                         width: width * 0.8,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -210,7 +209,7 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 const Icon(Icons.circle,color: Color.fromRGBO(141, 167, 167, 1),size: 6,),
-                                SizedBox(width: 4,),
+                                const SizedBox(width: 4,),
                                 const Text("Don't receive OTP?",
                                   style: TextStyle(
                                       color: Color.fromRGBO(153, 153, 153, 1),
@@ -295,9 +294,9 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          Icon(Icons.check_circle,size: height * 0.04,color: Color.fromRGBO(66, 194, 0, 1),),
+          Icon(Icons.check_circle,size: height * 0.04,color: const Color.fromRGBO(66, 194, 0, 1),),
           SizedBox(width: height * 0.002,),
-          Text("Success!",
+          const Text("Success!",
             style: TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
@@ -305,7 +304,7 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                 fontSize: 20),),
         ],
       ),
-      content: Text("Your registration has been successfully completed.",style: TextStyle(
+      content: const Text("Your registration has been successfully completed.",style: TextStyle(
           color: Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,

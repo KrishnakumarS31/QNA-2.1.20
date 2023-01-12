@@ -4,8 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
-import 'Student_Quest_ReviseAns.dart';
-import 'hamBurger_menu.dart';
+import 'package:qna_test/Pages/settings_languages.dart';
+import '../Entity/question_paper_model.dart';
+import '../Services/qna_service.dart';
 import 'reset_passwordStudent.dart';
 import 'stud_mem_question01.dart';
 
@@ -14,11 +15,10 @@ import 'stud_mem_question01.dart';
 
 class StudentMemLogedStart extends StatefulWidget {
   const StudentMemLogedStart({
-    Key? key
-    //,
-   // required this.regNumber
+    Key? key,required this.regNumber, required this.setLocale
   }) : super(key: key);
-  //final String regNumber;
+  final void Function(Locale locale) setLocale;
+  final String regNumber;
 
   @override
   StudentMemLogedStartState createState() => StudentMemLogedStartState();
@@ -27,6 +27,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
   TextEditingController assessmentID = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool autoValidate = false;
+  late QuestionPaperModel values;
 
   @override
   void initState() {
@@ -183,7 +184,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: ResetPasswordStudent(),
+                              child: const ResetPasswordStudent(),
                             ),
                           );
                         }),
@@ -222,6 +223,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: SettingsLanguages(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -462,14 +470,14 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                                     fontWeight: FontWeight.w600
                                 )
                             ),
-                          onPressed: () {
-                            bool valid=formKey.currentState!.validate();
+                          onPressed: () async {
+                            values =  await QnaService.getQuestion();
                             if(assessmentID.text.length >= 8){
                               Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: StudMemQuestion(assessmentId: assessmentID.text),
+                                  child: StudMemQuestion(assessmentId: assessmentID.text, ques: values),
                                 ),
                               );
                             }

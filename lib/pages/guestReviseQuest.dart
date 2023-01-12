@@ -1,150 +1,41 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/student_result_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../Providers/question_num_provider.dart';
+import 'package:provider/provider.dart';
+import '../Entity/question_paper_model.dart';
+import '../Services/qna_service.dart';
+import 'package:intl/intl.dart';
 import 'guest_result_page.dart';
 class guestReviseQuest extends StatefulWidget {
-  const guestReviseQuest({super.key});
+  const guestReviseQuest({Key? key,
+    required this.questions
+  }) : super(key: key);
+  final QuestionPaperModel questions;
 
   @override
   guestReviseQuestState createState() => guestReviseQuestState();
 }
 
 class guestReviseQuestState extends State<guestReviseQuest> {
-  List<QuestionModel> questionList = [
-    QuestionModel(
-        qnNumber: "1",
-        question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        answer: "a. Lorem ipsum dolor sit amet, consectetur adipiscing ",
-        mark: "5"),
-    QuestionModel(
-        qnNumber: "2",
-        question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in  rhoncus lectus efficitur",
-        answer: "*** not answered ***",
-        mark: "10"),
-    QuestionModel(
-        qnNumber: "3",
-        question:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies",
-        answer: "b. Option 2",
-        mark: "10"),
-    QuestionModel(
-        qnNumber: "4",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "b. Option 3",
-        mark: "5"),
-    QuestionModel(
-        qnNumber: "5",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "*** not answered ***",
-        mark: "5"),
-    QuestionModel(
-        qnNumber: "6",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "*** not answered ***",
-        mark: "15"),
-    QuestionModel(
-        qnNumber: "7",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "a. Lorem ipsum dolor sit amet, consectetur adipiscing ",
-        mark: "10"),
-    QuestionModel(
-        qnNumber: "8",
-        question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        answer: "*** not answered ***",
-        mark: "10")
-  ];
+  late Future<QuestionPaperModel> questionPaperModel;
+  late QuestionPaperModel values;
 
   @override
   void initState() {
     super.initState();
+    values = widget.questions;
   }
 
   @override
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-
+    questionPaperModel= QnaService.getQuestion();
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        // appBar: AppBar(
-        //   leading:
-        //   GestureDetector(
-        //     onTap: () {
-        //   Navigator.of(context).pop();
-        //       },
-        //   child: Image.asset(
-        //     "assets/images/Back_Chevron.png",
-        //   ),
-        // ),
-        //   // leading: Row(
-        //   // children:[
-        //   // IconButton(
-        //   //   tooltip: "Revise",
-        //   //   icon: const Icon(
-        //   //     Icons.chevron_left,
-        //   //     size: 30,
-        //   //     color: Colors.white,
-        //   //   ),
-        //   //   onPressed: () {
-        //   //     Navigator.of(context).pop();
-        //   //   },
-        //   // ),
-        //   //   Text(
-        //   // " \t Revise",
-        //   // style: TextStyle(
-        //   //   color: const Color.fromRGBO(255, 255, 255, 1),
-        //   //   fontSize: localHeight * 0.018,
-        //   //   fontFamily: "Inter",
-        //   //   fontWeight: FontWeight.w700,
-        //   // ),
-        //   //   ),
-        //   // ]),
-        //   centerTitle: true,
-        //   title: Column(children: [
-        //     Text(
-        //       "Review",
-        //       style: TextStyle(
-        //         color: const Color.fromRGBO(255, 255, 255, 1),
-        //         fontSize: localHeight * 0.018,
-        //         fontFamily: "Inter",
-        //         fontWeight: FontWeight.w700,
-        //       ),
-        //     ),
-        //     Text(
-        //       "Answer Sheet",
-        //       style: TextStyle(
-        //         color: const Color.fromRGBO(255, 255, 255, 1),
-        //         fontSize: localHeight * 0.018,
-        //         fontFamily: "Inter",
-        //         fontWeight: FontWeight.w700,
-        //       ),
-        //     ),
-        //     Text(
-        //       "AssID23515A225",
-        //       style: TextStyle(
-        //         color: const Color.fromRGBO(255, 255, 255, 1),
-        //         fontSize: localHeight * 0.014,
-        //         fontFamily: "Inter",
-        //         fontWeight: FontWeight.w700,
-        //       ),
-        //     ),
-        //   ]),
-        //   flexibleSpace: Container(
-        //     decoration: const BoxDecoration(
-        //         gradient: LinearGradient(
-        //             end: Alignment.bottomRight,
-        //             begin: Alignment.topLeft,
-        //             colors: [
-        //           Color.fromRGBO(82, 165, 160, 1),
-        //           Color.fromRGBO(0, 106, 100, 1),
-        //         ])),
-        //   ),
-        // ),
         body: SingleChildScrollView(
             physics: const ClampingScrollPhysics(),
             child: Column(children: [
@@ -280,78 +171,100 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                     ]),
                     //SizedBox(height: localHeight * 0.030),
                     Column(
-                      children: questionList.map((question) {
-                        return Container(
-                          //decoration: BoxDecoration(border: Border.all()),
-                            margin: const EdgeInsets.all(5),
-                            padding: const EdgeInsets.all(5),
-                            //color: const Color.fromRGBO(255, 255, 255, 1),
-                            child: ListTile(
-                              title: Column(
-                                //mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(children: [
-                                      Text("Q${question.qnNumber}",
+                        children: [
+                          for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index++)
+                            Container(
+                              //decoration: BoxDecoration(border: Border.all()),
+                                margin: const EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
+                                //color: const Color.fromRGBO(255, 255, 255, 1),
+                                child:
+                                ListTile(
+
+                                  title: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(children: [
+                                          Text("Q${values.data.assessment.questions[index].questionId}",
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: localHeight * 0.012)),
+                                          SizedBox(width: localHeight * 0.010),
+                                          Text(
+                                            "(${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    179, 179, 179, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: localHeight * 0.012),
+                                          ),
+                                          SizedBox(width: localHeight * 0.010),
+                                          Provider.of<Questions>(context, listen: false).totalQuestion["$index"][2] == true
+                                              ? Stack(
+                                            children:  [
+                                              Icon(
+                                                  Icons.mode_comment_outlined,color: const Color.fromRGBO(255, 153, 0, 1),size: localHeight* 0.025),
+                                              Positioned(
+                                                  left: MediaQuery.of(context).copyWith().size.width * 0.008,
+                                                  top: MediaQuery.of(context).copyWith().size.height * 0.004,
+                                                  child: Icon(Icons.question_mark,
+                                                    color: const Color.fromRGBO(255, 153, 0, 1),
+                                                    size: MediaQuery.of(context).copyWith().size.height*0.016,))
+                                            ],
+                                          )
+                                              : SizedBox(width: localHeight * 0.010),
+                                        ]),
+                                        SizedBox(height: localHeight * 0.010),
+                                        Text("(${values.data.assessment.questions[index].question})",
+                                          textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
+                                                  51, 51, 51, 1),
                                               fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: localHeight * 0.012)),
-                                      SizedBox(width: localHeight * 0.020),
-                                      Text(
-                                        "(${question.mark} ${AppLocalizations.of(context)!.marks})",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                179, 179, 179, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: localHeight * 0.012),
-                                      )
-                                    ]),
-                                    SizedBox(height: localHeight * 0.010),
-                                    Text(question.question,
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              51, 51, 51, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: localHeight * 0.013),
-                                    ),
-                                    SizedBox(height: localHeight * 0.015),
-                                  ]),
-                              subtitle:
-                              Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(question.answer,
-                                          style:
-                                          question.answer == "*** not answered ***"
-                                              ? TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  238, 71, 0, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.014)
-                                              : TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.014)
-                                      ),
-                                    ),
-                                    const Divider(
-                                      thickness: 2,
-                                    ),
-                                  ]),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: localHeight * 0.013),
+                                        ),
+                                        SizedBox(height: localHeight * 0.015),
+                                      ]),
+                                  subtitle:
+                                  Column(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                                  ? "Not Answered"
+                                              // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == Color(0xff52a5a0)
+                                              // ? "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}"
+                                                  : "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
+                                              style:
+                                              Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                                  ?
+                                              TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      238, 71, 0, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: localHeight * 0.014)
+                                                  : TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: localHeight * 0.014)
+                                          ),
+                                        ),
+                                        const Divider(
+                                          thickness: 2,
+                                        ),
+                                      ]),
+                                )
                             )
-                        );
-                      }).toList(),
-                    ),
+                        ]),
                     Column(
                       children: [
                         Align(alignment: Alignment.center,
@@ -465,11 +378,26 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                     )
                 ),
                 onPressed: () {
+                  int totalMark=0;
+                  for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
+                    List<dynamic> correctAns=values.data.assessment.questions[j-1].choices_answer;
+                    correctAns.sort();
+                    List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+                    selectedAns.sort();
+                    if(listEquals(correctAns, selectedAns)){
+                      totalMark=totalMark+values.data.assessment.questions[j-1].questionMarks;
+                    }
+                  }
+                  final DateTime now = DateTime.now();
+                  final DateFormat formatter = DateFormat('dd-MM-yyyy');
+                  final DateFormat timeFormatter = DateFormat('hh:mm a');
+                  final String formatted = formatter.format(now);
+                  final String time=timeFormatter.format(now);
                   Navigator.push(
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: const GuestResultPage(),
+                      child:  GuestResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values),
                     ),
                   );
                 }

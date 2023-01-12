@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/teacher_result_assessment.dart';
 
 import '../Components/custom_card.dart';
 
@@ -7,7 +9,7 @@ import '../Components/custom_card.dart';
 
 
 class TeacherResultMonth extends StatefulWidget {
-  TeacherResultMonth({
+  const TeacherResultMonth({
     Key? key,
 
   }) : super(key: key);
@@ -23,6 +25,8 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
 
   @override
   void initState() {
+    super.initState();
+
 
   }
 
@@ -35,7 +39,7 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
           actions: [
@@ -107,11 +111,11 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         '27 Dec, 2022',
                         style: TextStyle(
-                          color: Color.fromRGBO(179, 179, 179, 1),
+                          color: const Color.fromRGBO(179, 179, 179, 1),
                             fontSize: height * 0.0187,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w700),
@@ -121,15 +125,27 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
                   SizedBox(height: height * 0.01,),
 
 
-                  CustomCard(
-                    height: height,
-                    width: width,
-                    subject: 'Maths',
-                    title: 'Lesson 14 &15 / Calculus',
-                    subTopic: 'Chapter 12',
-                    std: 'XI',
-                    date: '28/12/2022',
-                    status: const Color.fromRGBO(255, 157, 77, 1),),
+                  GestureDetector(
+                    onTap: ()
+                    {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: TeacherResultAssessment(),
+                        ),
+                      );
+                    },
+                    child: CustomCard(
+                      height: height,
+                      width: width,
+                      subject: 'Maths',
+                      title: 'Lesson 14 &15 / Calculus',
+                      subTopic: 'Chapter 12',
+                      std: 'XI',
+                      date: '28/12/2022',
+                      status: const Color.fromRGBO(255, 157, 77, 1),),
+                  ),
 
 
                   SizedBox(height: height * 0.01,),
@@ -151,11 +167,11 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         '22 Dec, 2022',
                         style: TextStyle(
-                            color: Color.fromRGBO(179, 179, 179, 1),
+                            color: const Color.fromRGBO(179, 179, 179, 1),
                             fontSize: height * 0.0187,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w700),
