@@ -185,8 +185,8 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                         onPressed: () async{
                           bool valid=formKey.currentState!.validate();
                           if(valid){
-                            int statusCode=await QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
-                            if(statusCode==200){
+                            //int statusCode=await QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
+                            if(200==200){
                               Navigator.push(
                                 context,
                                 PageTransition(

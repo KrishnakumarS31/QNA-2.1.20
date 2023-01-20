@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/login_entity.dart';
 import 'forgot_password_email.dart';
 import 'student_registration_page.dart';
 import 'student_MemLoged_Start.dart';
@@ -488,16 +489,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               color: Color.fromRGBO(48, 145, 139, 1),
                             ));
                           });
-                          int statusCode =
+                          LoginModel loginResponse =
                           await QnaService.logInUser(regNumber, passWord);
                           Navigator.of(context).pop();
-                          if (statusCode == 200) {
+                          if (loginResponse.code == 200) {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child:
-                                StudentMemLogedStart(regNumber: regNumber,setLocale: widget.setLocale),
+                                StudentMemLogedStart(regNumber: regNumber,setLocale: widget.setLocale,userId: loginResponse.data!.userId,),
                               ),
                             ).then((value) {
                               regNumberController.clear();
@@ -509,9 +510,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: CustomDialog(
-                                  title: 'Incorrect Email Id / Password',
+                                  title: 'Wrong password',
                                   content:
-                                  'Entered Email ID or password is not valid',
+                                  'please enter the correct password',
                                   button: AppLocalizations.of(context)!.retry,
                                 ),
                               ),

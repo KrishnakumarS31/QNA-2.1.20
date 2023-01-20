@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_forgot_password.dart';
 
+import '../EntityModel/static_response.dart';
+import '../Services/qna_service.dart';
+
 
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({
@@ -52,33 +55,7 @@ late String otp;
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        // appBar: AppBar(
-        //   centerTitle: true,
-        //   title: const Text("VERIFY OTP",
-        //     style: TextStyle(
-        //       color: Color.fromRGBO(255, 255, 255, 1),
-        //       fontSize: 18.0,
-        //       fontFamily: "Inter",
-        //       fontWeight: FontWeight.w600,
-        //     ),),
-        //   leading: IconButton(
-        //     icon:const Icon(
-        //       Icons.chevron_left,
-        //       size: 40.0,
-        //       color: Colors.white,
-        //     ), onPressed: () {
-        //     Navigator.of(context).pop();
-        //   },
-        //   ),
-        //   flexibleSpace: Container(
-        //     decoration: const BoxDecoration(
-        //       gradient: LinearGradient(
-        //           end: Alignment.bottomRight,
-        //           begin: Alignment.topLeft,
-        //           colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
-        //     ),
-        //   ),
-        // ),
+
         body: Column(
             children: [
               Container(
@@ -240,13 +217,14 @@ late String otp;
                           onPressed: () async {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
-                              // int statusCode=await QnaService.verifyOtp(widget.email,widget.otp);
-                              if (otp!='1234') {
+                              StaticResponse res=await QnaService.verifyOtp(widget.email,otp);
+                              if (res.code==200) {
+
                                 Navigator.push(
                                   context,
                                   PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: showAlertDialog(context)
+                                      type: PageTransitionType.fade,
+                                      child: showAlertDialog(context,res.message)
                                   ),
                                 );
                               }
@@ -281,7 +259,7 @@ late String otp;
 
             ]));
   }
-  showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context,String msg) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
     // set up the AlertDialog
@@ -298,7 +276,7 @@ late String otp;
               fontSize: 20),),
         ],
       ),
-      content: const Text("Your registration has been successfully completed.",style: TextStyle(
+      content:  Text(msg,style: TextStyle(
           color: Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
@@ -311,7 +289,13 @@ late String otp;
               fontWeight: FontWeight.w500,
               fontSize: 15),),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: StudentForgotPassword(email: widget.email, otp: otp,)
+              ),
+            );
           },
         )
       ],

@@ -602,7 +602,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                   ),
                 ),
                 onPressed: () {
-                  QnaService.sendOtp();
+                  QnaService.sendOtp('kkkl');
                   Navigator.push(
                     context,
                     PageTransition(

@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import '../Entity/question_paper_model.dart';
+import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import 'reset_passwordStudent.dart';
 import 'stud_mem_question01.dart';
@@ -15,10 +16,11 @@ import 'stud_mem_question01.dart';
 
 class StudentMemLogedStart extends StatefulWidget {
   const StudentMemLogedStart({
-    Key? key,required this.regNumber, required this.setLocale
+    Key? key,required this.regNumber, required this.setLocale,required this.userId
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final String regNumber;
+  final int userId;
 
   @override
   StudentMemLogedStartState createState() => StudentMemLogedStartState();
@@ -28,10 +30,22 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
   var formKey = GlobalKey<FormState>();
   bool autoValidate = false;
   late QuestionPaperModel values;
+  UserDataModel userDataModel=UserDataModel(code: 0, message: '');
+  String name='';
+
 
   @override
   void initState() {
     super.initState();
+    getData();
+
+  }
+
+  getData() async {
+      userDataModel=await QnaService.getUserDataService(widget.userId);
+      setState((){
+        name=userDataModel.data!.firstName;
+      });
   }
   @override
   Widget build(BuildContext context) {
@@ -184,7 +198,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: const ResetPasswordStudent(),
+                              child:  ResetPasswordStudent(userId: userDataModel.data!.id,),
                             ),
                           );
                         }),
@@ -383,7 +397,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                           SizedBox(
                             height: localHeight * 0.02,
                           ),
-                          Text("StudentName",
+                          Text(name,
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyText1

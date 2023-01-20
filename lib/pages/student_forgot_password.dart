@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/static_response.dart';
 
 class StudentForgotPassword extends StatefulWidget {
   const StudentForgotPassword({
@@ -25,7 +26,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
 
   @override
   void initState() {
-    QnaService.sendOtp();
+    //QnaService.sendOtp('jjkj');
     super.initState();
   }
 
@@ -180,11 +181,12 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           bool valid=formKey.currentState!.validate();
                           if(valid){
-                            int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
-                            if(statusCode==200){
+                            StaticResponse res=await QnaService.updatePasswordOtp(widget.email,widget.otp,newPassword.text);
+                            //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
+                            if(res.code==200){
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -239,7 +241,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                 fontSize: height * 0.02),),
         ],
       ),
-      content: Text("Your Password has been changed Successfully",style: TextStyle(
+      content: Text("Password Changed successfully",style: TextStyle(
           color: const Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,

@@ -3,11 +3,14 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/static_response.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ResetPasswordStudent extends StatefulWidget {
   const ResetPasswordStudent({
-    Key? key,
+    Key? key, required this.userId
   }) : super(key: key);
+
+  final int userId;
 
 
   @override
@@ -22,7 +25,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
 
   @override
   void initState() {
-    QnaService.sendOtp();
+    QnaService.sendOtp('jjk');
     super.initState();
   }
 
@@ -33,7 +36,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Column(
             children: [
@@ -208,11 +211,11 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           bool valid=formKey.currentState!.validate();
                           if(valid || newPassword.text==reNewPassword.text){
-                           int statusCode= QnaService.updatePassword(oldPassword.text, newPassword.text);
-                           if(statusCode==200){
+                            StaticResponse response=await QnaService.updatePassword(oldPassword.text,newPassword.text,widget.userId);
+                           if(response.code==200){
                              Navigator.push(
                                context,
                                PageTransition(

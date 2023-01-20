@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
+import '../DataSource/qna_repo.dart';
+import '../EntityModel/static_response.dart';
+import '../Services/qna_service.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
@@ -140,16 +144,21 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           bool valid=formKey.currentState!.validate();
                           if(valid){
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: showAlertDialog(context)
-                              ),
-                            );
+                            StaticResponse response=StaticResponse(code: 0, message: 'Incorrect Email');
+                            response = await QnaService.sendOtp(_controller.text);
+                            if(response.code==200)
+                              {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: showAlertDialog(context)
+                                  ),
+                                );
+                              }
                           }
 
                         },
