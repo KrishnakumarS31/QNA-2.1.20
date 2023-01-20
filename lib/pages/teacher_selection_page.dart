@@ -4,6 +4,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/reset_password.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
 import 'settings_languages.dart';
+import 'teacher_create_assessment.dart';
+import 'teacher_questionBank_page.dart';
 
 
 class TeacherSelectionPage extends StatefulWidget {
@@ -189,7 +191,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: ResetPassword(),
+                                    child: const ResetPassword(),
                                   ),
                                 );
                         }),
@@ -436,7 +438,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const TeacherQuestionBank(),
+                      ),
+                    );
                     // if(agree){
                     //   if(formKey.currentState!.validate()) {
                     //     name = emailController.text;
@@ -491,6 +499,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const TeacherCreateAssessment(),
+                      ),
+                    );
 
                     // if(agree){
                     //   if(formKey.currentState!.validate()) {
@@ -550,7 +565,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherResultLanding(),
+                        child: const TeacherResultLanding(),
                       ),
                     );
                   },
@@ -561,6 +576,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w800),
                   ),
+                ),
+                SizedBox(
+                  height: height * 0.025,
                 ),
 
 

@@ -7,10 +7,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 import 'DataSource/app_user_repo.dart';
 import 'Entity/app_user.dart';
-import 'Pages/settings_languages.dart';
-import 'Pages/stud_guest_assessment.dart';
-import 'Pages/welcome_page.dart';
 import 'Providers/LanguageChangeProvider.dart';
+import 'Providers/question_prepare_provider.dart';
 
 
 void main() {
@@ -18,7 +16,8 @@ void main() {
     MultiProvider(providers:[
       ChangeNotifierProvider(create: (_)=> QuestionNumProvider(),),
       ChangeNotifierProvider(create: (_)=> Questions(),),
-      ChangeNotifierProvider(create: (_) => LanguageChangeProvider())
+      ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
+      ChangeNotifierProvider(create: (_)=> QuestionPrepareProvider(),)
     ],
     child: MyApp(),
     ),
@@ -64,9 +63,7 @@ class _MyAppState extends State<MyApp> {
         // ),
       ),
 
-      home: WelcomePage(setLocale: setLocale),
-      //StudGuestAssessment(name: 'Subash',)
-     // SplashScreen(setLocale: setLocale,),
+      home: SplashScreen(setLocale: setLocale,),
     );
   }
 }

@@ -480,10 +480,10 @@ getUserDetails() async {
                         color: Color.fromRGBO(48, 145, 139, 1),
                       ));
                     });
-                    int statusCode =
-                        await QnaService.logInUser(emailController.text.trim(), passwordController.text.trim());
-                    Navigator.of(context).pop();
-                    if(statusCode == 200){
+                    // int statusCode =
+                    //     await QnaService.logInUser(emailController.text.trim(), passwordController.text.trim());
+                    // Navigator.of(context).pop();
+                    // if(statusCode == 200){
                       Navigator.push(
                                 context,
                                 PageTransition(
@@ -494,21 +494,21 @@ getUserDetails() async {
                         emailController.clear();
                         passwordController.clear();
                       });
-                    }
-                    else{
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: CustomDialog(
-                            title: 'Incorrect Email Id / Password',
-                            content:
-                            'Entered Email ID or password is not valid',
-                            button: AppLocalizations.of(context)!.retry,
-                          ),
-                        ),
-                      );
-                    }
+                   // }
+                    // else{
+                    //   Navigator.push(
+                    //     context,
+                    //     PageTransition(
+                    //       type: PageTransitionType.rightToLeft,
+                    //       child: CustomDialog(
+                    //         title: 'Incorrect Email Id / Password',
+                    //         content:
+                    //         'Entered Email ID or password is not valid',
+                    //         button: AppLocalizations.of(context)!.retry,
+                    //       ),
+                    //     ),
+                    //   );
+                    // }
 
                   },
                   child: Text(

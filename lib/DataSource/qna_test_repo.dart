@@ -71,7 +71,7 @@ class QnaTestRepo{
      var headers = {
        'Content-Type': 'application/json'
      };
-     var request = http.Request('POST', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/users'));
+     var request = http.Request('POST', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/users/login'));
      request.body = json.encode({
        "email": email,
        "password": password
