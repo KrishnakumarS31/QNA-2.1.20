@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/static_response.dart';
+import '../EntityModel/student_registration_model.dart';
 import '../EntityModel/user_data_model.dart';
 
 class QnaRepo{
@@ -30,6 +31,26 @@ class QnaRepo{
       }
       return loginModel;
 
+    }
+
+    static registerUserDetails(StudentRegistrationModel student) async {
+      LoginModel loginModel=LoginModel(code: 0, message: 'message');
+      var headers = {
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/users'));
+      request.body = studentRegistrationModelToJson(student);
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+      if (response.statusCode == 200) {
+        String temp=await response.stream.bytesToString();
+        loginModel=loginModelFromJson(temp);
+      }
+      else {
+        print(response.reasonPhrase);
+      }
+      return loginModel;
     }
 
     static Future<UserDataModel> getUserData(int userId) async {

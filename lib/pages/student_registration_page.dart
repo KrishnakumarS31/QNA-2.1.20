@@ -6,6 +6,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
 import 'package:qna_test/Pages/student_regis_verify_otp.dart';
 import '../Entity/custom_http_response.dart';
+import '../EntityModel/login_entity.dart';
+import '../EntityModel/student_registration_model.dart';
+import '../Services/qna_service.dart';
 
 class StudentRegistrationPage extends StatefulWidget {
   const StudentRegistrationPage({super.key});
@@ -30,9 +33,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   bool pPCheck = false;
   bool error =true;
   String? gender;
+  String? countryCtizen;
   Student student=Student(firstName: 'user1', lastName: '123', dob: '01/01/2001', gender: 'female', nationality: 'India', residentCountry: 'United States', email: 'user1.123@itc.com', rollNumber: 'A0987654', organisationName: 'abcde', roleId: ["1"], password: 'acsdfvb7@0987');
   final studentDobController = TextEditingController();
   late Response userDetails;
+
+  List<String> counrtyCitizenList = ['India','Singapore','Poland','Japan','United Kingdom','China'];
+  String selectedCounrtyCitizen='India';
+  List<String> counrtyResidentList = ['India','Singapore','Poland','Japan','United Kingdom','China'];
+  String selectedCounrtyResident='India';
 
 
   @override
@@ -240,7 +249,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 groupValue: gender,
                                 onChanged: (value){
                                   setState(() {
-                                    gender = value.toString();
+                                    gender = value..toString();
                                   });
                                 },
                               ),
@@ -285,119 +294,230 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(
-                              color: const Color.fromRGBO(196, 196, 196, 1),
-                              width: 1.5,
+                        Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  //background color of dropdown button
+                                  border: Border.all(
+                                      color: Colors.black38,
+                                      width: 1), //border of dropdown button
+                                  borderRadius: BorderRadius.circular(
+                                      17), //border radius of dropdown button
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 30, right: 30),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton(
+                                      hint: Text("Select Linen name"),
+                                      isExpanded: true,
+                                      items: counrtyCitizenList.map((subtype) {
+                                        return DropdownMenuItem(
+                                          value: subtype.toString(),
+                                          child: new Text(subtype.toString()),
+                                        );
+                                      }).toList(),
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.02),
+                                      onChanged: (newCounrtyCitizenValue) {
+                                        setState(() {
+                                          selectedCounrtyCitizen = newCounrtyCitizenValue!;
+                                          //getItemNameData(selectedLinenType);
+                                        });
+                                      },
+                                      value: selectedCounrtyCitizen,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                          child: DropDownTextField(
-                            controller: studentNationalityController,
-                            clearOption: true,
-                            enableSearch: true,
-                            textFieldDecoration: InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.country_citizen,
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                                hintText: AppLocalizations.of(context)!.enter_country),
-                            clearIconProperty: IconProperty(color: Colors.green),
-                            searchDecoration: InputDecoration(
-                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                                hintText: AppLocalizations.of(context)!.enter_country),
-                            validator: (value) {
-                              if (value == null) {
-                                return "Required field";
-                              } else {
-                                return null;
-                              }
-                            },
-                            dropDownItemCount: 6,
-
-                            dropDownList: const [
-                              DropDownValueModel(name: 'India', value: "India"),
-                              DropDownValueModel(
-                                  name: 'Singapore',
-                                  value: "value2",
-                                  toolTipMsg:
-                                  "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(name: 'United States', value: "United States"),
-                              DropDownValueModel(
-                                  name: 'Russia',
-                                  value: "value4",
-                                  toolTipMsg:
-                                  "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(name: 'Poland', value: "value5"),
-                              DropDownValueModel(name: 'Japan', value: "value6"),
-                              DropDownValueModel(name: 'United Kingdom', value: "value7"),
-                              DropDownValueModel(name: 'China', value: "value8"),
-                            ],
-                            onChanged: (val) {
-
-                            },
-                          ),
+                            Positioned(
+                              left: localWidth * 0.038,
+                              child: Container(
+                              color: Colors.white,
+                              child: Text(
+                                'COUNTRY CITIZEN',
+                                style: TextStyle(
+                                    color: Color.fromRGBO(51, 51, 51, 1),
+                                    fontSize: localHeight * 0.012,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),)
+                          ],
                         ),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(17),
+                        //     border: Border.all(
+                        //       color: const Color.fromRGBO(196, 196, 196, 1),
+                        //       width: 1.5,
+                        //     ),
+                        //   ),
+                        //   child: DropDownTextField(
+                        //     controller: studentNationalityController,
+                        //     clearOption: true,
+                        //     enableSearch: true,
+                        //     textFieldDecoration: InputDecoration(
+                        //         floatingLabelBehavior: FloatingLabelBehavior.always,
+                        //         labelText: AppLocalizations.of(context)!.country_citizen,
+                        //         labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                        //         border: InputBorder.none,
+                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                        //         hintText: AppLocalizations.of(context)!.enter_country),
+                        //     clearIconProperty: IconProperty(color: Colors.green),
+                        //     searchDecoration: InputDecoration(
+                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                        //         hintText: AppLocalizations.of(context)!.enter_country),
+                        //     validator: (value) {
+                        //       if (value == null) {
+                        //         return "Required field";
+                        //       } else {
+                        //         return null;
+                        //       }
+                        //     },
+                        //     dropDownItemCount: 6,
+                        //
+                        //     dropDownList: const [
+                        //       DropDownValueModel(name: 'India', value: "India"),
+                        //       DropDownValueModel(
+                        //           name: 'Singapore',
+                        //           value: "value2",
+                        //           toolTipMsg:
+                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                        //       DropDownValueModel(name: 'United States', value: "United States"),
+                        //       DropDownValueModel(
+                        //           name: 'Russia',
+                        //           value: "value4",
+                        //           toolTipMsg:
+                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                        //       DropDownValueModel(name: 'Poland', value: "value5"),
+                        //       DropDownValueModel(name: 'Japan', value: "value6"),
+                        //       DropDownValueModel(name: 'United Kingdom', value: "value7"),
+                        //       DropDownValueModel(name: 'China', value: "value8"),
+                        //
+                        //     ],
+                        //     onChanged: (val) {
+                        //       setState((){
+                        //         countryCtizen=val;
+                        //       });
+                        //     },
+                        //   ),
+                        // ),
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(
-                              color: const Color.fromRGBO(196, 196, 196, 1),
-                              width: 1.5,
+                        Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  //background color of dropdown button
+                                  border: Border.all(
+                                      color: Colors.black38,
+                                      width: 1), //border of dropdown button
+                                  borderRadius: BorderRadius.circular(
+                                      17), //border radius of dropdown button
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 30, right: 30),
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton(
+                                      hint: Text("Select Linen name"),
+                                      isExpanded: true,
+                                      items: counrtyResidentList.map((subtype) {
+                                        return DropdownMenuItem(
+                                          value: subtype.toString(),
+                                          child: new Text(subtype.toString()),
+                                        );
+                                      }).toList(),
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.02),
+                                      onChanged: (newCounrtyCitizenValue) {
+                                        setState(() {
+                                          selectedCounrtyResident = newCounrtyCitizenValue!;
+                                          //getItemNameData(selectedLinenType);
+                                        });
+                                      },
+                                      value: selectedCounrtyResident,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                          child: DropDownTextField(
-                            controller: studentResidentCountryController,
-                            clearOption: true,
-                            enableSearch: true,
-                            textFieldDecoration: InputDecoration(
-                                labelText: AppLocalizations.of(context)!.country_resident,
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                                border: InputBorder.none,
-                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                                hintText: AppLocalizations.of(context)!.enter_country),
-                            clearIconProperty: IconProperty(color: Colors.green),
-                            searchDecoration: InputDecoration(
-                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                                hintText: AppLocalizations.of(context)!.enter_country),
-                            validator: (value) {
-                              if (value == null) {
-                                return "Required field";
-                              } else {
-                                return null;
-                              }
-                            },
-                            dropDownItemCount: 6,
-
-                            dropDownList: const [
-                              DropDownValueModel(name: 'India', value: "India"),
-                              DropDownValueModel(
-                                  name: 'Singapore',
-                                  value: "value2",
-                                  toolTipMsg:
-                                  "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(name: 'United States', value: "United States"),
-                              DropDownValueModel(
-                                  name: 'Russia',
-                                  value: "value4",
-                                  toolTipMsg:
-                                  "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                              DropDownValueModel(name: 'Poland', value: "value5"),
-                              DropDownValueModel(name: 'Japan', value: "value6"),
-                              DropDownValueModel(name: 'United Kingdom', value: "value7"),
-                              DropDownValueModel(name: 'China', value: "value8"),
-                            ],
-                            onChanged: (val) {
-
-                            },
-                          ),
+                            Positioned(
+                              left: localWidth * 0.038,
+                              child: Container(
+                                color: Colors.white,
+                                child: Text(
+                                  'COUNTRY CITIZEN',
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(51, 51, 51, 1),
+                                      fontSize: localHeight * 0.012,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),)
+                          ],
                         ),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(17),
+                        //     border: Border.all(
+                        //       color: const Color.fromRGBO(196, 196, 196, 1),
+                        //       width: 1.5,
+                        //     ),
+                        //   ),
+                        //   child: DropDownTextField(
+                        //     controller: studentResidentCountryController,
+                        //     clearOption: true,
+                        //     enableSearch: true,
+                        //     textFieldDecoration: InputDecoration(
+                        //         labelText: AppLocalizations.of(context)!.country_resident,
+                        //         floatingLabelBehavior: FloatingLabelBehavior.always,
+                        //         labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                        //         border: InputBorder.none,
+                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                        //         hintText: AppLocalizations.of(context)!.enter_country),
+                        //     clearIconProperty: IconProperty(color: Colors.green),
+                        //     searchDecoration: InputDecoration(
+                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                        //         hintText: AppLocalizations.of(context)!.enter_country),
+                        //     validator: (value) {
+                        //       if (value == null) {
+                        //         return "Required field";
+                        //       } else {
+                        //         return null;
+                        //       }
+                        //     },
+                        //     dropDownItemCount: 6,
+                        //
+                        //     dropDownList: const [
+                        //       DropDownValueModel(name: 'India', value: "India"),
+                        //       DropDownValueModel(
+                        //           name: 'Singapore',
+                        //           value: "value2",
+                        //           toolTipMsg:
+                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                        //       DropDownValueModel(name: 'United States', value: "United States"),
+                        //       DropDownValueModel(
+                        //           name: 'Russia',
+                        //           value: "value4",
+                        //           toolTipMsg:
+                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
+                        //       DropDownValueModel(name: 'Poland', value: "value5"),
+                        //       DropDownValueModel(name: 'Japan', value: "value6"),
+                        //       DropDownValueModel(name: 'United Kingdom', value: "value7"),
+                        //       DropDownValueModel(name: 'China', value: "value8"),
+                        //     ],
+                        //     onChanged: (val) {
+                        //
+                        //     },
+                        //   ),
+                        // ),
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
@@ -669,7 +789,34 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   onPressed: ()async
                   {
                   bool valid=formKey.currentState!.validate();
+                  print(studentFirstNameController.text);
+                  print(studentLastNameController.text);
+                  print(studentDobController.text);
+                  print(gender);
+                  print(selectedCounrtyCitizen);
+                  print(selectedCounrtyResident);
+                  print(studentEmailController.text);
+                  print(studentPasswordController.text);
+                  print(studentRollNumberController.text);
+                  print(studentOrganisationNameController);
+
+
+                  StudentRegistrationModel student=StudentRegistrationModel(
+                      firstName: studentFirstNameController.text,
+                      lastName: studentLastNameController.text,
+                      dob: 32546,
+                      gender: gender, countryNationality: selectedCounrtyCitizen,
+                      email: studentEmailController.text,
+                      password: studentPasswordController.text,
+                      rollNumber: studentRollNumberController.text,
+                      organisationName: studentOrganisationNameController.text,
+                      countryResident: selectedCounrtyResident,
+                      role: 'student');
                   if(valid) {
+                    LoginModel res=await QnaService.postUserDetailsService(student);
+                    if(res.code==200){
+
+
                     Navigator.push(
                       context,
                       PageTransition(
@@ -678,7 +825,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                       ),
                     );
                     //print("------------> ${studentEmailController.text}");
-                    //QnaService.postUserDetailsService(student);
+                    }
                   }
                   },
                 child: Text(

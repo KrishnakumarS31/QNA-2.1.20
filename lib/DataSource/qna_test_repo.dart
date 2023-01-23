@@ -39,8 +39,6 @@ class QnaTestRepo{
      else {
        print(response.reasonPhrase);
      }
-
-
    }
 
    static putUserDetails() async{

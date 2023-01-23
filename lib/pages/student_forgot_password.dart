@@ -35,7 +35,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Column(
             children: [

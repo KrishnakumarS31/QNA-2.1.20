@@ -5,6 +5,7 @@ import 'package:page_transition/page_transition.dart';
 
 
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
 
 
@@ -241,12 +242,13 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          onPressed: ()  {
+                          onPressed: ()  async {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
+                              StaticResponse res=await QnaService.verifyOtp(widget.email,otp);
                               int statusCode= 200;
                               //QnaService.verifyOtp(widget.email,otp);
-                              if (statusCode==200) {
+                              if (res.code==200) {
                                 Navigator.push(
                                   context,
                                   PageTransition(

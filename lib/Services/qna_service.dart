@@ -8,6 +8,7 @@ import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/static_response.dart';
+import '../EntityModel/student_registration_model.dart';
 
 class QnaService{
 
@@ -35,13 +36,12 @@ class QnaService{
     return await QnaRepo.updatePassword(oldPassword, newPassword,userId);
   }
 
-
-
-
-
-  static postUserDetailsService(Student student) async{
-    return await QnaTestRepo.postUserDetails(student);
+  static Future<LoginModel> postUserDetailsService(StudentRegistrationModel student) async{
+    return await QnaRepo.registerUserDetails(student);
   }
+
+
+
 
   static putUserDetailsService(Student student) async{
     return await QnaTestRepo.putUserDetails();
