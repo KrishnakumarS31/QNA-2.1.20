@@ -161,13 +161,13 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                 alignment: Alignment.topLeft,
                                 child: Text(
                                     Provider.of<Questions>(context, listen: false)
-                                                .totalQuestion['$index'][1] ==
+                                                .totalQuestion['$index'][0] ==
                                             const Color(0xff52a5a0)
                                         ? values.data.assessment.questions[index].choices[index].choiceText
                                         : "Not Answered",
                                     style: Provider.of<Questions>(context,
                                                     listen: false)
-                                                .totalQuestion['$index'][1] !=
+                                                .totalQuestion['$index'][0] !=
                                             const Color(0xff52a5a0)
                                         ? TextStyle(
                                             color: const Color.fromRGBO(
