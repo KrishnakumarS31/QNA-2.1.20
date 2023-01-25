@@ -3,8 +3,10 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
-import 'package:qna_test/Pages/teacher_assessment_searched.dart';
-import 'package:qna_test/Pages/teacher_looq_search_question.dart';
+import 'package:qna_test/pages/teacher_assessment_searched.dart';
+import 'package:qna_test/pages/teacher_active_assessment.dart';
+import 'package:qna_test/pages/teacher_looq_search_question.dart';
+import 'package:qna_test/pages/teacher_inactive_assessment.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
 
 import '../Entity/demo_question_model.dart';
@@ -207,7 +209,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Search Library  (LOOQ)",
+                Text("Search",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.02,
@@ -219,7 +221,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Library Of Online Questions",
+                      "Library of Assessments",
                       style: TextStyle(
                         color: const Color.fromRGBO(153, 153, 153, 1),
                         fontSize: height * 0.015,
@@ -250,7 +252,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           },
                         ),
                         SizedBox(width: width*0.01,),
-                        Text('Only My Questions', textAlign: TextAlign.left,style: TextStyle(
+                        Text('Only My Assessments', textAlign: TextAlign.left,style: TextStyle(
                             fontSize: height *0.015
                         ),)
                       ],
@@ -315,7 +317,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               fontFamily: "Inter"),
                         ),
                         TextSpan(
-                          text: "\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer available in the Library.",
+                          text: "\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontWeight: FontWeight.w500,
@@ -324,7 +326,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ])),
                 ),
                 SizedBox(height: height * 0.02),
-                Text("My Assessments",
+                Text("Tests",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.02,
@@ -342,15 +344,15 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   ),
                 ),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
+                CardInfo(height: height, width: width,status: 'In progress',),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
+                CardInfo(height: height, width: width,status: 'Active',),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
+                CardInfo(height: height, width: width,status: 'Inactive',),
                 SizedBox(height: height*0.02,),
                 Row(
                   children: [
-                     Expanded(child: Padding(
+                    Expanded(child: Padding(
                       padding: EdgeInsets.only(right: width * 0.05),
                       child: Divider(),
                     )),
@@ -381,20 +383,14 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherRecentAssessment(),
-                          ),
-                        );
+
 
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Create New Assessment',
+                            'Prepare New Assessment',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -423,206 +419,148 @@ class CardInfo extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
+    required this.status
   }) : super(key: key);
 
   final double height;
   final double width;
+  final String status;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: height * 0.1087,
-        width: width * 0.888,
-        decoration:  BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          border: Border.all(
-            color: const Color.fromRGBO(82, 165, 160, 0.15),
-          ),
-          color: const Color.fromRGBO(82, 165, 160, 0.1),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Maths",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    "In progress",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 166, 0, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
+      child: GestureDetector(
+        onTap: ()
+        {
+          if (status == 'In progress')
+          {
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: TeacherRecentAssessment(),
               ),
+            );
+          }
+          else if(status == 'Active'){
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: TeacherActiveAssessment(),
+              ),
+            );
+          }
+          else{
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: TeacherInactiveAssessment(),
+              ),
+            );
+          }
+        },
+        child: Container(
+          height: height * 0.1087,
+          width: width * 0.888,
+          decoration:  BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+            border: Border.all(
+              color: const Color.fromRGBO(82, 165, 160, 0.15),
             ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02),
-              child: Text(
-                "Calculus - Chapter 12.2",
-                style: TextStyle(
-                  color: const Color.fromRGBO(102, 102, 102, 1),
-                  fontSize: height * 0.015,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
+            color: const Color.fromRGBO(82, 165, 160, 0.1),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Maths ",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),),
+                        Text(" | Class IX",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),),
+                      ],
+                    ),
+                    Icon(Icons.circle_rounded,color: status=='In progress'?Color.fromRGBO(255, 166, 0, 1):status=='Active'?Color.fromRGBO(60, 176, 0, 1):Color.fromRGBO(136, 136, 136, 1),)
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Class IX",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "10/1/2023",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class QuestionPreview extends StatelessWidget {
-  const QuestionPreview({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.question,
-  }) : super(key: key);
-
-  final double height;
-  final double width;
-  final DemoQuestionModel question;
-
-  @override
-  Widget build(BuildContext context) {
-    String answer='';
-    for(int i=1;i<=question.correctChoice!.length;i++){
-      int j=1;
-      j=question.correctChoice![i-1]!;
-      answer='$answer ${question.choices![j-1]}';
-      //question.choices[question.correctChoice[i]];
-    }
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-            height: height * 0.04,
-            width: width * 0.95,
-            color: Color.fromRGBO(82, 165, 160, 0.1),
-            child: Padding(
-              padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        question.subject,
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "  |  ${question.topic} - ${question.subTopic}",
-                        style: TextStyle(
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(102, 102, 102, 1),
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
-
-                  Text(
-                    question.studentClass,
-                    style: TextStyle(
+              Padding(
+                padding:  EdgeInsets.only(left: width * 0.02),
+                child: Row(
+                  children: [
+                    Text("Assessment ID: ",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 1),
                         fontSize: height * 0.015,
                         fontFamily: "Inter",
-                        color: Color.fromRGBO(28, 78, 80, 1),
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
+                        fontWeight: FontWeight.w400,
+                      ),),
+                    Text(" 0123456789",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500,
+                      ),),
+                  ],
+                ),
               ),
-            ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.question,
-              style: TextStyle(
-                  fontSize: height * 0.0175,
-                  fontFamily: "Inter",
-                  color: Color.fromRGBO(51, 51, 51, 1),
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                answer,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                question.questionType,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
+              Padding(
+                padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Institute Test ID: ",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(102, 102, 102, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),),
+                        Text(" ABC903857928",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                          ),),
+                      ],
+                    ),
+                    Text(
+                      "10/1/2023",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(28, 78, 80, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          SizedBox(height: height * 0.01,),
-          Divider()
-
-        ],
+        ),
       ),
     );
   }

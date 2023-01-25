@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 import 'guestReviseQuest.dart';
+import 'package:intl/intl.dart';
 
 
 
@@ -32,6 +33,9 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
   Color notSureColor1 = const Color.fromRGBO(255, 255, 255, 1);
   Color notSureColor2 = const Color.fromRGBO(255, 153, 0, 1);
   IconData notSureIcon = Icons.mode_comment_outlined;
+  final DateFormat formatter = DateFormat('HH:mm');
+  final DateTime now = DateTime.now();
+
 
   dynamic select;
   late Map tempQuesAns = {};
@@ -222,6 +226,8 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
             );
           });
     });
+    String start_formatted = formatter.format(now);
+    print(start_formatted);
     values = widget.ques;
     context.read<Questions>().createQuesAns(
         values.data.assessment.questions.length);

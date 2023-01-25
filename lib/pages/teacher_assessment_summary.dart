@@ -170,9 +170,9 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       Text(
                         'Topic: Calculus',
                         style: TextStyle(
-                            fontSize: height * 0.017,
+                            fontSize: height * 0.015,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(28, 78, 80, 1),
+                            color: Color.fromRGBO(102, 102, 102, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       Row(
@@ -181,17 +181,17 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           Text(
                             'Sub Topic: N/A',
                             style: TextStyle(
-                                fontSize: height * 0.017,
+                                fontSize: height * 0.015,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(28, 78, 80, 1),
+                                color: Color.fromRGBO(102, 102, 102, 1),
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
                             '14/1/2023',
                             style: TextStyle(
-                                fontSize: height * 0.017,
+                                fontSize: height * 0.015,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(28, 78, 80, 1),
+                                color: Color.fromRGBO(102, 102, 102, 1),
                                 fontWeight: FontWeight.w400),
                           ),
                         ],

@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:qna_test/pages/teacher_published_assessment.dart';
 class TeacherAssessmentSetting extends StatefulWidget {
   const TeacherAssessmentSetting({
     Key? key,
@@ -1215,6 +1217,13 @@ class TeacherAssessmentSettingState extends State<TeacherAssessmentSetting> {
                                                       foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                                                     ),
                                                     onPressed:() {
+                                                      Navigator.push(
+                                                        context,
+                                                        PageTransition(
+                                                          type: PageTransitionType.rightToLeft,
+                                                          child: const TeacherPublishedAssessment(),
+                                                        ),
+                                                      );
                                                     },
                                                     child: const Text("Publish"),
                                                   ),

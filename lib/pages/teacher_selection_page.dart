@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/reset_password.dart';
+import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
 import 'settings_languages.dart';
 import 'teacher_create_assessment.dart';
@@ -503,7 +504,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const TeacherCreateAssessment(),
+                        child: const TeacherAssessmentLanding(),
                       ),
                     );
 
