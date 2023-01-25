@@ -32,7 +32,7 @@ class StudReviseQuestState extends State<StudReviseQuest> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-    questionPaperModel= QnaService.getQuestion();
+    questionPaperModel= QnaService.getQuestion(assessmentId: values.data.assessment.assessmentCode);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,

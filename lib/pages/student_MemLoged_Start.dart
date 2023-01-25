@@ -8,8 +8,11 @@ import 'package:qna_test/Pages/settings_languages.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
+import 'cookie_policy.dart';
+import 'privacy_policy_hamburger.dart';
 import 'reset_passwordStudent.dart';
 import 'stud_mem_question01.dart';
+import 'terms_of_services.dart';
 
 
 
@@ -32,6 +35,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
   late QuestionPaperModel values;
   UserDataModel userDataModel=UserDataModel(code: 0, message: '');
   String name='';
+  String email = "";
 
 
   @override
@@ -45,6 +49,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
       userDataModel=await QnaService.getUserDataService(widget.userId);
       setState((){
         name=userDataModel.data!.firstName;
+        email = userDataModel.data!.email;
       });
   }
   @override
@@ -53,6 +58,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
     double localHeight = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return Scaffold(
+      extendBodyBehindAppBar: true,
         appBar: AppBar(
           elevation: 0,
           leading: IconButton(
@@ -65,7 +71,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
               Navigator.of(context).pop();
             },
           ),
-          backgroundColor: const Color.fromRGBO(0,106,100,1),
+          backgroundColor: Colors.transparent,
         ),
         endDrawer: Drawer(
           child: Column(
@@ -103,7 +109,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             ),
                             const SizedBox(height: 2.0),
                             Text(
-                              "Student Name",
+                              name,
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .bodyText1
@@ -155,7 +161,8 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                 ),
               ),
               Flexible(
-                child: ListView(
+                child:
+              ListView(
                   children: [
                     ListTile(
                         leading:
@@ -218,6 +225,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     //child:  ResetStudentEmail(userId: userDataModel.data!.id,),
+                          //   ),
+                          // );
                         }),
                     const Divider(
                       thickness: 2,
@@ -245,6 +259,9 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             ),
                           );
                         }),
+                    const Divider(
+                      thickness: 2,
+                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -260,16 +277,20 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
-                    const Divider(
-                      thickness: 2,
-                    ),
                     ListTile(
                         leading:
                         const Icon(
-                            Icons.note_alt_outlined,
+                            Icons.verified_user_outlined,
                             color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                        title: Text('Terms of Services',style: TextStyle(
                             color: textColor,
                             //Color.fromRGBO(48, 145, 139, 1),
                             fontFamily: 'Inter',
@@ -279,7 +300,39 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: TermsOfServiceHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.note_alt_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                            color: textColor,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: CookiePolicy(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -300,9 +353,6 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
                         }),
-                    const Divider(
-                      thickness: 2,
-                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -315,8 +365,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: -0.02,
                             fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
                         }),
+                    const Divider(
+                      thickness: 2,
+                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -485,15 +540,21 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                                 )
                             ),
                           onPressed: () async {
-                            values =  await QnaService.getQuestion();
-                            if(assessmentID.text.length >= 8){
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: StudMemQuestion(assessmentId: assessmentID.text, ques: values),
-                                ),
-                              );
+                            values =  await QnaService.getQuestion(assessmentId: assessmentID.text);
+                            print("values.code");
+                            //print(values.code);
+                            if(values.code == 200) {
+                              if (assessmentID.text.length >= 8) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: StudMemQuestion(
+                                        assessmentId: assessmentID.text,
+                                        ques: values),
+                                  ),
+                                );
+                              }
                             }
                             else {
                               Navigator.push(

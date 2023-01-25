@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:qna_test/EntityModel/user_data_model.dart';
 
 import '../DataSource/qna_repo.dart';
@@ -51,8 +52,8 @@ class QnaService{
     return await QnaTestRepo.logOut();
   }
 
-  static Future<QuestionPaperModel> getQuestion() async{
-    return await QnaTestRepo.getQuestionPaper();
+  static Future<QuestionPaperModel> getQuestion( {required String assessmentId}) async{
+    return await QnaTestRepo.getQuestionPaper(assessmentId);
   }
 
   static Future<ResponseEntity> getOQuestion() async{

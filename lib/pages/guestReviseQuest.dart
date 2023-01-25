@@ -32,7 +32,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-    questionPaperModel= QnaService.getQuestion();
+    questionPaperModel= QnaService.getQuestion(assessmentId: values.data.assessment.assessmentCode);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
@@ -173,96 +173,110 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                     Column(
                         children: [
                           for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index++)
-                            Container(
-                              //decoration: BoxDecoration(border: Border.all()),
-                                margin: const EdgeInsets.all(5),
-                                padding: const EdgeInsets.all(5),
-                                //color: const Color.fromRGBO(255, 255, 255, 1),
-                                child:
-                                ListTile(
+                            GestureDetector(
+                              onTap: (){
+                                // context.read<QuestionNumProvider>().skipQuestionNum(values.data.assessment.questions[index].questionId);
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: StudGuestQuestion(
+                                //       assessmentId: values.data.assessment.assessmentCode,
+                                //       ques: values,),
+                                //   ),
+                                // );
+                              },
+                              child: Container(
+                                //decoration: BoxDecoration(border: Border.all()),
+                                  margin: const EdgeInsets.all(5),
+                                  padding: const EdgeInsets.all(5),
+                                  //color: const Color.fromRGBO(255, 255, 255, 1),
+                                  child:
+                                  ListTile(
 
-                                  title: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(children: [
-                                          Text("Q${values.data.assessment.questions[index].questionId}",
+                                    title: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Row(children: [
+                                            Text("Q${values.data.assessment.questions[index].questionId}",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: localHeight * 0.012)),
+                                            SizedBox(width: localHeight * 0.010),
+                                            Text(
+                                              "(${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
+                                                      179, 179, 179, 1),
                                                   fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight * 0.012)),
-                                          SizedBox(width: localHeight * 0.010),
-                                          Text(
-                                            "(${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: localHeight * 0.012),
+                                            ),
+                                            SizedBox(width: localHeight * 0.010),
+                                            Provider.of<Questions>(context, listen: false).totalQuestion["$index"][2] == true
+                                                ? Stack(
+                                              children:  [
+                                                Icon(
+                                                    Icons.mode_comment_outlined,color: const Color.fromRGBO(255, 153, 0, 1),size: localHeight* 0.025),
+                                                Positioned(
+                                                    left: MediaQuery.of(context).copyWith().size.width * 0.008,
+                                                    top: MediaQuery.of(context).copyWith().size.height * 0.004,
+                                                    child: Icon(Icons.question_mark,
+                                                      color: const Color.fromRGBO(255, 153, 0, 1),
+                                                      size: MediaQuery.of(context).copyWith().size.height*0.016,))
+                                              ],
+                                            )
+                                                : SizedBox(width: localHeight * 0.010),
+                                          ]),
+                                          SizedBox(height: localHeight * 0.010),
+                                          Text("(${values.data.assessment.questions[index].question})",
+                                            textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
-                                                    179, 179, 179, 1),
+                                                    51, 51, 51, 1),
                                                 fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: localHeight * 0.012),
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: localHeight * 0.013),
                                           ),
-                                          SizedBox(width: localHeight * 0.010),
-                                          Provider.of<Questions>(context, listen: false).totalQuestion["$index"][2] == true
-                                              ? Stack(
-                                            children:  [
-                                              Icon(
-                                                  Icons.mode_comment_outlined,color: const Color.fromRGBO(255, 153, 0, 1),size: localHeight* 0.025),
-                                              Positioned(
-                                                  left: MediaQuery.of(context).copyWith().size.width * 0.008,
-                                                  top: MediaQuery.of(context).copyWith().size.height * 0.004,
-                                                  child: Icon(Icons.question_mark,
-                                                    color: const Color.fromRGBO(255, 153, 0, 1),
-                                                    size: MediaQuery.of(context).copyWith().size.height*0.016,))
-                                            ],
-                                          )
-                                              : SizedBox(width: localHeight * 0.010),
+                                          SizedBox(height: localHeight * 0.015),
                                         ]),
-                                        SizedBox(height: localHeight * 0.010),
-                                        Text("(${values.data.assessment.questions[index].question})",
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  51, 51, 51, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: localHeight * 0.013),
-                                        ),
-                                        SizedBox(height: localHeight * 0.015),
-                                      ]),
-                                  subtitle:
-                                  Column(
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                              Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
-                                                  ? "Not Answered"
-                                              // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == Color(0xff52a5a0)
-                                              // ? "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}"
-                                                  : "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
-                                              style:
-                                              Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
-                                                  ?
-                                              TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      238, 71, 0, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: localHeight * 0.014)
-                                                  : TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: localHeight * 0.014)
+                                    subtitle:
+                                    Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                                Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                                    ? "Not Answered"
+                                                // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == Color(0xff52a5a0)
+                                                // ? "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}"
+                                                    : "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
+                                                style:
+                                                Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                                    ?
+                                                TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        238, 71, 0, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.014)
+                                                    : TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.014)
+                                            ),
                                           ),
-                                        ),
-                                        const Divider(
-                                          thickness: 2,
-                                        ),
-                                      ]),
-                                )
+                                          const Divider(
+                                            thickness: 2,
+                                          ),
+                                        ]),
+                                  )
+                              ),
                             )
                         ]),
                     Column(

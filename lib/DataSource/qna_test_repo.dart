@@ -12,6 +12,8 @@ import '../Entity/student.dart';
 class QnaTestRepo{
   //Map<String,String> headers = {'Content-Type':'application/json','authorization':'Bearer 9764048494'};
   final msg = jsonEncode({"email": "demo.qna@viewwiser.com", "password": "password"});
+  late QuestionPaperModel questionPaperModel;
+
 
    static Future<Response> getData() async {
       const String url = 'https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/users';
@@ -154,12 +156,13 @@ class QnaTestRepo{
      }
    }
 
-  static Future<QuestionPaperModel> getQuestionPaper() async{
+  static Future<QuestionPaperModel> getQuestionPaper(assessmentId) async{
     QuestionPaperModel questionPaperModel;
-    var request = http.Request('GET', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/assessment?assessment_id=98765432'));
+    print(assessmentId);
+    var request = http.Request('GET', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/assessment?assessment_id=$assessmentId'));
     http.StreamedResponse response = await request.send();
+    print(response.statusCode);
     //if (response.statusCode == 200) {
-
       String value=await response.stream.bytesToString();
 
       questionPaperModel =questionPaperModelFromJson(value);

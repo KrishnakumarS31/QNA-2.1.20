@@ -1,42 +1,52 @@
 import 'package:flutter/material.dart';
- class QuestionNumProvider extends ChangeNotifier{
-   int _questionNum =1;
+class QuestionNumProvider extends ChangeNotifier{
+  int _questionNum =1;
 
-   int get questionNum => _questionNum;
+  int get questionNum => _questionNum;
 
-   void increment(){
+  void increment(){
     _questionNum++;
     notifyListeners();
-   }
+  }
 
-   void decrement(){
+  void decrement(){
     _questionNum--;
     notifyListeners();
-   }
+  }
 
-   void reset(){
+  void reset(){
     _questionNum=1;
     notifyListeners();
-   }
- }
+  }
 
- class Questions extends ChangeNotifier{
+  void skipToEnd(int totalQuestion){
+    _questionNum=totalQuestion;
+    notifyListeners();
+  }
 
-   final Map _quesAns = Map();
+  void skipQuestionNum(int questionNum){
+    _questionNum=questionNum;
+    notifyListeners();
+  }
+}
 
-   Map get totalQuestion => _quesAns;
+class Questions extends ChangeNotifier{
 
-   void createQuesAns(int totalQuestion){
-     for(int i =1;i<=totalQuestion;i++){
-       _quesAns['$i']=[[],Color.fromRGBO(179, 179, 179, 1),false];
-     }
-     notifyListeners();
-   }
+  final Map _quesAns = Map();
 
-   void selectOption(int quesNum,List<dynamic> option,Color colorFlag,bool notSure){
-     _quesAns['${quesNum}'] = [option,colorFlag,notSure];
-     print(_quesAns['${quesNum}']);
-     notifyListeners();
-   }
+  Map get totalQuestion => _quesAns;
 
- }
+  void createQuesAns(int totalQuestion){
+    for(int i =1;i<=totalQuestion;i++){
+      _quesAns['$i']=[[],Color.fromRGBO(179, 179, 179, 1),false];
+    }
+    notifyListeners();
+  }
+
+  void selectOption(int quesNum,List<dynamic> option,Color colorFlag,bool notSure){
+    _quesAns['${quesNum}'] = [option,colorFlag,notSure];
+    print(_quesAns['${quesNum}']);
+    notifyListeners();
+  }
+
+}

@@ -119,7 +119,7 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                         ],
                       ),
                       title: Text(
-                        "Not Sure Flag:\nHelps remind to re-check the question",
+                        "Not Sure Flag:\nPress Flag to re-check later",
                         style: Theme
                             .of(context)
                             .primaryTextTheme
@@ -1155,6 +1155,49 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                                 }
                               },
                             ),
+                            tilecount.length==Provider
+                                .of<Questions>(context, listen: false)
+                                .totalQuestion.length?
+                            tilecount.length==context
+                                .watch<QuestionNumProvider>()
+                                .questionNum?
+                            SizedBox():GestureDetector(
+                              onTap: (){
+                                context.read<QuestionNumProvider>().skipToEnd(tilecount.length);
+                              },
+                              child: Container(
+                                height: height * 0.0475,
+                                width: width * 0.3,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                  border: Border.all(
+                                      color: const Color.fromRGBO(82, 165, 160, 1)
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.skip_next_outlined,
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      size: height * 0.05,
+                                    ),
+                                    Text("Skip to end",
+                                      style: Theme
+                                          .of(context)
+                                          .primaryTextTheme
+                                          .bodyText1
+                                          ?.merge(TextStyle(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fontFamily: 'Inter',
+                                          height: height * 0.0020,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: height * 0.015)),),
+                                  ],
+                                ),
+                              ),
+                            ):SizedBox(),
                             context
                                 .watch<QuestionNumProvider>()
                                 .questionNum >=
