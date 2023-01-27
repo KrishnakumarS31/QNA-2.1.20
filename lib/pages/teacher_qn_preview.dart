@@ -217,6 +217,9 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
           width: width * 0.888,
           child:
                 Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
                   elevation: 12,
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   margin: EdgeInsets.only(left: width * 0.030,right: width * 0.030,bottom: height* 0.015,top: height* 0.025),

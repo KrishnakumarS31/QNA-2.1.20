@@ -627,11 +627,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   widget.question.subTopic=subtopicController.text;
                                   widget.question.studentClass=classRoomController.text;
                                   widget.question.question=questionController.text;
-                                  widget.question.questionType='mcq';
-                                  widget.question.correctChoice=[1];
+                                  widget.question.correctChoice=selected;
                                   widget.question.advice=adviceController.text;
                                   widget.question.url=urlController.text;
-                                  //demoQuestionModel.choices=temp;
                                 });
 
                                 Navigator.push(

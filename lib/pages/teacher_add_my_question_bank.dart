@@ -108,6 +108,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   void initState() {
     super.initState();
     quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
+    print("--------------------------");
+    print(quesList);
   }
 
 
@@ -366,11 +368,13 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer='';
+    List<String> temp=[];
     for(int i=0;i<question.correctChoice!.length;i++){
-      int? j=0;
-      j=question.correctChoice![i];
-      answer='${question.choices![0]}';
-          //question.choices[question.correctChoice[i]];
+      answer='${question.choices![i]}';
+      int ch= 0;
+      ch=question.correctChoice![i]!;
+      temp.add(question.choices![ch-1]!);
+      //question.choices[question.correctChoice[i]];
     }
     return Container(
       child: Column(
@@ -432,7 +436,7 @@ class QuestionPreview extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              answer,
+              temp.toString().substring(1,temp.toString().length-1),
               style: TextStyle(
                   fontSize: height * 0.02,
                   fontFamily: "Inter",

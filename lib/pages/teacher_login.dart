@@ -367,7 +367,7 @@ getUserDetails() async {
                                   decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                           icon: Icon(
-                                              _isObscure ? Icons.visibility : Icons.visibility_off),
+                                              _isObscure ? Icons.visibility : Icons.visibility_off,color: Color.fromRGBO(82, 165, 160, 1),),
                                           onPressed: () {
                                             setState(() {
                                               _isObscure = !_isObscure;
@@ -377,7 +377,6 @@ getUserDetails() async {
                                     hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
 
                                     prefixIcon: Icon(
-
                                         Icons.lock,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
                                   validator: (value){
@@ -432,17 +431,16 @@ getUserDetails() async {
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () async {
-                    //print(userDetails.data.userProfile[0].emailId);
-                    bool valid=formKey.currentState!.validate();
-                    showDialog(context: context, builder: (context){
-                      return const Center(child: CircularProgressIndicator(
-                        color: Color.fromRGBO(48, 145, 139, 1),
-                      ));
-                    });
+                    bool valid= formKey.currentState!.validate();
+                    // showDialog(context: context, builder: (context){
+                    //   return const Center(child: CircularProgressIndicator(
+                    //     color: Color.fromRGBO(48, 145, 139, 1),
+                    //   ));
+                    // });
                     // int statusCode =
                     //     await QnaService.logInUser(emailController.text.trim(), passwordController.text.trim());
                     // Navigator.of(context).pop();
-                    // if(statusCode == 200){
+                     if(valid == true){
                       Navigator.push(
                                 context,
                                 PageTransition(
@@ -453,7 +451,7 @@ getUserDetails() async {
                         emailController.clear();
                         passwordController.clear();
                       });
-                   // }
+                    }
                     // else{
                     //   Navigator.push(
                     //     context,

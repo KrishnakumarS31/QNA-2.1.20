@@ -172,7 +172,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                     //SizedBox(height: localHeight * 0.030),
                     Column(
                         children: [
-                          for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index++)
+                          for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
                             GestureDetector(
                               onTap: (){
                                 // context.read<QuestionNumProvider>().skipQuestionNum(values.data.assessment.questions[index].questionId);
@@ -198,7 +198,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(children: [
-                                            Text("Q${values.data.assessment.questions[index].questionId}",
+                                            Text("Q${values.data.assessment.questions[index-1].questionId}",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -207,7 +207,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                     fontSize: localHeight * 0.012)),
                                             SizedBox(width: localHeight * 0.010),
                                             Text(
-                                              "(${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                              "(${values.data.assessment.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       179, 179, 179, 1),
@@ -232,7 +232,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                 : SizedBox(width: localHeight * 0.010),
                                           ]),
                                           SizedBox(height: localHeight * 0.010),
-                                          Text("(${values.data.assessment.questions[index].question})",
+                                          Text("(${values.data.assessment.questions[index-1].question})",
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(

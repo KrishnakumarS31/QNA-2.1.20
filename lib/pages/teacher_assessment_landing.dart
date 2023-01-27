@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_searched.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
@@ -27,7 +28,7 @@ class TeacherAssessmentLanding extends StatefulWidget {
 
 class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   bool agree = false;
-
+  TextEditingController subjectController=TextEditingController();
 
 
   @override
@@ -383,7 +384,210 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-
+                        showDialog(context: context, builder: (BuildContext context){
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(Radius.circular(17))),
+                            child: Container(
+                              height: height * 0.57,
+                              width: width * 0.88,
+                              decoration: BoxDecoration(
+                                //background color of dropdown button
+                                border: Border.all(
+                                    color: Colors.black38,
+                                    width: 1), //border of dropdown button
+                                borderRadius: BorderRadius.circular(
+                                    17), //border radius of dropdown button
+                              ),
+                              child: Padding(
+                                padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02,top: height * 0.02,bottom: height * 0.02),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'Assessment Title',
+                                        style: TextStyle(
+                                            fontSize: height * 0.02,
+                                            fontFamily: "Inter",
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'Subject, Class and Other details',
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            fontFamily: "Inter",
+                                            color: Color.fromRGBO(153, 153, 153, 1),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ),
+                                    SizedBox(height: height * 0.05,),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child:
+                                      TextFormField(
+                                        controller: subjectController,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                                          labelText: 'SUBJECT',
+                                          labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                          hintText: 'Type Subject Here',
+                                          focusedBorder:  OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                        ),
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'Enter First Name';
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.02,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child:
+                                      TextFormField(
+                                        controller: subjectController,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                                          labelText: 'CLASS',
+                                          labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                          hintText: 'Type Here',
+                                          focusedBorder:  OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                        ),
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'Enter First Name';
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.02,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child:
+                                      TextFormField(
+                                        controller: subjectController,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                                          labelText: 'TOPIC (Optional)',
+                                          labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                          hintText: 'Type Topic Here',
+                                          focusedBorder:  OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                        ),
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'Enter First Name';
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.02,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.topLeft,
+                                      child:
+                                      TextFormField(
+                                        controller: subjectController,
+                                        keyboardType: TextInputType.text,
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                                          labelText: 'SUB TOPIC (Optional)',
+                                          labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                          hintText: 'Type Sub Topic Here',
+                                          focusedBorder:  OutlineInputBorder(
+                                              borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                              borderRadius: BorderRadius.circular(15)
+                                          ),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.circular(15)),
+                                        ),
+                                        validator: (value){
+                                          if(value!.isEmpty){
+                                            return 'Enter First Name';
+                                          }
+                                          else{
+                                            return null;
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.02,
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                        minimumSize: const Size(280, 48),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(39),
+                                        ),
+                                      ),
+                                      //shape: StadiumBorder(),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: const TeacherCreateAssessment(),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Save & Continue',
+                                        style: TextStyle(
+                                            fontSize: height * 0.025,
+                                            fontFamily: "Inter",
+                                            color: Color.fromRGBO(255, 255, 255, 1),
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        });
 
                       },
                       child: Row(
