@@ -74,7 +74,16 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "MY ASSESSMENTS",
+                "ASSESSMENTS",
+                style: TextStyle(
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: height * 0.0225,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                "SEARCH RESULTS",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.0225,
@@ -102,129 +111,146 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("For Test",
+                Text("Search",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.02,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w700,
                   ),),
-                SizedBox(height: height*0.02,),
-                Text(
-                  "Tap to Review/Edit/Delete",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(153, 153, 153, 1),
-                    fontSize: height * 0.015,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
-                SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
-                SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
-                SizedBox(height: height*0.02,),
+                //SizedBox(height: height * 0.005),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(child: Padding(
-                      padding: EdgeInsets.only(right: width * 0.05),
-                      child: Divider(),
-                    )),
                     Text(
-                      "View All",
+                      "Library of Assessments",
                       style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: height * 0.0175,
+                        color: const Color.fromRGBO(153, 153, 153, 1),
+                        fontSize: height * 0.015,
                         fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Icon(Icons.chevron_right)
-
-                  ],
-                ),
-                SizedBox(height: height*0.02,),
-                Text("For Test",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(82, 165, 160, 1),
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w700,
-                  ),),
-                SizedBox(height: height*0.02,),
-                Text(
-                  "Tap to Review/Edit/Delete",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(153, 153, 153, 1),
-                    fontSize: height * 0.015,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width),
-                SizedBox(height: height*0.02,),
-                Row(
-                  children: [
-                    Expanded(child: Padding(
-                      padding: EdgeInsets.only(right: width * 0.05),
-                      child: Divider(),
-                    )),
-                    Text(
-                      "View All",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Icon(Icons.chevron_right)
-
-                  ],
-                ),
-                SizedBox(height: height*0.02,),
-                Center(
-                  child: Container(
-                    width: width * 0.888,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: const Size(280, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Checkbox(
+                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                          fillColor: MaterialStateProperty
+                              .resolveWith<Color>((states) {
+                            if (states.contains(
+                                MaterialState.selected)) {
+                              return const Color.fromRGBO(82, 165, 160, 1); // Disabled color
+                            }
+                            return const Color.fromRGBO(82, 165, 160, 1); // Regular color
+                          }),
+                          value: agree,
+                          onChanged: (val) {
+                            setState(() {
+                              agree = val!;
+                              if (agree) {
+                              }
+                            });
+                          },
                         ),
-                      ),
-                      //shape: StadiumBorder(),
-                      onPressed: () {
-
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherRecentAssessment(),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        SizedBox(width: width*0.01,),
+                        Text('Only My Assessments', textAlign: TextAlign.left,style: TextStyle(
+                            fontSize: height *0.015
+                        ),)
+                      ],
+                    )
+                  ],
+                ),
+                SizedBox(height: height * 0.02),
+                TextField(
+                  controller: teacherQuestionBankSearchController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
+                    hintText: "Maths, 10th, 2022, CBSE, Science",
+                    suffixIcon:
+                    Column(
                         children: [
-                          Text(
-                            'Create New Assessment',
-                            style: TextStyle(
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Icon(Icons.chevron_right)
-                        ],
+                          Container(
+                              height: height * 0.073,
+                              width: width*0.13,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              ),
+                              child: IconButton(
+                                iconSize: height * 0.04,
+                                color: const Color.fromRGBO(255, 255, 255, 1), onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child:  TeacherAssessmentSearched(),
+                                  ),
+                                );
+                              }, icon: const Icon(Icons.search),
+                              )),
+                        ]),
+                    focusedBorder:  OutlineInputBorder(
+                        borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                        borderRadius: BorderRadius.circular(15)
+                    ),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                  ),
+                  enabled: true,
+                  onChanged: (value) {
+                  },
+                ),
+                SizedBox(height: height * 0.04),
+                Text("Search Results",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(82, 165, 160, 1),
+                    fontSize: height * 0.02,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w700,
+                  ),),
+                Text("Tap to See Details/Clone",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(153, 153, 153, 1),
+                    fontSize: height * 0.015,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'In progress',),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'In progress',),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'Active',),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'In progress',),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'Inactive',),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'Active',),
+                SizedBox(height: height*0.02,),
+                CardInfo(height: height, width: width, status: 'Inactive',),
+                SizedBox(height: height*0.02,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Load More",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
+                    Icon(Icons.expand_more_outlined,color: const Color.fromRGBO(82, 165, 160, 1),)
+
+                  ],
                 ),
+                SizedBox(height: height*0.02,),
+
               ],
 
             )
@@ -240,93 +266,147 @@ class CardInfo extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
+    required this.status
   }) : super(key: key);
 
   final double height;
   final double width;
+  final String status;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        height: height * 0.1087,
-        width: width * 0.888,
-        decoration:  BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          border: Border.all(
-            color: const Color.fromRGBO(82, 165, 160, 0.15),
-          ),
-          color: const Color.fromRGBO(82, 165, 160, 0.1),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Maths",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    "In progress",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 166, 0, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
+      child: GestureDetector(
+        onTap: ()
+        {
+          // if (status == 'In progress')
+          // {
+          //   Navigator.push(
+          //     context,
+          //     PageTransition(
+          //       type: PageTransitionType.rightToLeft,
+          //       child: TeacherRecentAssessment(),
+          //     ),
+          //   );
+          // }
+          // else if(status == 'Active'){
+          //   Navigator.push(
+          //     context,
+          //     PageTransition(
+          //       type: PageTransitionType.rightToLeft,
+          //       child: TeacherActiveAssessment(),
+          //     ),
+          //   );
+          // }
+          // else{
+          //   Navigator.push(
+          //     context,
+          //     PageTransition(
+          //       type: PageTransitionType.rightToLeft,
+          //       child: TeacherInactiveAssessment(),
+          //     ),
+          //   );
+          // }
+        },
+        child: Container(
+          height: height * 0.1087,
+          width: width * 0.888,
+          decoration:  BoxDecoration(
+            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+            border: Border.all(
+              color: const Color.fromRGBO(82, 165, 160, 0.15),
             ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02),
-              child: Text(
-                "Calculus - Chapter 12.2",
-                style: TextStyle(
-                  color: const Color.fromRGBO(102, 102, 102, 1),
-                  fontSize: height * 0.015,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
+            color: const Color.fromRGBO(82, 165, 160, 0.1),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Maths ",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),),
+                        Text(" | Class IX",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),),
+                      ],
+                    ),
+                    Icon(Icons.circle_rounded,color: status=='In progress'?Color.fromRGBO(255, 166, 0, 1):status=='Active'?Color.fromRGBO(60, 176, 0, 1):Color.fromRGBO(136, 136, 136, 1),)
+                  ],
                 ),
               ),
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Class IX",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "10/1/2023",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
+              Padding(
+                padding:  EdgeInsets.only(left: width * 0.02),
+                child: Row(
+                  children: [
+                    Text("Assessment ID: ",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),),
+                    Text(" 0123456789",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500,
+                      ),),
+                  ],
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text("Institute Test ID: ",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(102, 102, 102, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),),
+                        Text(" ABC903857928",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                          ),),
+                      ],
+                    ),
+                    Text(
+                      "10/1/2023",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(28, 78, 80, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

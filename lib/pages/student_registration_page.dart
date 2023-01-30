@@ -311,7 +311,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   padding: EdgeInsets.only(left: 30, right: 30),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton(
-                                      hint: Text("Select Linen name"),
+                                      hint: Text("Select Country name"),
                                       isExpanded: true,
                                       items: counrtyCitizenList.map((subtype) {
                                         return DropdownMenuItem(
@@ -426,7 +426,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   padding: EdgeInsets.only(left: 30, right: 30),
                                   child: DropdownButtonHideUnderline(
                                     child: DropdownButton(
-                                      hint: Text("Select Linen name"),
+                                      hint: Text("Select Country name"),
                                       isExpanded: true,
                                       items: counrtyResidentList.map((subtype) {
                                         return DropdownMenuItem(

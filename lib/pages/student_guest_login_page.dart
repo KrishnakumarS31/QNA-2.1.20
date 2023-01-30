@@ -6,6 +6,8 @@ import 'package:qna_test/Pages/stud_guest_assessment.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'about_us.dart';
+import 'help_page.dart';
 import 'privacy_policy_hamburger.dart';
 import 'terms_of_services.dart';
 
@@ -185,6 +187,13 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -198,7 +207,16 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: -0.02,
                             fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                   ],
                 ),
@@ -271,17 +289,23 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           children: [
                             Align(
                               alignment: Alignment.topLeft,
-                              child:
-                              Text(AppLocalizations.of(context)!.name,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1
-                                    ?.merge( TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017)),),
-
+                              child: RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                        text: AppLocalizations.of(context)!.name,
+                                        style: TextStyle(
+                                              color: const Color.fromRGBO(102, 102, 102, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.017),),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017)),
+                                  ])),
                             ),
                             SizedBox(
                               height: height * 0.0001,
@@ -355,15 +379,32 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                         SizedBox(height:height * 0.07),
                         Align(
                           alignment: Alignment.topLeft,
-                          child: Text(AppLocalizations.of(context)!.privacy_terms,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyText1
-                                ?.merge( TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: height * 0.015)),),
+                          child: RichText(
+                              text: TextSpan(children: [
+                                TextSpan(
+                                  text: AppLocalizations.of(context)!.privacy_terms,
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(102, 102, 102, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: height * 0.017),),
+                                TextSpan(
+                                    text: "\t*",
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(219, 35, 35, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),
+                              ])),
+                          // Text(AppLocalizations.of(context)!.privacy_terms,
+                          //   style: Theme.of(context)
+                          //       .primaryTextTheme
+                          //       .bodyText1
+                          //       ?.merge( TextStyle(
+                          //       color: const Color.fromRGBO(102, 102, 102, 1),
+                          //       fontFamily: 'Inter',
+                          //       fontWeight: FontWeight.w600,
+                          //       fontSize: height * 0.015)),),
                         ),
                         SizedBox(height:height * 0.02),
                         Row(

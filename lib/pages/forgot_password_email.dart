@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
-import '../DataSource/qna_repo.dart';
-import '../EntityModel/static_response.dart';
-import '../Services/qna_service.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
-    Key? key,
+    Key? key, required this.setLocale,
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
 
   @override
@@ -83,20 +80,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   ],
                 ),
               ),
-              SizedBox(height:height * 0.03),
-              Text(
-                AppLocalizations.of(context)!.forgot_password,
-                style: TextStyle(
-                  color: const Color.fromRGBO(82, 165, 160, 1),
-                  fontSize: height * 0.027,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(
-                height: height * 0.055,
-              ),
-
+              SizedBox(height:height * 0.1),
               Form(
                 key: formKey,
                 child: SizedBox(
@@ -144,21 +128,16 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           bool valid=formKey.currentState!.validate();
                           if(valid){
-                            StaticResponse response=StaticResponse(code: 0, message: 'Incorrect Email');
-                            response = await QnaService.sendOtp(_controller.text);
-                            if(response.code==200)
-                              {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: showAlertDialog(context)
-                                  ),
-                                );
-                              }
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.fade,
+                                  child: showAlertDialog(context)
+                              ),
+                            );
                           }
 
                         },
@@ -239,7 +218,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: VerifyOtpPage(email:_controller.text),
+                child: VerifyOtpPage(email:_controller.text,setLocale:widget.setLocale),
               ),
             );
           },

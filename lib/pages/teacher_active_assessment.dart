@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_assessment_settings.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
-import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import 'package:qna_test/pages/teacher_looq_search_question.dart';
 
@@ -13,18 +11,18 @@ import '../Providers/question_prepare_provider.dart';
 import 'teacher_prepare_qnBank.dart';
 
 
-class TeacherInactiveAssessment extends StatefulWidget {
-  const TeacherInactiveAssessment({
+class TeacherActiveAssessment extends StatefulWidget {
+  const TeacherActiveAssessment({
     Key? key,
 
   }) : super(key: key);
 
 
   @override
-  TeacherInactiveAssessmentState createState() => TeacherInactiveAssessmentState();
+  TeacherActiveAssessmentState createState() => TeacherActiveAssessmentState();
 }
 
-class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
+class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   bool additionalDetails = true;
 
   showAdditionalDetails(){
@@ -47,6 +45,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    TextEditingController teacherQuestionBankSearchController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -80,7 +79,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "INACTIVE",
+                "ACTIVE",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.0225,
@@ -186,7 +185,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                             ),
                             Padding(
                               padding:  EdgeInsets.only(right: width * 0.02),
-                              child: Icon(Icons.circle,color: const Color.fromRGBO(102, 102, 102, 1),),
+                              child: Icon(Icons.circle,color: const Color.fromRGBO(60, 176, 0, 1),),
                             )
                           ],
                         ),
@@ -693,42 +692,6 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                     width: width * 0.888,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                          minimumSize: const Size(280, 48),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(39),
-                          ),
-                          side: const BorderSide(
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                          )
-                      ),
-                      //shape: StadiumBorder(),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherClonedAssessment(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        'Clone',
-                        style: TextStyle(
-                            fontSize: height * 0.025,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: height*0.03,),
-                Center(
-                  child: Container(
-                    width: width * 0.888,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
                           minimumSize: const Size(280, 48),
                           shape: RoundedRectangleBorder(
@@ -744,12 +707,13 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const TeacherAssessmentSetting(),
+                            child: const TeacherClonedAssessment(),
                           ),
                         );
+
                       },
                       child: Text(
-                        'Reactivate',
+                        'Clone',
                         style: TextStyle(
                             fontSize: height * 0.025,
                             fontFamily: "Inter",
@@ -839,212 +803,3 @@ class QuestionWidget extends StatelessWidget {
   }
 }
 
-class CardInfo extends StatelessWidget {
-  const CardInfo({
-    Key? key,
-    required this.height,
-    required this.width,
-  }) : super(key: key);
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: height * 0.1087,
-        width: width * 0.888,
-        decoration:  BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          border: Border.all(
-            color: const Color.fromRGBO(82, 165, 160, 0.15),
-          ),
-          color: const Color.fromRGBO(82, 165, 160, 0.1),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Maths",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    "In progress",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 166, 0, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02),
-              child: Text(
-                "Calculus - Chapter 12.2",
-                style: TextStyle(
-                  color: const Color.fromRGBO(102, 102, 102, 1),
-                  fontSize: height * 0.015,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Class IX",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "10/1/2023",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class QuestionPreview extends StatelessWidget {
-  const QuestionPreview({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.question,
-  }) : super(key: key);
-
-  final double height;
-  final double width;
-  final DemoQuestionModel question;
-
-  @override
-  Widget build(BuildContext context) {
-    String answer='';
-    for(int i=1;i<=question.correctChoice!.length;i++){
-      int j=1;
-      j=question.correctChoice![i-1]!;
-      answer='$answer ${question.choices![j-1]}';
-      //question.choices[question.correctChoice[i]];
-    }
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-            height: height * 0.04,
-            width: width * 0.95,
-            color: Color.fromRGBO(82, 165, 160, 0.1),
-            child: Padding(
-              padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        question.subject,
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(28, 78, 80, 1),
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "  |  ${question.topic} - ${question.subTopic}",
-                        style: TextStyle(
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(102, 102, 102, 1),
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
-
-                  Text(
-                    question.studentClass,
-                    style: TextStyle(
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        color: Color.fromRGBO(28, 78, 80, 1),
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.question,
-              style: TextStyle(
-                  fontSize: height * 0.0175,
-                  fontFamily: "Inter",
-                  color: Color.fromRGBO(51, 51, 51, 1),
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                answer,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                question.questionType,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          SizedBox(height: height * 0.01,),
-          Divider()
-
-        ],
-      ),
-    );
-  }
-}

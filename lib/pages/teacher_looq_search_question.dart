@@ -237,14 +237,33 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                   },
                 ),
                 SizedBox(height: height * 0.04),
-                Text("Tap to Review/Edit/Delete",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: const Color.fromRGBO(153, 153, 153, 1),
-                    fontSize: height * 0.015,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Tap to Review/Edit/Delete",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color: const Color.fromRGBO(153, 153, 153, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),),
+                    Row(
+                      children: [
+                        Text("My Questions",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),),
+                        SizedBox(width: width * 0.02,),
+                        Icon(Icons.circle_rounded,color: const Color.fromRGBO(82, 165, 160, 1),)
+                      ],
+                    ),
+                  ],
+                ),
                 SizedBox(height: height * 0.02),
                 for ( DemoQuestionModel i in quesList )
                   GestureDetector(
@@ -319,7 +338,7 @@ class QuestionPreview extends StatelessWidget {
           Container(
             height: height * 0.04,
             width: width * 0.9,
-            color: Color.fromRGBO(82, 165, 160, 0.1),
+            color: Color.fromRGBO(82, 165, 160, 1),
             child: Padding(
               padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
               child: Row(
@@ -332,7 +351,7 @@ class QuestionPreview extends StatelessWidget {
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(28, 78, 80, 1),
+                            color: Color.fromRGBO(255, 255, 255, 1),
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
@@ -340,7 +359,7 @@ class QuestionPreview extends StatelessWidget {
                         style: TextStyle(
                             fontSize: height * 0.015,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(102, 102, 102, 1),
+                            color: Color.fromRGBO(255, 255, 255, 1),
                             fontWeight: FontWeight.w400),
                       ),
                     ],
@@ -351,11 +370,23 @@ class QuestionPreview extends StatelessWidget {
                     style: TextStyle(
                         fontSize: height * 0.015,
                         fontFamily: "Inter",
-                        color: Color.fromRGBO(28, 78, 80, 1),
+                        color: Color.fromRGBO(255, 255, 255, 1),
                         fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
+            ),
+          ),
+          SizedBox(height: height * 0.01,),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              question.questionType,
+              style: TextStyle(
+                  fontSize: height * 0.015,
+                  fontFamily: "Inter",
+                  color: Color.fromRGBO(28, 78, 80, 1),
+                  fontWeight: FontWeight.w600),
             ),
           ),
           SizedBox(height: height * 0.01,),
@@ -370,28 +401,29 @@ class QuestionPreview extends StatelessWidget {
                   fontWeight: FontWeight.w400),
             ),
           ),
-          SizedBox(height: height * 0.01,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                answer,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                question.questionType,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
+
+
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text(
+          //       answer,
+          //       style: TextStyle(
+          //           fontSize: height * 0.02,
+          //           fontFamily: "Inter",
+          //           color: Color.fromRGBO(82, 165, 160, 1),
+          //           fontWeight: FontWeight.w600),
+          //     ),
+          //     Text(
+          //       question.questionType,
+          //       style: TextStyle(
+          //           fontSize: height * 0.02,
+          //           fontFamily: "Inter",
+          //           color: Color.fromRGBO(82, 165, 160, 1),
+          //           fontWeight: FontWeight.w600),
+          //     ),
+          //   ],
+          // ),
           SizedBox(height: height * 0.01,),
           Divider()
 

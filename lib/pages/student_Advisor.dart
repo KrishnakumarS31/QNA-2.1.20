@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-import 'student_Mem_AnswerSheet.dart';
+import 'student_AnswerSheet.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class StudMemAdvisor extends StatefulWidget {
@@ -116,7 +116,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             Row(children: [
                               SizedBox(height: localHeight * 0.050),
                               Text(
-                                  "Q${values.data.assessment.questions[index].questionId}",
+                                  "Q${values.data.assessment.questions[index-1].questionId}",
                                   style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -125,7 +125,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       fontSize: localHeight * 0.012)),
                               SizedBox(width: localHeight * 0.020),
                               Text(
-                                "${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                "${values.data.assessment.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                 style: TextStyle(
                                     color:
                                         const Color.fromRGBO(179, 179, 179, 1),
@@ -170,7 +170,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             ]),
                             SizedBox(height: localHeight * 0.010),
                             Text(
-                              values.data.assessment.questions[index].question,
+                              values.data.assessment.questions[index-1].question,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
@@ -227,7 +227,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   TextButton(
                                     //onPressed: _launchURLBrowser,
                                     onPressed: () {  },
-                                    child: Text(values.data.assessment.questions[index].advisorUrl,
+                                    child: Text(values.data.assessment.questions[index-1].advisorUrl,
                                         style: TextStyle(
                                             fontFamily: 'Inter',
                                             fontSize: localHeight * 0.015,

@@ -9,7 +9,8 @@ import 'privacy_policy_hamburger.dart';
 import 'terms_of_services.dart';
 import 'cookie_policy.dart';
 import '../Components/custom_radio_button.dart';
-
+import 'about_us.dart';
+import 'help_page.dart';
 class StudentSelectionPage extends StatefulWidget {
   const StudentSelectionPage({super.key, required this.setLocale});
   final void Function(Locale locale) setLocale;
@@ -185,6 +186,13 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -198,7 +206,16 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: -0.02,
                             fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                   ],
                 ),
@@ -238,21 +255,27 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                   ),
                 ),
                 SizedBox(height: height * 0.01),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
                 Text(
                   'QNA',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: height * 0.060,
                       fontFamily: "Inter",
-                      fontWeight: FontWeight.w800),
+                      fontWeight: FontWeight.w600),
                 ),
+                    SizedBox(width: width * 0.02),
                 Text(
                   'TEST',
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: height * 0.025,
+                      fontSize: height * 0.040,
                       fontFamily: "Inter",
-                      fontWeight: FontWeight.w800),
+                      fontWeight: FontWeight.w500)
+                ),
+                    ]
                 ),
               ],
             ),

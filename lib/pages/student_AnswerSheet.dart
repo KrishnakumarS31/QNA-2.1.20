@@ -124,7 +124,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                 children: [
                                   Row(children: [
                                     Text(
-                                        "Q${values.data.assessment.questions[index].questionId}",
+                                        "Q${values.data.assessment.questions[index-1].questionId}",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
@@ -133,7 +133,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                             fontSize: localHeight * 0.012)),
                                     SizedBox(width: localHeight * 0.020),
                                     Text(
-                                      "(${values.data.assessment.questions[index].questionId}${AppLocalizations.of(context)!.marks})",
+                                      "(${values.data.assessment.questions[index-1].questionId}${AppLocalizations.of(context)!.marks})",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               179, 179, 179, 1),
@@ -144,7 +144,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                   ]),
                                   SizedBox(height: localHeight * 0.010),
                                   Text(
-                                    values.data.assessment.questions[index]
+                                    values.data.assessment.questions[index-1]
                                         .question,
                                     textAlign: TextAlign.start,
                                     style: TextStyle(

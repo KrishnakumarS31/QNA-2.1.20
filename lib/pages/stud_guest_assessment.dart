@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/reset_passwordStudent.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
-import 'package:qna_test/Pages/stud_guest_question01.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Pages/terms_of_services.dart';
+import 'package:qna_test/pages/stud_question01.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
-//AppLo, required setLocalecalizations.of(context)!.agree_privacy_terms
+import 'about_us.dart';
+import 'change_EmailStudent.dart';
+import 'cookie_policy.dart';
+import 'help_page.dart';
+import 'privacy_policy_hamburger.dart';
 class StudGuestAssessment extends StatefulWidget {
   const StudGuestAssessment({
     Key? key,
@@ -90,7 +95,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     ),
                                     const SizedBox(height: 2.0),
                                     Text(
-                                      "Student Name",
+                                      widget.name,
                                       style: Theme.of(context)
                                           .primaryTextTheme
                                           .bodyText1
@@ -142,7 +147,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                         ),
                       ),
                       Flexible(
-                        child: ListView(
+                        child:
+                        ListView(
                           children: [
                             ListTile(
                                 leading:
@@ -205,6 +211,13 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 trailing:  const Icon(Icons.navigate_next,
                                     color: Color.fromRGBO(153, 153, 153, 1)),
                                 onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child:  ChangeEmailStudent(userId: userDataModel.data!.id),
+                                    ),
+                                  );
                                 }),
                             const Divider(
                               thickness: 2,
@@ -232,6 +245,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     ),
                                   );
                                 }),
+                            const Divider(
+                              thickness: 2,
+                            ),
                             ListTile(
                                 leading:
                                 const Icon(
@@ -247,16 +263,20 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 trailing:  const Icon(Icons.navigate_next,
                                     color: Color.fromRGBO(153, 153, 153, 1)),
                                 onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
+                                    ),
+                                  );
                                 }),
-                            const Divider(
-                              thickness: 2,
-                            ),
                             ListTile(
                                 leading:
                                 const Icon(
-                                    Icons.note_alt_outlined,
+                                    Icons.verified_user_outlined,
                                     color: Color.fromRGBO(141, 167, 167, 1)),
-                                title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                                title: Text('Terms of Services',style: TextStyle(
                                     color: textColor,
                                     //Color.fromRGBO(48, 145, 139, 1),
                                     fontFamily: 'Inter',
@@ -266,7 +286,39 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 trailing:  const Icon(Icons.navigate_next,
                                     color: Color.fromRGBO(153, 153, 153, 1)),
                                 onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: TermsOfServiceHamburger(setLocale: widget.setLocale),
+                                    ),
+                                  );
                                 }),
+                            ListTile(
+                                leading:
+                                const Icon(
+                                    Icons.note_alt_outlined,
+                                    color: Color.fromRGBO(141, 167, 167, 1)),
+                                title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                                    color: textColor,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.02,
+                                    fontSize: 16),),
+                                trailing:  const Icon(Icons.navigate_next,
+                                    color: Color.fromRGBO(153, 153, 153, 1)),
+                                onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: CookiePolicy(setLocale: widget.setLocale),
+                                    ),
+                                  );
+                                }),
+                            const Divider(
+                              thickness: 2,
+                            ),
                             ListTile(
                                 leading:
                                 const Icon(
@@ -286,10 +338,14 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 trailing:  const Icon(Icons.navigate_next,
                                     color: Color.fromRGBO(153, 153, 153, 1)),
                                 onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: AboutUs(setLocale: widget.setLocale),
+                                    ),
+                                  );
                                 }),
-                            const Divider(
-                              thickness: 2,
-                            ),
                             ListTile(
                                 leading:
                                 const Icon(
@@ -302,8 +358,20 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: -0.02,
                                     fontSize: 16),),
+                                trailing:  const Icon(Icons.navigate_next,
+                                    color: Color.fromRGBO(153, 153, 153, 1)),
                                 onTap: () async {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: HelpPageHamburger(setLocale: widget.setLocale),
+                                    ),
+                                  );
                                 }),
+                            const Divider(
+                              thickness: 2,
+                            ),
                             ListTile(
                                 leading:
                                 const Icon(
@@ -507,7 +575,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       context,
                                       PageTransition(
                                         type: PageTransitionType.rightToLeft,
-                                        child: StudGuestQuestion(
+                                        child: StudQuestion(
                                           assessmentId: assessmentIdController.text,
                                           ques: values,),
                                       ),
@@ -1023,7 +1091,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       context,
                                       PageTransition(
                                         type: PageTransitionType.rightToLeft,
-                                        child: StudGuestQuestion(
+                                        child: StudQuestion(
                                           assessmentId: assessmentIdController.text,
                                           ques: values,),
                                       ),

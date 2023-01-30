@@ -8,8 +8,8 @@ import 'guestReviseQuest.dart';
 
 
 
-class StudGuestQuestion extends StatefulWidget {
-  const StudGuestQuestion({
+class StudQuestion extends StatefulWidget {
+  const StudQuestion({
     Key? key,
     required this.assessmentId,
     required this.ques
@@ -19,10 +19,10 @@ class StudGuestQuestion extends StatefulWidget {
 
 
   @override
-  StudGuestQuestionState createState() => StudGuestQuestionState();
+  StudQuestionState createState() => StudQuestionState();
 }
 
-class StudGuestQuestionState extends State<StudGuestQuestion> {
+class StudQuestionState extends State<StudQuestion> {
 
   late QuestionPaperModel values;
   Timer? countdownTimer;
@@ -658,39 +658,6 @@ class StudGuestQuestionState extends State<StudGuestQuestion> {
                                 }
                               },
                             ),
-// Provider.of<QuestionNumProvider>(context, listen: false).questionNum==question.length?
-// SizedBox(height: 0,):
-// Container(
-//   height: height * 0.045,
-//   width: width * 0.327,
-//   decoration: BoxDecoration(
-//     border: Border.all(
-//       color: Color.fromRGBO(82, 165, 160, 1),
-//       width: 2
-//     )
-//   ),
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//       crossAxisAlignment: CrossAxisAlignment.center,
-//       children: [
-//          Icon(
-//             Icons.skip_next_outlined,
-//             color: Color.fromRGBO(82, 165, 160, 1),
-//             size: height * 0.04,),
-//         Padding(
-//           padding:  EdgeInsets.only(top: height * 0.001),
-//           child: Text("Skip to end",
-//             style: TextStyle(
-//               color: const Color.fromRGBO(82, 165, 160, 1),
-//               fontSize: height * 0.0132,
-//               fontFamily: "Inter",
-//               fontWeight: FontWeight.w500,
-//             ),),
-//         ),
-//       ],
-//     )
-// ),
-
                             context
                                 .watch<QuestionNumProvider>()
                                 .questionNum >=

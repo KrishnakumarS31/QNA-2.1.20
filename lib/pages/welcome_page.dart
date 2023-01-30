@@ -8,6 +8,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'cookie_policy.dart';
 import 'privacy_policy_hamburger.dart';
 import 'terms_of_services.dart';
+import 'about_us.dart';
+import 'help_page.dart';
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key,required this.setLocale}) : super(key: key);
   final void Function(Locale locale) setLocale;
@@ -174,6 +176,13 @@ class _WelcomePageState extends State<WelcomePage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -187,7 +196,16 @@ class _WelcomePageState extends State<WelcomePage> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: -0.02,
                             fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                   ],
                 ),

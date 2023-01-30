@@ -116,7 +116,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                   height: localHeight * 0.03,
                                 ),
                                 Text(
-                                  "AssID23515A225",
+                                  values.data.assessment.assessmentCode,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: localHeight * 0.016,
@@ -125,13 +125,6 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                   ),
                                 ),
                               ]),
-                              // decoration: BoxDecoration(
-                              //     //color: Colors.yellow[100],
-                              //     border: Border.all(
-                              //       color: Colors.red,
-                              //       width: 1,
-                              //     )),
-                              // child: Image.asset("assets/images\question_mark_logo.png"),
                             ),
                           ),
                           SizedBox(height: localHeight * 0.025),
@@ -139,52 +132,12 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                         ],
                       ),
                     ),
-                    Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: localWidth * 0.056, top: localWidth * 0.056),
-                          child: Text(
-                            AppLocalizations.of(context)!.guest,
-                            style: TextStyle(
-                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                fontSize: localHeight * 0.02),
-                          ),
-                        ),
-                      ],
-                    ),
                     SizedBox(height: localHeight * 0.020),
-                    Row(children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: localWidth * 0.056),
-                        child: Text(
-                            AppLocalizations.of(context)!.pls_tap_ques,
-                            style: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontFamily: 'Inter',
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.w500,
-                                fontSize: localHeight * 0.011)),
-                      )
-                    ]),
-                    //SizedBox(height: localHeight * 0.030),
                     Column(
                         children: [
-                          for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index++)
+                          for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
                             GestureDetector(
                               onTap: (){
-                                // context.read<QuestionNumProvider>().skipQuestionNum(values.data.assessment.questions[index].questionId);
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: StudGuestQuestion(
-                                //       assessmentId: values.data.assessment.assessmentCode,
-                                //       ques: values,),
-                                //   ),
-                                // );
                               },
                               child: Container(
                                 //decoration: BoxDecoration(border: Border.all()),
@@ -193,12 +146,11 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                   //color: const Color.fromRGBO(255, 255, 255, 1),
                                   child:
                                   ListTile(
-
                                     title: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(children: [
-                                            Text("Q${values.data.assessment.questions[index].questionId}",
+                                            Text("Q${values.data.assessment.questions[index-1].questionId}",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -207,7 +159,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                     fontSize: localHeight * 0.012)),
                                             SizedBox(width: localHeight * 0.010),
                                             Text(
-                                              "(${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                              "(${values.data.assessment.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       179, 179, 179, 1),
@@ -232,7 +184,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                 : SizedBox(width: localHeight * 0.010),
                                           ]),
                                           SizedBox(height: localHeight * 0.010),
-                                          Text("(${values.data.assessment.questions[index].question})",
+                                          Text("(${values.data.assessment.questions[index-1].question})",
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
@@ -251,8 +203,6 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                             child: Text(
                                                 Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                     ? "Not Answered"
-                                                // : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == Color(0xff52a5a0)
-                                                // ? "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}"
                                                     : "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                 style:
                                                 Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
@@ -378,11 +328,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                 ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
                   minimumSize: const Size(90, 30),
-                  // shape: RoundedRectangleBorder(
-                  //   borderRadius: BorderRadius.circular(50),
-                  // ),
                 ),
-                //shape: StadiumBorder(),
                 child:  Text(AppLocalizations.of(context)!.yes,
                     style: TextStyle(
                         fontFamily: 'Inter',

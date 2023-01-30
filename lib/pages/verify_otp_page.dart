@@ -5,14 +5,14 @@ import 'package:qna_test/Pages/student_forgot_password.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
 
-
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({
     Key? key,
-    required this.email
+    required this.setLocale, required this.email,
   }) : super(key: key);
-
+  //final String email;
   final String email;
+  final void Function(Locale locale) setLocale;
   @override
   VerifyOtpPageState createState() => VerifyOtpPageState();
 }
@@ -232,7 +232,7 @@ late String otp;
                                   context,
                                   PageTransition(
                                       type: PageTransitionType.fade,
-                                      child: StudentForgotPassword(email: widget.email, otp: otp,)
+                                      child: StudentForgotPassword(email: widget.email, otp: otp,setLocale: widget.setLocale,)
                                   ),
                                 );
 
@@ -292,7 +292,7 @@ late String otp;
               context,
               PageTransition(
                   type: PageTransitionType.fade,
-                  child: StudentForgotPassword(email: widget.email, otp: otp,)
+                  child: StudentForgotPassword(email: widget.email, otp: otp,setLocale: widget.setLocale)
               ),
             );
           },

@@ -8,7 +8,8 @@ import 'package:qna_test/pages/cookie_policy.dart';
 import 'privacy_policy_hamburger.dart';
 import 'settings_languages.dart';
 import 'terms_of_services.dart';
-
+import 'about_us.dart';
+import 'help_page.dart';
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key, required this.setLocale});
   final void Function(Locale locale) setLocale;
@@ -186,6 +187,13 @@ getUserDetails() async {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -199,7 +207,16 @@ getUserDetails() async {
                             fontWeight: FontWeight.w500,
                             letterSpacing: -0.02,
                             fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                   ],
                 ),
@@ -367,7 +384,7 @@ getUserDetails() async {
                                   decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                           icon: Icon(
-                                              _isObscure ? Icons.visibility : Icons.visibility_off),
+                                              _isObscure ? Icons.visibility : Icons.visibility_off,color: Color.fromRGBO(82, 165, 160, 1),),
                                           onPressed: () {
                                             setState(() {
                                               _isObscure = !_isObscure;
@@ -432,17 +449,16 @@ getUserDetails() async {
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () async {
-                    //print(userDetails.data.userProfile[0].emailId);
-                    bool valid=formKey.currentState!.validate();
-                    showDialog(context: context, builder: (context){
-                      return const Center(child: CircularProgressIndicator(
-                        color: Color.fromRGBO(48, 145, 139, 1),
-                      ));
-                    });
+                    bool valid= formKey.currentState!.validate();
+                    // showDialog(context: context, builder: (context){
+                    //   return const Center(child: CircularProgressIndicator(
+                    //     color: Color.fromRGBO(48, 145, 139, 1),
+                    //   ));
+                    // });
                     // int statusCode =
                     //     await QnaService.logInUser(emailController.text.trim(), passwordController.text.trim());
                     // Navigator.of(context).pop();
-                    // if(statusCode == 200){
+                     if(valid == true){
                       Navigator.push(
                                 context,
                                 PageTransition(
@@ -453,7 +469,7 @@ getUserDetails() async {
                         emailController.clear();
                         passwordController.clear();
                       });
-                   // }
+                    }
                     // else{
                     //   Navigator.push(
                     //     context,

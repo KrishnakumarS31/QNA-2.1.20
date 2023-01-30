@@ -1,17 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
+import 'package:qna_test/pages/stud_question01.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
+import 'about_us.dart';
+import 'change_EmailStudent.dart';
 import 'cookie_policy.dart';
+import 'help_page.dart';
 import 'privacy_policy_hamburger.dart';
 import 'reset_passwordStudent.dart';
-import 'stud_mem_question01.dart';
 import 'terms_of_services.dart';
 
 
@@ -57,6 +59,8 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+    print(userDataModel.data!.id);
+    print('dssdccccccccccc');
     return Scaffold(
       extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -225,13 +229,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     //child:  ResetStudentEmail(userId: userDataModel.data!.id,),
-                          //   ),
-                          // );
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child:  ChangeEmailStudent(userId: userDataModel.data!.id),
+                              ),
+                            );
                         }),
                     const Divider(
                       thickness: 2,
@@ -352,6 +356,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -368,6 +379,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     const Divider(
                       thickness: 2,
@@ -549,7 +567,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: StudMemQuestion(
+                                    child: StudQuestion(
                                         assessmentId: assessmentID.text,
                                         ques: values),
                                   ),

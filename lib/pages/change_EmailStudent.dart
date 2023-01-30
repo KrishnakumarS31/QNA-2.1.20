@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
-
-class StudentForgotPassword extends StatefulWidget {
-  const StudentForgotPassword({
-    Key? key,
-    required this.email,
-    required this.otp,required this.setLocale
+//AppLocalizations.of(context)!.agree_privacy_terms
+class ChangeEmailStudent extends StatefulWidget {
+  const ChangeEmailStudent({
+    Key? key, required this.userId
   }) : super(key: key);
 
-final String email;
-final String otp;
-final void Function(Locale locale) setLocale;
+  final int userId;
+
+
   @override
-  StudentForgotPasswordState createState() => StudentForgotPasswordState();
+  ChangeEmailStudentState createState() => ChangeEmailStudentState();
 }
 
-class StudentForgotPasswordState extends State<StudentForgotPassword> {
+class ChangeEmailStudentState extends State<ChangeEmailStudent> {
   final formKey=GlobalKey<FormState>();
-  TextEditingController oldPassword= TextEditingController();
-  TextEditingController newPassword= TextEditingController();
-
+  TextEditingController oldEmail= TextEditingController();
+  TextEditingController newEmail= TextEditingController();
+  TextEditingController reNewEmail= TextEditingController();
 
   @override
   void initState() {
-    //QnaService.sendOtp('jjkj');
+    QnaService.sendOtp('jjk');
     super.initState();
   }
 
@@ -36,69 +33,49 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
+
     return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon:const Icon(
+              Icons.chevron_left,
+              size: 40.0,
+              color: Colors.white,
+            ), onPressed: () {
+            Navigator.of(context).pop();
+          },
+          ),
+          toolbarHeight: height * 0.100,
+          centerTitle: true,
+          title: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "CHANGE EMAIL ID",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ]),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    end: Alignment.bottomCenter,
+                    begin: Alignment.topCenter,
+                    colors: [
+                      Color.fromRGBO(0, 106, 100, 1),
+                      Color.fromRGBO(82, 165, 160, 1),
+                    ])),
+          ),
+        ),
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Column(
             children: [
-              Container(
-                height: height * 0.26,
-                width: width,
-                decoration: BoxDecoration(
-                  // color: Theme.of(context).primaryColor,
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1)
-                    ],
-                  ),
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          width ,
-                          height * 0.30)
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children : [
-
-                    Container(
-                      width: width * 0.03,
-
-                    ),
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.all(0.0),
-                        height: height * 0.22,
-                        width: width * 0.22,
-                        // decoration: BoxDecoration(
-                        //     //color: Colors.yellow[100],
-                        //     border: Border.all(
-                        //       color: Colors.red,
-                        //       width: 1,
-                        //     )),
-                        child: Image.asset("assets/images/question_mark_logo.png"),
-                      ),
-                    ),
-                    Container(
-                      width: width * 0.03,
-                    )
-
-                  ],
-                ),
-              ),
-              SizedBox(height:height * 0.03),
-              Text(
-                AppLocalizations.of(context)!.reset_password_caps,
-                style: TextStyle(
-                  color: const Color.fromRGBO(82, 165, 160, 1),
-                  fontSize: height * 0.027,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
               SizedBox(
                 height: height * 0.055,
               ),
@@ -115,14 +92,13 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                           Padding(
                             padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
                             child: TextFormField(
-                              controller: oldPassword,
-                              keyboardType: TextInputType.text,
-
+                              controller: oldEmail,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.new_password_caps,
+                                labelText: "OLD EMAIL",
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                                hintText: AppLocalizations.of(context)!.new_password,
+                                hintText: 'Old Email',
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                                 focusedBorder:  OutlineInputBorder(
                                     borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
@@ -145,14 +121,13 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                           Padding(
                             padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
                             child: TextFormField(
-                              controller: newPassword,
-                              keyboardType: TextInputType.text,
-
+                              controller: newEmail,
+                              keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.confirm_new_password_caps,
+                                labelText: "NEW EMAIL",
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                                hintText: AppLocalizations.of(context)!.confirm_new_password,
+                                hintText: "New Email",
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                                 focusedBorder:  OutlineInputBorder(
                                     borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
@@ -171,7 +146,36 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                               },
                             ),
                           ),
-
+                          SizedBox(height: height * 0.03,),
+                          Padding(
+                            padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
+                            child: TextFormField(
+                              controller: reNewEmail,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                floatingLabelBehavior: FloatingLabelBehavior.always,
+                                labelText: "CONFIRM NEW EMAIL",
+                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                                hintText: "Confirm New Email",
+                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                focusedBorder:  OutlineInputBorder(
+                                    borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                    borderRadius: BorderRadius.circular(15)
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                              ),
+                              validator: (value){
+                                if(newEmail.text!=reNewEmail.text)
+                                {
+                                  return "Re-Enter Email correctly";
+                                }
+                                else{
+                                  return null;
+                                }
+                              },
+                            ),
+                          ),
                         ],
                       ),
 
@@ -185,10 +189,9 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                         ),
                         onPressed: () async {
                           bool valid=formKey.currentState!.validate();
-                          if(valid){
-                            StaticResponse res=await QnaService.updatePasswordOtp(widget.email,widget.otp,newPassword.text);
-                            //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
-                            if(res.code==200){
+                          if(valid || newEmail.text==reNewEmail.text){
+                            StaticResponse response=await QnaService.updatePassword(oldEmail.text,newEmail.text,widget.userId);
+                            if(response.code==200){
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -202,7 +205,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: CustomDialog(title: 'Incorrect Password', content: 'Your Password has not been changed', button: AppLocalizations.of(context)!.retry,),
+                                  child: CustomDialog(title: 'Incorrect Email', content: 'Your Email has not been changed', button: AppLocalizations.of(context)!.retry,),
                                 ),
                               );
                             }
@@ -211,7 +214,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
 
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.submit,
+                          AppLocalizations.of(context)!.send_otp,
                           style: TextStyle(
                               fontSize: height * 0.024,
                               fontFamily: "Inter",
@@ -243,7 +246,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                 fontSize: height * 0.02),),
         ],
       ),
-      content: Text("Password Changed successfully",style: TextStyle(
+      content: Text("Your Email has been changed Successfully",style: TextStyle(
           color: const Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
@@ -256,15 +259,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
               fontWeight: FontWeight.w500,
               fontSize: height * 0.018),),
           onPressed: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child:
-                StudentMemberLoginPage(setLocale: widget.setLocale),
-              ),
-            );
-            //Navigator.of(context).pop();
+            Navigator.of(context).pop();
           },
         )
       ],
