@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/pages/stud_question01.dart';
+import 'package:qna_test/pages/student_user_profile.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
@@ -148,8 +149,8 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                       children: [
                         Container(
                             padding: EdgeInsets.only(left: localWidth * 0.09),
-                            child: const Text(
-                              "Student@gmail.com",
+                            child:  Text(
+                              "${userDataModel.data?.email}",
                               style: TextStyle(
                                   color: Color.fromRGBO(221, 221, 221, 1),
                                   fontFamily: 'Inter',
@@ -170,7 +171,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                   children: [
                     ListTile(
                         leading:
-                        const Icon(
+                        Icon(
                             Icons.people_alt,
                             color: Color.fromRGBO(141, 167, 167, 1)),
                         title: Text(AppLocalizations.of(context)!.user_profile,
@@ -187,6 +188,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: StudentUserProfile(userDataModel: userDataModel,),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:

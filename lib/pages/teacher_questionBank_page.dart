@@ -465,6 +465,28 @@ class QuestionPreview extends StatelessWidget {
             ),
           ),
           SizedBox(height: height * 0.01,),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: [
+          //     Text(
+          //       answer,
+          //       style: TextStyle(
+          //           fontSize: height * 0.02,
+          //           fontFamily: "Inter",
+          //           color: Color.fromRGBO(82, 165, 160, 1),
+          //           fontWeight: FontWeight.w600),
+          //     ),
+          //     Text(
+          //       question.questionType,
+          //       style: TextStyle(
+          //           fontSize: height * 0.02,
+          //           fontFamily: "Inter",
+          //           color: Color.fromRGBO(82, 165, 160, 1),
+          //           fontWeight: FontWeight.w600),
+          //     ),
+          //   ],
+          // ),
+          // SizedBox(height: height * 0.01,),
           Divider()
 
         ],

@@ -370,27 +370,65 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                           ),
                         );
                       },
-                      child: SizedBox(
-                        height: height * 0.027,
-                        width: width * 0.23,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              'View All',
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.0187,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600),
+                      child:
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+
+
+                          Text(
+                            'View All',
+                            style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0187,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600),
+                          ),
+                          IconButton(
+                            icon:  Icon(
+                              Icons.chevron_right,
+                              color: const Color.fromRGBO(141, 167, 167, 1),
+                              size: height * 0.034,
                             ),
-                            Icon(Icons.chevron_right,color: const Color.fromRGBO(28, 78, 80, 1),size: width * 0.07,)
-                          ],
-                        ),
+                            onPressed: () {
+
+                            },
+                          ),
+                        ],
                       ),
+
                     ),
                   ),
                   SizedBox(height: height * 0.02,),
+                  SizedBox(height: height * 0.03,),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                      minimumSize: const Size(280, 48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(39),
+                      ),
+                    ),
+                    //shape: StadiumBorder(),
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   PageTransition(
+                      //     type: PageTransitionType.rightToLeft,
+                      //     child: LooqQuestionEdit(question: widget.question,),
+                      //   ),
+                      // );
+                    },
+                    child: Text(
+                      'Load More',
+                      style: TextStyle(
+                          fontSize: height * 0.025,
+                          fontFamily: "Inter",
+                          color: Color.fromRGBO(82, 165, 160, 1),
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.03,),
 
                 ]),
           ),

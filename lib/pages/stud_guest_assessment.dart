@@ -1046,7 +1046,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           ),
                                           validator: (value) {
                                             if (value!.isEmpty ||
-                                                !RegExp(r'^[a-zA-Z0-9]+$').hasMatch(
+                                                !RegExp(r'^[0-9]+$').hasMatch(
                                                     value)) {
                                               return AppLocalizations.of(context)!
                                                   .assessment_id_not_found;
