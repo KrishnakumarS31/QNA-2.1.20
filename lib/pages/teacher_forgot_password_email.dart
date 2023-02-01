@@ -29,7 +29,7 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Column(
             children: [
@@ -81,7 +81,7 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
               ),
               SizedBox(height:height * 0.03),
               Text(
-                AppLocalizations.of(context)!.forgot_password,
+                "FORGOT PASSWORD",
                 style: TextStyle(
                   color: const Color.fromRGBO(82, 165, 160, 1),
                   fontSize: height * 0.027,

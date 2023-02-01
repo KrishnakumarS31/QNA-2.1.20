@@ -49,6 +49,9 @@ dev_dependencies:
   intl:
   sqflite:
   http: ^0.13.5
+  get: ^4.6.5
+  internet_connection_checker: ^1.0.0+1
+  connectivity_plus: ^3.0.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

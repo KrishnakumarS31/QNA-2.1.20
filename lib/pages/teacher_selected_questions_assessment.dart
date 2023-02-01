@@ -13,18 +13,18 @@ import '../Providers/question_prepare_provider.dart';
 import 'teacher_prepare_qnBank.dart';
 
 
-class TeacherAssessmentSummary extends StatefulWidget {
-  const TeacherAssessmentSummary({
+class TeacherSelectedQuestionAssessment extends StatefulWidget {
+  const TeacherSelectedQuestionAssessment({
     Key? key,
 
   }) : super(key: key);
 
 
   @override
-  TeacherAssessmentSummaryState createState() => TeacherAssessmentSummaryState();
+  TeacherSelectedQuestionAssessmentState createState() => TeacherSelectedQuestionAssessmentState();
 }
 
-class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
+class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuestionAssessment> {
   bool additionalDetails = true;
 
   showAdditionalDetails(){
@@ -326,7 +326,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
 
                     },
                     child: Text(
-                      'Save List',
+                      'Save Assessment',
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
@@ -353,18 +353,18 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                     ),
                     //shape: StadiumBorder(),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: const TeacherPublishedAssessment(),
-                        ),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   PageTransition(
+                      //     type: PageTransitionType.rightToLeft,
+                      //     child: const TeacherPublishedAssessment(),
+                      //   ),
+                      // );
 
 
                     },
                     child: Text(
-                      'Submit',
+                      'Continue',
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
@@ -474,16 +474,6 @@ class QuestionWidget extends StatelessWidget {
     );
   }
 
-  ShowPreview(BuildContext context){
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return const TeacherAssessmentQuestionPreview();
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -544,7 +534,6 @@ class QuestionWidget extends StatelessWidget {
             //     child: TeacherAssessmentQuestionPreview(),
             //   ),
             // );
-            ShowPreview(context);
           },
           child: Text(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim',

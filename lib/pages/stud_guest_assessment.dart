@@ -1085,7 +1085,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: Color.fromRGBO(48, 145, 139, 1),
                                       ));
                                     });
+
                                     values = await QnaService.getQuestion(assessmentId:assessmentIdController.text);
+
                                     Navigator.of(context).pop();
                                     Navigator.push(
                                       context,

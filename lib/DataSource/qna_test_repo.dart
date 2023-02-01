@@ -158,10 +158,10 @@ class QnaTestRepo{
 
   static Future<QuestionPaperModel> getQuestionPaper(assessmentId) async{
     QuestionPaperModel questionPaperModel;
-    print(assessmentId);
     var request = http.Request('GET', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/assessment?assessment_id=$assessmentId'));
+
     http.StreamedResponse response = await request.send();
-    print(response.statusCode);
+    //print(response.statusCode);
     //if (response.statusCode == 200) {
       String value=await response.stream.bytesToString();
 

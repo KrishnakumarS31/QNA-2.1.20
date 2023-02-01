@@ -119,7 +119,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: const TeacherQuestionBank(),
+                      child:  TeacherQuestionBank(),
                     ),
                   );
                 },

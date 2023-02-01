@@ -24,12 +24,57 @@ class SettingsLanguages extends StatefulWidget {
 class SettingsLanguagesState extends State<SettingsLanguages> {
 
   List<String> languages=['வணக்கம் (Tamil)','Hello (English)','नमस्ते (Hindi)','ಕನ್ನಡ (Kannada)','नमस्कार Marati','Hola (Spanish)','హలో (Telugu)','ഹലോ (Malayalam)'];
-  String selected='Hello (English)';
+  String? selected;
   Color selectedColor = Color.fromRGBO(82, 165, 160, 1);
   Color notSelectedColor = Color.fromRGBO(51, 51, 51, 1);
   @override
   void initState() {
     super.initState();
+    getdata();
+  }
+
+  getdata() async {
+    AppUser? user =await AppUserRepo().getUserDetail();
+    if(user!.locale=='ta'){
+      setState(() {
+        selected='வணக்கம் (Tamil)';
+      });
+    }
+    else if(user!.locale=='hi'){
+      setState(() {
+        selected='नमस्ते (Hindi)';
+      });
+    }
+    else if(user!.locale=='ka'){
+      setState(() {
+        selected='ಕನ್ನಡ (Kannada)';
+      });
+    }
+    else if(user!.locale=='mr'){
+      setState(() {
+        selected='नमस्कार Marati';
+      });
+    }
+    else if(user!.locale=='es'){
+      setState(() {
+        selected='Hola (Spanish)';
+      });
+    }
+    else if(user!.locale=='te'){
+      setState(() {
+        selected='హలో (Telugu)';
+      });
+    }
+    else if(user!.locale=='ml'){
+      setState(() {
+        selected='ഹലോ (Malayalam)';
+      });
+    }
+    else{
+      setState(() {
+        selected='Hello (English)';
+      });
+    }
   }
 
   @override

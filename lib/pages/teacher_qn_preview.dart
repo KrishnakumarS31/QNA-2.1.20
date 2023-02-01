@@ -159,58 +159,58 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
-          ],
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          toolbarHeight: height * 0.100,
-          centerTitle: true,
-          title: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "PREPARE QUESTION",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: height * 0.0225,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ]),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
-          ),
-        ),
+        // appBar: AppBar(
+        //   actions: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(right: 10),
+        //       child: IconButton(
+        //         icon: const Icon(
+        //           Icons.menu,
+        //           size: 40.0,
+        //           color: Colors.white,
+        //         ),
+        //         onPressed: () {
+        //           Navigator.of(context).pop();
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        //   leading: IconButton(
+        //     icon: const Icon(
+        //       Icons.chevron_left,
+        //       size: 40.0,
+        //       color: Colors.white,
+        //     ),
+        //     onPressed: () {
+        //       Navigator.of(context).pop();
+        //     },
+        //   ),
+        //   toolbarHeight: height * 0.100,
+        //   centerTitle: true,
+        //   title: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //       children: [
+        //         Text(
+        //           "PREPARE QUESTION",
+        //           style: TextStyle(
+        //             color: const Color.fromRGBO(255, 255, 255, 1),
+        //             fontSize: height * 0.0225,
+        //             fontFamily: "Inter",
+        //             fontWeight: FontWeight.w400,
+        //           ),
+        //         ),
+        //       ]),
+        //   flexibleSpace: Container(
+        //     decoration: const BoxDecoration(
+        //         gradient: LinearGradient(
+        //             end: Alignment.bottomCenter,
+        //             begin: Alignment.topCenter,
+        //             colors: [
+        //               Color.fromRGBO(0, 106, 100, 1),
+        //               Color.fromRGBO(82, 165, 160, 1),
+        //             ])),
+        //   ),
+        // ),
         body: Center(
           child: SizedBox(
           height: height * 0.81,

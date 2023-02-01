@@ -318,15 +318,20 @@ getUserDetails() async {
                             Align(
                               alignment: Alignment.topLeft,
                               child:
-                              Text(AppLocalizations.of(context)!.email_id_caps,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1
-                                    ?.merge( TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017)),),
+                              Row(
+                                children: [
+                                  Text(AppLocalizations.of(context)!.email_id_caps,
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .bodyText1
+                                        ?.merge( TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),),
+                                  const Text('\t*', style: TextStyle(color: Colors.red)),
+                                ],
+                              ),
 
                             ),
                             SizedBox(
@@ -342,6 +347,9 @@ getUserDetails() async {
                                     prefixIcon: Icon(
                                       Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
+                                  onChanged: (value){
+                                    formKey.currentState!.validate();
+                                  },
                                   validator: (value){
                                     if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                         .hasMatch(value)){
@@ -362,15 +370,20 @@ getUserDetails() async {
                             Align(
                               alignment: Alignment.topLeft,
                               child:
-                              Text(AppLocalizations.of(context)!.password_caps,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1
-                                    ?.merge( TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017)),),
+                              Row(
+                                children: [
+                                  Text(AppLocalizations.of(context)!.password_caps,
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .bodyText1
+                                        ?.merge( TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),),
+                                  const Text('\t*', style: TextStyle(color: Colors.red)),
+                                ],
+                              ),
 
                             ),
                             SizedBox(
@@ -396,6 +409,9 @@ getUserDetails() async {
                                     prefixIcon: Icon(
                                         Icons.lock,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
+                                  onChanged: (value){
+                                    formKey.currentState!.validate();
+                                  },
                                   validator: (value){
                                     if(value!.isEmpty){
                                       return AppLocalizations.of(context)!.enter_your_password;

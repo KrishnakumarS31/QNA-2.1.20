@@ -5,6 +5,7 @@ import 'package:qna_test/Entity/student.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
 import 'package:qna_test/Pages/student_regis_verify_otp.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
@@ -34,14 +35,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   bool error =true;
   String? gender;
   String? countryCtizen;
-  Student student=Student(firstName: 'user1', lastName: '123', dob: '01/01/2001', gender: 'female', nationality: 'India', residentCountry: 'United States', email: 'user1.123@itc.com', rollNumber: 'A0987654', organisationName: 'abcde', roleId: ["1"], password: 'acsdfvb7@0987');
   final studentDobController = TextEditingController();
   late Response userDetails;
 
   List<String> counrtyCitizenList = ['India','Singapore','Poland','Japan','United Kingdom','China'];
-  String selectedCounrtyCitizen='India';
+  String? selectedCounrtyCitizen;
   List<String> counrtyResidentList = ['India','Singapore','Poland','Japan','United Kingdom','China'];
-  String selectedCounrtyResident='India';
+  String? selectedCounrtyResident;
 
 
   @override
@@ -51,7 +51,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed
+
     studentDobController.dispose();
     super.dispose();
   }
@@ -115,8 +115,22 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.first_name_caps,
-                                labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.first_name_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                       const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
+                                //labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.first_name_hint,
                                 focusedBorder:  OutlineInputBorder(
@@ -146,9 +160,23 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               controller: studentLastNameController,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
-                                labelText: AppLocalizations.of(context)!.last_name_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.last_name_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                //labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.last_name_hint,
                                 focusedBorder:  OutlineInputBorder(
@@ -157,7 +185,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Last Name';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -183,6 +219,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         foregroundColor: const Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                     ),
+
                                   ),
                                   child: child!,
                                 );
@@ -201,7 +238,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.datetime,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.dob_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.dob_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.dob_format,
@@ -216,6 +267,14 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
                               ),
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Enter Date Of Birth';
+                                }
+                                else{
+                                  return null;
+                                }
+                              },
                               enabled: true,
                               onChanged: (value) {
                               },
@@ -243,6 +302,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               // Padding(
                               //padding: EdgeInsets.only(left: localWidth * 0.002, bottom:localWidth * 0.15),
                               Text(AppLocalizations.of(context)!.gender),
+                              const Text("\t*", style: TextStyle(color: Colors.red)),
                               //),
                               Radio(
                                 value: "male",
@@ -348,64 +408,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             ),)
                           ],
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(17),
-                        //     border: Border.all(
-                        //       color: const Color.fromRGBO(196, 196, 196, 1),
-                        //       width: 1.5,
-                        //     ),
-                        //   ),
-                        //   child: DropDownTextField(
-                        //     controller: studentNationalityController,
-                        //     clearOption: true,
-                        //     enableSearch: true,
-                        //     textFieldDecoration: InputDecoration(
-                        //         floatingLabelBehavior: FloatingLabelBehavior.always,
-                        //         labelText: AppLocalizations.of(context)!.country_citizen,
-                        //         labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                        //         border: InputBorder.none,
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     clearIconProperty: IconProperty(color: Colors.green),
-                        //     searchDecoration: InputDecoration(
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     validator: (value) {
-                        //       if (value == null) {
-                        //         return "Required field";
-                        //       } else {
-                        //         return null;
-                        //       }
-                        //     },
-                        //     dropDownItemCount: 6,
-                        //
-                        //     dropDownList: const [
-                        //       DropDownValueModel(name: 'India', value: "India"),
-                        //       DropDownValueModel(
-                        //           name: 'Singapore',
-                        //           value: "value2",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'United States', value: "United States"),
-                        //       DropDownValueModel(
-                        //           name: 'Russia',
-                        //           value: "value4",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'Poland', value: "value5"),
-                        //       DropDownValueModel(name: 'Japan', value: "value6"),
-                        //       DropDownValueModel(name: 'United Kingdom', value: "value7"),
-                        //       DropDownValueModel(name: 'China', value: "value8"),
-                        //
-                        //     ],
-                        //     onChanged: (val) {
-                        //       setState((){
-                        //         countryCtizen=val;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
@@ -463,61 +465,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               ),)
                           ],
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(17),
-                        //     border: Border.all(
-                        //       color: const Color.fromRGBO(196, 196, 196, 1),
-                        //       width: 1.5,
-                        //     ),
-                        //   ),
-                        //   child: DropDownTextField(
-                        //     controller: studentResidentCountryController,
-                        //     clearOption: true,
-                        //     enableSearch: true,
-                        //     textFieldDecoration: InputDecoration(
-                        //         labelText: AppLocalizations.of(context)!.country_resident,
-                        //         floatingLabelBehavior: FloatingLabelBehavior.always,
-                        //         labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                        //         border: InputBorder.none,
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     clearIconProperty: IconProperty(color: Colors.green),
-                        //     searchDecoration: InputDecoration(
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     validator: (value) {
-                        //       if (value == null) {
-                        //         return "Required field";
-                        //       } else {
-                        //         return null;
-                        //       }
-                        //     },
-                        //     dropDownItemCount: 6,
-                        //
-                        //     dropDownList: const [
-                        //       DropDownValueModel(name: 'India', value: "India"),
-                        //       DropDownValueModel(
-                        //           name: 'Singapore',
-                        //           value: "value2",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'United States', value: "United States"),
-                        //       DropDownValueModel(
-                        //           name: 'Russia',
-                        //           value: "value4",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'Poland', value: "value5"),
-                        //       DropDownValueModel(name: 'Japan', value: "value6"),
-                        //       DropDownValueModel(name: 'United Kingdom', value: "value7"),
-                        //       DropDownValueModel(name: 'China', value: "value8"),
-                        //     ],
-                        //     onChanged: (val) {
-                        //
-                        //     },
-                        //   ),
-                        // ),
+
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
@@ -529,7 +477,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.email_id_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.10,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.email_id_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 helperText: 'an OTP will be sent to Email ID',
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
@@ -541,7 +503,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Valid Email';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -555,7 +525,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.reg_roll_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.35,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.reg_roll_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.reg_roll,
@@ -565,7 +549,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Roll Number';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -579,7 +571,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                              labelText: AppLocalizations.of(context)!.ins_org_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.35,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.ins_org_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                               labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                               hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                               hintText: AppLocalizations.of(context)!.ins_org,
@@ -589,7 +595,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Organization Name';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -732,7 +746,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.password_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.password_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.password_hint,
@@ -742,7 +770,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Password';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -756,7 +792,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.confirm_password,
+                                label: SizedBox(
+                                  width: localWidth * 0.25,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.confirm_password,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.verify_password,
@@ -766,7 +816,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(studentPasswordController.text!=studentconfirmPasswordController.text ){
+                                  return 'Re-Enter Password';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         )],
                     ),
@@ -805,7 +863,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                       firstName: studentFirstNameController.text,
                       lastName: studentLastNameController.text,
                       dob: 32546,
-                      gender: gender, countryNationality: selectedCounrtyCitizen,
+                      gender: gender,
+                      countryNationality: selectedCounrtyCitizen,
                       email: studentEmailController.text,
                       password: studentPasswordController.text,
                       rollNumber: studentRollNumberController.text,
@@ -815,8 +874,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   if(valid) {
                     LoginModel res=await QnaService.postUserDetailsService(student);
                     if(res.code==200){
-
-
                     Navigator.push(
                       context,
                       PageTransition(
@@ -824,7 +881,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                           child: StudentRegisVerifyOtpPage(email: studentEmailController.text,)
                       ),
                     );
-                    //print("------------> ${studentEmailController.text}");
+                    }
+                    else{
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: CustomDialog(title: 'Incorrect Data', content: '${res.message}', button: AppLocalizations.of(context)!.retry,),
+                        ),
+                      );
                     }
                   }
                   },

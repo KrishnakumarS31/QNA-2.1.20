@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
+import '../DataSource/qna_repo.dart';
+import '../EntityModel/static_response.dart';
+import '../Services/qna_service.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
@@ -32,54 +36,36 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: IconButton(
+            icon:const Icon(
+              Icons.chevron_left,
+              size: 40.0,
+              color: Colors.white,
+            ), onPressed: () {
+            Navigator.of(context).pop();
+          },
+          ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text("FORGET PASSWORD",
+            style: TextStyle(
+              color: Color.fromRGBO(255, 255, 255, 1),
+              fontSize: height * 0.025,
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w600,
+            ),),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    end: Alignment.bottomRight,
+                    begin: Alignment.topLeft,
+                    colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
+            ),
+          ),
+        ),
         body: Column(
             children: [
-              Container(
-                height: height * 0.26,
-                width: width,
-                decoration: BoxDecoration(
-                  // color: Theme.of(context).primaryColor,
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1)
-                    ],
-                  ),
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          width ,
-                          height * 0.30)
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children : [
-                    Container(
-                      width: width * 0.03,
-                    ),
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.all(0.0),
-                        height: height * 0.22,
-                        width: width * 0.22,
-                        // decoration: BoxDecoration(
-                        //     //color: Colors.yellow[100],
-                        //     border: Border.all(
-                        //       color: Colors.red,
-                        //       width: 1,
-                        //     )),
-                        child: Image.asset("assets/images/question_mark_logo.png"),
-                      ),
-                    ),
-                    Container(
-                      width: width * 0.03,
-                    )
-
-                  ],
-                ),
-              ),
               SizedBox(height:height * 0.1),
               Form(
                 key: formKey,
@@ -128,16 +114,21 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           bool valid=formKey.currentState!.validate();
                           if(valid){
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: showAlertDialog(context)
-                              ),
-                            );
+                            StaticResponse response=StaticResponse(code: 0, message: 'Incorrect Email');
+                            response = await QnaService.sendOtp(_controller.text);
+                            if(response.code==200)
+                            {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                    type: PageTransitionType.fade,
+                                    child: showAlertDialog(context)
+                                ),
+                              );
+                            }
                           }
 
                         },

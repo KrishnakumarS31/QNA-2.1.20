@@ -27,12 +27,12 @@ class StudentRegistrationModel {
   String lastName;
   int dob;
   String? gender;
-  String countryNationality;
+  String? countryNationality;
   String email;
   String password;
   String rollNumber;
   String organisationName;
-  String countryResident;
+  String? countryResident;
   String role;
 
   factory StudentRegistrationModel.fromJson(Map<String, dynamic> json) => StudentRegistrationModel(

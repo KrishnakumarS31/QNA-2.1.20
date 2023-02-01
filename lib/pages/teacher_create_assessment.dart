@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
+import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 
 import 'teacher_assessment_settings.dart';
 
@@ -22,6 +24,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   @override
   void initState() {
     super.initState();
+
   }
 
 
@@ -137,6 +140,14 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                               child: IconButton(
                                 iconSize: height * 0.04,
                                 color: const Color.fromRGBO(255, 255, 255, 1), onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: const TeacherAssessmentQuestionBank(),
+                                  ),
+                                );
+
                               }, icon: const Icon(Icons.search),
                               )),
                         ]),
@@ -171,7 +182,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                               color: const Color.fromRGBO(153, 153, 153, 1),
                               fontFamily: "Inter"),),
                 ),
-                SizedBox(height: height * 0.15),
+                SizedBox(height: height * 0.25),
                 Column(
                     children: [
                       Column(
@@ -197,51 +208,26 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                           foregroundColor: const Color.fromRGBO(82, 165, 160, 1),
                                         ),
                                         onPressed:() {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: const TeacherPrepareQnBank(),
+                                            ),
+                                          );
                                         },
                                         child: const Text("Create New Question"),
                                       ),
                                     ]),
-                                onPressed: () {}
+                                onPressed: () {
+
+                                }
                             ),
                           )
                         ],
                       ),
                       SizedBox(height: height * 0.02),
-                      Column(
-                        children: [
-                          Align(alignment: Alignment.center,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                  maximumSize: const Size(280, 48),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(39),
-                                  ),
-                                ),
-                                child:Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                                        ),
-                                        onPressed:() {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.rightToLeft,
-                                              child: const TeacherAssessmentSetting(),
-                                            ),
-                                          );
-                                        },
-                                        child: const Text("Add Questions"),
-                                      ),
-                                    ]),
-                                onPressed: () {}
-                            ),
-                          )
-                        ],
-                      ),
+
                     ]),
               ],
 

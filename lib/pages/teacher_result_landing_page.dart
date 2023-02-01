@@ -46,17 +46,17 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
               child: Padding(
                 padding: EdgeInsets.only(left: MediaQuery.of(context).copyWith().size.width * 0.10 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
                     Padding(
                       padding:  EdgeInsets.only(right: MediaQuery.of(context).copyWith().size.width * 0.055),
                       child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () { Navigator.of(context).pop(); },),),
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.start,
+                    Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.square,color: const Color.fromRGBO(5, 169, 203, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
-                        Text("  Total Number of Participant",
+                        Icon(Icons.circle,color: const Color.fromRGBO(66, 194, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Text("      Completed Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
@@ -70,12 +70,11 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         ),
                       ],
                     ),
-                    SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.019,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
+                    Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.square,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
-                        Text("  Submitted",
+                        Icon(Icons.circle,color: const Color.fromRGBO(255, 157, 77, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Text("      In Progress Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
@@ -85,26 +84,15 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                         SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width * 0.18,
+                          width: MediaQuery.of(context).copyWith().size.width * 0.052,
                         ),
-                        Icon(Icons.square,color: const Color.fromRGBO(106, 160, 204, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
-                        Text("  Retries",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge( TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                       ],
                     ),
-                    SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.019,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                    SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
+                    Row(mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.square,color: const Color.fromRGBO(255, 153, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
-                        Text("  In Progress",
+                        Icon(Icons.circle,color: const Color.fromRGBO(179, 179, 179, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Text("      Not Started Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyText1
@@ -114,20 +102,11 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                         SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width * 0.16,
+                          width: MediaQuery.of(context).copyWith().size.width * 0.052,
                         ),
-                        Icon(Icons.square,color: const Color.fromRGBO(179, 179, 179, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
-                        Text("  Not Started",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1
-                              ?.merge( TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                       ],
                     ),
+
                   ],
                 ),
               ),

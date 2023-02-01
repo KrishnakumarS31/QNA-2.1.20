@@ -13,7 +13,7 @@ import '../EntityModel/student_registration_model.dart';
 
 class QnaService{
 
-  static Future<UserDataModel> getUserDataService(int userId)async {
+  static Future<UserDataModel> getUserDataService(int? userId)async {
     return await QnaRepo.getUserData(userId);
   }
 

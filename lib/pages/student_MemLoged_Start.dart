@@ -21,12 +21,12 @@ import 'terms_of_services.dart';
 
 
 class StudentMemLogedStart extends StatefulWidget {
-  const StudentMemLogedStart({
-    Key? key,required this.regNumber, required this.setLocale,required this.userId
+  StudentMemLogedStart({
+    Key? key,required this.regNumber, required this.setLocale,this.userId
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final String regNumber;
-  final int userId;
+  int? userId;
 
   @override
   StudentMemLogedStartState createState() => StudentMemLogedStartState();
@@ -567,8 +567,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             ),
                           onPressed: () async {
                             values =  await QnaService.getQuestion(assessmentId: assessmentID.text);
-                            print("values.code");
-                            //print(values.code);
+
                             if(values.code == 200) {
                               if (assessmentID.text.length >= 8) {
                                 Navigator.push(

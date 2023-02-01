@@ -52,7 +52,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
               ),
             ),
             Text(
-              values.data.assessment.assessmentCode,
+              values.data!.assessment!.assessmentCode,
               style: TextStyle(
                 color: const Color.fromRGBO(255, 255, 255, 1),
                 fontSize: localHeight * 0.016,
@@ -124,7 +124,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                 children: [
                                   Row(children: [
                                     Text(
-                                        "Q${values.data.assessment.questions[index-1].questionId}",
+                                        "Q${values.data!.assessment!.questions[index-1].questionId}",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
@@ -133,7 +133,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                             fontSize: localHeight * 0.012)),
                                     SizedBox(width: localHeight * 0.020),
                                     Text(
-                                      "(${values.data.assessment.questions[index-1].questionId}${AppLocalizations.of(context)!.marks})",
+                                      "(${values.data!.assessment!.questions[index-1].questionId}${AppLocalizations.of(context)!.marks})",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               179, 179, 179, 1),
@@ -144,7 +144,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                   ]),
                                   SizedBox(height: localHeight * 0.010),
                                   Text(
-                                    values.data.assessment.questions[index-1]
+                                    values.data!.assessment!.questions[index-1]
                                         .question,
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
@@ -163,7 +163,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                     Provider.of<Questions>(context, listen: false)
                                                 .totalQuestion['$index'][0] ==
                                             const Color(0xff52a5a0)
-                                        ? values.data.assessment.questions[index].choices[index].choiceText
+                                        ? values.data!.assessment!.questions[index].choices[index].choiceText
                                         : "Not Answered",
                                     style: Provider.of<Questions>(context,
                                                     listen: false)
@@ -189,7 +189,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                         text: TextSpan(children: [
                                       TextSpan(
                                           text:
-                                              "${AppLocalizations.of(context)!.study_chapter} ${values.data.assessment.subtopic} \t",
+                                              "${AppLocalizations.of(context)!.study_chapter} ${values.data!.assessment!.subtopic} \t",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -197,8 +197,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                               fontWeight: FontWeight.w600,
                                               fontSize: localHeight * 0.015)),
                                       TextSpan(
-                                          text: values.data.assessment
-                                              .questions[index].advisorText,
+                                          text: values.data!.assessment
+                                              !.questions[index].advisorText,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),

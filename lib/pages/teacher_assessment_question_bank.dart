@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_looq_search_question.dart';
+import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 
 import '../Entity/demo_question_model.dart';
 import '../Providers/question_prepare_provider.dart';
@@ -316,7 +317,13 @@ class TeacherAssessmentQuestionBankState extends State<TeacherAssessmentQuestion
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const TeacherSelectedQuestionAssessment(),
+                      ),
+                    );
                   },
                   child: Text(
                     'Add',

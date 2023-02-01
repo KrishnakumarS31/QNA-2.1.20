@@ -1,10 +1,11 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/opening_page.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
 import 'DataSource/app_user_repo.dart';
 import 'Entity/app_user.dart';
 import 'Providers/LanguageChangeProvider.dart';
@@ -35,18 +36,26 @@ class _MyAppState extends State<MyApp> {
   var lang;
   Locale? _locale;
 
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
+
+
+
+
+
   void setLocale(Locale locale){
     setState(() {
       _locale=locale;
     });
   }
-// getData() async {
-//
-//   AppUser? user =await AppUserRepo().getUserDetail();
-//   lang = user?.locale.toString();
-// }
 
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
 
@@ -66,5 +75,7 @@ class _MyAppState extends State<MyApp> {
       home: SplashScreen(setLocale: setLocale,),
     );
   }
+
+
 }
 
