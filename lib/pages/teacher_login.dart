@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_forgot_password_email.dart';
 import 'package:qna_test/Pages/teacher_registration_page.dart';
@@ -45,7 +46,11 @@ getUserDetails() async {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: Colors.transparent,
+          ),
           elevation: 0,
           leading: IconButton(
             icon: const Icon(
@@ -57,7 +62,7 @@ getUserDetails() async {
               Navigator.of(context).pop();
             },
           ),
-          backgroundColor: const Color.fromRGBO(0,106,100,1),
+          backgroundColor: Colors.transparent,
         ),
         endDrawer: Drawer(
           child: Column(
@@ -231,7 +236,7 @@ getUserDetails() async {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: height * 0.26,
+                  height: height * 0.3,
                   width: width,
                   decoration: BoxDecoration(
                     // color: Theme.of(context).primaryColor,
@@ -252,7 +257,7 @@ getUserDetails() async {
                   child: Column(
                     //crossAxisAlignment: CrossAxisAlignment.center,
                     children : [
-                      SizedBox(height:height * 0.03),
+                      SizedBox(height:height * 0.09),
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [
@@ -318,15 +323,20 @@ getUserDetails() async {
                             Align(
                               alignment: Alignment.topLeft,
                               child:
-                              Text(AppLocalizations.of(context)!.email_id_caps,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1
-                                    ?.merge( TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017)),),
+                              Row(
+                                children: [
+                                  Text(AppLocalizations.of(context)!.email_id_caps,
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .bodyText1
+                                        ?.merge( TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),),
+                                  const Text('\t*', style: TextStyle(color: Colors.red)),
+                                ],
+                              ),
 
                             ),
                             SizedBox(
@@ -342,6 +352,9 @@ getUserDetails() async {
                                     prefixIcon: Icon(
                                       Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
+                                  onChanged: (value){
+                                    formKey.currentState!.validate();
+                                  },
                                   validator: (value){
                                     if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                         .hasMatch(value)){
@@ -362,15 +375,20 @@ getUserDetails() async {
                             Align(
                               alignment: Alignment.topLeft,
                               child:
-                              Text(AppLocalizations.of(context)!.password_caps,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1
-                                    ?.merge( TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017)),),
+                              Row(
+                                children: [
+                                  Text(AppLocalizations.of(context)!.password_caps,
+                                    style: Theme.of(context)
+                                        .primaryTextTheme
+                                        .bodyText1
+                                        ?.merge( TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),),
+                                  const Text('\t*', style: TextStyle(color: Colors.red)),
+                                ],
+                              ),
 
                             ),
                             SizedBox(
@@ -396,6 +414,9 @@ getUserDetails() async {
                                     prefixIcon: Icon(
                                         Icons.lock,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
                                   ),
+                                  onChanged: (value){
+                                    formKey.currentState!.validate();
+                                  },
                                   validator: (value){
                                     if(value!.isEmpty){
                                       return AppLocalizations.of(context)!.enter_your_password;

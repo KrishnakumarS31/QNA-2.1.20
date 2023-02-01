@@ -364,14 +364,14 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     prefixIcon: Icon(
                                         Icons.assignment_ind_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03),
                                   ),
-                                  validator: (value){
-                                    if(value!.isEmpty){
-                                      return AppLocalizations.of(context)!.enter_registrationId;
-                                    }
-                                    else{
-                                      return null;
-                                    }
-                                  },
+                                  // validator: (value){
+                                  //   if(value!.isEmpty){
+                                  //     return AppLocalizations.of(context)!.enter_registrationId;
+                                  //   }
+                                  //   else{
+                                  //     return null;
+                                  //   }
+                                  // },
                                 )
                             ),
                           ],
@@ -430,11 +430,51 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               },
                             ),
                             const SizedBox(width: 5,),
-                             Expanded(
-                               child: Text(AppLocalizations.of(context)!.privacy_policy, textAlign: TextAlign.left,style: TextStyle(
-                                 fontSize: height *0.013
-                               ),),
-                             )
+                            RichText(
+                                text:  TextSpan(children: [
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.agree_msg,
+                                    style: const TextStyle(fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.privacy_Policy,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        decoration:
+                                        TextDecoration.underline,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.and,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: "Inter"),),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.terms,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        decoration:
+                                        TextDecoration.underline,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.services,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: "Inter"),),
+                                ])
+                            ),
                           ],
                         )
                       ],

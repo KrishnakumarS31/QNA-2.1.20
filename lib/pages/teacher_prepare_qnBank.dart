@@ -35,6 +35,16 @@ IconData radioIcon=Icons.radio_button_off_outlined;
     return (value) => setState(() => _groupValue = value!);
   }
 
+  showQuestionPreview(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return TeacherPreparePreview(question: demoQuestionModel,);
+      },
+    );
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -616,13 +626,14 @@ IconData radioIcon=Icons.radio_button_off_outlined;
                                     demoQuestionModel.choices=temp;
                                     List<DemoQuestionModel> ques=Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
                                     demoQuestionModel.id=ques.length;
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TeacherPreparePreview(question: demoQuestionModel,),
-                                      ),
-                                    );
+                                    showQuestionPreview(context);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   PageTransition(
+                                    //     type: PageTransitionType.rightToLeft,
+                                    //     child: TeacherPreparePreview(question: demoQuestionModel,),
+                                    //   ),
+                                    // );
                                   },
                                   child: const Text("Preview"),
                                 ),

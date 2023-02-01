@@ -10,14 +10,14 @@ String questionPaperModelToJson(QuestionPaperModel data) => json.encode(data.toJ
 
 class QuestionPaperModel {
   QuestionPaperModel({
-     required this.code,
-    required this.message,
-    required this.data,
+      this.code,
+     this.message,
+     this.data,
   });
 
-  int code;
-  String message;
-  Data data;
+  int? code;
+  String? message;
+  Data? data;
 
   factory QuestionPaperModel.fromJson(Map<String, dynamic> json) =>
       QuestionPaperModel(
@@ -29,23 +29,27 @@ class QuestionPaperModel {
   Map<String, dynamic> toJson() => {
         "code": code,
         "message": message,
-        "data": data.toJson(),
+        "data": data?.toJson(),
       };
 }
 
 class Data {
   Data({
-    required this.assessment,
+     this.user_id,
+     this.assessment,
   });
-
-  Assessment assessment;
+  int? user_id;
+  Assessment? assessment;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+
+    user_id: json["user_id"],
         assessment: Assessment.fromJson(json["assessment"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "assessment": assessment.toJson(),
+    "user_id": user_id,
+        "assessment": assessment!.toJson(),
       };
 }
 

@@ -22,119 +22,6 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
   IconData showIcon=Icons.expand_circle_down_outlined;
-  List<Ques> question=getData();
-  static List<Ques> getData() {
-    const data=[
-      {
-        "id":1,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":2,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "Option 1","Option 2","Option 3"
-        ]
-      },
-      {
-        "id":3,
-        "questionType":"choose",
-        "mark":25,
-        "question":"If you could only eat one food for the rest of your life, what would it be?",
-        "options":[
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },
-      {
-        "id":4,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":5,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id": 6,
-        "questionType":"choose",
-        "mark": 25,
-        "question": "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },{
-        "id":7,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":8,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "Option 1","Option 2","Option 3"
-        ]
-      },
-      {
-        "id":9,
-        "questionType":"choose",
-        "mark":25,
-        "question":"If you could only eat one food for the rest of your life, what would it be?",
-        "options":[
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },
-      {
-        "id":10,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":11,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id": 12,
-        "questionType":"choose",
-        "mark": 25,
-        "question": "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      }
-    ];
-    return data.map<Ques>(Ques.fromJson).toList();
-  }
   List<dynamic> selected=[];
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
@@ -155,61 +42,61 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
-          ],
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          toolbarHeight: height * 0.100,
-          centerTitle: true,
-          title: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "SELECTED QUESTION",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: height * 0.0225,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ]),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
-          ),
-        ),
+        // appBar: AppBar(
+        //   actions: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(right: 10),
+        //       child: IconButton(
+        //         icon: const Icon(
+        //           Icons.menu,
+        //           size: 40.0,
+        //           color: Colors.white,
+        //         ),
+        //         onPressed: () {
+        //           Navigator.of(context).pop();
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        //   leading: IconButton(
+        //     icon: const Icon(
+        //       Icons.chevron_left,
+        //       size: 40.0,
+        //       color: Colors.white,
+        //     ),
+        //     onPressed: () {
+        //       Navigator.of(context).pop();
+        //     },
+        //   ),
+        //   toolbarHeight: height * 0.100,
+        //   centerTitle: true,
+        //   title: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //       children: [
+        //         Text(
+        //           "SELECTED QUESTION",
+        //           style: TextStyle(
+        //             color: const Color.fromRGBO(255, 255, 255, 1),
+        //             fontSize: height * 0.0225,
+        //             fontFamily: "Inter",
+        //             fontWeight: FontWeight.w400,
+        //           ),
+        //         ),
+        //       ]),
+        //   flexibleSpace: Container(
+        //     decoration: const BoxDecoration(
+        //         gradient: LinearGradient(
+        //             end: Alignment.bottomCenter,
+        //             begin: Alignment.topCenter,
+        //             colors: [
+        //               Color.fromRGBO(0, 106, 100, 1),
+        //               Color.fromRGBO(82, 165, 160, 1),
+        //             ])),
+        //   ),
+        // ),
         body: Center(
           child: SizedBox(
-            height: height * 0.81,
+            height: height * 0.85,
             width: width * 0.888,
             child:
             Card(

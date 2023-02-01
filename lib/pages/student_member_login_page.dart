@@ -26,6 +26,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   TextEditingController passWordController = TextEditingController();
   String regNumber = "";
   String passWord = "";
+  bool _isObscure = true;
   final formKey = GlobalKey<FormState>();
   bool agree = false;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
@@ -353,7 +354,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               alignment: Alignment.center,
                               child: TextFormField(
                                 controller: passWordController,
-                                obscureText: true,
+                                obscureText: _isObscure,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   helperStyle: TextStyle(
@@ -364,6 +365,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       fontSize: localWidth * 0.016),
                                   hintText: AppLocalizations.of(context)!
                                       .your_password,
+                                  suffixIcon: IconButton(
+                                      icon: Icon(
+                                        _isObscure ? Icons.visibility : Icons.visibility_off,color: Color.fromRGBO(82, 165, 160, 1),),
+                                      onPressed: () {
+                                        setState(() {
+                                          _isObscure = !_isObscure;
+                                        });
+                                      }),
                                   prefixIcon: const Icon(
                                       Icons.lock_outline_rounded,
                                       color: Color.fromRGBO(82, 165, 160, 1)),
@@ -409,7 +418,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         child: RichText(
                             text: TextSpan(children: [
                               TextSpan(
-                                text: AppLocalizations.of(context)!.privacy_terms,
+                                text: "CERTIFY",
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
@@ -447,12 +456,51 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               });
                             },
                           ),
-                          SizedBox(width: localWidth * 0.03),
-                          Expanded(
-                            child: Text(AppLocalizations.of(context)!.privacy_policy, textAlign: TextAlign.left,style: TextStyle(
-                                fontSize: localHeight *0.013
-                            ),),
-                          )
+                          RichText(
+                                text:  TextSpan(children: [
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.agree_msg,
+                                    style: const TextStyle(fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.privacy_Policy,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        decoration:
+                                        TextDecoration.underline,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.and,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: "Inter"),),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.terms,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        decoration:
+                                        TextDecoration.underline,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!.services,
+                                    style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: "Inter"),),
+                                ])
+                            ),
                         ],
                       ),
                       SizedBox(height:localHeight * 0.02),

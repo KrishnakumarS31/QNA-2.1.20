@@ -5,6 +5,7 @@ import 'package:qna_test/Entity/student.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
 import 'package:qna_test/Pages/student_regis_verify_otp.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
@@ -34,14 +35,44 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   bool error =true;
   String? gender;
   String? countryCtizen;
-  Student student=Student(firstName: 'user1', lastName: '123', dob: '01/01/2001', gender: 'female', nationality: 'India', residentCountry: 'United States', email: 'user1.123@itc.com', rollNumber: 'A0987654', organisationName: 'abcde', roleId: ["1"], password: 'acsdfvb7@0987');
   final studentDobController = TextEditingController();
   late Response userDetails;
-
-  List<String> counrtyCitizenList = ['India','Singapore','Poland','Japan','United Kingdom','China'];
-  String selectedCounrtyCitizen='India';
-  List<String> counrtyResidentList = ['India','Singapore','Poland','Japan','United Kingdom','China'];
-  String selectedCounrtyResident='India';
+  int n = 244;
+  List<String> counrtyCitizenList = ["India","Ascension Island",
+    "Andorra","United Arab Emirates","Antigua & Barbuda","Anguilla",
+    "Albania","Armenia","Angola","Antarctica","Argentina","American Samoa",
+    "Austria","Australia","Aruba","Åland Islands","Azerbaijan","Bosnia & Herzegovina",
+    "Barbados","Bangladesh","Belgium","Burkina Faso","Bulgaria","Bahrain","Burundi",
+    "Benin","St. Barthélemy","Bermuda","Brunei","Bolivia","Caribbean Netherlands","Brazil",
+    "Bahamas","Bhutan","Bouvet Island","Botswana","Belarus","Belize","Canada","Cocos (Keeling) Islands",
+    "Congo (DRC)","Central African Republic","Congo (Republic)","Switzerland","Côte d’Ivoire","Cook Islands",
+    "Chile","Cameroon","Colombia","Costa Rica","Cape Verde","Curaçao","Christmas Island","Cyprus",
+    "Czech Republic","Germany","Djibouti","Denmark","Dominica","Dominican Republic","Algeria","Ecuador",
+    "Estonia","Egypt","Western Sahara","Eritrea","Spain","Ethiopia","Finland","Fiji","Falkland Islands (Islas Malvinas)",
+    "Micronesia","Faroe Islands","France","Gabon","United Kingdom","Grenada","Georgia","French Guiana",
+    "Guernsey","Ghana","Gibraltar","Greenland","Gambia","Guinea","Guadeloupe","Equatorial Guinea","Greece",
+    "South Georgia & South Sandwich Islands","Guatemala","Guam","Guinea-Bissau","Guyana","Hong Kong",
+    "Heard & McDonald Islands","Honduras","Croatia","Haiti","Hungary","Indonesia","Ireland","Israel",
+    "Isle of Man","India","British Indian Ocean Territory","Iraq","Iceland","Italy","Jersey","Jamaica","Jordan",
+    "Japan","Kenya","Kyrgyzstan","Cambodia","Kiribati","Comoros","St. Kitts & Nevis","South Korea","Kuwait",
+    "Cayman Islands","Kazakhstan","Laos","Lebanon","St. Lucia","Liechtenstein","Sri Lanka","Liberia","Lesotho",
+    "Lithuania","Luxembourg","Latvia","Libya","Morocco","Monaco","Moldova","Montenegro","St. Martin","Madagascar",
+    "Marshall Islands","Macedonia (FYROM)","Mali","Myanmar (Burma)","Mongolia","Macau","Northern Mariana Islands",
+    "Martinique","Mauritania","Montserrat","Malta","Mauritius","Maldives","Malawi","Mexico","Malaysia","Mozambique",
+    "Namibia","New Caledonia","Niger","Norfolk Island","Nigeria","Nicaragua","Netherlands","Norway","Nepal","Nauru",
+    "Niue","New Zealand","Oman","Panama","Peru","French Polynesia","Papua New Guinea","Philippines","Pakistan",
+    "Poland","St. Pierre & Miquelon","Pitcairn Islands","Puerto Rico","Palestine","Portugal","Palau","Paraguay",
+    "Qatar","Réunion","Romania","Serbia","Russia","Rwanda","Saudi Arabia","Solomon Islands","Seychelles","Sweden",
+    "Singapore","St. Helena","Slovenia","Svalbard & Jan Mayen","Slovakia","Sierra Leone","San Marino","Senegal",
+    "Somalia","Suriname","South Sudan","São Tomé & Príncipe","El Salvador","Sint Maarten","Swaziland",
+    "Tristan da Cunha","Turks & Caicos Islands","Chad","French Southern Territories","Togo","Thailand",
+    "Tajikistan","Tokelau","Timor-Leste","Turkmenistan","Tunisia","Tonga","Turkey","Trinidad & Tobago","Tuvalu",
+    "Taiwan","Tanzania","Ukraine","Uganda","U.S. Outlying Islands","United States","Uruguay","Uzbekistan",
+    "Vatican City","St. Vincent & Grenadines","Venezuela","British Virgin Islands","U.S. Virgin Islands","Vietnam",
+    "Vanuatu","Wallis & Futuna","Samoa","Kosovo","Yemen","Mayotte","South Africa","Zambia","Zimbabwe"];
+  SingleValueDropDownController selectedCounrtyCitizen = SingleValueDropDownController();
+  List<String> counrtyResidentList = ["INDIA", "United States", "EUROPEAN UNION", "Rest of World"];
+  SingleValueDropDownController selectedCounrtyResident = SingleValueDropDownController();
 
 
   @override
@@ -51,7 +82,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed
+
     studentDobController.dispose();
     super.dispose();
   }
@@ -115,8 +146,22 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.first_name_caps,
-                                labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.first_name_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                       const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
+                                //labelStyle: TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.first_name_hint,
                                 focusedBorder:  OutlineInputBorder(
@@ -146,9 +191,23 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               controller: studentLastNameController,
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
-                                labelText: AppLocalizations.of(context)!.last_name_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.last_name_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                //labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.last_name_hint,
                                 focusedBorder:  OutlineInputBorder(
@@ -157,7 +216,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Last Name';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -183,6 +250,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         foregroundColor: const Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                     ),
+
                                   ),
                                   child: child!,
                                 );
@@ -201,7 +269,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.datetime,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.dob_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.dob_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.dob_format,
@@ -216,79 +298,18 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
                               ),
+                              validator: (value){
+                                if(value!.isEmpty){
+                                  return 'Enter Date Of Birth';
+                                }
+                                else{
+                                  return null;
+                                }
+                              },
                               enabled: true,
                               onChanged: (value) {
                               },
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: localHeight * 0.03,
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            //color: Colors.yellow[100],
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(
-                              color: const Color.fromRGBO(196, 196, 196, 1),
-                              width: 1.5,
-                            ),
-                          ),
-                          alignment: Alignment.topLeft,
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: localWidth * 0.03,
-                              ),
-                              // Padding(
-                              //padding: EdgeInsets.only(left: localWidth * 0.002, bottom:localWidth * 0.15),
-                              Text(AppLocalizations.of(context)!.gender),
-                              //),
-                              Radio(
-                                value: "male",
-                                groupValue: gender,
-                                onChanged: (value){
-                                  setState(() {
-                                    gender = value..toString();
-                                  });
-                                },
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.male,
-                                style:
-                                TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                              ),
-
-                              Radio(
-                                value: "female",
-                                groupValue: gender,
-                                onChanged: (value){
-                                  setState(() {
-                                    gender = value.toString();
-                                  });
-                                },
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.female,
-                                style:
-                                TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                              ),
-
-                              Radio(
-                                value: "others",
-                                groupValue: gender,
-                                onChanged: (value){
-                                  setState(() {
-                                    gender = value.toString();
-                                  });
-                                },
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.others,
-                                style:
-                                TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                              ),
-                            ],
                           ),
                         ),
                         SizedBox(
@@ -308,26 +329,122 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       17), //border radius of dropdown button
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 30, right: 30),
+                                  padding: const EdgeInsets.only(left: 20, right: 20),
                                   child: DropdownButtonHideUnderline(
-                                    child: DropdownButton(
-                                      hint: Text("Select Country name"),
-                                      isExpanded: true,
-                                      items: counrtyCitizenList.map((subtype) {
-                                        return DropdownMenuItem(
-                                          value: subtype.toString(),
-                                          child: new Text(subtype.toString()),
-                                        );
-                                      }).toList(),
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.02),
-                                      onChanged: (newCounrtyCitizenValue) {
-                                        setState(() {
-                                          selectedCounrtyCitizen = newCounrtyCitizenValue!;
-                                          //getItemNameData(selectedLinenType);
-                                        });
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Radio(
+                                          value: "male",
+                                          groupValue: gender,
+                                          onChanged: (value){
+                                            setState(() {
+                                              gender = value..toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          AppLocalizations.of(context)!.male,
+                                          style:
+                                          TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                        ),
+
+                                        Radio(
+                                          value: "female",
+                                          groupValue: gender,
+                                          onChanged: (value){
+                                            setState(() {
+                                              gender = value.toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          AppLocalizations.of(context)!.female,
+                                          style:
+                                          TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                        ),
+
+                                        Radio(
+                                          value: "others",
+                                          groupValue: gender,
+                                          onChanged: (value){
+                                            setState(() {
+                                              gender = value.toString();
+                                            });
+                                          },
+                                        ),
+                                        Text(
+                                          AppLocalizations.of(context)!.others,
+                                          style:
+                                          TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              left: localWidth * 0.038,
+                              child: Container(
+                                color: Colors.white,
+                                child: Text(
+                                    AppLocalizations.of(context)!.gender,
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(51, 51, 51, 1),
+                                      fontSize: localHeight * 0.012,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),)
+                          ],
+                        ),
+                        SizedBox(
+                          height: localHeight * 0.03,
+                        ),
+                        Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  //background color of dropdown button
+                                  border: Border.all(
+                                      color: Colors.black38,
+                                      width: 1), //border of dropdown button
+                                  borderRadius: BorderRadius.circular(
+                                      17), //border radius of dropdown button
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 30, right: 30),
+                                  child: DropdownButtonHideUnderline(
+                                    child:  DropDownTextField(
+                                      controller: selectedCounrtyCitizen,
+                                      clearOption: true,
+                                      enableSearch: true,
+                                      textFieldDecoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                                          border: InputBorder.none,
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                                          hintText: "Enter Country"),
+                                      clearIconProperty: IconProperty(color: const Color.fromRGBO(102, 102, 102, 0.3)),
+                                      searchDecoration: InputDecoration(
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                                          hintText: "Enter Country"),
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return "Required field";
+                                        } else {
+                                          return null;
+                                        }
                                       },
-                                      value: selectedCounrtyCitizen,
+                                      dropDownItemCount: 5,
+                                      dropDownList: [
+                                        for(int i =0 ; i<=n; i++)
+                                        DropDownValueModel(name: counrtyCitizenList[i], value: counrtyCitizenList[i])
+                                      ],
+                                      onChanged: (value) {
+                                      },
                                     ),
                                   ),
                                 ),
@@ -340,7 +457,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               child: Text(
                                 'COUNTRY CITIZEN',
                                 style: TextStyle(
-                                    color: Color.fromRGBO(51, 51, 51, 1),
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontSize: localHeight * 0.012,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w600),
@@ -348,64 +465,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             ),)
                           ],
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(17),
-                        //     border: Border.all(
-                        //       color: const Color.fromRGBO(196, 196, 196, 1),
-                        //       width: 1.5,
-                        //     ),
-                        //   ),
-                        //   child: DropDownTextField(
-                        //     controller: studentNationalityController,
-                        //     clearOption: true,
-                        //     enableSearch: true,
-                        //     textFieldDecoration: InputDecoration(
-                        //         floatingLabelBehavior: FloatingLabelBehavior.always,
-                        //         labelText: AppLocalizations.of(context)!.country_citizen,
-                        //         labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                        //         border: InputBorder.none,
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     clearIconProperty: IconProperty(color: Colors.green),
-                        //     searchDecoration: InputDecoration(
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     validator: (value) {
-                        //       if (value == null) {
-                        //         return "Required field";
-                        //       } else {
-                        //         return null;
-                        //       }
-                        //     },
-                        //     dropDownItemCount: 6,
-                        //
-                        //     dropDownList: const [
-                        //       DropDownValueModel(name: 'India', value: "India"),
-                        //       DropDownValueModel(
-                        //           name: 'Singapore',
-                        //           value: "value2",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'United States', value: "United States"),
-                        //       DropDownValueModel(
-                        //           name: 'Russia',
-                        //           value: "value4",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'Poland', value: "value5"),
-                        //       DropDownValueModel(name: 'Japan', value: "value6"),
-                        //       DropDownValueModel(name: 'United Kingdom', value: "value7"),
-                        //       DropDownValueModel(name: 'China', value: "value8"),
-                        //
-                        //     ],
-                        //     onChanged: (val) {
-                        //       setState((){
-                        //         countryCtizen=val;
-                        //       });
-                        //     },
-                        //   ),
-                        // ),
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
@@ -423,26 +482,37 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       17), //border radius of dropdown button
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 30, right: 30),
+                                  padding: const EdgeInsets.only(left: 30, right: 30),
                                   child: DropdownButtonHideUnderline(
-                                    child: DropdownButton(
-                                      hint: Text("Select Country name"),
-                                      isExpanded: true,
-                                      items: counrtyResidentList.map((subtype) {
-                                        return DropdownMenuItem(
-                                          value: subtype.toString(),
-                                          child: new Text(subtype.toString()),
-                                        );
-                                      }).toList(),
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.02),
-                                      onChanged: (newCounrtyCitizenValue) {
-                                        setState(() {
-                                          selectedCounrtyResident = newCounrtyCitizenValue!;
-                                          //getItemNameData(selectedLinenType);
-                                        });
+                                    child: DropDownTextField(
+                                      controller: selectedCounrtyResident,
+                                      clearOption: true,
+                                      enableSearch: true,
+                                      textFieldDecoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                                          border: InputBorder.none,
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                                          hintText: "Enter Country"),
+                                      clearIconProperty: IconProperty(color: const Color.fromRGBO(102, 102, 102, 0.3)),
+                                      searchDecoration: InputDecoration(
+                                          hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
+                                          hintText: "Enter Country"),
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return "Required field";
+                                        } else {
+                                          return null;
+                                        }
                                       },
-                                      value: selectedCounrtyResident,
+                                      dropDownItemCount: 5,
+                                      dropDownList: [
+                                          DropDownValueModel(name: counrtyResidentList[0], value: counrtyResidentList[0]),
+                                        DropDownValueModel(name: counrtyResidentList[1], value: counrtyResidentList[1]),
+                                        DropDownValueModel(name: counrtyResidentList[2], value: counrtyResidentList[2]),
+                                        DropDownValueModel(name: counrtyResidentList[3], value: counrtyResidentList[3])
+                                      ],
+                                      onChanged: (value) {
+                                      },
                                     ),
                                   ),
                                 ),
@@ -453,9 +523,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               child: Container(
                                 color: Colors.white,
                                 child: Text(
-                                  'COUNTRY CITIZEN',
+                                  'COUNTRY RESIDENT',
                                   style: TextStyle(
-                                      color: Color.fromRGBO(51, 51, 51, 1),
+                                      color: const Color.fromRGBO(51, 51, 51, 1),
                                       fontSize: localHeight * 0.012,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w600),
@@ -463,61 +533,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               ),)
                           ],
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(17),
-                        //     border: Border.all(
-                        //       color: const Color.fromRGBO(196, 196, 196, 1),
-                        //       width: 1.5,
-                        //     ),
-                        //   ),
-                        //   child: DropDownTextField(
-                        //     controller: studentResidentCountryController,
-                        //     clearOption: true,
-                        //     enableSearch: true,
-                        //     textFieldDecoration: InputDecoration(
-                        //         labelText: AppLocalizations.of(context)!.country_resident,
-                        //         floatingLabelBehavior: FloatingLabelBehavior.always,
-                        //         labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
-                        //         border: InputBorder.none,
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     clearIconProperty: IconProperty(color: Colors.green),
-                        //     searchDecoration: InputDecoration(
-                        //         hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
-                        //         hintText: AppLocalizations.of(context)!.enter_country),
-                        //     validator: (value) {
-                        //       if (value == null) {
-                        //         return "Required field";
-                        //       } else {
-                        //         return null;
-                        //       }
-                        //     },
-                        //     dropDownItemCount: 6,
-                        //
-                        //     dropDownList: const [
-                        //       DropDownValueModel(name: 'India', value: "India"),
-                        //       DropDownValueModel(
-                        //           name: 'Singapore',
-                        //           value: "value2",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'United States', value: "United States"),
-                        //       DropDownValueModel(
-                        //           name: 'Russia',
-                        //           value: "value4",
-                        //           toolTipMsg:
-                        //           "DropDownButton is a widget that we can use to select one unique value from a set of values"),
-                        //       DropDownValueModel(name: 'Poland', value: "value5"),
-                        //       DropDownValueModel(name: 'Japan', value: "value6"),
-                        //       DropDownValueModel(name: 'United Kingdom', value: "value7"),
-                        //       DropDownValueModel(name: 'China', value: "value8"),
-                        //     ],
-                        //     onChanged: (val) {
-                        //
-                        //     },
-                        //   ),
-                        // ),
+
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
@@ -529,7 +545,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.email_id_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.10,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.email_id_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 helperText: 'an OTP will be sent to Email ID',
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
@@ -541,7 +571,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Valid Email';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -555,7 +593,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.reg_roll_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.35,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.reg_roll_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.reg_roll,
@@ -565,7 +617,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Roll Number';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -579,7 +639,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                              labelText: AppLocalizations.of(context)!.ins_org_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.35,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.ins_org_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                               labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                               hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                               hintText: AppLocalizations.of(context)!.ins_org,
@@ -589,7 +663,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Organization Name';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -636,13 +718,10 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         SizedBox(
                           height: localHeight * 0.02,
                         ),
-                        Column(
-                          //crossAxisAlignment: CrossAxisAlignment.start,
-                         //mainAxisAlignment: MainAxisAlignment.start,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Checkbox(
+                                Checkbox(
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                       BorderRadius.circular(
@@ -655,25 +734,17 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                     });
                                   },
                                 ),
-                              ),
-                               Text(
-                                AppLocalizations.of(context)!.agree_msg,
-                                style: const TextStyle(fontSize: 15.0,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(51, 51, 51, 1),
-                                    fontFamily: "Inter"),
-                              ),
                               RichText(
                                   text:  TextSpan(children: [
-                                    // WidgetSpan(
-                                    //   alignment:
-                                    //   PlaceholderAlignment.middle,
-                                    //   // child: Transform.scale(
-                                    //   //   scale: localWidth * 0.0022,
-                                    //   // ),
-                                    // ),
                                     TextSpan(
-                                      text: AppLocalizations.of(context)!.terms_services,
+                                      text: AppLocalizations.of(context)!.agree_msg,
+                                      style: const TextStyle(fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                          fontFamily: "Inter"),
+                                    ),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.privacy_Policy,
                                       style: const TextStyle(
                                           fontSize: 15.0,
                                           fontWeight: FontWeight.w400,
@@ -689,16 +760,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           fontWeight: FontWeight.w400,
                                           color: Color.fromRGBO(51, 51, 51, 1),
                                           fontFamily: "Inter"),),
-                                    // WidgetSpan(
-                                    //   alignment:
-                                    //   PlaceholderAlignment.middle,
-                                    //   child: Transform.scale(
-                                    //     scale: localWidth * 0.0022,
-                                    //     // alignment: Alignment.centerLeft,
-                                    //   ),
-                                    // ),
                                     TextSpan(
-                                      text: AppLocalizations.of(context)!.privacy_Policy,
+                                      text: AppLocalizations.of(context)!.terms,
                                       style: const TextStyle(
                                           fontSize: 15.0,
                                           fontWeight: FontWeight.w400,
@@ -707,7 +770,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           color: Color.fromRGBO(82, 165, 160, 1),
                                           fontFamily: "Inter"),
                                     ),
-                                  ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.services,
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                          fontFamily: "Inter"),),
+                                  ])
+                              ),
                             ]),
                         SizedBox(
                           height: localHeight * 0.03,
@@ -732,7 +803,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.password_caps,
+                                label: SizedBox(
+                                  width: localWidth * 0.15,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.password_caps,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.password_hint,
@@ -742,7 +827,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(value!.isEmpty){
+                                return 'Enter Password';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
@@ -756,7 +849,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: AppLocalizations.of(context)!.confirm_password,
+                                label: SizedBox(
+                                  width: localWidth * 0.25,
+                                  child: Row(
+                                    children: [
+                                      Text(AppLocalizations.of(context)!.confirm_password,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
+                                          fontSize: localHeight * 0.012,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w600,
+                                        ),),
+                                      const Text("\t*", style: TextStyle(color: Colors.red)),
+                                    ],
+                                  ),
+                                ),
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight * 0.012),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.verify_password,
@@ -766,7 +873,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 ),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
-                              )
+                              ),
+                            validator: (value){
+                              if(studentPasswordController.text!=studentconfirmPasswordController.text ){
+                                  return 'Re-Enter Password';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                           ),
                         )],
                     ),
@@ -793,8 +908,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   print(studentLastNameController.text);
                   print(studentDobController.text);
                   print(gender);
-                  print(selectedCounrtyCitizen);
-                  print(selectedCounrtyResident);
+                  print(selectedCounrtyCitizen.dropDownValue?.value);
+                  print(selectedCounrtyResident.dropDownValue?.value);
                   print(studentEmailController.text);
                   print(studentPasswordController.text);
                   print(studentRollNumberController.text);
@@ -805,18 +920,16 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                       firstName: studentFirstNameController.text,
                       lastName: studentLastNameController.text,
                       dob: 32546,
-                      gender: gender, countryNationality: selectedCounrtyCitizen,
+                      gender: gender, countryNationality: selectedCounrtyCitizen.dropDownValue?.value,
                       email: studentEmailController.text,
                       password: studentPasswordController.text,
                       rollNumber: studentRollNumberController.text,
                       organisationName: studentOrganisationNameController.text,
-                      countryResident: selectedCounrtyResident,
+                      countryResident: selectedCounrtyResident.dropDownValue?.value,
                       role: 'student');
                   if(valid) {
                     LoginModel res=await QnaService.postUserDetailsService(student);
                     if(res.code==200){
-
-
                     Navigator.push(
                       context,
                       PageTransition(
@@ -824,7 +937,15 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                           child: StudentRegisVerifyOtpPage(email: studentEmailController.text,)
                       ),
                     );
-                    //print("------------> ${studentEmailController.text}");
+                    }
+                    else{
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: CustomDialog(title: 'Incorrect Data', content: '${res.message}', button: AppLocalizations.of(context)!.retry,),
+                        ),
+                      );
                     }
                   }
                   },

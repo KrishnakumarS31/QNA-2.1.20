@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
 import 'package:qna_test/Pages/teacher_looq_search_question.dart';
 import 'package:qna_test/Components/custom_radio_option.dart';
@@ -324,7 +325,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           SizedBox(height: height * 0.02),
                           Center(
                             child: Container(
-                              width: width * 0.6,
+                              width: width * 0.8,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -348,13 +349,19 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 
 
                                 },
-                                child: Text(
-                                  'Prepare New Questions',
-                                  style: TextStyle(
-                                      fontSize: height * 0.025,
-                                      fontFamily: "Inter",
-                                      color: Color.fromRGBO(255, 255, 255, 1),
-                                      fontWeight: FontWeight.w600),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Prepare New Questions',
+                                      style: TextStyle(
+                                          fontSize: height * 0.025,
+                                          fontFamily: "Inter",
+                                          color: Color.fromRGBO(255, 255, 255, 1),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    Icon(Icons.chevron_right,color: Color.fromRGBO(255, 255, 255, 1),size: height * 0.03,)
+                                  ],
                                 ),
                               ),
                             ),
@@ -392,104 +399,116 @@ class QuestionPreview extends StatelessWidget {
       answer='$answer ${question.choices![j-1]}';
       //question.choices[question.correctChoice[i]];
     }
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: height * 0.02,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child:  LooqQuestionEdit(question: question,),
           ),
-          Container(
-            height: height * 0.04,
-            width: width * 0.95,
-            color: Color.fromRGBO(82, 165, 160, 1),
-            child: Padding(
-              padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        question.subject,
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "  |  ${question.topic} - ${question.subTopic}",
-                        style: TextStyle(
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(255, 255, 255, 1),
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
-                  ),
+        );
 
-                  Text(
-                    question.studentClass,
-                    style: TextStyle(
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
+      },
+      child: Container(
+        child: Column(
+          children: [
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Container(
+              height: height * 0.04,
+              width: width * 0.95,
+              color: Color.fromRGBO(82, 165, 160, 1),
+              child: Padding(
+                padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          question.subject,
+                          style: TextStyle(
+                              fontSize: height * 0.017,
+                              fontFamily: "Inter",
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          "  |  ${question.topic} - ${question.subTopic}",
+                          style: TextStyle(
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+
+                    Text(
+                      question.studentClass,
+                      style: TextStyle(
+                          fontSize: height * 0.015,
+                          fontFamily: "Inter",
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.questionType,
-              style: TextStyle(
-                  fontSize: height * 0.02,
-                  fontFamily: "Inter",
-                  color: Color.fromRGBO(82, 165, 160, 1),
-                  fontWeight: FontWeight.w600),
+            SizedBox(height: height * 0.01,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                question.questionType,
+                style: TextStyle(
+                    fontSize: height * 0.02,
+                    fontFamily: "Inter",
+                    color: Color.fromRGBO(28, 78, 80, 1),
+                    fontWeight: FontWeight.w600),
+              ),
             ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.question,
-              style: TextStyle(
-                  fontSize: height * 0.0175,
-                  fontFamily: "Inter",
-                  color: Color.fromRGBO(51, 51, 51, 1),
-                  fontWeight: FontWeight.w400),
+            SizedBox(height: height * 0.01,),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                question.question,
+                style: TextStyle(
+                    fontSize: height * 0.0175,
+                    fontFamily: "Inter",
+                    color: Color.fromRGBO(51, 51, 51, 1),
+                    fontWeight: FontWeight.w400),
+              ),
             ),
-          ),
-          SizedBox(height: height * 0.01,),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     Text(
-          //       answer,
-          //       style: TextStyle(
-          //           fontSize: height * 0.02,
-          //           fontFamily: "Inter",
-          //           color: Color.fromRGBO(82, 165, 160, 1),
-          //           fontWeight: FontWeight.w600),
-          //     ),
-          //     Text(
-          //       question.questionType,
-          //       style: TextStyle(
-          //           fontSize: height * 0.02,
-          //           fontFamily: "Inter",
-          //           color: Color.fromRGBO(82, 165, 160, 1),
-          //           fontWeight: FontWeight.w600),
-          //     ),
-          //   ],
-          // ),
-          // SizedBox(height: height * 0.01,),
-          Divider()
+            SizedBox(height: height * 0.01,),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Text(
+            //       answer,
+            //       style: TextStyle(
+            //           fontSize: height * 0.02,
+            //           fontFamily: "Inter",
+            //           color: Color.fromRGBO(82, 165, 160, 1),
+            //           fontWeight: FontWeight.w600),
+            //     ),
+            //     Text(
+            //       question.questionType,
+            //       style: TextStyle(
+            //           fontSize: height * 0.02,
+            //           fontFamily: "Inter",
+            //           color: Color.fromRGBO(82, 165, 160, 1),
+            //           fontWeight: FontWeight.w600),
+            //     ),
+            //   ],
+            // ),
+            // SizedBox(height: height * 0.01,),
+            Divider()
 
-        ],
+          ],
+        ),
       ),
     );
   }

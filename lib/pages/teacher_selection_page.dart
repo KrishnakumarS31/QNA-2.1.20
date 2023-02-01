@@ -443,7 +443,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const TeacherQuestionBank(),
+                        child:  const TeacherQuestionBank(),
                       ),
                     );
                     // if(agree){

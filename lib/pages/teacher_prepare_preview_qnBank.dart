@@ -704,30 +704,39 @@ class _ChooseWidgetState extends State<ChooseWidget> {
             },
             child: Padding(
               padding: EdgeInsets.only(bottom: widget.height * 0.013),
-              child: Container(
-                  width: widget.width * 0.744,
-                  height: widget.height * 0.0412,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)
-                    ),
-                    color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(82, 165, 160, 1) :const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: widget.width * 0.02,),
-                        Expanded(
-                          child: Text('${widget.question.choices![j-1]}',
-                            style: TextStyle(
-                              color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                      width: widget.width * 0.744,
+                      height: widget.height * 0.0412,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(
+                            color: const Color.fromRGBO(209, 209, 209, 1)
                         ),
-                      ])
+                        color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(82, 165, 160, 1) :const Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(width: widget.width * 0.02,),
+                            Expanded(
+                              child: Text('${widget.question.choices![j-1]}',
+                                style: TextStyle(
+                                  color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: widget.height * 0.0162,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),),
+                            ),
+                          ])
+                  ),
+                  widget.selected!.contains(j)?
+                  Icon(Icons.radio_button_checked,color: Color.fromRGBO(82, 165, 160, 1),):
+                  Icon(Icons.radio_button_off_outlined,color: Color.fromRGBO(82, 165, 160, 1),),
+                  SizedBox(width: widget.width * 0.02,)
+                ],
               ),
             ),
           )

@@ -48,12 +48,14 @@ class QnaRepo{
         loginModel=loginModelFromJson(temp);
       }
       else {
-        print(response.reasonPhrase);
+        String temp=await response.stream.bytesToString();
+        loginModel=loginModelFromJson(temp);
+        return loginModel;
       }
       return loginModel;
     }
 
-    static Future<UserDataModel> getUserData(int userId) async {
+    static Future<UserDataModel> getUserData(int? userId) async {
       UserDataModel userData=UserDataModel(code: 0, message: 'message');
       var request = http.Request('GET', Uri.parse('http://18.215.198.141:8080/api/v1/users/$userId'));
       http.StreamedResponse response = await request.send();

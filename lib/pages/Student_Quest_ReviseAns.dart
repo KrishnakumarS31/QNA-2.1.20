@@ -32,7 +32,7 @@ class StudReviseQuestState extends State<StudReviseQuest> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-    questionPaperModel= QnaService.getQuestion(assessmentId: values.data.assessment.assessmentCode);
+    questionPaperModel= QnaService.getQuestion(assessmentId: values.data!.assessment!.assessmentCode);
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
@@ -185,7 +185,7 @@ class StudReviseQuestState extends State<StudReviseQuest> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Row(children: [
-                                          Text("Q${values.data.assessment.questions[index].questionId}",
+                                          Text("Q${values.data!.assessment!.questions[index].questionId}",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),
@@ -194,7 +194,7 @@ class StudReviseQuestState extends State<StudReviseQuest> {
                                                   fontSize: localHeight * 0.012)),
                                           SizedBox(width: localHeight * 0.010),
                                           Text(
-                                            "(${values.data.assessment.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                            "(${values.data!.assessment!.questions[index].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     179, 179, 179, 1),
@@ -219,7 +219,7 @@ class StudReviseQuestState extends State<StudReviseQuest> {
                                               : SizedBox(width: localHeight * 0.010),
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
-                                        Text("(${values.data.assessment.questions[index].question})",
+                                        Text("(${values.data!.assessment!.questions[index].question})",
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
@@ -380,13 +380,13 @@ class StudReviseQuestState extends State<StudReviseQuest> {
                 onPressed: () {
                   int totolMark=0;
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
-                    List<dynamic> correctAns=values.data.assessment.questions[j-1].choices_answer;
+                    List<dynamic> correctAns=values.data!.assessment!.questions[j-1].choices_answer;
                     correctAns.sort();
                     List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
                     selectedAns.sort();
 
                     if(listEquals(correctAns, selectedAns)){
-                      totolMark=totolMark+values.data.assessment.questions[j-1].questionMarks;
+                      totolMark=totolMark+values.data!.assessment!.questions[j-1].questionMarks;
                     }
                   }
                   final DateTime now = DateTime.now();

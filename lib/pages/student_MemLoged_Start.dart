@@ -21,12 +21,12 @@ import 'terms_of_services.dart';
 
 
 class StudentMemLogedStart extends StatefulWidget {
-  const StudentMemLogedStart({
-    Key? key,required this.regNumber, required this.setLocale,required this.userId
+  StudentMemLogedStart({
+    Key? key,required this.regNumber, required this.setLocale,this.userId
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final String regNumber;
-  final int userId;
+  int? userId;
 
   @override
   StudentMemLogedStartState createState() => StudentMemLogedStartState();
@@ -39,6 +39,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
   UserDataModel userDataModel=UserDataModel(code: 0, message: '');
   String name='';
   String email = "";
+  String assessmentid = "";
 
 
   @override
@@ -412,6 +413,21 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             fontSize: 16),),
                         onTap: () async {
                         }),
+                    SizedBox(height: localHeight * 0.03),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Version : 1.0.0",
+                        style: TextStyle(
+                            color: Color.fromRGBO(180, 180, 180, 1),
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),
+                      ),
+                    ),
+                    SizedBox(height: localHeight * 0.03),
                   ],
                 ),
               ),
@@ -566,32 +582,45 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                                 )
                             ),
                           onPressed: () async {
-                            values =  await QnaService.getQuestion(assessmentId: assessmentID.text);
-                            print("values.code");
-                            //print(values.code);
-                            if(values.code == 200) {
-                              if (assessmentID.text.length >= 8) {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: StudQuestion(
-                                        assessmentId: assessmentID.text,
-                                        ques: values),
-                                  ),
-                                );
-                              }
-                            }
-                            else {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: CustomDialog(title: AppLocalizations.of(context)!.invalid_assessment_iD, content: '', button: AppLocalizations.of(context)!.retry,),
-                                ),
-                              );
-                            }
-
+    if (formKey.currentState!.validate()) {
+      assessmentid = assessmentID.text;
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromRGBO(
+                      48, 145, 139, 1),
+                ));
+          });
+      values = await QnaService.getQuestion(assessmentId: assessmentID.text);
+      print("values.code");
+      if (values.code == 200) {
+        if (assessmentID.text.length >= 8) {
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: StudQuestion(
+                  assessmentId: assessmentID.text,
+                  ques: values),
+            ),
+          );
+        }
+      }
+      else {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title: AppLocalizations.of(context)!.invalid_assessment_iD,
+              content: '',
+              button: AppLocalizations.of(context)!.retry,),
+          ),
+        );
+      }
+    }
                           },
                             // onPressed: () async {
                             //   if (formKey.currentState!.validate()) {

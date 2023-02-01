@@ -51,7 +51,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
 
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         // appBar: AppBar(
         //   centerTitle: true,
