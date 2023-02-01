@@ -44,6 +44,23 @@ packages:
     source: hosted
     version: "1.16.0"
   connectivity_plus:
+<<<<<<< HEAD
+=======
+    dependency: "direct dev"
+    description:
+      name: connectivity_plus
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
+  connectivity_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: connectivity_plus_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.3"
+  country_picker:
+>>>>>>> f5b8173c5b33cb0ca823841c0bb4e2f02fcbbe71
     dependency: "direct dev"
     description:
       name: connectivity_plus
@@ -140,6 +157,16 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
+=======
+  get:
+    dependency: "direct dev"
+    description:
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.5"
+>>>>>>> f5b8173c5b33cb0ca823841c0bb4e2f02fcbbe71
   http:
     dependency: "direct dev"
     description:
