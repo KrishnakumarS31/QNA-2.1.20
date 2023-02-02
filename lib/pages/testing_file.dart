@@ -8,16 +8,16 @@ import '../Components/custom_radio_option.dart';
 import '../Providers/question_prepare_provider.dart';
 import 'teacher_prepare_preview_qnBank.dart';
 
-class TeacherPrepareQnBank extends StatefulWidget {
-  const TeacherPrepareQnBank({
+class TestingFile extends StatefulWidget {
+  const TestingFile({
     Key? key,
   }) : super(key: key);
 
   @override
-  TeacherPrepareQnBankState createState() => TeacherPrepareQnBankState();
+  TestingFileState createState() => TestingFileState();
 }
 
-class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
+class TestingFileState extends State<TestingFile> {
   String _groupValue='MCQ';
   IconData radioIcon=Icons.radio_button_off_outlined;
   late int _count;
@@ -67,7 +67,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     super.initState();
     _count=0;
     _values=[];
-    addField();
     //Provider.of<QuestionPrepareProvider>(context, listen: false).reSetQuestionList();
   }
 
@@ -463,45 +462,32 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           )),
                       SizedBox(height: height * 0.010),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
-                            width: width * 0.65,
-                            child: Text(
-                              "Add Choices",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(51, 51, 51, 1),
-                                fontSize: height * 0.018,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                              ),
+                          // Row(
+                          //   children: [
+                          Text(
+                            "Add Choices",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontSize: height * 0.018,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Correct\nAnswer",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontSize: height * 0.016,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(width: width * 0.03,),
-                              Text(
-                                "Delete",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontSize: height * 0.016,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
+                          //   ],
+                          // ),
+                          // Row(
+                          //   children: [
+                          Text(
+                            "Correct Answer",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontSize: height * 0.018,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
-
                         ],
                       ),
                       SizedBox(height: height * 0.010),
@@ -542,7 +528,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 ),
                               ),
                               SizedBox(
-                                width: 35,
+                                width: 20,
                               ),
                               IconButton(
                                 onPressed: (){
@@ -713,7 +699,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     demoQuestionModel.choices=temp;
                                     List<DemoQuestionModel> ques=Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
                                     demoQuestionModel.id=ques.length;
-                                    showQuestionPreview(context);
+                                    print(selectedTemp.toString());
+                                    print(temp.toString());
+                                    //showQuestionPreview(context);
                                     // Navigator.push(
                                     //   context,
                                     //   PageTransition(
@@ -754,9 +742,46 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     });
   }
 
+  _onDelete(int key) async {
+    print("before");
+    print(_values[key].toString());
+
+    await _values.removeAt(key);
+    setState(() {
+
+      _count=_values.length;
+    });
+
+    print("after");
+    print(_values[key].toString());
+  }
 
 
 
 
+  _onUpdate(int key, String val){
+    print("on update");
+    print(val);
+    print(key);
+    int fountKey=-1;
+    for(var map in _values){
+      if(map.containsKey('id')){
+        if(map['id']==key){
+          fountKey=key;
+          break;
+        }
+      }
+    }
+    if(-1 != fountKey){
+      _values[fountKey]['value']['text']=val;
+    }
+    else{
+      Map<String, dynamic> json = {"id": key, 'value': {
+        "text": val,
+        "radio": false
+      }
+      };
+      _values.add(json);
+    }
+  }
 }
-

@@ -8,6 +8,7 @@ import 'package:qna_test/Pages/welcome_page.dart';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:qna_test/pages/testing_file.dart';
 
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
@@ -43,7 +44,7 @@ bool isAlertSet = false;
                   PageTransition(
                     type: PageTransitionType.rightToLeft,
                     child:
-                    //ResetPassword()
+                    //TestingFile()
                     WelcomePage(setLocale: widget.setLocale),
                   ),
                 );
@@ -59,17 +60,18 @@ bool isAlertSet = false;
               }
             });
   }
-
 getConectivity()=>
     subscription= Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async{
       isDeviceConnected=await InternetConnectionChecker().hasConnection;
       if(!isDeviceConnected && isAlertSet == false){
         showDialogBox(
-          //context: context, builder: builder
-        );
+           );
         setState(() {
           isAlertSet=true;
         });
+      }
+      else{
+        print("i got it");
       }
     });
 
