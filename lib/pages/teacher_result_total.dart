@@ -520,15 +520,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       height: height * 0.037,
                                       width: width * 0.52,
                                       alignment: Alignment.center,
-                                      child: Flexible(
-                                        child: Text(
-                                          'http://www.qnatest.com/test/132215012345678',
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(82, 165, 160, 1),
-                                              fontSize: height * 0.0175,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                      child: Text(
+                                        'http://www.qnatest.com/test/132215012345678',
+                                        style: TextStyle(
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ),
                                   ],
@@ -554,15 +552,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       height: height * 0.037,
                                       width: width * 0.52,
                                       alignment: Alignment.center,
-                                      child: Flexible(
-                                        child: Text(
-                                          'http://www.qnatest.com/test/132215012345678',
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(82, 165, 160, 1),
-                                              fontSize: height * 0.0175,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                      child: Text(
+                                        'http://www.qnatest.com/test/132215012345678',
+                                        style: TextStyle(
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ),
                                   ],
@@ -588,15 +584,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       height: height * 0.037,
                                       width: width * 0.52,
                                       alignment: Alignment.center,
-                                      child: Flexible(
-                                        child: Text(
-                                          'http://www.qnatest.com/test/132215012345678',
-                                          style: TextStyle(
-                                              color: Color.fromRGBO(82, 165, 160, 1),
-                                              fontSize: height * 0.0175,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w500),
-                                        ),
+                                      child: Text(
+                                        'http://www.qnatest.com/test/132215012345678',
+                                        style: TextStyle(
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500),
                                       ),
                                     ),
                                   ],

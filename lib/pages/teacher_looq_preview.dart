@@ -215,7 +215,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
         // ),
         body: Center(
           child: SizedBox(
-            height: height * 0.81,
+            height: height * 0.85,
             width: width * 0.888,
             child:
             Card(
@@ -310,7 +310,14 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       ),
                     ),
                     SizedBox(height: height * 0.03,),
-                    ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                    SizedBox(
+                      height: height * 0.25,
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: ChooseWidget(
+                              question: widget.question, selected: selected, height: height, width: width)
+                      ),
+                    ),
                     SizedBox(height: height * 0.03,),
                     Padding(
                       padding:  EdgeInsets.only(left: width * 0.03),

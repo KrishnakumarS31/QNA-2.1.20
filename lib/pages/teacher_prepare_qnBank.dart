@@ -463,47 +463,45 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           )),
                       SizedBox(height: height * 0.010),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          SizedBox(
-                            width: width * 0.65,
-                            child: Text(
-                              "Add Choices",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(51, 51, 51, 1),
-                                fontSize: height * 0.018,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Choices",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                "Correct\nAnswer",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontSize: height * 0.016,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              SizedBox(width: width * 0.03,),
-                              Text(
-                                "Delete",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontSize: height * 0.016,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
 
-                        ],
-                      ),
+                          Text(
+                            "Correct\nAnswer",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontSize: height * 0.016,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(
+                            width: width* 0.02,
+                          ),
+                          Text(
+                            "Delete",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontSize: height * 0.016,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                      ],),
                       SizedBox(height: height * 0.010),
                       // ]),
                     ],
@@ -542,7 +540,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 ),
                               ),
                               SizedBox(
-                                width: 35,
+                                width: width * 0.03,
                               ),
                               IconButton(
                                 onPressed: (){
@@ -555,7 +553,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 ),
                               ),
                               SizedBox(
-                                width: 20,
+                                width: width * 0.03,
                               ),
                               IconButton(
                                 onPressed: ()  {

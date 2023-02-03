@@ -71,7 +71,7 @@ getConectivity()=>
         });
       }
       else{
-        print("i got it");
+
       }
     });
 

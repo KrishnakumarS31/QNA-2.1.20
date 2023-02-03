@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/pages/stud_question01.dart';
+import 'package:qna_test/pages/student_search_library.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
@@ -615,24 +616,35 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                   SizedBox(
                     height: localHeight * 0.02,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-
-                      IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          color: Color.fromRGBO(141, 167, 167, 1),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: StudentSearchLibrary(setLocale: widget.setLocale),
                         ),
-                        onPressed: () {},
-                      ),
-                       Text(AppLocalizations.of(context)!.search_library,
-                          style: const TextStyle(
-                              color: Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16)),
-                    ],
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+
+                        IconButton(
+                          icon: const Icon(
+                            Icons.search,
+                            color: Color.fromRGBO(141, 167, 167, 1),
+                          ),
+                          onPressed: () {},
+                        ),
+                         Text(AppLocalizations.of(context)!.search_library,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(48, 145, 139, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16)),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: localHeight * 0.03,

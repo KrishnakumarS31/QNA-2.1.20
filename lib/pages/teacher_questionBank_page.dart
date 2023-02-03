@@ -302,6 +302,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w700,
                       ),),
+                    Text("Tap the Question to view /edit ",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        color:  Color.fromRGBO(153, 153, 153, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),),
                     Column(
                         children: [
                           for ( DemoQuestionModel i in quesList )

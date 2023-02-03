@@ -31,6 +31,28 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
+  final List<TextEditingController> chooses=[];
+  final List<bool> radioList=[];
+  final _formKey=GlobalKey<FormState>();
+
+  _onRadioChange(int key){
+    setState(() {
+      radioList[key]=!radioList[key];
+    });
+  }
+  addField(){
+    setState(() {
+      chooses.add(TextEditingController());
+      radioList.add(false);
+    });
+  }
+
+  removeItem(i){
+    setState(() {
+      chooses.removeAt(i);
+      radioList.removeAt(i);
+    });
+  }
 
   @override
   void initState() {
@@ -44,6 +66,14 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     urlController.text=widget.question.url!;
     adviceController.text=widget.question.advice!;
     selected=widget.question.correctChoice;
+    for(int i =0;i<widget.question.choices!.length;i++){
+      chooses.add(TextEditingController());
+      radioList.add(false);
+      chooses[i].text=widget.question.choices![i]!;
+      if(selected!.contains(i+1)){
+        radioList[i]=true;
+      }
+    }
   }
 
   showQuestionPreview(BuildContext context) {
@@ -454,45 +484,118 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                 ),
                 SizedBox(height: height * 0.010),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // Row(
-                    //   children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Choices",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(51, 51, 51, 1),
+                            fontSize: height * 0.016,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+
                     Text(
-                      "Add Choices",
+                      "Correct\nAnswer",
                       style: TextStyle(
                         color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontSize: height * 0.018,
+                        fontSize: height * 0.016,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: [
+                    SizedBox(
+                      width: width* 0.02,
+                    ),
                     Text(
-                      "Correct Answer",
+                      "Delete",
                       style: TextStyle(
                         color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontSize: height * 0.018,
+                        fontSize: height * 0.016,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ],
-                ),
+                  ],),
                 SizedBox(height: height * 0.010),
-                ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      for(int i =0;i<chooses.length;i++)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.02),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: chooses[i],
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: height * 0.018),
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                    hintText: "Type Option Here",
+                                    border:
+                                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                  ),
+
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: (){
+                                  _onRadioChange(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: ()  {
+                                  removeItem(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  Icons.delete_outline,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                    ],
+                  ),
+
+                ),
+                // ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
                         onPressed: () {
-                          setState(() {
-                            _count++;
-                            print(_count);
-                          });
+                          addField();
                         }, child: Text(
                         "Add more choice",
                         style: TextStyle(
@@ -600,19 +703,24 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
                               ),
                               onPressed:() {
-                                //List<String> temp=[];
-                                // for(int i=0;i< _values.length;i++){
-                                //   temp.add(_values[i]['value']);
-                                // }
+                                List<String> temp=[];
+                                List<int> selectedTemp=[];
+                                for(int i=0;i< chooses.length;i++){
+                                  if(radioList[i]){
+                                    selectedTemp.add(i+1);
+                                  }
+                                  temp.add(chooses[i].text);
+                                }
                                 setState(() {
                                   widget.question.subject=subjectController.text;
                                   widget.question.topic=topicController.text;
                                   widget.question.subTopic=subtopicController.text;
                                   widget.question.studentClass=classRoomController.text;
                                   widget.question.question=questionController.text;
-                                  widget.question.correctChoice=selected;
+                                  widget.question.correctChoice=selectedTemp;
                                   widget.question.advice=adviceController.text;
                                   widget.question.url=urlController.text;
+                                  widget.question.choices=temp;
                                   //demoQuestionModel.choices=temp;
                                 });
                                 showQuestionPreview(context);
