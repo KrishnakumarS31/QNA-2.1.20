@@ -46,6 +46,15 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     selected=widget.question.correctChoice;
   }
 
+  showQuestionPreview(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return TeacherLooqPreview(question: widget.question,);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -606,14 +615,14 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   widget.question.url=urlController.text;
                                   //demoQuestionModel.choices=temp;
                                 });
-
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child:  TeacherLooqPreview(question: widget.question,),
-                                  ),
-                                );
+                                showQuestionPreview(context);
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child:  TeacherLooqPreview(question: widget.question,),
+                                //   ),
+                                // );
                               },
                               child: const Text("Preview"),
                             ),
