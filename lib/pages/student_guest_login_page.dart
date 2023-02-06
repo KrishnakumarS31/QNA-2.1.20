@@ -314,6 +314,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
                                   controller: nameController,
+                                  onChanged: (val)
+                                  {
+                                    formKey.currentState!.validate();
+                                  },
                                   decoration: InputDecoration(
                                     hintText: AppLocalizations.of(context)!.your_name,
                                     hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),

@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'package:qna_test/pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
-
-import '../Components/custom_radio_option.dart';
 import '../Entity/demo_question_model.dart';
 import '../Entity/question_model.dart';
-import '../Entity/question_paper_model.dart';
-import '../Providers/question_num_provider.dart';
-import '../Providers/question_prepare_provider.dart';
-import 'teacher_prepare_preview_qnBank.dart';
+
 
 class TeacherLooqClonePreview extends StatefulWidget {
   const TeacherLooqClonePreview({
@@ -301,14 +294,12 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                       padding:  EdgeInsets.only(left: width * 0.03,top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Expanded(
-                          child: Text('${widget.question.question}',
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: height* 0.015)),
-                        ),
+                        child: Text('${widget.question.question}',
+                            style: TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height* 0.015)),
                       ),
                     ),
                     SizedBox(height: height * 0.03,),

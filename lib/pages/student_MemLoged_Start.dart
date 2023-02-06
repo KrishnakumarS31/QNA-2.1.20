@@ -518,14 +518,27 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         children: [
                            Align(
                             alignment: Alignment.topLeft,
-                            child:
-                            Text(AppLocalizations.of(context)!.enter_assId,
-                              style: const TextStyle(
-                                  color: Color.fromRGBO(102, 102, 102, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14),),
-
+                            child: RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                    text:
+                                    AppLocalizations.of(context)!.enter_assId,
+                                    style: TextStyle(
+                                        color:
+                                        const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: localHeight * 0.017),
+                                  ),
+                                  TextSpan(
+                                      text: "\t*",
+                                      style: TextStyle(
+                                          color:
+                                          const Color.fromRGBO(219, 35, 35, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: localHeight * 0.017)),
+                                ])),
                           ),
                           SizedBox(
                             height: localHeight * 0.02,
@@ -541,6 +554,10 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                                           return value!.length < 8 ? AppLocalizations.of(context)!.valid_assId : null;
                                         },
                                         controller: assessmentID,
+                                        onChanged: (val)
+                                        {
+                                          formKey.currentState!.validate();
+                                        },
                                         inputFormatters: [
                                           FilteringTextInputFormatter.allow(RegExp('[a-zA-Z0-9]')),
                                         ],

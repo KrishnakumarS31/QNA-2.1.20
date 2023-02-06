@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
-import '../DataSource/qna_repo.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
-//AppLocalizations.of(context)!.agree_privacy_terms
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
     Key? key, required this.setLocale,
@@ -34,7 +31,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
@@ -48,9 +45,10 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text("FORGET PASSWORD",
+          title: Text(
+            AppLocalizations.of(context)!.forgot_password_caps,
             style: TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.025,
               fontFamily: "Inter",
               fontWeight: FontWeight.w600,
@@ -78,23 +76,45 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                         padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
                         child: TextFormField(
                           controller: _controller,
-                            keyboardType: TextInputType.text,
-
-                            decoration: InputDecoration(
-                              floatingLabelBehavior: FloatingLabelBehavior.always,
-                              labelText: AppLocalizations.of(context)!.enter_email_id,
-                              labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                              helperText: AppLocalizations.of(context)!.email_helper_text,
-                              helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w500,fontSize: height * 0.015),
-                              hintText: AppLocalizations.of(context)!.email_hint,
-                              hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
-                              focusedBorder:  OutlineInputBorder(
-                                  borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
-                                  borderRadius: BorderRadius.circular(15)
-                              ),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15)),
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (val)
+                            {
+                            formKey.currentState!.validate();
+                            },
+                          decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            label: RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                    text:
+                                    AppLocalizations.of(context)!.enter_email_id,
+                                    style: TextStyle(
+                                        color:
+                                        const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017),
+                                  ),
+                                  TextSpan(
+                                      text: "\t*",
+                                      style: TextStyle(
+                                          color:
+                                          const Color.fromRGBO(219, 35, 35, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.017)),
+                                ])),
+                            helperText: 'an OTP will be sent to Email ID',
+                            helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
+                            hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
+                            hintText: "emailID@email.com",
+                            focusedBorder:  OutlineInputBorder(
+                                borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                                borderRadius: BorderRadius.circular(15)
                             ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
                             validator: (value){
                             if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                 .hasMatch(value)){

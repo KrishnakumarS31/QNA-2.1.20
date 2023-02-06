@@ -2,15 +2,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_forgot_password.dart';
+import 'package:qna_test/Pages/teacher_login.dart';
 
 
 
 class TeacherVerifyOtpPage extends StatefulWidget {
   const TeacherVerifyOtpPage({
     Key? key,
-    required this.email
+    required this.email, required this.setLocale
   }) : super(key: key);
-
+  final void Function(Locale locale) setLocale;
   final String email;
   @override
   TeacherVerifyOtpPageState createState() => TeacherVerifyOtpPageState();
@@ -53,83 +54,37 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        // appBar: AppBar(
-        //   centerTitle: true,
-        //   title: const Text("VERIFY OTP",
-        //     style: TextStyle(
-        //       color: Color.fromRGBO(255, 255, 255, 1),
-        //       fontSize: 18.0,
-        //       fontFamily: "Inter",
-        //       fontWeight: FontWeight.w600,
-        //     ),),
-        //   leading: IconButton(
-        //     icon:const Icon(
-        //       Icons.chevron_left,
-        //       size: 40.0,
-        //       color: Colors.white,
-        //     ), onPressed: () {
-        //     Navigator.of(context).pop();
-        //   },
-        //   ),
-        //   flexibleSpace: Container(
-        //     decoration: const BoxDecoration(
-        //       gradient: LinearGradient(
-        //           end: Alignment.bottomRight,
-        //           begin: Alignment.topLeft,
-        //           colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
-        //     ),
-        //   ),
-        // ),
+        appBar: AppBar(
+          leading: IconButton(
+            icon:const Icon(
+              Icons.chevron_left,
+              size: 40.0,
+              color: Colors.white,
+            ), onPressed: () {
+            Navigator.of(context).pop();
+          },
+          ),
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: Text(
+            "VERIFY OTP",
+            style: TextStyle(
+              color: const Color.fromRGBO(255, 255, 255, 1),
+              fontSize: height * 0.025,
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w600,
+            ),),
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    end: Alignment.bottomRight,
+                    begin: Alignment.topLeft,
+                    colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
+            ),
+          ),
+        ),
         body: Column(
             children: [
-              Container(
-                height: height * 0.26,
-                width: width,
-                decoration: BoxDecoration(
-                  // color: Theme.of(context).primaryColor,
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1)
-                    ],
-                  ),
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          width ,
-                          height * 0.30)
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children : [
-
-                    Container(
-                      width: width * 0.03,
-
-                    ),
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.all(0.0),
-                        height: height * 0.22,
-                        width: width * 0.22,
-                        // decoration: BoxDecoration(
-                        //     //color: Colors.yellow[100],
-                        //     border: Border.all(
-                        //       color: Colors.red,
-                        //       width: 1,
-                        //     )),
-                        child: Image.asset("assets/images/question_mark_logo.png"),
-                      ),
-                    ),
-                    Container(
-                      width: width * 0.03,
-                    )
-
-                  ],
-                ),
-              ),
               SizedBox(height:height * 0.03),
               SizedBox(height:height * 0.04),
               Form(
@@ -146,17 +101,23 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                           children: [
                             Align(
                               alignment: Alignment.topLeft,
-                              child:
-                              Text("CHECK YOUR EMAIL FOR OTP",
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1
-                                    ?.merge(const TextStyle(
-                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14)),),
-
+                              child: RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text:"CHECK YOUR EMAIL FOR OTP",
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.017),),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017)),
+                                  ])),
                             ),
                             SizedBox(
                               height: height * 0.0001,
@@ -165,6 +126,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
                                   controller: otpController,
+                                  onChanged: (val)
+                                  {
+                                    formKey.currentState!.validate();
+                                  },
                                   decoration: const InputDecoration(
                                     helperStyle: TextStyle(color: Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: 16),
                                     hintText: "Enter OTP",
@@ -314,7 +279,12 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
               fontWeight: FontWeight.w500,
               fontSize: 15),),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TeacherLogin(setLocale: widget.setLocale),
+              ),
+            );
           },
         )
       ],

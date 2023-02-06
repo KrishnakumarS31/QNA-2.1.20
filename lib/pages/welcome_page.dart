@@ -53,7 +53,7 @@ class _WelcomePageState extends State<WelcomePage> {
             children: [
               Container(
                   color: const Color.fromRGBO(0,106,100,1),
-                  height: 55),
+                  height: localHeight * 0.055),
               Image.asset(
                 "assets/images/rectangle_qna.png",
               ),
@@ -228,7 +228,7 @@ class _WelcomePageState extends State<WelcomePage> {
               child:
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width / 1.2,
+                height: MediaQuery.of(context).size.height / 2.5,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fill,

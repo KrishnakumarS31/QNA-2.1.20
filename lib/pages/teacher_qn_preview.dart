@@ -25,123 +25,9 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
   IconData showIcon=Icons.expand_circle_down_outlined;
-  List<Ques> question=getData();
-  static List<Ques> getData() {
-    const data=[
-      {
-        "id":1,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":2,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "Option 1","Option 2","Option 3"
-        ]
-      },
-      {
-        "id":3,
-        "questionType":"choose",
-        "mark":25,
-        "question":"If you could only eat one food for the rest of your life, what would it be?",
-        "options":[
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },
-      {
-        "id":4,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":5,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id": 6,
-        "questionType":"choose",
-        "mark": 25,
-        "question": "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },{
-        "id":7,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":8,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "Option 1","Option 2","Option 3"
-        ]
-      },
-      {
-        "id":9,
-        "questionType":"choose",
-        "mark":25,
-        "question":"If you could only eat one food for the rest of your life, what would it be?",
-        "options":[
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      },
-      {
-        "id":10,
-        "questionType":"choose",
-        "mark":25,
-        "question":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id":11,
-        "questionType":"choose",
-        "mark":5,
-        "question":"What type of music are you into?",
-        "options":[
-          "a. Option 1","b. Option 2","c. Option 3"
-        ]
-      },
-      {
-        "id": 12,
-        "questionType":"choose",
-        "mark": 25,
-        "question": "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1", "b. Option 2", "c. Option 3","a. Option 1", "b. Option 2", "c. Option 3"
-        ]
-      }
-    ];
-    return data.map<Ques>(Ques.fromJson).toList();
-  }
+
   List<dynamic> selected=[];
-  ValueChanged<String?> _valueChangedHandler() {
-    return (value) => setState(() => _groupValue = value!);
-  }
+
 
   @override
   void initState() {
@@ -156,62 +42,64 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return
+      Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
-          ],
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          toolbarHeight: height * 0.100,
-          centerTitle: true,
-          title: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "PREPARE QUESTION",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: height * 0.0225,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ]),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
-          ),
-        ),
-        body: Center(
+        // appBar: AppBar(
+        //   actions: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(right: 10),
+        //       child: IconButton(
+        //         icon: const Icon(
+        //           Icons.menu,
+        //           size: 40.0,
+        //           color: Colors.white,
+        //         ),
+        //         onPressed: () {
+        //           Navigator.of(context).pop();
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        //   leading: IconButton(
+        //     icon: const Icon(
+        //       Icons.chevron_left,
+        //       size: 40.0,
+        //       color: Colors.white,
+        //     ),
+        //     onPressed: () {
+        //       Navigator.of(context).pop();
+        //     },
+        //   ),
+        //   toolbarHeight: height * 0.100,
+        //   centerTitle: true,
+        //   title: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //       children: [
+        //         Text(
+        //           "PREPARE QUESTION",
+        //           style: TextStyle(
+        //             color: const Color.fromRGBO(255, 255, 255, 1),
+        //             fontSize: height * 0.0225,
+        //             fontFamily: "Inter",
+        //             fontWeight: FontWeight.w400,
+        //           ),
+        //         ),
+        //       ]),
+        //   flexibleSpace: Container(
+        //     decoration: const BoxDecoration(
+        //         gradient: LinearGradient(
+        //             end: Alignment.bottomCenter,
+        //             begin: Alignment.topCenter,
+        //             colors: [
+        //               Color.fromRGBO(0, 106, 100, 1),
+        //               Color.fromRGBO(82, 165, 160, 1),
+        //             ])),
+        //   ),
+        // ),
+        body:
+        Center(
           child: SizedBox(
           height: height * 0.81,
           width: width * 0.888,
@@ -245,18 +133,22 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                         padding:  EdgeInsets.only(left: width * 0.03,top: height * 0.02),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Expanded(
-                            child: Text('${widget.question.question}',
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(51, 51, 51, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height* 0.015)),
-                          ),
+                          child: Text('${widget.question.question}',
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: height* 0.015)),
                         ),
                       ),
                         SizedBox(height: height * 0.03,),
-                        ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                        SizedBox(
+                          height: height * 0.25,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                          ),
+                        ),
                       SizedBox(height: height * 0.03,),
                       Padding(
                         padding:  EdgeInsets.only(left: width * 0.03),
@@ -442,15 +334,13 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(width: widget.width * 0.02,),
-                        Expanded(
-                          child: Text('${widget.question.choices![j-1]}',
-                            style: TextStyle(
-                              color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),),
-                        ),
+                        Text('${widget.question.choices![j-1]}',
+                          style: TextStyle(
+                            color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
+                            fontSize: widget.height * 0.0162,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),),
                       ])
               ),
             ),

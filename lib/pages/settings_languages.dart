@@ -188,13 +188,17 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                 int i = await AppUserRepo().createUserDetail(AppUser(
                                     locale: selectedLocale,
                                     id: 35));
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child:WelcomePage(setLocale: widget.setLocale),
-                                  ),
-                                );
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context)=>WelcomePage(setLocale: widget.setLocale)),
+                                        (route)=>route.isFirst);
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child:WelcomePage(setLocale: widget.setLocale),
+                                //   ),
+                                // );
 
                               },
                               child: Container(

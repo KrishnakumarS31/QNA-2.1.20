@@ -36,10 +36,11 @@ class StudentUserProfileState extends State<StudentUserProfile> {
         AppBar(
           centerTitle: true,
           toolbarHeight: height * 0.2,
-          title:
-        Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+          title: Column(
         children: [
+          Column(
+            children :  [
+              SizedBox(height: height * 0.03),
            Text("USER PROFILE",
           style: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 1),
@@ -47,23 +48,49 @@ class StudentUserProfileState extends State<StudentUserProfile> {
             fontFamily: "Inter",
             fontWeight: FontWeight.w600,
           ),),
-          SizedBox(width: width * 0.03,),
-          Row(
+         ],
+          ),
+         SizedBox(height: height * 0.01),
+          Align(
+            alignment: Alignment.topLeft,
+              //padding: EdgeInsets.only(right: 150),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.only(left: width * 0.02),
-                  child: Row(
-                    children: [
+              // Padding(
+              //     padding: EdgeInsets.only(right: width * 0.1),
+              //     child:
+              //     Row(
+                    //children: [
                       Icon(Icons.account_circle_outlined,size: height * 0.08,),
+              SizedBox(width: 30,),
+              Text("${widget.userDataModel.data?.firstName}",
+                style: const TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 18.0,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w600,
+                ),),
+              SizedBox(width: 30,),
+              Text("${widget.userDataModel.data?.lastName}",
+                style: const TextStyle(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: 18.0,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w600,
+                ),),
 
-                    ],
-                  )),
+            ])),
+
+                  //   ],
+                  // )),
               SizedBox(width: width * 0.02,),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text("${widget.userDataModel.data?.firstName}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 1),
                       fontSize: 18.0,
                       fontFamily: "Inter",
@@ -71,7 +98,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                     ),),
 
                   Text("${widget.userDataModel.data?.lastName}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 1),
                       fontSize: 18.0,
                       fontFamily: "Inter",
@@ -79,7 +106,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                     ),),
 
                   Text("${widget.userDataModel.data?.role}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color.fromRGBO(255, 255, 255, 1),
                       fontSize: 18.0,
                       fontFamily: "Inter",
@@ -87,15 +114,13 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                     ),),
                 ],
               ),
-            ],
-          ),
     ],
         ),
           leading:
             Align(
               alignment: Alignment.topLeft,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Row(
+               mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
                     icon:const Icon(
@@ -106,7 +131,6 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                     Navigator.of(context).pop();
                   },
                   ),
-
                 ],
               ),
             ),

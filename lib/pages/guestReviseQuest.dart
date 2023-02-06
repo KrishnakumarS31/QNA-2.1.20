@@ -19,20 +19,32 @@ class guestReviseQuest extends StatefulWidget {
 }
 
 class guestReviseQuestState extends State<guestReviseQuest> {
-  late Future<QuestionPaperModel> questionPaperModel;
   late QuestionPaperModel values;
 
   @override
   void initState() {
     super.initState();
     values = widget.questions;
+    for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
+      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+      for(int t=0;t<selectedAns.length;t++){
+        String selectedAnswers = widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText;
+        print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);
+      }}
   }
 
   @override
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-    questionPaperModel= QnaService.getQuestion(assessmentId: values.data!.assessment!.assessmentCode);
+    print("vfevve");
+    print(values.data!.assessment!.questions[0].choices[1].choiceText);
+    for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
+      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+      for(int t=0;t<selectedAns.length;t++){
+        String selectedAnswers = widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText;
+        print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);
+    }}
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
@@ -132,7 +144,28 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                         ],
                       ),
                     ),
+                    const SizedBox(width: 30,),
+                    const Text("studentName",
+                      style: TextStyle(
+                        color: Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: 18.0,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w600,
+                      ),),
                     SizedBox(height: localHeight * 0.020),
+                    Row(children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: localWidth * 0.056),
+                        child: Text(
+                            AppLocalizations.of(context)!.pls_tap_ques,
+                            style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontFamily: 'Inter',
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w500,
+                                fontSize: localHeight * 0.011)),
+                      )
+                    ]),
                     Column(
                         children: [
                           for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)

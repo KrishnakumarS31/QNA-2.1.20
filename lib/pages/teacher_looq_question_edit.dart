@@ -31,6 +31,28 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
+  final List<TextEditingController> chooses=[];
+  final List<bool> radioList=[];
+  final _formKey=GlobalKey<FormState>();
+
+  _onRadioChange(int key){
+    setState(() {
+      radioList[key]=!radioList[key];
+    });
+  }
+  addField(){
+    setState(() {
+      chooses.add(TextEditingController());
+      radioList.add(false);
+    });
+  }
+
+  removeItem(i){
+    setState(() {
+      chooses.removeAt(i);
+      radioList.removeAt(i);
+    });
+  }
 
   @override
   void initState() {
@@ -44,6 +66,23 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     urlController.text=widget.question.url!;
     adviceController.text=widget.question.advice!;
     selected=widget.question.correctChoice;
+    for(int i =0;i<widget.question.choices!.length;i++){
+      chooses.add(TextEditingController());
+      radioList.add(false);
+      chooses[i].text=widget.question.choices![i]!;
+      if(selected!.contains(i+1)){
+        radioList[i]=true;
+      }
+    }
+  }
+
+  showQuestionPreview(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return TeacherLooqPreview(question: widget.question,);
+      },
+    );
   }
 
   @override
@@ -445,36 +484,112 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                 ),
                 SizedBox(height: height * 0.010),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    // Row(
-                    //   children: [
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Choices",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(51, 51, 51, 1),
+                            fontSize: height * 0.016,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+
                     Text(
-                      "Add Choices",
+                      "Correct\nAnswer",
                       style: TextStyle(
                         color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontSize: height * 0.018,
+                        fontSize: height * 0.016,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    //   ],
-                    // ),
-                    // Row(
-                    //   children: [
+                    SizedBox(
+                      width: width* 0.02,
+                    ),
                     Text(
-                      "Correct Answer",
+                      "Delete",
                       style: TextStyle(
                         color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontSize: height * 0.018,
+                        fontSize: height * 0.016,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                  ],
-                ),
+                  ],),
                 SizedBox(height: height * 0.010),
-                ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      for(int i =0;i<chooses.length;i++)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.02),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: chooses[i],
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: height * 0.018),
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                    hintText: "Type Option Here",
+                                    border:
+                                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                  ),
+
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: (){
+                                  _onRadioChange(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: ()  {
+                                  removeItem(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  Icons.delete_outline,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                    ],
+                  ),
+
+                ),
+                // ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -606,14 +721,14 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   widget.question.url=urlController.text;
                                   //demoQuestionModel.choices=temp;
                                 });
-
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child:  TeacherLooqPreview(question: widget.question,),
-                                  ),
-                                );
+                                showQuestionPreview(context);
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child:  TeacherLooqPreview(question: widget.question,),
+                                //   ),
+                                // );
                               },
                               child: const Text("Preview"),
                             ),

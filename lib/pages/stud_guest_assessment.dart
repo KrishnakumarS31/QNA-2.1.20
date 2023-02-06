@@ -391,19 +391,21 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     fontSize: 16),
                               ),
                               onTap: () async {}),
-                          const Divider(
-                            thickness: 2,
+                          SizedBox(height: height * 0.03),
+                          const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Version : 1.0.0",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(180, 180, 180, 1),
+                                  //Color.fromRGBO(48, 145, 139, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 16),
+                            ),
                           ),
-                          const Text(
-                            "Version : 1.0.0",
-                            style: TextStyle(
-                                color: Color.fromRGBO(226, 68, 0, 1),
-                                //Color.fromRGBO(48, 145, 139, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
-                                fontSize: 16),
-                          ),
+                          SizedBox(height: height * 0.03),
                         ],
                       ),
                     ),
@@ -506,18 +508,27 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                             children: [
                               Align(
                                 alignment: Alignment.topLeft,
-                                child: Text(
-                                  AppLocalizations.of(context)!.assessment_id,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyText1
-                                      ?.merge(TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                ),
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                        text:
+                                        AppLocalizations.of(context)!.assessment_id,
+                                        style: TextStyle(
+                                            color:
+                                            const Color.fromRGBO(102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017),
+                                      ),
+                                      TextSpan(
+                                          text: "\t*",
+                                          style: TextStyle(
+                                              color:
+                                              const Color.fromRGBO(219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.017)),
+                                    ])),
                               ),
                               SizedBox(
                                 height: height * 0.0001,
@@ -1042,18 +1053,27 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                             children: [
                               Align(
                                 alignment: Alignment.topLeft,
-                                child: Text(
-                                  AppLocalizations.of(context)!.assessment_id,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyText1
-                                      ?.merge(TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                ),
+                                child: RichText(
+                                    text: TextSpan(children: [
+                                      TextSpan(
+                                        text:
+                                        AppLocalizations.of(context)!.assessment_id,
+                                        style: TextStyle(
+                                            color:
+                                            const Color.fromRGBO(102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017),
+                                      ),
+                                      TextSpan(
+                                          text: "\t*",
+                                          style: TextStyle(
+                                              color:
+                                              const Color.fromRGBO(219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.017)),
+                                    ])),
                               ),
                               SizedBox(
                                 height: height * 0.0001,
@@ -1190,3 +1210,5 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
     );
   }
 }
+
+

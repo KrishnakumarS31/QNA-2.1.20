@@ -19,7 +19,7 @@ class TeacherPrepareQnBank extends StatefulWidget {
 
 class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   String _groupValue='MCQ';
-IconData radioIcon=Icons.radio_button_off_outlined;
+  IconData radioIcon=Icons.radio_button_off_outlined;
   late int _count;
   DemoQuestionModel demoQuestionModel=DemoQuestionModel(questionType: '', subject: '', topic: '', subTopic: '', studentClass: '', question: '', id: null);
   TextEditingController subjectController = TextEditingController();
@@ -33,6 +33,23 @@ IconData radioIcon=Icons.radio_button_off_outlined;
   IconData showIcon = Icons.expand_circle_down_outlined;
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
+  }
+  final List<TextEditingController> chooses=[];
+  final List<bool> radioList=[];
+  final _formKey=GlobalKey<FormState>();
+
+  addField(){
+    setState(() {
+      chooses.add(TextEditingController());
+      radioList.add(false);
+    });
+  }
+
+  removeItem(i){
+    setState(() {
+      chooses.removeAt(i);
+      radioList.removeAt(i);
+    });
   }
 
   showQuestionPreview(BuildContext context) {
@@ -50,6 +67,7 @@ IconData radioIcon=Icons.radio_button_off_outlined;
     super.initState();
     _count=0;
     _values=[];
+    addField();
     //Provider.of<QuestionPrepareProvider>(context, listen: false).reSetQuestionList();
   }
 
@@ -445,68 +463,135 @@ IconData radioIcon=Icons.radio_button_off_outlined;
                           )),
                       SizedBox(height: height * 0.010),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          // Row(
-                          //   children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Choices",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+
                           Text(
-                            "Add Choices",
+                            "Correct\nAnswer",
                             style: TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontSize: height * 0.018,
+                              fontSize: height * 0.016,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          //   ],
-                          // ),
-                          // Row(
-                          //   children: [
+                          SizedBox(
+                            width: width* 0.02,
+                          ),
                           Text(
-                            "Correct Answer",
+                            "Delete",
                             style: TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontSize: height * 0.018,
+                              fontSize: height * 0.016,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                        ],
-                      ),
+                      ],),
                       SizedBox(height: height * 0.010),
                       // ]),
                     ],
                   ),
                 ),
-                Container(
+                Form(
+                  key: _formKey,
                   child: Column(
                     children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                          itemCount: _count,
-                          itemBuilder: (context, index){
-                            return _row(index,height);
-                      }
-                      )
+                      for(int i =0;i<chooses.length;i++)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.02),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: chooses[i],
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: height * 0.018),
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                    hintText: "Type Option Here",
+                                    border:
+                                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                  ),
+
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: (){
+                                  _onRadioChange(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: ()  {
+                                  removeItem(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  Icons.delete_outline,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
                     ],
                   ),
+
                 ),
+                // Container(
+                //   child: Column(
+                //     children: [
+                //       ListView.builder(
+                //           shrinkWrap: true,
+                //           itemCount: _count,
+                //           itemBuilder: (context, index){
+                //             return _row(index,height);
+                //           }
+                //       )
+                //     ],
+                //   ),
+                // ),
                 SizedBox(height: height * 0.020),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
                         onPressed: () {
-                          Map<String, dynamic> json = {"id": _values.length, 'value': {
-                            "text": '',
-                            "radio": false
-                          }
-                          };
-                          _values.add(json);
-                          print(_values);
-                          setState(() {
-                            _count++;
-                          });
+                          addField();
                         }, child: Text(
                         "Add more choice",
                         style: TextStyle(
@@ -608,11 +693,11 @@ IconData radioIcon=Icons.radio_button_off_outlined;
                                   onPressed: () {
                                     List<String> temp=[];
                                     List<int> selectedTemp=[];
-                                    for(int i=0;i< _values.length;i++){
-                                      if(_values[i]['value']['radio']){
+                                    for(int i=0;i< chooses.length;i++){
+                                      if(radioList[i]){
                                         selectedTemp.add(i+1);
                                       }
-                                      temp.add(_values[i]['value']['text']);
+                                      temp.add(chooses[i].text);
                                     }
                                     demoQuestionModel.subject=subjectController.text;
                                     demoQuestionModel.topic=topicController.text;
@@ -659,101 +744,17 @@ IconData radioIcon=Icons.radio_button_off_outlined;
     }
   }
 
-  _row(int key, double height) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: height * 0.02),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextFormField(
-              style: TextStyle(
-                  color: const Color.fromRGBO(82, 165, 160, 1),
-                  fontFamily: 'Inter',
-                  fontWeight: FontWeight.w700,
-                  fontSize: height * 0.018),
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                labelStyle: TextStyle(
-                    color: const Color.fromRGBO(51, 51, 51, 1),
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
-                    fontSize: height * 0.015),
-                hintStyle: TextStyle(
-                    color: const Color.fromRGBO(102, 102, 102, 0.3),
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
-                    fontSize: height * 0.02),
-                hintText: "Type Question Here",
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-              ),
-              onChanged: (val) {
-                _onUpdate(key, val);
-              },
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          IconButton(
-            onPressed: (){
-              setState(() {
-                _onRadioChange(key);
-              });
 
-            },
-            icon: Icon(
-
-              //radioIcon,
-              _values[key]['value']['radio']==null?radioIcon:_values[key]['value']['radio']?Icons.radio_button_checked_outlined:Icons.radio_button_off_outlined,
-              color: Color.fromRGBO(82, 165, 160, 1),
-            ),
-          )
-        ],
-      ),
-    );
-  }
 
   _onRadioChange(int key){
-    print(key);
-    print(_values[key]['value']['radio']);
-      if(_values[key]['value']['radio']==false)
-        {
-          _values[key]['value']['radio']=true;
-          radioIcon=Icons.radio_button_checked_outlined;
-        }
-      else{
-        _values[key]['value']['radio']=false;
-        radioIcon=Icons.radio_button_off_outlined;
-      }
-      print(_values.toString());
-    }
-
-
-
-
-  _onUpdate(int key, String val){
-    int fountKey=-1;
-    for(var map in _values){
-      if(map.containsKey('id')){
-        if(map['id']==key){
-        fountKey=key;
-        break;
-        }
-      }
-    }
-    if(-1 != fountKey){
-      _values[fountKey]['value']['text']=val;
-    }
-    else{
-      Map<String, dynamic> json = {"id": key, 'value': {
-        "text": val,
-        "radio": false
-      }
-      };
-      _values.add(json);
-    }
-    print(_values.toString());
+    setState(() {
+      radioList[key]=!radioList[key];
+    });
   }
+
+
+
+
+
 }
+

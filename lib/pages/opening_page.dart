@@ -59,17 +59,18 @@ bool isAlertSet = false;
               }
             });
   }
-
 getConectivity()=>
     subscription= Connectivity().onConnectivityChanged.listen((ConnectivityResult result) async{
       isDeviceConnected=await InternetConnectionChecker().hasConnection;
       if(!isDeviceConnected && isAlertSet == false){
         showDialogBox(
-          //context: context, builder: builder
-        );
+           );
         setState(() {
           isAlertSet=true;
         });
+      }
+      else{
+        print("i got it");
       }
     });
 

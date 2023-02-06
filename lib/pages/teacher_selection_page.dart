@@ -36,30 +36,20 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
     double height = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           elevation: 0,
-            leading: IconButton(
-              icon: const Icon(
-                Icons.chevron_left,
-                size: 30,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          leading: IconButton(
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 30,
+              color: Colors.white,
             ),
-        flexibleSpace: Container(
-        decoration: const BoxDecoration(
-            gradient:  LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ],
-            )
-    ),)
-          //backgroundColor: Colors.transparent,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          backgroundColor: Colors.transparent,
         ),
         endDrawer: Drawer(
           child: Column(
@@ -325,6 +315,21 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             fontSize: 16),),
                         onTap: () async {
                         }),
+                    SizedBox(height: height * 0.03),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Version : 1.0.0",
+                        style: TextStyle(
+                            color: Color.fromRGBO(180, 180, 180, 1),
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.03),
                   ],
                 ),
               ),

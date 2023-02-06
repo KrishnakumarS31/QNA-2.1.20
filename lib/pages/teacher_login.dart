@@ -6,6 +6,7 @@ import 'package:qna_test/Pages/teacher_registration_page.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
+import '../Components/custom_incorrect_popup.dart';
 import 'privacy_policy_hamburger.dart';
 import 'settings_languages.dart';
 import 'terms_of_services.dart';
@@ -402,7 +403,7 @@ getUserDetails() async {
                                   decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                           icon: Icon(
-                                              _isObscure ? Icons.visibility : Icons.visibility_off,color: Color.fromRGBO(82, 165, 160, 1),),
+                                              _isObscure ? Icons.visibility : Icons.visibility_off,color: const Color.fromRGBO(82, 165, 160, 1),),
                                           onPressed: () {
                                             setState(() {
                                               _isObscure = !_isObscure;
@@ -430,14 +431,13 @@ getUserDetails() async {
                           ],
                         ),
                         SizedBox(height:height * 0.025),
-
                         GestureDetector(
                           onTap: (){
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: const TeacherForgotPasswordEmail(),
+                                child: TeacherForgotPasswordEmail(setLocale: widget.setLocale),
                               ),
                             );
                           },
@@ -454,11 +454,108 @@ getUserDetails() async {
                                   fontSize: height * 0.017)),),
                           ),
                         ),
-                        SizedBox(height:height * 0.052),
+                        SizedBox(height:height * 0.02),
                       ],
                     ),
                   ),
                 ),
+          Padding(
+              padding: EdgeInsets.only(left: width * 0.12),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: RichText(
+                      text: TextSpan(children: [
+                        TextSpan(
+                          text: "CERTIFY",
+                          style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w600,
+                              fontSize: height * 0.017),),
+                        TextSpan(
+                            text: "\t*",
+                            style: TextStyle(
+                                color: const Color.fromRGBO(219, 35, 35, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                fontSize: height * 0.017)),
+                      ])),
+                ),
+          ),
+                SizedBox(height:height * 0.01),
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Checkbox(
+                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                      fillColor: MaterialStateProperty
+                          .resolveWith<Color>((states) {
+                        if (states.contains(
+                            MaterialState.selected)) {
+                          return const Color.fromRGBO(82, 165, 160, 1); // Disabled color
+                        }
+                        return const Color.fromRGBO(82, 165, 160, 1); // Regular color
+                      }),
+                      value: agree,
+                      onChanged: (val) {
+                        setState(() {
+                          agree = val!;
+                          if (agree) {
+                          }
+                        });
+                      },
+                    ),
+                    RichText(
+                        text:  TextSpan(children: [
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.agree_msg,
+                            style: const TextStyle(fontSize: 15.0,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: "Inter"),
+                          ),
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.privacy_Policy,
+                            style: const TextStyle(
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w400,
+                                decoration:
+                                TextDecoration.underline,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: "Inter"),
+                          ),
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.and,
+                            style: const TextStyle(
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: "Inter"),),
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.terms,
+                            style: const TextStyle(
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w400,
+                                decoration:
+                                TextDecoration.underline,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: "Inter"),
+                          ),
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.services,
+                            style: const TextStyle(
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w400,
+                                color: Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: "Inter"),),
+                        ])
+                    ),
+                  ],
+                ),
+                ),
+                SizedBox(height:height * 0.02),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -469,42 +566,30 @@ getUserDetails() async {
                   ),
                   //shape: StadiumBorder(),
                   onPressed: () async {
-                    bool valid= formKey.currentState!.validate();
-                    // showDialog(context: context, builder: (context){
-                    //   return const Center(child: CircularProgressIndicator(
-                    //     color: Color.fromRGBO(48, 145, 139, 1),
-                    //   ));
-                    // });
-                    // int statusCode =
-                    //     await QnaService.logInUser(emailController.text.trim(), passwordController.text.trim());
-                    // Navigator.of(context).pop();
-                     if(valid == true){
-                      Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherSelectionPage(name: name,setLocale: widget.setLocale),
-                                ),
-                              ).then((value) {
-                        emailController.clear();
-                        passwordController.clear();
-                      });
-                    }
-                    // else{
-                    //   Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //       type: PageTransitionType.rightToLeft,
-                    //       child: CustomDialog(
-                    //         title: 'Incorrect Email Id / Password',
-                    //         content:
-                    //         'Entered Email ID or password is not valid',
-                    //         button: AppLocalizations.of(context)!.retry,
-                    //       ),
-                    //     ),
-                    //   );
-                    // }
-
+                if(agree) {
+                  bool valid = formKey.currentState!.validate();
+                  if (valid == true) {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: TeacherSelectionPage(
+                            name: name, setLocale: widget.setLocale),
+                      ),
+                    ).then((value) {
+                      emailController.clear();
+                      passwordController.clear();
+                    });
+                  }
+                } else{
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: CustomDialog(title: AppLocalizations.of(context)!.agree_privacy_terms, content: AppLocalizations.of(context)!.error, button: AppLocalizations.of(context)!.retry),
+                    ),
+                  );
+                }
                   },
                   child: Text(
                     AppLocalizations.of(context)!.login,
@@ -514,7 +599,7 @@ getUserDetails() async {
                         fontWeight: FontWeight.w800),
                   ),
                 ),
-                SizedBox(height:height * 0.061),
+                SizedBox(height:height * 0.03),
                 GestureDetector(
                   onTap: (){
                     Navigator.push(

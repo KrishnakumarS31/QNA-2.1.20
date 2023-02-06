@@ -161,61 +161,61 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
-          ],
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          toolbarHeight: height * 0.100,
-          centerTitle: true,
-          title: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "PREPARE QUESTION",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: height * 0.0225,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ]),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
-          ),
-        ),
+        // appBar: AppBar(
+        //   actions: [
+        //     Padding(
+        //       padding: const EdgeInsets.only(right: 10),
+        //       child: IconButton(
+        //         icon: const Icon(
+        //           Icons.menu,
+        //           size: 40.0,
+        //           color: Colors.white,
+        //         ),
+        //         onPressed: () {
+        //           Navigator.of(context).pop();
+        //         },
+        //       ),
+        //     ),
+        //   ],
+        //   leading: IconButton(
+        //     icon: const Icon(
+        //       Icons.chevron_left,
+        //       size: 40.0,
+        //       color: Colors.white,
+        //     ),
+        //     onPressed: () {
+        //       Navigator.of(context).pop();
+        //     },
+        //   ),
+        //   toolbarHeight: height * 0.100,
+        //   centerTitle: true,
+        //   title: Column(
+        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //       children: [
+        //         Text(
+        //           "PREPARE QUESTION",
+        //           style: TextStyle(
+        //             color: const Color.fromRGBO(255, 255, 255, 1),
+        //             fontSize: height * 0.0225,
+        //             fontFamily: "Inter",
+        //             fontWeight: FontWeight.w400,
+        //           ),
+        //         ),
+        //       ]),
+        //   flexibleSpace: Container(
+        //     decoration: const BoxDecoration(
+        //         gradient: LinearGradient(
+        //             end: Alignment.bottomCenter,
+        //             begin: Alignment.topCenter,
+        //             colors: [
+        //               Color.fromRGBO(0, 106, 100, 1),
+        //               Color.fromRGBO(82, 165, 160, 1),
+        //             ])),
+        //   ),
+        // ),
         body: Center(
           child: SizedBox(
-            height: height * 0.81,
+            height: height * 0.85,
             width: width * 0.888,
             child:
             Card(
@@ -301,18 +301,23 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       padding:  EdgeInsets.only(left: width * 0.03,top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Expanded(
-                          child: Text('${widget.question.question}',
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: height* 0.015)),
-                        ),
+                        child: Text('${widget.question.question}',
+                            style: TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height* 0.015)),
                       ),
                     ),
                     SizedBox(height: height * 0.03,),
-                    ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                    SizedBox(
+                      height: height * 0.25,
+                      child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: ChooseWidget(
+                              question: widget.question, selected: selected, height: height, width: width)
+                      ),
+                    ),
                     SizedBox(height: height * 0.03,),
                     Padding(
                       padding:  EdgeInsets.only(left: width * 0.03),

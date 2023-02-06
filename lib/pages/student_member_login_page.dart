@@ -295,6 +295,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
                                 controller: regNumberController,
+                                onChanged: (val)
+                                {
+                                  formKey.currentState!.validate();
+                                },
                                 decoration: InputDecoration(
                                   helperStyle: TextStyle(
                                       color: const Color.fromRGBO(
@@ -355,6 +359,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child: TextFormField(
                                 controller: passWordController,
                                 obscureText: _isObscure,
+                                onChanged: (val)
+                                {
+                                  formKey.currentState!.validate();
+                                  },
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   helperStyle: TextStyle(
@@ -367,7 +375,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       .your_password,
                                   suffixIcon: IconButton(
                                       icon: Icon(
-                                        _isObscure ? Icons.visibility : Icons.visibility_off,color: Color.fromRGBO(82, 165, 160, 1),),
+                                        _isObscure ? Icons.visibility : Icons.visibility_off,color: const Color.fromRGBO(82, 165, 160, 1),),
                                       onPressed: () {
                                         setState(() {
                                           _isObscure = !_isObscure;

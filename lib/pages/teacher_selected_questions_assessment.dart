@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
-import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
-import 'package:qna_test/pages/teacher_looq_search_question.dart';
-import 'package:qna_test/pages/teacher_published_assessment.dart';
-
-import '../Entity/demo_question_model.dart';
-import '../Providers/question_prepare_provider.dart';
-import 'teacher_prepare_qnBank.dart';
-
-
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment({
     Key? key,

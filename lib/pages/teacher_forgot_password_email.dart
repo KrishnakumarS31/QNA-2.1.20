@@ -5,9 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 //AppLocalizations.of(context)!.agree_privacy_terms
 class TeacherForgotPasswordEmail extends StatefulWidget {
   const TeacherForgotPasswordEmail({
-    Key? key,
+    Key? key, required this.setLocale,
   }) : super(key: key);
-
+  final void Function(Locale locale) setLocale;
 
   @override
   TeacherForgotPasswordEmailState createState() => TeacherForgotPasswordEmailState();
@@ -29,7 +29,7 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
 
 
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Column(
             children: [
@@ -81,7 +81,7 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
               ),
               SizedBox(height:height * 0.03),
               Text(
-                AppLocalizations.of(context)!.forgot_password,
+                AppLocalizations.of(context)!.forgot_password_caps,
                 style: TextStyle(
                   color: const Color.fromRGBO(82, 165, 160, 1),
                   fontSize: height * 0.027,
@@ -104,14 +104,36 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
                         padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
                         child: TextFormField(
                           controller: _controller,
-                          keyboardType: TextInputType.text,
-
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: (val)
+                          {
+                            formKey.currentState!.validate();
+                          },
                           decoration: InputDecoration(
+                            label: RichText(
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                    text:
+                                    AppLocalizations.of(context)!.enter_email_id,
+                                    style: TextStyle(
+                                        color:
+                                        const Color.fromRGBO(102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017),
+                                  ),
+                                  TextSpan(
+                                      text: "\t*",
+                                      style: TextStyle(
+                                          color:
+                                          const Color.fromRGBO(219, 35, 35, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.017)),
+                                ])),
                             floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelText: AppLocalizations.of(context)!.enter_email_id,
-                            labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
                             helperText: AppLocalizations.of(context)!.email_helper_text,
-                            helperStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w500,fontSize: height * 0.015),
+                            helperStyle:  TextStyle(color: const Color.fromRGBO(153, 153, 153, 1),fontFamily: 'Inter',fontWeight: FontWeight.w500,fontSize: height * 0.015),
                             hintText: AppLocalizations.of(context)!.email_hint,
                             hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                             focusedBorder:  OutlineInputBorder(
@@ -230,7 +252,7 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherVerifyOtpPage(email:_controller.text),
+                child: TeacherVerifyOtpPage(email:_controller.text,setLocale: widget.setLocale),
               ),
             );
           },
