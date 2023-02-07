@@ -244,39 +244,22 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
             child: Column(
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: height * 0.1),
+                SizedBox(height: height * 0.15),
                 Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    padding: const EdgeInsets.all(0.0),
+                  alignment: Alignment.center,
+                  child:
+                  Container(
+                    width: width * 0.50,
                     height: height * 0.20,
-                    width: width * 0.30,
-                    child: Image.asset("assets/images/question_mark_logo.png"),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/images/qna_logo.png'),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: height * 0.01),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                Text(
-                  'QNA',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: height * 0.060,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600),
-                ),
-                    SizedBox(width: width * 0.02),
-                Text(
-                  'TEST',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: height * 0.040,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500)
-                ),
-                    ]
-                ),
               ],
             ),
           ),

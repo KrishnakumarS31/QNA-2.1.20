@@ -12,8 +12,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
 
-
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
     Key? key,required this.setLocale
@@ -70,7 +68,7 @@ getConectivity()=>
         });
       }
       else{
-        print("i got it");
+
       }
     });
 
@@ -92,7 +90,7 @@ void dispose() {
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
-          image:AssetImage("assets/images/qna-splash-page-final.jpg"),
+          image:AssetImage("assets/images/qna_splash_screen.jpg"),
         ),
       ),
     );

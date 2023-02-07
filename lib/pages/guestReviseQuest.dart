@@ -20,6 +20,7 @@ class guestReviseQuest extends StatefulWidget {
 
 class guestReviseQuestState extends State<guestReviseQuest> {
   late QuestionPaperModel values;
+  List<List<String>> options=[];
 
   @override
   void initState() {
@@ -27,24 +28,26 @@ class guestReviseQuestState extends State<guestReviseQuest> {
     values = widget.questions;
     for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
       List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+      List<String> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
-        String selectedAnswers = widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText;
-        print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);
-      }}
+        if(widget.questions.data!.assessment!.questions[j-1].questionType=='mcq'){
+          selectedAnswers.add(widget.questions.data!.assessment!.questions[j-1].choices[selectedAns[t]-1].choiceText);
+        }
+        else{
+          String temp='';
+          temp=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString().length-1);
+          selectedAnswers.add(temp);
+        }
+      }
+      options.add(selectedAnswers);
+    }
+
   }
 
   @override
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
-    print("vfevve");
-    print(values.data!.assessment!.questions[0].choices[1].choiceText);
-    for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
-      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-      for(int t=0;t<selectedAns.length;t++){
-        String selectedAnswers = widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText;
-        print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);
-    }}
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
@@ -217,7 +220,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                 : SizedBox(width: localHeight * 0.010),
                                           ]),
                                           SizedBox(height: localHeight * 0.010),
-                                          Text("(${values.data!.assessment!.questions[index-1].question})",
+                                          Text(values.data!.assessment!.questions[index-1].question,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
@@ -228,15 +231,24 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                           ),
                                           SizedBox(height: localHeight * 0.015),
                                         ]),
+                                      //for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++)
+                                    // {
+                                    // List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+                                    // for(int t=0;t<selectedAns.length;t++)
+                                    // {
+                                    // print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);  }
+                                    // }
                                     subtitle:
                                     Column(
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Text(
+                                            child:
+                                            Text(
                                                 Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                     ? "Not Answered"
-                                                    : "${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
+                                                    : options[index-1].toString().substring(1,options[index-1].toString().length-1),
+                                                //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                 style:
                                                 Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                     ?
@@ -411,3 +423,4 @@ class QuestionModel {
         required this.answer,
         required this.mark});
 }
+

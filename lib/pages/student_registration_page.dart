@@ -488,7 +488,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           const Color.fromRGBO(102, 102, 102, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.014),
+                                          fontSize: localHeight * 0.013),
                                     ),
                                     TextSpan(
                                         text: "\t*",
@@ -569,7 +569,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                             const Color.fromRGBO(102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.014),
+                                            fontSize: localHeight * 0.013),
                                       ),
                                       TextSpan(
                                           text: "\t*",
@@ -891,7 +891,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                               fontWeight: FontWeight.w600,
                                               fontSize: localHeight * 0.017)),
                                     ])),
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: localHeight *0.016),
                                 hintStyle:  TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: localHeight * 0.016),
                                 hintText: AppLocalizations.of(context)!.password_hint,
                                 focusedBorder:  OutlineInputBorder(

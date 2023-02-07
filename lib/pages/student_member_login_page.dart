@@ -313,7 +313,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       color: Color.fromRGBO(82, 165, 160, 1)),
                                 ),
                                 validator: (value) {
-                                  if (value!.isEmpty)
+                                  if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
                                   {
                                     return AppLocalizations.of(context)!.error_regID;
                                   } else {

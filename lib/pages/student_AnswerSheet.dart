@@ -15,11 +15,27 @@ class StudentMemAnswerSheet extends StatefulWidget {
 
 class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
   late QuestionPaperModel values;
+  List<List<String>> options=[];
 
   @override
   void initState() {
     super.initState();
     values = widget.questions;
+    for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
+      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+      List<String> selectedAnswers =[];
+      for(int t=0;t<selectedAns.length;t++){
+        if(widget.questions.data!.assessment!.questions[j-1].questionType=='mcq'){
+          selectedAnswers.add(widget.questions.data!.assessment!.questions[j-1].choices[selectedAns[t]-1].choiceText);
+        }
+        else{
+          String temp='';
+          temp=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString().length-1);
+          selectedAnswers.add(temp);
+        }
+      }
+      options.add(selectedAnswers);
+    }
   }
 
   @override
@@ -107,11 +123,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                   ],
                 ),
                 SizedBox(height: localHeight * 0.020),
-                //SizedBox(height: localHeight * 0.030),
                 Column(children: [
-                  for (int index = 1;
-                      index < context.watch<QuestionNumProvider>().questionNum;
-                      index++)
+                  for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
                     Container(
                         //decoration: BoxDecoration(border: Border.all()),
                         margin: const EdgeInsets.all(5),
@@ -133,7 +146,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                             fontSize: localHeight * 0.012)),
                                     SizedBox(width: localHeight * 0.020),
                                     Text(
-                                      "(${values.data!.assessment!.questions[index-1].questionId}${AppLocalizations.of(context)!.marks})",
+                                      "(${values.data!.assessment!.questions[index-1].questionMarks}${AppLocalizations.of(context)!.marks})",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               179, 179, 179, 1),
@@ -144,8 +157,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                   ]),
                                   SizedBox(height: localHeight * 0.010),
                                   Text(
-                                    values.data!.assessment!.questions[index-1]
-                                        .question,
+                                    values.data!.assessment!.questions[index-1].question,
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                         color:
@@ -160,26 +172,25 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                    Provider.of<Questions>(context, listen: false)
-                                                .totalQuestion['$index'][0] ==
-                                            const Color(0xff52a5a0)
-                                        ? values.data!.assessment!.questions[index].choices[index].choiceText
-                                        : "Not Answered",
-                                    style: Provider.of<Questions>(context,
-                                                    listen: false)
-                                                .totalQuestion['$index'][0] !=
-                                            const Color(0xff52a5a0)
-                                        ? TextStyle(
-                                            color: const Color.fromRGBO(
-                                                238, 71, 0, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.014)
+                                    Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                        ? "Not Answered"
+                                        : options[index-1].toString().substring(1,options[index-1].toString().length-1),
+                                    style:
+                                    Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                        ?
+                                    TextStyle(
+                                        color: const Color.fromRGBO(
+                                            238, 71, 0, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: localHeight * 0.014)
                                         : TextStyle(
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.014)),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: localHeight * 0.014)
+                                ),
                               ),
                               SizedBox(height: localHeight * 0.015),
                               Column(
@@ -189,7 +200,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                         text: TextSpan(children: [
                                       TextSpan(
                                           text:
-                                              "${AppLocalizations.of(context)!.study_chapter} ${values.data!.assessment!.subtopic} \t",
+                                              "${AppLocalizations.of(context)!.study_chapter} ${values.data!.assessment!.questions[index-1].questionId} \t",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -198,7 +209,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                               fontSize: localHeight * 0.015)),
                                       TextSpan(
                                           text: values.data!.assessment!
-                                              .questions[index].advisorText,
+                                              .questions[index-1].advisorText,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),

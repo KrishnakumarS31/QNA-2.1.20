@@ -13,7 +13,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/users/login'));
+      var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/users/login'));
       request.body = json.encode({
         "email": email,
         "password": password
@@ -38,7 +38,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/users'));
+      var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/users'));
       request.body = studentRegistrationModelToJson(student);
       request.headers.addAll(headers);
 
@@ -57,7 +57,7 @@ class QnaRepo{
 
     static Future<UserDataModel> getUserData(int? userId) async {
       UserDataModel userData=UserDataModel(code: 0, message: 'message');
-      var request = http.Request('GET', Uri.parse('http://18.215.198.141:8080/api/v1/users/$userId'));
+      var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/users/$userId'));
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
@@ -76,7 +76,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/forgot-password'));
+      var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/forgot-password'));
       request.body = json.encode({
         "email": email
       });
@@ -99,7 +99,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/otp'));
+      var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/otp'));
       request.body = json.encode({
         "email": email,
         "otp": otp
@@ -123,7 +123,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('http://18.215.198.141:8080/api/v1/forgot-password'));
+      var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/forgot-password'));
       request.body = json.encode({
         "email": email,
         "otp": otp,
@@ -151,7 +151,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('http://18.215.198.141:8080/api/v1/password/$userId'));
+      var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/password/$userId'));
       request.body = json.encode({
         "old_password": oldPassword,
         "new_password": newPassword

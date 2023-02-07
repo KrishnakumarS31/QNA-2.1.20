@@ -10,7 +10,7 @@ import 'DataSource/app_user_repo.dart';
 import 'Entity/app_user.dart';
 import 'Providers/LanguageChangeProvider.dart';
 import 'Providers/question_prepare_provider.dart';
-
+import 'package:qna_test/Pages/welcome_page.dart';
 
 void main() {
   runApp(
@@ -73,6 +73,7 @@ class _MyAppState extends State<MyApp> {
       ),
 
       home: SplashScreen(setLocale: setLocale,),
+      // WelcomePage(setLocale: widget.setLocale),
     );
   }
 
