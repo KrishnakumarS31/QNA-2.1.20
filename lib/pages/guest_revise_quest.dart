@@ -5,14 +5,14 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Providers/question_num_provider.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
-import '../Services/qna_service.dart';
 import 'package:intl/intl.dart';
 import 'guest_result_page.dart';
 class guestReviseQuest extends StatefulWidget {
   const guestReviseQuest({Key? key,
-    required this.questions
+    required this.questions, required this.userName
   }) : super(key: key);
   final QuestionPaperModel questions;
+  final String userName;
 
   @override
   guestReviseQuestState createState() => guestReviseQuestState();
@@ -147,15 +147,15 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 30,),
-                    const Text("studentName",
-                      style: TextStyle(
+                    SizedBox(height: localHeight * 0.030),
+                    Text(widget.userName,
+                      style: const TextStyle(
                         color: Color.fromRGBO(82, 165, 160, 1),
                         fontSize: 18.0,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w600,
                       ),),
-                    SizedBox(height: localHeight * 0.020),
+                    SizedBox(height: localHeight * 0.030),
                     Row(children: [
                       Padding(
                         padding: EdgeInsets.only(left: localWidth * 0.056),
@@ -314,7 +314,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          insetPadding: EdgeInsets.only(left: localWidth * 0.13,right: localWidth * 0.13),
+         insetPadding: EdgeInsets.only(left: localWidth * 0.13,right: localWidth * 0.13),
           title: Row(
               children:  [
                 SizedBox(width: localHeight * 0.030),
@@ -340,12 +340,9 @@ class guestReviseQuestState extends State<guestReviseQuest> {
               ]
           ),
           content:
-          // SingleChildScrollView(
-          //   child:
           Text(AppLocalizations.of(context)!.sure_to_submit,),
-          //),
           actions: <Widget>[
-            SizedBox(width: localHeight * 0.020),
+            SizedBox(width: localWidth * 0.020),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -367,7 +364,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                 Navigator.of(context).pop();
               },
             ),
-            SizedBox(width: localHeight * 0.005),
+           SizedBox(width: localWidth * 0.005),
             ElevatedButton(
                 style:
                 ElevatedButton.styleFrom(
@@ -393,6 +390,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                       totalMark=totalMark+values.data!.assessment!.questions[j-1].questionMarks;
                     }
                   }
+                  final String assessmentCode = values.data!.assessment!.assessmentCode;
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');
                   final DateFormat timeFormatter = DateFormat('hh:mm a');
@@ -402,7 +400,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child:  GuestResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values),
+                      child:  GuestResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: assessmentCode,userName: widget.userName),
                     ),
                   );
                 }

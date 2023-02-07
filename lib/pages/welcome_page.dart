@@ -57,6 +57,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   height: localHeight * 0.055),
               Image.asset(
                 "assets/images/rectangle_qna.png",
+                fit: BoxFit.fill,
+                width: 310,
               ),
               Flexible(
                 child: ListView(
@@ -208,6 +210,21 @@ class _WelcomePageState extends State<WelcomePage> {
                             ),
                           );
                         }),
+                    SizedBox(height: localHeight * 0.03),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Version : 1.0.0",
+                        style: TextStyle(
+                            color: Color.fromRGBO(180, 180, 180, 1),
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),
+                      ),
+                    ),
+                    SizedBox(height: localHeight * 0.03),
                   ],
                 ),
               ),

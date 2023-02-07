@@ -57,6 +57,14 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
+          title: const Text("VERIFY OTP",
+            style: TextStyle(
+              color: Color.fromRGBO(255, 255, 255, 1),
+              fontSize: 18.0,
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w600,
+            ),),
           leading: IconButton(
             icon:const Icon(
               Icons.chevron_left,
@@ -66,32 +74,23 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
             Navigator.of(context).pop();
           },
           ),
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: Text(
-            "VERIFY OTP",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.025,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w600,
-            ),),
           flexibleSpace: Container(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomRight,
-                    begin: Alignment.topLeft,
-                    colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
+              gradient: LinearGradient(
+                  end: Alignment.bottomRight,
+                  begin: Alignment.topLeft,
+                  colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
             ),
           ),
         ),
         body: Column(
+
             children: [
               SizedBox(height:height * 0.04),
               Form(
                 key: formKey,
                 child: SizedBox(
-                  height: height * 0.6,
+                  height: height * 0.8,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:  [
@@ -232,9 +231,7 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                   ),
                 ),
               ),
-              SizedBox(
-                height: height * 0.01,
-              ),
+
 
             ]));
   }

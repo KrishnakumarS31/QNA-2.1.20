@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Entity/student.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
 import 'package:qna_test/Pages/student_regis_verify_otp.dart';
@@ -68,7 +67,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
     "Vatican City","St. Vincent & Grenadines","Venezuela","British Virgin Islands","U.S. Virgin Islands","Vietnam",
     "Vanuatu","Wallis & Futuna","Samoa","Kosovo","Yemen","Mayotte","South Africa","Zambia","Zimbabwe"];
   SingleValueDropDownController selectedCountryCitizen = SingleValueDropDownController();
-  List<String> countryResidentList = ["INDIA", "United States", "EUROPEAN UNION", "Rest of World"];
+  List<String> countryResidentList = ["India", "United States", "European Union", "Rest of World"];
   SingleValueDropDownController selectedCountryResident = SingleValueDropDownController();
 
 
@@ -825,7 +824,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       style: const TextStyle(
                                           fontSize: 15.0,
                                           fontWeight: FontWeight.w400,
-                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                          decoration:
+                                          TextDecoration.underline,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
                                           fontFamily: "Inter"),),
                                     TextSpan(
                                       text: AppLocalizations.of(context)!.terms,

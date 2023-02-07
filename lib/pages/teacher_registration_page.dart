@@ -72,7 +72,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
     "Vatican City","St. Vincent & Grenadines","Venezuela","British Virgin Islands","U.S. Virgin Islands","Vietnam",
     "Vanuatu","Wallis & Futuna","Samoa","Kosovo","Yemen","Mayotte","South Africa","Zambia","Zimbabwe"];
   SingleValueDropDownController selectedCountryCitizen = SingleValueDropDownController();
-  List<String> countryResidentList = ["INDIA", "United States", "EUROPEAN UNION", "Rest of World"];
+  List<String> countryResidentList = ["India", "United States", "European Union", "Rest of World"];
   SingleValueDropDownController selectedCountryResident = SingleValueDropDownController();
 
 
@@ -962,7 +962,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             style: const TextStyle(
                                 fontSize: 15.0,
                                 fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(51, 51, 51, 1),
+                                decoration:
+                                TextDecoration.underline,
+                                color: Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: "Inter"),),
                           TextSpan(
                             text: AppLocalizations.of(context)!.terms,

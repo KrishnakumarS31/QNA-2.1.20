@@ -4,7 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-import 'guestReviseQuest.dart';
+import 'guest_revise_quest.dart';
 import 'package:intl/intl.dart';
 
 
@@ -13,10 +13,11 @@ class StudQuestion extends StatefulWidget {
   const StudQuestion({
     Key? key,
     required this.assessmentId,
-    required this.ques
+    required this.ques, required this.UserName
   }) : super(key: key);
   final String assessmentId;
   final QuestionPaperModel ques;
+  final String UserName;
 
 
   @override
@@ -127,7 +128,7 @@ class StudQuestionState extends State<StudQuestion> {
                         style: Theme
                             .of(context)
                             .primaryTextTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.merge(TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontFamily: 'Inter',
@@ -178,7 +179,7 @@ class StudQuestionState extends State<StudQuestion> {
                           style: Theme
                               .of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -420,7 +421,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           style: Theme
                                               .of(context)
                                               .primaryTextTheme
-                                              .bodyText1
+                                              .bodyLarge
                                               ?.merge(TextStyle(
                                               color: const Color.fromRGBO(
                                                   255, 255, 255, 1),
@@ -431,7 +432,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           style: Theme
                                               .of(context)
                                               .primaryTextTheme
-                                              .bodyText1
+                                              .bodyLarge
                                               ?.merge(TextStyle(
                                               color: const Color.fromRGBO(
                                                   255, 255, 255, 1),
@@ -675,7 +676,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: guestReviseQuest(questions: values,),
+                                  child: guestReviseQuest(questions: values,userName: widget.UserName),
                                 ),
                               );
                             },) :
@@ -754,7 +755,7 @@ class StudQuestionState extends State<StudQuestion> {
                     fontWeight: FontWeight.w600,
                   ),),
                 flexibleSpace: Banner(
-                  color: const Color.fromRGBO(255, 157, 77, 1),
+                  color: values.data!.assessment!.assessmentType=='test'?const Color.fromRGBO(188, 191, 8, 1):const Color.fromRGBO(255, 157, 77, 1),
                   message: values.data!.assessment!.assessmentType,
                   textStyle: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
@@ -1185,13 +1186,12 @@ class StudQuestionState extends State<StudQuestion> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: guestReviseQuest(questions: values,),
+                                  child: guestReviseQuest(questions: values,userName: widget.UserName),
                                 ),
                               );
                             },) :
                             IconButton(
                                 onPressed: () {
-//print(Provider.of<Questions>(context, listen: false).totalQuestion['11'][0]);
                                   context.read<QuestionNumProvider>()
                                       .increment();
                                   if (Provider

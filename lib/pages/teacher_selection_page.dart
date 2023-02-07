@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/pages/reset_password.dart';
+import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
+import 'about_us.dart';
+import 'help_page.dart';
 import 'settings_languages.dart';
 import 'teacher_create_assessment.dart';
 import 'teacher_questionBank_page.dart';
@@ -39,16 +41,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           elevation: 0,
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 30,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
         ),
         endDrawer: Drawer(
@@ -68,7 +61,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 50),
+                    SizedBox(height: height * 0.050),
                     Container(
                       alignment: Alignment.center,
                       height: height / 6,
@@ -283,6 +276,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     const Divider(
                       thickness: 2,
@@ -300,6 +300,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             letterSpacing: -0.02,
                             fontSize: 16),),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
                     ListTile(
                         leading:
@@ -346,7 +353,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   height: height * 0.3625,
                   width: width,
                   decoration: BoxDecoration(
-                    // color: Theme.of(context).primaryColor,
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -362,9 +368,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     ),
                   ),
                   child: Column(
-                    //crossAxisAlignment: CrossAxisAlignment.center,
                     children : [
-                      SizedBox(height:height * 0.03),
+                      SizedBox(height:height * 0.07),
                       Align(
                         alignment: Alignment.topCenter,
                         child:
@@ -372,12 +377,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                           padding: const EdgeInsets.all(0.0),
                           height: height * 0.16,
                           width: width * 0.30,
-                          // decoration: BoxDecoration(
-                          //     //color: Colors.yellow[100],
-                          //     border: Border.all(
-                          //       color: Colors.red,
-                          //       width: 1,
-                          //     )),
                           child: Image.asset("assets/images/question_mark_logo.png"),
                         ),
                       ),
@@ -400,7 +399,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     ],
                   ),
                 ),
-
                 SizedBox(height:height * 0.03),
                 Text(
                   AppLocalizations.of(context)!.welcome,
@@ -484,7 +482,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 SizedBox(height:height * 0.0375),
 
                 Text(
-                  'view/EDIT/PREPARE',
+                  'VIEW/EDIT/PREPARE',
                   style: TextStyle(
                     fontSize: height* 0.018,
                     color: const Color.fromRGBO(209, 209, 209, 1),

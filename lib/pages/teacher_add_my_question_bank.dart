@@ -108,8 +108,6 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   void initState() {
     super.initState();
     quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
-    print("--------------------------");
-    print(quesList);
   }
 
 

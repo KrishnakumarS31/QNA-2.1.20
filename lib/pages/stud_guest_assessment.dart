@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/reset_passwordStudent.dart';
+import 'package:qna_test/Pages/reset_password_student.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/terms_of_services.dart';
@@ -10,7 +10,7 @@ import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import 'about_us.dart';
-import 'change_EmailStudent.dart';
+import 'change_email_student.dart';
 import 'cookie_policy.dart';
 import 'help_page.dart';
 import 'privacy_policy_hamburger.dart';
@@ -94,7 +94,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 widget.name,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(const TextStyle(
                                         color: Color.fromRGBO(255, 255, 255, 1),
                                         fontFamily: 'Inter',
@@ -150,7 +150,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 AppLocalizations.of(context)!.user_profile,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(TextStyle(
                                         color: textColor,
                                         //Color.fromRGBO(48, 145, 139, 1),
@@ -329,7 +329,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 AppLocalizations.of(context)!.about_us,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(TextStyle(
                                         color: textColor,
                                         //Color.fromRGBO(48, 145, 139, 1),
@@ -601,6 +601,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudQuestion(
+                                    UserName: userDataModel.data!.firstName,
                                     assessmentId: assessmentIdController.text,
                                     ques: values,
                                   ),
@@ -651,7 +652,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     Text(AppLocalizations.of(context)!.search_library,
                         style: Theme.of(context)
                             .primaryTextTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.merge(const TextStyle(
                                 color: Color.fromRGBO(48, 145, 139, 1),
                                 fontFamily: 'Inter',
@@ -712,7 +713,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 "Student Name",
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(const TextStyle(
                                         color: Color.fromRGBO(255, 255, 255, 1),
                                         fontFamily: 'Inter',
@@ -768,7 +769,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 AppLocalizations.of(context)!.user_profile,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(TextStyle(
                                         color: textColor,
                                         //Color.fromRGBO(48, 145, 139, 1),
@@ -868,9 +869,18 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               ),
                               trailing: const Icon(Icons.navigate_next,
                                   color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () async {}),
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: PrivacyPolicyHamburger(
+                                        setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }),
                           ListTile(
-                              leading: const Icon(Icons.verified_user_outlined,
+                              leading: const Icon(Icons.newspaper,
                                   color: Color.fromRGBO(141, 167, 167, 1)),
                               title: Text(
                                 "Terms of Service",
@@ -912,7 +922,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 AppLocalizations.of(context)!.about_us,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(TextStyle(
                                         color: textColor,
                                         //Color.fromRGBO(48, 145, 139, 1),
@@ -923,7 +933,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               ),
                               trailing: const Icon(Icons.navigate_next,
                                   color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () async {}),
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: AboutUs(setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }),
                           ListTile(
                               leading: const Icon(Icons.help_outline,
                                   color: Color.fromRGBO(141, 167, 167, 1)),
@@ -937,7 +955,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     letterSpacing: -0.02,
                                     fontSize: 16),
                               ),
-                              onTap: () async {}),
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: HelpPageHamburger(setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }),
                           const Divider(
                             thickness: 2,
                           ),
@@ -1146,6 +1172,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudQuestion(
+                                    UserName: widget.name,
                                     assessmentId: assessmentIdController.text,
                                     ques: values,
                                   ),
@@ -1181,29 +1208,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                 SizedBox(
                   height: height * 0.06,
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //
-                //     IconButton(
-                //       icon: const Icon(
-                //         Icons.search,
-                //         color: Color.fromRGBO(141, 167, 167, 1),
-                //       ),
-                //       onPressed: () {},
-                //     ),
-                //     Text(AppLocalizations.of(context)!.search_library,
-                //         style: Theme
-                //             .of(context)
-                //             .primaryTextTheme
-                //             .bodyText1
-                //             ?.merge(const TextStyle(
-                //             color: Color.fromRGBO(48, 145, 139, 1),
-                //             fontFamily: 'Inter',
-                //             fontWeight: FontWeight.w500,
-                //             fontSize: 16))),
-                //   ],
-                // ),
               ]));
         }
       },

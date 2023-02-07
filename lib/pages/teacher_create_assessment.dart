@@ -68,7 +68,16 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "CREATE ASSESSMENTS",
+                "PREPARE",
+                style: TextStyle(
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: height * 0.0225,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              Text(
+                "ASSESSMENTS",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.0225,
@@ -96,6 +105,91 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Container(
+                  height: height * 0.108,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Color.fromRGBO(82, 165, 160, 0.07),),
+                  child: Padding(
+                    padding: EdgeInsets.only(right: width * 0.03,left: width * 0.03),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Maths',
+                                  style: TextStyle(
+                                      fontSize: height * 0.017,
+                                      fontFamily: "Inter",
+                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  '  |  Class X',
+                                  style: TextStyle(
+                                      fontSize: height * 0.015,
+                                      fontFamily: "Inter",
+                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            ),
+
+                            Row(
+                              children: [
+                                Text(
+                                  'Edit',
+                                  style: TextStyle(
+                                      fontSize: height * 0.017,
+                                      fontFamily: "Inter",
+                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                SizedBox(width: width * 0.01,),
+                                Icon(Icons.edit_outlined,color: Color.fromRGBO(28, 78, 80, 1),)
+                              ],
+                            ),
+                          ],
+                        ),
+                        Text(
+                          'Topic: Calculus',
+                          style: TextStyle(
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              color: Color.fromRGBO(102, 102, 102, 1),
+                              fontWeight: FontWeight.w400),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Sub Topic: N/A',
+                              style: TextStyle(
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            Text(
+                              '14/1/2023',
+                              style: TextStyle(
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  color: Color.fromRGBO(102, 102, 102, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: height * 0.02,),
                 Text("Search Question",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
@@ -175,60 +269,91 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                 Align(
                   alignment: Alignment.center,
                   //margin: EdgeInsets.only(left: height * 0.040),
-                  child: Text("You can add list from Search, Create\nand from my question bank",
+                  child: Text("Search from my question bank",
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontWeight: FontWeight.w500,
                               color: const Color.fromRGBO(153, 153, 153, 1),
                               fontFamily: "Inter"),),
                 ),
-                SizedBox(height: height * 0.25),
-                Column(
-                    children: [
-                      Column(
-                        children: [
-                          Align(alignment: Alignment.center,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  side: const BorderSide(
-                                    width: 1,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  ),
-                                  backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                                  maximumSize: const Size(280, 48),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(39),
-                                  ),
-                                ),
-                                child:Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      TextButton(
-                                        style: TextButton.styleFrom(
-                                          foregroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                        ),
-                                        onPressed:() {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.rightToLeft,
-                                              child: const TeacherPrepareQnBank(),
-                                            ),
-                                          );
-                                        },
-                                        child: const Text("Create New Question"),
-                                      ),
-                                    ]),
-                                onPressed: () {
+                SizedBox(height: height * 0.08),
+                Center(
+                  child: Container(
+                    width: width * 0.888,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                          color: Color.fromRGBO(82, 165, 160, 1),
+                        ),
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        minimumSize: const Size(280, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(39),
+                        ),
 
-                                }
-                            ),
-                          )
-                        ],
                       ),
-                      SizedBox(height: height * 0.02),
+                      //shape: StadiumBorder(),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const TeacherPrepareQnBank(),
+                          ),
+                        );
 
-                    ]),
+
+                      },
+                      child: Text(
+                        'Create New Question',
+                        style: TextStyle(
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: height * 0.03,),
+                Center(
+                  child: Container(
+                    width: width * 0.888,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                          minimumSize: const Size(280, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
+                          ),
+                          side: const BorderSide(
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          )
+                      ),
+                      //shape: StadiumBorder(),
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: const TeacherPublishedAssessment(),
+                        //   ),
+                        // );
+
+
+                      },
+                      child: Text(
+                        'Save',
+                        style: TextStyle(
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            color: Color.fromRGBO(255, 255, 255, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
+                ),
+
               ],
 
             )

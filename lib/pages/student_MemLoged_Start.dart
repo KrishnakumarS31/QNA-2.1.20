@@ -10,11 +10,11 @@ import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import 'about_us.dart';
-import 'change_EmailStudent.dart';
+import 'change_email_student.dart';
 import 'cookie_policy.dart';
 import 'help_page.dart';
 import 'privacy_policy_hamburger.dart';
-import 'reset_passwordStudent.dart';
+import 'reset_password_student.dart';
 import 'terms_of_services.dart';
 
 
@@ -620,7 +620,8 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
               type: PageTransitionType.rightToLeft,
               child: StudQuestion(
                   assessmentId: assessmentID.text,
-                  ques: values),
+                  ques: values,
+              UserName: userDataModel.data!.firstName),
             ),
           );
         }

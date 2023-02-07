@@ -164,15 +164,16 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding:  EdgeInsets.only(left: width * 0.02),
-                              child: Text("Calculus - Chapter 12.2/13",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),),
+                              padding:  EdgeInsets.only(right: width * 0.02),
+                              child: Icon(Icons.circle,color: Colors.white,),
                             ),
+                            Text("Calculus - Chapter 12.2/13",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),),
                             Padding(
                               padding:  EdgeInsets.only(right: width * 0.02),
                               child: Icon(Icons.circle,color: const Color.fromRGBO(255, 166, 0, 1),),

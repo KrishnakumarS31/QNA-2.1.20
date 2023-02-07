@@ -9,12 +9,14 @@ import '../Entity/question_paper_model.dart';
 
 class GuestResultPage extends StatefulWidget {
   const GuestResultPage({Key? key,
-    required this.totalMarks,required this.date,required this.time,required this.questions
+    required this.totalMarks,required this.date,required this.time,required this.questions, required this.assessmentCode, required this.userName
   }) : super(key: key);
   final int totalMarks;
   final QuestionPaperModel questions;
   final String date;
   final String time;
+  final String userName;
+  final String assessmentCode;
 
   @override
   GuestResultPageState createState() => GuestResultPageState();
@@ -75,7 +77,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: localHeight * 0.024),),
                               const SizedBox(height: 10.0),
-                              Text("AssID23515A225",
+                              Text(widget.assessmentCode,
                                   style: TextStyle(
                                       color: const Color.fromRGBO(255, 255, 255, 1),
                                       fontFamily: 'Inter',
@@ -167,7 +169,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                 child: Column(
                     children:[
                       const SizedBox(height: 20.0),
-                      Text('Guest Name',
+                      Text(widget.userName,
                           style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
                               fontFamily: 'Inter',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Pages/student_Advisor.dart';
+import 'package:qna_test/Pages/student_advisor.dart';
 
 import '../Entity/question_paper_model.dart';
 

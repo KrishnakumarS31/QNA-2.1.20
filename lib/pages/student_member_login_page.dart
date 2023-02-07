@@ -5,8 +5,10 @@ import 'package:qna_test/Services/qna_service.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
+import 'about_us.dart';
 import 'cookie_policy.dart';
 import 'forgot_password_email.dart';
+import 'help_page.dart';
 import 'student_registration_page.dart';
 import 'student_MemLoged_Start.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -65,6 +67,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                   color: const Color.fromRGBO(0, 106, 100, 1), height: 55),
               Image.asset(
                 "assets/images/rectangle_qna.png",
+                fit: BoxFit.fill,
+                width: 310,
               ),
               Flexible(
                 child: ListView(
@@ -190,7 +194,15 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         ),
                         trailing: const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {}),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
                     ListTile(
                         leading: const Icon(Icons.help_outline,
                             color: Color.fromRGBO(141, 167, 167, 1)),
@@ -204,7 +216,15 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               letterSpacing: -0.02,
                               fontSize: 16),
                         ),
-                        onTap: () async {}),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
                   ],
                 ),
               ),
@@ -488,7 +508,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     style: const TextStyle(
                                         fontSize: 15.0,
                                         fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        decoration:
+                                        TextDecoration.underline,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
                                         fontFamily: "Inter"),),
                                   TextSpan(
                                     text: AppLocalizations.of(context)!.terms,

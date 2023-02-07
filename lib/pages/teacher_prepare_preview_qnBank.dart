@@ -30,7 +30,29 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
+  final List<TextEditingController> chooses=[];
+  final List<bool> radioList=[];
+  final _formKey=GlobalKey<FormState>();
 
+  _onRadioChange(int key){
+    setState(() {
+      radioList[key]=!radioList[key];
+    });
+  }
+
+  addField(){
+    setState(() {
+      chooses.add(TextEditingController());
+      radioList.add(false);
+    });
+  }
+
+  removeItem(i){
+    setState(() {
+      chooses.removeAt(i);
+      radioList.removeAt(i);
+    });
+  }
   @override
   void initState() {
     super.initState();
@@ -43,6 +65,14 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
     urlController.text=widget.question.url!;
     adviceController.text=widget.question.advice!;
     selected=widget.question.correctChoice;
+    for(int i =0;i<widget.question.choices!.length;i++){
+      chooses.add(TextEditingController());
+      chooses[i].text=widget.question.choices![i]!;
+      radioList.add(false);
+      if(widget.question.correctChoice!.contains(i)){
+        radioList[i]=true;
+      }
+    }
   }
 
   @override
@@ -64,6 +94,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                   color: Colors.white,
                 ),
                 onPressed: () {
+
                   Navigator.of(context).pop();
                 },
               ),
@@ -476,7 +507,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                     // Row(
                     //   children: [
                     Text(
-                      "Add Choices",
+                      "Choices",
                       style: TextStyle(
                         color: const Color.fromRGBO(51, 51, 51, 1),
                         fontSize: height * 0.018,
@@ -500,16 +531,77 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                   ],
                 ),
                 SizedBox(height: height * 0.010),
-                ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      for(int i =0;i<chooses.length;i++)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.02),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: chooses[i],
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: height * 0.018),
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                    hintText: "Type Option Here",
+                                    border:
+                                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                  ),
+
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: (){
+                                  _onRadioChange(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: ()  {
+                                  removeItem(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  Icons.delete_outline,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                    ],
+                  ),
+
+                ),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       TextButton(
                         onPressed: () {
-                          setState(() {
-                            _count++;
-                            print(_count);
-                          });
+                          addField();
                         }, child: Text(
                         "Add more choice",
                         style: TextStyle(
@@ -622,14 +714,23 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
+                                  List<String> temp=[];
+                                  List<int> selectedTemp=[];
+                                  for(int i=0;i< chooses.length;i++){
+                                    if(radioList[i]){
+                                      selectedTemp.add(i+1);
+                                    }
+                                    temp.add(chooses[i].text);
+                                  }
                                   widget.question.subject=subjectController.text;
                                   widget.question.topic=topicController.text;
                                   widget.question.subTopic=subtopicController.text;
                                   widget.question.studentClass=classRoomController.text;
                                   widget.question.question=questionController.text;
-                                  widget.question.correctChoice=selected;
+                                  widget.question.correctChoice=selectedTemp;
                                   widget.question.advice=adviceController.text;
                                   widget.question.url=urlController.text;
+                                  widget.question.choices=temp;
                                 });
 
                                 Navigator.push(

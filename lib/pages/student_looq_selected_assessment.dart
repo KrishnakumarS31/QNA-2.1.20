@@ -412,6 +412,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: StudQuestion(
+                                UserName: "firstName",
                                 assessmentId: '98765432',
                                 ques: values,),
                             ),

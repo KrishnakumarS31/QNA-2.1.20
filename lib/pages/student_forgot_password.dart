@@ -177,7 +177,12 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                                     borderRadius: BorderRadius.circular(15)),
                               ),
                               validator: (value){
-                                if(value!.isEmpty){
+                                if(newPassword.text!=oldPassword.text)
+                                {
+                                  return AppLocalizations.of(context)!.mis_match_password;
+                                }
+                                else if(value!.isEmpty)
+                                {
                                   return "Confirm new password is required";
                                 }
                                 else{
