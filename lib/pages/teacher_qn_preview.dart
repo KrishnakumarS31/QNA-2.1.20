@@ -11,11 +11,13 @@ import 'teacher_add_my_question_bank.dart';
 import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherPreparePreview extends StatefulWidget {
-  const TeacherPreparePreview({
-    Key? key, required this.question,
-  }) : super(key: key);
+  TeacherPreparePreview({
+    this.assessment,
+    required this.question,
+  });
 
   final DemoQuestionModel question;
+  bool? assessment;
   @override
   TeacherPreparePreviewState createState() => TeacherPreparePreviewState();
 }
@@ -31,6 +33,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
 
   @override
   void initState() {
+
     super.initState();
     adviceController.text=widget.question.advice!;
     urlController.text=widget.question.url!;
@@ -240,7 +243,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child:  TeacherAddMyQuestionBank(),
+                              child:  TeacherAddMyQuestionBank(assessment: widget.assessment,),
                             ),
                           );
                         },

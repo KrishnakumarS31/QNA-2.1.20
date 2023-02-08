@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
@@ -15,8 +16,11 @@ import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank({
-    Key? key
+    Key? key,
+    this.assessment
   }) : super(key: key);
+
+  final bool? assessment;
 
   @override
   TeacherMyQuestionBankState createState() => TeacherMyQuestionBankState();
@@ -30,10 +34,6 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
     super.initState();
 
     quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
-    print("from provider");
-    for(int i=0;i<quesList.length;i++){
-      print(quesList[i].question);
-    }
   }
 
 
@@ -65,7 +65,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
           toolbarHeight: height * 0.100,
           centerTitle: true,
           title: Text(
-            "My Question Bank",
+            "MY QUESTION BANK",
             style: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.0225,
@@ -98,6 +98,34 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       SizedBox(height: height * 0.03,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Tap to Review/Edit/Delete',
+                            style: TextStyle(
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                color: Color.fromRGBO(153, 153, 153, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                'My Questions',
+                                style: TextStyle(
+                                    fontSize: height * 0.015,
+                                    fontFamily: "Inter",
+                                    color: Color.fromRGBO(0, 0, 0, 1),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                              SizedBox(width: width * 0.02,),
+                              Icon(Icons.circle,color: const Color.fromRGBO(82, 165, 160, 1),)
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(height: height * 0.03,),
                       for ( DemoQuestionModel i in quesList )
                         QuestionPreview(height: height, width: width,question: i,),
                     ],
@@ -115,13 +143,25 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                 ),
                 //shape: StadiumBorder(),
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: const TeacherQuestionBank(),
-                    ),
-                  );
+                  if(true==widget.assessment){
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const TeacherCreateAssessment(),
+                      ),
+                    );
+                  }
+                  else{
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: const TeacherQuestionBank(),
+                      ),
+                    );
+                  }
+
                 },
                 child: Text(
                   'Back to Questions',
@@ -168,7 +208,7 @@ class QuestionPreview extends StatelessWidget {
           Container(
             height: height * 0.04,
             width: width * 0.9,
-            color: Color.fromRGBO(82, 165, 160, 0.1),
+            color: const Color.fromRGBO(82, 165, 160, 1),
             child: Padding(
               padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
               child: Row(
@@ -181,7 +221,7 @@ class QuestionPreview extends StatelessWidget {
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(28, 78, 80, 1),
+                            color: Colors.white,
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
@@ -189,7 +229,7 @@ class QuestionPreview extends StatelessWidget {
                         style: TextStyle(
                             fontSize: height * 0.015,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(102, 102, 102, 1),
+                            color:Colors.white,
                             fontWeight: FontWeight.w400),
                       ),
                     ],
@@ -200,11 +240,23 @@ class QuestionPreview extends StatelessWidget {
                     style: TextStyle(
                         fontSize: height * 0.015,
                         fontFamily: "Inter",
-                        color: Color.fromRGBO(28, 78, 80, 1),
+                        color: Colors.white,
                         fontWeight: FontWeight.w600),
                   ),
                 ],
               ),
+            ),
+          ),
+          SizedBox(height: height * 0.01,),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              question.questionType,
+              style: TextStyle(
+                  fontSize: height * 0.02,
+                  fontFamily: "Inter",
+                  color: Color.fromRGBO(82, 165, 160, 1),
+                  fontWeight: FontWeight.w600),
             ),
           ),
           SizedBox(height: height * 0.01,),
@@ -220,28 +272,8 @@ class QuestionPreview extends StatelessWidget {
             ),
           ),
           SizedBox(height: height * 0.01,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                answer,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-              Text(
-                question.questionType,
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-          SizedBox(height: height * 0.01,),
+
+
           Divider()
 
         ],

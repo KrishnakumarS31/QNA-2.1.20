@@ -7,6 +7,8 @@ import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/login_entity.dart';
+import '../Services/qna_service.dart';
 import 'privacy_policy_hamburger.dart';
 import 'settings_languages.dart';
 import 'terms_of_services.dart';
@@ -23,6 +25,8 @@ class TeacherLogin extends StatefulWidget {
 class TeacherLoginState extends State<TeacherLogin> {
   bool _isObscure = true;
   final formKey=GlobalKey<FormState>();
+  String regNumber = "";
+  String passWord = "";
   TextEditingController emailController=TextEditingController();
   TextEditingController passwordController=TextEditingController();
   bool agree = false;
@@ -588,19 +592,52 @@ getUserDetails() async {
                 if(agree) {
                   bool valid = formKey.currentState!.validate();
                   if (valid == true) {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: TeacherSelectionPage(
-                            name: name, setLocale: widget.setLocale),
-                      ),
-                    ).then((value) {
-                      emailController.clear();
-                      passwordController.clear();
-                    });
+                    regNumber = emailController.text;
+                    passWord = passwordController.text;
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                                color: Color.fromRGBO(
+                                    48, 145, 139, 1),
+                              ));
+                        });
+                    LoginModel loginResponse =
+                    await QnaService.logInUser(
+                        regNumber, passWord);
+                    Navigator.of(context).pop();
+                   if (loginResponse.code == 200) {
+                     Navigator.push(
+                       context,
+                       PageTransition(
+                         type: PageTransitionType.rightToLeft,
+                         child: TeacherSelectionPage(
+                             name: name, setLocale: widget.setLocale,
+                             userId: loginResponse.data!.userId,),
+                       ),
+                     ).then((value) {
+                       emailController.clear();
+                       passwordController.clear();
+                     });
+                   }
+                   else {
+                     Navigator.push(
+                       context,
+                       PageTransition(
+                         type: PageTransitionType.rightToLeft,
+                         child: CustomDialog(
+                           title: 'Wrong password',
+                           content: 'please enter the correct password',
+                           button: AppLocalizations.of(context)!
+                               .retry,
+                         ),
+                       ),
+                     );
+                   }
                   }
-                } else{
+                }
+                else{
                   Navigator.push(
                     context,
                     PageTransition(

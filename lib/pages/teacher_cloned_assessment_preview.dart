@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
-import 'package:qna_test/pages/teacher_assessment_settings.dart';
+import 'package:qna_test/pages/teacher_assessment_settings_publish.dart';
 import 'package:qna_test/pages/teacher_looq_search_question.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 
@@ -271,7 +271,7 @@ class TeacherClonedAssessmentPreviewState extends State<TeacherClonedAssessmentP
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: const TeacherAssessmentSetting(),
+                          child: const TeacherAssessmentSettingPublish(),
                         ),
                       );
 

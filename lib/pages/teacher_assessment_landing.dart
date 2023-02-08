@@ -61,7 +61,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
                     Padding(
                       padding:  EdgeInsets.only(right: MediaQuery.of(context).copyWith().size.width * 0.055),
-                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () { Navigator.of(context).pop(); },),),
+                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () {  },),),
                     ),
                     Align(
                       alignment: Alignment.centerLeft,

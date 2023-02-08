@@ -15,9 +15,11 @@ import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherAddMyQuestionBank extends StatefulWidget {
   const TeacherAddMyQuestionBank({
-    Key? key
+    Key? key,
+    this.assessment,
   }) : super(key: key);
 
+  final bool? assessment;
   @override
   TeacherAddMyQuestionBankState createState() => TeacherAddMyQuestionBankState();
 }
@@ -68,7 +70,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
          context,
          PageTransition(
            type: PageTransitionType.rightToLeft,
-           child: const TeacherMyQuestionBank(),
+           child:  TeacherMyQuestionBank(assessment: widget.assessment,),
          ),
        );
      },
@@ -107,6 +109,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
 @override
   void initState() {
     super.initState();
+
     quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
   }
 
@@ -310,7 +313,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const TeacherPrepareQnBank(),
+                            child: const TeacherPrepareQnBank(assessment: false,),
                           ),
                         );
                   },

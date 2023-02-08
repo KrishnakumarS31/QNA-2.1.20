@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
+import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
+
+
+import '../Components/custom_incorrect_popup.dart';
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment({
     Key? key,
@@ -20,7 +25,88 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
       !additionalDetails;
     });
   }
-
+  showAlertDialog(BuildContext context,double height) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),),
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),),
+      onPressed:  () {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: const TeacherAssessmentSettingPublish(),
+          ),
+        );
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          Icon(Icons.error,color: Color.fromRGBO(238, 71, 0, 1),size: height * 0.05,),
+          Text(
+            'Marks not filled',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Do you want to still continue?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   void initState() {
@@ -303,13 +389,13 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                     ),
                     //shape: StadiumBorder(),
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: const TeacherClonedAssessmentPreview(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: const TeacherAssessmentLanding(),
+                        ),
+                      );
 
 
                     },
@@ -341,15 +427,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                     ),
                     //shape: StadiumBorder(),
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: const TeacherPublishedAssessment(),
-                      //   ),
-                      // );
-
-
+                      showAlertDialog(context,height);
                     },
                     child: Text(
                       'Continue',

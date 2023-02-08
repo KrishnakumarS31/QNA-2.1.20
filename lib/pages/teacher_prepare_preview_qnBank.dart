@@ -70,7 +70,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
       chooses[i].text=widget.question.choices![i]!;
       radioList.add(false);
       if(widget.question.correctChoice!.contains(i)){
-        radioList[i]=true;
+        radioList[i-1]=true;
       }
     }
   }

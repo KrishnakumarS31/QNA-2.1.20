@@ -3,7 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 
-import 'teacher_assessment_settings.dart';
+import 'teacher_assessment_settings_publish.dart';
 
 
 class TeacherCreateAssessment extends StatefulWidget {
@@ -19,12 +19,12 @@ class TeacherCreateAssessment extends StatefulWidget {
 
 class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   bool agree = false;
+  bool? assessment=true;
 
 
   @override
   void initState() {
     super.initState();
-
   }
 
 
@@ -298,7 +298,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const TeacherPrepareQnBank(),
+                            child:  const TeacherPrepareQnBank(assessment: true),
                           ),
                         );
 

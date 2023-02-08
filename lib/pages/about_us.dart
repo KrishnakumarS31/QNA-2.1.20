@@ -28,7 +28,7 @@ class AboutUsState extends State<AboutUs> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     List<String> str = [
-      " Globally Collaborative",
+      "Globally Collaborative",
       "Light Weight",
       "Anonymous"];
     return Scaffold(
@@ -85,7 +85,7 @@ class AboutUsState extends State<AboutUs> {
                 SizedBox(height: height * 0.03),
                 Align(
                   alignment: Alignment.topCenter,
-                  child: Text("ITNEducation Inc., builds range of IT in\nEducation products and services that help\n millions of students / learners  and\nteachers / instructors to learn digitally and\nfreely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\nplatform, which is:",
+                  child: Text("ITNEducation Inc., builds range of IT in\nEducation products and services that help\nmillions of students / learners  and\nteachers / instructors to learn digitally and\nfreely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\nplatform, which is:",
                     style: TextStyle(
                         fontSize: height * 0.018,
                         fontWeight: FontWeight.w400,

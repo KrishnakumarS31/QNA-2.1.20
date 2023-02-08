@@ -315,6 +315,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child: TextFormField(
                                 keyboardType: TextInputType.text,
                                 controller: regNumberController,
+                                inputFormatters: [FilteringTextInputFormatter.deny(' ')],
                                 onChanged: (val)
                                 {
                                   formKey.currentState!.validate();
@@ -586,7 +587,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                        regNumberController.clear();
                                        passWordController.clear();
                                      });
-                                   } else {
+                                   }
+                                   else {
                                      Navigator.push(
                                        context,
                                        PageTransition(
@@ -601,7 +603,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                      );
                                    }
                                  }
-                               } else{
+                               }
+                               else{
                                  Navigator.push(
                                    context,
                                    PageTransition(

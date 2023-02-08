@@ -15,9 +15,10 @@ import 'teacher_prepare_qnBank.dart';
 class TeacherAssessmentQuestionBank extends StatefulWidget {
   const TeacherAssessmentQuestionBank({
     Key? key,
-
+    this.assessment
   }) : super(key: key);
 
+  final bool? assessment;
 
   @override
   TeacherAssessmentQuestionBankState createState() => TeacherAssessmentQuestionBankState();

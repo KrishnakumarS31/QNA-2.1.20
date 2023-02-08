@@ -173,26 +173,16 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Search Library  (LOOQ)",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.02,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),),
-                    //SizedBox(height: height * 0.005),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Library Of Online Questions",
+                        Text("Search Library  (LOOQ)",
                           style: TextStyle(
-                            color: const Color.fromRGBO(153, 153, 153, 1),
-                            fontSize: height * 0.015,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.02,
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                            fontWeight: FontWeight.w700,
+                          ),),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -215,7 +205,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 });
                               },
                             ),
-                             SizedBox(width: width*0.01,),
                             Text('Only My Questions', textAlign: TextAlign.left,style: TextStyle(
                                 fontSize: height *0.015
                             ),)
@@ -223,6 +212,18 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         )
                       ],
                     ),
+                    Text(
+                      "Library Of Online Questions",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(153, 153, 153, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+
+                    //SizedBox(height: height * 0.005),
+
                     SizedBox(height: height * 0.02),
                     TextField(
                           controller: teacherQuestionBankSearchController,

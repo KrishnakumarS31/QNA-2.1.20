@@ -72,8 +72,9 @@ class _MyAppState extends State<MyApp> {
         // ),
       ),
 
-      home: SplashScreen(setLocale: setLocale,),
-      // WelcomePage(setLocale: widget.setLocale),
+      home:
+      SplashScreen(setLocale: setLocale,),
+       //WelcomePage(setLocale: setLocale),
     );
   }
 

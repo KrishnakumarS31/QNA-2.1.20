@@ -321,10 +321,10 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                 Container(
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color.fromRGBO(66, 194, 0, 1),
+                    color: Color.fromRGBO(82, 165, 160, 1),
                   ),
-                  height: localHeight * 0.10,
-                  width: localWidth * 0.10,
+                  height: localHeight * 0.1,
+                  width: localWidth * 0.1,
                   child: const Icon(Icons.info_outline_rounded,
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),

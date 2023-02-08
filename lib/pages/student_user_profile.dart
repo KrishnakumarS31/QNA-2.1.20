@@ -270,7 +270,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                       height: height * 0.01,
                     ),
                     Text(
-                      '${widget.userDataModel.data?.gender}',
+                      widget.userDataModel.data?.gender == "male"
+                      ? "Male"
+                      : "Female",
                       style: TextStyle(
                         color: const Color.fromRGBO(48, 145, 139, 1),
                         fontSize: height * 0.02,
@@ -362,7 +364,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                       height: height * 0.01,
                     ),
                     Text(
-                      '${widget.userDataModel.data?.role}',
+                      widget.userDataModel.data?.role == "student,teacher"
+                        ? "Yes"
+                          : "No",
                       style: TextStyle(
                         color: const Color.fromRGBO(48, 145, 139, 1),
                         fontSize: height * 0.02,

@@ -4,6 +4,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
+import '../EntityModel/user_data_model.dart';
+import '../Services/qna_service.dart';
 import 'about_us.dart';
 import 'help_page.dart';
 import 'settings_languages.dart';
@@ -14,22 +16,34 @@ import 'teacher_questionBank_page.dart';
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage({
     Key? key,
-    required this.name, required this.setLocale
+    required this.name, required this.setLocale,required this.userId
   }) : super(key: key);
 
   final String name;
   final void Function(Locale locale) setLocale;
+  final int? userId;
 
   @override
   TeacherSelectionPageState createState() => TeacherSelectionPageState();
 }
 
 class TeacherSelectionPageState extends State<TeacherSelectionPage> {
-
+  UserDataModel userDataModel=UserDataModel(code: 0, message: '');
+  String name='';
+  String email = "";
 
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    userDataModel=await QnaService.getUserDataService(widget.userId);
+    setState((){
+      name=userDataModel.data!.firstName;
+      email = userDataModel.data!.email;
+    });
   }
 
   @override
@@ -411,7 +425,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height:height * 0.015),
                 Text(
-                  'Subash',
+                  name,
                   style: TextStyle(
                     fontSize: height* 0.04,
                     color: const Color.fromRGBO(28, 78, 80, 1),

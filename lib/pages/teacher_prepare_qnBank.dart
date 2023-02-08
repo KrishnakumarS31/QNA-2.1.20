@@ -11,7 +11,10 @@ import 'teacher_prepare_preview_qnBank.dart';
 class TeacherPrepareQnBank extends StatefulWidget {
   const TeacherPrepareQnBank({
     Key? key,
+    this.assessment,
   }) : super(key: key);
+
+  final bool? assessment;
 
   @override
   TeacherPrepareQnBankState createState() => TeacherPrepareQnBankState();
@@ -29,6 +32,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   TextEditingController subtopicController = TextEditingController();
   TextEditingController classRoomController = TextEditingController();
   TextEditingController questionController = TextEditingController();
+  bool? x;
   late List<Map<String, dynamic>> _values;
   IconData showIcon = Icons.expand_circle_down_outlined;
   ValueChanged<String?> _valueChangedHandler() {
@@ -37,6 +41,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   final List<TextEditingController> chooses=[];
   final List<bool> radioList=[];
   final _formKey=GlobalKey<FormState>();
+
 
   addField(){
     setState(() {
@@ -56,7 +61,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return TeacherPreparePreview(question: demoQuestionModel,);
+        return TeacherPreparePreview(question: demoQuestionModel,assessment: widget.assessment,);
       },
     );
   }

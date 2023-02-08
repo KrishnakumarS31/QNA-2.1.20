@@ -60,7 +60,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                 ),
                 child: Column(
                   children : [
-                    const SizedBox(height:80.0),
+                    SizedBox(height: localHeight * 0.07),
                     Align(
                       alignment: Alignment.topCenter,
                       child:
@@ -76,7 +76,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     fontSize: localHeight * 0.024),),
-                              const SizedBox(height: 10.0),
+                              SizedBox(height: localHeight * 0.01),
                               Text(widget.assessmentCode,
                                   style: TextStyle(
                                       color: const Color.fromRGBO(255, 255, 255, 1),
@@ -94,14 +94,14 @@ class GuestResultPageState extends State<GuestResultPage> {
               SizedBox(height: localHeight* 0.015),
               Expanded(child: Column(
                 children: [
-                  const SizedBox(height: 240.0),
+                  SizedBox(height: localHeight * 0.2),
                   Text(AppLocalizations.of(context)!.for_incorrect,
                       style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
                           fontSize: localHeight* 0.018)),
-                  SizedBox(height: localHeight* 0.010),
+                  SizedBox(height: localHeight* 0.040),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -114,7 +114,6 @@ class GuestResultPageState extends State<GuestResultPage> {
                           color: Color.fromRGBO(82, 165, 160, 1),
                         ),
                       ),
-                      //shape: StadiumBorder(),
                       child: Text(AppLocalizations.of(context)!.advisor,
                           style: TextStyle(
                               fontFamily: 'Inter',
@@ -158,9 +157,9 @@ class GuestResultPageState extends State<GuestResultPage> {
                 ],)),
             ],
           ),
-          Align(
-            //alignment: Alignment.center,
-            alignment: const Alignment(0, 0.005),
+          Positioned(
+            top: localHeight * 0.15,
+            left: localHeight * 0.050,
             child: SizedBox(
               height: localHeight * 0.60,
               width: localWidth * 0.8,
