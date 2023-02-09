@@ -177,7 +177,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         title: Text(AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -389,7 +389,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                     Text(AppLocalizations.of(context)!.select_language,
                         style: Theme.of(context)
                             .primaryTextTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.merge(TextStyle(
                                 color: const Color.fromRGBO(48, 145, 139, 1),
                                 fontFamily: 'Inter',

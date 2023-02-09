@@ -28,7 +28,6 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
 
   @override
   void initState() {
-    //QnaService.sendOtp('jjkj');
     super.initState();
   }
 

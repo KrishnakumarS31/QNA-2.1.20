@@ -59,7 +59,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         Text("      Completed Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -77,7 +77,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         Text("      In Progress Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -95,7 +95,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         Text("      Not Started Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',

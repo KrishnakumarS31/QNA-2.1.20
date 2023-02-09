@@ -5,6 +5,7 @@ import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
+import 'package:qna_test/pages/teacher_question_preview_delete.dart';
 
 import '../Components/custom_radio_option.dart';
 import '../Entity/demo_question_model.dart';
@@ -126,8 +127,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                         ],
                       ),
                       SizedBox(height: height * 0.03,),
-                      for ( DemoQuestionModel i in quesList )
-                        QuestionPreview(height: height, width: width,question: i,),
+                        for(int i=0;i<quesList.length;i++)
+                        QuestionPreview(height: height, width: width,question: quesList[i],index: i,assessment: widget.assessment,),
                     ],
                   ),
                 ),
@@ -187,11 +188,15 @@ class QuestionPreview extends StatelessWidget {
     required this.height,
     required this.width,
     required this.question,
+    required this.index,
+    this.assessment
   }) : super(key: key);
 
   final double height;
   final double width;
   final DemoQuestionModel question;
+  final int index;
+  final bool? assessment;
 
   @override
   Widget build(BuildContext context) {
@@ -202,7 +207,16 @@ class QuestionPreview extends StatelessWidget {
       answer='$answer ${question.choices![j-1]}';
       //question.choices[question.correctChoice[i]];
     }
-    return Container(
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child:  TeacherQuestionPreviewDelete(question: question,index: index,assessment: assessment,),
+          ),
+        );
+      },
       child: Column(
         children: [
           Container(

@@ -6,14 +6,16 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/static_response.dart';
+import '../Services/qna_service.dart';
 
 
 class TeacherRegistrationOtpPage extends StatefulWidget {
   const TeacherRegistrationOtpPage({
     Key? key,
-
+    required this.email
   }) : super(key: key);
-
+  final String email;
 
   @override
   TeacherRegistrationOtpPageState createState() => TeacherRegistrationOtpPageState();
@@ -105,7 +107,7 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                               Text("CHECK YOUR EMAIL FOR OTP",
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge(const TextStyle(
                                     color: Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
@@ -193,20 +195,13 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          onPressed: () {
+                          onPressed: ()  async {
                             if(formKey.currentState!.validate()) {
                               otp=otpController.text;
-                              //QnaTestRepo.updatePasswordOtp(widget.email, otp, 'password');
-                              if (otp != "1234") {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: CustomDialog(title: 'Incorrect Otp', content: 'Entered OTP does not match', button: AppLocalizations.of(context)!.retry,),
-                                  ),
-                                );
-                              }
-                              else{
+                              StaticResponse res=await QnaService.verifyOtp(widget.email,otp);
+                              int statusCode= 200;
+                              //QnaService.verifyOtp(widget.email,otp);
+                              if (res.code==200) {
                                 Navigator.push(
                                   context,
                                   PageTransition(
@@ -214,6 +209,17 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                                       child: showAlertDialog(context)
                                   ),
                                 );
+
+                              }
+                              else{
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(title: 'Incorrect Otp', content: 'Entered OTP does not match', button: AppLocalizations.of(context)!.retry,),
+                                  ),
+                                );
+
 
                               }
                             }
@@ -238,8 +244,6 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
-
-
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -254,20 +258,24 @@ class TeacherRegistrationOtpPageState extends State<TeacherRegistrationOtpPage> 
                 fontSize: 20),),
         ],
       ),
-      content: const Text("Your registration has been successfully completed.",style: TextStyle(
+      content: const Text("Your registration has been\nsuccessfully completed.",style: TextStyle(
           color: Color.fromRGBO(51, 51, 51, 1),
           fontFamily: 'Inter',
           fontWeight: FontWeight.w500,
           fontSize: 15),),
       actions: [
         TextButton(
-          child: const Text("Login",style: TextStyle(
+          child: const Text("Ok",style: TextStyle(
               color: Color.fromRGBO(48, 145, 139, 1),
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
               fontSize: 15),),
           onPressed: () {
-            Navigator.of(context).pop();
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 3;
+            });
+
           },
         )
       ],

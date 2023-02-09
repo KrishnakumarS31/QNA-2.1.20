@@ -74,7 +74,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   SingleValueDropDownController selectedCountryCitizen = SingleValueDropDownController();
   List<String> countryResidentList = ["India", "United States", "European Union", "Rest of World"];
   SingleValueDropDownController selectedCountryResident = SingleValueDropDownController();
-
+  int d=0;
 
 
   @override
@@ -249,7 +249,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime(1900),
-                              lastDate: DateTime(2100),
+                              lastDate: DateTime.now(),
                               builder: (context, child) {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
@@ -272,6 +272,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             final DateFormat formatter = DateFormat('dd/MM/yyyy');
                             final String formatted = formatter.format(pickedDate!);
 
+                            d =pickedDate.microsecondsSinceEpoch;
+                            print(d);
                             teacherDobController.text = formatted;
 
 
@@ -999,26 +1001,51 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                       borderRadius: BorderRadius.circular(39),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     bool valid=formKey.currentState!.validate();
-                    //QnaService.sendOtp('kkkl');
+                    print(teacherFirstNameController.text);
+                    print(teacherLastNameController.text);
+                    print(teacherDobController.text);
+                    print(gender);
+                    print(selectedCountryCitizen.dropDownValue?.value);
+                    print(selectedCountryResident.dropDownValue?.value);
+                    print(teacherEmailController.text);
+                    print(teacherPasswordController.text);
+                    print(teacherRollNumberController.text);
+                    print(teacherOrganisationNameController);
+                    print(d);
+                    StudentRegistrationModel student=StudentRegistrationModel(
+                        firstName: teacherFirstNameController.text,
+                        lastName: teacherLastNameController.text,
+                        dob: d,
+                        gender: gender,
+                        countryNationality: selectedCountryCitizen.dropDownValue?.value,
+                        email: teacherEmailController.text,
+                        password: teacherPasswordController.text,
+                        rollNumber: teacherRollNumberController.text,
+                        organisationName: teacherOrganisationNameController.text,
+                        countryResident: selectedCountryResident.dropDownValue?.value,
+                        role: 'teacher');
                     if(valid) {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                            type: PageTransitionType.fade,
-                            child: const TeacherRegistrationOtpPage()
-                        ),
-                      );
-                    }
-                    else{
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: CustomDialog(title: 'Incorrect Data', content: 'Fill mandatory fields', button: AppLocalizations.of(context)!.retry,),
-                        ),
-                      );
+                      LoginModel res=await QnaService.postUserDetailsService(student);
+                      if(res.code==200) {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                              type: PageTransitionType.fade,
+                              child: TeacherRegistrationOtpPage(email: student.email,)
+                          ),
+                        );
+                      }
+                      else{
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: CustomDialog(title: 'Incorrect Data', content: '${res.message}', button: AppLocalizations.of(context)!.retry,),
+                          ),
+                        );
+                      }
                     }
                   },
                   child: Text(

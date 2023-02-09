@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/opening_page.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'DataSource/app_user_repo.dart';
-import 'Entity/app_user.dart';
+import 'package:flutter/foundation.dart';
 import 'Providers/LanguageChangeProvider.dart';
 import 'Providers/question_prepare_provider.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
@@ -59,7 +58,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
 
-    //getData();
     return MaterialApp(
       locale: _locale,
       debugShowCheckedModeBanner: false,
@@ -67,14 +65,11 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-        // textTheme: Theme.of(context).textTheme.apply(
-        //     fontSizeDelta: lang == 'ta'? -5.0 : 0.0
-        // ),
       ),
-
-      home:
-      SplashScreen(setLocale: setLocale,),
-       //WelcomePage(setLocale: setLocale),
+       home:
+       defaultTargetPlatform == TargetPlatform.windows
+           ? WelcomePage(setLocale: setLocale)
+           : SplashScreen(setLocale: setLocale)
     );
   }
 

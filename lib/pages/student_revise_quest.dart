@@ -6,7 +6,7 @@ import '../Providers/question_num_provider.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import 'package:intl/intl.dart';
-import 'guest_result_page.dart';
+import 'student_result_page.dart';
 class guestReviseQuest extends StatefulWidget {
   const guestReviseQuest({Key? key,
     required this.questions, required this.userName

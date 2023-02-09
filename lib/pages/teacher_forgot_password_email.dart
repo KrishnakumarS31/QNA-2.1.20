@@ -179,7 +179,7 @@ class TeacherForgotPasswordEmailState extends State<TeacherForgotPasswordEmail> 
                     Text(AppLocalizations.of(context)!.back,
                         style: Theme.of(context)
                             .primaryTextTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.merge(const TextStyle(
                             color: Color.fromRGBO(48, 145, 139, 1),
                             fontFamily: 'Inter',

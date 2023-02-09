@@ -4,7 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-import 'guest_revise_quest.dart';
+import 'student_revise_quest.dart';
 import 'package:intl/intl.dart';
 
 
@@ -13,11 +13,11 @@ class StudQuestion extends StatefulWidget {
   const StudQuestion({
     Key? key,
     required this.assessmentId,
-    required this.ques, required this.UserName
+    required this.ques, required this.userName
   }) : super(key: key);
   final String assessmentId;
   final QuestionPaperModel ques;
-  final String UserName;
+  final String userName;
 
 
   @override
@@ -152,7 +152,7 @@ class StudQuestionState extends State<StudQuestion> {
                         style: Theme
                             .of(context)
                             .primaryTextTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.merge(TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontFamily: 'Inter',
@@ -209,7 +209,7 @@ class StudQuestionState extends State<StudQuestion> {
                           style: Theme
                               .of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -330,7 +330,7 @@ class StudQuestionState extends State<StudQuestion> {
                             style: Theme
                                 .of(context)
                                 .primaryTextTheme
-                                .bodyText1
+                                .bodyLarge
                                 ?.merge(TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
@@ -392,7 +392,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         style: Theme
                                             .of(context)
                                             .primaryTextTheme
-                                            .bodyText1
+                                            .bodyLarge
                                             ?.merge(TextStyle(
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
@@ -461,7 +461,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       style: Theme
                                           .of(context)
                                           .primaryTextTheme
-                                          .bodyText1
+                                          .bodyLarge
                                           ?.merge(TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -595,7 +595,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         style: Theme
                                             .of(context)
                                             .primaryTextTheme
-                                            .bodyText1
+                                            .bodyLarge
                                             ?.merge(TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
@@ -676,7 +676,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: guestReviseQuest(questions: values,userName: widget.UserName),
+                                  child: guestReviseQuest(questions: values,userName: widget.userName),
                                 ),
                               );
                             },) :
@@ -795,7 +795,7 @@ class StudQuestionState extends State<StudQuestion> {
                             style: Theme
                                 .of(context)
                                 .primaryTextTheme
-                                .bodyText1
+                                .bodyLarge
                                 ?.merge(TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
@@ -857,7 +857,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         style: Theme
                                             .of(context)
                                             .primaryTextTheme
-                                            .bodyText1
+                                            .bodyLarge
                                             ?.merge(TextStyle(
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
@@ -886,7 +886,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           style: Theme
                                               .of(context)
                                               .primaryTextTheme
-                                              .bodyText1
+                                              .bodyLarge
                                               ?.merge(TextStyle(
                                               color: const Color.fromRGBO(
                                                   255, 255, 255, 1),
@@ -897,7 +897,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           style: Theme
                                               .of(context)
                                               .primaryTextTheme
-                                              .bodyText1
+                                              .bodyLarge
                                               ?.merge(TextStyle(
                                               color: const Color.fromRGBO(
                                                   255, 255, 255, 1),
@@ -926,7 +926,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       style: Theme
                                           .of(context)
                                           .primaryTextTheme
-                                          .bodyText1
+                                          .bodyLarge
                                           ?.merge(TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -1062,7 +1062,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         style: Theme
                                             .of(context)
                                             .primaryTextTheme
-                                            .bodyText1
+                                            .bodyLarge
                                             ?.merge(TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
@@ -1163,7 +1163,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       style: Theme
                                           .of(context)
                                           .primaryTextTheme
-                                          .bodyText1
+                                          .bodyLarge
                                           ?.merge(TextStyle(
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),
@@ -1186,7 +1186,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: guestReviseQuest(questions: values,userName: widget.UserName),
+                                  child: guestReviseQuest(questions: values,userName: widget.userName),
                                 ),
                               );
                             },) :

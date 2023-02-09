@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Services/qna_service.dart';
-import '../Components/custom_incorrect_popup.dart';
+import 'package:intl/intl.dart';
 import '../EntityModel/user_data_model.dart';
 class StudentUserProfile extends StatefulWidget {
    StudentUserProfile({
@@ -16,11 +13,16 @@ class StudentUserProfile extends StatefulWidget {
 }
 
 class StudentUserProfileState extends State<StudentUserProfile> {
-
+DateTime date=DateTime.now();
+final DateFormat formatter = DateFormat('dd/MM/yyyy');
+late String formatted='';
+//= formatter.format(pickedDate!);
 
   @override
   void initState() {
     super.initState();
+    date=DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
+    formatted=formatter.format(date);
   }
 
   @override
@@ -247,7 +249,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                       height: height * 0.01,
                     ),
                     Text(
-                      '${widget.userDataModel.data?.dob}',
+                      formatted,
                       style: TextStyle(
                         color: const Color.fromRGBO(48, 145, 139, 1),
                         fontSize: height * 0.02,

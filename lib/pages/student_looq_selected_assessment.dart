@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/pages/stud_question01.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
-
+import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Entity/question_paper_model.dart';
 import '../Services/qna_service.dart';
 
@@ -43,7 +41,6 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -201,7 +198,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                                 ),
 
                               ),
-                              Container(
+                              SizedBox(
                                 width: width * 0.44,
                                 height: height * 0.0875,
                                 child: Column(
@@ -233,7 +230,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                   SizedBox(height: height*0.025,),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.4,
                         child: Text("Assessment ID:",
                           style: TextStyle(
@@ -255,7 +252,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                   SizedBox(height: height*0.01,),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.4,
                         child: Text("Institute Test ID:",
                           style: TextStyle(
@@ -275,11 +272,11 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                     ],
                   ),
                   SizedBox(height: height*0.01,),
-                  Divider(),
+                  const Divider(),
                   SizedBox(height: height*0.01,),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.4,
                         child: Text("Time Permitted:",
                           style: TextStyle(
@@ -301,7 +298,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                   SizedBox(height: height*0.01,),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.4,
                         child: Text("Advisor",
                           style: TextStyle(
@@ -323,7 +320,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                   SizedBox(height: height*0.01,),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.4,
                         child: Text("Email ID",
                           style: TextStyle(
@@ -352,13 +349,13 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
               Column(
                 children: [
                   Center(
-                    child: Container(
+                    child: SizedBox(
                       width: width * 0.888,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           side: const BorderSide(
                             width: 1.0,
-                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            color: Color.fromRGBO(82, 165, 160, 1),
                           ),
                           backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                           minimumSize: const Size(280, 48),
@@ -375,7 +372,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
-                              color: Color.fromRGBO(82, 165, 160, 1),
+                              color: const Color.fromRGBO(82, 165, 160, 1),
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -383,7 +380,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                   ),
                   SizedBox(height: height * 0.03,),
                   Center(
-                    child: Container(
+                    child: SizedBox(
                       width: width * 0.888,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -412,7 +409,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: StudQuestion(
-                                UserName: "firstName",
+                                userName: "firstName",
                                 assessmentId: '98765432',
                                 ques: values,),
                             ),
@@ -423,7 +420,7 @@ class StudentLooqSelectedAssessmentState extends State<StudentLooqSelectedAssess
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
-                              color: Color.fromRGBO(255, 255, 255, 1),
+                              color: const Color.fromRGBO(255, 255, 255, 1),
                               fontWeight: FontWeight.w600),
                         ),
                       ),
@@ -505,7 +502,7 @@ class QuestionWidget extends StatelessWidget {
 
             ],
           ),
-          Divider()
+          const Divider()
         ],
       ),
     );

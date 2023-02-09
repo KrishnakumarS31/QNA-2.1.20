@@ -80,7 +80,7 @@
 //                       title: Text("Not Sure Flag:\nHelps remind to re-check the question",
 //                         style: Theme.of(context)
 //                             .primaryTextTheme
-//                             .bodyText1
+//                             .bodyLarge
 //                             ?.merge( TextStyle(
 //                             color: const Color.fromRGBO(51, 51, 51, 1),
 //                             fontFamily: 'Inter',
@@ -94,7 +94,7 @@
 //                       Text("Skip to End of question paper",
 //                         style: Theme.of(context)
 //                             .primaryTextTheme
-//                             .bodyText1
+//                             .bodyLarge
 //                             ?.merge( TextStyle(
 //                             color: const Color.fromRGBO(51, 51, 51, 1),
 //                             fontFamily: 'Inter',
@@ -110,7 +110,7 @@
 //                         Text("  Test",
 //                           style: Theme.of(context)
 //                               .primaryTextTheme
-//                               .bodyText1
+//                               .bodyLarge
 //                               ?.merge( TextStyle(
 //                               color: const Color.fromRGBO(51, 51, 51, 1),
 //                               fontFamily: 'Inter',
@@ -125,7 +125,7 @@
 //                         Text("  Practice",
 //                           style: Theme.of(context)
 //                               .primaryTextTheme
-//                               .bodyText1
+//                               .bodyLarge
 //                               ?.merge( TextStyle(
 //                               color: const Color.fromRGBO(51, 51, 51, 1),
 //                               fontFamily: 'Inter',
@@ -219,7 +219,7 @@
 //                     Text("Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data.assessment.questions.length}",
 //                       style: Theme.of(context)
 //                           .primaryTextTheme
-//                           .bodyText1
+//                           .bodyLarge
 //                           ?.merge( TextStyle(
 //                           color: const Color.fromRGBO(82, 165, 160, 1),
 //                           fontFamily: 'Inter',
@@ -274,7 +274,7 @@
 //                                 child: Text("${values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].questionId}",
 //                                   style: Theme.of(context)
 //                                       .primaryTextTheme
-//                                       .bodyText1
+//                                       .bodyLarge
 //                                       ?.merge( TextStyle(
 //                                       color: const Color.fromRGBO(82, 165, 160, 1),
 //                                       fontFamily: 'Inter',
@@ -295,7 +295,7 @@
 //                                   Text("${values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].questionMarks}",
 //                                     style: Theme.of(context)
 //                                         .primaryTextTheme
-//                                         .bodyText1
+//                                         .bodyLarge
 //                                         ?.merge( TextStyle(
 //                                         color: const Color.fromRGBO(255, 255, 255, 1),
 //                                         fontFamily: 'Inter',
@@ -304,7 +304,7 @@
 //                                   Text(" Marks",
 //                                     style: Theme.of(context)
 //                                         .primaryTextTheme
-//                                         .bodyText1
+//                                         .bodyLarge
 //                                         ?.merge( TextStyle(
 //                                         color: const Color.fromRGBO(255, 255, 255, 1),
 //                                         fontFamily: 'Inter',
@@ -326,7 +326,7 @@
 //                               child: Text(values.data.assessment.questions[context.watch<QuestionNumProvider>().questionNum-1].question,
 //                                 style: Theme.of(context)
 //                                     .primaryTextTheme
-//                                     .bodyText1
+//                                     .bodyLarge
 //                                     ?.merge( TextStyle(
 //                                     color: const Color.fromRGBO(51, 51, 51, 1),
 //                                     fontFamily: 'Inter',
@@ -400,7 +400,7 @@
 //                                 Text("Not Sure",
 //                                   style: Theme.of(context)
 //                                       .primaryTextTheme
-//                                       .bodyText1
+//                                       .bodyLarge
 //                                       ?.merge( TextStyle(
 //                                       color: const Color.fromRGBO(102, 102, 102, 1),
 //                                       fontFamily: 'Inter',

@@ -184,7 +184,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                                   color: textColor,
                                   fontFamily: 'Inter',
@@ -363,7 +363,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     fontSize: localHeight * 0.017),
                               ),
                               TextSpan(
-                                  text: "\t*",
+                                  text: " *",
                                   style: TextStyle(
                                       color:
                                           const Color.fromRGBO(219, 35, 35, 1),

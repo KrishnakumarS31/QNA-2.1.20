@@ -168,7 +168,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         title: Text(AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -297,7 +297,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 //           Text("LEARNER/APPLICANT",
                 //             style: Theme.of(context)
                 //                 .primaryTextTheme
-                //                 .bodyText1
+                //                 .bodyLarge
                 //                 ?.merge(const TextStyle(
                 //                 color: Color.fromRGBO(102, 102, 102, 1),
                 //                 fontFamily: 'Inter',
@@ -411,7 +411,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             Text(AppLocalizations.of(context)!.instructor_examiner,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge( TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',

@@ -24,7 +24,7 @@ class CustomTextField extends StatelessWidget {
               Text(label,
                 style: Theme.of(context)
                     .primaryTextTheme
-                    .bodyText1
+                    .bodyLarge
                     ?.merge(const TextStyle(
                     color: Color.fromRGBO(102, 102, 102, 1),
                     fontFamily: 'Inter',

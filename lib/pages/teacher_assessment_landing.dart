@@ -68,7 +68,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       child: Text("Legend",
                         style: Theme.of(context)
                             .primaryTextTheme
-                            .bodyText1
+                            .bodyLarge
                             ?.merge( TextStyle(
                             color: Color.fromRGBO(82, 165, 160, 1),
                             fontFamily: 'Inter',
@@ -86,7 +86,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         Text("  Active",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -99,7 +99,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         Text("  In progress",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -115,7 +115,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         Text("  Inactive",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
@@ -128,7 +128,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         Text("  Practice",
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',

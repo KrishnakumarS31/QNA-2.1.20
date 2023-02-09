@@ -69,7 +69,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   SingleValueDropDownController selectedCountryCitizen = SingleValueDropDownController();
   List<String> countryResidentList = ["India", "United States", "European Union", "Rest of World"];
   SingleValueDropDownController selectedCountryResident = SingleValueDropDownController();
-
+  int d=0;
 
   @override
   void initState() {
@@ -242,7 +242,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime(1900),
-                              lastDate: DateTime(2100),
+                              lastDate: DateTime.now(),
                               builder: (context, child) {
                                 return Theme(
                                   data: Theme.of(context).copyWith(
@@ -264,7 +264,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             );
                             final DateFormat formatter = DateFormat('dd/MM/yyyy');
                             final String formatted = formatter.format(pickedDate!);
-
+                            d =pickedDate.microsecondsSinceEpoch;
+                            print(d);
                               studentDobController.text = formatted;
 
 
@@ -1013,7 +1014,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   StudentRegistrationModel student=StudentRegistrationModel(
                       firstName: studentFirstNameController.text,
                       lastName: studentLastNameController.text,
-                      dob: 32546,
+                      dob: d,
                       gender: gender, countryNationality: selectedCountryCitizen.dropDownValue?.value,
                       email: studentEmailController.text,
                       password: studentPasswordController.text,

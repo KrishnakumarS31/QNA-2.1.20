@@ -97,7 +97,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                               "Teacher Name",
                               style: Theme.of(context)
                                   .primaryTextTheme
-                                  .bodyText1
+                                  .bodyLarge
                                   ?.merge(const TextStyle(
                                   color: Color.fromRGBO(255, 255, 255, 1),
                                   fontFamily: 'Inter',
@@ -156,7 +156,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         title: Text(AppLocalizations.of(context)!.user_profile,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -279,7 +279,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         title: Text(AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),

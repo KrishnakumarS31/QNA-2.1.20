@@ -4,7 +4,7 @@ import 'package:qna_test/Pages/reset_password_student.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/terms_of_services.dart';
-import 'package:qna_test/pages/stud_question01.dart';
+import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
@@ -63,159 +63,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                 child: Column(
                   children: [
                     Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ],
-                      )),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 50),
-                          Container(
-                            alignment: Alignment.center,
-                            height: height / 6,
-                            child: Row(children: [
-                              CircleAvatar(
-                                backgroundColor:
-                                    const Color.fromRGBO(0, 106, 100, 0),
-                                radius:
-                                    MediaQuery.of(context).size.width * 0.15,
-                                child: Image.asset(
-                                  "assets/images/ProfilePic_Avatar.png",
-                                ),
-                              ),
-                              const SizedBox(height: 2.0),
-                              Text(
-                                widget.name,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(const TextStyle(
-                                        color: Color.fromRGBO(255, 255, 255, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: -0.02,
-                                        fontSize: 16)),
-                              ),
-                            ]),
-                          ),
-                          const SizedBox(height: 0.022),
-                          Column(
-                            children: [
-                              Container(
-                                  padding: EdgeInsets.only(left: width * 0.09),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.student,
-                                    style: const TextStyle(
-                                        color: Color.fromRGBO(221, 221, 221, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 12),
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                  padding: EdgeInsets.only(left: width * 0.09),
-                                  child: const Text(
-                                    "Student@gmail.com",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(221, 221, 221, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 12),
-                                  )),
-                            ],
-                          ),
-                          //    )
-                        ],
-                      ),
+                        color: const Color.fromRGBO(0, 106, 100, 1), height: 55),
+                    Image.asset(
+                      "assets/images/rectangle_qna.png",
+                      fit: BoxFit.fill,
+                      width: 310,
                     ),
                     Flexible(
                       child: ListView(
                         children: [
-                          ListTile(
-                              leading: const Icon(Icons.people_alt,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.user_profile,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(TextStyle(
-                                        color: textColor,
-                                        //Color.fromRGBO(48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 16)),
-                              ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () {}),
-                          ListTile(
-                              leading: const Icon(Icons.key_outlined,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.change_password,
-                                style: TextStyle(
-                                    color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16),
-                              ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: ResetPasswordStudent(
-                                      userId: userDataModel.data!.id,
-                                    ),
-                                  ),
-                                );
-                              }),
-                          ListTile(
-                              leading: const Icon(Icons.mail_outline_sharp,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.change_emailId,
-                                style: TextStyle(
-                                    color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16),
-                              ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: ChangeEmailStudent(
-                                        userId: userDataModel.data!.id),
-                                  ),
-                                );
-                              }),
-                          const Divider(
-                            thickness: 2,
-                          ),
                           ListTile(
                               leading: const Icon(Icons.translate,
                                   color: Color.fromRGBO(141, 167, 167, 1)),
@@ -276,7 +132,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 'Terms of Services',
                                 style: TextStyle(
                                     color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: -0.02,
@@ -313,8 +168,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: CookiePolicy(
-                                        setLocale: widget.setLocale),
+                                    child: CookiePolicy(setLocale: widget.setLocale),
                                   ),
                                 );
                               }),
@@ -331,12 +185,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     .primaryTextTheme
                                     .bodyLarge
                                     ?.merge(TextStyle(
-                                        color: textColor,
-                                        //Color.fromRGBO(48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 16)),
+                                    color: textColor,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.02,
+                                    fontSize: 16)),
                               ),
                               trailing: const Icon(Icons.navigate_next,
                                   color: Color.fromRGBO(153, 153, 153, 1)),
@@ -362,50 +215,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     letterSpacing: -0.02,
                                     fontSize: 16),
                               ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
                               onTap: () async {
                                 Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: HelpPageHamburger(
-                                        setLocale: widget.setLocale),
+                                    child: HelpPageHamburger(setLocale: widget.setLocale),
                                   ),
                                 );
                               }),
-                          const Divider(
-                            thickness: 2,
-                          ),
-                          ListTile(
-                              leading: const Icon(Icons.power_settings_new,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(226, 68, 0, 1),
-                                    //Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16),
-                              ),
-                              onTap: () async {}),
-                          SizedBox(height: height * 0.03),
-                          const Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Version : 1.0.0",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(180, 180, 180, 1),
-                                  //Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.02,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(height: height * 0.03),
                         ],
                       ),
                     ),
@@ -601,7 +419,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudQuestion(
-                                    UserName: userDataModel.data!.firstName,
+                                    userName: userDataModel.data!.firstName,
                                     assessmentId: assessmentIdController.text,
                                     ques: values,
                                   ),
@@ -682,150 +500,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                 child: Column(
                   children: [
                     Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ],
-                      )),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(height: 50),
-                          Container(
-                            alignment: Alignment.center,
-                            height: height / 6,
-                            child: Row(children: [
-                              CircleAvatar(
-                                backgroundColor:
-                                    const Color.fromRGBO(0, 106, 100, 0),
-                                radius:
-                                    MediaQuery.of(context).size.width * 0.15,
-                                child: Image.asset(
-                                  "assets/images/ProfilePic_Avatar.png",
-                                ),
-                              ),
-                              const SizedBox(height: 2.0),
-                              Text(
-                                "Student Name",
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(const TextStyle(
-                                        color: Color.fromRGBO(255, 255, 255, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        letterSpacing: -0.02,
-                                        fontSize: 16)),
-                              ),
-                            ]),
-                          ),
-                          const SizedBox(height: 0.022),
-                          Column(
-                            children: [
-                              Container(
-                                  padding: EdgeInsets.only(left: width * 0.09),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.student,
-                                    style: const TextStyle(
-                                        color: Color.fromRGBO(221, 221, 221, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 12),
-                                  )),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                  padding: EdgeInsets.only(left: width * 0.09),
-                                  child: const Text(
-                                    "Student@gmail.com",
-                                    style: TextStyle(
-                                        color: Color.fromRGBO(221, 221, 221, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 12),
-                                  )),
-                            ],
-                          ),
-                          //    )
-                        ],
-                      ),
+                        color: const Color.fromRGBO(0, 106, 100, 1), height: 55),
+                    Image.asset(
+                      "assets/images/rectangle_qna.png",
+                      fit: BoxFit.fill,
+                      width: 310,
                     ),
                     Flexible(
                       child: ListView(
                         children: [
-                          ListTile(
-                              leading: const Icon(Icons.people_alt,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.user_profile,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(TextStyle(
-                                        color: textColor,
-                                        //Color.fromRGBO(48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 16)),
-                              ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () {}),
-                          ListTile(
-                              leading: const Icon(Icons.key_outlined,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.change_password,
-                                style: TextStyle(
-                                    color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16),
-                              ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: ResetPasswordStudent(
-                                      userId: userDataModel.data!.id,
-                                    ),
-                                  ),
-                                );
-                              }),
-                          ListTile(
-                              leading: const Icon(Icons.mail_outline_sharp,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.change_emailId,
-                                style: TextStyle(
-                                    color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16),
-                              ),
-                              trailing: const Icon(Icons.navigate_next,
-                                  color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () {}),
-                          const Divider(
-                            thickness: 2,
-                          ),
                           ListTile(
                               leading: const Icon(Icons.translate,
                                   color: Color.fromRGBO(141, 167, 167, 1)),
@@ -880,13 +563,12 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 );
                               }),
                           ListTile(
-                              leading: const Icon(Icons.newspaper,
+                              leading: const Icon(Icons.verified_user_outlined,
                                   color: Color.fromRGBO(141, 167, 167, 1)),
                               title: Text(
-                                "Terms of Service",
+                                'Terms of Services',
                                 style: TextStyle(
                                     color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: -0.02,
@@ -894,7 +576,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               ),
                               trailing: const Icon(Icons.navigate_next,
                                   color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () async {}),
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: TermsOfServiceHamburger(
+                                        setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }),
                           ListTile(
                               leading: const Icon(Icons.note_alt_outlined,
                                   color: Color.fromRGBO(141, 167, 167, 1)),
@@ -902,7 +593,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 AppLocalizations.of(context)!.cookie_policy,
                                 style: TextStyle(
                                     color: textColor,
-                                    //Color.fromRGBO(48, 145, 139, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: -0.02,
@@ -910,7 +600,15 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               ),
                               trailing: const Icon(Icons.navigate_next,
                                   color: Color.fromRGBO(153, 153, 153, 1)),
-                              onTap: () async {}),
+                              onTap: () async {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CookiePolicy(setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }),
                           const Divider(
                             thickness: 2,
                           ),
@@ -924,12 +622,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     .primaryTextTheme
                                     .bodyLarge
                                     ?.merge(TextStyle(
-                                        color: textColor,
-                                        //Color.fromRGBO(48, 145, 139, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
-                                        fontSize: 16)),
+                                    color: textColor,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w500,
+                                    letterSpacing: -0.02,
+                                    fontSize: 16)),
                               ),
                               trailing: const Icon(Icons.navigate_next,
                                   color: Color.fromRGBO(153, 153, 153, 1)),
@@ -964,38 +661,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   ),
                                 );
                               }),
-                          const Divider(
-                            thickness: 2,
-                          ),
-                          ListTile(
-                              leading: const Icon(Icons.power_settings_new,
-                                  color: Color.fromRGBO(141, 167, 167, 1)),
-                              title: Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(226, 68, 0, 1),
-                                    //Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16),
-                              ),
-                              onTap: () async {}),
-                          SizedBox(height: height * 0.03),
-                          const Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Version : 1.0.0",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(180, 180, 180, 1),
-                                  //Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.02,
-                                  fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(height: height * 0.03),
                         ],
                       ),
                     ),
@@ -1009,7 +674,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                   height: height * 0.3,
                   width: width,
                   decoration: BoxDecoration(
-                    // color: Theme.of(context).primaryColor,
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -1029,12 +693,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                         child: SizedBox(
                           height: height * 0.22,
                           width: width * 0.22,
-                          // decoration: BoxDecoration(
-                          //     //color: Colors.yellow[100],
-                          //     border: Border.all(
-                          //       color: Colors.red,
-                          //       width: 1,
-                          //     )),
                           child: Image.asset(
                               "assets/images/question_mark_logo.png"),
                         ),
@@ -1172,7 +830,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudQuestion(
-                                    UserName: widget.name,
+                                    userName: widget.name,
                                     assessmentId: assessmentIdController.text,
                                     ques: values,
                                   ),

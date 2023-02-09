@@ -4,7 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
-import 'package:qna_test/pages/stud_question01.dart';
+import 'package:qna_test/pages/student_assessment_questions.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
@@ -25,7 +25,7 @@ class StudentMemLogedStart extends StatefulWidget {
     Key? key,required this.regNumber, required this.setLocale,this.userId
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
-  final String regNumber;
+  final String? regNumber;
   int? userId;
 
   @override
@@ -39,7 +39,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
   UserDataModel userDataModel=UserDataModel(code: 0, message: '');
   String name='';
   String email = "";
-  String assessmentid = "";
+  String assessmentId = "";
 
 
   @override
@@ -61,8 +61,6 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-    print(userDataModel.data!.id);
-    print('dssdccccccccccc');
     return Scaffold(
       extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -118,7 +116,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                               name,
                               style: Theme.of(context)
                                   .primaryTextTheme
-                                  .bodyText1
+                                  .bodyLarge
                                   ?.merge(const TextStyle(
                                   color: Color.fromRGBO(255, 255, 255, 1),
                                   fontFamily: 'Inter',
@@ -152,7 +150,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             padding: EdgeInsets.only(left: localWidth * 0.09),
                             child:  Text(
                               "${userDataModel.data?.email}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Color.fromRGBO(221, 221, 221, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w500,
@@ -172,13 +170,13 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                   children: [
                     ListTile(
                         leading:
-                        Icon(
+                        const Icon(
                             Icons.people_alt,
                             color: Color.fromRGBO(141, 167, 167, 1)),
                         title: Text(AppLocalizations.of(context)!.user_profile,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -354,7 +352,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                         title: Text(AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -497,7 +495,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                           Text(name,
                             style: Theme.of(context)
                                 .primaryTextTheme
-                                .bodyText1
+                                .bodyLarge
                                 ?.merge(const TextStyle(
                                 color: Color.fromRGBO(28, 78, 80, 1),
                                 fontFamily: 'Inter',
@@ -600,7 +598,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                             ),
                           onPressed: () async {
     if (formKey.currentState!.validate()) {
-      assessmentid = assessmentID.text;
+      assessmentId = assessmentID.text;
       showDialog(
           context: context,
           builder: (context) {
@@ -611,7 +609,6 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
                 ));
           });
       values = await QnaService.getQuestion(assessmentId: assessmentID.text);
-      print("values.code");
       if (values.code == 200) {
         if (assessmentID.text.length >= 8) {
           Navigator.push(
@@ -621,7 +618,7 @@ class StudentMemLogedStartState extends State<StudentMemLogedStart> {
               child: StudQuestion(
                   assessmentId: assessmentID.text,
                   ques: values,
-              UserName: userDataModel.data!.firstName),
+                  userName: userDataModel.data!.firstName),
             ),
           );
         }

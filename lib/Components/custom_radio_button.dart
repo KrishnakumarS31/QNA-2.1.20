@@ -51,7 +51,7 @@ class CustomRadioButton<T> extends StatelessWidget {
       text,
       style: Theme.of(context)
           .primaryTextTheme
-          .bodyText1
+          .bodyLarge
           ?.merge(const TextStyle(
           color: Color.fromRGBO(82, 165, 160, 1),
           fontFamily: 'Inter',

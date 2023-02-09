@@ -266,7 +266,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           onChanged: (value) {
                           },
                         ),
-                    SizedBox(height: height * 0.04),
+                    SizedBox(height: height * 0.03),
                     Container(
                       margin: EdgeInsets.only(left: height * 0.040),
                       child:
@@ -282,7 +282,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 fontFamily: "Inter"),
                           ),
                           TextSpan(
-                            text: "\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer available in the Library.",
+                            text: "\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontWeight: FontWeight.w500,

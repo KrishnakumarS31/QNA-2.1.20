@@ -48,7 +48,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     Text(widget.title,
                       style: Theme.of(context)
                           .primaryTextTheme
-                          .bodyText1
+                          .bodyLarge
                           ?.merge(const TextStyle(
                           color: Color.fromRGBO(51, 51, 51, 1),
                           fontFamily: 'Inter',
@@ -57,7 +57,7 @@ class _CustomDialogState extends State<CustomDialog> {
                     Text(widget.content,
                       style: Theme.of(context)
                           .primaryTextTheme
-                          .bodyText1
+                          .bodyLarge
                           ?.merge(const TextStyle(
                           color: Color.fromRGBO(51, 51, 51, 1),
                           fontFamily: 'Inter',

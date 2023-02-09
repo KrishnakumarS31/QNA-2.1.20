@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
-import 'package:qna_test/Pages/stud_guest_assessment.dart';
+import 'package:qna_test/Pages/student_guest_assessment.dart';
 import 'package:qna_test/pages/cookie_policy.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -178,7 +178,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                         title: Text(AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -363,7 +363,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               Text(AppLocalizations.of(context)!.registrationIdRollNum,
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .bodyText1
+                                    .bodyLarge
                                     ?.merge( TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
@@ -417,15 +417,6 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.017)),
                               ])),
-                          // Text(AppLocalizations.of(context)!.privacy_terms,
-                          //   style: Theme.of(context)
-                          //       .primaryTextTheme
-                          //       .bodyText1
-                          //       ?.merge( TextStyle(
-                          //       color: const Color.fromRGBO(102, 102, 102, 1),
-                          //       fontFamily: 'Inter',
-                          //       fontWeight: FontWeight.w600,
-                          //       fontSize: height * 0.015)),),
                         ),
                         SizedBox(height:height * 0.02),
                         Row(
@@ -450,7 +441,6 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 });
                               },
                             ),
-                            //SizedBox(width: width * 0.05),
                             RichText(
                                 text:  TextSpan(children: [
                                   TextSpan(

@@ -109,7 +109,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
       //                       name,
       //                       style: Theme.of(context)
       //                           .primaryTextTheme
-      //                           .bodyText1
+      //                           .bodyLarge
       //                           ?.merge(const TextStyle(
       //                           color: Color.fromRGBO(255, 255, 255, 1),
       //                           fontFamily: 'Inter',
@@ -169,7 +169,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
       //                 title: Text(AppLocalizations.of(context)!.user_profile,
       //                   style: Theme.of(context)
       //                       .primaryTextTheme
-      //                       .bodyText1
+      //                       .bodyLarge
       //                       ?.merge(TextStyle(
       //                       color: textColor,
       //                       //Color.fromRGBO(48, 145, 139, 1),
@@ -345,7 +345,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
       //                 title: Text(AppLocalizations.of(context)!.about_us,
       //                   style: Theme.of(context)
       //                       .primaryTextTheme
-      //                       .bodyText1
+      //                       .bodyLarge
       //                       ?.merge(TextStyle(
       //                       color: textColor,
       //                       //Color.fromRGBO(48, 145, 139, 1),

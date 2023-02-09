@@ -188,7 +188,7 @@ getUserDetails() async {
                         title: Text(AppLocalizations.of(context)!.about_us,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge(TextStyle(
                               color: textColor,
                               //Color.fromRGBO(48, 145, 139, 1),
@@ -350,7 +350,7 @@ getUserDetails() async {
                                   Text(AppLocalizations.of(context)!.email_id_caps,
                                     style: Theme.of(context)
                                         .primaryTextTheme
-                                        .bodyText1
+                                        .bodyLarge
                                         ?.merge( TextStyle(
                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                         fontFamily: 'Inter',
@@ -402,7 +402,7 @@ getUserDetails() async {
                                   Text(AppLocalizations.of(context)!.password_caps,
                                     style: Theme.of(context)
                                         .primaryTextTheme
-                                        .bodyText1
+                                        .bodyLarge
                                         ?.merge( TextStyle(
                                         color: const Color.fromRGBO(102, 102, 102, 1),
                                         fontFamily: 'Inter',
@@ -467,7 +467,7 @@ getUserDetails() async {
                             child: Text(AppLocalizations.of(context)!.forgot_password,
                               style: Theme.of(context)
                                   .primaryTextTheme
-                                  .bodyText1
+                                  .bodyLarge
                                   ?.merge( TextStyle(
                                   color: const Color.fromRGBO(48, 145, 139, 1),
                                   fontFamily: 'Inter',
@@ -683,7 +683,7 @@ getUserDetails() async {
                       Text(AppLocalizations.of(context)!.register,
                           style: Theme.of(context)
                               .primaryTextTheme
-                              .bodyText1
+                              .bodyLarge
                               ?.merge( TextStyle(
                               color: const Color.fromRGBO(48, 145, 139, 1),
                               fontFamily: 'Inter',
