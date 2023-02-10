@@ -56,7 +56,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
               ),
             ),
             Text(
-              values.data!.assessment!.assessmentCode,
+              "12345678",
+              //values.data!.assessment!.assessmentCode,
               style: TextStyle(
                 color: const Color.fromRGBO(255, 255, 255, 1),
                 fontSize: localHeight * 0.016,
@@ -116,7 +117,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             Row(children: [
                               SizedBox(height: localHeight * 0.050),
                               Text(
-                                  "Q${values.data!.assessment!.questions[index-1].questionId}",
+                                  "Q${values.data!.questions[index-1].questionId}",
                                   style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -125,7 +126,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       fontSize: localHeight * 0.012)),
                               SizedBox(width: localHeight * 0.020),
                               Text(
-                                "${values.data!.assessment!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                "${values.data!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                 style: TextStyle(
                                     color:
                                         const Color.fromRGBO(179, 179, 179, 1),
@@ -170,7 +171,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             ]),
                             SizedBox(height: localHeight * 0.010),
                             Text(
-                              values.data!.assessment!.questions[index-1].question,
+                              values.data!.questions[index-1].question,
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
@@ -197,7 +198,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               RichText(
                                   text: TextSpan(children: [
                                 TextSpan(
-                                    text: "${AppLocalizations.of(context)!.study_chapter} ${values.data!.assessment!.subtopic}\t",
+                                    text: "${AppLocalizations.of(context)!.study_chapter} ${values.data!.sub_topic}\t",
                                     style: TextStyle(
                                         color:
                                             const Color.fromRGBO(51, 51, 51, 1),
@@ -205,7 +206,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         fontWeight: FontWeight.w600,
                                         fontSize: localHeight * 0.015)),
                                 TextSpan(
-                                    text: values.data!.assessment!.questions[index].advisorText,
+                                    text: values.data!.questions[index].advisorText,
                                     style: TextStyle(
                                         color:
                                             const Color.fromRGBO(51, 51, 51, 1),
@@ -227,7 +228,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   TextButton(
                                     //onPressed: _launchURLBrowser,
                                     onPressed: () {  },
-                                    child: Text(values.data!.assessment!.questions[index-1].advisorUrl,
+                                    child: Text(values.data!.questions[index-1].advisorUrl,
                                         style: TextStyle(
                                             fontFamily: 'Inter',
                                             fontSize: localHeight * 0.015,

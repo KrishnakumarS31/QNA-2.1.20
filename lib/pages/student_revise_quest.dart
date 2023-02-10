@@ -30,8 +30,8 @@ class guestReviseQuestState extends State<guestReviseQuest> {
       List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
       List<String> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
-        if(widget.questions.data!.assessment!.questions[j-1].questionType=='mcq'){
-          selectedAnswers.add(widget.questions.data!.assessment!.questions[j-1].choices[selectedAns[t]-1].choiceText);
+        if(widget.questions.data!.questions[j-1].questionType=='mcq'){
+          selectedAnswers.add(widget.questions.data!.questions[j-1].choices[selectedAns[t]-1].choiceText);
         }
         else{
           String temp='';
@@ -131,7 +131,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                   height: localHeight * 0.03,
                                 ),
                                 Text(
-                                  values.data!.assessment!.assessmentCode,
+                                 "12345678",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: localHeight * 0.016,
@@ -186,7 +186,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(children: [
-                                            Text("Q${values.data!.assessment!.questions[index-1].questionId}",
+                                            Text("Q${values.data!.questions[index-1].questionId}",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -195,7 +195,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                     fontSize: localHeight * 0.012)),
                                             SizedBox(width: localHeight * 0.010),
                                             Text(
-                                              "(${values.data!.assessment!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                              "(${values.data!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       179, 179, 179, 1),
@@ -220,7 +220,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                                 : SizedBox(width: localHeight * 0.010),
                                           ]),
                                           SizedBox(height: localHeight * 0.010),
-                                          Text(values.data!.assessment!.questions[index-1].question,
+                                          Text(values.data!.questions[index-1].question,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
@@ -382,15 +382,15 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                 onPressed: () {
                   int totalMark=0;
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
-                    List<dynamic> correctAns=values.data!.assessment!.questions[j-1].choices_answer;
+                    List<dynamic> correctAns=values.data!.questions[j-1].choices_answer;
                     correctAns.sort();
                     List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
                     selectedAns.sort();
                     if(listEquals(correctAns, selectedAns)){
-                      totalMark=totalMark+values.data!.assessment!.questions[j-1].questionMarks;
+                      totalMark=totalMark+values.data!.questions[j-1].questionMarks;
                     }
                   }
-                  final String assessmentCode = values.data!.assessment!.assessmentCode;
+                  final String assessmentCode = "12345678";
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');
                   final DateFormat timeFormatter = DateFormat('hh:mm a');

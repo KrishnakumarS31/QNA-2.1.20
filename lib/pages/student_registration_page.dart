@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
@@ -902,14 +903,30 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
                               ),
-                            validator: (value){
-                              if(value!.isEmpty){
-                                return 'Enter Password';
-                              }
-                              else{
+                            inputFormatters: [FilteringTextInputFormatter.deny(' ')],
+                            onChanged: (val)
+                            {
+                              formKey.currentState!.validate();
+                            },
+                            validator: (value) {
+                              if(value?.length != 8)
+                              {
+                                return "Enter Minimum 8 Characters";
+                              } else {
                                 return null;
                               }
                             },
+                            // validator: (value){
+                            //   if(value!.isEmpty){
+                            //     return 'Enter Password';
+                            //   }
+                            //   else if(value!.length < 8){
+                            //     return 'Enter Minimum 8 characters for password';
+                            //   }
+                            //   else{
+                            //     return null;
+                            //   }
+                            // },
                           ),
                         ),
                         SizedBox(

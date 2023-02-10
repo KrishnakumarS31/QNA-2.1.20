@@ -407,9 +407,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       color: Color.fromRGBO(82, 165, 160, 1)),
                                 ),
                                 validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Enter password";
-                                  } else {
+                                  if (value!.isEmpty || value.length<8) {
+                                    return "Enter password Min 8 Characters";
+                                  }
+                                  else {
                                     return null;
                                   }
                                 },

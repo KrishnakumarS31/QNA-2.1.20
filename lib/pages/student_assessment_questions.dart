@@ -231,7 +231,7 @@ class StudQuestionState extends State<StudQuestion> {
     print(start_formatted);
     values = widget.ques;
     context.read<Questions>().createQuesAns(
-        values.data!.assessment!.questions.length);
+        values.data!.questions.length);
     context.read<QuestionNumProvider>().reset();
 
     countdownTimer =
@@ -290,8 +290,8 @@ class StudQuestionState extends State<StudQuestion> {
                     fontWeight: FontWeight.w600,
                   ),),
                 flexibleSpace: Banner(
-                  color: values.data!.assessment!.assessmentType=='test'?const Color.fromRGBO(188, 191, 8, 1):const Color.fromRGBO(255, 157, 77, 1),
-                  message: values.data!.assessment!.assessmentType,
+                  color: values.data!.assessment_type_id=='test'?const Color.fromRGBO(188, 191, 8, 1):const Color.fromRGBO(255, 157, 77, 1),
+                  message: values.data!.assessment_type_id,
                   textStyle: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.015,
@@ -325,7 +325,7 @@ class StudQuestionState extends State<StudQuestion> {
                         children: [
                           Text("Question ${context
                               .watch<QuestionNumProvider>()
-                              .questionNum}/${values.data!.assessment!.questions
+                              .questionNum}/${values.data!.questions
                               .length}",
                             style: Theme
                                 .of(context)
@@ -385,7 +385,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     height: height * 0.0625,
                                     width: width * 0.1,
                                     child: Center(
-                                      child: Text("${values.data!.assessment
+                                      child: Text("${values.data
                                           !.questions[context
                                           .watch<QuestionNumProvider>()
                                           .questionNum - 1].questionId}",
@@ -414,7 +414,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       mainAxisAlignment: MainAxisAlignment
                                           .center,
                                       children: [
-                                        Text("${values.data!.assessment
+                                        Text("${values.data
                                             !.questions[context
                                             .watch<QuestionNumProvider>()
                                             .questionNum - 1].questionMarks}",
@@ -455,7 +455,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.vertical,
                                     child: Text(
-                                      values.data!.assessment!.questions[context
+                                      values.data!.questions[context
                                           .watch<QuestionNumProvider>()
                                           .questionNum - 1].question,
                                       style: Theme
@@ -476,7 +476,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 height: height * 0.32,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
-                                  child: values.data!.assessment
+                                  child: values.data
                                       !.questions[context
                                       .watch<QuestionNumProvider>()
                                       .questionNum - 1].questionType ==
@@ -668,7 +668,7 @@ class StudQuestionState extends State<StudQuestion> {
                             context
                                 .watch<QuestionNumProvider>()
                                 .questionNum >=
-                                values.data!.assessment!.questions.length ?
+                                values.data!.questions.length ?
                             IconButton(icon: Icon(Icons.arrow_circle_right,
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               size: height * 0.06,), onPressed: () {
@@ -729,7 +729,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   color: context
                                       .watch<QuestionNumProvider>()
                                       .questionNum ==
-                                      values.data!.assessment!.questions.length ?
+                                      values.data!.questions.length ?
                                   const Color.fromRGBO(209, 209, 209, 1) : const Color
                                       .fromRGBO(82, 165, 160, 1),
                                   size: height * 0.06,)),
@@ -755,8 +755,8 @@ class StudQuestionState extends State<StudQuestion> {
                     fontWeight: FontWeight.w600,
                   ),),
                 flexibleSpace: Banner(
-                  color: values.data!.assessment!.assessmentType=='test'?const Color.fromRGBO(188, 191, 8, 1):const Color.fromRGBO(255, 157, 77, 1),
-                  message: values.data!.assessment!.assessmentType,
+                  color: values.data!.assessment_type_id=='test'?const Color.fromRGBO(188, 191, 8, 1):const Color.fromRGBO(255, 157, 77, 1),
+                  message: values.data!.assessment_type_id,
                   textStyle: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.015,
@@ -790,7 +790,7 @@ class StudQuestionState extends State<StudQuestion> {
                         children: [
                           Text("Question ${context
                               .watch<QuestionNumProvider>()
-                              .questionNum}/${values.data!.assessment!.questions
+                              .questionNum}/${values.data!.questions
                               .length}",
                             style: Theme
                                 .of(context)
@@ -850,7 +850,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     height: height * 0.0625,
                                     width: width * 0.2277,
                                     child: Center(
-                                      child: Text("${values.data!.assessment
+                                      child: Text("${values.data
                                           !.questions[context
                                           .watch<QuestionNumProvider>()
                                           .questionNum - 1].questionId}",
@@ -879,7 +879,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       mainAxisAlignment: MainAxisAlignment
                                           .center,
                                       children: [
-                                        Text("${values.data!.assessment
+                                        Text("${values.data
                                             !.questions[context
                                             .watch<QuestionNumProvider>()
                                             .questionNum - 1].questionMarks}",
@@ -920,7 +920,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.vertical,
                                     child: Text(
-                                      values.data!.assessment!.questions[context
+                                      values.data!.questions[context
                                           .watch<QuestionNumProvider>()
                                           .questionNum - 1].question,
                                       style: Theme
@@ -941,7 +941,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 height: height * 0.32,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
-                                  child: values.data!.assessment
+                                  child: values.data
                                       !.questions[context
                                       .watch<QuestionNumProvider>()
                                       .questionNum - 1].questionType ==
@@ -1178,7 +1178,7 @@ class StudQuestionState extends State<StudQuestion> {
                             context
                                 .watch<QuestionNumProvider>()
                                 .questionNum >=
-                                values.data!.assessment!.questions.length ?
+                                values.data!.questions.length ?
                             IconButton(icon: Icon(Icons.arrow_circle_right,
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               size: height * 0.06,), onPressed: () {
@@ -1238,7 +1238,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   color: context
                                       .watch<QuestionNumProvider>()
                                       .questionNum ==
-                                      values.data!.assessment!.questions.length ?
+                                      values.data!.questions.length ?
                                   const Color.fromRGBO(209, 209, 209, 1) : const Color
                                       .fromRGBO(82, 165, 160, 1),
                                   size: height * 0.06,)),
@@ -1271,7 +1271,7 @@ class ChooseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j=1; j<=question.data!.assessment!.questions[context.watch<QuestionNumProvider>().questionNum-1].choices.length; j++)
+        for (int j=1; j<=question.data!.questions[context.watch<QuestionNumProvider>().questionNum-1].choices.length; j++)
           GestureDetector(
             onTap: (){
               if(selected.contains(j)){
@@ -1305,7 +1305,7 @@ class ChooseWidget extends StatelessWidget {
                       children: [
                         SizedBox(width: width * 0.02,),
                         Expanded(
-                          child: Text(question.data!.assessment!.questions[context.watch<QuestionNumProvider>().questionNum - 1].choices[j-1].choiceText,
+                          child: Text(question.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].choices[j-1].choiceText,
                             style: TextStyle(
                               color: (selected.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.0162,

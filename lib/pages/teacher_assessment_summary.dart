@@ -326,7 +326,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
 
                     },
                     child: Text(
-                      'Save List',
+                      'Save Assessment',
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",

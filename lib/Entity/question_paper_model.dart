@@ -33,24 +33,147 @@ class QuestionPaperModel {
       };
 }
 
+// class Data {
+//   Data({
+//      this.user_id,
+//      this.assessment,
+//   });
+//   int? user_id;
+//   Assessment? assessment;
+//
+//
+//   factory Data.fromJson(Map<String, dynamic> json) => Data(
+//
+//     user_id: json["user_id"],
+//         assessment: Assessment.fromJson(json["assessment"]),
+//       );
+//
+//   Map<String, dynamic> toJson() => {
+//     "user_id": user_id,
+//         "assessment": assessment!.toJson(),
+//       };
+// }
+
+
+//old code
+// class Data {
+//   Data({
+//     this.user_id,
+//     this.assessment,
+//   });
+//   int? user_id;
+//   Assessment? assessment;
+//
+//
+//   factory Data.fromJson(Map<String, dynamic> json) => Data(
+//
+//     user_id: json["user_id"],
+//     assessment: Assessment.fromJson(json["assessment"]),
+//   );
+//
+//   Map<String, dynamic> toJson() => {
+//     "user_id": user_id,
+//     "assessment": assessment!.toJson(),
+//   };
+// }
+
+//new Lines Added Remove If u want
 class Data {
   Data({
-     this.user_id,
-     this.assessment,
+    required this.assessment_type_id,
+    required this.assessment_duration,
+    required this.subject,
+    required this.grade,
+    required this.topic,
+    required this.assessment_score_message,
+    required this.assessment_settings,
+    required this.questions,
+    required this.sub_topic
   });
-  int? user_id;
-  Assessment? assessment;
+  String assessment_type_id;
+  dynamic assessment_duration;
+  String subject;
+  String topic;
+  String sub_topic;
+  String grade;
+  List<AssessmentScoreMessage> assessment_score_message;
+  List<AssessmentSettings> assessment_settings;
+  List<Question> questions;
+
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
 
-    user_id: json["user_id"],
-        assessment: Assessment.fromJson(json["assessment"]),
-      );
+    assessment_type_id: json["assessment_type_id"],
+      assessment_duration: json["assessment_duration"],
+      subject:json["subject"],
+      topic:json["topic"],
+      sub_topic:json["sub_topic"],
+      grade:json["class"],
+      assessment_score_message:List<AssessmentScoreMessage>.from(
+          json["assessment_score_message"].map((x) => AssessmentScoreMessage.fromJson(x))),
+      assessment_settings:List<AssessmentSettings>.from(
+          json["assessment_settings"].map((x) => AssessmentSettings.fromJson(x))),
+    questions: List<Question>.from(
+        json["questions"].map((x) => Question.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {
-    "user_id": user_id,
-        "assessment": assessment!.toJson(),
-      };
+    "assessment_type_id": assessment_type_id,
+    "assessment_duration":assessment_duration,
+    "subject":subject,
+    "topic":topic,
+    "sub_topic":sub_topic,
+    "grade":grade,
+    "assessment_settings": List<dynamic>.from(assessment_settings.map((x) => x.toJson())),
+    "assessment_score_message":List<dynamic>.from(assessment_score_message.map((x) => x.toJson())),
+    "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
+  };
+}
+
+//new code
+
+class AssessmentScoreMessage {
+  AssessmentScoreMessage({
+    required this.assessment_score_status,
+    required this.assessment_percent,
+  });
+
+  String assessment_score_status;
+  dynamic assessment_percent;
+
+  factory AssessmentScoreMessage.fromJson(Map<String, dynamic> json) => AssessmentScoreMessage(
+    assessment_score_status: json["assessment_score_status"],
+    assessment_percent: json["assessment_percent"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "assessment_score_status": assessment_score_status,
+    "assessment_percent": assessment_percent,
+  };
+}
+
+class AssessmentSettings {
+  AssessmentSettings({
+    required this.show_solved_answer_sheet_in_advisor,
+    required this.show_advisor_email,
+    required this.show_advisor_name,
+  });
+
+  bool show_solved_answer_sheet_in_advisor;
+  bool show_advisor_name;
+  bool show_advisor_email;
+
+  factory AssessmentSettings.fromJson(Map<String, dynamic> json) => AssessmentSettings(
+    show_solved_answer_sheet_in_advisor: json["show_solved_answer_sheet_in_advisor"],
+      show_advisor_name: json["show_advisor_name"],
+      show_advisor_email:json["show_advisor_email"]
+  );
+
+  Map<String, dynamic> toJson() => {
+    "show_solved_answer_sheet_in_advisor": show_solved_answer_sheet_in_advisor,
+    "show_advisor_name": show_advisor_name,
+    "show_advisor_email": show_advisor_email
+  };
 }
 
 class Assessment {
@@ -115,7 +238,7 @@ class Question {
   String questionType;
   String question;
   List<Choice> choices;
-  List<int> choices_answer;
+  List<dynamic> choices_answer;
   String advisorText;
   String advisorUrl;
 
@@ -128,7 +251,7 @@ class Question {
             List<Choice>.from(json["choices"].map((x) => Choice.fromJson(x))),
         choices_answer: json["choices_answer"] == null
             ? []
-            : List<int>.from(json["choices_answer"].map((x) => x)),
+            : List<dynamic>.from(json["choices_answer"].map((x) => x)),
         advisorText: json["advisor_text"] ?? '',
         advisorUrl: json["advisor_url"] ?? '',
       );
@@ -170,6 +293,29 @@ class Choice {
         "right_choice": rightChoice,
       };
 }
+
+//new code
+class ChoiceAnswer {
+  ChoiceAnswer({
+    required this.choiceId,
+    required this.choiceText,
+  });
+
+  dynamic choiceId;
+  String choiceText;
+
+  factory ChoiceAnswer.fromJson(Map<String, dynamic> json) => ChoiceAnswer(
+    choiceId: json["choice_id"],
+    choiceText: json["choice_text"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "choice_id": choiceId,
+    "choice_text": choiceText,
+  };
+}
+
+
 
 //
 // {
