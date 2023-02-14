@@ -676,7 +676,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: guestReviseQuest(questions: values,userName: widget.userName),
+                                  child: StudentReviseQuest(questions: values,userName: widget.userName, startTime: now.microsecondsSinceEpoch,assessmentID: widget.assessmentId),
                                 ),
                               );
                             },) :
@@ -739,7 +739,6 @@ class StudQuestionState extends State<StudQuestion> {
                     ]),
               ));
         }
-
         else {
           return Scaffold(
               resizeToAvoidBottomInset: false,
@@ -1138,7 +1137,7 @@ class StudQuestionState extends State<StudQuestion> {
                             tilecount.length==context
                                 .watch<QuestionNumProvider>()
                                 .questionNum?
-                            SizedBox():GestureDetector(
+                            const SizedBox():GestureDetector(
                               onTap: (){
                                 context.read<QuestionNumProvider>().skipToEnd(tilecount.length);
                               },
@@ -1174,7 +1173,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   ],
                                 ),
                               ),
-                            ):SizedBox(),
+                            ):const SizedBox(),
                             context
                                 .watch<QuestionNumProvider>()
                                 .questionNum >=
@@ -1186,7 +1185,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: guestReviseQuest(questions: values,userName: widget.userName),
+                                  child: StudentReviseQuest(questions: values,userName: widget.userName, startTime: now.microsecondsSinceEpoch,assessmentID: widget.assessmentId),
                                 ),
                               );
                             },) :
@@ -1274,8 +1273,8 @@ class ChooseWidget extends StatelessWidget {
         for (int j=1; j<=question.data!.questions[context.watch<QuestionNumProvider>().questionNum-1].choices.length; j++)
           GestureDetector(
             onTap: (){
-              if(selected.contains(j)){
-                selected.remove(j);
+              if(selected.contains(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText)){
+                selected.remove(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText);
                 if(selected.isEmpty){
                   context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(219, 35, 35, 1),false);
                 }
@@ -1284,7 +1283,8 @@ class ChooseWidget extends StatelessWidget {
                 }
               }
               else{
-                selected.add(j);
+                selected.add(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText);
+                //print(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText);
                 context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum,selected,const Color.fromRGBO(82, 165, 160, 1),false);
               }
             },
@@ -1298,7 +1298,7 @@ class ChooseWidget extends StatelessWidget {
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)
                     ),
-                    color: (selected.contains(j)) ? const Color.fromRGBO(82, 165, 160, 1) :const Color.fromRGBO(255, 255, 255, 1),
+                    color: (selected.contains(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText)) ? const Color.fromRGBO(82, 165, 160, 1) :const Color.fromRGBO(255, 255, 255, 1),
                   ),
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -1307,7 +1307,7 @@ class ChooseWidget extends StatelessWidget {
                         Expanded(
                           child: Text(question.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].choices[j-1].choiceText,
                             style: TextStyle(
-                              color: (selected.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
+                              color: (selected.contains(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.0162,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w700,

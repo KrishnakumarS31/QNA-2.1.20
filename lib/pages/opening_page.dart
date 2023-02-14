@@ -83,10 +83,10 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    //double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery.of(context).size.height;
     return Container(
       width: width,
-      height: 100,
+      height: height,
       decoration: const BoxDecoration(
         image: DecorationImage(
           fit: BoxFit.fill,
@@ -127,7 +127,7 @@ showDialogBox()=>showCupertinoDialog<String>(context: context,
                   });
                 }
               },
-              child: Text("OK",
+              child: const Text("OK",
                 style: TextStyle(
                   color: Color.fromRGBO(82, 165, 160, 1),
                   fontSize: 20,

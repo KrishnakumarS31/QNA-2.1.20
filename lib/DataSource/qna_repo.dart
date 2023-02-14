@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../EntityModel/login_entity.dart';
+import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../EntityModel/user_data_model.dart';
@@ -76,7 +77,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/forgot-password'));
+      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/forgot-password'));
       request.body = json.encode({
         "email": email
       });
@@ -99,7 +100,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/otp'));
+      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8080/api/v1/otp'));
       request.body = json.encode({
         "email": email,
         "otp": otp
@@ -123,7 +124,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/forgot-password'));
+      var request = http.Request('PUT', Uri.parse('http://18.215.198.141:8080/api/v1/forgot-password'));
       request.body = json.encode({
         "email": email,
         "otp": otp,
@@ -151,7 +152,7 @@ class QnaRepo{
       var headers = {
         'Content-Type': 'application/json'
       };
-      var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/password/$userId'));
+      var request = http.Request('PUT', Uri.parse('http://18.215.198.141:8080/api/v1/password/$userId'));
       request.body = json.encode({
         "old_password": oldPassword,
         "new_password": newPassword
@@ -172,5 +173,28 @@ class QnaRepo{
       return responses;
     }
 
+
+    static postAssessmentRepo(PostAssessmentModel? assessment) async {
+      LoginModel loginModel=LoginModel(code: 0, message: 'message');
+      var headers = {
+        'Authorization': 'Bearer 9764048494',
+        'Content-Type': 'application/json'
+      };
+      var request = http.Request('POST', Uri.parse('http://18.215.198.141:8082/api/v1/result'));
+      request.body = postAssessmentModelToJson(assessment!);
+      request.headers.addAll(headers);
+
+      http.StreamedResponse response = await request.send();
+      if (response.statusCode == 200) {
+        String temp=await response.stream.bytesToString();
+        loginModel=loginModelFromJson(temp);
+      }
+      else {
+        String temp=await response.stream.bytesToString();
+        loginModel=loginModelFromJson(temp);
+        return loginModel;
+      }
+      return loginModel;
+    }
 }
 

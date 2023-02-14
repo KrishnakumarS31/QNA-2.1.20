@@ -334,7 +334,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       color: Color.fromRGBO(82, 165, 160, 1)),
                                 ),
                                 validator: (value) {
-                                  if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value))
+                                  if(value!.isEmpty || !RegExp(r"^[a-zA-Za-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z]+[a-zA-Z]+").hasMatch(value))
                                   {
                                     return AppLocalizations.of(context)!.error_regID;
                                   } else {
@@ -490,46 +490,46 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 text:  TextSpan(children: [
                                   TextSpan(
                                     text: AppLocalizations.of(context)!.agree_msg,
-                                    style: const TextStyle(fontSize: 15.0,
+                                    style: TextStyle(fontSize: localHeight * 0.015,
                                         fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        color: const Color.fromRGBO(51, 51, 51, 1),
                                         fontFamily: "Inter"),
                                   ),
                                   TextSpan(
                                     text: AppLocalizations.of(context)!.privacy_Policy,
-                                    style: const TextStyle(
-                                        fontSize: 15.0,
+                                    style: TextStyle(
+                                        fontSize: localHeight * 0.015,
                                         fontWeight: FontWeight.w400,
                                         decoration:
                                         TextDecoration.underline,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontFamily: "Inter"),
                                   ),
                                   TextSpan(
                                     text: AppLocalizations.of(context)!.and,
-                                    style: const TextStyle(
-                                        fontSize: 15.0,
+                                    style:  TextStyle(
+                                        fontSize: localHeight * 0.015,
                                         fontWeight: FontWeight.w400,
                                         decoration:
                                         TextDecoration.underline,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontFamily: "Inter"),),
                                   TextSpan(
                                     text: AppLocalizations.of(context)!.terms,
-                                    style: const TextStyle(
-                                        fontSize: 15.0,
+                                    style: TextStyle(
+                                        fontSize: localHeight * 0.015,
                                         fontWeight: FontWeight.w400,
                                         decoration:
                                         TextDecoration.underline,
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontFamily: "Inter"),
                                   ),
                                   TextSpan(
                                     text: AppLocalizations.of(context)!.services,
-                                    style: const TextStyle(
-                                        fontSize: 15.0,
+                                    style: TextStyle(
+                                        fontSize: localHeight * 0.015,
                                         fontWeight: FontWeight.w400,
-                                        color: Color.fromRGBO(51, 51, 51, 1),
+                                        color: const Color.fromRGBO(51, 51, 51, 1),
                                         fontFamily: "Inter"),),
                                 ])
                             ),

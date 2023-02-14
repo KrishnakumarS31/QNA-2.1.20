@@ -7,16 +7,16 @@ import 'teacher_qn_preview.dart';
 
 class PreparePreviewQnBank extends StatefulWidget {
   const PreparePreviewQnBank({
-    Key? key, required this.question,
+    Key? key, required this.question, required this.setLocale,
   }) : super(key: key);
 
   final DemoQuestionModel question;
+  final void Function(Locale locale) setLocale;
   @override
   PreparePreviewQnBankState createState() => PreparePreviewQnBankState();
 }
 
 class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
-  late int _count;
   String? _groupValue;
   List<int?>? selected=[];
   TextEditingController subjectController = TextEditingController();
@@ -57,11 +57,11 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   void initState() {
     super.initState();
     _groupValue=widget.question.questionType;
-    subjectController.text=widget.question.subject!;
-    topicController.text=widget.question.topic!;
-    subtopicController.text=widget.question.subTopic!;
-    classRoomController.text=widget.question.studentClass!;
-    questionController.text=widget.question.question!;
+    subjectController.text=widget.question.subject;
+    topicController.text=widget.question.topic;
+    subtopicController.text=widget.question.subTopic;
+    classRoomController.text=widget.question.studentClass;
+    questionController.text=widget.question.question;
     urlController.text=widget.question.url!;
     adviceController.text=widget.question.advice!;
     selected=widget.question.correctChoice;
@@ -573,7 +573,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 icon: Icon(
                                   //radioIcon,
                                   radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                 ),
                               ),
                               SizedBox(
@@ -583,7 +583,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 onPressed: ()  {
                                   removeItem(i);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   //radioIcon,
                                   Icons.delete_outline,
                                   color: Color.fromRGBO(82, 165, 160, 1),
@@ -737,7 +737,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child:  TeacherPreparePreview(question: widget.question,),
+                                    child:  TeacherPreparePreview(question: widget.question,setLocale: widget.setLocale),
                                   ),
                                 );
                               },
@@ -834,8 +834,8 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                           ])
                   ),
                   widget.selected!.contains(j)?
-                  Icon(Icons.radio_button_checked,color: Color.fromRGBO(82, 165, 160, 1),):
-                  Icon(Icons.radio_button_off_outlined,color: Color.fromRGBO(82, 165, 160, 1),),
+                  const Icon(Icons.radio_button_checked,color: Color.fromRGBO(82, 165, 160, 1),):
+                  const Icon(Icons.radio_button_off_outlined,color: Color.fromRGBO(82, 165, 160, 1),),
                   SizedBox(width: widget.width * 0.02,)
                 ],
               ),

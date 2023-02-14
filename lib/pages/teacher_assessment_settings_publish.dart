@@ -9,8 +9,9 @@ import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({
-    Key? key,
+    Key? key, required this.setLocale,
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
   @override
   TeacherAssessmentSettingPublishState createState() =>
@@ -1187,7 +1188,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             context,
                                             PageTransition(
                                               type: PageTransitionType.rightToLeft,
-                                              child: const TeacherAssessmentLanding(),
+                                              child: TeacherAssessmentLanding(setLocale: widget.setLocale),
                                             ),
                                           );
 
@@ -1225,7 +1226,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             context,
                                             PageTransition(
                                               type: PageTransitionType.rightToLeft,
-                                              child: const TeacherPublishedAssessment(),
+                                              child: TeacherPublishedAssessment(setLocale: widget.setLocale),
                                             ),
                                           );
 

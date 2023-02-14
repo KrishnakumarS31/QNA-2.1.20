@@ -53,20 +53,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon:const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ), onPressed: () {
-                Navigator.of(context).pop();
-              },
-              ),
-            ),
-          ],
+          
           leading: IconButton(
             icon:const Icon(
               Icons.chevron_left,

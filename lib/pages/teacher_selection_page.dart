@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
+import 'package:qna_test/Pages/terms_of_services.dart';
 import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import 'about_us.dart';
+import 'cookie_policy.dart';
 import 'help_page.dart';
 import 'settings_languages.dart';
-import 'teacher_create_assessment.dart';
 import 'teacher_questionBank_page.dart';
 
 
@@ -146,7 +148,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
               ),
               Flexible(
-                child: ListView(
+                child:
+                ListView(
                   children: [
                     ListTile(
                         leading:
@@ -167,6 +170,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherUserProfile(userDataModel: userDataModel,),
+                          //   ),
+                          // );
                         }),
                     ListTile(
                         leading:
@@ -209,6 +219,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
+                          //   ),
+                          // );
                         }),
                     const Divider(
                       thickness: 2,
@@ -236,6 +253,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             ),
                           );
                         }),
+                    const Divider(
+                      thickness: 2,
+                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -251,16 +271,20 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
-                    const Divider(
-                      thickness: 2,
-                    ),
                     ListTile(
                         leading:
                         const Icon(
-                            Icons.note_alt_outlined,
+                            Icons.verified_user_outlined,
                             color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                        title: Text('Terms of Services',style: TextStyle(
                             color: textColor,
                             //Color.fromRGBO(48, 145, 139, 1),
                             fontFamily: 'Inter',
@@ -270,7 +294,39 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         trailing:  const Icon(Icons.navigate_next,
                             color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: TermsOfServiceHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
                         }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.note_alt_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                            color: textColor,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: CookiePolicy(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -298,9 +354,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             ),
                           );
                         }),
-                    const Divider(
-                      thickness: 2,
-                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -313,6 +366,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             fontWeight: FontWeight.w500,
                             letterSpacing: -0.02,
                             fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
                         onTap: () async {
                           Navigator.push(
                             context,
@@ -322,6 +377,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             ),
                           );
                         }),
+                    const Divider(
+                      thickness: 2,
+                    ),
                     ListTile(
                         leading:
                         const Icon(
@@ -454,36 +512,14 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       borderRadius: BorderRadius.circular(39),
                     ),
                   ),
-                  //shape: StadiumBorder(),
                   onPressed: () {
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child:  const TeacherQuestionBank(),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale),
                       ),
                     );
-                    // if(agree){
-                    //   if(formKey.currentState!.validate()) {
-                    //     name = emailController.text;
-                    //     Navigator.push(
-                    //       context,
-                    //       PageTransition(
-                    //         type: PageTransitionType.rightToLeft,
-                    //         child: StudGuestAssessment(name: name),
-                    //       ),
-                    //     );
-                    //   }
-                    // }
-                    // else{
-                    //   Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //       type: PageTransitionType.rightToLeft,
-                    //       child: CustomDialog(title: AppLocalizations.of(context)!.agree_privacy_terms, content: AppLocalizations.of(context)!.error, button: AppLocalizations.of(context)!.retry),
-                    //     ),
-                    //   );
-                    // }
                   },
                   child: Text(
                     'Questions',
@@ -515,37 +551,14 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       borderRadius: BorderRadius.circular(39),
                     ),
                   ),
-                  //shape: StadiumBorder(),
                   onPressed: () {
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const TeacherAssessmentLanding(),
+                        child: TeacherAssessmentLanding(setLocale: widget.setLocale,),
                       ),
                     );
-
-                    // if(agree){
-                    //   if(formKey.currentState!.validate()) {
-                    //     name = emailController.text;
-                    //     Navigator.push(
-                    //       context,
-                    //       PageTransition(
-                    //         type: PageTransitionType.rightToLeft,
-                    //         child: StudGuestAssessment(name: name),
-                    //       ),
-                    //     );
-                    //   }
-                    // }
-                    // else{
-                    //   Navigator.push(
-                    //     context,
-                    //     PageTransition(
-                    //       type: PageTransitionType.rightToLeft,
-                    //       child: CustomDialog(title: AppLocalizations.of(context)!.agree_privacy_terms, content: AppLocalizations.of(context)!.error, button: AppLocalizations.of(context)!.retry),
-                    //     ),
-                    //   );
-                    // }
                   },
                   child: Text(
                     'Assessments',
@@ -557,7 +570,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height:height * 0.0375),
                 Text(
-                  'VIEW RESULTS',
+                  'VIEW',
                   style: TextStyle(
                     fontSize: height* 0.018,
                     color: const Color.fromRGBO(209, 209, 209, 1),
@@ -576,7 +589,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       borderRadius: BorderRadius.circular(39),
                     ),
                   ),
-                  //shape: StadiumBorder(),
                   onPressed: () {
 
                     Navigator.push(
@@ -598,11 +610,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 SizedBox(
                   height: height * 0.025,
                 ),
-
-
-
-
-
               ]),
         ));
   }

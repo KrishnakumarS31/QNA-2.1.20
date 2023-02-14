@@ -10,8 +10,9 @@ import '../Entity/question_model.dart';
 
 class TeacherAssessmentQuestionPreview extends StatefulWidget {
   const TeacherAssessmentQuestionPreview({
-    Key? key,
+    Key? key, required this.setLocale,
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
   @override
   TeacherAssessmentQuestionPreviewState createState() => TeacherAssessmentQuestionPreviewState();
@@ -119,7 +120,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                                 style: TextStyle(
                                     fontSize: height * 0.02,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(width: width * 0.02,),
@@ -129,7 +130,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                                     decoration: TextDecoration.underline,
                                     fontSize: height * 0.02,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontWeight: FontWeight.w700),
                               ),
                             ],
@@ -141,7 +142,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                                 style: TextStyle(
                                     fontSize: height * 0.02,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontWeight: FontWeight.w700),
                               ),
                               SizedBox(width: width * 0.02,),
@@ -151,7 +152,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                                     decoration: TextDecoration.underline,
                                     fontSize: height * 0.02,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontWeight: FontWeight.w700),
                               ),
                             ],
@@ -164,7 +165,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                         style: TextStyle(
                             fontSize: height * 0.02,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w700),
                       ),
                       SizedBox(height: height * 0.015,),
@@ -173,18 +174,18 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(51, 51, 51, 1),
+                            color: const Color.fromRGBO(51, 51, 51, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       SizedBox(height: height * 0.015,),
-                      ChooseWidget(height: height, width: width, selected: selected, choices: ['yellow','apple','red','orange'],),
+                      ChooseWidget(height: height, width: width, selected: selected, choices: const ['yellow','apple','red','orange'],),
                       SizedBox(height: height * 0.02,),
                       Text(
                         'Advisor',
                         style: TextStyle(
                             fontSize: height * 0.02,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w700),
                       ),
                       SizedBox(height: height * 0.015,),
@@ -193,11 +194,11 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(51, 51, 51, 1),
+                            color: const Color.fromRGBO(51, 51, 51, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       SizedBox(height: height * 0.015,),
-                      Divider(),
+                      const Divider(),
                       SizedBox(height: height * 0.02,),
                       Text(
                         'www.gworkspacetest.bestschool.com/SN8u9*VHcvasok',
@@ -205,12 +206,12 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                             fontSize: height * 0.015,
                             decoration: TextDecoration.underline,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(0, 148, 255, 1),
+                            color: const Color.fromRGBO(0, 148, 255, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       SizedBox(height: height * 0.03,),
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           width: width * 0.888,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -235,7 +236,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                               style: TextStyle(
                                   fontSize: height * 0.025,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -243,7 +244,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                       ),
                       SizedBox(height: height * 0.03,),
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           width: width * 0.888,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -262,7 +263,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: const TeacherAssessmentSummary(),
+                                  child: TeacherAssessmentSummary(setLocale: widget.setLocale),
                                 ),
                               );
 
@@ -273,7 +274,7 @@ class TeacherAssessmentQuestionPreviewState extends State<TeacherAssessmentQuest
                               style: TextStyle(
                                   fontSize: height * 0.025,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -327,7 +328,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j=1; j<=widget.choices!.length; j++)
+        for (int j=1; j<=widget.choices.length; j++)
           GestureDetector(
             onTap: (){
               // setState(() {
@@ -362,9 +363,9 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       children: [
                         SizedBox(width: widget.width * 0.02,),
                         Expanded(
-                          child: Text('${widget.choices![j-1]}',
+                          child: Text('${widget.choices[j-1]}',
                             style:  TextStyle(
-                              color:  Color.fromRGBO(255, 255, 255, 1),
+                              color:  const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: widget.height * 0.0162,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w700,

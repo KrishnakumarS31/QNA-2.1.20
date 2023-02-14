@@ -7,8 +7,8 @@ import '../Entity/question_paper_model.dart';
 
 
 
-class GuestResultPage extends StatefulWidget {
-  const GuestResultPage({Key? key,
+class StudentResultPage extends StatefulWidget {
+  const StudentResultPage({Key? key,
     required this.totalMarks,required this.date,required this.time,required this.questions, required this.assessmentCode, required this.userName
   }) : super(key: key);
   final int totalMarks;
@@ -19,9 +19,9 @@ class GuestResultPage extends StatefulWidget {
   final String assessmentCode;
 
   @override
-  GuestResultPageState createState() => GuestResultPageState();
+  StudentResultPageState createState() => StudentResultPageState();
 }
-class GuestResultPageState extends State<GuestResultPage> {
+class StudentResultPageState extends State<StudentResultPage> {
   TextEditingController assessmentID = TextEditingController();
   var formKey = GlobalKey<FormState>();
   bool autoValidate = false;
@@ -127,7 +127,7 @@ class GuestResultPageState extends State<GuestResultPage> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: StudMemAdvisor(questions: values),
+                            child: StudMemAdvisor(questions: values,assessmentId: widget.assessmentCode),
                           ),
                         );
                       }

@@ -2,26 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
-import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/Pages/teacher_questionBank_page.dart';
-import 'package:qna_test/pages/teacher_question_delete_page.dart';
 import 'package:qna_test/pages/teacher_question_preview_delete.dart';
-
-import '../Components/custom_radio_option.dart';
 import '../Entity/demo_question_model.dart';
-import '../Entity/question_model.dart';
-import '../Entity/question_paper_model.dart';
-import '../Providers/question_num_provider.dart';
 import '../Providers/question_prepare_provider.dart';
-import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank({
     Key? key,
-    this.assessment
+    this.assessment, required this.setLocale
   }) : super(key: key);
 
   final bool? assessment;
+  final void Function(Locale locale) setLocale;
 
   @override
   TeacherMyQuestionBankState createState() => TeacherMyQuestionBankState();
@@ -48,20 +41,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon:const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ), onPressed: () {
-                Navigator.of(context).pop();
-              },
-              ),
-            ),
-          ],
+          
 
           toolbarHeight: height * 0.100,
           centerTitle: true,
@@ -107,7 +87,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(153, 153, 153, 1),
+                                color: const Color.fromRGBO(153, 153, 153, 1),
                                 fontWeight: FontWeight.w600),
                           ),
                           Row(
@@ -117,18 +97,18 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(0, 0, 0, 1),
+                                    color: const Color.fromRGBO(0, 0, 0, 1),
                                     fontWeight: FontWeight.w400),
                               ),
                               SizedBox(width: width * 0.02,),
-                              Icon(Icons.circle,color: const Color.fromRGBO(82, 165, 160, 1),)
+                              const Icon(Icons.circle,color: Color.fromRGBO(82, 165, 160, 1),)
                             ],
                           )
                         ],
                       ),
                       SizedBox(height: height * 0.03,),
                         for(int i=0;i<quesList.length;i++)
-                        QuestionPreview(height: height, width: width,question: quesList[i],index: i,assessment: widget.assessment,),
+                        QuestionPreview(height: height, width: width,question: quesList[i],index: i,assessment: widget.assessment,setLocale: widget.setLocale),
                     ],
                   ),
                 ),
@@ -149,7 +129,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const TeacherCreateAssessment(),
+                        child: TeacherCreateAssessment(setLocale: widget.setLocale),
                       ),
                     );
                   }
@@ -158,7 +138,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const TeacherQuestionBank(),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale),
                       ),
                     );
                   }
@@ -169,7 +149,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                   style: TextStyle(
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                      color: const Color.fromRGBO(255, 255, 255, 1),
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -189,7 +169,7 @@ class QuestionPreview extends StatelessWidget {
     required this.width,
     required this.question,
     required this.index,
-    this.assessment
+    this.assessment, required this.setLocale
   }) : super(key: key);
 
   final double height;
@@ -197,6 +177,7 @@ class QuestionPreview extends StatelessWidget {
   final DemoQuestionModel question;
   final int index;
   final bool? assessment;
+  final void Function(Locale locale) setLocale;
 
   @override
   Widget build(BuildContext context) {
@@ -213,7 +194,7 @@ class QuestionPreview extends StatelessWidget {
           context,
           PageTransition(
             type: PageTransitionType.rightToLeft,
-            child:  TeacherQuestionPreviewDelete(question: question,index: index,assessment: assessment,),
+            child:  TeacherQuestionPreviewDelete(question: question,index: index,assessment: assessment,setLocale: setLocale),
           ),
         );
       },
@@ -269,7 +250,7 @@ class QuestionPreview extends StatelessWidget {
               style: TextStyle(
                   fontSize: height * 0.02,
                   fontFamily: "Inter",
-                  color: Color.fromRGBO(82, 165, 160, 1),
+                  color: const Color.fromRGBO(82, 165, 160, 1),
                   fontWeight: FontWeight.w600),
             ),
           ),
@@ -281,14 +262,14 @@ class QuestionPreview extends StatelessWidget {
               style: TextStyle(
                   fontSize: height * 0.0175,
                   fontFamily: "Inter",
-                  color: Color.fromRGBO(51, 51, 51, 1),
+                  color: const Color.fromRGBO(51, 51, 51, 1),
                   fontWeight: FontWeight.w400),
             ),
           ),
           SizedBox(height: height * 0.01,),
 
 
-          Divider()
+          const Divider()
 
         ],
       ),

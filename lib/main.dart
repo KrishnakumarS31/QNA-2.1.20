@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
+    print(defaultTargetPlatform);
     return MaterialApp(
       locale: _locale,
       debugShowCheckedModeBanner: false,
@@ -67,9 +67,9 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
        home:
-       defaultTargetPlatform == TargetPlatform.windows
-           ? WelcomePage(setLocale: setLocale)
-           : SplashScreen(setLocale: setLocale)
+      defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
+          ? WelcomePage(setLocale: setLocale)
+          : SplashScreen(setLocale: setLocale)
     );
   }
 

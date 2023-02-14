@@ -8,8 +8,9 @@ import 'student_answersheet.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 class StudMemAdvisor extends StatefulWidget {
-  const StudMemAdvisor({Key? key, required this.questions}) : super(key: key);
+  const StudMemAdvisor({Key? key, required this.questions, required this.assessmentId}) : super(key: key);
   final QuestionPaperModel questions;
+  final String assessmentId;
 
 
   @override
@@ -56,7 +57,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
               ),
             ),
             Text(
-              "12345678",
+              widget.assessmentId,
               //values.data!.assessment!.assessmentCode,
               style: TextStyle(
                 color: const Color.fromRGBO(255, 255, 255, 1),
@@ -265,7 +266,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: StudentMemAnswerSheet(questions: values),
+                            child: StudentMemAnswerSheet(questions: values,assessmentId: widget.assessmentId),
                           ),
                         );
                       },
@@ -282,7 +283,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child:  StudentMemAnswerSheet(questions: values),
+                              child:  StudentMemAnswerSheet(questions: values,assessmentId: widget.assessmentId),
                             ),
                           );
                         }),
@@ -298,7 +299,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child:  StudentMemAnswerSheet(questions: values),
+                            child:  StudentMemAnswerSheet(questions: values,assessmentId: widget.assessmentId),
                           ),
                         );
                       },

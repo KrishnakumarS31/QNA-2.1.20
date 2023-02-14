@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
-import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_searched.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
-import 'package:qna_test/pages/teacher_looq_search_question.dart';
 import 'package:qna_test/pages/teacher_inactive_assessment.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
-
-import '../Entity/demo_question_model.dart';
-import '../Providers/question_prepare_provider.dart';
-import 'teacher_prepare_qnBank.dart';
-
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'about_us.dart';
+import 'cookie_policy.dart';
+import 'help_page.dart';
+import 'settings_languages.dart';
+import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
+import 'package:qna_test/Pages/terms_of_services.dart';
+import 'package:qna_test/pages/reset_password_teacher.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
-    Key? key,
+    Key? key, required this.setLocale,
 
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
 
   @override
@@ -33,10 +33,19 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   TextEditingController topicController=TextEditingController();
   TextEditingController subTopicController=TextEditingController();
   final formKey=GlobalKey<FormState>();
-
+  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+  final PackageInfo _packageInfo = PackageInfo(
+    appName: 'Unknown',
+    packageName: 'Unknown',
+    version: 'Unknown',
+    buildNumber: 'Unknown',
+    buildSignature: 'Unknown',
+    installerStore: 'Unknown',
+  );
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 0)).then((_) {
+    super.initState();
+    Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
             borderRadius:  BorderRadius.only(
@@ -50,7 +59,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   border: Border.all(
                     color: Colors.white,
                   ),
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
               ),
               height: MediaQuery.of(context).copyWith().size.height * 0.245,
               child: Padding(
@@ -61,7 +70,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     SizedBox(height: MediaQuery.of(context).copyWith().size.height * 0.026,),
                     Padding(
                       padding:  EdgeInsets.only(right: MediaQuery.of(context).copyWith().size.width * 0.055),
-                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () {  },),),
+                      child: Align(alignment: Alignment.topRight,child: IconButton(icon: Icon(Icons.close,color: const Color.fromRGBO(82, 165, 160, 1),size: MediaQuery.of(context).copyWith().size.width * 0.07,), onPressed: () {  },),),
                     ),
                     Align(
                       alignment: Alignment.centerLeft,
@@ -70,7 +79,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             .primaryTextTheme
                             .bodyLarge
                             ?.merge( TextStyle(
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w700,
                             fontSize: MediaQuery.of(context).copyWith().size.height * 0.02)),),
@@ -82,26 +91,26 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.circle,color: Color.fromRGBO(60, 176, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.circle,color: const Color.fromRGBO(60, 176, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Active",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width * 0.18,
                         ),
-                        Icon(Icons.circle,color: Color.fromRGBO(255, 166, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.circle,color: const Color.fromRGBO(255, 166, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  In progress",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -111,26 +120,26 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.circle,color: Color.fromRGBO(136, 136, 136, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.circle,color: const Color.fromRGBO(136, 136, 136, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Inactive",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width * 0.16,
                         ),
-                        Icon(Icons.circle,color: Color.fromRGBO(42, 36, 186, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(Icons.circle,color: const Color.fromRGBO(42, 36, 186, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
                         Text("  Practice",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge( TextStyle(
-                              color: Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: MediaQuery.of(context).copyWith().size.height * 0.016)),),
@@ -158,21 +167,362 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              icon:const Icon(
-                Icons.menu,
-                size: 40.0,
-                color: Colors.white,
-              ), onPressed: () {
-              Navigator.of(context).pop();
-            },
+      endDrawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  gradient:  LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(0, 106, 100, 1),
+                      Color.fromRGBO(82, 165, 160, 1),
+                    ],
+                  )
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: height * 0.050),
+                  Container(
+                    alignment: Alignment.center,
+                    height: height / 6,
+                    child:
+                    Row(
+                        children:  [
+                          CircleAvatar(
+                            backgroundColor: const Color.fromRGBO(0,106,100,0),
+                            radius: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.15,
+                            child: Image.asset(
+                              "assets/images/ProfilePic_Avatar.png",
+                            ),
+                          ),
+                          const SizedBox(height: 2.0),
+                          Text(
+                            "Teacher Name",
+                            style: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(const TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: -0.02,
+                                fontSize: 16)),
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: 0.022),
+                  Column(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.only(left: width * 0.09),
+                          child: Text(
+                            AppLocalizations.of(context)!.teacher,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(221, 221, 221, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.02,
+                                fontSize: 12),
+                          )
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          padding: EdgeInsets.only(left: width * 0.09),
+                          child: const Text(
+                            "teacher@gmail.com",
+                            style: TextStyle(
+                                color: Color.fromRGBO(221, 221, 221, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.02,
+                                fontSize: 12),
+                          )
+                      ),
+                    ],
+                  ),
+                  //    )
+                ],
+              ),
             ),
-          ),
-        ],
+            Flexible(
+              child:
+              ListView(
+                children: [
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.people_alt,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.user_profile,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .bodyLarge
+                            ?.merge(TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16)),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: TeacherUserProfile(userDataModel: userDataModel,),
+                        //   ),
+                        // );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.key_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)
+                      ),
+                      title: Text(AppLocalizations.of(context)!.change_password,
+                        style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const ResetPassword(),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.mail_outline_sharp,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.change_emailId,
+                        style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
+                        //   ),
+                        // );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.translate,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: SettingsLanguages(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.verified_user_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.verified_user_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text('Terms of Services',style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TermsOfServiceHamburger(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.note_alt_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                          color: textColor,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: CookiePolicy(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.perm_contact_calendar_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.about_us,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .bodyLarge
+                            ?.merge(TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16)),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: AboutUs(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.help_outline,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: HelpPageHamburger(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.power_settings_new,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.logout,style: const TextStyle(
+                          color: Color.fromRGBO(226, 68, 0, 1),
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      onTap: () async {
+                      }),
+                  SizedBox(height: height * 0.03),
+                   Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                    _packageInfo.version,
+                      style: const TextStyle(
+                          color: Color.fromRGBO(180, 180, 180, 1),
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.03),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      appBar: AppBar(
         leading: IconButton(
           icon:const Icon(
             Icons.chevron_left,
@@ -296,7 +646,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child:  TeacherAssessmentSearched(),
+                                    child: TeacherAssessmentSearched(setLocale: widget.setLocale),
                                   ),
                                 );
                               }, icon: const Icon(Icons.search),
@@ -314,29 +664,25 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   },
                 ),
                 SizedBox(height: height * 0.04),
-                Container(
-                  // margin: EdgeInsets.only(left: height * 0.040),
-                  child:
-                  RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(children: [
-                        TextSpan(
-                          text: "DISCLAIMER:",
-                          style: TextStyle(
-                              fontSize: height * 0.015,
-                              fontWeight: FontWeight.w500,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontFamily: "Inter"),
-                        ),
-                        TextSpan(
-                          text: "\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
-                          style: TextStyle(
-                              fontSize: height * 0.015,
-                              fontWeight: FontWeight.w500,
-                              color: const Color.fromRGBO(153, 153, 153, 1),
-                              fontFamily: "Inter"),),
-                      ])),
-                ),
+                RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: "DISCLAIMER:",
+                        style: TextStyle(
+                            fontSize: height * 0.015,
+                            fontWeight: FontWeight.w500,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontFamily: "Inter"),
+                      ),
+                      TextSpan(
+                        text: "\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
+                        style: TextStyle(
+                            fontSize: height * 0.015,
+                            fontWeight: FontWeight.w500,
+                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            fontFamily: "Inter"),),
+                    ])),
                 SizedBox(height: height * 0.02),
                 Text("Tests",
                   style: TextStyle(
@@ -356,17 +702,17 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   ),
                 ),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width,status: 'In progress',),
+                CardInfo(height: height, width: width,status: 'In progress',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width,status: 'Active',),
+                CardInfo(height: height, width: width,status: 'Active',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width,status: 'Inactive',),
+                CardInfo(height: height, width: width,status: 'Inactive',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
                 Row(
                   children: [
                     Expanded(child: Padding(
                       padding: EdgeInsets.only(right: width * 0.05),
-                      child: Divider(),
+                      child: const Divider(),
                     )),
                     Text(
                       "View All",
@@ -377,13 +723,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Icon(Icons.chevron_right)
+                    const Icon(Icons.chevron_right)
 
                   ],
                 ),
                 SizedBox(height: height*0.02,),
                 Center(
-                  child: Container(
+                  child: SizedBox(
                     width: width * 0.888,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -397,7 +743,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       onPressed: () {
                         showDialog(context: context, builder: (BuildContext context){
                           return Dialog(
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(17))),
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
@@ -425,7 +771,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             style: TextStyle(
                                                 fontSize: height * 0.02,
                                                 fontFamily: "Inter",
-                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                                color: const Color.fromRGBO(82, 165, 160, 1),
                                                 fontWeight: FontWeight.w700),
                                           ),
                                         ),
@@ -436,7 +782,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             style: TextStyle(
                                                 fontSize: height * 0.015,
                                                 fontFamily: "Inter",
-                                                color: Color.fromRGBO(153, 153, 153, 1),
+                                                color: const Color.fromRGBO(153, 153, 153, 1),
                                                 fontWeight: FontWeight.w400),
                                           ),
                                         ),
@@ -458,7 +804,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       style: TextStyle(
                                                           fontSize: height * 0.015,
                                                           fontFamily: "Inter",
-                                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                                          color: const Color.fromRGBO(51, 51, 51, 1),
                                                           fontWeight: FontWeight.w600),
                                                     ),
                                                     Text(
@@ -513,7 +859,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       style: TextStyle(
                                                           fontSize: height * 0.015,
                                                           fontFamily: "Inter",
-                                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                                          color: const Color.fromRGBO(51, 51, 51, 1),
                                                           fontWeight: FontWeight.w600),
                                                     ),
                                                     Text(
@@ -616,7 +962,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 context,
                                                 PageTransition(
                                                   type: PageTransitionType.rightToLeft,
-                                                  child: const TeacherCreateAssessment(),
+                                                  child: TeacherCreateAssessment(setLocale: widget.setLocale),
                                                 ),
                                               );
                                             }
@@ -627,7 +973,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             style: TextStyle(
                                                 fontSize: height * 0.025,
                                                 fontFamily: "Inter",
-                                                color: Color.fromRGBO(255, 255, 255, 1),
+                                                color: const Color.fromRGBO(255, 255, 255, 1),
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ),
@@ -649,10 +995,10 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(255, 255, 255, 1),
+                                color: const Color.fromRGBO(255, 255, 255, 1),
                                 fontWeight: FontWeight.w600),
                           ),
-                          Icon(Icons.chevron_right)
+                          const Icon(Icons.chevron_right)
                         ],
                       ),
                     ),
@@ -674,12 +1020,14 @@ class CardInfo extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
-    required this.status
+    required this.status, required this.setLocale
   }) : super(key: key);
 
   final double height;
   final double width;
   final String status;
+  final void Function(Locale locale) setLocale;
+
 
   @override
   Widget build(BuildContext context) {
@@ -693,7 +1041,7 @@ class CardInfo extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherRecentAssessment(),
+                child: TeacherRecentAssessment(setLocale: setLocale),
               ),
             );
           }
@@ -702,7 +1050,7 @@ class CardInfo extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherActiveAssessment(),
+                child: TeacherActiveAssessment(setLocale: setLocale),
               ),
             );
           }
@@ -711,7 +1059,7 @@ class CardInfo extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherInactiveAssessment(),
+                child: TeacherInactiveAssessment(setLocale: setLocale),
               ),
             );
           }
@@ -753,7 +1101,7 @@ class CardInfo extends StatelessWidget {
                           ),),
                       ],
                     ),
-                    Icon(Icons.circle_rounded,color: status=='In progress'?Color.fromRGBO(255, 166, 0, 1):status=='Active'?Color.fromRGBO(60, 176, 0, 1):Color.fromRGBO(136, 136, 136, 1),)
+                    Icon(Icons.circle_rounded,color: status=='In progress'?const Color.fromRGBO(255, 166, 0, 1):status=='Active'?const Color.fromRGBO(60, 176, 0, 1):const Color.fromRGBO(136, 136, 136, 1),)
                   ],
                 ),
               ),

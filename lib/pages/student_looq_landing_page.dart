@@ -5,9 +5,10 @@ import 'package:qna_test/pages/student_looq_selected_assessment.dart';
 
 class StudentLooqLanding extends StatefulWidget {
   const StudentLooqLanding({
-    Key? key
+    Key? key, required this.setLocale
 
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
 
 
@@ -436,7 +437,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle:  TextStyle(color:  Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
+                    hintStyle:  TextStyle(color:  const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
                     hintText: "Maths, 10th, CBSE, Assessment ID",
                     suffixIcon:
                     Column(
@@ -444,13 +445,13 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                           Container(
                               height: height * 0.073,
                               width: width*0.13,
-                              decoration:  BoxDecoration(
+                              decoration:  const BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               ),
                               child: IconButton(
                                 iconSize: height * 0.04,
-                                color:  Color.fromRGBO(255, 255, 255, 1), onPressed: () {
+                                color:  const Color.fromRGBO(255, 255, 255, 1), onPressed: () {
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -458,11 +459,11 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                                 //     child:  TeacherLooqQuestionBank(),
                                 //   ),
                                 // );
-                              }, icon:  Icon(Icons.search),
+                              }, icon:  const Icon(Icons.search),
                               )),
                         ]),
                     focusedBorder:  OutlineInputBorder(
-                        borderSide:  BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                        borderSide:  const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
                         borderRadius: BorderRadius.circular(15)
                     ),
                     border: OutlineInputBorder(
@@ -477,7 +478,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                 ),
                 Text("Showing results of Maths | 10th",
                   style: TextStyle(
-                      color: Color.fromRGBO(153, 153, 153, 1),
+                      color: const Color.fromRGBO(153, 153, 153, 1),
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
                       fontSize: height * 0.015),),
@@ -485,26 +486,26 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                   height: height * 0.02,
                 ),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'In progress',),
+                CardInfo(height: height, width: width, status: 'In progress',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'In progress',),
+                CardInfo(height: height, width: width, status: 'In progress',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'Active',),
+                CardInfo(height: height, width: width, status: 'Active',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'In progress',),
+                CardInfo(height: height, width: width, status: 'In progress',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'Inactive',),
+                CardInfo(height: height, width: width, status: 'Inactive',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'Active',),
+                CardInfo(height: height, width: width, status: 'Active',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
-                CardInfo(height: height, width: width, status: 'Inactive',),
+                CardInfo(height: height, width: width, status: 'Inactive',setLocale: widget.setLocale),
                 SizedBox(height: height*0.02,),
                 Center(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       side: const BorderSide(
                         width: 1.0,
-                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        color: Color.fromRGBO(82, 165, 160, 1),
                       ),
                       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
                       minimumSize: const Size(280, 48),
@@ -521,7 +522,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
-                          color: Color.fromRGBO(82, 165, 160, 1),
+                          color: const Color.fromRGBO(82, 165, 160, 1),
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -541,8 +542,9 @@ class CardInfo extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
-    required this.status
+    required this.status, required this.setLocale
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
   final double height;
   final double width;
@@ -558,7 +560,7 @@ class CardInfo extends StatelessWidget {
             context,
             PageTransition(
               type: PageTransitionType.rightToLeft,
-              child: StudentLooqSelectedAssessment(),
+              child: StudentLooqSelectedAssessment(setLocale: setLocale ),
             ),
           );
           // if (status == 'In progress')

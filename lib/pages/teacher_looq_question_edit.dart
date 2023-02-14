@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/demo_question_model.dart';
 import 'package:qna_test/Pages/teacher_looq_preview.dart';
-
 import '../Components/custom_radio_option.dart';
-import 'teacher_qn_preview.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'about_us.dart';
+import 'package:page_transition/page_transition.dart';
+import 'cookie_policy.dart';
+import 'package:qna_test/Pages/help_page.dart';
+import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
+import 'package:qna_test/Pages/settings_languages.dart';
+import 'package:qna_test/Pages/terms_of_services.dart';
+import 'package:qna_test/pages/reset_password_teacher.dart';
 class LooqQuestionEdit extends StatefulWidget {
   const LooqQuestionEdit({
-    Key? key, required this.question,
+    Key? key, required this.question, required this.setLocale,
   }) : super(key: key);
 
   final DemoQuestionModel question;
+  final void Function(Locale locale) setLocale;
   @override
   LooqQuestionEditState createState() => LooqQuestionEditState();
 }
@@ -28,6 +34,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   TextEditingController classRoomController = TextEditingController();
   TextEditingController questionController = TextEditingController();
   IconData showIcon=Icons.expand_circle_down_outlined;
+  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
@@ -58,11 +65,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   void initState() {
     super.initState();
     _groupValue=widget.question.questionType;
-    subjectController.text=widget.question.subject!;
-    topicController.text=widget.question.topic!;
-    subtopicController.text=widget.question.subTopic!;
-    classRoomController.text=widget.question.studentClass!;
-    questionController.text=widget.question.question!;
+    subjectController.text=widget.question.subject;
+    topicController.text=widget.question.topic;
+    subtopicController.text=widget.question.subTopic;
+    classRoomController.text=widget.question.studentClass;
+    questionController.text=widget.question.question;
     urlController.text=widget.question.url!;
     adviceController.text=widget.question.advice!;
     selected=widget.question.correctChoice;
@@ -80,7 +87,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return TeacherLooqPreview(question: widget.question,);
+        return TeacherLooqPreview(question: widget.question,setLocale: widget.setLocale);
       },
     );
   }
@@ -93,22 +100,363 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
+        endDrawer: Drawer(
+          child: Column(
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                    gradient:  LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ],
+                    )
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: height * 0.050),
+                    Container(
+                      alignment: Alignment.center,
+                      height: height / 6,
+                      child:
+                      Row(
+                          children:  [
+                            CircleAvatar(
+                              backgroundColor: const Color.fromRGBO(0,106,100,0),
+                              radius: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.15,
+                              child: Image.asset(
+                                "assets/images/ProfilePic_Avatar.png",
+                              ),
+                            ),
+                            const SizedBox(height: 2.0),
+                            Text(
+                              "Teacher Name",
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyLarge
+                                  ?.merge(const TextStyle(
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.02,
+                                  fontSize: 16)),
+                            ),
+                          ]),
+                    ),
+                    const SizedBox(height: 0.022),
+                    Column(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: width * 0.09),
+                            child: Text(
+                              AppLocalizations.of(context)!.teacher,
+                              style: const TextStyle(
+                                  color: Color.fromRGBO(221, 221, 221, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 12),
+                            )
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: width * 0.09),
+                            child: const Text(
+                              "teacher@gmail.com",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(221, 221, 221, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  letterSpacing: -0.02,
+                                  fontSize: 12),
+                            )
+                        ),
+                      ],
+                    ),
+                    //    )
+                  ],
+                ),
               ),
-            ),
-          ],
+              Flexible(
+                child:
+                ListView(
+                  children: [
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.people_alt,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.user_profile,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyLarge
+                              ?.merge(TextStyle(
+                              color: textColor,
+                              //Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 16)),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherUserProfile(userDataModel: userDataModel,),
+                          //   ),
+                          // );
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.key_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)
+                        ),
+                        title: Text(AppLocalizations.of(context)!.change_password,
+                          style: TextStyle(
+                              color: textColor,
+                              //Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: const ResetPassword(),
+                            ),
+                          );
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.mail_outline_sharp,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.change_emailId,
+                          style: TextStyle(
+                              color: textColor,
+                              //Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
+                          //   ),
+                          // );
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.translate,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: SettingsLanguages(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.verified_user_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.verified_user_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text('Terms of Services',style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: TermsOfServiceHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.note_alt_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                            color: textColor,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: CookiePolicy(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.perm_contact_calendar_outlined,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.about_us,
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyLarge
+                              ?.merge(TextStyle(
+                              color: textColor,
+                              //Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 16)),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: AboutUs(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.help_outline,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        trailing:  const Icon(Icons.navigate_next,
+                            color: Color.fromRGBO(153, 153, 153, 1)),
+                        onTap: () async {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: HelpPageHamburger(setLocale: widget.setLocale),
+                            ),
+                          );
+                        }),
+                    const Divider(
+                      thickness: 2,
+                    ),
+                    ListTile(
+                        leading:
+                        const Icon(
+                            Icons.power_settings_new,
+                            color: Color.fromRGBO(141, 167, 167, 1)),
+                        title: Text(AppLocalizations.of(context)!.logout,style: const TextStyle(
+                            color: Color.fromRGBO(226, 68, 0, 1),
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                        onTap: () async {
+                        }),
+                    SizedBox(height: height * 0.03),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Version : 1.0.0",
+                        style: TextStyle(
+                            color: Color.fromRGBO(180, 180, 180, 1),
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.03),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        appBar: AppBar(
+          
           leading: IconButton(
             icon: const Icon(
               Icons.chevron_left,
@@ -566,7 +914,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 icon: Icon(
                                   //radioIcon,
                                   radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                 ),
                               ),
                               SizedBox(
@@ -576,7 +924,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 onPressed: ()  {
                                   removeItem(i);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   //radioIcon,
                                   Icons.delete_outline,
                                   color: Color.fromRGBO(82, 165, 160, 1),
@@ -597,7 +945,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                         onPressed: () {
                           setState(() {
                             _count++;
-                            print(_count);
                           });
                         }, child: Text(
                         "Add more choice",

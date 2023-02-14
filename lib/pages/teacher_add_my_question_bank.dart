@@ -11,15 +11,17 @@ import '../Entity/question_model.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 import '../Providers/question_prepare_provider.dart';
+import '../Services/qna_service.dart';
 import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherAddMyQuestionBank extends StatefulWidget {
   const TeacherAddMyQuestionBank({
     Key? key,
-    this.assessment,
+    this.assessment, required this.setLocale,
   }) : super(key: key);
 
   final bool? assessment;
+  final void Function(Locale locale) setLocale;
   @override
   TeacherAddMyQuestionBankState createState() => TeacherAddMyQuestionBankState();
 }
@@ -33,18 +35,18 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
    // set up the buttons
    Widget cancelButton = ElevatedButton(
      style: ElevatedButton.styleFrom(
-         primary: Colors.white,
+         backgroundColor: Colors.white,
          textStyle: TextStyle(
              fontSize: height * 0.02,
              fontFamily: "Inter",
-             color: Color.fromRGBO(48, 145, 139, 1),
+             color: const Color.fromRGBO(48, 145, 139, 1),
              fontWeight: FontWeight.w500),),
      child: Text(
        'No',
      style: TextStyle(
          fontSize: height * 0.02,
          fontFamily: "Inter",
-         color: Color.fromRGBO(48, 145, 139, 1),
+         color: const Color.fromRGBO(48, 145, 139, 1),
          fontWeight: FontWeight.w500),),
      onPressed:  () {
        Navigator.of(context).pop();
@@ -52,27 +54,41 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
    );
    Widget continueButton = ElevatedButton(
      style: ElevatedButton.styleFrom(
-       primary: Color.fromRGBO(82, 165, 160, 1),
+       backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
        textStyle: TextStyle(
            fontSize: height * 0.02,
            fontFamily: "Inter",
-           color: Color.fromRGBO(48, 145, 139, 1),
+           color: const Color.fromRGBO(48, 145, 139, 1),
            fontWeight: FontWeight.w500),),
      child: Text(
        'Yes',
        style: TextStyle(
            fontSize: height * 0.02,
            fontFamily: "Inter",
-           color: Color.fromRGBO(250, 250, 250, 1),
+           color: const Color.fromRGBO(250, 250, 250, 1),
            fontWeight: FontWeight.w500),),
-     onPressed:  () {
-       Navigator.push(
-         context,
-         PageTransition(
-           type: PageTransitionType.rightToLeft,
-           child:  TeacherMyQuestionBank(assessment: widget.assessment,),
-         ),
-       );
+     onPressed:  () async {
+       showDialog(
+           context: context,
+           builder: (context) {
+             return const Center(
+                 child: CircularProgressIndicator(
+                   color: Color.fromRGBO(
+                       48, 145, 139, 1),
+                 ));
+           });
+       int statusCode=await QnaService.createQuestionService();
+       Navigator.of(context).pop();
+       if(statusCode==200){
+         Navigator.push(
+           context,
+           PageTransition(
+             type: PageTransitionType.rightToLeft,
+             child:  TeacherMyQuestionBank(assessment: widget.assessment, setLocale: widget.setLocale),
+           ),
+         );
+       }
+
      },
    );
    // set up the AlertDialog
@@ -82,7 +98,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
        style: TextStyle(
            fontSize: height * 0.02,
            fontFamily: "Inter",
-           color: Color.fromRGBO(0, 106, 100, 1),
+           color: const Color.fromRGBO(0, 106, 100, 1),
            fontWeight: FontWeight.w700),
      ),
      content: Text(
@@ -90,7 +106,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
        style: TextStyle(
            fontSize: height * 0.02,
            fontFamily: "Inter",
-           color: Color.fromRGBO(51, 51, 51, 1),
+           color: const Color.fromRGBO(51, 51, 51, 1),
            fontWeight: FontWeight.w400),
      ),
      actions: [
@@ -123,20 +139,6 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
         appBar: AppBar(
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: IconButton(
-                icon:const Icon(
-                  Icons.menu,
-                  size: 40.0,
-                  color: Colors.white,
-                ), onPressed: () {
-                Navigator.of(context).pop();
-              },
-              ),
-            ),
-          ],
           leading: IconButton(
             icon:const Icon(
               Icons.chevron_left,
@@ -192,11 +194,11 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                 child: Container(
                   height: height * 0.1412,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(82, 165, 160, 0.08),
+                    color: const Color.fromRGBO(82, 165, 160, 0.08),
                       border: Border.all(
-                        color: Color.fromRGBO(28, 78, 80, 0.08),
+                        color: const Color.fromRGBO(28, 78, 80, 0.08),
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(20))
+                      borderRadius: const BorderRadius.all(Radius.circular(20))
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -211,7 +213,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               style: TextStyle(
                                   fontSize: height * 0.02,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(28, 78, 80, 1),
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
@@ -219,7 +221,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontWeight: FontWeight.w600),
                             ),
                           ],
@@ -227,7 +229,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: width* 0.02,right: width* 0.02),
-                        child: Divider(),
+                        child: const Divider(),
                       ),
                       Padding(
                         padding:  EdgeInsets.only(left: width* 0.02),
@@ -238,7 +240,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontWeight: FontWeight.w700),
                             ),
                             SizedBox(width: width * 0.01,),
@@ -247,7 +249,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontWeight: FontWeight.w700),
                             ),
                             SizedBox(width: width * 0.01,),
@@ -256,7 +258,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
-                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontWeight: FontWeight.w700),
                             ),
                           ],
@@ -271,7 +273,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(102, 102, 102, 1),
+                                color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontWeight: FontWeight.w400),
                           ),
                         ),
@@ -300,7 +302,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           //     return
                           //     }),
                           for ( DemoQuestionModel i in quesList )
-                          QuestionPreview(height: height, width: width,question: i,),
+                          QuestionPreview(height: height, width: width,question: i,setLocale: widget.setLocale),
                         ],
                       ),
                     ),
@@ -313,12 +315,12 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const TeacherPrepareQnBank(assessment: false,),
+                            child: TeacherPrepareQnBank(assessment: false,setLocale: widget.setLocale),
                           ),
                         );
                   },
-                    child: Icon(Icons.add),
-                      backgroundColor: Color.fromRGBO(28, 78, 80, 1),
+                    child: const Icon(Icons.add),
+                      backgroundColor: const Color.fromRGBO(28, 78, 80, 1),
                   )
                   )
                 ],
@@ -341,7 +343,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                   style: TextStyle(
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
-                      color: Color.fromRGBO(255, 255, 255, 1),
+                      color: const Color.fromRGBO(255, 255, 255, 1),
                       fontWeight: FontWeight.w600),
                 ),
               ),
@@ -359,12 +361,13 @@ class QuestionPreview extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
-    required this.question,
+    required this.question, required this.setLocale,
   }) : super(key: key);
 
   final double height;
   final double width;
   final DemoQuestionModel question;
+  final void Function(Locale locale) setLocale;
 
   @override
   Widget build(BuildContext context) {
@@ -377,79 +380,77 @@ class QuestionPreview extends StatelessWidget {
       temp.add(question.choices![ch-1]!);
       //question.choices[question.correctChoice[i]];
     }
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '${question.questionType}',
-                style: TextStyle(
-                    fontSize: height * 0.02,
-                    fontFamily: "Inter",
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontWeight: FontWeight.w600),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: TeacherQuesDelete(question: question,),
-                    ),
-                  );
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                          'Edit',
-                          style: TextStyle(
-                              fontSize: height * 0.0185,
-                              fontFamily: "Inter",
-                              color: Color.fromRGBO(28, 78, 80, 1),
-                              fontWeight: FontWeight.w400),
-                        ),
-                    SizedBox(
-                      width: width * 0.01,
-                    ),
-                    Icon(Icons.mode_edit_outline_outlined,color:  Color.fromRGBO(28, 78, 80, 1),),
-                  ],
-                ),
-              )
-            ],
-          ),
-          SizedBox(height: height * 0.01,),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              '${question.question}',
-              style: TextStyle(
-                  fontSize: height * 0.0175,
-                  fontFamily: "Inter",
-                  color: Color.fromRGBO(51, 51, 51, 1),
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-          SizedBox(height: height * 0.01,),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              temp.toString().substring(1,temp.toString().length-1),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              '${question.questionType}',
               style: TextStyle(
                   fontSize: height * 0.02,
                   fontFamily: "Inter",
-                  color: Color.fromRGBO(82, 165, 160, 1),
+                  color: const Color.fromRGBO(82, 165, 160, 1),
                   fontWeight: FontWeight.w600),
             ),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    child: TeacherQuesDelete(question: question,setLocale: setLocale),
+                  ),
+                );
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                        'Edit',
+                        style: TextStyle(
+                            fontSize: height * 0.0185,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontWeight: FontWeight.w400),
+                      ),
+                  SizedBox(
+                    width: width * 0.01,
+                  ),
+                  const Icon(Icons.mode_edit_outline_outlined,color:  Color.fromRGBO(28, 78, 80, 1),),
+                ],
+              ),
+            )
+          ],
+        ),
+        SizedBox(height: height * 0.01,),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            '${question.question}',
+            style: TextStyle(
+                fontSize: height * 0.0175,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(51, 51, 51, 1),
+                fontWeight: FontWeight.w400),
           ),
-          SizedBox(height: height * 0.01,),
-          Divider()
+        ),
+        SizedBox(height: height * 0.01,),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            temp.toString().substring(1,temp.toString().length-1),
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(82, 165, 160, 1),
+                fontWeight: FontWeight.w600),
+          ),
+        ),
+        SizedBox(height: height * 0.01,),
+        const Divider()
 
-        ],
-      ),
+      ],
     );
   }
 }

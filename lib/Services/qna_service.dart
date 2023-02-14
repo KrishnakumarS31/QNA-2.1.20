@@ -1,13 +1,13 @@
-import 'package:flutter/src/widgets/editable_text.dart';
+
 import 'package:qna_test/EntityModel/user_data_model.dart';
 
 import '../DataSource/qna_repo.dart';
 import '../DataSource/qna_test_repo.dart';
-import '../Entity/custom_http_response.dart';
 import '../Entity/question_paper_model.dart';
 import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
 import '../EntityModel/login_entity.dart';
+import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
 
@@ -40,7 +40,13 @@ class QnaService{
   static Future<LoginModel> postUserDetailsService(StudentRegistrationModel student) async{
     return await QnaRepo.registerUserDetails(student);
   }
+  static Future<QuestionPaperModel> getQuestion( {required String assessmentId}) async{
+    return await QnaTestRepo.getQuestionPaper(assessmentId);
+  }
 
+  static Future<LoginModel> postAssessmentService(PostAssessmentModel? assessment) async {
+    return await QnaRepo.postAssessmentRepo(assessment);
+  }
 
 
 
@@ -52,12 +58,8 @@ class QnaService{
     return await QnaTestRepo.logOut();
   }
 
-  static Future<QuestionPaperModel> getQuestion( {required String assessmentId}) async{
-    return await QnaTestRepo.getQuestionPaper(assessmentId);
-  }
-
-  static Future<ResponseEntity> getOQuestion() async{
-    return await QnaTestRepo.getOQuestionPaper();
+  static createQuestionService() async{
+    return await QnaTestRepo.createQuestion();
   }
 
 

@@ -2,36 +2,46 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/login_entity.dart';
+import '../EntityModel/post_assessment_model.dart';
 import '../Providers/question_num_provider.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import 'package:intl/intl.dart';
+import '../Services/qna_service.dart';
 import 'student_result_page.dart';
-class guestReviseQuest extends StatefulWidget {
-  const guestReviseQuest({Key? key,
-    required this.questions, required this.userName
+class StudentReviseQuest extends StatefulWidget {
+  const StudentReviseQuest({Key? key,
+    required this.questions, required this.userName, required this.assessmentID,required this.startTime
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
+  final int startTime;
+  final String assessmentID;
+
 
   @override
-  guestReviseQuestState createState() => guestReviseQuestState();
+  StudentReviseQuestState createState() => StudentReviseQuestState();
 }
 
-class guestReviseQuestState extends State<guestReviseQuest> {
+class StudentReviseQuestState extends State<StudentReviseQuest> {
   late QuestionPaperModel values;
-  List<List<String>> options=[];
+  List<List<dynamic>> options=[];
+  PostAssessmentModel assessment=PostAssessmentModel(assessmentResults: []);
 
   @override
   void initState() {
+
     super.initState();
     values = widget.questions;
     for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
       List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-      List<String> selectedAnswers =[];
+      List<dynamic> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
         if(widget.questions.data!.questions[j-1].questionType=='mcq'){
-          selectedAnswers.add(widget.questions.data!.questions[j-1].choices[selectedAns[t]-1].choiceText);
+          selectedAnswers.add(widget.questions.data!.questions[j-1].choices[t].choiceText);
+          print(widget.questions.data!.questions[j-1].choices[t].choiceText);
         }
         else{
           String temp='';
@@ -131,7 +141,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                   height: localHeight * 0.03,
                                 ),
                                 Text(
-                                 "12345678",
+                                 widget.assessmentID,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: localHeight * 0.016,
@@ -247,7 +257,7 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                                             Text(
                                                 Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                     ? "Not Answered"
-                                                    : options[index-1].toString().substring(1,options[index-1].toString().length-1),
+                                                    : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
                                                 //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                 style:
                                                 Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
@@ -379,30 +389,115 @@ class guestReviseQuestState extends State<guestReviseQuest> {
                         fontWeight: FontWeight.w500
                     )
                 ),
-                onPressed: () {
+                onPressed: () async {
+                  int ansCorrect=0;
+                  print(widget.startTime);
+                  print(DateTime.now().microsecondsSinceEpoch);
                   int totalMark=0;
+                  assessment.assessmentId=2;
+                  assessment.assessmentCode="12345678";
+                  assessment.statusId=2;
+                  assessment.attemptStartdate=widget.startTime;
+                  assessment.attemptEnddate=DateTime.now().microsecondsSinceEpoch;
+                  var d1 = DateTime.fromMicrosecondsSinceEpoch(widget.startTime);
+                  var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime.now().microsecondsSinceEpoch);
+                  int difference = d2.difference(d1).inMinutes;
+                  assessment.attemptDuration=difference;
+
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
-                    List<dynamic> correctAns=values.data!.questions[j-1].choices_answer;
+                    List<int> selectedAnsId=[];
+                    AssessmentResult quesResult=AssessmentResult();
+                    quesResult.questionId=values.data!.questions[j-1].questionId;
+                    quesResult.statusId=6;
+                    quesResult.questionTypeId=values.data!.questions[j-1].questionTypeId;
+                    quesResult.marks=0;
+                    List<dynamic> correctAns=[];
+                    for(int i=0;i<values.data!.questions[j-1].choices_answer.length;i++){
+                      correctAns.add(values.data!.questions[j-1].choices_answer[i].choiceText);
+                    }
                     correctAns.sort();
                     List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
                     selectedAns.sort();
-                    if(listEquals(correctAns, selectedAns)){
-                      totalMark=totalMark+values.data!.questions[j-1].questionMarks;
+
+                    List<int> key=[];
+                    List<String> value=[];
+                    for(int s=0;s<values.data!.questions[j-1].choices.length;s++)
+                    {
+                      key.add(values.data!.questions[j-1].choices[s].choiceId);
+                      value.add(values.data!.questions[j-1].choices[s].choiceText);
                     }
+                    Map<int, String> map = Map.fromIterables(key, value);
+                    for(int f=0;f<selectedAns.length;f++){
+                      selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+                    }
+                    quesResult.selectedQuestionChoice=selectedAnsId;
+
+                    if(listEquals(correctAns, selectedAns)){
+                      quesResult.marks=values.data!.questions[j-1].questionMarks;
+                      totalMark=totalMark+values.data!.questions[j-1].questionMarks;
+                      ansCorrect++;
+                    }
+                    assessment.assessmentResults?.add(quesResult);
                   }
+                  assessment.attemptScore=totalMark;
+                  int percent=((ansCorrect/values.data!.questions.length) * 100).round();
+                  if(percent<=values.data!.assessment_score_message[0].assessment_percent){
+                    assessment.assessmentScoreId=values.data!.assessment_score_message[0].assessmentScoreId;
+                  }
+                  else if(percent<=values.data!.assessment_score_message[1].assessment_percent)
+                    {
+                      assessment.assessmentScoreId=values.data!.assessment_score_message[1].assessmentScoreId;
+                    }
+                  else{
+                    assessment.assessmentScoreId=values.data!.assessment_score_message[2].assessmentScoreId;
+                  }
+                  print(assessment.assessmentScoreId);
+
+
                   final String assessmentCode = "12345678";
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');
                   final DateFormat timeFormatter = DateFormat('hh:mm a');
                   final String formatted = formatter.format(now);
                   final String time=timeFormatter.format(now);
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child:  GuestResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: assessmentCode,userName: widget.userName),
-                    ),
-                  );
+
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const Center(
+                            child: CircularProgressIndicator(
+                              color: Color.fromRGBO(
+                                  48, 145, 139, 1),
+                            ));
+                      });
+                  LoginModel loginResponse = await QnaService.postAssessmentService(assessment);
+                  // print(loginResponse.message);
+                  // print(loginResponse.code);
+                  Navigator.of(context).pop();
+                  if (loginResponse.code == 200) {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child:  StudentResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: assessmentCode,userName: widget.userName),
+                      ),
+                    );
+                  }
+                  else {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child: CustomDialog(
+                          title: 'Answer not Submitted',
+                          content: 'please enter the',
+                          button: AppLocalizations.of(context)!
+                              .retry,
+                        ),
+                      ),
+                    );
+                  }
+
                 }
             ),
             SizedBox(width: localHeight * 0.030),

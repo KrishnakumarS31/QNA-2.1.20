@@ -13,11 +13,12 @@ import 'teacher_prepare_preview_qnBank.dart';
 class TeacherPreparePreview extends StatefulWidget {
   TeacherPreparePreview({
     this.assessment,
-    required this.question,
+    required this.question, required this.setLocale,
   });
 
   final DemoQuestionModel question;
   bool? assessment;
+  final void Function(Locale locale) setLocale;
   @override
   TeacherPreparePreviewState createState() => TeacherPreparePreviewState();
 }
@@ -213,7 +214,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: PreparePreviewQnBank(question: widget.question,),
+                              child: PreparePreviewQnBank(question: widget.question,setLocale: widget.setLocale),
                             ),
                           );
                         },
@@ -243,7 +244,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child:  TeacherAddMyQuestionBank(assessment: widget.assessment,),
+                              child:  TeacherAddMyQuestionBank(assessment: widget.assessment,setLocale: widget.setLocale),
                             ),
                           );
                         },

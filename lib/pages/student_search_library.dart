@@ -420,13 +420,13 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
               children: [
                 Text("Search Library  (LOOQ)",
                   style: TextStyle(
-                      color: Color.fromRGBO(82, 165, 160, 1),
+                      color: const Color.fromRGBO(82, 165, 160, 1),
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w700,
                       fontSize: height * 0.02),),
                 Text("Library Of Practice Assessments",
                   style: TextStyle(
-                      color: Color.fromRGBO(153, 153, 153, 1),
+                      color: const Color.fromRGBO(153, 153, 153, 1),
                       fontFamily: 'Inter',
                       fontWeight: FontWeight.w400,
                       fontSize: height * 0.015),),
@@ -438,7 +438,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle:  TextStyle(color:  Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
+                    hintStyle:  TextStyle(color:  const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.016),
                     hintText: "Maths, 10th, CBSE, Assessment ID",
                     suffixIcon:
                     Column(
@@ -446,25 +446,25 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                           Container(
                               height: height * 0.073,
                               width: width*0.13,
-                              decoration:  BoxDecoration(
+                              decoration:  const BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               ),
                               child: IconButton(
                                 iconSize: height * 0.04,
-                                color:  Color.fromRGBO(255, 255, 255, 1), onPressed: () {
+                                color:  const Color.fromRGBO(255, 255, 255, 1), onPressed: () {
                                 Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child:  StudentLooqLanding(),
+                                    child:  StudentLooqLanding(setLocale: widget.setLocale),
                                   ),
                                 );
-                              }, icon:  Icon(Icons.search),
+                              }, icon:  const Icon(Icons.search),
                               )),
                         ]),
                     focusedBorder:  OutlineInputBorder(
-                        borderSide:  BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                        borderSide:  const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
                         borderRadius: BorderRadius.circular(15)
                     ),
                     border: OutlineInputBorder(
@@ -488,7 +488,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontWeight: FontWeight.w500,
-                              color:  Color.fromRGBO(82, 165, 160, 1),
+                              color:  const Color.fromRGBO(82, 165, 160, 1),
                               fontFamily: "Inter"),
                         ),
                         TextSpan(
@@ -496,7 +496,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontWeight: FontWeight.w500,
-                              color:  Color.fromRGBO(153, 153, 153, 1),
+                              color:  const Color.fromRGBO(153, 153, 153, 1),
                               fontFamily: "Inter"),),
                       ])),
                 ),
@@ -529,7 +529,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                     Expanded(
                       child: Text("Show Assessments from my Institution/Organization",
                         style: TextStyle(
-                            color: Color.fromRGBO(0, 0, 0, 1),
+                            color: const Color.fromRGBO(0, 0, 0, 1),
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.015),),

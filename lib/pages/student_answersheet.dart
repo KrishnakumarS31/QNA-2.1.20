@@ -6,9 +6,10 @@ import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 
 class StudentMemAnswerSheet extends StatefulWidget {
-  const StudentMemAnswerSheet({Key? key, required this.questions})
+  const StudentMemAnswerSheet({Key? key, required this.questions, required this.assessmentId})
       : super(key: key);
   final QuestionPaperModel questions;
+  final String assessmentId;
   @override
   StudentMemAnswerSheetState createState() => StudentMemAnswerSheetState();
 }
@@ -68,7 +69,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
               ),
             ),
             Text(
-              "12345678",
+              widget.assessmentId,
               style: TextStyle(
                 color: const Color.fromRGBO(255, 255, 255, 1),
                 fontSize: localHeight * 0.016,

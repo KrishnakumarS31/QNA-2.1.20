@@ -2,22 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
-import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
-
-import '../Components/custom_radio_option.dart';
 import '../Entity/demo_question_model.dart';
 import '../Entity/question_model.dart';
-import '../Entity/question_paper_model.dart';
-import '../Providers/question_num_provider.dart';
 import '../Providers/question_prepare_provider.dart';
-import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherLooqPreview extends StatefulWidget {
   const TeacherLooqPreview({
-    Key? key, required this.question,
+    Key? key, required this.question, required this.setLocale,
   }) : super(key: key);
 
   final DemoQuestionModel question;
+  final void Function(Locale locale) setLocale;
   @override
   TeacherLooqPreviewState createState() => TeacherLooqPreviewState();
 }
@@ -228,7 +223,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                   children: [
                     Container(
                       height: height * 0.06,
-                      color: Color.fromRGBO(82, 165, 160, 0.1),
+                      color: const Color.fromRGBO(82, 165, 160, 0.1),
                       child: Padding(
                         padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
                         child: Row(
@@ -273,22 +268,22 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       padding:  EdgeInsets.only(left: width * 0.03,right: width *0.03),
                       child: Row(
                           children: <Widget>[
-                            Expanded(
+                            const Expanded(
                                 child: Divider(
                                   color: Color.fromRGBO(233, 233, 233, 1),
                                   thickness: 2,
                                 )
                             ),
                             Padding(
-                              padding: EdgeInsets.only(right: 10,left: 10),
-                              child: Text('${widget.question.questionType}',
+                              padding: const EdgeInsets.only(right: 10,left: 10),
+                              child: Text(widget.question.questionType,
                                   style: TextStyle(
                                       color: const Color.fromRGBO(82, 165, 160, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w700,
                                       fontSize: height* 0.02)),
                             ),
-                            Expanded(
+                            const Expanded(
                                 child: Divider(
                                   color: Color.fromRGBO(233, 233, 233, 1),
                                   thickness: 2,
@@ -301,7 +296,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       padding:  EdgeInsets.only(left: width * 0.03,top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('${widget.question.question}',
+                        child: Text(widget.question.question,
                             style: TextStyle(
                                 color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontFamily: 'Inter',
@@ -337,7 +332,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         controller: adviceController,
                         enabled: false,
                         decoration:  InputDecoration(
-                            border: UnderlineInputBorder(),
+                            border: const UnderlineInputBorder(),
                             labelText: 'Suggest what to study if answered incorrectly ',
                             labelStyle: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 0.25),
@@ -354,7 +349,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         controller: urlController,
                         enabled: false,
                         decoration:  InputDecoration(
-                            border: UnderlineInputBorder(),
+                            border: const UnderlineInputBorder(),
                             labelText: 'URL - Any reference (Optional)',
                             labelStyle: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 0.25),
@@ -382,7 +377,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         style: TextStyle(
                             fontSize: height * 0.025,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -403,7 +398,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child:  const TeacherAddMyQuestionBank(),
+                            child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
                           ),
                         );
                       },
@@ -412,7 +407,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         style: TextStyle(
                             fontSize: height * 0.025,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                            color: const Color.fromRGBO(255, 255, 255, 1),
                             fontWeight: FontWeight.w600),
                       ),
                     ),

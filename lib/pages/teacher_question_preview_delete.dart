@@ -2,25 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
-import '../Components/custom_radio_option.dart';
 import '../Entity/demo_question_model.dart';
-import '../Entity/question_model.dart';
-import '../Entity/question_paper_model.dart';
-import '../Providers/question_num_provider.dart';
 import '../Providers/question_prepare_provider.dart';
-import 'teacher_add_my_question_bank.dart';
 import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   TeacherQuestionPreviewDelete({
     this.assessment,
     required this.question,
-    required this.index
+    required this.index, required this.setLocale
   });
 
   final DemoQuestionModel question;
   final int index;
   final bool? assessment;
+  final void Function(Locale locale) setLocale;
   @override
   TeacherQuestionPreviewDeleteState createState() => TeacherQuestionPreviewDeleteState();
 }
@@ -216,7 +212,7 @@ class TeacherQuestionPreviewDeleteState extends State<TeacherQuestionPreviewDele
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: PreparePreviewQnBank(question: widget.question,),
+                              child: PreparePreviewQnBank(question: widget.question,setLocale: widget.setLocale),
                             ),
                           );
                         },
@@ -246,7 +242,7 @@ class TeacherQuestionPreviewDeleteState extends State<TeacherQuestionPreviewDele
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child:  TeacherMyQuestionBank(assessment: widget.assessment,),
+                              child:  TeacherMyQuestionBank(assessment: widget.assessment,setLocale: widget.setLocale),
                             ),
                           );
                         },

@@ -89,35 +89,35 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
-                            child: TextFormField(
-                              controller: oldEmail,
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: "OLD EMAIL",
-                                labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                                hintText: 'Old Email',
-                                hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
-                                focusedBorder:  OutlineInputBorder(
-                                    borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
-                                    borderRadius: BorderRadius.circular(15)
-                                ),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
-                              ),
-                              validator: (value){
-                                if(value!.isEmpty){
-                                  return AppLocalizations.of(context)!.enter_email_id;
-                                }
-                                else{
-                                  return null;
-                                }
-                              },
-                            ),
-                          ),
-                          SizedBox(height: height * 0.03,),
+                          // Padding(
+                          //   padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
+                          //   child: TextFormField(
+                          //     controller: oldEmail,
+                          //     keyboardType: TextInputType.emailAddress,
+                          //     decoration: InputDecoration(
+                          //       floatingLabelBehavior: FloatingLabelBehavior.always,
+                          //       labelText: "OLD EMAIL",
+                          //       labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
+                          //       hintText: 'Old Email',
+                          //       hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                          //       focusedBorder:  OutlineInputBorder(
+                          //           borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
+                          //           borderRadius: BorderRadius.circular(15)
+                          //       ),
+                          //       border: OutlineInputBorder(
+                          //           borderRadius: BorderRadius.circular(15)),
+                          //     ),
+                          //     validator: (value){
+                          //       if(value!.isEmpty){
+                          //         return AppLocalizations.of(context)!.enter_email_id;
+                          //       }
+                          //       else{
+                          //         return null;
+                          //       }
+                          //     },
+                          //   ),
+                          // ),
+                          //SizedBox(height: height * 0.03,),
                           Padding(
                             padding:  EdgeInsets.only(left: height * 0.025,right: height * 0.025),
                             child: TextFormField(
@@ -125,9 +125,9 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: "NEW EMAIL",
+                                labelText: "NEW EMAIL ID",
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                                hintText: "New Email",
+                                hintText: "New Email Id",
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                                 focusedBorder:  OutlineInputBorder(
                                     borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
@@ -154,9 +154,9 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 floatingLabelBehavior: FloatingLabelBehavior.always,
-                                labelText: "CONFIRM NEW EMAIL",
+                                labelText: "CONFIRM NEW EMAIL ID",
                                 labelStyle:  TextStyle(color: const Color.fromRGBO(51, 51, 51, 1),fontFamily: 'Inter',fontWeight: FontWeight.w600,fontSize: height * 0.015),
-                                hintText: "Confirm New Email",
+                                hintText: "Confirm New Email Id",
                                 hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
                                 focusedBorder:  OutlineInputBorder(
                                     borderSide: const BorderSide(color: Color.fromRGBO(82, 165, 160, 1)),
@@ -176,6 +176,41 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                               },
                             ),
                           ),
+                          SizedBox(height:height * 0.04),
+                          Padding(
+                            padding:  EdgeInsets.only(left: height * 0.04,right: height * 0.025),
+                            child:
+                            Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: const [
+                              Icon(Icons.circle,color: Color.fromRGBO(141, 167, 167, 1),size: 6,),
+                              SizedBox(width: 4,),
+                              Text("OTP will be sent to new EMAIL ID",
+                                  style: TextStyle(
+                                      color: Color.fromRGBO(153, 153, 153, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14)
+                              ),
+                            ],
+                          ),
+                          ),
+                          Padding(
+                            padding:  EdgeInsets.only(left: height * 0.04,right: height * 0.025),
+                            child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: const [
+                              Icon(Icons.circle,color: Color.fromRGBO(141, 167, 167, 1),size: 6,),
+                              SizedBox(width: 4,),
+                              Text("Password will remain unchanged.",
+                                style: TextStyle(
+                                    color: Color.fromRGBO(153, 153, 153, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14)),
+                            ],
+                          )
+                          )
                         ],
                       ),
 
@@ -214,7 +249,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
 
                         },
                         child: Text(
-                          AppLocalizations.of(context)!.send_otp,
+                          "Update EMail ID",
                           style: TextStyle(
                               fontSize: height * 0.024,
                               fontFamily: "Inter",

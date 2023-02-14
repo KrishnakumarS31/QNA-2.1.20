@@ -61,6 +61,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   mask_text_input_formatter:
   flutter_switch: ^0.3.2
+  package_info_plus: ^3.0.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

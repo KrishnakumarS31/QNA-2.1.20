@@ -3,11 +3,20 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'about_us.dart';
+import 'cookie_policy.dart';
+import 'help_page.dart';
+import 'settings_languages.dart';
+import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
+import 'package:qna_test/Pages/terms_of_services.dart';
+import 'package:qna_test/pages/reset_password_teacher.dart';
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment({
-    Key? key,
+    Key? key, required this.setLocale,
 
   }) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
 
   @override
@@ -16,6 +25,7 @@ class TeacherSelectedQuestionAssessment extends StatefulWidget {
 
 class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuestionAssessment> {
   bool additionalDetails = true;
+  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
   showAdditionalDetails(){
     setState(() {
@@ -23,21 +33,20 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
     });
   }
   showAlertDialog(BuildContext context,double height) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        backgroundColor: Colors.white,
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(48, 145, 139, 1),
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),),
       child: Text(
         'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(48, 145, 139, 1),
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),),
       onPressed:  () {
         Navigator.of(context).pop();
@@ -45,25 +54,25 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
     );
     Widget continueButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Color.fromRGBO(82, 165, 160, 1),
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(48, 145, 139, 1),
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),),
       child: Text(
         'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(250, 250, 250, 1),
+            color: const Color.fromRGBO(250, 250, 250, 1),
             fontWeight: FontWeight.w500),),
       onPressed:  () {
         Navigator.push(
           context,
           PageTransition(
             type: PageTransitionType.rightToLeft,
-            child: const TeacherAssessmentSettingPublish(),
+            child: TeacherAssessmentSettingPublish(setLocale: widget.setLocale),
           ),
         );
       },
@@ -72,13 +81,13 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          Icon(Icons.error,color: Color.fromRGBO(238, 71, 0, 1),size: height * 0.05,),
+          Icon(Icons.error,color: const Color.fromRGBO(238, 71, 0, 1),size: height * 0.05,),
           Text(
             'Marks not filled',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
-                color: Color.fromRGBO(0, 106, 100, 1),
+                color: const Color.fromRGBO(0, 106, 100, 1),
                 fontWeight: FontWeight.w700),
           ),
         ],
@@ -88,7 +97,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(51, 51, 51, 1),
+            color: const Color.fromRGBO(51, 51, 51, 1),
             fontWeight: FontWeight.w400),
       ),
       actions: [
@@ -118,25 +127,366 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-              icon:const Icon(
-                Icons.menu,
-                size: 40.0,
-                color: Colors.white,
-              ), onPressed: () {
-              Navigator.of(context).pop();
-            },
+      endDrawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  gradient:  LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(0, 106, 100, 1),
+                      Color.fromRGBO(82, 165, 160, 1),
+                    ],
+                  )
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: height * 0.050),
+                  Container(
+                    alignment: Alignment.center,
+                    height: height / 6,
+                    child:
+                    Row(
+                        children:  [
+                          CircleAvatar(
+                            backgroundColor: const Color.fromRGBO(0,106,100,0),
+                            radius: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.15,
+                            child: Image.asset(
+                              "assets/images/ProfilePic_Avatar.png",
+                            ),
+                          ),
+                          const SizedBox(height: 2.0),
+                          Text(
+                            "Teacher Name",
+                            style: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(const TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: -0.02,
+                                fontSize: 16)),
+                          ),
+                        ]),
+                  ),
+                  const SizedBox(height: 0.022),
+                  Column(
+                    children: [
+                      Container(
+                          padding: EdgeInsets.only(left: width * 0.09),
+                          child: Text(
+                            AppLocalizations.of(context)!.teacher,
+                            style: const TextStyle(
+                                color: Color.fromRGBO(221, 221, 221, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.02,
+                                fontSize: 12),
+                          )
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                          padding: EdgeInsets.only(left: width * 0.09),
+                          child: const Text(
+                            "teacher@gmail.com",
+                            style: TextStyle(
+                                color: Color.fromRGBO(221, 221, 221, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.02,
+                                fontSize: 12),
+                          )
+                      ),
+                    ],
+                  ),
+                  //    )
+                ],
+              ),
             ),
-          ),
-        ],
+            Flexible(
+              child:
+              ListView(
+                children: [
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.people_alt,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.user_profile,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .bodyLarge
+                            ?.merge(TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16)),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: TeacherUserProfile(userDataModel: userDataModel,),
+                        //   ),
+                        // );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.key_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)
+                      ),
+                      title: Text(AppLocalizations.of(context)!.change_password,
+                        style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const ResetPassword(),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.mail_outline_sharp,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.change_emailId,
+                        style: TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () {
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
+                        //   ),
+                        // );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.translate,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: SettingsLanguages(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.verified_user_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.verified_user_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text('Terms of Services',style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TermsOfServiceHamburger(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.note_alt_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
+                          color: textColor,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: CookiePolicy(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.perm_contact_calendar_outlined,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.about_us,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .bodyLarge
+                            ?.merge(TextStyle(
+                            color: textColor,
+                            //Color.fromRGBO(48, 145, 139, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: -0.02,
+                            fontSize: 16)),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: AboutUs(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.help_outline,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
+                          color: textColor,
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      trailing:  const Icon(Icons.navigate_next,
+                          color: Color.fromRGBO(153, 153, 153, 1)),
+                      onTap: () async {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: HelpPageHamburger(setLocale: widget.setLocale),
+                          ),
+                        );
+                      }),
+                  const Divider(
+                    thickness: 2,
+                  ),
+                  ListTile(
+                      leading:
+                      const Icon(
+                          Icons.power_settings_new,
+                          color: Color.fromRGBO(141, 167, 167, 1)),
+                      title: Text(AppLocalizations.of(context)!.logout,style: const TextStyle(
+                          color: Color.fromRGBO(226, 68, 0, 1),
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),),
+                      onTap: () async {
+                      }),
+                  SizedBox(height: height * 0.03),
+                  const Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Version : 1.0.0",
+                      style: TextStyle(
+                          color: Color.fromRGBO(180, 180, 180, 1),
+                          //Color.fromRGBO(48, 145, 139, 1),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: -0.02,
+                          fontSize: 16),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.03),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      appBar: AppBar(
+        
         leading: IconButton(
           icon:const Icon(
             Icons.chevron_left,
@@ -208,7 +558,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                                 style: TextStyle(
                                     fontSize: height * 0.017,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontWeight: FontWeight.w600),
                               ),
                               Text(
@@ -216,7 +566,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontWeight: FontWeight.w400),
                               ),
                             ],
@@ -229,11 +579,11 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                                 style: TextStyle(
                                     fontSize: height * 0.017,
                                     fontFamily: "Inter",
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontWeight: FontWeight.w400),
                               ),
                               SizedBox(width: width * 0.01,),
-                              Icon(Icons.edit_outlined,color: Color.fromRGBO(28, 78, 80, 1),)
+                              const Icon(Icons.edit_outlined,color: Color.fromRGBO(28, 78, 80, 1),)
                             ],
                           ),
                         ],
@@ -243,7 +593,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                         style: TextStyle(
                             fontSize: height * 0.015,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(102, 102, 102, 1),
+                            color: const Color.fromRGBO(102, 102, 102, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       Row(
@@ -254,7 +604,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(102, 102, 102, 1),
+                                color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
@@ -262,7 +612,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
-                                color: Color.fromRGBO(102, 102, 102, 1),
+                                color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontWeight: FontWeight.w400),
                           ),
                         ],
@@ -282,7 +632,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(0, 0, 0, 1),
+                            color: const Color.fromRGBO(0, 0, 0, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
@@ -290,7 +640,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -302,7 +652,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(0, 0, 0, 1),
+                            color: const Color.fromRGBO(0, 0, 0, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
@@ -310,7 +660,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w700),
                       ),
                     ],
@@ -321,7 +671,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Container(
+                  SizedBox(
                     height: height * 0.48,
                     width: width * 0.9,
 
@@ -358,19 +708,19 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: const TeacherAssessmentQuestionBank(),
+                            child: TeacherAssessmentQuestionBank(setLocale: widget.setLocale),
                           ),
                         );
                       },
-                        child: Icon(Icons.add),
-                        backgroundColor: Color.fromRGBO(82, 165, 160, 1),
+                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                        child: const Icon(Icons.add),
                       )
                   )
                 ],
               ),
               SizedBox(height: height * 0.03,),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: width * 0.888,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -390,7 +740,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: const TeacherAssessmentLanding(),
+                          child: TeacherAssessmentLanding(setLocale: widget.setLocale),
                         ),
                       );
 
@@ -401,7 +751,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
-                          color: Color.fromRGBO(82, 165, 160, 1),
+                          color: const Color.fromRGBO(82, 165, 160, 1),
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -409,7 +759,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
               ),
               SizedBox(height: height * 0.03,),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: width * 0.888,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -431,7 +781,7 @@ class TeacherSelectedQuestionAssessmentState extends State<TeacherSelectedQuesti
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
-                          color: Color.fromRGBO(255, 255, 255, 1),
+                          color: const Color.fromRGBO(255, 255, 255, 1),
                           fontWeight: FontWeight.w600),
                     ),
                   ),
@@ -457,18 +807,18 @@ class QuestionWidget extends StatelessWidget {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Colors.white,
+        backgroundColor: Colors.white,
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(48, 145, 139, 1),
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),),
       child: Text(
         'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(48, 145, 139, 1),
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),),
       onPressed:  () {
         Navigator.of(context).pop();
@@ -476,18 +826,18 @@ class QuestionWidget extends StatelessWidget {
     );
     Widget continueButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Color.fromRGBO(82, 165, 160, 1),
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
         textStyle: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(48, 145, 139, 1),
+            color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),),
       child: Text(
         'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(250, 250, 250, 1),
+            color: const Color.fromRGBO(250, 250, 250, 1),
             fontWeight: FontWeight.w500),),
       onPressed:  () {
         Navigator.of(context).pop();
@@ -504,13 +854,13 @@ class QuestionWidget extends StatelessWidget {
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          Icon(Icons.info,color: Color.fromRGBO(238, 71, 0, 1),),
+          const Icon(Icons.info,color: Color.fromRGBO(238, 71, 0, 1),),
           Text(
             'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
-                color: Color.fromRGBO(0, 106, 100, 1),
+                color: const Color.fromRGBO(0, 106, 100, 1),
                 fontWeight: FontWeight.w700),
           ),
         ],
@@ -520,7 +870,7 @@ class QuestionWidget extends StatelessWidget {
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
-            color: Color.fromRGBO(51, 51, 51, 1),
+            color: const Color.fromRGBO(51, 51, 51, 1),
             fontWeight: FontWeight.w400),
       ),
       actions: [
@@ -552,7 +902,7 @@ class QuestionWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: height * 0.017,
                       fontFamily: "Inter",
-                      color: Color.fromRGBO(82, 165, 160, 1),
+                      color: const Color.fromRGBO(82, 165, 160, 1),
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
@@ -560,7 +910,7 @@ class QuestionWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: height * 0.017,
                       fontFamily: "Inter",
-                      color: Color.fromRGBO(51, 51, 51, 1),
+                      color: const Color.fromRGBO(51, 51, 51, 1),
                       fontWeight: FontWeight.w400),
                 ),
 
@@ -573,13 +923,13 @@ class QuestionWidget extends StatelessWidget {
               },
               child: Row(
                 children: [
-                  Icon(Icons.close,color: Color.fromRGBO(51, 51, 51, 1),),
+                  const Icon(Icons.close,color: Color.fromRGBO(51, 51, 51, 1),),
                   Text(
                     ' Remove',
                     style: TextStyle(
                         fontSize: height * 0.017,
                         fontFamily: "Inter",
-                        color: Color.fromRGBO(51, 51, 51, 1),
+                        color: const Color.fromRGBO(51, 51, 51, 1),
                         fontWeight: FontWeight.w400),
                   ),
                 ],
@@ -603,7 +953,7 @@ class QuestionWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: height * 0.015,
                 fontFamily: "Inter",
-                color: Color.fromRGBO(51, 51, 51, 1),
+                color: const Color.fromRGBO(51, 51, 51, 1),
                 fontWeight: FontWeight.w400),
           ),
         ),
@@ -616,7 +966,7 @@ class QuestionWidget extends StatelessWidget {
               style: TextStyle(
                   fontSize: height * 0.017,
                   fontFamily: "Inter",
-                  color: Color.fromRGBO(0, 0, 0, 1),
+                  color: const Color.fromRGBO(0, 0, 0, 1),
                   fontWeight: FontWeight.w400),
             ),
             Row(
@@ -626,7 +976,7 @@ class QuestionWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: height * 0.017,
                       fontFamily: "Inter",
-                      color: Color.fromRGBO(0, 0, 0, 1),
+                      color: const Color.fromRGBO(0, 0, 0, 1),
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
@@ -634,14 +984,14 @@ class QuestionWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: height * 0.017,
                       fontFamily: "Inter",
-                      color: Color.fromRGBO(82, 165, 160, 1),
+                      color: const Color.fromRGBO(82, 165, 160, 1),
                       fontWeight: FontWeight.w700),
                 ),
               ],
             ),
           ],
         ),
-        Divider(),
+        const Divider(),
         SizedBox(height: height * 0.01,),
       ],
     );

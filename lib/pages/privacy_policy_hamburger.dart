@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/foundation.dart';
 
 class PrivacyPolicyHamburger extends StatefulWidget {
   const PrivacyPolicyHamburger({
@@ -31,7 +31,9 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
+        leading:
+        defaultTargetPlatform == TargetPlatform.android
+        ? IconButton(
           icon:const Icon(
             Icons.chevron_left,
             size: 40.0,
@@ -39,7 +41,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
           ), onPressed: () {
           Navigator.of(context).pop();
         },
-        ),
+        )
+        : null,
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title: Column(

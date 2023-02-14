@@ -19,7 +19,7 @@
   "enter_id": "Enter ID",
   "enter_registrationId": "Enter Registration ID",
   "privacy_terms": "PRIVACY & TERMS",
-  "privacy_policy": "I hereby certify that I have read and AGREE to QNATest Privacy Policy and Terms of \n Service",
+  "privacy_policy": "I hereby certify that I have read and AGREE\nto QNATest Privacy Policy and Terms of\nService",
   "agree_privacy_terms": "Agree Privacy & Terms",
   "error": "Error",
   "retry": "Retry",
