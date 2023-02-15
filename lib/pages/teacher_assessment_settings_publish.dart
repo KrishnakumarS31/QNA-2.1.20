@@ -7,9 +7,11 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
+
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({
-    Key? key, required this.setLocale,
+    Key? key,
+    required this.setLocale,
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
 
@@ -18,7 +20,8 @@ class TeacherAssessmentSettingPublish extends StatefulWidget {
       TeacherAssessmentSettingPublishState();
 }
 
-class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettingPublish> {
+class TeacherAssessmentSettingPublishState
+    extends State<TeacherAssessmentSettingPublish> {
   bool testAgree = false;
   bool practiseAgree = false;
   bool mcqAgree = false;
@@ -39,7 +42,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
   }
 
   final MaskTextInputFormatter timeMaskFormatter =
-  MaskTextInputFormatter(mask: '##:##', filter: {"#": RegExp(r'[0-9]')});
+      MaskTextInputFormatter(mask: '##:##', filter: {"#": RegExp(r'[0-9]')});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title:
-        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
             "ASSESSMENT SETTINGS",
             style: TextStyle(
@@ -95,9 +98,9 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                Color.fromRGBO(0, 106, 100, 1),
+                Color.fromRGBO(82, 165, 160, 1),
+              ])),
         ),
       ),
       body: Column(
@@ -135,7 +138,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Icon(Icons.circle,color: Color.fromRGBO(255, 166, 0, 1),size: MediaQuery.of(context).copyWith().size.height * 0.02,),
+                        Icon(
+                          Icons.circle,
+                          color: Color.fromRGBO(255, 166, 0, 1),
+                          size: MediaQuery.of(context).copyWith().size.height *
+                              0.02,
+                        ),
                       ],
                     ),
                   ),
@@ -174,7 +182,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                     fontSize: height * 0.015,
                                     fontWeight: FontWeight.w500,
                                     color:
-                                    const Color.fromRGBO(153, 153, 153, 1),
+                                        const Color.fromRGBO(153, 153, 153, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
@@ -183,7 +191,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                     fontSize: height * 0.015,
                                     fontWeight: FontWeight.w500,
                                     color:
-                                    const Color.fromRGBO(82, 165, 160, 1),
+                                        const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
                             ])),
@@ -233,17 +241,17 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                       Radius.circular(8.0)),
                                   border: Border.all(
                                     color:
-                                    const Color.fromRGBO(230, 230, 230, 1),
+                                        const Color.fromRGBO(230, 230, 230, 1),
                                   ),
                                 ),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
@@ -299,7 +307,10 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                           Transform.scale(
                                             scale: 1.5,
                                             child: Checkbox(
-                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100)),
                                               activeColor: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fillColor: MaterialStateProperty
@@ -312,8 +323,11 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                       160,
                                                       1); // Disabled color
                                                 }
-                                                return const Color.fromRGBO(82,
-                                                    165, 160, 1); // Regular color
+                                                return const Color.fromRGBO(
+                                                    82,
+                                                    165,
+                                                    160,
+                                                    1); // Regular color
                                               }),
                                               value: testAgree,
                                               onChanged: (val) {
@@ -360,7 +374,10 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                           Transform.scale(
                                             scale: 1.5,
                                             child: Checkbox(
-                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100)),
                                               activeColor: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fillColor: MaterialStateProperty
@@ -373,8 +390,11 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                       160,
                                                       1); // Disabled color
                                                 }
-                                                return const Color.fromRGBO(82,
-                                                    165, 160, 1); // Regular color
+                                                return const Color.fromRGBO(
+                                                    82,
+                                                    165,
+                                                    160,
+                                                    1); // Regular color
                                               }),
                                               value: practiseAgree,
                                               onChanged: (val) {
@@ -405,17 +425,17 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                       Radius.circular(8.0)),
                                   border: Border.all(
                                     color:
-                                    const Color.fromRGBO(230, 230, 230, 1),
+                                        const Color.fromRGBO(230, 230, 230, 1),
                                   ),
                                 ),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
@@ -469,7 +489,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 // Not sure if it can be done with RegExp or a custom class here instead
                                               ],
                                               keyboardType: const TextInputType
-                                                  .numberWithOptions(
+                                                      .numberWithOptions(
                                                   decimal: false),
                                               decoration: InputDecoration(
                                                 hintText: "HH:MM",
@@ -487,146 +507,174 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                           )
                                         ]),
                                         SizedBox(height: height * 0.02),
-                                        Row(
-                                            children: [
-                                              SizedBox(
-                                                //margin: const EdgeInsets.only(right: 100),
-                                                height: 100,
-                                                //color: Colors.amber,
-                                                width:150,
-                                                child:
-                                                Column(
-                                                  crossAxisAlignment:
+                                        Row(children: [
+                                          SizedBox(
+                                            //margin: const EdgeInsets.only(right: 100),
+                                            height: 100,
+                                            //color: Colors.amber,
+                                            width: 150,
+                                            child: Column(
+                                              crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Start Date",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            28, 78, 80, 1),
-                                                        fontSize: height * 0.0175,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        var pickedDate =
+                                              children: [
+                                                Text(
+                                                  "Start Date",
+                                                  style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                    fontSize: height * 0.0175,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    var pickedDate =
                                                         await showDatePicker(
-                                                          context: context,
-                                                          initialDate: DateTime.now(),
-                                                          firstDate: DateTime(2000),
-                                                          lastDate: DateTime(2100),
-                                                          builder: (context, child) {
-                                                            return Theme(
-                                                              data: Theme.of(context)
+                                                      context: context,
+                                                      initialDate:
+                                                          DateTime.now(),
+                                                      firstDate: DateTime(2000),
+                                                      lastDate: DateTime(2100),
+                                                      builder:
+                                                          (context, child) {
+                                                        return Theme(
+                                                          data:
+                                                              Theme.of(context)
                                                                   .copyWith(
-                                                                colorScheme:
+                                                            colorScheme:
                                                                 const ColorScheme
                                                                     .light(
-                                                                  primary:
-                                                                  Color.fromRGBO(
+                                                              primary: Color
+                                                                  .fromRGBO(
                                                                       82,
                                                                       165,
                                                                       160,
                                                                       1),
-                                                                  onPrimary:
+                                                              onPrimary:
                                                                   Colors.white,
-                                                                  onSurface: Colors
-                                                                      .black, // <-- SEE HERE
-                                                                ),
-                                                                textButtonTheme:
+                                                              onSurface: Colors
+                                                                  .black, // <-- SEE HERE
+                                                            ),
+                                                            textButtonTheme:
                                                                 TextButtonThemeData(
-                                                                  style: TextButton
-                                                                      .styleFrom(
-                                                                    foregroundColor:
+                                                              style: TextButton
+                                                                  .styleFrom(
+                                                                foregroundColor:
                                                                     const Color
-                                                                        .fromRGBO(
+                                                                            .fromRGBO(
                                                                         82,
                                                                         165,
                                                                         160,
                                                                         1),
-                                                                  ),
-                                                                ),
                                                               ),
-                                                              child: child!,
-                                                            );
-                                                          },
+                                                            ),
+                                                          ),
+                                                          child: child!,
                                                         );
-                                                        final DateFormat formatter =
-                                                        DateFormat('dd/MM/yyyy');
-                                                        final String formatted =
-                                                        formatter
-                                                            .format(pickedDate!);
+                                                      },
+                                                    );
+                                                    final DateFormat formatter =
+                                                        DateFormat(
+                                                            'dd/MM/yyyy');
+                                                    final String formatted =
+                                                        formatter.format(
+                                                            pickedDate!);
 
-                                                        startDateController.text =
-                                                            formatted;
-                                                      },
-                                                      child: AbsorbPointer(
-                                                        child: TextFormField(
-                                                          decoration: InputDecoration(
-                                                              hintText: "DD/MM/YYYY",
-                                                              hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.020)
-                                                          ),
-                                                          controller:
+                                                    startDateController.text =
+                                                        formatted;
+                                                  },
+                                                  child: AbsorbPointer(
+                                                    child: TextFormField(
+                                                      decoration: InputDecoration(
+                                                          hintText:
+                                                              "DD/MM/YYYY",
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  102,
+                                                                  102,
+                                                                  102,
+                                                                  0.3),
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: height *
+                                                                  0.020)),
+                                                      controller:
                                                           startDateController,
-                                                          keyboardType:
-                                                          TextInputType.datetime,
-                                                          enabled: true,
-                                                          onChanged: (value) {},
-                                                        ),
-                                                      ),
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .datetime,
+                                                      enabled: true,
+                                                      onChanged: (value) {},
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
-                                              ),
-                                              SizedBox(width: width * 0.25),
-                                              SizedBox(
-                                                //margin: const EdgeInsets.only(right: 50),
-                                                height: 100,
-                                                // color: Colors.amber,
-                                                width:90,
-                                                // padding: EdgeInsets.only(
-                                                //     left: width * 0.59,
-                                                //     right: width * 0.01),
-                                                child:
-                                                Column(
-                                                  crossAxisAlignment:
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(width: width * 0.25),
+                                          SizedBox(
+                                            //margin: const EdgeInsets.only(right: 50),
+                                            height: 100,
+                                            // color: Colors.amber,
+                                            width: 90,
+                                            // padding: EdgeInsets.only(
+                                            //     left: width * 0.59,
+                                            //     right: width * 0.01),
+                                            child: Column(
+                                              crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Start Time",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            28, 78, 80, 1),
-                                                        fontSize: height * 0.0175,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                    GestureDetector(
-                                                      onTap: () async {
-                                                        _selectTime(context);
-                                                      },
-                                                      child: AbsorbPointer(
-                                                        child: TextFormField(
-                                                          decoration: InputDecoration(
-                                                              hintText: "00:00 AM",
-                                                              hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.020)
-                                                          ),
-                                                          controller:
-                                                          startTimeController,
-                                                          keyboardType:
-                                                          TextInputType.datetime,
-                                                          enabled: true,
-                                                          onChanged: (value) {},
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                              children: [
+                                                Text(
+                                                  "Start Time",
+                                                  style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        28, 78, 80, 1),
+                                                    fontSize: height * 0.0175,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
-                                              )
-                                            ]),
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    _selectTime(context);
+                                                  },
+                                                  child: AbsorbPointer(
+                                                    child: TextFormField(
+                                                      decoration: InputDecoration(
+                                                          hintText: "00:00 AM",
+                                                          hintStyle: TextStyle(
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  102,
+                                                                  102,
+                                                                  102,
+                                                                  0.3),
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              fontSize: height *
+                                                                  0.020)),
+                                                      controller:
+                                                          startTimeController,
+                                                      keyboardType:
+                                                          TextInputType
+                                                              .datetime,
+                                                      enabled: true,
+                                                      onChanged: (value) {},
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ]),
                                       ],
                                     ),
                                   ],
@@ -646,17 +694,17 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                       Radius.circular(8.0)),
                                   border: Border.all(
                                     color:
-                                    const Color.fromRGBO(230, 230, 230, 1),
+                                        const Color.fromRGBO(230, 230, 230, 1),
                                   ),
                                 ),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
@@ -690,7 +738,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                           SizedBox(
                                             width: width * 0.2,
                                             child: TextField(
-                                              keyboardType: TextInputType.number,
+                                              keyboardType:
+                                                  TextInputType.number,
                                               decoration: InputDecoration(
                                                 hintText: "# day/s",
                                                 hintStyle: TextStyle(
@@ -708,7 +757,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                         ]),
                                         SizedBox(height: height * 0.02),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "MCQ",
@@ -721,10 +771,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               Checkbox(
-                                                activeColor: const Color.fromRGBO(
-                                                    153, 153, 153, 0.8),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        153, 153, 153, 0.8),
                                                 fillColor: MaterialStateProperty
-                                                    .resolveWith<Color>((states) {
+                                                    .resolveWith<Color>(
+                                                        (states) {
                                                   if (states.contains(
                                                       MaterialState.selected)) {
                                                     return const Color.fromRGBO(
@@ -733,8 +785,11 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                         160,
                                                         1); // Disabled color
                                                   }
-                                                  return const Color.fromRGBO(82,
-                                                      165, 160, 1); // Regular color
+                                                  return const Color.fromRGBO(
+                                                      82,
+                                                      165,
+                                                      160,
+                                                      1); // Regular color
                                                 }),
                                                 value: mcqAgree,
                                                 onChanged: (val) {
@@ -746,7 +801,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                               ),
                                             ]),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Survey",
@@ -759,10 +815,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               Checkbox(
-                                                activeColor: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
                                                 fillColor: MaterialStateProperty
-                                                    .resolveWith<Color>((states) {
+                                                    .resolveWith<Color>(
+                                                        (states) {
                                                   if (states.contains(
                                                       MaterialState.selected)) {
                                                     return const Color.fromRGBO(
@@ -771,8 +829,11 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                         160,
                                                         1); // Disabled color
                                                   }
-                                                  return const Color.fromRGBO(82,
-                                                      165, 160, 1); // Regular color
+                                                  return const Color.fromRGBO(
+                                                      82,
+                                                      165,
+                                                      160,
+                                                      1); // Regular color
                                                 }),
                                                 value: surveyAgree,
                                                 onChanged: (val) {
@@ -784,7 +845,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                               ),
                                             ]),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Descriptive",
@@ -797,10 +859,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               Checkbox(
-                                                activeColor: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
                                                 fillColor: MaterialStateProperty
-                                                    .resolveWith<Color>((states) {
+                                                    .resolveWith<Color>(
+                                                        (states) {
                                                   if (states.contains(
                                                       MaterialState.selected)) {
                                                     return const Color.fromRGBO(
@@ -809,8 +873,11 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                         160,
                                                         1); // Disabled color
                                                   }
-                                                  return const Color.fromRGBO(82,
-                                                      165, 160, 1); // Regular color
+                                                  return const Color.fromRGBO(
+                                                      82,
+                                                      165,
+                                                      160,
+                                                      1); // Regular color
                                                 }),
                                                 value: descriptiveAgree,
                                                 onChanged: (val) {
@@ -840,17 +907,17 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                       Radius.circular(8.0)),
                                   border: Border.all(
                                     color:
-                                    const Color.fromRGBO(230, 230, 230, 1),
+                                        const Color.fromRGBO(230, 230, 230, 1),
                                   ),
                                 ),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
@@ -933,17 +1000,17 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                       Radius.circular(8.0)),
                                   border: Border.all(
                                     color:
-                                    const Color.fromRGBO(230, 230, 230, 1),
+                                        const Color.fromRGBO(230, 230, 230, 1),
                                   ),
                                 ),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
@@ -964,7 +1031,7 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                         ),
                                         Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Number of Retries allowed",
@@ -985,17 +1052,21 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                     timeMaskFormatter
                                                     // Not sure if it can be done with RegExp or a custom class here instead
                                                   ],
-                                                  keyboardType: const TextInputType
-                                                      .numberWithOptions(
-                                                      decimal: false),
+                                                  keyboardType:
+                                                      const TextInputType
+                                                              .numberWithOptions(
+                                                          decimal: false),
                                                   decoration: InputDecoration(
                                                     hintText: "1",
                                                     hintStyle: TextStyle(
-                                                        color: const Color.fromRGBO(
+                                                        color: const Color
+                                                                .fromRGBO(
                                                             102, 102, 102, 0.3),
                                                         fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: height * 0.025),
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        fontSize:
+                                                            height * 0.025),
                                                   ),
                                                   style: TextStyle(
                                                       fontSize: height * 0.020,
@@ -1004,8 +1075,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                               ),
                                               // SizedBox(width: width * 0.3),
                                               FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor: const Color.fromRGBO(217, 217, 217, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                inactiveColor:
+                                                    const Color.fromRGBO(
+                                                        217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
                                                 value: numOfRetriesStatus,
@@ -1019,7 +1094,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             ]),
                                         SizedBox(height: height * 0.01),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Allowed guest students",
@@ -1032,8 +1108,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor: const Color.fromRGBO(217, 217, 217, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                inactiveColor:
+                                                    const Color.fromRGBO(
+                                                        217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
                                                 value: allowedGuestStatus,
@@ -1047,7 +1127,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             ]),
                                         SizedBox(height: height * 0.01),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Solved answer sheet after test",
@@ -1060,8 +1141,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor: const Color.fromRGBO(217, 217, 217, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                inactiveColor:
+                                                    const Color.fromRGBO(
+                                                        217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
                                                 value: solvedAnsStatus,
@@ -1075,7 +1160,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             ]),
                                         SizedBox(height: height * 0.01),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Show my name in Advisor",
@@ -1088,8 +1174,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor: const Color.fromRGBO(217, 217, 217, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                inactiveColor:
+                                                    const Color.fromRGBO(
+                                                        217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
                                                 value: showNameStatus,
@@ -1103,7 +1193,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             ]),
                                         SizedBox(height: height * 0.01),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Show my Email in Advisor",
@@ -1116,8 +1207,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor: const Color.fromRGBO(217, 217, 217, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                inactiveColor:
+                                                    const Color.fromRGBO(
+                                                        217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
                                                 value: showEmailStatus,
@@ -1131,7 +1226,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                             ]),
                                         SizedBox(height: height * 0.01),
                                         Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
                                                 "Inactive",
@@ -1144,8 +1240,12 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                                                 ),
                                               ),
                                               FlutterSwitch(
-                                                activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                                                inactiveColor: const Color.fromRGBO(217, 217, 217, 1),
+                                                activeColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                inactiveColor:
+                                                    const Color.fromRGBO(
+                                                        217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
                                                 value: activeStatus,
@@ -1165,84 +1265,88 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
                               ),
                             ),
                             SizedBox(height: height * 0.05),
-                            Column(
-                                children: [
-                                  Center(
-                                    child: Container(
-                                      width: width * 0.6,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          side: const BorderSide(
-                                            color: Color.fromRGBO(82, 165, 160, 1),
-                                          ),
-                                          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                                          minimumSize: const Size(280, 48),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(39),
-                                          ),
-
-                                        ),
-                                        //shape: StadiumBorder(),
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.rightToLeft,
-                                              child: TeacherAssessmentLanding(setLocale: widget.setLocale),
-                                            ),
-                                          );
-
-
-                                        },
-                                        child: Text(
-                                          'Publish Later',
-                                          style: TextStyle(
-                                              fontSize: height * 0.025,
-                                              fontFamily: "Inter",
-                                              color: Color.fromRGBO(82, 165, 160, 1),
-                                              fontWeight: FontWeight.w600),
-                                        ),
+                            Column(children: [
+                              Center(
+                                child: Container(
+                                  width: width * 0.6,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      side: const BorderSide(
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      ),
+                                      backgroundColor: const Color.fromRGBO(
+                                          255, 255, 255, 1),
+                                      minimumSize: const Size(280, 48),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(39),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: height * 0.03,),
-                                  Center(
-                                    child: Container(
-                                      width: width * 0.6,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                            minimumSize: const Size(280, 48),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(39),
-                                            ),
-                                            side: const BorderSide(
-                                              color: Color.fromRGBO(82, 165, 160, 1),
-                                            )
+                                    //shape: StadiumBorder(),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: TeacherAssessmentLanding(
+                                              setLocale: widget.setLocale),
                                         ),
-                                        //shape: StadiumBorder(),
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType.rightToLeft,
-                                              child: TeacherPublishedAssessment(setLocale: widget.setLocale),
-                                            ),
-                                          );
-
-                                        },
-                                        child: Text(
-                                          'Publish Now',
-                                          style: TextStyle(
-                                              fontSize: height * 0.025,
-                                              fontFamily: "Inter",
-                                              color: Color.fromRGBO(255, 255, 255, 1),
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Publish Later',
+                                      style: TextStyle(
+                                          fontSize: height * 0.025,
+                                          fontFamily: "Inter",
+                                          color:
+                                              Color.fromRGBO(82, 165, 160, 1),
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ),
-                                ]),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.03,
+                              ),
+                              Center(
+                                child: Container(
+                                  width: width * 0.6,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: const Color.fromRGBO(
+                                            82, 165, 160, 1),
+                                        minimumSize: const Size(280, 48),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(39),
+                                        ),
+                                        side: const BorderSide(
+                                          color:
+                                              Color.fromRGBO(82, 165, 160, 1),
+                                        )),
+                                    //shape: StadiumBorder(),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: TeacherPublishedAssessment(
+                                              setLocale: widget.setLocale),
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Publish Now',
+                                      style: TextStyle(
+                                          fontSize: height * 0.025,
+                                          fontFamily: "Inter",
+                                          color:
+                                              Color.fromRGBO(255, 255, 255, 1),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]),
                           ],
                         ))
                   ],
@@ -1261,10 +1365,8 @@ class TeacherAssessmentSettingPublishState extends State<TeacherAssessmentSettin
       context: context,
       initialTime: selectedTime,
       initialEntryMode: TimePickerEntryMode.dial,
-
     );
-    if(timeOfDay != null && timeOfDay != selectedTime)
-    {
+    if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
       });

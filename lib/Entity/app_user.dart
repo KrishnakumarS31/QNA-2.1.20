@@ -5,19 +5,12 @@ class AppUser {
 
   String locale;
 
-  AppUser(
-      {required this.id,required this.locale});
+  AppUser({required this.id, required this.locale});
 
-  factory AppUser.fromMap(Map<String, dynamic> data) => AppUser(
-      id: data["id"],
+  factory AppUser.fromMap(Map<String, dynamic> data) =>
+      AppUser(id: data["id"], locale: data["locale"]);
 
-      locale: data["locale"]);
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-
-        "locale": locale
-      };
+  Map<String, dynamic> toMap() => {"id": id, "locale": locale};
 
   @override
   String toString() {

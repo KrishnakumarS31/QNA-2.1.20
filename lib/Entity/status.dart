@@ -22,16 +22,16 @@ class Status {
   bool error;
 
   factory Status.fromJson(Map<String, dynamic> json) => Status(
-    code: json["code"],
-    message: json["message"],
-    type: json["type"],
-    error: json["error"],
-  );
+        code: json["code"],
+        message: json["message"],
+        type: json["type"],
+        error: json["error"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "code": code,
-    "message": message,
-    "type": type,
-    "error": error,
-  };
+        "code": code,
+        "message": message,
+        "type": type,
+        "error": error,
+      };
 }

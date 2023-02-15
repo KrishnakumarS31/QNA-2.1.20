@@ -1,40 +1,26 @@
-
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_result_assessment.dart';
 
 import '../Components/custom_card.dart';
 
-
-
-
 class TeacherResultMonth extends StatefulWidget {
   const TeacherResultMonth({
     Key? key,
-
   }) : super(key: key);
-
 
   @override
   TeacherResultMonthState createState() => TeacherResultMonthState();
 }
 
 class TeacherResultMonthState extends State<TeacherResultMonth> {
-
-
-
   @override
   void initState() {
     super.initState();
-
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
@@ -42,22 +28,21 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
-          
           leading: IconButton(
-            icon:const Icon(
+            icon: const Icon(
               Icons.chevron_left,
               size: 40.0,
               color: Colors.white,
-            ), onPressed: () {
-            Navigator.of(context).pop();
-          },
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
           toolbarHeight: height * 0.100,
           centerTitle: true,
           title: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-
                 Text(
                   'RESULTS',
                   style: TextStyle(
@@ -83,123 +68,119 @@ class TeacherResultMonthState extends State<TeacherResultMonth> {
                     end: Alignment.bottomCenter,
                     begin: Alignment.topCenter,
                     colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                  Color.fromRGBO(0, 106, 100, 1),
+                  Color.fromRGBO(82, 165, 160, 1),
+                ])),
           ),
         ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: EdgeInsets.only(top: height * 0.023,left: height * 0.023,right: height * 0.023),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        '27 Dec, 2022',
-                        style: TextStyle(
-                          color: const Color.fromRGBO(179, 179, 179, 1),
-                            fontSize: height * 0.0187,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700),
-                      ),
+            padding: EdgeInsets.only(
+                top: height * 0.023,
+                left: height * 0.023,
+                right: height * 0.023),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    '27 Dec, 2022',
+                    style: TextStyle(
+                        color: const Color.fromRGBO(179, 179, 179, 1),
+                        fontSize: height * 0.0187,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: TeacherResultAssessment(),
                     ),
+                  );
+                },
+                child: CustomCard(
+                  height: height,
+                  width: width,
+                  subject: 'Maths',
+                  title: 'Lesson 14 &15 / Calculus',
+                  subTopic: 'Chapter 12',
+                  std: 'XI',
+                  date: '28/12/2022',
+                  status: const Color.fromRGBO(255, 157, 77, 1),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              CustomCard(
+                height: height,
+                width: width,
+                subject: 'Maths',
+                title: 'Lesson 14 &15 / Calculus',
+                subTopic: 'Chapter 12',
+                std: 'XI',
+                date: '28/12/2022',
+                status: const Color.fromRGBO(255, 157, 77, 1),
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    '22 Dec, 2022',
+                    style: TextStyle(
+                        color: const Color.fromRGBO(179, 179, 179, 1),
+                        fontSize: height * 0.0187,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700),
                   ),
-                  SizedBox(height: height * 0.01,),
-
-
-                  GestureDetector(
-                    onTap: ()
-                    {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: TeacherResultAssessment(),
-                        ),
-                      );
-                    },
-                    child: CustomCard(
-                      height: height,
-                      width: width,
-                      subject: 'Maths',
-                      title: 'Lesson 14 &15 / Calculus',
-                      subTopic: 'Chapter 12',
-                      std: 'XI',
-                      date: '28/12/2022',
-                      status: const Color.fromRGBO(255, 157, 77, 1),),
-                  ),
-
-
-                  SizedBox(height: height * 0.01,),
-                  CustomCard(
-                    height: height,
-                    width: width,
-                    subject: 'Maths',
-                    title: 'Lesson 14 &15 / Calculus',
-                    subTopic: 'Chapter 12',
-                    std: 'XI',
-                    date: '28/12/2022',
-                    status: const Color.fromRGBO(255, 157, 77, 1),),
-
-                  SizedBox(height: height * 0.02,),
-
-
-
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        '22 Dec, 2022',
-                        style: TextStyle(
-                            color: const Color.fromRGBO(179, 179, 179, 1),
-                            fontSize: height * 0.0187,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: height * 0.01,),
-                  CustomCard(
-                    height: height,
-                    width: width,
-                    subject: 'Maths',
-                    title: 'Lesson 14 &15 / Calculus',
-                    subTopic: 'Chapter 12',
-                    std: 'XI',
-                    date: '28/12/2022',
-                    status: const Color.fromRGBO(66, 194, 0, 1),),
-                  SizedBox(height: height * 0.01,),
-                  CustomCard(
-                    height: height,
-                    width: width,
-                    subject: 'Maths',
-                    title: 'Lesson 14 &15 / Calculus',
-                    subTopic: 'Chapter 12',
-                    std: 'XI',
-                    date: '28/12/2022',
-                    status: const Color.fromRGBO(66, 194, 0, 1),),
-                  SizedBox(height: height * 0.02,),
-
-
-                ]),
+                ),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              CustomCard(
+                height: height,
+                width: width,
+                subject: 'Maths',
+                title: 'Lesson 14 &15 / Calculus',
+                subTopic: 'Chapter 12',
+                std: 'XI',
+                date: '28/12/2022',
+                status: const Color.fromRGBO(66, 194, 0, 1),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              CustomCard(
+                height: height,
+                width: width,
+                subject: 'Maths',
+                title: 'Lesson 14 &15 / Calculus',
+                subTopic: 'Chapter 12',
+                std: 'XI',
+                date: '28/12/2022',
+                status: const Color.fromRGBO(66, 194, 0, 1),
+              ),
+              SizedBox(
+                height: height * 0.02,
+              ),
+            ]),
           ),
         ));
   }
-
 }
-
-
-
-
-
-
-
-
-

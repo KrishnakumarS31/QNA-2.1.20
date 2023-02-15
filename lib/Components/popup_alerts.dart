@@ -1,9 +1,7 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_alert_box.dart';
-
 
 class CustomPopupAlerts {
   static Future<bool> nameMismatch(BuildContext context) async {

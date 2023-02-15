@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CustomCard1 extends StatelessWidget {
@@ -13,7 +12,6 @@ class CustomCard1 extends StatelessWidget {
     required this.std,
     required this.date,
     required this.status,
-
   }) : super(key: key);
 
   final double height;
@@ -34,8 +32,7 @@ class CustomCard1 extends StatelessWidget {
           border: Border.all(
             color: Color.fromRGBO(233, 233, 233, 1),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(20))
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         children: [
           ListTile(
@@ -64,7 +61,11 @@ class CustomCard1 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(Icons.circle,color: status,size: width * 0.05,),
+                Icon(
+                  Icons.circle,
+                  color: status,
+                  size: width * 0.05,
+                ),
                 Text(
                   date,
                   style: TextStyle(
@@ -75,15 +76,14 @@ class CustomCard1 extends StatelessWidget {
                 ),
               ],
             ),
-
           ),
           Padding(
-            padding:  EdgeInsets.only(right: width * 0.02,left: width * 0.02),
-            child: Divider(
-            ),
+            padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
+            child: Divider(),
           ),
           Padding(
-            padding:  EdgeInsets.only(left: width * 0.03,bottom: height * 0.005),
+            padding:
+                EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -97,7 +97,8 @@ class CustomCard1 extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(left: width * 0.03,bottom: height * 0.005),
+            padding:
+                EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -111,7 +112,7 @@ class CustomCard1 extends StatelessWidget {
             ),
           ),
           Padding(
-            padding:  EdgeInsets.only(left: width * 0.03),
+            padding: EdgeInsets.only(left: width * 0.03),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(

@@ -7,7 +7,9 @@ import 'teacher_qn_preview.dart';
 
 class PreparePreviewQnBank extends StatefulWidget {
   const PreparePreviewQnBank({
-    Key? key, required this.question, required this.setLocale,
+    Key? key,
+    required this.question,
+    required this.setLocale,
   }) : super(key: key);
 
   final DemoQuestionModel question;
@@ -18,7 +20,7 @@ class PreparePreviewQnBank extends StatefulWidget {
 
 class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   String? _groupValue;
-  List<int?>? selected=[];
+  List<int?>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -26,58 +28,59 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   TextEditingController subtopicController = TextEditingController();
   TextEditingController classRoomController = TextEditingController();
   TextEditingController questionController = TextEditingController();
-  IconData showIcon=Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.expand_circle_down_outlined;
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
-  final List<TextEditingController> chooses=[];
-  final List<bool> radioList=[];
-  final _formKey=GlobalKey<FormState>();
 
-  _onRadioChange(int key){
+  final List<TextEditingController> chooses = [];
+  final List<bool> radioList = [];
+  final _formKey = GlobalKey<FormState>();
+
+  _onRadioChange(int key) {
     setState(() {
-      radioList[key]=!radioList[key];
+      radioList[key] = !radioList[key];
     });
   }
 
-  addField(){
+  addField() {
     setState(() {
       chooses.add(TextEditingController());
       radioList.add(false);
     });
   }
 
-  removeItem(i){
+  removeItem(i) {
     setState(() {
       chooses.removeAt(i);
       radioList.removeAt(i);
     });
   }
+
   @override
   void initState() {
     super.initState();
-    _groupValue=widget.question.questionType;
-    subjectController.text=widget.question.subject;
-    topicController.text=widget.question.topic;
-    subtopicController.text=widget.question.subTopic;
-    classRoomController.text=widget.question.studentClass;
-    questionController.text=widget.question.question;
-    urlController.text=widget.question.url!;
-    adviceController.text=widget.question.advice!;
-    selected=widget.question.correctChoice;
-    for(int i =0;i<widget.question.choices!.length;i++){
+    _groupValue = widget.question.questionType;
+    subjectController.text = widget.question.subject;
+    topicController.text = widget.question.topic;
+    subtopicController.text = widget.question.subTopic;
+    classRoomController.text = widget.question.studentClass;
+    questionController.text = widget.question.question;
+    urlController.text = widget.question.url!;
+    adviceController.text = widget.question.advice!;
+    selected = widget.question.correctChoice;
+    for (int i = 0; i < widget.question.choices!.length; i++) {
       chooses.add(TextEditingController());
-      chooses[i].text=widget.question.choices![i]!;
+      chooses[i].text = widget.question.choices![i]!;
       radioList.add(false);
-      if(widget.question.correctChoice!.contains(i)){
-        radioList[i-1]=true;
+      if (widget.question.correctChoice!.contains(i)) {
+        radioList[i - 1] = true;
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -94,7 +97,6 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-
                   Navigator.of(context).pop();
                 },
               ),
@@ -131,9 +133,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                     end: Alignment.bottomCenter,
                     begin: Alignment.topCenter,
                     colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                  Color.fromRGBO(0, 106, 100, 1),
+                  Color.fromRGBO(82, 165, 160, 1),
+                ])),
           ),
         ),
         body: SingleChildScrollView(
@@ -217,13 +219,13 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                             ),
                             onPressed: () {
                               setState(() {
-                                subjectController.text='';
-                                topicController.text='';
-                                subtopicController.text='';
-                                classRoomController.text='';
-                                questionController.text='';
-                                urlController.text='';
-                                adviceController.text='';
+                                subjectController.text = '';
+                                topicController.text = '';
+                                subtopicController.text = '';
+                                classRoomController.text = '';
+                                questionController.text = '';
+                                urlController.text = '';
+                                adviceController.text = '';
                                 //selected='';
                               });
                             },
@@ -252,10 +254,10 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Column(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
+                        //crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            //height: height * 0.060,
+                              //height: height * 0.060,
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
                                 SizedBox(width: width * 0.10),
@@ -269,10 +271,16 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 SizedBox(width: width * 0.25),
                                 //SizedBox(width: height * 0.025),
                                 IconButton(
-                                  icon:  Icon(showIcon,color: const Color.fromRGBO(255, 255, 255, 1),size: height * 0.03,),
+                                  icon: Icon(
+                                    showIcon,
+                                    color:
+                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    size: height * 0.03,
+                                  ),
                                   onPressed: () {
                                     changeIcon(showIcon);
-                                  },)
+                                  },
+                                )
                                 // IconButton(
                                 //   icon: const Icon(
                                 //     Icons.arrow_circle_up_sharp,
@@ -293,15 +301,15 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                     controller: subjectController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "SUBJECT",
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -320,25 +328,25 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
                                     controller: topicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "TOPIC",
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -357,25 +365,25 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
                                     controller: subtopicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: 'SUB TOPIC',
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -394,25 +402,25 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
                                     controller: classRoomController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "CLASS",
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -431,10 +439,10 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                               ])),
                           SizedBox(height: height * 0.010),
@@ -444,7 +452,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin:
-                  EdgeInsets.only(left: width * 0.05, right: width * 0.04),
+                      EdgeInsets.only(left: width * 0.05, right: width * 0.04),
                   child: Column(
                     children: [
                       Row(children: [
@@ -462,39 +470,38 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                       ]),
                       SizedBox(height: height * 0.010),
                       TextFormField(
-                          maxLines: 5,
-                          controller: questionController,
-                          keyboardType: TextInputType.text,
-                          style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
+                        maxLines: 5,
+                        controller: questionController,
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            fontSize: height * 0.018),
+                        decoration: InputDecoration(
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          labelStyle: TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
                               fontFamily: 'Inter',
-                              fontWeight: FontWeight.w700,
-                              fontSize: height * 0.018
-                          ),
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            labelStyle: TextStyle(
-                                color: const Color.fromRGBO(51, 51, 51, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: height * 0.015),
-                            hintStyle: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: height * 0.02),
-                            hintText: "Type Question Here",
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Color.fromRGBO(82, 165, 160, 1)),
-                                borderRadius: BorderRadius.circular(15)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5)),
-                          ),
-                        onChanged: (val){
-                            setState(() {
-                              widget.question.question=val;
-                            });
+                              fontWeight: FontWeight.w600,
+                              fontSize: height * 0.015),
+                          hintStyle: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 0.3),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: height * 0.02),
+                          hintText: "Type Question Here",
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(82, 165, 160, 1)),
+                              borderRadius: BorderRadius.circular(15)),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5)),
+                        ),
+                        onChanged: (val) {
+                          setState(() {
+                            widget.question.question = val;
+                          });
                         },
                       ),
                     ],
@@ -535,7 +542,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      for(int i =0;i<chooses.length;i++)
+                      for (int i = 0; i < chooses.length; i++)
                         Padding(
                           padding: EdgeInsets.only(bottom: height * 0.02),
                           child: Row(
@@ -544,35 +551,39 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 child: TextFormField(
                                   controller: chooses[i],
                                   style: TextStyle(
-                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w700,
                                       fontSize: height * 0.018),
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
-                                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.always,
                                     hintStyle: TextStyle(
-                                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 0.3),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.02),
                                     hintText: "Type Option Here",
-                                    border:
-                                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5)),
                                   ),
-
                                 ),
                               ),
                               SizedBox(
                                 width: width * 0.03,
                               ),
                               IconButton(
-                                onPressed: (){
+                                onPressed: () {
                                   _onRadioChange(i);
                                 },
                                 icon: Icon(
                                   //radioIcon,
-                                  radioList[i]?Icons.radio_button_checked_outlined:Icons.radio_button_unchecked_outlined,
+                                  radioList[i]
+                                      ? Icons.radio_button_checked_outlined
+                                      : Icons.radio_button_unchecked_outlined,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                 ),
                               ),
@@ -580,7 +591,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 width: width * 0.03,
                               ),
                               IconButton(
-                                onPressed: ()  {
+                                onPressed: () {
                                   removeItem(i);
                                 },
                                 icon: const Icon(
@@ -594,99 +605,97 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                         )
                     ],
                   ),
-
                 ),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          addField();
-                        }, child: Text(
-                        "Add more choice",
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  TextButton(
+                    onPressed: () {
+                      addField();
+                    },
+                    child: Text(
+                      "Add more choice",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0225,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.020),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                        left: width * 0.05, right: width * 0.04),
+                    child: Row(children: [
+                      Text(
+                        "Advisor",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
-                          fontSize: height * 0.0225,
+                          fontSize: height * 0.025,
                           fontFamily: "Inter",
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
-                      ),
-                      SizedBox(height: height * 0.020),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        margin:
-                        EdgeInsets.only(left: width * 0.05, right: width * 0.04),
-                        child:
-                        Row(children: [
-                          Text(
-                            "Advisor",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontSize: height * 0.025,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(width: width * 0.03),
-                          const Expanded(child: Divider()),
-                        ]),
-                      )]),
+                      SizedBox(width: width * 0.03),
+                      const Expanded(child: Divider()),
+                    ]),
+                  )
+                ]),
                 SizedBox(height: height * 0.020),
                 TextFormField(
-                    controller: adviceController,
-                    style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
+                  controller: adviceController,
+                  style: TextStyle(
+                      color: const Color.fromRGBO(82, 165, 160, 1),
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,
+                      fontSize: height * 0.018),
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    labelStyle: TextStyle(
+                        color: const Color.fromRGBO(51, 51, 51, 1),
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w700,
-                        fontSize: height * 0.018),
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      labelStyle: TextStyle(
-                          color: const Color.fromRGBO(51, 51, 51, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          fontSize: height * 0.015),
-                      hintStyle: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                          fontSize: height * 0.02),
-                      hintText: "Suggest what to study if answered incorrectly",
-                    ),
-                  onChanged: (val){
+                        fontWeight: FontWeight.w600,
+                        fontSize: height * 0.015),
+                    hintStyle: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        fontSize: height * 0.02),
+                    hintText: "Suggest what to study if answered incorrectly",
+                  ),
+                  onChanged: (val) {
                     setState(() {
-                      widget.question.advice=val;
+                      widget.question.advice = val;
                     });
                   },
                 ),
                 SizedBox(height: height * 0.020),
                 TextFormField(
-                    controller: urlController,
-                    style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
+                  controller: urlController,
+                  style: TextStyle(
+                      color: const Color.fromRGBO(82, 165, 160, 1),
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w700,
+                      fontSize: height * 0.018),
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    labelStyle: TextStyle(
+                        color: const Color.fromRGBO(51, 51, 51, 1),
                         fontFamily: 'Inter',
-                        fontWeight: FontWeight.w700,
-                        fontSize: height * 0.018),
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      floatingLabelBehavior: FloatingLabelBehavior.always,
-                      labelStyle: TextStyle(
-                          color: const Color.fromRGBO(51, 51, 51, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          fontSize: height * 0.015),
-                      hintStyle: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 0.3),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                          fontSize: height * 0.02),
-                      hintText: "URL - Any reference (Optional)",
-                    ),
-                  onChanged: (val){
+                        fontWeight: FontWeight.w600,
+                        fontSize: height * 0.015),
+                    hintStyle: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        fontSize: height * 0.02),
+                    hintText: "URL - Any reference (Optional)",
+                  ),
+                  onChanged: (val) {
                     setState(() {
-                      widget.question.url=val;
+                      widget.question.url = val;
                     });
                   },
                 ),
@@ -701,68 +710,71 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                           borderRadius: BorderRadius.circular(39),
                         ),
                       ),
-                      child:Row(
+                      child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                               style: TextButton.styleFrom(
-                                foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                                foregroundColor:
+                                    const Color.fromRGBO(255, 255, 255, 1),
                               ),
-                              onPressed:() {
+                              onPressed: () {
                                 //List<String> temp=[];
                                 // for(int i=0;i< _values.length;i++){
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  List<String> temp=[];
-                                  List<int> selectedTemp=[];
-                                  for(int i=0;i< chooses.length;i++){
-                                    if(radioList[i]){
-                                      selectedTemp.add(i+1);
+                                  List<String> temp = [];
+                                  List<int> selectedTemp = [];
+                                  for (int i = 0; i < chooses.length; i++) {
+                                    if (radioList[i]) {
+                                      selectedTemp.add(i + 1);
                                     }
                                     temp.add(chooses[i].text);
                                   }
-                                  widget.question.subject=subjectController.text;
-                                  widget.question.topic=topicController.text;
-                                  widget.question.subTopic=subtopicController.text;
-                                  widget.question.studentClass=classRoomController.text;
-                                  widget.question.question=questionController.text;
-                                  widget.question.correctChoice=selectedTemp;
-                                  widget.question.advice=adviceController.text;
-                                  widget.question.url=urlController.text;
-                                  widget.question.choices=temp;
+                                  widget.question.subject =
+                                      subjectController.text;
+                                  widget.question.topic = topicController.text;
+                                  widget.question.subTopic =
+                                      subtopicController.text;
+                                  widget.question.studentClass =
+                                      classRoomController.text;
+                                  widget.question.question =
+                                      questionController.text;
+                                  widget.question.correctChoice = selectedTemp;
+                                  widget.question.advice =
+                                      adviceController.text;
+                                  widget.question.url = urlController.text;
+                                  widget.question.choices = temp;
                                 });
 
                                 Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child:  TeacherPreparePreview(question: widget.question,setLocale: widget.setLocale),
+                                    child: TeacherPreparePreview(
+                                        question: widget.question,
+                                        setLocale: widget.setLocale),
                                   ),
                                 );
                               },
                               child: const Text("Preview"),
                             ),
                           ]),
-                      onPressed: () {}
-                  ),
+                      onPressed: () {}),
                 ),
-              ]
-              ),
-            )
-        )
-    );
+              ]),
+            )));
   }
 
-  changeIcon(IconData pramIcon){
-    if(pramIcon==Icons.expand_circle_down_outlined){
+  changeIcon(IconData pramIcon) {
+    if (pramIcon == Icons.expand_circle_down_outlined) {
       setState(() {
-        showIcon=Icons.arrow_circle_up_outlined;
+        showIcon = Icons.arrow_circle_up_outlined;
       });
-    }
-    else{
+    } else {
       setState(() {
-        showIcon=Icons.expand_circle_down_outlined;
+        showIcon = Icons.expand_circle_down_outlined;
       });
     }
   }
@@ -791,16 +803,15 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j=1; j<=widget.question.choices!.length; j++)
+        for (int j = 1; j <= widget.question.choices!.length; j++)
           GestureDetector(
-            onTap: (){
+            onTap: () {
               setState(() {
-              if(widget.selected!.contains(j)){
-                widget.selected!.remove(j);
-              }
-              else{
-                widget.selected!.add(j);
-              }
+                if (widget.selected!.contains(j)) {
+                  widget.selected!.remove(j);
+                } else {
+                  widget.selected!.add(j);
+                }
               });
             },
             child: Padding(
@@ -812,37 +823,51 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       width: widget.width * 0.744,
                       height: widget.height * 0.0412,
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
                         border: Border.all(
-                            color: const Color.fromRGBO(209, 209, 209, 1)
-                        ),
-                        color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(82, 165, 160, 1) :const Color.fromRGBO(255, 255, 255, 1),
+                            color: const Color.fromRGBO(209, 209, 209, 1)),
+                        color: (widget.question.correctChoice!.contains(j))
+                            ? const Color.fromRGBO(82, 165, 160, 1)
+                            : const Color.fromRGBO(255, 255, 255, 1),
                       ),
                       child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(width: widget.width * 0.02,),
+                            SizedBox(
+                              width: widget.width * 0.02,
+                            ),
                             Expanded(
-                              child: Text('${widget.question.choices![j-1]}',
+                              child: Text(
+                                '${widget.question.choices![j - 1]}',
                                 style: TextStyle(
-                                  color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
+                                  color: (widget.question.correctChoice!
+                                          .contains(j))
+                                      ? const Color.fromRGBO(255, 255, 255, 1)
+                                      : const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: widget.height * 0.0162,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w700,
-                                ),),
+                                ),
+                              ),
                             ),
-                          ])
-                  ),
-                  widget.selected!.contains(j)?
-                  const Icon(Icons.radio_button_checked,color: Color.fromRGBO(82, 165, 160, 1),):
-                  const Icon(Icons.radio_button_off_outlined,color: Color.fromRGBO(82, 165, 160, 1),),
-                  SizedBox(width: widget.width * 0.02,)
+                          ])),
+                  widget.selected!.contains(j)
+                      ? const Icon(
+                          Icons.radio_button_checked,
+                          color: Color.fromRGBO(82, 165, 160, 1),
+                        )
+                      : const Icon(
+                          Icons.radio_button_off_outlined,
+                          color: Color.fromRGBO(82, 165, 160, 1),
+                        ),
+                  SizedBox(
+                    width: widget.width * 0.02,
+                  )
                 ],
               ),
             ),
           )
-
-
       ],
     );
   }

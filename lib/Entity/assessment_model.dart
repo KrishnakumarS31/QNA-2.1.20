@@ -1,5 +1,3 @@
-
-
 import 'package:qna_test/Entity/question_entity.dart';
 
 class Assessment {
@@ -16,16 +14,17 @@ class Assessment {
   List<Question> questions;
 
   factory Assessment.fromJson(Map<String, dynamic> json) => Assessment(
-    assessmentCode: json["assessment_code"],
-    assessmentType: json["assessment_type"],
-    assessmentDuration: json["assessment_duration"],
-    questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
-  );
+        assessmentCode: json["assessment_code"],
+        assessmentType: json["assessment_type"],
+        assessmentDuration: json["assessment_duration"],
+        questions: List<Question>.from(
+            json["questions"].map((x) => Question.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "assessment_code": assessmentCode,
-    "assessment_type": assessmentType,
-    "assessment_duration": assessmentDuration,
-    "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
-  };
+        "assessment_code": assessmentCode,
+        "assessment_type": assessmentType,
+        "assessment_duration": assessmentDuration,
+        "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
+      };
 }

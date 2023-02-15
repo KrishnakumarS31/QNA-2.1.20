@@ -8,11 +8,13 @@ class MyRadioOption<T> extends StatefulWidget {
 
   final ValueChanged<T?> onChanged;
 
-   MyRadioOption({super.key,
+  MyRadioOption({
+    super.key,
     required this.value,
     required this.groupValue,
     required this.label,
-    required this.onChanged, required this.icon,
+    required this.onChanged,
+    required this.icon,
   });
 
   @override
@@ -23,28 +25,30 @@ class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
   Widget _buildLabel() {
     final bool isSelected = widget.value == widget.groupValue;
     return Container(
-      width:100,
+      width: 100,
       height: 50,
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-       // border: Border.all(
-       //   color: const Color.fromRGBO(82, 165, 160, 1),
-       // ),
-        color: isSelected ? const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
+        // border: Border.all(
+        //   color: const Color.fromRGBO(82, 165, 160, 1),
+        // ),
+        color:
+            isSelected ? const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-           Icon(
-            widget.icon,
-        size: 14,
-        color: isSelected ? Colors.white : const Color.fromRGBO(82, 165, 160, 1) ),
-          const SizedBox(width: 5),
-          Text(
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Icon(widget.icon,
+            size: 14,
+            color: isSelected
+                ? Colors.white
+                : const Color.fromRGBO(82, 165, 160, 1)),
+        const SizedBox(width: 5),
+        Text(
           widget.value.toString(),
           style: TextStyle(
             //color:  Color.fromRGBO(82, 165, 160, 1),
-            color: isSelected ? Colors.white  : const Color.fromRGBO(82, 165, 160, 1),
+            color: isSelected
+                ? Colors.white
+                : const Color.fromRGBO(82, 165, 160, 1),
             fontSize: 14,
           ),
         ),
@@ -59,12 +63,12 @@ class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
       margin: const EdgeInsets.only(right: 11),
       child: InkWell(
         onTap: () => widget.onChanged(widget.value),
-            child: Row(
-            children: [
-              _buildLabel(),
-              //const SizedBox(width: 10),
-            ],
-          ),
+        child: Row(
+          children: [
+            _buildLabel(),
+            //const SizedBox(width: 10),
+          ],
+        ),
       ),
     );
   }

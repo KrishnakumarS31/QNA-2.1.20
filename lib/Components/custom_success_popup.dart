@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomSuccessPopup{
+class CustomSuccessPopup {
   // return showAlertDialog(BuildContext context) {
   //   // set up the button
   //   Widget okButton = TextButton(

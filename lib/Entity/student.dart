@@ -36,30 +36,30 @@ class Student {
   String password;
 
   factory Student.fromJson(Map<String, dynamic> json) => Student(
-    firstName: json["firstName"],
-    lastName: json["lastName"],
-    dob: json["dob"],
-    gender: json["gender"],
-    nationality: json["nationality"],
-    residentCountry: json["residentCountry"],
-    email: json["email"],
-    rollNumber: json["rollNumber"],
-    organisationName: json["organisationName"],
-    roleId: List<String>.from(json["roleId"].map((x) => x)),
-    password: json["password"],
-  );
+        firstName: json["firstName"],
+        lastName: json["lastName"],
+        dob: json["dob"],
+        gender: json["gender"],
+        nationality: json["nationality"],
+        residentCountry: json["residentCountry"],
+        email: json["email"],
+        rollNumber: json["rollNumber"],
+        organisationName: json["organisationName"],
+        roleId: List<String>.from(json["roleId"].map((x) => x)),
+        password: json["password"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "firstName": firstName,
-    "lastName": lastName,
-    "dob": dob,
-    "gender": gender,
-    "nationality": nationality,
-    "residentCountry": residentCountry,
-    "email": email,
-    "rollNumber": rollNumber,
-    "organisationName": organisationName,
-    "roleId": List<dynamic>.from(roleId.map((x) => x)),
-    "password": password,
-  };
+        "firstName": firstName,
+        "lastName": lastName,
+        "dob": dob,
+        "gender": gender,
+        "nationality": nationality,
+        "residentCountry": residentCountry,
+        "email": email,
+        "rollNumber": rollNumber,
+        "organisationName": organisationName,
+        "roleId": List<dynamic>.from(roleId.map((x) => x)),
+        "password": password,
+      };
 }

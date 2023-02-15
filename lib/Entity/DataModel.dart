@@ -8,10 +8,10 @@ class Datum {
   Assessment assessment;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    assessment: Assessment.fromJson(json["assessment"]),
-  );
+        assessment: Assessment.fromJson(json["assessment"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "assessment": assessment.toJson(),
-  };
+        "assessment": assessment.toJson(),
+      };
 }

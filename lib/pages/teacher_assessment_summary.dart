@@ -3,469 +3,102 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'about_us.dart';
-import 'cookie_policy.dart';
-import 'help_page.dart';
-import 'settings_languages.dart';
-import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
-import 'package:qna_test/Pages/terms_of_services.dart';
-import 'package:qna_test/pages/reset_password_teacher.dart';
+import '../Components/end_drawer_menu_teacher.dart';
 
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
-    Key? key, required this.setLocale,
-
+    Key? key,
+    required this.setLocale,
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
 
-
   @override
-  TeacherAssessmentSummaryState createState() => TeacherAssessmentSummaryState();
+  TeacherAssessmentSummaryState createState() =>
+      TeacherAssessmentSummaryState();
 }
 
 class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   bool additionalDetails = true;
 
-  showAdditionalDetails(){
+  showAdditionalDetails() {
     setState(() {
       !additionalDetails;
     });
   }
 
-
   @override
   void initState() {
     super.initState();
-    //quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController = TextEditingController();
-    Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
-      endDrawer: Drawer(
-        child: Column(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                  gradient:  LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ],
-                  )
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(height: height * 0.050),
-                  Container(
-                    alignment: Alignment.center,
-                    height: height / 6,
-                    child:
-                    Row(
-                        children:  [
-                          CircleAvatar(
-                            backgroundColor: const Color.fromRGBO(0,106,100,0),
-                            radius: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.15,
-                            child: Image.asset(
-                              "assets/images/ProfilePic_Avatar.png",
-                            ),
-                          ),
-                          const SizedBox(height: 2.0),
-                          Text(
-                            "Teacher Name",
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyLarge
-                                ?.merge(const TextStyle(
-                                color: Color.fromRGBO(255, 255, 255, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: -0.02,
-                                fontSize: 16)),
-                          ),
-                        ]),
-                  ),
-                  const SizedBox(height: 0.022),
-                  Column(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.only(left: width * 0.09),
-                          child: Text(
-                            AppLocalizations.of(context)!.teacher,
-                            style: const TextStyle(
-                                color: Color.fromRGBO(221, 221, 221, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
-                                fontSize: 12),
-                          )
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                          padding: EdgeInsets.only(left: width * 0.09),
-                          child: const Text(
-                            "teacher@gmail.com",
-                            style: TextStyle(
-                                color: Color.fromRGBO(221, 221, 221, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
-                                fontSize: 12),
-                          )
-                      ),
-                    ],
-                  ),
-                  //    )
-                ],
-              ),
-            ),
-            Flexible(
-              child:
-              ListView(
-                children: [
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.people_alt,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.user_profile,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16)),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: TeacherUserProfile(userDataModel: userDataModel,),
-                        //   ),
-                        // );
-                      }),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.key_outlined,
-                          color: Color.fromRGBO(141, 167, 167, 1)
-                      ),
-                      title: Text(AppLocalizations.of(context)!.change_password,
-                        style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: const ResetPassword(),
-                          ),
-                        );
-                      }),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.mail_outline_sharp,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.change_emailId,
-                        style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
-                        //   ),
-                        // );
-                      }),
-                  const Divider(
-                    thickness: 2,
-                  ),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.translate,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
-                          color: textColor,
-                          //Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: SettingsLanguages(setLocale: widget.setLocale),
-                          ),
-                        );
-                      }),
-                  const Divider(
-                    thickness: 2,
-                  ),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.verified_user_outlined,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
-                          color: textColor,
-                          //Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
-                          ),
-                        );
-                      }),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.verified_user_outlined,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text('Terms of Services',style: TextStyle(
-                          color: textColor,
-                          //Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TermsOfServiceHamburger(setLocale: widget.setLocale),
-                          ),
-                        );
-                      }),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.note_alt_outlined,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
-                          color: textColor,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: CookiePolicy(setLocale: widget.setLocale),
-                          ),
-                        );
-                      }),
-                  const Divider(
-                    thickness: 2,
-                  ),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.perm_contact_calendar_outlined,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.about_us,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16)),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: AboutUs(setLocale: widget.setLocale),
-                          ),
-                        );
-                      }),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.help_outline,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
-                          color: textColor,
-                          //Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),),
-                      trailing:  const Icon(Icons.navigate_next,
-                          color: Color.fromRGBO(153, 153, 153, 1)),
-                      onTap: () async {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: HelpPageHamburger(setLocale: widget.setLocale),
-                          ),
-                        );
-                      }),
-                  const Divider(
-                    thickness: 2,
-                  ),
-                  ListTile(
-                      leading:
-                      const Icon(
-                          Icons.power_settings_new,
-                          color: Color.fromRGBO(141, 167, 167, 1)),
-                      title: Text(AppLocalizations.of(context)!.logout,style: const TextStyle(
-                          color: Color.fromRGBO(226, 68, 0, 1),
-                          //Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),),
-                      onTap: () async {
-                      }),
-                  SizedBox(height: height * 0.03),
-                  const Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Version : 1.0.0",
-                      style: TextStyle(
-                          color: Color.fromRGBO(180, 180, 180, 1),
-                          //Color.fromRGBO(48, 145, 139, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),
-                    ),
-                  ),
-                  SizedBox(height: height * 0.03),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+      endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
       appBar: AppBar(
-        
         leading: IconButton(
-          icon:const Icon(
+          icon: const Icon(
             Icons.chevron_left,
             size: 40.0,
             color: Colors.white,
-          ), onPressed: () {
-          Navigator.of(context).pop();
-        },
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         toolbarHeight: height * 0.100,
         centerTitle: true,
-        title: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                "SELECTED QUESTIONS",
-                style: TextStyle(
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: height * 0.0225,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Text(
-                "FOR ASSESSMENTS",
-                style: TextStyle(
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: height * 0.0225,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ]),
+        title:
+            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Text(
+            "SELECTED QUESTIONS",
+            style: TextStyle(
+              color: const Color.fromRGBO(255, 255, 255, 1),
+              fontSize: height * 0.0225,
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Text(
+            "FOR ASSESSMENTS",
+            style: TextStyle(
+              color: const Color.fromRGBO(255, 255, 255, 1),
+              fontSize: height * 0.0225,
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ]),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                Color.fromRGBO(0, 106, 100, 1),
+                Color.fromRGBO(82, 165, 160, 1),
+              ])),
         ),
       ),
       body: Padding(
-          padding: EdgeInsets.only(top: height * 0.023,left: height * 0.023,right: height * 0.023),
-          child:
-          Column(
+          padding: EdgeInsets.only(
+              top: height * 0.023, left: height * 0.023, right: height * 0.023),
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 height: height * 0.108,
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(15)),
-                  color: Color.fromRGBO(82, 165, 160, 0.07),),
+                  color: Color.fromRGBO(82, 165, 160, 0.07),
+                ),
                 child: Padding(
-                  padding: EdgeInsets.only(right: width * 0.03,left: width * 0.03),
+                  padding:
+                      EdgeInsets.only(right: width * 0.03, left: width * 0.03),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -493,7 +126,6 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               ),
                             ],
                           ),
-
                           Row(
                             children: [
                               Text(
@@ -504,8 +136,13 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontWeight: FontWeight.w400),
                               ),
-                              SizedBox(width: width * 0.01,),
-                              const Icon(Icons.edit_outlined,color: Color.fromRGBO(28, 78, 80, 1),)
+                              SizedBox(
+                                width: width * 0.01,
+                              ),
+                              const Icon(
+                                Icons.edit_outlined,
+                                color: Color.fromRGBO(28, 78, 80, 1),
+                              )
                             ],
                           ),
                         ],
@@ -543,7 +180,9 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.02,),
+              SizedBox(
+                height: height * 0.02,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -589,33 +228,44 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   )
                 ],
               ),
-              SizedBox(height: height * 0.02,),
+              SizedBox(
+                height: height * 0.02,
+              ),
               Stack(
                 clipBehavior: Clip.none,
                 children: [
                   SizedBox(
                     height: height * 0.48,
                     width: width * 0.9,
-
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-                          QuestionWidget(height: height,setLocale: widget.setLocale),
-
-
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
+                          QuestionWidget(
+                              height: height, setLocale: widget.setLocale),
                         ],
                       ),
                     ),
@@ -623,24 +273,27 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   Positioned(
                       top: height * 0.4,
                       left: width * 0.78,
-                      child: FloatingActionButton(onPressed: (){
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherAssessmentQuestionBank(setLocale: widget.setLocale),
-                          ),
-                        );
-                      },
-                        child: const Icon(Icons.add),
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: TeacherAssessmentQuestionBank(
+                                  setLocale: widget.setLocale),
+                            ),
+                          );
+                        },
                         backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      )
-                  )
+                        child: const Icon(Icons.add),
+                      ))
                 ],
               ),
-              SizedBox(height: height * 0.03,),
+              SizedBox(
+                height: height * 0.03,
+              ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: width * 0.888,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -652,9 +305,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(39),
                       ),
-
                     ),
-                    //shape: StadiumBorder(),
                     onPressed: () {
                       // Navigator.push(
                       //   context,
@@ -663,8 +314,6 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       //     child: const TeacherClonedAssessmentPreview(),
                       //   ),
                       // );
-
-
                     },
                     child: Text(
                       'Save List',
@@ -677,9 +326,11 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   ),
                 ),
               ),
-              SizedBox(height: height * 0.03,),
+              SizedBox(
+                height: height * 0.03,
+              ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: width * 0.888,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -690,19 +341,16 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                         ),
                         side: const BorderSide(
                           color: Color.fromRGBO(82, 165, 160, 1),
-                        )
-                    ),
-                    //shape: StadiumBorder(),
+                        )),
                     onPressed: () {
                       Navigator.push(
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: TeacherPublishedAssessment(setLocale: widget.setLocale),
+                          child: TeacherPublishedAssessment(
+                              setLocale: widget.setLocale),
                         ),
                       );
-
-
                     },
                     child: Text(
                       'Submit',
@@ -716,24 +364,22 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                 ),
               ),
             ],
-          )
-      ),
+          )),
     );
   }
-
 }
 
 class QuestionWidget extends StatelessWidget {
   const QuestionWidget({
     Key? key,
-    required this.height, required this.setLocale,
+    required this.height,
+    required this.setLocale,
   }) : super(key: key);
 
   final double height;
   final void Function(Locale locale) setLocale;
 
-  showAlertDialog(BuildContext context,double height) {
-    // set up the buttons
+  showAlertDialog(BuildContext context, double height) {
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -741,15 +387,17 @@ class QuestionWidget extends StatelessWidget {
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),),
+            fontWeight: FontWeight.w500),
+      ),
       child: Text(
         'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),),
-      onPressed:  () {
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
         Navigator.of(context).pop();
       },
     );
@@ -760,15 +408,17 @@ class QuestionWidget extends StatelessWidget {
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),),
+            fontWeight: FontWeight.w500),
+      ),
       child: Text(
         'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),),
-      onPressed:  () {
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
         Navigator.of(context).pop();
         // Navigator.push(
         //   context,F
@@ -779,11 +429,13 @@ class QuestionWidget extends StatelessWidget {
         // );
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          const Icon(Icons.info,color: Color.fromRGBO(238, 71, 0, 1),),
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
           Text(
             'Confirm',
             style: TextStyle(
@@ -807,7 +459,6 @@ class QuestionWidget extends StatelessWidget {
         continueButton,
       ],
     );
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -816,7 +467,7 @@ class QuestionWidget extends StatelessWidget {
     );
   }
 
-  ShowPreview(BuildContext context){
+  showPreview(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -829,7 +480,9 @@ class QuestionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: height * 0.01,),
+        SizedBox(
+          height: height * 0.01,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -851,17 +504,18 @@ class QuestionWidget extends StatelessWidget {
                       color: const Color.fromRGBO(51, 51, 51, 1),
                       fontWeight: FontWeight.w400),
                 ),
-
               ],
             ),
-
             GestureDetector(
-              onTap: (){
-                showAlertDialog(context,height);
+              onTap: () {
+                showAlertDialog(context, height);
               },
               child: Row(
                 children: [
-                  const Icon(Icons.close,color: Color.fromRGBO(51, 51, 51, 1),),
+                  const Icon(
+                    Icons.close,
+                    color: Color.fromRGBO(51, 51, 51, 1),
+                  ),
                   Text(
                     ' Remove',
                     style: TextStyle(
@@ -875,10 +529,12 @@ class QuestionWidget extends StatelessWidget {
             )
           ],
         ),
-        SizedBox(height: height * 0.01,),
+        SizedBox(
+          height: height * 0.01,
+        ),
         GestureDetector(
-          onTap: (){
-            ShowPreview(context);
+          onTap: () {
+            showPreview(context);
           },
           child: Text(
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim',
@@ -889,7 +545,9 @@ class QuestionWidget extends StatelessWidget {
                 fontWeight: FontWeight.w400),
           ),
         ),
-        SizedBox(height: height * 0.01,),
+        SizedBox(
+          height: height * 0.01,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -924,10 +582,10 @@ class QuestionWidget extends StatelessWidget {
           ],
         ),
         const Divider(),
-        SizedBox(height: height * 0.01,),
+        SizedBox(
+          height: height * 0.01,
+        ),
       ],
     );
   }
 }
-
-

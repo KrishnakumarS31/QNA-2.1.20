@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-DemoQuestionModel? demoQuestionModelFromJson(String str) => DemoQuestionModel.fromJson(json.decode(str));
+DemoQuestionModel? demoQuestionModelFromJson(String str) =>
+    DemoQuestionModel.fromJson(json.decode(str));
 
-String demoQuestionModelToJson(DemoQuestionModel? data) => json.encode(data!.toJson());
+String demoQuestionModelToJson(DemoQuestionModel? data) =>
+    json.encode(data!.toJson());
 
 class DemoQuestionModel {
   DemoQuestionModel({
@@ -22,7 +24,7 @@ class DemoQuestionModel {
     this.advice,
     this.url,
   });
-dynamic id;
+  dynamic id;
   String questionType;
   String subject;
   String topic;
@@ -34,31 +36,39 @@ dynamic id;
   String? advice;
   String? url;
 
-  factory DemoQuestionModel.fromJson(Map<String, dynamic> json) => DemoQuestionModel(
-    id: json["id"],
-    questionType: json["questionType"],
-    subject: json["subject"],
-    topic: json["topic"],
-    subTopic: json["subTopic"],
-    studentClass: json["studentClass"],
-    question: json["question"],
-    choices: json["choices"] == null ? [] : List<String?>.from(json["choices"]!.map((x) => x)),
-    correctChoice: json["correctChoice"] == null ? [] : List<int?>.from(json["correctChoice"]!.map((x) => x)),
-    advice: json["advice"],
-    url: json["url"],
-  );
+  factory DemoQuestionModel.fromJson(Map<String, dynamic> json) =>
+      DemoQuestionModel(
+        id: json["id"],
+        questionType: json["questionType"],
+        subject: json["subject"],
+        topic: json["topic"],
+        subTopic: json["subTopic"],
+        studentClass: json["studentClass"],
+        question: json["question"],
+        choices: json["choices"] == null
+            ? []
+            : List<String?>.from(json["choices"]!.map((x) => x)),
+        correctChoice: json["correctChoice"] == null
+            ? []
+            : List<int?>.from(json["correctChoice"]!.map((x) => x)),
+        advice: json["advice"],
+        url: json["url"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "questionType": questionType,
-    "subject": subject,
-    "topic": topic,
-    "subTopic": subTopic,
-    "studentClass": studentClass,
-    "question": question,
-    "choices": choices == null ? [] : List<dynamic>.from(choices!.map((x) => x)),
-    "correctChoice": correctChoice == null ? [] : List<dynamic>.from(correctChoice!.map((x) => x)),
-    "advice": advice,
-    "url": url,
-  };
+        "id": id,
+        "questionType": questionType,
+        "subject": subject,
+        "topic": topic,
+        "subTopic": subTopic,
+        "studentClass": studentClass,
+        "question": question,
+        "choices":
+            choices == null ? [] : List<dynamic>.from(choices!.map((x) => x)),
+        "correctChoice": correctChoice == null
+            ? []
+            : List<dynamic>.from(correctChoice!.map((x) => x)),
+        "advice": advice,
+        "url": url,
+      };
 }

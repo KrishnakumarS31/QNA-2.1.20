@@ -22,16 +22,16 @@ class UserLogin {
   String expiresAt;
 
   factory UserLogin.fromJson(Map<String, dynamic> json) => UserLogin(
-    userId: json["userId"],
-    accessToken: json["accessToken"],
-    refreshToken: json["refreshToken"],
-    expiresAt: json["expiresAt"],
-  );
+        userId: json["userId"],
+        accessToken: json["accessToken"],
+        refreshToken: json["refreshToken"],
+        expiresAt: json["expiresAt"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "accessToken": accessToken,
-    "refreshToken": refreshToken,
-    "expiresAt": expiresAt,
-  };
+        "userId": userId,
+        "accessToken": accessToken,
+        "refreshToken": refreshToken,
+        "expiresAt": expiresAt,
+      };
 }

@@ -5,15 +5,11 @@ import 'package:qna_test/Pages/teacher_forgot_password_email.dart';
 import 'package:qna_test/Pages/teacher_registration_page.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/cookie_policy.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
 import '../Services/qna_service.dart';
-import 'privacy_policy_hamburger.dart';
-import 'settings_languages.dart';
-import 'terms_of_services.dart';
-import 'about_us.dart';
-import 'help_page.dart';
+import '../Components/end_drawer_menu_pre_login.dart';
+
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key, required this.setLocale});
   final void Function(Locale locale) setLocale;
@@ -24,28 +20,21 @@ class TeacherLogin extends StatefulWidget {
 
 class TeacherLoginState extends State<TeacherLogin> {
   bool _isObscure = true;
-  final formKey=GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   String regNumber = "";
   String passWord = "";
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool agree = false;
-  String name='';
-  //late Response userDetails;
+  String name = '';
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
   @override
   void initState() {
-    //getUserDetails();
-
     super.initState();
   }
 
-
-
-getUserDetails() async {
-  //userDetails=await QnaService.getUserDataService();
-}
+  getUserDetails() async {}
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -69,188 +58,7 @@ getUserDetails() async {
           ),
           backgroundColor: Colors.transparent,
         ),
-        endDrawer: Drawer(
-          child: Column(
-            children: [
-              Container(
-                  color: const Color.fromRGBO(0,106,100,1),
-                  height: 55),
-              Image.asset(
-                "assets/images/rectangle_qna.png",
-                fit: BoxFit.fill,
-                width: 310,
-              ),
-              Flexible(
-                child: ListView(
-                  children: [
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.translate,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: SettingsLanguages(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.verified_user_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.verified_user_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text('Terms of Services',style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TermsOfServiceHamburger(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.note_alt_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
-                            color: textColor,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: CookiePolicy(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.perm_contact_calendar_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.about_us,
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: textColor,
-                              //Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
-                              fontSize: 16)),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: AboutUs(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.help_outline,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: HelpPageHamburger(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    SizedBox(height: height * 0.03),
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Version : 1.0.0",
-                        style: TextStyle(
-                            color: Color.fromRGBO(180, 180, 180, 1),
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.03),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+        endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           physics: const ClampingScrollPhysics(),
@@ -261,7 +69,6 @@ getUserDetails() async {
                   height: height * 0.3,
                   width: width,
                   decoration: BoxDecoration(
-                    // color: Theme.of(context).primaryColor,
                     gradient: const LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -271,68 +78,34 @@ getUserDetails() async {
                       ],
                     ),
                     borderRadius: BorderRadius.vertical(
-                        bottom: Radius.elliptical(
-                            width ,
-                            height * 0.40)
-                    ),
+                        bottom: Radius.elliptical(width, height * 0.40)),
                   ),
                   child: Column(
-                    //crossAxisAlignment: CrossAxisAlignment.center,
-                    children : [
-                      SizedBox(height:height * 0.09),
-                      // Row(
-                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //   children: [
-                      //     IconButton(
-                      //       icon: Icon(
-                      //         Icons.chevron_left,
-                      //         size: height * 0.035,
-                      //         color: Colors.white,
-                      //       ), onPressed: () {
-                      //       Navigator.of(context).pop();
-                      //     },
-                      //     ),
-                      //     IconButton(
-                      //       icon: Icon(
-                      //         Icons.menu,
-                      //         size: height * 0.035,
-                      //         color: Colors.white,
-                      //       ), onPressed: () {
-                      //       // Navigator.of(context).pop();
-                      //     },
-                      //     ),
-                      //   ],
-                      // ),
+                    children: [
+                      SizedBox(height: height * 0.09),
                       Align(
                         alignment: Alignment.topCenter,
-                        child:
-                        Container(
+                        child: Container(
                           padding: const EdgeInsets.all(0.0),
                           height: height * 0.16,
                           width: width * 0.30,
-                          // decoration: BoxDecoration(
-                          //     //color: Colors.yellow[100],
-                          //     border: Border.all(
-                          //       color: Colors.red,
-                          //       width: 1,
-                          //     )),
-                          child: Image.asset("assets/images/question_mark_logo.png"),
+                          child: Image.asset(
+                              "assets/images/question_mark_logo.png"),
                         ),
                       ),
                     ],
                   ),
                 ),
-
-                SizedBox(height:height * 0.03),
+                SizedBox(height: height * 0.03),
                 Text(
                   AppLocalizations.of(context)!.teacher_caps,
                   style: TextStyle(
-                    fontSize: height* 0.03,
+                    fontSize: height * 0.03,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                SizedBox(height:height * 0.07),
+                SizedBox(height: height * 0.07),
                 SizedBox(
                   width: width * 0.8,
                   child: Form(
@@ -344,241 +117,271 @@ getUserDetails() async {
                           children: [
                             Align(
                               alignment: Alignment.topLeft,
-                              child:
-                              Row(
+                              child: Row(
                                 children: [
-                                  Text(AppLocalizations.of(context)!.email_id_caps,
+                                  Text(
+                                    AppLocalizations.of(context)!.email_id_caps,
                                     style: Theme.of(context)
                                         .primaryTextTheme
                                         .bodyLarge
-                                        ?.merge( TextStyle(
-                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017)),),
-                                  const Text('\t*', style: TextStyle(color: Colors.red)),
+                                        ?.merge(TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017)),
+                                  ),
+                                  const Text('\t*',
+                                      style: TextStyle(color: Colors.red)),
                                 ],
                               ),
-
                             ),
                             SizedBox(
                               height: height * 0.0001,
                             ),
-                            Align(alignment: Alignment.center,
+                            Align(
+                                alignment: Alignment.center,
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
                                   controller: emailController,
                                   decoration: InputDecoration(
-                                    hintText: AppLocalizations.of(context)!.email_id,
-                                    hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
+                                    hintText:
+                                        AppLocalizations.of(context)!.email_id,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
                                     prefixIcon: Icon(
-                                      Icons.account_box_outlined,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
+                                      Icons.account_box_outlined,
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      size: height * 0.03,
+                                    ),
                                   ),
-                                  onChanged: (value){
+                                  onChanged: (value) {
                                     formKey.currentState!.validate();
                                   },
-                                  validator: (value){
-                                    if(value!.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                        .hasMatch(value)){
-                                      return AppLocalizations.of(context)!.enter_valid_email;
-                                    }
-                                    else{
+                                  validator: (value) {
+                                    if (value!.isEmpty ||
+                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                            .hasMatch(value)) {
+                                      return AppLocalizations.of(context)!
+                                          .enter_valid_email;
+                                    } else {
                                       return null;
                                     }
                                   },
-                                )
-                            ),
+                                )),
                           ],
                         ),
-                        SizedBox(height:height * 0.0375),
-                        //SizedBox(height:height * 0.04),
+                        SizedBox(height: height * 0.0375),
                         Column(
                           children: [
                             Align(
                               alignment: Alignment.topLeft,
-                              child:
-                              Row(
+                              child: Row(
                                 children: [
-                                  Text(AppLocalizations.of(context)!.password_caps,
+                                  Text(
+                                    AppLocalizations.of(context)!.password_caps,
                                     style: Theme.of(context)
                                         .primaryTextTheme
                                         .bodyLarge
-                                        ?.merge( TextStyle(
-                                        color: const Color.fromRGBO(102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017)),),
-                                  const Text('\t*', style: TextStyle(color: Colors.red)),
+                                        ?.merge(TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017)),
+                                  ),
+                                  const Text('\t*',
+                                      style: TextStyle(color: Colors.red)),
                                 ],
                               ),
-
                             ),
                             SizedBox(
                               height: height * 0.0001,
                             ),
-                            Align(alignment: Alignment.center,
+                            Align(
+                                alignment: Alignment.center,
                                 child: TextFormField(
                                   obscureText: _isObscure,
                                   controller: passwordController,
                                   keyboardType: TextInputType.text,
                                   decoration: InputDecoration(
-                                      suffixIcon: IconButton(
-                                          icon: Icon(
-                                              _isObscure ? Icons.visibility : Icons.visibility_off,color: const Color.fromRGBO(82, 165, 160, 1),),
-                                          onPressed: () {
-                                            setState(() {
-                                              _isObscure = !_isObscure;
-                                            });
-                                          }),
-                                    hintText: AppLocalizations.of(context)!.your_password,
-                                    hintStyle: TextStyle(color: const Color.fromRGBO(102, 102, 102, 0.3),fontFamily: 'Inter',fontWeight: FontWeight.w400,fontSize: height * 0.02),
-
+                                    suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _isObscure
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isObscure = !_isObscure;
+                                          });
+                                        }),
+                                    hintText: AppLocalizations.of(context)!
+                                        .your_password,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
                                     prefixIcon: Icon(
-                                        Icons.lock,color: const Color.fromRGBO(82, 165, 160, 1),size: height * 0.03,),
+                                      Icons.lock,
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      size: height * 0.03,
+                                    ),
                                   ),
-                                  onChanged: (value){
+                                  onChanged: (value) {
                                     formKey.currentState!.validate();
                                   },
-                                  validator: (value){
-                                    if(value!.isEmpty){
-                                      return AppLocalizations.of(context)!.enter_your_password;
-                                    }
-                                    else{
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return AppLocalizations.of(context)!
+                                          .enter_your_password;
+                                    } else {
                                       return null;
                                     }
                                   },
-                                )
-                            ),
+                                )),
                           ],
                         ),
-                        SizedBox(height:height * 0.025),
+                        SizedBox(height: height * 0.025),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: TeacherForgotPasswordEmail(setLocale: widget.setLocale),
+                                child: TeacherForgotPasswordEmail(
+                                    setLocale: widget.setLocale),
                               ),
                             );
                           },
                           child: Align(
                             alignment: Alignment.centerRight,
-                            child: Text(AppLocalizations.of(context)!.forgot_password,
+                            child: Text(
+                              AppLocalizations.of(context)!.forgot_password,
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .bodyLarge
-                                  ?.merge( TextStyle(
-                                  color: const Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: height * 0.017)),),
+                                  ?.merge(TextStyle(
+                                      color:
+                                          const Color.fromRGBO(48, 145, 139, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: height * 0.017)),
+                            ),
                           ),
                         ),
-                        SizedBox(height:height * 0.02),
+                        SizedBox(height: height * 0.02),
                       ],
                     ),
                   ),
                 ),
-          Padding(
-              padding: EdgeInsets.only(left: width * 0.12),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                          text: "CERTIFY",
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.12),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                        text: "CERTIFY",
+                        style: TextStyle(
+                            color: const Color.fromRGBO(102, 102, 102, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600,
+                            fontSize: height * 0.017),
+                      ),
+                      TextSpan(
+                          text: "\t*",
                           style: TextStyle(
-                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              color: const Color.fromRGBO(219, 35, 35, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w600,
-                              fontSize: height * 0.017),),
-                        TextSpan(
-                            text: "\t*",
-                            style: TextStyle(
-                                color: const Color.fromRGBO(219, 35, 35, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: height * 0.017)),
-                      ])),
+                              fontSize: height * 0.017)),
+                    ])),
+                  ),
                 ),
-          ),
-                SizedBox(height:height * 0.01),
+                SizedBox(height: height * 0.01),
                 Padding(
                   padding: EdgeInsets.only(left: width * 0.1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Checkbox(
-                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                      fillColor: MaterialStateProperty
-                          .resolveWith<Color>((states) {
-                        if (states.contains(
-                            MaterialState.selected)) {
-                          return const Color.fromRGBO(82, 165, 160, 1); // Disabled color
-                        }
-                        return const Color.fromRGBO(82, 165, 160, 1); // Regular color
-                      }),
-                      value: agree,
-                      onChanged: (val) {
-                        setState(() {
-                          agree = val!;
-                          if (agree) {
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                        fillColor:
+                            MaterialStateProperty.resolveWith<Color>((states) {
+                          if (states.contains(MaterialState.selected)) {
+                            return const Color.fromRGBO(82, 165, 160, 1);
                           }
-                        });
-                      },
-                    ),
-                    RichText(
-                        text:  TextSpan(children: [
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.agree_msg,
-                            style: const TextStyle(fontSize: 15.0,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(51, 51, 51, 1),
-                                fontFamily: "Inter"),
-                          ),
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.privacy_Policy,
-                            style: const TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w400,
-                                decoration:
-                                TextDecoration.underline,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                                fontFamily: "Inter"),
-                          ),
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.and,
-                            style: const TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w400,
-                                decoration:
-                                TextDecoration.underline,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                                fontFamily: "Inter"),),
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.terms,
-                            style: const TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w400,
-                                decoration:
-                                TextDecoration.underline,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                                fontFamily: "Inter"),
-                          ),
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.services,
-                            style: const TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w400,
-                                color: Color.fromRGBO(51, 51, 51, 1),
-                                fontFamily: "Inter"),),
-                        ])
-                    ),
-                  ],
+                          return const Color.fromRGBO(82, 165, 160, 1);
+                        }),
+                        value: agree,
+                        onChanged: (val) {
+                          setState(() {
+                            agree = val!;
+                            if (agree) {}
+                          });
+                        },
+                      ),
+                      RichText(
+                          text: TextSpan(children: [
+                        TextSpan(
+                          text: AppLocalizations.of(context)!.agree_msg,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: "Inter"),
+                        ),
+                        TextSpan(
+                          text: AppLocalizations.of(context)!.privacy_Policy,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.underline,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                              fontFamily: "Inter"),
+                        ),
+                        TextSpan(
+                          text: AppLocalizations.of(context)!.and,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.underline,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                              fontFamily: "Inter"),
+                        ),
+                        TextSpan(
+                          text: AppLocalizations.of(context)!.terms,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                              decoration: TextDecoration.underline,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                              fontFamily: "Inter"),
+                        ),
+                        TextSpan(
+                          text: AppLocalizations.of(context)!.services,
+                          style: const TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: "Inter"),
+                        ),
+                      ])),
+                    ],
+                  ),
                 ),
-                ),
-                SizedBox(height:height * 0.02),
+                SizedBox(height: height * 0.02),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
@@ -587,65 +390,65 @@ getUserDetails() async {
                       borderRadius: BorderRadius.circular(39),
                     ),
                   ),
-                  //shape: StadiumBorder(),
                   onPressed: () async {
-                if(agree) {
-                  bool valid = formKey.currentState!.validate();
-                  if (valid == true) {
-                    regNumber = emailController.text;
-                    passWord = passwordController.text;
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const Center(
-                              child: CircularProgressIndicator(
-                                color: Color.fromRGBO(
-                                    48, 145, 139, 1),
+                    if (agree) {
+                      bool valid = formKey.currentState!.validate();
+                      if (valid == true) {
+                        regNumber = emailController.text;
+                        passWord = passwordController.text;
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                  child: CircularProgressIndicator(
+                                color: Color.fromRGBO(48, 145, 139, 1),
                               ));
-                        });
-                    LoginModel loginResponse =
-                    await QnaService.logInUser(
-                        regNumber, passWord);
-                    Navigator.of(context).pop();
-                   if (loginResponse.code == 200) {
-                     Navigator.push(
-                       context,
-                       PageTransition(
-                         type: PageTransitionType.rightToLeft,
-                         child: TeacherSelectionPage(
-                             name: name, setLocale: widget.setLocale,
-                             userId: loginResponse.data!.userId,),
-                       ),
-                     ).then((value) {
-                       emailController.clear();
-                       passwordController.clear();
-                     });
-                   }
-                   else {
-                     Navigator.push(
-                       context,
-                       PageTransition(
-                         type: PageTransitionType.rightToLeft,
-                         child: CustomDialog(
-                           title: 'Wrong password',
-                           content: 'please enter the correct password',
-                           button: AppLocalizations.of(context)!
-                               .retry,
-                         ),
-                       ),
-                     );
-                   }
-                  }
-                }
-                else{
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: CustomDialog(title: AppLocalizations.of(context)!.agree_privacy_terms, content: AppLocalizations.of(context)!.error, button: AppLocalizations.of(context)!.retry),
-                    ),
-                  );
-                }
+                            });
+                        LoginModel loginResponse =
+                            await QnaService.logInUser(regNumber, passWord);
+                        Navigator.of(context).pop();
+                        if (loginResponse.code == 200) {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: TeacherSelectionPage(
+                                name: name,
+                                setLocale: widget.setLocale,
+                                userId: loginResponse.data!.userId,
+                              ),
+                            ),
+                          ).then((value) {
+                            emailController.clear();
+                            passwordController.clear();
+                          });
+                        } else {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: CustomDialog(
+                                title: 'Wrong password',
+                                content: 'please enter the correct password',
+                                button: AppLocalizations.of(context)!.retry,
+                              ),
+                            ),
+                          );
+                        }
+                      }
+                    } else {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: CustomDialog(
+                              title: AppLocalizations.of(context)!
+                                  .agree_privacy_terms,
+                              content: AppLocalizations.of(context)!.error,
+                              button: AppLocalizations.of(context)!.retry),
+                        ),
+                      );
+                    }
                   },
                   child: Text(
                     AppLocalizations.of(context)!.login,
@@ -655,9 +458,9 @@ getUserDetails() async {
                         fontWeight: FontWeight.w800),
                   ),
                 ),
-                SizedBox(height:height * 0.03),
+                SizedBox(height: height * 0.03),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
                       context,
                       PageTransition(
@@ -669,36 +472,27 @@ getUserDetails() async {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
                       IconButton(
-                        icon:  Icon(
+                        icon: Icon(
                           Icons.edit_note_sharp,
                           color: const Color.fromRGBO(141, 167, 167, 1),
                           size: height * 0.034,
                         ),
-                        onPressed: () {
-
-                        },
+                        onPressed: () {},
                       ),
                       Text(AppLocalizations.of(context)!.register,
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
-                              ?.merge( TextStyle(
-                              color: const Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              fontSize: height * 0.0225))),
+                              ?.merge(TextStyle(
+                                  color: const Color.fromRGBO(48, 145, 139, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: height * 0.0225))),
                     ],
                   ),
                 ),
-
-
-
-
               ]),
         ));
   }
 }
-
-

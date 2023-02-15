@@ -4,18 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/demo_question_model.dart';
 import '../Components/custom_radio_option.dart';
 import '../Providers/question_prepare_provider.dart';
+import '../Components/end_drawer_menu_teacher.dart';
 import 'teacher_add_my_question_bank.dart';
-import 'package:qna_test/Pages/help_page.dart';
-import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
-import 'package:qna_test/Pages/settings_languages.dart';
-import 'package:qna_test/Pages/terms_of_services.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/reset_password_teacher.dart';
-import 'about_us.dart';
-import 'cookie_policy.dart';
+
 class TeacherQuesDelete extends StatefulWidget {
   const TeacherQuesDelete({
-    Key? key, required this.question, required this.setLocale,
+    Key? key,
+    required this.question,
+    required this.setLocale,
   }) : super(key: key);
 
   final DemoQuestionModel question;
@@ -27,7 +23,7 @@ class TeacherQuesDelete extends StatefulWidget {
 class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   late int _count;
   String? _groupValue;
-  List<int?>? selected=[];
+  List<int?>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -35,13 +31,13 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   TextEditingController subtopicController = TextEditingController();
   TextEditingController classRoomController = TextEditingController();
   TextEditingController questionController = TextEditingController();
-  IconData showIcon=Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.expand_circle_down_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
 
-  showAlertDialog(BuildContext context,double height) {
+  showAlertDialog(BuildContext context, double height) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -50,15 +46,17 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),),
+            fontWeight: FontWeight.w500),
+      ),
       child: Text(
         'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),),
-      onPressed:  () {
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
         Navigator.of(context).pop();
       },
     );
@@ -69,30 +67,36 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(48, 145, 139, 1),
-            fontWeight: FontWeight.w500),),
+            fontWeight: FontWeight.w500),
+      ),
       child: Text(
         'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
             color: const Color.fromRGBO(250, 250, 250, 1),
-            fontWeight: FontWeight.w500),),
-      onPressed:  () {
-        Provider.of<QuestionPrepareProvider>(context, listen: false).deleteQuestionList(widget.question.id);
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Provider.of<QuestionPrepareProvider>(context, listen: false)
+            .deleteQuestionList(widget.question.id);
         Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
-                      ),
-                    );
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
+          ),
+        );
       },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
-          const Icon(Icons.info,color: Color.fromRGBO(238, 71, 0, 1),),
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
           Text(
             'Confirm',
             style: TextStyle(
@@ -124,385 +128,30 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
       },
     );
   }
+
   @override
   void initState() {
     super.initState();
-    _groupValue=widget.question.questionType;
-    subjectController.text=widget.question.subject;
-    topicController.text=widget.question.topic;
-    subtopicController.text=widget.question.subTopic;
-    classRoomController.text=widget.question.studentClass;
-    questionController.text=widget.question.question;
-    urlController.text=widget.question.url!;
-    adviceController.text=widget.question.advice!;
-    selected=widget.question.correctChoice;
+    _groupValue = widget.question.questionType;
+    subjectController.text = widget.question.subject;
+    topicController.text = widget.question.topic;
+    subtopicController.text = widget.question.subTopic;
+    classRoomController.text = widget.question.studentClass;
+    questionController.text = widget.question.question;
+    urlController.text = widget.question.url!;
+    adviceController.text = widget.question.advice!;
+    selected = widget.question.correctChoice;
   }
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        endDrawer: Drawer(
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                    gradient:  LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ],
-                    )
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: height * 0.050),
-                    Container(
-                      alignment: Alignment.center,
-                      height: height / 6,
-                      child:
-                      Row(
-                          children:  [
-                            CircleAvatar(
-                              backgroundColor: const Color.fromRGBO(0,106,100,0),
-                              radius: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.15,
-                              child: Image.asset(
-                                "assets/images/ProfilePic_Avatar.png",
-                              ),
-                            ),
-                            const SizedBox(height: 2.0),
-                            Text(
-                              "Teacher Name",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.merge(const TextStyle(
-                                  color: Color.fromRGBO(255, 255, 255, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  letterSpacing: -0.02,
-                                  fontSize: 16)),
-                            ),
-                          ]),
-                    ),
-                    const SizedBox(height: 0.022),
-                    Column(
-                      children: [
-                        Container(
-                            padding: EdgeInsets.only(left: width * 0.09),
-                            child: Text(
-                              AppLocalizations.of(context)!.teacher,
-                              style: const TextStyle(
-                                  color: Color.fromRGBO(221, 221, 221, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.02,
-                                  fontSize: 12),
-                            )
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                            padding: EdgeInsets.only(left: width * 0.09),
-                            child: const Text(
-                              "teacher@gmail.com",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(221, 221, 221, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  letterSpacing: -0.02,
-                                  fontSize: 12),
-                            )
-                        ),
-                      ],
-                    ),
-                    //    )
-                  ],
-                ),
-              ),
-              Flexible(
-                child:
-                ListView(
-                  children: [
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.people_alt,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.user_profile,
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: textColor,
-                              //Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
-                              fontSize: 16)),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child: TeacherUserProfile(userDataModel: userDataModel,),
-                          //   ),
-                          // );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.key_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)
-                        ),
-                        title: Text(AppLocalizations.of(context)!.change_password,
-                          style: TextStyle(
-                              color: textColor,
-                              //Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
-                              fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: const ResetPassword(),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.mail_outline_sharp,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.change_emailId,
-                          style: TextStyle(
-                              color: textColor,
-                              //Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
-                              fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
-                          //   ),
-                          // );
-                        }),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.translate,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.language,style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: SettingsLanguages(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.verified_user_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.privacy_and_terms,style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: PrivacyPolicyHamburger(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.verified_user_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text('Terms of Services',style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TermsOfServiceHamburger(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.note_alt_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.cookie_policy,style: TextStyle(
-                            color: textColor,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: CookiePolicy(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.perm_contact_calendar_outlined,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.about_us,
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: textColor,
-                              //Color.fromRGBO(48, 145, 139, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
-                              fontSize: 16)),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: AboutUs(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.help_outline,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.help,style: TextStyle(
-                            color: textColor,
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        trailing:  const Icon(Icons.navigate_next,
-                            color: Color.fromRGBO(153, 153, 153, 1)),
-                        onTap: () async {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: HelpPageHamburger(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }),
-                    const Divider(
-                      thickness: 2,
-                    ),
-                    ListTile(
-                        leading:
-                        const Icon(
-                            Icons.power_settings_new,
-                            color: Color.fromRGBO(141, 167, 167, 1)),
-                        title: Text(AppLocalizations.of(context)!.logout,style: const TextStyle(
-                            color: Color.fromRGBO(226, 68, 0, 1),
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),),
-                        onTap: () async {
-                        }),
-                    SizedBox(height: height * 0.03),
-                    const Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Version : 1.0.0",
-                        style: TextStyle(
-                            color: Color.fromRGBO(180, 180, 180, 1),
-                            //Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            letterSpacing: -0.02,
-                            fontSize: 16),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.03),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
+        endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
         appBar: AppBar(
-          
           leading: IconButton(
             icon: const Icon(
               Icons.chevron_left,
@@ -534,9 +183,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                     end: Alignment.bottomCenter,
                     begin: Alignment.topCenter,
                     colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                  Color.fromRGBO(0, 106, 100, 1),
+                  Color.fromRGBO(82, 165, 160, 1),
+                ])),
           ),
         ),
         body: SingleChildScrollView(
@@ -596,7 +245,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                               color: Color.fromRGBO(28, 78, 80, 1),
                             ),
                             onPressed: () {
-                              showAlertDialog(context,height);
+                              showAlertDialog(context, height);
                               // showDialog(
                               //     context: context,
                               //     builder: (context) {
@@ -624,9 +273,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                               //       );
                               //     });
 
-
                               //Navigator.of(context).pop;
-
                             },
                           ),
                           Text(
@@ -650,13 +297,13 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             ),
                             onPressed: () {
                               setState(() {
-                                subjectController.text='';
-                                topicController.text='';
-                                subtopicController.text='';
-                                classRoomController.text='';
-                                questionController.text='';
-                                urlController.text='';
-                                adviceController.text='';
+                                subjectController.text = '';
+                                topicController.text = '';
+                                subtopicController.text = '';
+                                classRoomController.text = '';
+                                questionController.text = '';
+                                urlController.text = '';
+                                adviceController.text = '';
                                 //selected='';
                               });
                             },
@@ -685,10 +332,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Column(
-                      //crossAxisAlignment: CrossAxisAlignment.start,
+                        //crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            //height: height * 0.060,
+                              //height: height * 0.060,
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
                                 SizedBox(width: width * 0.10),
@@ -702,10 +349,16 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 SizedBox(width: width * 0.25),
                                 //SizedBox(width: height * 0.025),
                                 IconButton(
-                                  icon:  Icon(showIcon,color: const Color.fromRGBO(255, 255, 255, 1),size: height * 0.03,),
+                                  icon: Icon(
+                                    showIcon,
+                                    color:
+                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    size: height * 0.03,
+                                  ),
                                   onPressed: () {
                                     changeIcon(showIcon);
-                                  },)
+                                  },
+                                )
                                 // IconButton(
                                 //   icon: const Icon(
                                 //     Icons.arrow_circle_up_sharp,
@@ -726,15 +379,15 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                     controller: subjectController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "SUBJECT",
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -753,25 +406,25 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
                                     controller: topicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "TOPIC",
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -790,25 +443,25 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
                                     controller: subtopicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: 'SUB TOPIC',
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -827,25 +480,25 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
                                     controller: classRoomController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: height * 0.018
-                                    ),
+                                        fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "CLASS",
                                       floatingLabelBehavior:
-                                      FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -864,10 +517,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                          BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                     )),
                               ])),
                           SizedBox(height: height * 0.010),
@@ -877,7 +530,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                 Container(
                   alignment: Alignment.centerLeft,
                   margin:
-                  EdgeInsets.only(left: width * 0.05, right: width * 0.04),
+                      EdgeInsets.only(left: width * 0.05, right: width * 0.04),
                   child: Column(
                     children: [
                       Row(children: [
@@ -902,8 +555,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w700,
-                            fontSize: height * 0.018
-                        ),
+                            fontSize: height * 0.018),
                         decoration: InputDecoration(
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           labelStyle: TextStyle(
@@ -924,9 +576,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5)),
                         ),
-                        onChanged: (val){
+                        onChanged: (val) {
                           setState(() {
-                            widget.question.question=val;
+                            widget.question.question = val;
                           });
                         },
                       ),
@@ -964,45 +616,48 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                   ],
                 ),
                 SizedBox(height: height * 0.010),
-                ChooseWidget(question: widget.question, selected: selected, height: height, width: width),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            _count++;
-                          });
-                        }, child: Text(
-                        "Add more choice",
+                ChooseWidget(
+                    question: widget.question,
+                    selected: selected,
+                    height: height,
+                    width: width),
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        _count++;
+                      });
+                    },
+                    child: Text(
+                      "Add more choice",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0225,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: height * 0.020),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(
+                        left: width * 0.05, right: width * 0.04),
+                    child: Row(children: [
+                      Text(
+                        "Advisor",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
-                          fontSize: height * 0.0225,
+                          fontSize: height * 0.025,
                           fontFamily: "Inter",
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
-                      ),
-                      SizedBox(height: height * 0.020),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        margin:
-                        EdgeInsets.only(left: width * 0.05, right: width * 0.04),
-                        child:
-                        Row(children: [
-                          Text(
-                            "Advisor",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontSize: height * 0.025,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          SizedBox(width: width * 0.03),
-                          const Expanded(child: Divider()),
-                        ]),
-                      )]),
+                      SizedBox(width: width * 0.03),
+                      const Expanded(child: Divider()),
+                    ]),
+                  )
+                ]),
                 SizedBox(height: height * 0.020),
                 TextFormField(
                   controller: adviceController,
@@ -1026,9 +681,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         fontSize: height * 0.02),
                     hintText: "Suggest what to study if answered incorrectly",
                   ),
-                  onChanged: (val){
+                  onChanged: (val) {
                     setState(() {
-                      widget.question.advice=val;
+                      widget.question.advice = val;
                     });
                   },
                 ),
@@ -1055,9 +710,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         fontSize: height * 0.02),
                     hintText: "URL - Any reference (Optional)",
                   ),
-                  onChanged: (val){
+                  onChanged: (val) {
                     setState(() {
-                      widget.question.url=val;
+                      widget.question.url = val;
                     });
                   },
                 ),
@@ -1072,30 +727,39 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                           borderRadius: BorderRadius.circular(39),
                         ),
                       ),
-                      child:Row(
+                      child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             TextButton(
                               style: TextButton.styleFrom(
-                                foregroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                                foregroundColor:
+                                    const Color.fromRGBO(255, 255, 255, 1),
                               ),
-                              onPressed:() {
+                              onPressed: () {
                                 //List<String> temp=[];
                                 // for(int i=0;i< _values.length;i++){
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  widget.question.subject=subjectController.text;
-                                  widget.question.topic=topicController.text;
-                                  widget.question.subTopic=subtopicController.text;
-                                  widget.question.studentClass=classRoomController.text;
-                                  widget.question.question=questionController.text;
-                                  widget.question.correctChoice=selected;
-                                  widget.question.advice=adviceController.text;
-                                  widget.question.url=urlController.text;
+                                  widget.question.subject =
+                                      subjectController.text;
+                                  widget.question.topic = topicController.text;
+                                  widget.question.subTopic =
+                                      subtopicController.text;
+                                  widget.question.studentClass =
+                                      classRoomController.text;
+                                  widget.question.question =
+                                      questionController.text;
+                                  widget.question.correctChoice = selected;
+                                  widget.question.advice =
+                                      adviceController.text;
+                                  widget.question.url = urlController.text;
                                   //demoQuestionModel.choices=temp;
                                 });
-                                Provider.of<QuestionPrepareProvider>(context, listen: false).updateQuestionList(widget.question.id,widget.question);
+                                Provider.of<QuestionPrepareProvider>(context,
+                                        listen: false)
+                                    .updateQuestionList(
+                                        widget.question.id, widget.question);
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -1108,25 +772,20 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                               child: const Text("Save"),
                             ),
                           ]),
-                      onPressed: () {}
-                  ),
+                      onPressed: () {}),
                 ),
-              ]
-              ),
-            )
-        )
-    );
+              ]),
+            )));
   }
 
-  changeIcon(IconData pramIcon){
-    if(pramIcon==Icons.expand_circle_down_outlined){
+  changeIcon(IconData pramIcon) {
+    if (pramIcon == Icons.expand_circle_down_outlined) {
       setState(() {
-        showIcon=Icons.arrow_circle_up_outlined;
+        showIcon = Icons.arrow_circle_up_outlined;
       });
-    }
-    else{
+    } else {
       setState(() {
-        showIcon=Icons.expand_circle_down_outlined;
+        showIcon = Icons.expand_circle_down_outlined;
       });
     }
   }
@@ -1155,14 +814,13 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j=1; j<=widget.question.choices!.length; j++)
+        for (int j = 1; j <= widget.question.choices!.length; j++)
           GestureDetector(
-            onTap: (){
+            onTap: () {
               setState(() {
-                if(widget.selected!.contains(j)){
+                if (widget.selected!.contains(j)) {
                   widget.selected!.remove(j);
-                }
-                else{
+                } else {
                   widget.selected!.add(j);
                 }
               });
@@ -1175,29 +833,34 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)
-                    ),
-                    color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(82, 165, 160, 1) :const Color.fromRGBO(255, 255, 255, 1),
+                        color: const Color.fromRGBO(209, 209, 209, 1)),
+                    color: (widget.question.correctChoice!.contains(j))
+                        ? const Color.fromRGBO(82, 165, 160, 1)
+                        : const Color.fromRGBO(255, 255, 255, 1),
                   ),
                   child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(width: widget.width * 0.02,),
+                        SizedBox(
+                          width: widget.width * 0.02,
+                        ),
                         Expanded(
-                          child: Text('${widget.question.choices![j-1]}',
+                          child: Text(
+                            '${widget.question.choices![j - 1]}',
                             style: TextStyle(
-                              color: (widget.question.correctChoice!.contains(j)) ? const Color.fromRGBO(255, 255, 255, 1) :const Color.fromRGBO(102, 102, 102, 1),
+                              color:
+                                  (widget.question.correctChoice!.contains(j))
+                                      ? const Color.fromRGBO(255, 255, 255, 1)
+                                      : const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: widget.height * 0.0162,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w700,
-                            ),),
+                            ),
+                          ),
                         ),
-                      ])
-              ),
+                      ])),
             ),
           )
-
-
       ],
     );
   }

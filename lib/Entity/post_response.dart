@@ -4,7 +4,8 @@
 
 import 'dart:convert';
 
-PostResponse postResponseFromJson(String str) => PostResponse.fromJson(json.decode(str));
+PostResponse postResponseFromJson(String str) =>
+    PostResponse.fromJson(json.decode(str));
 
 String postResponseToJson(PostResponse data) => json.encode(data.toJson());
 
@@ -18,14 +19,14 @@ class PostResponse {
   Data data;
 
   factory PostResponse.fromJson(Map<String, dynamic> json) => PostResponse(
-    status: Status.fromJson(json["status"]),
-    data: Data.fromJson(json["data"]),
-  );
+        status: Status.fromJson(json["status"]),
+        data: Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status.toJson(),
-    "data": data.toJson(),
-  };
+        "status": status.toJson(),
+        "data": data.toJson(),
+      };
 }
 
 class Data {
@@ -36,12 +37,14 @@ class Data {
   List<UserRegister> userRegister;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    userRegister: List<UserRegister>.from(json["user_register"].map((x) => UserRegister.fromJson(x))),
-  );
+        userRegister: List<UserRegister>.from(
+            json["user_register"].map((x) => UserRegister.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "user_register": List<dynamic>.from(userRegister.map((x) => x.toJson())),
-  };
+        "user_register":
+            List<dynamic>.from(userRegister.map((x) => x.toJson())),
+      };
 }
 
 class UserRegister {
@@ -54,14 +57,14 @@ class UserRegister {
   String createdOn;
 
   factory UserRegister.fromJson(Map<String, dynamic> json) => UserRegister(
-    userId: json["userId"],
-    createdOn: json["createdOn"],
-  );
+        userId: json["userId"],
+        createdOn: json["createdOn"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "createdOn": createdOn,
-  };
+        "userId": userId,
+        "createdOn": createdOn,
+      };
 }
 
 class Status {
@@ -78,16 +81,16 @@ class Status {
   bool error;
 
   factory Status.fromJson(Map<String, dynamic> json) => Status(
-    code: json["code"],
-    message: json["message"],
-    type: json["type"],
-    error: json["error"],
-  );
+        code: json["code"],
+        message: json["message"],
+        type: json["type"],
+        error: json["error"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "code": code,
-    "message": message,
-    "type": type,
-    "error": error,
-  };
+        "code": code,
+        "message": message,
+        "type": type,
+        "error": error,
+      };
 }

@@ -1,4 +1,3 @@
-
 import 'package:sqflite/sqflite.dart';
 import 'dbConnection.dart';
 import 'package:qna_test/Entity/app_user.dart';
@@ -26,7 +25,7 @@ class AppUserRepo {
 
   Future<AppUser?> getUserDetail() async {
     List<AppUser> users = await getUserDetails();
-    if(users.isNotEmpty){
+    if (users.isNotEmpty) {
       return users[0];
     }
     return null;
@@ -45,7 +44,6 @@ class AppUserRepo {
     await db.delete(dbConnection.appUser);
     await db.close();
   }
-
 
   Future<int> updateMobileNumber(AppUser user) async {
     final Database db = await dbConnection.createDatabase();

@@ -26,20 +26,20 @@ class Ques {
   int selectedOptions;
 
   factory Ques.fromJson(Map<String, dynamic> json) => Ques(
-    id: json["id"],
+      id: json["id"],
       questionType: json["questionType"],
-    mark: json["mark"],
-    question: json["question"],
-    options: List<String>.from(json["options"].map((x) => x)),
-      selectedOptions: json['selectedOptions']==null?0:json['selectedOptions']
-  );
+      mark: json["mark"],
+      question: json["question"],
+      options: List<String>.from(json["options"].map((x) => x)),
+      selectedOptions:
+          json['selectedOptions'] == null ? 0 : json['selectedOptions']);
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "questionType": questionType,
-    "mark": mark,
-    "question": question,
-    "options": List<dynamic>.from(options.map((x) => x)),
-    "selectedOptions": selectedOptions
-  };
+        "id": id,
+        "questionType": questionType,
+        "mark": mark,
+        "question": question,
+        "options": List<dynamic>.from(options.map((x) => x)),
+        "selectedOptions": selectedOptions
+      };
 }
