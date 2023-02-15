@@ -407,6 +407,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter First Name';
@@ -463,6 +466,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Last Name';
@@ -477,6 +483,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         ),
                         GestureDetector(
                           onTap: () async {
+
                             var pickedDate = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
@@ -501,13 +508,16 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 );
                               },
                             );
+                            formKey.currentState!.validate();
                             final DateFormat formatter =
-                                DateFormat('dd/MM/yyyy');
+                            DateFormat('dd/MM/yyyy');
                             final String formatted =
-                                formatter.format(pickedDate!);
+                            formatter.format(pickedDate!);
                             d = pickedDate.microsecondsSinceEpoch;
-                            print(d);
-                            studentDobController.text = formatted;
+                              studentDobController.text = formatted;
+                            formKey.currentState!.validate();
+
+
                           },
                           child: AbsorbPointer(
                             child: TextFormField(
@@ -556,6 +566,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15)),
                               ),
+                              onChanged: (value) {
+                                formKey.currentState!.validate();
+                              },
                               validator: (value) {
                                 if (value!.isEmpty) {
                                   return 'Enter Date Of Birth';
@@ -564,7 +577,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 }
                               },
                               enabled: true,
-                              onChanged: (value) {},
+
                             ),
                           ),
                         ),
@@ -932,6 +945,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Valid Email';
@@ -992,6 +1008,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Roll Number';
@@ -1047,6 +1066,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Organization Name';
@@ -1314,6 +1336,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (studentPasswordController.text !=
                                   studentconfirmPasswordController.text) {

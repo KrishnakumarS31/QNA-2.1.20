@@ -410,6 +410,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter First Name';
@@ -471,6 +474,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Last Name';
@@ -485,6 +491,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                         ),
                         GestureDetector(
                           onTap: () async {
+
                             var pickedDate = await showDatePicker(
                               context: context,
                               initialDate: DateTime.now(),
@@ -513,10 +520,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 DateFormat('dd/MM/yyyy');
                             final String formatted =
                                 formatter.format(pickedDate!);
-
                             d = pickedDate.microsecondsSinceEpoch;
-                            print(d);
                             teacherDobController.text = formatted;
+                            formKey.currentState!.validate();
                           },
                           child: AbsorbPointer(
                             child: TextFormField(
@@ -946,9 +952,14 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Enter Valid Email';
+                              if (!RegExp(r"^[a-zA-Za-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z]+[a-zA-Z]+")
+                                      .hasMatch(value!)) {
+                                return AppLocalizations.of(context)!
+                                    .error_regID;
                               } else {
                                 return null;
                               }
@@ -1001,6 +1012,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Roll Number';
@@ -1061,6 +1075,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Enter Organization Name';
@@ -1157,9 +1174,12 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Enter Password';
+                              if (value!.length!=8) {
+                                return 'Enter Minimum 8 Characters';
                               } else {
                                 return null;
                               }
@@ -1213,6 +1233,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
                             ),
+                            onChanged: (value) {
+                              formKey.currentState!.validate();
+                            },
                             validator: (value) {
                               if (teacherPasswordController.text !=
                                   teacherconfirmPasswordController.text) {

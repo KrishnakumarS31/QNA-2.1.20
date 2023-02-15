@@ -153,7 +153,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                             children: [
                               ListTile(
                                 title: Text(
-                                  'Subject - Maths',
+                                  'Maths',
                                   style: TextStyle(
                                       color:
                                           const Color.fromRGBO(28, 78, 80, 1),
@@ -226,7 +226,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'Title - Lesson 14 &15 / Calculus',
+                                    'Lesson 14 &15 / Calculus',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             82, 165, 160, 1),
@@ -242,7 +242,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'Sub Topic Chapter 12',
+                                    'Chapter 12',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             82, 165, 160, 1),

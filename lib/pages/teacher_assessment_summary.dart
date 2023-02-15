@@ -316,7 +316,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       // );
                     },
                     child: Text(
-                      'Save List',
+                      'Save Assessment',
                       style: TextStyle(
                           fontSize: height * 0.025,
                           fontFamily: "Inter",
@@ -478,114 +478,123 @@ class QuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Q1',
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: const Color.fromRGBO(82, 165, 160, 0.08),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        'Q1',
+                        style: TextStyle(
+                            fontSize: height * 0.017,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        '  MCQ',
+                        style: TextStyle(
+                            fontSize: height * 0.017,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(51, 51, 51, 1),
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showAlertDialog(context, height);
+                    },
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.close,
+                          color: Color.fromRGBO(51, 51, 51, 1),
+                        ),
+                        Text(
+                          ' Remove',
+                          style: TextStyle(
+                              fontSize: height * 0.017,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              GestureDetector(
+                onTap: () {
+                  showPreview(context);
+                },
+                child: Text(
+                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim',
                   style: TextStyle(
-                      fontSize: height * 0.017,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(82, 165, 160, 1),
-                      fontWeight: FontWeight.w700),
-                ),
-                Text(
-                  '  MCQ',
-                  style: TextStyle(
-                      fontSize: height * 0.017,
+                      fontSize: height * 0.015,
                       fontFamily: "Inter",
                       color: const Color.fromRGBO(51, 51, 51, 1),
                       fontWeight: FontWeight.w400),
                 ),
-              ],
-            ),
-            GestureDetector(
-              onTap: () {
-                showAlertDialog(context, height);
-              },
-              child: Row(
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(
-                    Icons.close,
-                    color: Color.fromRGBO(51, 51, 51, 1),
-                  ),
                   Text(
-                    ' Remove',
+                    'C. Lorem ipsum dolor sit amet',
                     style: TextStyle(
                         fontSize: height * 0.017,
                         fontFamily: "Inter",
-                        color: const Color.fromRGBO(51, 51, 51, 1),
+                        color: const Color.fromRGBO(0, 0, 0, 1),
                         fontWeight: FontWeight.w400),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Marks: ',
+                        style: TextStyle(
+                            fontSize: height * 0.017,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                            fontWeight: FontWeight.w400),
+                      ),
+                      Text(
+                        '5',
+                        style: TextStyle(
+                            fontSize: height * 0.017,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            )
-          ],
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        GestureDetector(
-          onTap: () {
-            showPreview(context);
-          },
-          child: Text(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim',
-            style: TextStyle(
-                fontSize: height * 0.015,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(51, 51, 51, 1),
-                fontWeight: FontWeight.w400),
+              const Divider(),
+              SizedBox(
+                height: height * 0.01,
+              ),
+            ],
           ),
         ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'C. Lorem ipsum dolor sit amet',
-              style: TextStyle(
-                  fontSize: height * 0.017,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(0, 0, 0, 1),
-                  fontWeight: FontWeight.w400),
-            ),
-            Row(
-              children: [
-                Text(
-                  'Marks: ',
-                  style: TextStyle(
-                      fontSize: height * 0.017,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(0, 0, 0, 1),
-                      fontWeight: FontWeight.w400),
-                ),
-                Text(
-                  '5',
-                  style: TextStyle(
-                      fontSize: height * 0.017,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(82, 165, 160, 1),
-                      fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const Divider(),
-        SizedBox(
-          height: height * 0.01,
-        ),
-      ],
+      ),
     );
   }
 }

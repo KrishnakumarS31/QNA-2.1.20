@@ -873,74 +873,83 @@ class QuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Text(
-          "MCQ",
-          style: TextStyle(
-            color: const Color.fromRGBO(28, 78, 80, 1),
-            fontSize: height * 0.015,
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Text(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim",
-          style: TextStyle(
-            color: const Color.fromRGBO(51, 51, 51, 1),
-            fontSize: height * 0.015,
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w400,
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              "C. Lorem ipsum dolor sit amet",
-              style: TextStyle(
-                color: const Color.fromRGBO(82, 165, 160, 1),
-                fontSize: height * 0.015,
-                fontFamily: "Inter",
-                fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        color: const Color.fromRGBO(82, 165, 160, 0.08),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height * 0.01,
               ),
-            ),
-            Row(
-              children: [
-                Text(
-                  "Marks: ",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(102, 102, 102, 1),
-                    fontSize: height * 0.015,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w600,
-                  ),
+              Text(
+                "MCQ",
+                style: TextStyle(
+                  color: const Color.fromRGBO(28, 78, 80, 1),
+                  fontSize: height * 0.015,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w600,
                 ),
-                Text(
-                  "5",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(82, 165, 160, 1),
-                    fontSize: height * 0.015,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w600,
-                  ),
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Text(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim",
+                style: TextStyle(
+                  color: const Color.fromRGBO(51, 51, 51, 1),
+                  fontSize: height * 0.015,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w400,
                 ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "C. Lorem ipsum dolor sit amet",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(82, 165, 160, 1),
+                      fontSize: height * 0.015,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Marks: ",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(102, 102, 102, 1),
+                          fontSize: height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        "5",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          fontSize: height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Divider()
+            ],
+          ),
         ),
-        const Divider()
-      ],
+      ),
     );
   }
 }

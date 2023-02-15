@@ -399,85 +399,94 @@ class QuestionPreview extends StatelessWidget {
           ),
         );
       },
-      child: Column(
-        children: [
-          SizedBox(
-            height: height * 0.02,
-          ),
-          Container(
-            height: height * 0.04,
-            width: width * 0.95,
-            color: const Color.fromRGBO(82, 165, 160, 1),
-            child: Padding(
-              padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        question.subject,
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        "  |  ${question.topic} - ${question.subTopic}",
-                        style: TextStyle(
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          color: const Color.fromRGBO(82, 165, 160, 0.08),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                Container(
+                  height: height * 0.04,
+                  width: width * 0.95,
+                  color: const Color.fromRGBO(82, 165, 160, 1),
+                  child: Padding(
+                    padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              question.subject,
+                              style: TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              "  |  ${question.topic} - ${question.subTopic}",
+                              style: TextStyle(
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          question.studentClass,
+                          style: TextStyle(
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    question.studentClass,
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    question.questionType,
                     style: TextStyle(
-                        fontSize: height * 0.015,
+                        fontSize: height * 0.02,
                         fontFamily: "Inter",
-                        color: const Color.fromRGBO(255, 255, 255, 1),
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                         fontWeight: FontWeight.w600),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    question.question,
+                    style: TextStyle(
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        color: const Color.fromRGBO(51, 51, 51, 1),
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                const Divider()
+              ],
             ),
           ),
-          SizedBox(
-            height: height * 0.01,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.questionType,
-              style: TextStyle(
-                  fontSize: height * 0.02,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(28, 78, 80, 1),
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.01,
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.question,
-              style: TextStyle(
-                  fontSize: height * 0.0175,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(51, 51, 51, 1),
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-          SizedBox(
-            height: height * 0.01,
-          ),
-          const Divider()
-        ],
+        ),
       ),
     );
   }

@@ -27,6 +27,7 @@ class CustomCard extends StatelessWidget {
     return Container(
       height: height * 0.1825,
       decoration: BoxDecoration(
+        color: Color.fromRGBO(28, 78, 80, 0.08),
           border: Border.all(
             color: Color.fromRGBO(233, 233, 233, 1),
           ),
@@ -35,7 +36,7 @@ class CustomCard extends StatelessWidget {
         children: [
           ListTile(
             title: Text(
-              'Subject - $subject',
+              subject,
               style: TextStyle(
                   color: Color.fromRGBO(28, 78, 80, 1),
                   fontSize: height * 0.0187,
@@ -72,7 +73,7 @@ class CustomCard extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Title - $title',
+                title,
                 style: TextStyle(
                     color: Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
@@ -87,7 +88,7 @@ class CustomCard extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sub Topic $subTopic',
+                subTopic,
                 style: TextStyle(
                     color: Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
