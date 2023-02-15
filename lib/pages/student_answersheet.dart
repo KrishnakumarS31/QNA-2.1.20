@@ -27,7 +27,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
       List<String> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
         if(widget.questions.data!.questions[j-1].questionType=='mcq'){
-          selectedAnswers.add(widget.questions.data!.questions[j-1].choices[selectedAns[t]-1].choiceText);
+         // selectedAnswers.add(widget.questions.data!.questions[j-1].choices[selectedAns[t]-1].choiceText);
         }
         else{
           String temp='';
@@ -175,7 +175,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                 child: Text(
                                     Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                         ? "Not Answered"
-                                        : options[index-1].toString().substring(1,options[index-1].toString().length-1),
+                                        : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
+                                    //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                     style:
                                     Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                         ?
