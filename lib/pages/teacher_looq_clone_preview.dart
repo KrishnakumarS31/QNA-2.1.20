@@ -377,15 +377,15 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: LooqQuestionEdit(
-                                question: widget.question,
-                                setLocale: widget.setLocale),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: LooqQuestionEdit(
+                        //         question: widget.question,
+                        //         setLocale: widget.setLocale),
+                        //   ),
+                        // );
                       },
                       child: Text(
                         'Clone',

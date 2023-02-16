@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import 'package:qna_test/pages/teacher_question_preview_delete.dart';
@@ -20,7 +21,7 @@ class TeacherMyQuestionBank extends StatefulWidget {
 }
 
 class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
-  List<DemoQuestionModel> quesList = [];
+  List<Question> quesList = [];
 
   @override
   void initState() {
@@ -185,7 +186,7 @@ class QuestionPreview extends StatelessWidget {
 
   final double height;
   final double width;
-  final DemoQuestionModel question;
+  final Question question;
   final int index;
   final bool? assessment;
   final void Function(Locale locale) setLocale;
@@ -193,10 +194,8 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 0; i < question.correctChoice!.length; i++) {
-      int j = 1;
-      j = question.correctChoice![i]!;
-      answer = '$answer ${question.choices![j - 1]}';
+    for (int i = 0; i < question.choicesAnswer!.length; i++) {
+      answer = '$answer ${question.choices![i].choiceText}';
       //question.choices[question.correctChoice[i]];
     }
     return GestureDetector(
@@ -233,7 +232,7 @@ class QuestionPreview extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              question.subject,
+                              question.subject!,
                               style: TextStyle(
                                   fontSize: height * 0.017,
                                   fontFamily: "Inter",
@@ -251,7 +250,7 @@ class QuestionPreview extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          question.studentClass,
+                          question.questionClass!,
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontFamily: "Inter",
@@ -268,7 +267,7 @@ class QuestionPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    question.questionType,
+                    question.questionType!,
                     style: TextStyle(
                         fontSize: height * 0.02,
                         fontFamily: "Inter",
@@ -282,7 +281,7 @@ class QuestionPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    question.question,
+                    question.question!,
                     style: TextStyle(
                         fontSize: height * 0.0175,
                         fontFamily: "Inter",

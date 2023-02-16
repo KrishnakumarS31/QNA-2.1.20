@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
 import 'package:qna_test/Pages/teacher_looq_search_question.dart';
-import '../Entity/demo_question_model.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
+import '../Services/qna_service.dart';
 import 'teacher_prepare_qnBank.dart';
 
 class TeacherQuestionBank extends StatefulWidget {
@@ -19,81 +20,20 @@ class TeacherQuestionBank extends StatefulWidget {
 
 class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   bool agree = false;
-  List<DemoQuestionModel> quesList = getData();
-  static List<DemoQuestionModel> getData() {
-    const data = [
-      {
-        "id": 1,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 2,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 3,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 4,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 5,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      }
-    ];
-    return data.map<DemoQuestionModel>(DemoQuestionModel.fromJson).toList();
-  }
 
+  GetQuestionBankModel questionBank=GetQuestionBankModel(status: 500, message: 'message');
+  List<Question> questionList=[];
   @override
   void initState() {
     super.initState();
+    getQuestionData();
+  }
+
+  getQuestionData() async {
+    questionBank=await QnaService.getQuestionBankMockService();
+    setState(() {
+      questionList=questionBank.data!.questions!;
+    });
   }
 
   @override
@@ -290,7 +230,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                   ),
                 ),
                 Column(children: [
-                  for (DemoQuestionModel i in quesList)
+                  for (Question i in questionList)
                     QuestionPreview(
                         height: height,
                         width: width,
@@ -378,16 +318,14 @@ class QuestionPreview extends StatelessWidget {
 
   final double height;
   final double width;
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
 
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 1; i <= question.correctChoice!.length; i++) {
-      int j = 1;
-      j = question.correctChoice![i - 1]!;
-      answer = '$answer ${question.choices![j - 1]}';
+    for (int i = 0; i < question.choicesAnswer!.length; i++) {
+      answer = '$answer ${question.choicesAnswer![i].choiceText}';
     }
     return GestureDetector(
       onTap: () {
@@ -422,7 +360,7 @@ class QuestionPreview extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              question.subject,
+                              question.subject!,
                               style: TextStyle(
                                   fontSize: height * 0.017,
                                   fontFamily: "Inter",
@@ -440,7 +378,7 @@ class QuestionPreview extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          question.studentClass,
+                          question.questionClass!,
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontFamily: "Inter",
@@ -457,7 +395,7 @@ class QuestionPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    question.questionType,
+                    question.questionType!,
                     style: TextStyle(
                         fontSize: height * 0.02,
                         fontFamily: "Inter",
@@ -471,7 +409,7 @@ class QuestionPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    question.question,
+                    question.question!,
                     style: TextStyle(
                         fontSize: height * 0.0175,
                         fontFamily: "Inter",

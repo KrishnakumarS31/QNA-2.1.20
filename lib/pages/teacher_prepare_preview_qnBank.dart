@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Entity/demo_question_model.dart';
-
 import '../Components/custom_radio_option.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 import 'teacher_qn_preview.dart';
 
 class PreparePreviewQnBank extends StatefulWidget {
@@ -12,7 +11,7 @@ class PreparePreviewQnBank extends StatefulWidget {
     required this.setLocale,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
   @override
   PreparePreviewQnBankState createState() => PreparePreviewQnBankState();
@@ -20,7 +19,7 @@ class PreparePreviewQnBank extends StatefulWidget {
 
 class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   String? _groupValue;
-  List<int?>? selected = [];
+  List<Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -61,19 +60,19 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
-    subjectController.text = widget.question.subject;
-    topicController.text = widget.question.topic;
-    subtopicController.text = widget.question.subTopic;
-    classRoomController.text = widget.question.studentClass;
-    questionController.text = widget.question.question;
-    urlController.text = widget.question.url!;
-    adviceController.text = widget.question.advice!;
-    selected = widget.question.correctChoice;
+    subjectController.text = widget.question.subject!;
+    topicController.text = widget.question.topic!;
+    subtopicController.text = widget.question.subTopic!;
+    classRoomController.text = widget.question.questionClass!;
+    questionController.text = widget.question.question!;
+    urlController.text = widget.question.advisorUrl!;
+    adviceController.text = widget.question.advisorText!;
+    selected = widget.question.choicesAnswer;
     for (int i = 0; i < widget.question.choices!.length; i++) {
       chooses.add(TextEditingController());
-      chooses[i].text = widget.question.choices![i]!;
+      chooses[i].text = widget.question.choices![i]!.choiceText;
       radioList.add(false);
-      if (widget.question.correctChoice!.contains(i)) {
+      if (widget.question.choicesAnswer!.contains(widget.question.choices![i])) {
         radioList[i - 1] = true;
       }
     }
@@ -666,7 +665,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.advice = val;
+                      widget.question.advisorText = val;
                     });
                   },
                 ),
@@ -695,7 +694,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.url = val;
+                      widget.question.advisorUrl = val;
                     });
                   },
                 ),
@@ -724,27 +723,27 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  List<String> temp = [];
-                                  List<int> selectedTemp = [];
+                                  List<Choice> temp = [];
+                                  List<Choice> selectedTemp = [];
                                   for (int i = 0; i < chooses.length; i++) {
                                     if (radioList[i]) {
-                                      selectedTemp.add(i + 1);
+                                      selectedTemp.add(widget.question.choices![i]);
                                     }
-                                    temp.add(chooses[i].text);
+                                    temp.add(widget.question.choices![i]);
                                   }
                                   widget.question.subject =
                                       subjectController.text;
                                   widget.question.topic = topicController.text;
                                   widget.question.subTopic =
                                       subtopicController.text;
-                                  widget.question.studentClass =
+                                  widget.question.questionClass =
                                       classRoomController.text;
                                   widget.question.question =
                                       questionController.text;
-                                  widget.question.correctChoice = selectedTemp;
-                                  widget.question.advice =
+                                  widget.question.choicesAnswer = selectedTemp;
+                                  widget.question.advisorText =
                                       adviceController.text;
-                                  widget.question.url = urlController.text;
+                                  widget.question.advisorUrl = urlController.text;
                                   widget.question.choices = temp;
                                 });
 
@@ -789,7 +788,7 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final List<int?>? selected;
   final double height;
   final double width;
@@ -803,7 +802,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 1; j <= widget.question.choices!.length; j++)
+        for (int j = 0; j < widget.question.choices!.length; j++)
           GestureDetector(
             onTap: () {
               setState(() {
@@ -827,7 +826,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                             const BorderRadius.all(Radius.circular(5)),
                         border: Border.all(
                             color: const Color.fromRGBO(209, 209, 209, 1)),
-                        color: (widget.question.correctChoice!.contains(j))
+                        color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
                             ? const Color.fromRGBO(82, 165, 160, 1)
                             : const Color.fromRGBO(255, 255, 255, 1),
                       ),
@@ -841,8 +840,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                               child: Text(
                                 '${widget.question.choices![j - 1]}',
                                 style: TextStyle(
-                                  color: (widget.question.correctChoice!
-                                          .contains(j))
+                                  color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
                                       ? const Color.fromRGBO(255, 255, 255, 1)
                                       : const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: widget.height * 0.0162,

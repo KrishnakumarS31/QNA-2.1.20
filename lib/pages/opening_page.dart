@@ -29,7 +29,7 @@ class SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     getConectivity();
-    Timer(const Duration(seconds: 5), () async {
+    Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
       if (user != null) {
         widget.setLocale(Locale.fromSubtags(languageCode: user.locale));

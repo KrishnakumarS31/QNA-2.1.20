@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/demo_question_model.dart';
+import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Providers/question_prepare_provider.dart';
@@ -26,14 +27,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   String _groupValue = 'MCQ';
   IconData radioIcon = Icons.radio_button_off_outlined;
   late int _count;
-  DemoQuestionModel demoQuestionModel = DemoQuestionModel(
-      questionType: '',
-      subject: '',
-      topic: '',
-      subTopic: '',
-      studentClass: '',
-      question: '',
-      id: null);
+  Question demoQuestionModel = Question();
   TextEditingController subjectController = TextEditingController();
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -658,13 +652,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                   onPressed: () {
-                                    List<String> temp = [];
-                                    List<int> selectedTemp = [];
+                                    List<Choice> temp = [];
+                                    List<Choice> selectedTemp = [];
                                     for (int i = 0; i < chooses.length; i++) {
                                       if (radioList[i]) {
-                                        selectedTemp.add(i + 1);
+                                        selectedTemp.add(demoQuestionModel.choices![i]);
                                       }
-                                      temp.add(chooses[i].text);
+                                      temp.add(demoQuestionModel.choices![i]);
                                     }
                                     demoQuestionModel.subject =
                                         subjectController.text;
@@ -672,23 +666,23 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         topicController.text;
                                     demoQuestionModel.subTopic =
                                         subtopicController.text;
-                                    demoQuestionModel.studentClass =
+                                    demoQuestionModel.questionClass =
                                         classRoomController.text;
                                     demoQuestionModel.question =
                                         questionController.text;
                                     demoQuestionModel.questionType = 'mcq';
-                                    demoQuestionModel.correctChoice =
+                                    demoQuestionModel.choicesAnswer =
                                         selectedTemp;
-                                    demoQuestionModel.advice =
+                                    demoQuestionModel.advisorText =
                                         adviceController.text;
-                                    demoQuestionModel.url = urlController.text;
+                                    demoQuestionModel.advisorUrl = urlController.text;
                                     demoQuestionModel.choices = temp;
-                                    List<DemoQuestionModel> ques =
+                                    List<Question> ques =
                                         Provider.of<QuestionPrepareProvider>(
                                                 context,
                                                 listen: false)
                                             .getAllQuestion;
-                                    demoQuestionModel.id = ques.length;
+                                    demoQuestionModel.questionId = ques.length;
                                     showQuestionPreview(context);
                                   },
                                   child: const Text("Preview"),

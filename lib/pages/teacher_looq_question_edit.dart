@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:qna_test/Entity/demo_question_model.dart';
 import 'package:qna_test/Pages/teacher_looq_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-
+import '../EntityModel/GetQuestionBankModel.dart';
 class LooqQuestionEdit extends StatefulWidget {
   const LooqQuestionEdit({
     Key? key,
@@ -11,7 +10,7 @@ class LooqQuestionEdit extends StatefulWidget {
     required this.setLocale,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
   @override
   LooqQuestionEditState createState() => LooqQuestionEditState();
@@ -20,7 +19,7 @@ class LooqQuestionEdit extends StatefulWidget {
 class LooqQuestionEditState extends State<LooqQuestionEdit> {
   late int _count;
   String? _groupValue;
-  List<int?>? selected = [];
+  List<Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -33,6 +32,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
+  List<int> tempChoiceId=[];
 
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
@@ -41,6 +41,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   _onRadioChange(int key) {
     setState(() {
       radioList[key] = !radioList[key];
+
     });
   }
 
@@ -62,25 +63,29 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
-    subjectController.text = widget.question.subject;
-    topicController.text = widget.question.topic;
-    subtopicController.text = widget.question.subTopic;
-    classRoomController.text = widget.question.studentClass;
-    questionController.text = widget.question.question;
-    urlController.text = widget.question.url!;
-    adviceController.text = widget.question.advice!;
-    selected = widget.question.correctChoice;
+    subjectController.text = widget.question.subject!;
+    topicController.text = widget.question.topic!;
+    subtopicController.text = widget.question.subTopic!;
+    classRoomController.text = widget.question.questionClass!;
+    questionController.text = widget.question.question!;
+    urlController.text = widget.question.advisorUrl!;
+    adviceController.text = widget.question.advisorText!;
+    for(int i =0;i<widget.question.choicesAnswer!.length;i++){
+      selected=widget.question.choicesAnswer;
+      tempChoiceId.add(widget.question.choicesAnswer![i].choiceId);
+    }
     for (int i = 0; i < widget.question.choices!.length; i++) {
       chooses.add(TextEditingController());
       radioList.add(false);
-      chooses[i].text = widget.question.choices![i]!;
-      if (selected!.contains(i + 1)) {
+      chooses[i].text = widget.question.choices![i].choiceText!;
+      if (tempChoiceId!.contains(widget.question.choices![i].choiceId)) {
         radioList[i] = true;
       }
     }
   }
 
   showQuestionPreview(BuildContext context) {
+    //print(widget.question.choices![3].choiceText);
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -523,6 +528,12 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
+                                  onChanged: (val){
+                                    setState(() {
+                                      chooses[i].text=val!;
+                                      widget.question.choices![i].choiceText=val;
+                                    });
+                                  },
                                 ),
                               ),
                               SizedBox(
@@ -530,6 +541,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               ),
                               IconButton(
                                 onPressed: () {
+                                  print(i);
                                   _onRadioChange(i);
                                 },
                                 icon: Icon(
@@ -619,7 +631,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.advice = val;
+                      widget.question.advisorText = val;
                     });
                   },
                 ),
@@ -648,7 +660,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.url = val;
+                      widget.question.advisorUrl = val;
                     });
                   },
                 ),
@@ -677,28 +689,17 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  widget.question.subject =
-                                      subjectController.text;
+                                  widget.question.subject = subjectController.text;
                                   widget.question.topic = topicController.text;
-                                  widget.question.subTopic =
-                                      subtopicController.text;
-                                  widget.question.studentClass =
-                                      classRoomController.text;
-                                  widget.question.question =
-                                      questionController.text;
-                                  widget.question.correctChoice = selected;
-                                  widget.question.advice =
-                                      adviceController.text;
-                                  widget.question.url = urlController.text;
+                                  widget.question.subTopic = subtopicController.text;
+                                  widget.question.questionClass = classRoomController.text;
+                                  widget.question.question = questionController.text;
+                                  widget.question.choicesAnswer = selected;
+                                  widget.question.advisorText = adviceController.text;
+                                  widget.question.advisorUrl = urlController.text;
                                 });
                                 showQuestionPreview(context);
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child:  TeacherLooqPreview(question: widget.question,),
-                                //   ),
-                                // );
+
                               },
                               child: const Text("Preview"),
                             ),
@@ -719,80 +720,5 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         showIcon = Icons.expand_circle_down_outlined;
       });
     }
-  }
-}
-
-class ChooseWidget extends StatefulWidget {
-  const ChooseWidget({
-    Key? key,
-    required this.question,
-    required this.height,
-    required this.width,
-    required this.selected,
-  }) : super(key: key);
-
-  final DemoQuestionModel question;
-  final List<int?>? selected;
-  final double height;
-  final double width;
-
-  @override
-  State<ChooseWidget> createState() => _ChooseWidgetState();
-}
-
-class _ChooseWidgetState extends State<ChooseWidget> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (int j = 1; j <= widget.question.choices!.length; j++)
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                if (widget.selected!.contains(j)) {
-                  widget.selected!.remove(j);
-                } else {
-                  widget.selected!.add(j);
-                }
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.only(bottom: widget.height * 0.013),
-              child: Container(
-                  width: widget.width * 0.744,
-                  height: widget.height * 0.0412,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.correctChoice!.contains(j))
-                        ? const Color.fromRGBO(82, 165, 160, 1)
-                        : const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: widget.width * 0.02,
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${widget.question.choices![j - 1]}',
-                            style: TextStyle(
-                              color:
-                                  (widget.question.correctChoice!.contains(j))
-                                      ? const Color.fromRGBO(255, 255, 255, 1)
-                                      : const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ])),
-            ),
-          )
-      ],
-    );
   }
 }

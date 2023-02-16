@@ -7,6 +7,7 @@ import '../Entity/custom_http_response.dart';
 import '../Entity/question_paper_model.dart';
 import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 
 class QnaTestRepo {
   //Map<String,String> headers = {'Content-Type':'application/json','authorization':'Bearer 9764048494'};
@@ -319,4 +320,19 @@ class QnaTestRepo {
     }
     return statusCode;
   }
+
+  static Future<GetQuestionBankModel> getQuestionBankMock() async {
+    GetQuestionBankModel questionBank=GetQuestionBankModel(status: 500, message: 'null');
+    var request = http.Request('GET', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/questions'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      questionBank = getQuestionBankModelFromJson(value);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return questionBank;
+  }
+
 }

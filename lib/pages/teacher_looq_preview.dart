@@ -6,6 +6,7 @@ import '../Entity/demo_question_model.dart';
 import '../Entity/question_model.dart';
 import '../Providers/question_prepare_provider.dart';
 
+import '../EntityModel/GetQuestionBankModel.dart';
 class TeacherLooqPreview extends StatefulWidget {
   const TeacherLooqPreview({
     Key? key,
@@ -13,7 +14,7 @@ class TeacherLooqPreview extends StatefulWidget {
     required this.setLocale,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
   @override
   TeacherLooqPreviewState createState() => TeacherLooqPreviewState();
@@ -24,143 +25,14 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
-  List<Ques> question = getData();
-  static List<Ques> getData() {
-    const data = [
-      {
-        "id": 1,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 2,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["Option 1", "Option 2", "Option 3"]
-      },
-      {
-        "id": 3,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      },
-      {
-        "id": 4,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 5,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 6,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      },
-      {
-        "id": 7,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 8,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["Option 1", "Option 2", "Option 3"]
-      },
-      {
-        "id": 9,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      },
-      {
-        "id": 10,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 11,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 12,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      }
-    ];
-    return data.map<Ques>(Ques.fromJson).toList();
-  }
+    List<Choice> selected = [];
 
-  List<dynamic> selected = [];
-  ValueChanged<String?> _valueChangedHandler() {
-    return (value) => setState(() => _groupValue = value!);
-  }
 
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question.advice!;
-    urlController.text = widget.question.url!;
+    adviceController.text = widget.question.advisorText!;
+    urlController.text = widget.question.advisorUrl!;
   }
 
   @override
@@ -250,7 +122,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             Row(
                               children: [
                                 Text(
-                                  widget.question.subject,
+                                  widget.question.subject!,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.0175,
@@ -271,7 +143,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                               ],
                             ),
                             Text(
-                              widget.question.studentClass,
+                              widget.question.questionClass!,
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.015,
@@ -294,7 +166,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         )),
                         Padding(
                           padding: const EdgeInsets.only(right: 10, left: 10),
-                          child: Text(widget.question.questionType,
+                          child: Text(widget.question.questionType!,
                               style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontFamily: 'Inter',
@@ -313,7 +185,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                           left: width * 0.03, top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(widget.question.question,
+                        child: Text(widget.question.question!,
                             style: TextStyle(
                                 color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontFamily: 'Inter',
@@ -471,8 +343,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
-  final List<dynamic> selected;
+  final Question question;
+  final List<Choice> selected;
   final double height;
   final double width;
 
@@ -481,63 +353,54 @@ class ChooseWidget extends StatefulWidget {
 }
 
 class _ChooseWidgetState extends State<ChooseWidget> {
+  // List<int> tempChoiceList=[];
+  // List<int>
+
+  @override
+  void initState() {
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 1; j <= widget.question.choices!.length; j++)
-          GestureDetector(
-            onTap: () {
-              // setState(() {
-              // print("dsfsdf");
-              // print(widget.selected);
-              // if(widget.selected.contains(j)){
-              //   widget.selected.remove(j);
-              //   print("remove");
-              //   print(widget.selected);
-              // }
-              // else{
-              //   widget.selected.add(j);
-              //   print("add");
-              //   print(widget.selected);
-              // }
-              // });
-            },
-            child: Padding(
-              padding: EdgeInsets.only(bottom: widget.height * 0.013),
-              child: Container(
-                  width: widget.width * 0.744,
-                  height: widget.height * 0.0412,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.correctChoice!.contains(j))
-                        ? const Color.fromRGBO(82, 165, 160, 1)
-                        : const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: widget.width * 0.02,
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${widget.question.choices![j - 1]}',
-                            style: TextStyle(
-                              color:
-                                  (widget.question.correctChoice!.contains(j))
-                                      ? const Color.fromRGBO(255, 255, 255, 1)
-                                      : const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
+        for (int j = 0; j < widget.question.choices!.length; j++)
+          Padding(
+            padding: EdgeInsets.only(bottom: widget.height * 0.013),
+            child: Container(
+                width: widget.width * 0.744,
+                height: widget.height * 0.0412,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  border: Border.all(
+                      color: const Color.fromRGBO(209, 209, 209, 1)),
+                  color:
+                  (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                      ? const Color.fromRGBO(82, 165, 160, 1)
+                      : const Color.fromRGBO(255, 255, 255, 1),
+                ),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: widget.width * 0.02,
+                      ),
+                      Expanded(
+                        child: Text(
+                          widget.question.choices![j].choiceText,
+                          style: TextStyle(
+                            color:
+                                (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                                    ? const Color.fromRGBO(255, 255, 255, 1)
+                                    : const Color.fromRGBO(102, 102, 102, 1),
+                            fontSize: widget.height * 0.0162,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                      ])),
-            ),
+                      ),
+                    ])),
           )
       ],
     );

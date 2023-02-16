@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../Entity/demo_question_model.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 class QuestionPrepareProvider extends ChangeNotifier {
-  final List<DemoQuestionModel> _questionList = [];
+  final List<Question> _questionList = [];
 
-  List<DemoQuestionModel> get getAllQuestion => _questionList;
+  List<Question> get getAllQuestion => _questionList;
 
-  void addQuestion(DemoQuestionModel question){
+  void addQuestion(Question question){
     _questionList.add(question);
     notifyListeners();
   }
@@ -22,7 +22,7 @@ class QuestionPrepareProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateQuestionList(int id,DemoQuestionModel demoQuestionModel){
+  void updateQuestionList(int id,Question demoQuestionModel){
     _questionList[id]=demoQuestionModel;
     print("updated");
     notifyListeners();

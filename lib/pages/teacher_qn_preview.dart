@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import '../Components/custom_radio_option.dart';
-import '../Entity/demo_question_model.dart';
-import '../Entity/question_model.dart';
-import '../Entity/question_paper_model.dart';
-import '../Providers/question_num_provider.dart';
+import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import '../Providers/question_prepare_provider.dart';
 import 'teacher_add_my_question_bank.dart';
 import 'teacher_prepare_preview_qnBank.dart';
@@ -17,7 +13,7 @@ class TeacherPreparePreview extends StatefulWidget {
     required this.setLocale,
   });
 
-  final DemoQuestionModel question;
+  final Question question;
   bool? assessment;
   final void Function(Locale locale) setLocale;
   @override
@@ -35,8 +31,8 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question.advice!;
-    urlController.text = widget.question.url!;
+    adviceController.text = widget.question.advisorText!;
+    urlController.text = widget.question.advisorUrl!;
   }
 
   @override
@@ -304,7 +300,7 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final List<dynamic> selected;
   final double height;
   final double width;
@@ -318,7 +314,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 1; j <= widget.question.choices!.length; j++)
+        for (int j = 0; j < widget.question.choices!.length; j++)
           GestureDetector(
             onTap: () {
               // setState(() {
@@ -345,7 +341,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.correctChoice!.contains(j))
+                    color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -358,7 +354,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         Text(
                           '${widget.question.choices![j - 1]}',
                           style: TextStyle(
-                            color: (widget.question.correctChoice!.contains(j))
+                            color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
                                 ? const Color.fromRGBO(255, 255, 255, 1)
                                 : const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: widget.height * 0.0162,

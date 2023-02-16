@@ -6,6 +6,7 @@ import '../DataSource/qna_test_repo.dart';
 import '../Entity/question_paper_model.dart';
 import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
@@ -62,5 +63,8 @@ class QnaService{
     return await QnaTestRepo.createQuestion();
   }
 
+  static Future<GetQuestionBankModel> getQuestionBankMockService() async {
+    return await QnaTestRepo.getQuestionBankMock();
+  }
 
 }

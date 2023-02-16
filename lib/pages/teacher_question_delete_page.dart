@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Entity/demo_question_model.dart';
 import '../Components/custom_radio_option.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'teacher_add_my_question_bank.dart';
@@ -14,7 +14,7 @@ class TeacherQuesDelete extends StatefulWidget {
     required this.setLocale,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
   @override
   TeacherQuesDeleteState createState() => TeacherQuesDeleteState();
@@ -23,7 +23,7 @@ class TeacherQuesDelete extends StatefulWidget {
 class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   late int _count;
   String? _groupValue;
-  List<int?>? selected = [];
+  List<Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -79,7 +79,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
       ),
       onPressed: () {
         Provider.of<QuestionPrepareProvider>(context, listen: false)
-            .deleteQuestionList(widget.question.id);
+            .deleteQuestionList(widget.question.questionId!);
         Navigator.push(
           context,
           PageTransition(
@@ -133,14 +133,14 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
-    subjectController.text = widget.question.subject;
-    topicController.text = widget.question.topic;
-    subtopicController.text = widget.question.subTopic;
-    classRoomController.text = widget.question.studentClass;
-    questionController.text = widget.question.question;
-    urlController.text = widget.question.url!;
-    adviceController.text = widget.question.advice!;
-    selected = widget.question.correctChoice;
+    subjectController.text = widget.question.subject!;
+    topicController.text = widget.question.topic!;
+    subtopicController.text = widget.question.subTopic!;
+    classRoomController.text = widget.question.questionClass!;
+    questionController.text = widget.question.question!;
+    urlController.text = widget.question.advisorUrl!;
+    adviceController.text = widget.question.advisorText!;
+    selected = widget.question.choicesAnswer;
   }
 
   @override
@@ -683,7 +683,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.advice = val;
+                      widget.question.advisorText = val;
                     });
                   },
                 ),
@@ -712,7 +712,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.url = val;
+                      widget.question.advisorUrl = val;
                     });
                   },
                 ),
@@ -746,20 +746,20 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   widget.question.topic = topicController.text;
                                   widget.question.subTopic =
                                       subtopicController.text;
-                                  widget.question.studentClass =
+                                  widget.question.questionClass =
                                       classRoomController.text;
                                   widget.question.question =
                                       questionController.text;
-                                  widget.question.correctChoice = selected;
-                                  widget.question.advice =
+                                  widget.question.choicesAnswer = selected;
+                                  widget.question.advisorText =
                                       adviceController.text;
-                                  widget.question.url = urlController.text;
+                                  widget.question.advisorUrl = urlController.text;
                                   //demoQuestionModel.choices=temp;
                                 });
                                 Provider.of<QuestionPrepareProvider>(context,
                                         listen: false)
                                     .updateQuestionList(
-                                        widget.question.id, widget.question);
+                                        widget.question.questionId!, widget.question);
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -800,8 +800,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
-  final List<int?>? selected;
+  final Question question;
+  final List<Choice>? selected;
   final double height;
   final double width;
 
@@ -818,10 +818,10 @@ class _ChooseWidgetState extends State<ChooseWidget> {
           GestureDetector(
             onTap: () {
               setState(() {
-                if (widget.selected!.contains(j)) {
-                  widget.selected!.remove(j);
+                if (widget.selected!.contains(widget.question.choices![j])) {
+                  widget.selected!.remove(widget.question.choices![j]);
                 } else {
-                  widget.selected!.add(j);
+                  widget.selected!.add(widget.question.choices![j]);
                 }
               });
             },
@@ -834,7 +834,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.correctChoice!.contains(j))
+                    color: (widget.question.choicesAnswer!.contains(j))
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -846,10 +846,10 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         ),
                         Expanded(
                           child: Text(
-                            '${widget.question.choices![j - 1]}',
+                            widget.question.choices![j].choiceText,
                             style: TextStyle(
                               color:
-                                  (widget.question.correctChoice!.contains(j))
+                                  (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
                                       ? const Color.fromRGBO(255, 255, 255, 1)
                                       : const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: widget.height * 0.0162,

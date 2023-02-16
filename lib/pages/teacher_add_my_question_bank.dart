@@ -5,10 +5,8 @@ import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
 
-import '../Components/custom_radio_option.dart';
-import '../Entity/demo_question_model.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 import '../Entity/question_model.dart';
-import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Services/qna_service.dart';
@@ -29,7 +27,7 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
 }
 
 class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
-  List<DemoQuestionModel> quesList = [];
+  List<Question> quesList = [];
 
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
@@ -216,7 +214,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              quesList[0].subject,
+                              quesList[0].subject!,
                               style: TextStyle(
                                   fontSize: height * 0.02,
                                   fontFamily: "Inter",
@@ -244,7 +242,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         child: Row(
                           children: [
                             Text(
-                              quesList[0].topic,
+                              quesList[0].topic!,
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
@@ -266,7 +264,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               width: width * 0.01,
                             ),
                             Text(
-                              quesList[0].subTopic,
+                              quesList[0].subTopic!,
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
@@ -281,7 +279,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            quesList[0].studentClass,
+                            quesList[0].questionClass!,
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -314,7 +312,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           //     itemBuilder: (context, index){
                           //     return
                           //     }),
-                          for (DemoQuestionModel i in quesList)
+                          for (Question i in quesList)
                             QuestionPreview(
                                 height: height,
                                 width: width,
@@ -385,18 +383,18 @@ class QuestionPreview extends StatelessWidget {
 
   final double height;
   final double width;
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
 
   @override
   Widget build(BuildContext context) {
     String answer = '';
     List<String> temp = [];
-    for (int i = 0; i < question.correctChoice!.length; i++) {
-      answer = '${question.choices![i]}';
+    for (int i = 0; i < question.choicesAnswer!.length; i++) {
+      answer = question.choices![i].choiceText;
       int ch = 0;
-      ch = question.correctChoice![i]!;
-      temp.add(question.choices![ch - 1]!);
+      ch = question.choicesAnswer![i].choiceId!;
+      temp.add(question.choices![ch - 1].choiceText!);
       //question.choices[question.correctChoice[i]];
     }
     return Padding(
