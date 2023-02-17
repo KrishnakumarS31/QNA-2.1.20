@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 
 import 'package:qna_test/Pages/settings_languages.dart';
+import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -38,7 +39,7 @@ class SplashScreenState extends State<SplashScreen> {
           PageTransition(
             type: PageTransitionType.rightToLeft,
             child:
-                //ResetPassword()
+                //StudentMemberLoginPage(setLocale: widget.setLocale)
                 WelcomePage(setLocale: widget.setLocale),
           ),
         );

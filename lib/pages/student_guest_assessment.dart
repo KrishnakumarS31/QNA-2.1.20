@@ -396,7 +396,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
                             const Color.fromRGBO(82, 165, 160, 1),
-                            minimumSize: Size(width * 0.77, height * 0.06),
+                            minimumSize: Size(width * 0.27, height * 0.06),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
                             ),

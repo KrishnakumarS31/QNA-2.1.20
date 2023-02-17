@@ -164,9 +164,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     formKey.currentState!.validate();
                                   },
                                   validator: (value) {
-                                    if (value!.isEmpty ||
-                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                            .hasMatch(value)) {
+                                    if (value!.isEmpty || !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(value)) {
                                       return AppLocalizations.of(context)!
                                           .enter_valid_email;
                                     } else {

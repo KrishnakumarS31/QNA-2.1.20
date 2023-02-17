@@ -42,31 +42,30 @@ class StudQuestionState extends State<StudQuestion> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      showModalBottomSheet(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0)),
-          ),
-          context: context,
-          builder: (builder) {
-            return Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              height: MediaQuery.of(context).copyWith().size.height * 0.3025,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).copyWith().size.width * 0.10),
+      if(MediaQuery.of(context).copyWith().size.width > 700){
+        showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0)),
+            ),
+            context: context,
+            builder: (builder) {
+              return Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                height: MediaQuery.of(context).copyWith().size.height * 0.2025,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.026,
+                      MediaQuery.of(context).copyWith().size.height * 0.026,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -79,7 +78,7 @@ class StudQuestionState extends State<StudQuestion> {
                             Icons.close,
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             size: MediaQuery.of(context).copyWith().size.width *
-                                0.055,
+                                0.025,
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -87,72 +86,89 @@ class StudQuestionState extends State<StudQuestion> {
                         ),
                       ),
                     ),
-                    ListTile(
-                      leading: Stack(
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Icon(
-                            Icons.mode_comment_outlined,
-                            color: Color.fromRGBO(255, 153, 0, 1),
-                          ),
-                          Positioned(
-                              left:
-                                  MediaQuery.of(context).copyWith().size.width *
-                                      0.008,
-                              top: MediaQuery.of(context)
-                                      .copyWith()
-                                      .size
-                                      .height *
-                                  0.005,
-                              child: Icon(
-                                Icons.question_mark,
-                                color: const Color.fromRGBO(255, 153, 0, 1),
-                                size: MediaQuery.of(context)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Stack(
+                                children: [
+                                  const Icon(
+                                    Icons.mode_comment_outlined,
+                                    color: Color.fromRGBO(255, 153, 0, 1),
+                                  ),
+                                  Positioned(
+                                      left:
+                                      MediaQuery.of(context).copyWith().size.width *
+                                          0.006,
+                                      top: MediaQuery.of(context)
+                                          .copyWith()
+                                          .size
+                                          .height *
+                                          0.005,
+                                      child: Icon(
+                                        Icons.question_mark,
+                                        color: const Color.fromRGBO(255, 153, 0, 1),
+                                        size: MediaQuery.of(context)
+                                            .copyWith()
+                                            .size
+                                            .height *
+                                            0.02,
+                                      ))
+                                ],
+                              ),
+                              SizedBox(width: MediaQuery.of(context).copyWith().size.width * 0.02,),
+                              Text(
+                                "Not Sure Flag: Press Flag to re-check later",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: MediaQuery.of(context)
                                         .copyWith()
                                         .size
                                         .height *
-                                    0.014,
-                              ))
+                                        0.026)),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.skip_next_outlined,
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                size: MediaQuery.of(context).copyWith().size.height *
+                                    0.046,
+                              ),
+                              SizedBox(width: MediaQuery.of(context).copyWith().size.width * 0.02,),
+                              Text(
+                                "Skip to End of question paper",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: MediaQuery.of(context)
+                                        .copyWith()
+                                        .size
+                                        .height *
+                                        0.026)),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
-                      title: Text(
-                        "Not Sure Flag:\nPress Flag to re-check later",
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
-                                color: const Color.fromRGBO(51, 51, 51, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: MediaQuery.of(context)
-                                        .copyWith()
-                                        .size
-                                        .height *
-                                    0.016)),
-                      ),
-                    ),
-                    ListTile(
-                      leading: Icon(
-                        Icons.skip_next_outlined,
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        size: MediaQuery.of(context).copyWith().size.height *
-                            0.036,
-                      ),
-                      title: Text(
-                        "Skip to End of question paper",
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
-                                color: const Color.fromRGBO(51, 51, 51, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: MediaQuery.of(context)
-                                        .copyWith()
-                                        .size
-                                        .height *
-                                    0.016)),
-                      ),
-                    ),
+
+
+
+
                     const Divider(color: Color.fromRGBO(224, 224, 224, 1)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -161,7 +177,7 @@ class StudQuestionState extends State<StudQuestion> {
                           Icons.square,
                           color: const Color.fromRGBO(188, 191, 8, 1),
                           size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
+                              0.03,
                         ),
                         Text(
                           "  Test",
@@ -169,18 +185,18 @@ class StudQuestionState extends State<StudQuestion> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.026)),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
-                              0.052,
+                              0.1,
                         ),
                         //Image.asset("assets/images/testIcon.png"),
                         // SvgPicture.asset('assets/icons/test.svg'),
@@ -188,7 +204,7 @@ class StudQuestionState extends State<StudQuestion> {
                           Icons.square,
                           color: const Color.fromRGBO(255, 157, 77, 1),
                           size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
+                              0.03,
                         ),
                         Text(
                           "  Practice",
@@ -196,22 +212,194 @@ class StudQuestionState extends State<StudQuestion> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.026)),
                         ),
                       ],
                     ),
                   ],
                 ),
-              ),
-            );
-          });
+              );
+            });
+      }
+      else{
+        showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0)),
+            ),
+            context: context,
+            builder: (builder) {
+              return Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                height: MediaQuery.of(context).copyWith().size.height * 0.3025,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).copyWith().size.width * 0.10),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height:
+                        MediaQuery.of(context).copyWith().size.height * 0.026,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            right: MediaQuery.of(context).copyWith().size.width *
+                                0.055),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.close,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              size: MediaQuery.of(context).copyWith().size.width *
+                                  0.055,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        leading: Stack(
+                          children: [
+                            const Icon(
+                              Icons.mode_comment_outlined,
+                              color: Color.fromRGBO(255, 153, 0, 1),
+                            ),
+                            Positioned(
+                                left:
+                                MediaQuery.of(context).copyWith().size.width *
+                                    0.008,
+                                top: MediaQuery.of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.005,
+                                child: Icon(
+                                  Icons.question_mark,
+                                  color: const Color.fromRGBO(255, 153, 0, 1),
+                                  size: MediaQuery.of(context)
+                                      .copyWith()
+                                      .size
+                                      .height *
+                                      0.014,
+                                ))
+                          ],
+                        ),
+                        title: Text(
+                          "Not Sure Flag:\nPress Flag to re-check later",
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyLarge
+                              ?.merge(TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
+                        ),
+                      ),
+                      ListTile(
+                        leading: Icon(
+                          Icons.skip_next_outlined,
+                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          size: MediaQuery.of(context).copyWith().size.height *
+                              0.036,
+                        ),
+                        title: Text(
+                          "Skip to End of question paper",
+                          style: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyLarge
+                              ?.merge(TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
+                        ),
+                      ),
+                      const Divider(color: Color.fromRGBO(224, 224, 224, 1)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.square,
+                            color: const Color.fromRGBO(188, 191, 8, 1),
+                            size: MediaQuery.of(context).copyWith().size.height *
+                                0.02,
+                          ),
+                          Text(
+                            "  Test",
+                            style: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery.of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).copyWith().size.width *
+                                0.052,
+                          ),
+                          //Image.asset("assets/images/testIcon.png"),
+                          // SvgPicture.asset('assets/icons/test.svg'),
+                          Icon(
+                            Icons.square,
+                            color: const Color.fromRGBO(255, 157, 77, 1),
+                            size: MediaQuery.of(context).copyWith().size.height *
+                                0.02,
+                          ),
+                          Text(
+                            "  Practice",
+                            style: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery.of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            });
+      }
     });
     String start_formatted = formatter.format(now);
     print(start_formatted);
@@ -301,15 +489,17 @@ class StudQuestionState extends State<StudQuestion> {
                             end: Alignment.bottomRight,
                             begin: Alignment.topLeft,
                             colors: [
-                          Color.fromRGBO(82, 165, 160, 1),
-                          Color.fromRGBO(0, 106, 100, 1),
-                        ])),
+                              Color.fromRGBO(82, 165, 160, 1),
+                              Color.fromRGBO(0, 106, 100, 1),
+                            ])),
                   ),
                 ),
               ),
               body: Padding(
                 padding: EdgeInsets.only(
-                    top: height * 0.023, left: width * 0.3, right: width * 0.3),
+                    top: height * 0.023,
+                    left: width * 0.23,
+                    right: width * 0.23),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -322,11 +512,11 @@ class StudQuestionState extends State<StudQuestion> {
                                 .primaryTextTheme
                                 .bodyLarge
                                 ?.merge(TextStyle(
-                                    color:
-                                        const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.02)),
+                                color:
+                                const Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                fontSize: height * 0.03)),
                           ),
                           Padding(
                             padding: EdgeInsets.only(right: height * 0.025),
@@ -335,7 +525,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     color: Colors.black,
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.035)),
+                                    fontSize: height * 0.025)),
                           ),
                         ],
                       ),
@@ -346,14 +536,14 @@ class StudQuestionState extends State<StudQuestion> {
                             for (i = 0; i < tilecount.length; i++)
                               Icon(Icons.remove,
                                   color: Provider.of<Questions>(context,
-                                          listen: false)
+                                      listen: false)
                                       .totalQuestion['${i + 1}'][1])
                           ],
                         ),
                       ),
                       Container(
                         height: height * 0.6675,
-                        width: width * 0.4,
+                        width: width * 0.855,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           boxShadow: [
@@ -372,11 +562,11 @@ class StudQuestionState extends State<StudQuestion> {
                             children: [
                               Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
                                     height: height * 0.0625,
-                                    width: width * 0.1,
+                                    width: width * 0.1277,
                                     child: Center(
                                       child: Text(
                                         "${values.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].questionId}",
@@ -384,11 +574,11 @@ class StudQuestionState extends State<StudQuestion> {
                                             .primaryTextTheme
                                             .bodyLarge
                                             ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: height * 0.025)),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: height * 0.035)),
                                       ),
                                     ),
                                   ),
@@ -400,10 +590,10 @@ class StudQuestionState extends State<StudQuestion> {
                                       color: Color.fromRGBO(28, 78, 80, 1),
                                     ),
                                     height: height * 0.0625,
-                                    width: width * 0.1,
+                                    width: width * 0.1277,
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "${values.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].questionMarks}",
@@ -411,11 +601,11 @@ class StudQuestionState extends State<StudQuestion> {
                                               .primaryTextTheme
                                               .bodyLarge
                                               ?.merge(TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      255, 255, 255, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: height * 0.0237)),
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.0337)),
                                         ),
                                         Text(
                                           " Marks",
@@ -423,11 +613,11 @@ class StudQuestionState extends State<StudQuestion> {
                                               .primaryTextTheme
                                               .bodyLarge
                                               ?.merge(TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      255, 255, 255, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: height * 0.0137)),
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.0237)),
                                         ),
                                       ],
                                     ),
@@ -445,26 +635,28 @@ class StudQuestionState extends State<StudQuestion> {
                                 child: SizedBox(
                                   height: height * 0.16,
                                   width: width * 0.744,
-                                  child: SingleChildScrollView(
-                                    scrollDirection: Axis.vertical,
-                                    child: Text(
-                                      values
-                                          .data!
-                                          .questions[context
-                                                  .watch<QuestionNumProvider>()
-                                                  .questionNum -
-                                              1]
-                                          .question,
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyLarge
-                                          ?.merge(TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  51, 51, 51, 1),
-                                              fontFamily: 'Inter',
-                                              height: height * 0.0020,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.036)),
+                                  child: Scrollbar(
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Text(
+                                        values
+                                            .data!
+                                            .questions[context
+                                            .watch<QuestionNumProvider>()
+                                            .questionNum -
+                                            1]
+                                            .question,
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyLarge
+                                            ?.merge(TextStyle(
+                                            color: const Color.fromRGBO(
+                                                51, 51, 51, 1),
+                                            fontFamily: 'Inter',
+                                            height: height * 0.0020,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.026)),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -474,72 +666,68 @@ class StudQuestionState extends State<StudQuestion> {
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
                                   child: values
-                                              .data!
-                                              .questions[context
-                                                      .watch<
-                                                          QuestionNumProvider>()
-                                                      .questionNum -
-                                                  1]
-                                              .questionType ==
-                                          "descriptive"
+                                      .data!
+                                      .questions[context
+                                      .watch<
+                                      QuestionNumProvider>()
+                                      .questionNum -
+                                      1]
+                                      .questionType ==
+                                      "descriptive"
                                       ? Card(
-                                          color: Colors.white,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: TextField(
-                                              onChanged: (ans) {
-                                                if (ans.isEmpty) {
-                                                  context
-                                                      .read<Questions>()
-                                                      .selectOption(
-                                                          Provider.of<QuestionNumProvider>(
-                                                                  context,
-                                                                  listen: false)
-                                                              .questionNum,
-                                                          selected,
-                                                          const Color.fromRGBO(
-                                                              219, 35, 35, 1),
-                                                          false);
-                                                } else {
-                                                  //selected = [];
-
-                                                  ans = ansController.text
-                                                      .substring(
-                                                          1,
-                                                          ansController
-                                                                  .text.length -
-                                                              1);
-                                                  selected.add(ans);
-                                                  context
-                                                      .read<Questions>()
-                                                      .selectOption(
-                                                          Provider.of<QuestionNumProvider>(
-                                                                  context,
-                                                                  listen: false)
-                                                              .questionNum,
-                                                          selected,
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                          false);
-                                                }
-                                              },
-                                              controller: ansController,
-                                              decoration: const InputDecoration(
-                                                hintText:
-                                                    "Enter your text here",
-                                                border: OutlineInputBorder(
-                                                    borderSide: BorderSide(
-                                                        color: Colors.black54)),
-                                              ),
-                                              maxLines: (height * 0.013)
-                                                  .round(), //or null
-                                            ),
-                                          ))
+                                      color: Colors.white,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: TextField(
+                                          onChanged: (ans) {
+                                            if (ansController
+                                                .text.isEmpty) {
+                                              selected = [];
+                                              context
+                                                  .read<Questions>()
+                                                  .selectOption(
+                                                  Provider.of<QuestionNumProvider>(
+                                                      context,
+                                                      listen: false)
+                                                      .questionNum,
+                                                  selected,
+                                                  const Color.fromRGBO(
+                                                      219, 35, 35, 1),
+                                                  false);
+                                            } else {
+                                              selected = [];
+                                              ans = ansController.text;
+                                              selected.add(ans);
+                                              context
+                                                  .read<Questions>()
+                                                  .selectOption(
+                                                  Provider.of<QuestionNumProvider>(
+                                                      context,
+                                                      listen: false)
+                                                      .questionNum,
+                                                  selected,
+                                                  const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  false);
+                                            }
+                                          },
+                                          controller: ansController,
+                                          decoration: const InputDecoration(
+                                            hintText:
+                                            "Enter your text here",
+                                            border: OutlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: Colors.black54)),
+                                          ),
+                                          maxLines: (height * 0.013)
+                                              .round(), //or null
+                                        ),
+                                      ))
                                       : ChooseWidget(
-                                          question: values,
-                                          selected: selected,
-                                          height: height,
-                                          width: width),
+                                      question: values,
+                                      selected: selected,
+                                      height: height,
+                                      width: width),
                                 ),
                               ),
                               Align(
@@ -552,31 +740,31 @@ class StudQuestionState extends State<StudQuestion> {
                                       GestureDetector(
                                         onTap: () {
                                           if (Provider.of<Questions>(context,
-                                                              listen: false)
-                                                          .totalQuestion[
-                                                      '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                                  [2] ==
+                                              listen: false)
+                                              .totalQuestion[
+                                          '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
+                                          [2] ==
                                               false) {
                                             context.read<Questions>().selectOption(
                                                 Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
+                                                    context,
+                                                    listen: false)
                                                     .questionNum,
                                                 selected,
                                                 const Color.fromRGBO(
                                                     239, 218, 30, 1),
                                                 true);
                                           } else if (Provider.of<Questions>(
-                                                              context,
-                                                              listen: false)
-                                                          .totalQuestion[
-                                                      '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
-                                                  [0] !=
+                                              context,
+                                              listen: false)
+                                              .totalQuestion[
+                                          '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
+                                          [0] !=
                                               []) {
                                             context.read<Questions>().selectOption(
                                                 Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
+                                                    context,
+                                                    listen: false)
                                                     .questionNum,
                                                 selected,
                                                 const Color.fromRGBO(
@@ -585,8 +773,8 @@ class StudQuestionState extends State<StudQuestion> {
                                           } else {
                                             context.read<Questions>().selectOption(
                                                 Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
+                                                    context,
+                                                    listen: false)
                                                     .questionNum,
                                                 selected,
                                                 const Color.fromRGBO(
@@ -595,17 +783,17 @@ class StudQuestionState extends State<StudQuestion> {
                                           }
                                         },
                                         child: Provider.of<Questions>(context,
-                                                        listen: false)
-                                                    .totalQuestion[
-                                                '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
+                                            listen: false)
+                                            .totalQuestion[
+                                        '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
                                             ? NotSureEnabled(
-                                                height: height,
-                                                width: width,
-                                              )
+                                          height: height,
+                                          width: width,
+                                        )
                                             : NotSureDisabled(
-                                                height: height,
-                                                width: width,
-                                              ),
+                                          height: height,
+                                          width: width,
+                                        ),
                                       ),
                                       Text(
                                         "Not Sure",
@@ -613,12 +801,12 @@ class StudQuestionState extends State<StudQuestion> {
                                             .primaryTextTheme
                                             .bodyLarge
                                             ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                height: height * 0.0020,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: height * 0.013)),
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            height: height * 0.0020,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: height * 0.013)),
                                       ),
                                     ],
                                   ),
@@ -640,169 +828,226 @@ class StudQuestionState extends State<StudQuestion> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             context.watch<QuestionNumProvider>().questionNum <=
+                                1
+                                ? IconButton(
+                              icon: Icon(
+                                Icons.arrow_circle_left,
+                                color: const Color.fromRGBO(
+                                    209, 209, 209, 1),
+                                size: height * 0.06,
+                              ),
+                              onPressed: () {},
+                            )
+                                : IconButton(
+                              icon: Icon(
+                                Icons.arrow_circle_left,
+                                color: context
+                                    .watch<QuestionNumProvider>()
+                                    .questionNum ==
                                     1
-                                ? IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_circle_left,
+                                    ? const Color.fromRGBO(
+                                    209, 209, 209, 1)
+                                    : const Color.fromRGBO(
+                                    82, 165, 160, 1),
+                                size: height * 0.06,
+                              ),
+                              onPressed: () {
+                                context
+                                    .read<QuestionNumProvider>()
+                                    .decrement();
+                                if (Provider.of<Questions>(context,
+                                    listen: false)
+                                    .totalQuestion[
+                                '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum + 1}']
+                                [2] ==
+                                    true) {
+                                  context.read<Questions>().selectOption(
+                                      Provider.of<QuestionNumProvider>(
+                                          context,
+                                          listen: false)
+                                          .questionNum +
+                                          1,
+                                      selected,
+                                      const Color.fromRGBO(
+                                          239, 218, 30, 1),
+                                      true);
+                                } else if (selected.isNotEmpty) {
+                                  context.read<Questions>().selectOption(
+                                      Provider.of<QuestionNumProvider>(
+                                          context,
+                                          listen: false)
+                                          .questionNum +
+                                          1,
+                                      selected,
+                                      const Color.fromRGBO(
+                                          82, 165, 160, 1),
+                                      false);
+                                } else {
+                                  context.read<Questions>().selectOption(
+                                      Provider.of<QuestionNumProvider>(
+                                          context,
+                                          listen: false)
+                                          .questionNum +
+                                          1,
+                                      selected,
+                                      const Color.fromRGBO(
+                                          219, 35, 35, 1),
+                                      false);
+                                }
+                              },
+                            ),
+                            tilecount.length ==
+                                Provider.of<Questions>(context,
+                                    listen: false)
+                                    .totalQuestion
+                                    .length
+                                ? tilecount.length ==
+                                context
+                                    .watch<QuestionNumProvider>()
+                                    .questionNum
+                                ? const SizedBox()
+                                : GestureDetector(
+                              onTap: () {
+                                context
+                                    .read<QuestionNumProvider>()
+                                    .skipToEnd(tilecount.length);
+                              },
+                              child: Container(
+                                height: height * 0.0475,
+                                width: width * 0.3,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  const BorderRadius.all(
+                                      Radius.circular(5)),
+                                  border: Border.all(
                                       color: const Color.fromRGBO(
-                                          209, 209, 209, 1),
-                                      size: height * 0.06,
+                                          82, 165, 160, 1)),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.skip_next_outlined,
+                                      color: const Color.fromRGBO(
+                                          82, 165, 160, 1),
+                                      size: height * 0.05,
                                     ),
-                                    onPressed: () {},
-                                  )
-                                : IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_circle_left,
-                                      color: context
-                                                  .watch<QuestionNumProvider>()
-                                                  .questionNum ==
-                                              1
-                                          ? const Color.fromRGBO(
-                                              209, 209, 209, 1)
-                                          : const Color.fromRGBO(
+                                    Text(
+                                      "Skip to end",
+                                      style: Theme.of(context)
+                                          .primaryTextTheme
+                                          .bodyLarge
+                                          ?.merge(TextStyle(
+                                          color: const Color
+                                              .fromRGBO(
                                               82, 165, 160, 1),
-                                      size: height * 0.06,
+                                          fontFamily: 'Inter',
+                                          height: height * 0.0020,
+                                          fontWeight:
+                                          FontWeight.w500,
+                                          fontSize:
+                                          height * 0.015)),
                                     ),
-                                    onPressed: () {
-                                      context
-                                          .read<QuestionNumProvider>()
-                                          .decrement();
-                                      if (Provider.of<Questions>(context,
-                                                          listen: false)
-                                                      .totalQuestion[
-                                                  '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum + 1}']
-                                              [2] ==
-                                          true) {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum +
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                239, 218, 30, 1),
-                                            true);
-                                      } else if (selected.isNotEmpty) {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum +
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            false);
-                                      } else {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum +
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            false);
-                                      }
-                                    },
-                                  ),
+                                  ],
+                                ),
+                              ),
+                            )
+                                : const SizedBox(),
                             context.watch<QuestionNumProvider>().questionNum >=
-                                    values.data!.questions.length
+                                values.data!.questions.length
                                 ? IconButton(
-                                    icon: Icon(
-                                      Icons.arrow_circle_right,
-                                      color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                      size: height * 0.06,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: StudentReviseQuest(
-                                              questions: values,
-                                              userName: widget.userName,
-                                              startTime:
-                                                  now.microsecondsSinceEpoch,
-                                              assessmentID:
-                                                  widget.assessmentId),
-                                        ),
-                                      );
-                                    },
-                                  )
+                              icon: Icon(
+                                Icons.arrow_circle_right,
+                                color:
+                                const Color.fromRGBO(82, 165, 160, 1),
+                                size: height * 0.06,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: StudentReviseQuest(
+                                        questions: values,
+                                        userName: widget.userName,
+                                        startTime:
+                                        now.microsecondsSinceEpoch,
+                                        assessmentID:
+                                        widget.assessmentId),
+                                  ),
+                                );
+                              },
+                            )
                                 : IconButton(
-                                    onPressed: () {
-//print(Provider.of<Questions>(context, listen: false).totalQuestion['11'][0]);
-                                      context
-                                          .read<QuestionNumProvider>()
-                                          .increment();
-                                      if (Provider.of<Questions>(context,
-                                                          listen: false)
-                                                      .totalQuestion[
-                                                  '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}']
-                                              [2] ==
-                                          true) {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum -
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                239, 218, 30, 1),
-                                            true);
-                                      } else if (selected.isNotEmpty) {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum -
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            false);
-                                      } else {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum -
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            false);
-                                      }
-                                      if (tilecount.contains(
-                                          Provider.of<QuestionNumProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .questionNum)) {
-                                      } else {
-                                        tilecount.add(
-                                            Provider.of<QuestionNumProvider>(
-                                                    context,
-                                                    listen: false)
-                                                .questionNum);
-                                      }
-                                    },
-                                    icon: Icon(
-                                      Icons.arrow_circle_right,
-                                      color: context
-                                                  .watch<QuestionNumProvider>()
-                                                  .questionNum ==
-                                              values.data!.questions.length
-                                          ? const Color.fromRGBO(
-                                              209, 209, 209, 1)
-                                          : const Color.fromRGBO(
-                                              82, 165, 160, 1),
-                                      size: height * 0.06,
-                                    )),
+                                onPressed: () {
+                                  context
+                                      .read<QuestionNumProvider>()
+                                      .increment();
+                                  if (Provider.of<Questions>(context,
+                                      listen: false)
+                                      .totalQuestion[
+                                  '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}']
+                                  [2] ==
+                                      true) {
+                                    context.read<Questions>().selectOption(
+                                        Provider.of<QuestionNumProvider>(
+                                            context,
+                                            listen: false)
+                                            .questionNum -
+                                            1,
+                                        selected,
+                                        const Color.fromRGBO(
+                                            239, 218, 30, 1),
+                                        true);
+                                  } else if (selected.isNotEmpty) {
+                                    context.read<Questions>().selectOption(
+                                        Provider.of<QuestionNumProvider>(
+                                            context,
+                                            listen: false)
+                                            .questionNum -
+                                            1,
+                                        selected,
+                                        const Color.fromRGBO(
+                                            82, 165, 160, 1),
+                                        false);
+                                  } else {
+                                    context.read<Questions>().selectOption(
+                                        Provider.of<QuestionNumProvider>(
+                                            context,
+                                            listen: false)
+                                            .questionNum -
+                                            1,
+                                        selected,
+                                        const Color.fromRGBO(
+                                            219, 35, 35, 1),
+                                        false);
+                                  }
+                                  if (tilecount.contains(
+                                      Provider.of<QuestionNumProvider>(
+                                          context,
+                                          listen: false)
+                                          .questionNum)) {
+                                  } else {
+                                    tilecount.add(
+                                        Provider.of<QuestionNumProvider>(
+                                            context,
+                                            listen: false)
+                                            .questionNum);
+                                  }
+                                },
+                                icon: Icon(
+                                  Icons.arrow_circle_right,
+                                  color: context
+                                      .watch<QuestionNumProvider>()
+                                      .questionNum ==
+                                      values.data!.questions.length
+                                      ? const Color.fromRGBO(
+                                      209, 209, 209, 1)
+                                      : const Color.fromRGBO(
+                                      82, 165, 160, 1),
+                                  size: height * 0.06,
+                                )),
                           ],
                         ),
                       )
@@ -1317,6 +1562,51 @@ class StudQuestionState extends State<StudQuestion> {
                                       size: height * 0.06,
                                     ),
                                     onPressed: () {
+                                      // context.read<QuestionNumProvider>().increment();
+                                      // print();
+                                      // if (Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2] == true)
+                                      // {
+                                      //   context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1, selected, const Color.fromRGBO(239, 218, 30, 1), true);
+                                      // }
+                                      // else if (selected.isNotEmpty)
+                                      // {
+                                      //   context.read<Questions>().selectOption(
+                                      //       Provider.of<QuestionNumProvider>(
+                                      //           context,
+                                      //           listen: false)
+                                      //           .questionNum -
+                                      //           1,
+                                      //       selected,
+                                      //       const Color.fromRGBO(
+                                      //           82, 165, 160, 1),
+                                      //       false);
+                                      // }
+                                      // else
+                                      // {
+                                      //   context.read<Questions>().selectOption(
+                                      //       Provider.of<QuestionNumProvider>(
+                                      //           context,
+                                      //           listen: false)
+                                      //           .questionNum -
+                                      //           1,
+                                      //       selected,
+                                      //       const Color.fromRGBO(
+                                      //           219, 35, 35, 1),
+                                      //       false);
+                                      // }
+                                      // if (tilecount.contains(
+                                      //     Provider.of<QuestionNumProvider>(
+                                      //         context,
+                                      //         listen: false)
+                                      //         .questionNum)) {
+                                      // }
+                                      // else {
+                                      //   tilecount.add(
+                                      //       Provider.of<QuestionNumProvider>(
+                                      //           context,
+                                      //           listen: false)
+                                      //           .questionNum);
+                                      // }
                                       Navigator.push(
                                         context,
                                         PageTransition(
@@ -1334,26 +1624,14 @@ class StudQuestionState extends State<StudQuestion> {
                                   )
                                 : IconButton(
                                     onPressed: () {
-                                      context
-                                          .read<QuestionNumProvider>()
-                                          .increment();
-                                      if (Provider.of<Questions>(context,
-                                                          listen: false)
-                                                      .totalQuestion[
-                                                  '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}']
-                                              [2] ==
-                                          true) {
-                                        context.read<Questions>().selectOption(
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum -
-                                                1,
-                                            selected,
-                                            const Color.fromRGBO(
-                                                239, 218, 30, 1),
-                                            true);
-                                      } else if (selected.isNotEmpty) {
+
+                                      context.read<QuestionNumProvider>().increment();
+                                      if (Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2] == true)
+                                      {
+                                        context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1, selected, const Color.fromRGBO(239, 218, 30, 1), true);
+                                      }
+                                      else if (selected.isNotEmpty)
+                                      {
                                         context.read<Questions>().selectOption(
                                             Provider.of<QuestionNumProvider>(
                                                         context,
@@ -1364,7 +1642,9 @@ class StudQuestionState extends State<StudQuestion> {
                                             const Color.fromRGBO(
                                                 82, 165, 160, 1),
                                             false);
-                                      } else {
+                                      }
+                                      else
+                                      {
                                         context.read<Questions>().selectOption(
                                             Provider.of<QuestionNumProvider>(
                                                         context,
@@ -1381,7 +1661,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                   context,
                                                   listen: false)
                                               .questionNum)) {
-                                      } else {
+                                      }
+                                      else {
                                         tilecount.add(
                                             Provider.of<QuestionNumProvider>(
                                                     context,
@@ -1492,10 +1773,10 @@ class ChooseWidget extends StatelessWidget {
             },
             child: Padding(
               padding:
-                  EdgeInsets.only(bottom: height * 0.013, left: height * 0.02),
+                  EdgeInsets.only(bottom: height * 0.013, left: width * 0.05,right: width * 0.05),
               child: Container(
                   width: width * 0.744,
-                  height: height * 0.0412,
+                  height: height * 0.0512,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
@@ -1518,31 +1799,34 @@ class ChooseWidget extends StatelessWidget {
                           width: width * 0.02,
                         ),
                         Expanded(
-                          child: Text(
-                            question
-                                .data!
-                                .questions[context
-                                        .watch<QuestionNumProvider>()
-                                        .questionNum -
-                                    1]
-                                .choices[j - 1]
-                                .choiceText,
-                            style: TextStyle(
-                              color: (selected.contains(question
-                                      .data!
-                                      .questions[
-                                          Provider.of<QuestionNumProvider>(
-                                                      context,
-                                                      listen: false)
-                                                  .questionNum -
-                                              1]
-                                      .choices[j - 1]
-                                      .choiceText))
-                                  ? const Color.fromRGBO(255, 255, 255, 1)
-                                  : const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Text(
+                              question
+                                  .data!
+                                  .questions[context
+                                          .watch<QuestionNumProvider>()
+                                          .questionNum -
+                                      1]
+                                  .choices[j - 1]
+                                  .choiceText,
+                              style: TextStyle(
+                                color: (selected.contains(question
+                                        .data!
+                                        .questions[
+                                            Provider.of<QuestionNumProvider>(
+                                                        context,
+                                                        listen: false)
+                                                    .questionNum -
+                                                1]
+                                        .choices[j - 1]
+                                        .choiceText))
+                                    ? const Color.fromRGBO(255, 255, 255, 1)
+                                    : const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: width>=700?height * 0.0262:height * 0.0162,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                         ),
@@ -1567,16 +1851,17 @@ class NotSureDisabled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      clipBehavior: Clip.none,
       children: [
         Icon(Icons.mode_comment_outlined,
-            color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.03),
+            color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
-            left: width * 0.015,
-            top: height * 0.005,
+            left: width>=700?width * 0.005:width * 0.015,
+            top: width>=700?height * 0.002:height * 0.005,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 153, 0, 1),
-              size: height * 0.016,
+              size: width>=700?height * 0.02:height * 0.016,
             ))
       ],
     );
@@ -1598,14 +1883,14 @@ class NotSureEnabled extends StatelessWidget {
     return Stack(
       children: [
         Icon(Icons.mode_comment_sharp,
-            color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.03),
+            color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
-            left: width * 0.015,
-            top: height * 0.005,
+            left: width>=700?width * 0.005:width * 0.017,
+            top: width>=700?height * 0.002:height * 0.006,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 255, 255, 1),
-              size: height * 0.016,
+              size: width>=700?height * 0.02:height * 0.016,
             ))
       ],
     );
