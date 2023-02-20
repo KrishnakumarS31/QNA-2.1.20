@@ -38,7 +38,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
   void initState() {
     super.initState();
     getData();
-
   }
 
   getData() async {
@@ -72,7 +71,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                 ),
                 backgroundColor: Colors.transparent,
               ),
-              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email),
+              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email,userId: widget.userId),
               body:
               SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
@@ -341,7 +340,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                 ),
                 backgroundColor: Colors.transparent,
               ),
-              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email),
+              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email,userId: widget.userId),
               body:
               SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),

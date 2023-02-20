@@ -463,7 +463,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       child: const Divider(),
                     )),
                     Text(
-                      "View All",
+                      "View More",
                       style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: height * 0.0175,

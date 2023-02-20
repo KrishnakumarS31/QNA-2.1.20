@@ -28,6 +28,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   IconData radioIcon = Icons.radio_button_off_outlined;
   late int _count;
   Question demoQuestionModel = Question();
+  Choice choice=Choice(choiceId: 0, choiceText: '');
   TextEditingController subjectController = TextEditingController();
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -48,8 +49,11 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
 
   addField() {
     setState(() {
+      print("before");
+      print(demoQuestionModel.choices?.length);
       chooses.add(TextEditingController());
       radioList.add(false);
+      print(choice.choiceId);
     });
   }
 
@@ -78,6 +82,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     _count = 0;
     _values = [];
     addField();
+    demoQuestionModel.choices?.add(choice);
+    print("after");
+    print(demoQuestionModel.choices?.length);
   }
 
   @override
@@ -658,7 +665,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       if (radioList[i]) {
                                         selectedTemp.add(demoQuestionModel.choices![i]);
                                       }
-                                      temp.add(demoQuestionModel.choices![i]);
+                                      //temp.add(demoQuestionModel.choices![i]);
                                     }
                                     demoQuestionModel.subject =
                                         subjectController.text;

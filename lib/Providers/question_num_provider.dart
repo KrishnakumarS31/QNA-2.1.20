@@ -46,6 +46,7 @@ class Questions extends ChangeNotifier{
   void selectOption(int quesNum,List<dynamic> option,Color colorFlag,bool notSure){
     _quesAns['${quesNum}'] = [option,colorFlag,notSure];
     print(_quesAns['${quesNum}']);
+    print("vfdbv");
     notifyListeners();
   }
 

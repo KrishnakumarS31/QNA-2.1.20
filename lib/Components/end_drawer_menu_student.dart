@@ -5,6 +5,7 @@ import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Services/qna_service.dart';
 import '../pages/change_email_student.dart';
 import '../pages/cookie_policy.dart';
 import '../pages/privacy_policy_hamburger.dart';
@@ -13,11 +14,12 @@ import '../pages/about_us.dart';
 import '../pages/help_page.dart';
 
 class EndDrawerMenuStudent extends StatefulWidget {
-   EndDrawerMenuStudent({Key? key, required this.setLocale,this.userName, this.email})
+   EndDrawerMenuStudent({Key? key, required this.setLocale,this.userName, this.email,this.userId})
       : super(key: key);
   final void Function(Locale locale) setLocale;
   final String? userName;
    final String? email;
+   int? userId;
 
   @override
   State<EndDrawerMenuStudent> createState() => _EndDrawerMenuStudentState();
@@ -29,6 +31,13 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    userDataModel=await QnaService.getUserDataService(widget.userId);
+    setState((){
+    });
   }
 
 
@@ -37,8 +46,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
     double localHeight = MediaQuery.of(context).size.height;
     double localWidth = MediaQuery.of(context).size.width;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-    print("name: ${widget.userName}");
-    print("email: ${widget.email}");
+    print(userDataModel.data?.countryNationality);
     return Drawer(
       child: Column(
         children: [

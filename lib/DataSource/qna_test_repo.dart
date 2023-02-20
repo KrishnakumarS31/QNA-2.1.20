@@ -335,4 +335,77 @@ class QnaTestRepo {
     return questionBank;
   }
 
+
+  static Future<int> createAssessment() async {
+    int statusCode = 500;
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/assessments'));
+    request.body = json.encode({
+      "user_id": 14,
+      "assessment": {
+        "assessment_type": "test",
+        "assessment_status": "publish",
+        "total_score": 25,
+        "total_questions": 6,
+        "assessment_startDate": 1675971000,
+        "assessment_endDate": 1679686200,
+        "assessment_duration": 30,
+        "subject": "Maths",
+        "topic": "Calculus",
+        "sub_topic": "Chapter 12.2",
+        "class": "Class XII",
+        "assessment_settings": {
+          "allowed_number_of_test_retries": 2,
+          "avalability_for_practice": true,
+          "allow_guest_student": true,
+          "show_solved_answer_sheet_in_advisor": false,
+          "show_advisor_name": false,
+          "show_advisor_email": false,
+          "not_available": false
+        },
+        "questions": [
+          {
+            "question_id": 1,
+            "question_marks": 10
+          },
+          {
+            "question_id": 2,
+            "question_marks": 15
+          },
+          {
+            "question_id": 3,
+            "question_marks": 0
+          },
+          {
+            "question_id": 4,
+            "question_marks": 0
+          },
+          {
+            "question_id": 5,
+            "question_marks": 0
+          },
+          {
+            "question_id": 6,
+            "question_marks": 0
+          }
+        ]
+      }
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return response.statusCode;
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+    return statusCode;
+  }
+
 }

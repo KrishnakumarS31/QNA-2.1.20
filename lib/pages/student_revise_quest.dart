@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
@@ -188,6 +189,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
                                       GestureDetector(
                                         onTap: (){
+                                          print("fwegv");
+                                          print(index);
                                         },
                                         child: Container(
                                             width: localWidth * 0.4,
@@ -294,6 +297,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     for (int index = 2; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
                                       GestureDetector(
                                         onTap: (){
+                                          print("wevfwvf");
+                                          print(index);
                                         },
                                         child: Container(
                                           //decoration: BoxDecoration(border: Border.all()),
@@ -553,6 +558,19 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
                                   GestureDetector(
                                     onTap: (){
+                                      // context
+                                      //     .read<QuestionNumProvider>()
+                                      //     .skipToEnd(3);
+                                      // Navigator.push(
+                                      //   context,
+                                      //   PageTransition(
+                                      //     type: PageTransitionType.rightToLeft,
+                                      //     child: StudQuestion(
+                                      //         assessmentId: "12345678",
+                                      //         ques: values,
+                                      //         userName: widget.userName),
+                                      //   ),
+                                      // );
                                     },
                                     child: Container(
                                       //decoration: BoxDecoration(border: Border.all()),

@@ -125,7 +125,7 @@ class Choice {
     required this.choiceText,
   });
 
-  final int choiceId;
+  int choiceId;
   String choiceText;
 
   @override

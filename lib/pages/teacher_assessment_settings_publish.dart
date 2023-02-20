@@ -8,6 +8,8 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 
+import '../Services/qna_service.dart';
+
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({
     Key? key,
@@ -1324,15 +1326,28 @@ class TeacherAssessmentSettingPublishState
                                               Color.fromRGBO(82, 165, 160, 1),
                                         )),
                                     //shape: StadiumBorder(),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: TeacherPublishedAssessment(
-                                              setLocale: widget.setLocale),
-                                        ),
-                                      );
+                                    onPressed: () async {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return const Center(
+                                                child: CircularProgressIndicator(
+                                                  color: Color.fromRGBO(48, 145, 139, 1),
+                                                ));
+                                          });
+                                      int statusCode = await QnaService.createAssessmentService();
+                                      Navigator.of(context).pop();
+                                      if (statusCode == 200) {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: TeacherPublishedAssessment(
+                                                setLocale: widget.setLocale),
+                                          ),
+                                        );
+                                      }
+
                                     },
                                     child: Text(
                                       'Publish Now',

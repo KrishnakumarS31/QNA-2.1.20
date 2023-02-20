@@ -155,7 +155,7 @@ class QnaRepo {
       'Content-Type': 'application/json'
     };
     var request = http.Request(
-        'POST', Uri.parse('http://18.215.198.141:8082/api/v1/result'));
+        'POST', Uri.parse('https://dev.qnatest.com/api/v1/result'));
     request.body = postAssessmentModelToJson(assessment!);
     request.headers.addAll(headers);
 

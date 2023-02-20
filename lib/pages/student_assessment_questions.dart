@@ -908,9 +908,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 ? const SizedBox()
                                 : GestureDetector(
                               onTap: () {
-                                context
-                                    .read<QuestionNumProvider>()
-                                    .skipToEnd(tilecount.length);
+                                context.read<QuestionNumProvider>().skipToEnd(tilecount.length);
                               },
                               child: Container(
                                 height: height * 0.0475,

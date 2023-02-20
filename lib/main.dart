@@ -67,9 +67,11 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
        home:
-      defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
-          ? WelcomePage(setLocale: setLocale)
-          : SplashScreen(setLocale: setLocale)
+      // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
+      //     ?
+          WelcomePage(setLocale: setLocale)
+        //  :
+       // SplashScreen(setLocale: setLocale)
     );
   }
 

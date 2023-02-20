@@ -67,4 +67,8 @@ class QnaService{
     return await QnaTestRepo.getQuestionBankMock();
   }
 
+  static createAssessmentService() async{
+    return await QnaTestRepo.createAssessment();
+  }
+
 }

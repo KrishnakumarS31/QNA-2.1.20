@@ -251,7 +251,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
 
 
                           Text(
-                          'View All',
+                          'View More',
                           style: TextStyle(
                           color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0187,
@@ -340,10 +340,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-
-
                           Text(
-                            'View All',
+                            'View More',
                             style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.0187,

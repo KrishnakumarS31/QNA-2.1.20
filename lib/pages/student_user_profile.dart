@@ -27,118 +27,13 @@ class StudentUserProfileState extends State<StudentUserProfile> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
-        //     appBar:
-        //     AppBar(
-        //       centerTitle: true,
-        //       toolbarHeight: height * 0.2,
-        //       title: Column(
-        //     children: [
-        //       Column(
-        //         children :  [
-        //           SizedBox(height: height * 0.03),
-        //        Text("USER PROFILE",
-        //       style: TextStyle(
-        //         color: Color.fromRGBO(255, 255, 255, 1),
-        //         fontSize: 18.0,
-        //         fontFamily: "Inter",
-        //         fontWeight: FontWeight.w600,
-        //       ),),
-        //      ],
-        //       ),
-        //      SizedBox(height: height * 0.01),
-        //       Align(
-        //         alignment: Alignment.topLeft,
-        //           //padding: EdgeInsets.only(right: 150),
-        //       child: Row(
-        //         // mainAxisAlignment: MainAxisAlignment.start,
-        //         // crossAxisAlignment: CrossAxisAlignment.start,
-        //         children: [
-        //           // Padding(
-        //           //     padding: EdgeInsets.only(right: width * 0.1),
-        //           //     child:
-        //           //     Row(
-        //                 //children: [
-        //                   Icon(Icons.account_circle_outlined,size: height * 0.08,),
-        //
-        //           Text("${widget.userDataModel.data?.firstName} ${widget.userDataModel.data?.lastName}",
-        //             style: const TextStyle(
-        //               color: Color.fromRGBO(255, 255, 255, 1),
-        //               fontSize: 18.0,
-        //               fontFamily: "Inter",
-        //               fontWeight: FontWeight.w600,
-        //             ),),
-        //                       ])),
-        //
-        //               //   ],
-        //               // )),
-        //           SizedBox(width: width * 0.02,),
-        //           Column(
-        //             mainAxisAlignment: MainAxisAlignment.start,
-        //             children: [
-        //               Text("${widget.userDataModel.data?.firstName}",
-        //                 style: const TextStyle(
-        //                   color: Color.fromRGBO(255, 255, 255, 1),
-        //                   fontSize: 18.0,
-        //                   fontFamily: "Inter",
-        //                   fontWeight: FontWeight.w600,
-        //                 ),),
-        //
-        //               Text("${widget.userDataModel.data?.lastName}",
-        //                 style: const TextStyle(
-        //                   color: Color.fromRGBO(255, 255, 255, 1),
-        //                   fontSize: 18.0,
-        //                   fontFamily: "Inter",
-        //                   fontWeight: FontWeight.w600,
-        //                 ),),
-        //
-        //               Text("${widget.userDataModel.data?.role}",
-        //                 style: const TextStyle(
-        //                   color: Color.fromRGBO(255, 255, 255, 1),
-        //                   fontSize: 18.0,
-        //                   fontFamily: "Inter",
-        //                   fontWeight: FontWeight.w400,
-        //                 ),),
-        //             ],
-        //           ),
-        // ],
-        //     ),
-        //       leading:
-        //         Align(
-        //           alignment: Alignment.topLeft,
-        //           child: Row(
-        //            mainAxisAlignment: MainAxisAlignment.start,
-        //             children: [
-        //               IconButton(
-        //                 icon:const Icon(
-        //                   Icons.chevron_left,
-        //                   size: 40.0,
-        //                   color: Colors.white,
-        //                 ), onPressed: () {
-        //                 Navigator.of(context).pop();
-        //               },
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //
-        //       flexibleSpace: Container(
-        //         decoration: const BoxDecoration(
-        //             gradient: LinearGradient(
-        //                 end: Alignment.topCenter,
-        //                 begin: Alignment.bottomCenter,
-        //                 colors: [Color.fromRGBO(82, 165, 160, 1),Color.fromRGBO(0, 106, 100, 1),])
-        //         ),
-        //
-        //       ),
-        //     ),
         body: Column(
           children: [
             Container(
-              height: height * 0.2,
+              height: height * 0.25,
               decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       end: Alignment.topCenter,
@@ -150,11 +45,11 @@ class StudentUserProfileState extends State<StudentUserProfile> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: height * 0.02,
+                    height: height * 0.05,
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.3,
                         child: IconButton(
                           alignment: Alignment.centerLeft,
@@ -191,7 +86,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         width: width * 0.3,
                         child: Icon(
                           Icons.account_circle_outlined,
@@ -199,39 +94,37 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           color: const Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
-                      Container(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${widget.userDataModel.data?.firstName}',
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontSize: height * 0.02,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${widget.userDataModel.data?.firstName}',
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontSize: height * 0.03,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
                             ),
-                            Text(
-                              '${widget.userDataModel.data?.lastName}',
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontSize: height * 0.02,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
+                          ),
+                          // Text(
+                          //   '${widget.userDataModel.data?.lastName}',
+                          //   style: TextStyle(
+                          //     color: const Color.fromRGBO(255, 255, 255, 1),
+                          //     fontSize: height * 0.02,
+                          //     fontFamily: "Inter",
+                          //     fontWeight: FontWeight.w600,
+                          //   ),
+                          // ),
+                          Text(
+                            '${widget.userDataModel.data?.role}',
+                            style: TextStyle(
+                              color: const Color.fromRGBO(221, 221, 221, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
                             ),
-                            Text(
-                              '${widget.userDataModel.data?.role}',
-                              style: TextStyle(
-                                color: const Color.fromRGBO(221, 221, 221, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       )
                     ],
                   ),
@@ -438,7 +331,6 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        //shape: StadiumBorder(),
                         child: Text('Edit Profile',
                             style: TextStyle(
                                 fontFamily: 'Inter',
