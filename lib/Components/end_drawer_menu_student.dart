@@ -145,6 +145,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     trailing: const Icon(Icons.navigate_next,
                         color: Color.fromRGBO(153, 153, 153, 1)),
                     onTap: () {
+                      print("rfv");
+                      print(userDataModel.data!.password);
                       Navigator.push(
                         context,
                         PageTransition(

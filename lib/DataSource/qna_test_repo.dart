@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 import '../Entity/DataModel.dart';
@@ -8,6 +9,7 @@ import '../Entity/question_paper_model.dart';
 import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
+import '../EntityModel/login_entity.dart';
 
 class QnaTestRepo {
   //Map<String,String> headers = {'Content-Type':'application/json','authorization':'Bearer 9764048494'};
@@ -154,18 +156,28 @@ class QnaTestRepo {
   }
 
   static Future<QuestionPaperModel> getQuestionPaper(assessmentId) async {
-    print("Insisde Question Paper thing");
+    SharedPreferences loginData=await SharedPreferences.getInstance();
     QuestionPaperModel questionPaperModel;
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}'
+    };
     var request = http.Request(
         'GET',
         Uri.parse(
             'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId'));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     //print(response.statusCode);
     //if (response.statusCode == 200) {
-    String value = await response.stream.bytesToString();
 
+    String value = await response.stream.bytesToString();
     questionPaperModel = questionPaperModelFromJson(value);
+    if(response.statusCode == 401){
+    String? email=loginData.getString('email');
+    String? pass=loginData.getString('password');
+    LoginModel loginModel=await logInUser(email!, pass!);
+    getQuestionPaper(assessmentId);
+    }
 
     return questionPaperModel;
     //}
@@ -184,7 +196,7 @@ class QnaTestRepo {
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();
     questionPaperModel = ResponseEntity.fromJson(json.decode(value));
-    print("vjbkfdvfb");
+
     Datum assessment =
         Datum.fromJson(json.decode(questionPaperModel.data.toString()));
     print(assessment.assessment.toString());

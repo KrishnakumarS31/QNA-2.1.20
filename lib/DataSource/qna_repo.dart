@@ -7,9 +7,11 @@ import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../EntityModel/user_data_model.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
 class QnaRepo {
   static logInUser(String email, String password) async {
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
+    SharedPreferences loginData=await SharedPreferences.getInstance();
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
         'POST', Uri.parse('https://dev.qnatest.com/api/v1/users/login'));
@@ -21,6 +23,7 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = loginModelFromJson(temp);
+      loginData.setString('token', loginModel.data.accessToken);
     } else {
       print(response.reasonPhrase);
     }
@@ -48,16 +51,25 @@ class QnaRepo {
   }
 
   static Future<UserDataModel> getUserData(int? userId) async {
+    SharedPreferences loginData=await SharedPreferences.getInstance();
     UserDataModel userData = UserDataModel(code: 0, message: 'message');
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}'
+    };
     var request = http.Request(
         'GET', Uri.parse('https://dev.qnatest.com/api/v1/users/$userId'));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       userData = userDataModelFromJson(temp);
-    } else {
-      print(response.reasonPhrase);
+    }
+    else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!);
+      getUserData(userId);
     }
     return userData;
   }

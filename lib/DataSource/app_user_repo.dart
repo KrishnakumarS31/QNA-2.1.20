@@ -8,7 +8,6 @@ class AppUserRepo {
   Future<int> createUserDetail(AppUser user) async {
     final Database db = await dbConnection.createDatabase();
     int result = await db.insert(dbConnection.appUser, user.toMap());
-    //print(result);
     await db.close();
     return result;
   }

@@ -156,7 +156,7 @@ class TeacherClonedAssessmentPreviewState
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  Container(
+                  SizedBox(
                     height: height * 0.6,
                     width: width * 0.9,
                     child: SingleChildScrollView(
@@ -205,7 +205,7 @@ class TeacherClonedAssessmentPreviewState
                 height: height * 0.03,
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: width * 0.888,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -241,10 +241,10 @@ class TeacherClonedAssessmentPreviewState
                 ),
               ),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.01,
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: width * 0.888,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

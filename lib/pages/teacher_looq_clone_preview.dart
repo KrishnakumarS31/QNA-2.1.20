@@ -210,7 +210,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
         ),
         body: Center(
           child: SizedBox(
-            height: height * 0.81,
+            height: height * 0.83,
             width: width * 0.888,
             child: Card(
                 elevation: 12,

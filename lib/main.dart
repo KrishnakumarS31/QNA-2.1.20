@@ -57,7 +57,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    print(defaultTargetPlatform);
     return MaterialApp(
       locale: _locale,
       debugShowCheckedModeBanner: false,

@@ -3,6 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../DataSource/app_user_repo.dart';
+import '../Entity/app_user.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'forgot_password_email.dart';
@@ -27,10 +31,40 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   final formKey = GlobalKey<FormState>();
   bool agree = false;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+  late SharedPreferences loginData;
+  late bool newUser;
   @override
   void initState() {
     super.initState();
+    check_if_alread_loggedin();
+    //getData();
   }
+
+  void check_if_alread_loggedin()async{
+    loginData=await SharedPreferences.getInstance();
+    newUser=(loginData.getBool('login')??true);
+    if(newUser==false){
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: StudentAssessment(
+            regNumber: regNumber,
+            setLocale: widget.setLocale,
+            userId: loginData.getInt('userId'),
+          ),
+        ),
+      ).then((value) {
+        regNumberController.clear();
+        passWordController.clear();
+      });
+    }
+  }
+  // getData() async {
+  //   AppUser? user = await AppUserRepo().getUserDetail();
+  //   print("Storage");
+  //   print(user?.id);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -628,9 +662,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             color: Color.fromRGBO(82, 165, 160, 1)),
                                       ),
                                       validator: (value) {
-                                        if (value!.isEmpty ||
-                                            !RegExp(r"^[a-zA-Za-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z]+[a-zA-Z]+")
-                                                .hasMatch(value)) {
+                                        if (value!.isEmpty || !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(value)) {
                                           return AppLocalizations.of(context)!
                                               .error_regID;
                                         } else {
@@ -875,6 +907,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               regNumber, passWord);
                                           Navigator.of(context).pop();
                                           if (loginResponse.code == 200) {
+                                            loginData.setBool('login', false);
+                                            loginData.setString('email', regNumber);
+                                            loginData.setString('password', passWord);
+                                            loginData.setString('token', loginResponse.data.accessToken);
+                                            loginData.setInt('userId', loginResponse.data.userId);
                                             Navigator.push(
                                               context,
                                               PageTransition(
