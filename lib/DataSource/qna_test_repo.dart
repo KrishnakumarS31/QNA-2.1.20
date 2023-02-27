@@ -167,9 +167,6 @@ class QnaTestRepo {
             'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    //print(response.statusCode);
-    //if (response.statusCode == 200) {
-
     String value = await response.stream.bytesToString();
     questionPaperModel = questionPaperModelFromJson(value);
     if(response.statusCode == 401){

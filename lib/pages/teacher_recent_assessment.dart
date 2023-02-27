@@ -52,7 +52,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
             "IN PROGRESS",
             style: TextStyle(
@@ -78,9 +78,9 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
         ),
       ),
       body: SingleChildScrollView(
@@ -94,25 +94,21 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: height * 0.01,
+                  height: height * 0.18,
                 ),
                 Center(
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(8.0)),
                       border: Border.all(
                         color: const Color.fromRGBO(217, 217, 217, 1),
                       ),
                       color: Colors.white,
                     ),
-                    height: height * 0.1675,
                     width: width * 0.888,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: height * 0.037,
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(8.0),
@@ -127,7 +123,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   "Maths",
                                   style: TextStyle(
                                     color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: height * 0.02,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w700,
@@ -137,7 +133,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   "  |  Class IX",
                                   style: TextStyle(
                                     color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w400,
@@ -179,24 +175,26 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           children: [
                             Container(
                               decoration: const BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(
-                                    color: Color.fromRGBO(204, 204, 204, 1),
-                                  ),
-                                ),
+                                // borderRadius: BorderRadius.vertical(
+                                //     bottom: Radius.circular(5)),
+                                // border: Border(
+                                //   right: BorderSide(
+                                //     color: Color.fromRGBO(204, 204, 204, 1),
+                                //   ),
+                                // ),
                                 color: Colors.white,
                               ),
                               width: width * 0.44,
                               height: height * 0.0875,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     "50",
                                     style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(28, 78, 80, 1),
+                                      const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.03,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w700,
@@ -215,18 +213,19 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 50, child: VerticalDivider(color: Color.fromRGBO(204, 204, 204, 1))),
                             SizedBox(
-                              width: width * 0.44,
+                              width: width * 0.4,
                               height: height * 0.0875,
                               child: Column(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     "50",
                                     style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(28, 78, 80, 1),
+                                      const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.03,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w700,
@@ -404,81 +403,81 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                 ),
                 additionalDetails
                     ? Container(
-                        height: height * 0.05,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8.0),
-                              topRight: Radius.circular(8.0)),
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: width * 0.02),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Additional Details",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: width * 0.02),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.arrow_circle_up_outlined,
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                  ),
-                                  onPressed: () {
-                                    showAdditionalDetails();
-                                  },
-                                ),
-                              )
-                            ],
+                  height: height * 0.05,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8.0),
+                        topRight: Radius.circular(8.0)),
+                    color: Color.fromRGBO(82, 165, 160, 1),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Additional Details",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.02,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                      )
+                        Padding(
+                          padding: EdgeInsets.only(right: width * 0.02),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_circle_up_outlined,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                            onPressed: () {
+                              showAdditionalDetails();
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
                     : Container(
-                        height: height * 0.05,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(8.0),
-                              topRight: Radius.circular(8.0)),
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.only(left: width * 0.02),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Additional Details",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: width * 0.02),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.arrow_circle_down_outlined,
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                  ),
-                                  onPressed: () {
-                                    showAdditionalDetails();
-                                  },
-                                ),
-                              )
-                            ],
+                  height: height * 0.05,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8.0),
+                        topRight: Radius.circular(8.0)),
+                    color: Color.fromRGBO(82, 165, 160, 1),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Additional Details",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.02,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                      ),
+                        Padding(
+                          padding: EdgeInsets.only(right: width * 0.02),
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.arrow_circle_down_outlined,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                            onPressed: () {
+                              showAdditionalDetails();
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: height * 0.02,
                 ),
@@ -824,7 +823,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color.fromRGBO(255, 255, 255, 1),
+                          const Color.fromRGBO(255, 255, 255, 1),
                           minimumSize: const Size(280, 48),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(39),

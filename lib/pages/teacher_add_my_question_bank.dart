@@ -127,7 +127,6 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   @override
   void initState() {
     super.initState();
-
     quesList = Provider.of<QuestionPrepareProvider>(context, listen: false)
         .getAllQuestion;
   }

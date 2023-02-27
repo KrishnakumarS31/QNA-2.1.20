@@ -9,6 +9,7 @@ import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key, required this.setLocale});
@@ -28,10 +29,33 @@ class TeacherLoginState extends State<TeacherLogin> {
   bool agree = false;
   String name = '';
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+  SharedPreferences? loginData;
+  late bool newUser;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  void check_if_alread_loggedin()async{
+    loginData=await SharedPreferences.getInstance();
+    newUser=(loginData?.getBool('login')??true);
+    if(newUser==false){
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: TeacherSelectionPage(
+            name: name,
+            setLocale: widget.setLocale,
+            userId: loginData?.getInt('userId'),
+          ),
+        ),
+      ).then((value) {
+        emailController.clear();
+        passwordController.clear();
+      });
+    }
   }
 
   getUserDetails() async {}
@@ -404,8 +428,15 @@ class TeacherLoginState extends State<TeacherLogin> {
                             });
                         LoginModel loginResponse =
                             await QnaService.logInUser(regNumber, passWord);
+
                         Navigator.of(context).pop();
                         if (loginResponse.code == 200) {
+                          //print("KOLARU GOPAL-------------------------------------------->");
+                          loginData?.setBool('login', false);
+                          loginData?.setString('email', regNumber);
+                          loginData?.setString('password', passWord);
+                          loginData?.setString('token', loginResponse.data.accessToken);
+                          loginData?.setInt('userId', loginResponse.data.userId);
                           Navigator.push(
                             context,
                             PageTransition(

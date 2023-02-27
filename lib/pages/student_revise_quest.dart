@@ -784,8 +784,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   print(widget.startTime);
                   print(DateTime.now().microsecondsSinceEpoch);
                   int totalMark=0;
-                  assessment.assessmentId=2;
-                  assessment.assessmentCode="12345678";
+                  assessment.assessmentId=1002;
+                  assessment.assessmentCode=widget.assessmentID;
                   assessment.statusId=2;
                   assessment.attemptStartdate=widget.startTime;
                   assessment.attemptEnddate=DateTime.now().microsecondsSinceEpoch;
@@ -841,10 +841,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   else{
                     assessment.assessmentScoreId=values.data!.assessment_score_message[2].assessmentScoreId;
                   }
-                  print(assessment.assessmentScoreId);
 
 
-                  final String assessmentCode = "12345678";
+
+                  const String assessmentCode = "12345678";
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');
                   final DateFormat timeFormatter = DateFormat('hh:mm a');
@@ -861,19 +861,19 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                             ));
                       });
                   LoginModel loginResponse = await QnaService.postAssessmentService(assessment);
-                  // print(loginResponse.message);
-                  // print(loginResponse.code);
                   Navigator.of(context).pop();
                   if (loginResponse.code == 200) {
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child:  StudentResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: assessmentCode,userName: widget.userName),
+                        child:  StudentResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName),
                       ),
                     );
                   }
                   else {
+                    print(loginResponse.code);
+                    print(loginResponse.message);
                     Navigator.push(
                       context,
                       PageTransition(

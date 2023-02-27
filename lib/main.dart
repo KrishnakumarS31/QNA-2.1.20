@@ -11,13 +11,16 @@ import 'Providers/LanguageChangeProvider.dart';
 import 'Providers/question_prepare_provider.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
+import 'Providers/question_prepare_provider_final.dart';
+
 void main() {
   runApp(
     MultiProvider(providers:[
       ChangeNotifierProvider(create: (_)=> QuestionNumProvider(),),
       ChangeNotifierProvider(create: (_)=> Questions(),),
       ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
-      ChangeNotifierProvider(create: (_)=> QuestionPrepareProvider(),)
+      ChangeNotifierProvider(create: (_)=> QuestionPrepareProvider(),),
+      ChangeNotifierProvider(create: (_)=> QuestionPrepareProviderFinal(),)
     ],
     child: MyApp(),
     ),

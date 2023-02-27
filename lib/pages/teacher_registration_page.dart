@@ -1178,8 +1178,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               formKey.currentState!.validate();
                             },
                             validator: (value) {
-                              if (value!.length!=8) {
-                                return 'Enter Minimum 8 Characters';
+                              if (value!.length < 8) {
+                                return "Enter Minimum 8 Characters";
                               } else {
                                 return null;
                               }

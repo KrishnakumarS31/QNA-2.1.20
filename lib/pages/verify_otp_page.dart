@@ -145,7 +145,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                               ),
                               validator: (value) {
                                 if (value!.isEmpty ||
-                                    !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                    !RegExp(r'^\d+$').hasMatch(value)) {
                                   return "Incorrect OTP";
                                 } else {
                                   return null;
@@ -291,7 +291,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       ),
       content: Text(
         msg,
-        style: TextStyle(
+        style: const TextStyle(
             color: Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,

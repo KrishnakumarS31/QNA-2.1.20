@@ -3,16 +3,18 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import '../Providers/question_prepare_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import 'teacher_add_my_question_bank.dart';
 import 'teacher_prepare_preview_qnBank.dart';
-
+import '../EntityModel/create_question_model.dart' as create_question_model;
 class TeacherPreparePreview extends StatefulWidget {
   TeacherPreparePreview({
     this.assessment,
     required this.question,
     required this.setLocale,
+    this.finalQuestion
   });
-
+  create_question_model.Question? finalQuestion;
   final Question question;
   bool? assessment;
   final void Function(Locale locale) setLocale;
@@ -31,8 +33,8 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question.advisorText!;
-    urlController.text = widget.question.advisorUrl!;
+    adviceController.text = widget.finalQuestion!.advisorText!;
+    urlController.text = widget.finalQuestion!.advisorUrl!;
   }
 
   @override
@@ -119,7 +121,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                           left: width * 0.03, top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('${widget.question.questionType}',
+                        child: Text('${widget.finalQuestion!.questionType}',
                             style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
@@ -132,7 +134,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                           left: width * 0.03, top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('${widget.question.question}',
+                        child: Text('${widget.finalQuestion!.question}',
                             style: TextStyle(
                                 color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontFamily: 'Inter',
@@ -151,7 +153,9 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             question: widget.question,
                             selected: selected,
                             height: height,
-                            width: width),
+                            width: width,
+                            finalQuestion: widget.finalQuestion,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -253,6 +257,9 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                         Provider.of<QuestionPrepareProvider>(context,
                                 listen: false)
                             .addQuestion(widget.question);
+                        Provider.of<QuestionPrepareProviderFinal>(context,
+                            listen: false)
+                            .addQuestion(widget.finalQuestion!);
                         Navigator.push(
                           context,
                           PageTransition(
@@ -292,18 +299,20 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
 }
 
 class ChooseWidget extends StatefulWidget {
-  const ChooseWidget({
+  ChooseWidget({
     Key? key,
     required this.question,
     required this.height,
     required this.width,
     required this.selected,
+    this.finalQuestion
   }) : super(key: key);
 
   final Question question;
   final List<dynamic> selected;
   final double height;
   final double width;
+  create_question_model.Question? finalQuestion;
 
   @override
   State<ChooseWidget> createState() => _ChooseWidgetState();
@@ -314,9 +323,10 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 0; j < widget.question.choices!.length; j++)
+        for (int j = 0; j < widget.finalQuestion!.choices!.length; j++)
           GestureDetector(
             onTap: () {
+              print(widget.finalQuestion!.choices![j].rightChoice!);
               // setState(() {
               // print("dsfsdf");
               // print(widget.selected);
@@ -341,7 +351,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                    color: (widget.finalQuestion!.choices![j].rightChoice!)
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -352,9 +362,9 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                           width: widget.width * 0.02,
                         ),
                         Text(
-                          '${widget.question.choices![j - 1]}',
+                          widget.finalQuestion!.choices![j].choiceText!,
                           style: TextStyle(
-                            color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                            color: (widget.finalQuestion!.choices![j].rightChoice!)
                                 ? const Color.fromRGBO(255, 255, 255, 1)
                                 : const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: widget.height * 0.0162,

@@ -4,8 +4,10 @@ import 'package:qna_test/Entity/demo_question_model.dart';
 import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import '../Components/custom_radio_option.dart';
+import '../EntityModel/create_question_model.dart' as create_question_model;
 import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
@@ -24,6 +26,7 @@ class TeacherPrepareQnBank extends StatefulWidget {
 }
 
 class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
+
   String _groupValue = 'MCQ';
   IconData radioIcon = Icons.radio_button_off_outlined;
   late int _count;
@@ -46,14 +49,15 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
   final _formKey = GlobalKey<FormState>();
+  create_question_model.Question finalQuestion=create_question_model.Question();
+  late SharedPreferences loginData;
+  List<create_question_model.Choice> tempChoiceList=[];
 
-  addField() {
+  addField() async {
     setState(() {
-      print("before");
-      print(demoQuestionModel.choices?.length);
+      tempChoiceList.add(create_question_model.Choice(choiceText: '',rightChoice: false));
       chooses.add(TextEditingController());
       radioList.add(false);
-      print(choice.choiceId);
     });
   }
 
@@ -61,6 +65,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     setState(() {
       chooses.removeAt(i);
       radioList.removeAt(i);
+      tempChoiceList.removeAt(i);
     });
   }
 
@@ -71,7 +76,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
         return TeacherPreparePreview(
             question: demoQuestionModel,
             assessment: widget.assessment,
-            setLocale: widget.setLocale);
+            setLocale: widget.setLocale,
+            finalQuestion: finalQuestion
+        );
       },
     );
   }
@@ -83,8 +90,14 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     _values = [];
     addField();
     demoQuestionModel.choices?.add(choice);
-    print("after");
-    print(demoQuestionModel.choices?.length);
+    setData();
+  }
+
+  setData()async {
+    loginData=await SharedPreferences.getInstance();
+    setState(()  {
+      finalQuestion.questionType='mcq';
+    });
   }
 
   @override
@@ -520,6 +533,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
+                                  onChanged: (val){
+                                    tempChoiceList[i].choiceText=val;
+                                  },
                                 ),
                               ),
                               SizedBox(
@@ -659,11 +675,12 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                   onPressed: () {
+
                                     List<Choice> temp = [];
                                     List<Choice> selectedTemp = [];
                                     for (int i = 0; i < chooses.length; i++) {
                                       if (radioList[i]) {
-                                        selectedTemp.add(demoQuestionModel.choices![i]);
+                                        //selectedTemp.add(demoQuestionModel.choices![i]);
                                       }
                                       //temp.add(demoQuestionModel.choices![i]);
                                     }
@@ -690,6 +707,16 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                 listen: false)
                                             .getAllQuestion;
                                     demoQuestionModel.questionId = ques.length;
+
+                                    //---------**************Actual API Integration DATA-------------
+                                    finalQuestion.question=questionController.text;
+                                    finalQuestion.advisorText=adviceController.text;
+                                    finalQuestion.advisorUrl=urlController.text;
+                                    finalQuestion.subject=subjectController.text;
+                                    finalQuestion.topic=topicController.text;
+                                    finalQuestion.subTopic=subtopicController.text;
+                                    finalQuestion.questionClass=classRoomController.text;
+                                    finalQuestion.choices=tempChoiceList;
                                     showQuestionPreview(context);
                                   },
                                   child: const Text("Preview"),
@@ -719,6 +746,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   _onRadioChange(int key) {
     setState(() {
       radioList[key] = !radioList[key];
+      tempChoiceList[key].rightChoice=radioList[key];
     });
   }
 }

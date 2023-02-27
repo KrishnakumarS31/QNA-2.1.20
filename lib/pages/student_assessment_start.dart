@@ -9,9 +9,6 @@ import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 
-
-
-
 class StudentAssessment extends StatefulWidget {
   StudentAssessment({
     Key? key,required this.regNumber, required this.setLocale,this.userId

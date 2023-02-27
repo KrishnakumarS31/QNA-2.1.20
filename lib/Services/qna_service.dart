@@ -7,6 +7,7 @@ import '../Entity/question_paper_model.dart';
 import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
+import '../EntityModel/create_question_model.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
@@ -70,5 +71,10 @@ class QnaService{
   static createAssessmentService() async{
     return await QnaTestRepo.createAssessment();
   }
+
+  static Future<LoginModel> createQuestionTeacherService(CreateQuestionModel question) async {
+    return await QnaRepo.createQuestionTeacher(question);
+  }
+
 
 }

@@ -33,6 +33,8 @@ class PostAssessmentModel {
   int? assessmentScoreId;
   List<AssessmentResult> assessmentResults;
 
+
+
   factory PostAssessmentModel.fromJson(Map<String, dynamic> json) => PostAssessmentModel(
     assessmentId: json["assessment_id"],
     assessmentCode: json["assessment_code"],

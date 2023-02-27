@@ -1250,7 +1250,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               formKey.currentState!.validate();
                             },
                             validator: (value) {
-                              if (value?.length != 8) {
+                              if (value!.length < 8) {
                                 return "Enter Minimum 8 Characters";
                               } else {
                                 return null;
@@ -1343,6 +1343,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               if (studentPasswordController.text !=
                                   studentconfirmPasswordController.text) {
                                 return 'Re-Enter Password';
+                              } else if (value!.isEmpty) {
+                                return 'Enter Confirm Password';
                               } else {
                                 return null;
                               }

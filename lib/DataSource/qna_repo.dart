@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../EntityModel/create_question_model.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
@@ -21,8 +22,10 @@ class QnaRepo {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
+
       String temp = await response.stream.bytesToString();
       loginModel = loginModelFromJson(temp);
+      //print(temp);
       loginData.setString('token', loginModel.data.accessToken);
     } else {
       print(response.reasonPhrase);
@@ -79,7 +82,7 @@ class QnaRepo {
         StaticResponse(code: 0, message: 'Incorrect Email');
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse('http://18.215.198.141:8080/api/v1/forgot-password'));
+        'POST', Uri.parse('https://dev.qnatest.com/api/v1/users/forgot-password'));
     request.body = json.encode({"email": email});
     request.headers.addAll(headers);
 
@@ -161,24 +164,50 @@ class QnaRepo {
   }
 
   static postAssessmentRepo(PostAssessmentModel? assessment) async {
+    SharedPreferences loginData=await SharedPreferences.getInstance();
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
-      'Authorization': 'Bearer 9764048494',
+      'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request(
-        'POST', Uri.parse('https://dev.qnatest.com/api/v1/result'));
+    var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment/result'));
     request.body = postAssessmentModelToJson(assessment!);
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = loginModelFromJson(temp);
-    } else {
+    }
+    else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!);
+      postAssessmentRepo(assessment);
+    }
+    else {
       String temp = await response.stream.bytesToString();
       loginModel = loginModelFromJson(temp);
       return loginModel;
+    }
+    return loginModel;
+  }
+
+  static Future<LoginModel> createQuestionTeacher(CreateQuestionModel question) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    LoginModel loginModel = LoginModel(code: 0, message: 'message');
+    var headers = {
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzcwODEwNTcsInJvbGUiOiJzdHVkZW50IiwidXNlcl9pZCI6MTF9.UkIi7sCyOryLj73ZB79FOzKFx_k3lGXeGbxVU4kj8Rc',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions'));
+    request.body = createQuestionModelToJson(question);
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+      print(response.reasonPhrase);
     }
     return loginModel;
   }

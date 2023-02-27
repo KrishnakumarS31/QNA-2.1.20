@@ -24,18 +24,18 @@ class MyRadioOption<T> extends StatefulWidget {
 class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
   Widget _buildLabel() {
     final bool isSelected = widget.value == widget.groupValue;
+    double height = MediaQuery.of(context).size.height;
     return Container(
-      width: 100,
-      height: 50,
+      width: height * 0.1381,
+      height: height * 0.06,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-        // border: Border.all(
-        //   color: const Color.fromRGBO(82, 165, 160, 1),
-        // ),
         color:
             isSelected ? const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
       ),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
         Icon(widget.icon,
             size: 14,
             color: isSelected
@@ -45,7 +45,6 @@ class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
         Text(
           widget.value.toString(),
           style: TextStyle(
-            //color:  Color.fromRGBO(82, 165, 160, 1),
             color: isSelected
                 ? Colors.white
                 : const Color.fromRGBO(82, 165, 160, 1),
@@ -58,17 +57,12 @@ class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 100,
-      margin: const EdgeInsets.only(right: 11),
-      child: InkWell(
-        onTap: () => widget.onChanged(widget.value),
-        child: Row(
-          children: [
-            _buildLabel(),
-            //const SizedBox(width: 10),
-          ],
-        ),
+    return InkWell(
+      onTap: () => widget.onChanged(widget.value),
+      child: Row(
+        children: [
+          _buildLabel(),
+        ],
       ),
     );
   }
