@@ -7,7 +7,8 @@ import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import 'package:qna_test/pages/teacher_question_preview_delete.dart';
 import '../Entity/demo_question_model.dart';
 import '../Providers/question_prepare_provider.dart';
-
+import '../Providers/question_prepare_provider_final.dart';
+import '../EntityModel/create_question_model.dart' as create_question_model;
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank(
       {Key? key, this.assessment, required this.setLocale})
@@ -21,13 +22,13 @@ class TeacherMyQuestionBank extends StatefulWidget {
 }
 
 class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
-  List<Question> quesList = [];
+  List<create_question_model.Question> quesList = [];
 
   @override
   void initState() {
     super.initState();
 
-    quesList = Provider.of<QuestionPrepareProvider>(context, listen: false)
+     quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
         .getAllQuestion;
   }
 
@@ -186,7 +187,7 @@ class QuestionPreview extends StatelessWidget {
 
   final double height;
   final double width;
-  final Question question;
+  final create_question_model.Question question;
   final int index;
   final bool? assessment;
   final void Function(Locale locale) setLocale;
@@ -194,8 +195,10 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 0; i < question.choicesAnswer!.length; i++) {
-      answer = '$answer ${question.choices![i].choiceText}';
+    for (int i = 0; i < question.choices!.length; i++) {
+      if(question.choices![i].rightChoice!) {
+        answer = '$answer ${question.choices![i].choiceText}';
+      }
       //question.choices[question.correctChoice[i]];
     }
     return GestureDetector(

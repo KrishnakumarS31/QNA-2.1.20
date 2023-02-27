@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/EntityModel/login_entity.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
 import '../Entity/question_model.dart';
 import '../Providers/question_num_provider.dart';
 import '../Providers/question_prepare_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'teacher_prepare_preview_qnBank.dart';
+
+import '../EntityModel/create_question_model.dart' as create_question_model;
 
 class TeacherAddMyQuestionBank extends StatefulWidget {
   const TeacherAddMyQuestionBank({
@@ -28,6 +32,7 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
 
 class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   List<Question> quesList = [];
+  List<create_question_model.Question> finalQuesList = [];
 
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
@@ -78,9 +83,13 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                 color: Color.fromRGBO(48, 145, 139, 1),
               ));
             });
-        int statusCode = await QnaService.createQuestionService();
+        create_question_model.CreateQuestionModel createQuestionModel=create_question_model.CreateQuestionModel();
+        createQuestionModel.questions=finalQuesList;
+        SharedPreferences loginData=await SharedPreferences.getInstance();
+        createQuestionModel.authorId=loginData.getInt('userId');
+        LoginModel statusCode = await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
-        if (statusCode == 200) {
+        if (statusCode.code == 200) {
           Navigator.push(
             context,
             PageTransition(
@@ -129,6 +138,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
     super.initState();
     quesList = Provider.of<QuestionPrepareProvider>(context, listen: false)
         .getAllQuestion;
+    finalQuesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
   }
 
   @override
@@ -213,7 +223,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              quesList[0].subject!,
+                              finalQuesList[0].subject!,
                               style: TextStyle(
                                   fontSize: height * 0.02,
                                   fontFamily: "Inter",
@@ -241,7 +251,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         child: Row(
                           children: [
                             Text(
-                              quesList[0].topic!,
+                              finalQuesList[0].topic!,
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
@@ -263,7 +273,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               width: width * 0.01,
                             ),
                             Text(
-                              quesList[0].subTopic!,
+                              finalQuesList[0].subTopic!,
                               style: TextStyle(
                                   fontSize: height * 0.0175,
                                   fontFamily: "Inter",
@@ -278,7 +288,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            quesList[0].questionClass!,
+                            finalQuesList[0].questionClass!,
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -311,11 +321,12 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           //     itemBuilder: (context, index){
                           //     return
                           //     }),
-                          for (Question i in quesList)
+                            for(int i =0;i<finalQuesList.length;i++)
                             QuestionPreview(
                                 height: height,
                                 width: width,
-                                question: i,
+                                question: finalQuesList[i],
+                                quesNum: i,
                                 setLocale: widget.setLocale),
                         ],
                       ),
@@ -377,24 +388,24 @@ class QuestionPreview extends StatelessWidget {
     required this.height,
     required this.width,
     required this.question,
+    required this.quesNum,
     required this.setLocale,
   }) : super(key: key);
 
   final double height;
+  final int quesNum;
   final double width;
-  final Question question;
+  final create_question_model.Question question;
   final void Function(Locale locale) setLocale;
 
   @override
   Widget build(BuildContext context) {
     String answer = '';
     List<String> temp = [];
-    for (int i = 0; i < question.choicesAnswer!.length; i++) {
-      answer = question.choices![i].choiceText;
-      int ch = 0;
-      ch = question.choicesAnswer![i].choiceId!;
-      temp.add(question.choices![ch - 1].choiceText!);
-      //question.choices[question.correctChoice[i]];
+    for (int i = 0; i < question.choices!.length; i++) {
+      if(question.choices![i].rightChoice!){
+        temp.add(question.choices![i].choiceText!);
+      }
     }
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -422,7 +433,9 @@ class QuestionPreview extends StatelessWidget {
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
                           child: TeacherQuesDelete(
-                              question: question, setLocale: setLocale),
+                              setLocale: setLocale,
+                            quesNum: quesNum,
+                            finalQuestion: question,),
                         ),
                       );
                     },

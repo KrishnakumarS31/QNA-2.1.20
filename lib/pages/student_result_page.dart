@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_Advisor.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import 'package:flutter/foundation.dart';
 import '../Entity/question_paper_model.dart';
+import 'package:intl/intl.dart';
 
 class StudentResultPage extends StatefulWidget {
   const StudentResultPage(
@@ -13,7 +14,7 @@ class StudentResultPage extends StatefulWidget {
       required this.time,
       required this.questions,
       required this.assessmentCode,
-      required this.userName})
+      required this.userName, required this.endTime})
       : super(key: key);
   final int totalMarks;
   final QuestionPaperModel questions;
@@ -21,6 +22,7 @@ class StudentResultPage extends StatefulWidget {
   final String time;
   final String userName;
   final String assessmentCode;
+  final DateFormat endTime;
 
   @override
   StudentResultPageState createState() => StudentResultPageState();
@@ -240,7 +242,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     fontWeight: FontWeight.w500,
                                     fontSize: localHeight * 0.022)),
                             const SizedBox(width: 25.0),
-                            Text('05:23',
+                            Text(widget.endTime.locale,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
@@ -404,10 +406,11 @@ class StudentResultPageState extends State<StudentResultPage> {
                 ),
                 Positioned(
                   top: localHeight * 0.15,
-                  left: localHeight * 0.050,
+                  left: localHeight * 0.030,
+                  right: localHeight * 0.030,
                   child: SizedBox(
                     height: localHeight * 0.60,
-                    width: localWidth * 0.8,
+                    width: localWidth * 1,
                     child: Card(
                       elevation: 12,
                       child: Column(children: [
@@ -480,7 +483,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     fontWeight: FontWeight.w500,
                                     fontSize: localHeight * 0.022)),
                             const SizedBox(width: 25.0),
-                            Text('05:23',
+                            Text(widget.endTime.toString(),
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',

@@ -350,7 +350,8 @@ class QnaTestRepo {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('POST', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/assessments'));
+    var request = http.Request('POST',Uri.parse('https://dev.qnatest.com/api/v1/assessment'));
+        //Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/assessments'));
     request.body = json.encode({
       "user_id": 14,
       "assessment": {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
+import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 
@@ -290,7 +291,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                 ],
               ),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.01,
               ),
               Center(
                 child: SizedBox(
@@ -307,13 +308,13 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       ),
                     ),
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: const TeacherClonedAssessmentPreview(),
-                      //   ),
-                      // );
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child:  TeacherClonedAssessmentPreview(setLocale: widget.setLocale),
+                        ),
+                      );
                     },
                     child: Text(
                       'Save Assessment',
@@ -327,7 +328,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                 ),
               ),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.01,
               ),
               Center(
                 child: SizedBox(

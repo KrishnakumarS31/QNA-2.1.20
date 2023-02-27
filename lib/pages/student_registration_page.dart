@@ -587,7 +587,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              padding: const EdgeInsets.only(left: 5, top: 7),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   border: Border.all(

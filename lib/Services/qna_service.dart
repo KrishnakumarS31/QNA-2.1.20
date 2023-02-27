@@ -69,7 +69,7 @@ class QnaService{
   }
 
   static createAssessmentService() async{
-    return await QnaTestRepo.createAssessment();
+    return await QnaRepo.createAssessment();
   }
 
   static Future<LoginModel> createQuestionTeacherService(CreateQuestionModel question) async {

@@ -8,6 +8,8 @@ import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../Services/qna_service.dart';
+
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
     Key? key,
@@ -845,22 +847,35 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       BorderRadius.circular(39),
                                                 ),
                                               ),
-                                              onPressed: () {
+                                              onPressed: () async {
                                                 bool valid = formKey
                                                     .currentState!
                                                     .validate();
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return const Center(
+                                                          child: CircularProgressIndicator(
+                                                            color: Color.fromRGBO(48, 145, 139, 1),
+                                                          ));
+                                                    });
                                                 if (valid) {
-                                                  Navigator.push(
-                                                    context,
-                                                    PageTransition(
-                                                      type: PageTransitionType
-                                                          .rightToLeft,
-                                                      child:
-                                                          TeacherCreateAssessment(
-                                                              setLocale: widget
-                                                                  .setLocale),
-                                                    ),
-                                                  );
+                                                  int statusCode = await QnaService
+                                                      .createAssessmentService();
+                                                  Navigator.of(context).pop();
+                                                  if (statusCode == 200) {
+                                                    Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .rightToLeft,
+                                                        child:
+                                                        TeacherCreateAssessment(
+                                                            setLocale: widget
+                                                                .setLocale),
+                                                      ),
+                                                    );
+                                                  }
                                                 }
                                               },
                                               child: Text(

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
+import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import '../Entity/demo_question_model.dart';
 import '../Providers/question_prepare_provider.dart';
 import 'teacher_prepare_preview_qnBank.dart';
+import '../EntityModel/create_question_model.dart' as create_question_model;
 
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   TeacherQuestionPreviewDelete(
@@ -14,7 +16,7 @@ class TeacherQuestionPreviewDelete extends StatefulWidget {
       required this.index,
       required this.setLocale});
 
-  final Question question;
+  final create_question_model.Question question;
   final int index;
   final bool? assessment;
   final void Function(Locale locale) setLocale;
@@ -30,7 +32,7 @@ class TeacherQuestionPreviewDeleteState
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
 
-  List<dynamic> selected = [];
+  List<create_question_model.Choice> selected = [];
 
   @override
   void initState() {
@@ -222,12 +224,14 @@ class TeacherQuestionPreviewDeleteState
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
+                        Question ques=Question();
                         Navigator.push(
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
                             child: PreparePreviewQnBank(
-                                question: widget.question,
+                              finalQuestion: widget.question,
+                                question: ques,
                                 setLocale: widget.setLocale),
                           ),
                         );
@@ -254,7 +258,7 @@ class TeacherQuestionPreviewDeleteState
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-                        Provider.of<QuestionPrepareProvider>(context,
+                        Provider.of<QuestionPrepareProviderFinal>(context,
                                 listen: false)
                             .deleteQuestionList(widget.index);
                         Navigator.push(
@@ -304,8 +308,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final Question question;
-  final List<dynamic> selected;
+  final create_question_model.Question question;
+  final List<create_question_model.Choice> selected;
   final double height;
   final double width;
 
@@ -345,7 +349,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                    color: (widget.question.choices![j].rightChoice!)
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -356,9 +360,9 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                           width: widget.width * 0.02,
                         ),
                         Text(
-                          '${widget.question.choices![j - 1]}',
+                          '${widget.question.choices![j].choiceText}',
                           style: TextStyle(
-                            color: (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                            color: (widget.question.choices![j].rightChoice!)
                                 ? const Color.fromRGBO(255, 255, 255, 1)
                                 : const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: widget.height * 0.0162,

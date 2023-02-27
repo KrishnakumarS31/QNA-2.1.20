@@ -433,6 +433,8 @@ class StudQuestionState extends State<StudQuestion> {
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
+    DateFormat Endtime = DateFormat("$hours:$minutes");
+        //"$hours:$minutes:$seconds";
     int i;
     //print(Provider.of<Questions>(context, listen: false).totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0]);
     // setState(() {
@@ -962,11 +964,13 @@ class StudQuestionState extends State<StudQuestion> {
                                 size: height * 0.06,
                               ),
                               onPressed: () {
+                                print("$hours:$minutes:$seconds");
                                 Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
                                     child: StudentReviseQuest(
+                                        endTime: Endtime,
                                         questions: values,
                                         userName: widget.userName,
                                         startTime:
@@ -1605,11 +1609,15 @@ class StudQuestionState extends State<StudQuestion> {
                                       //           listen: false)
                                       //           .questionNum);
                                       // }
+                                      print(Endtime.add_Hm());
+                                      print(Endtime.pattern?.contains("00:00"));
+                                      print("Dfvbfdbfdb");
                                       Navigator.push(
                                         context,
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: StudentReviseQuest(
+                                              endTime: Endtime,
                                               questions: values,
                                               userName: widget.userName,
                                               startTime:

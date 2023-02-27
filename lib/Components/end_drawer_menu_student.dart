@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/reset_password_student.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Pages/student_member_login_page.dart';
 import '../Services/qna_service.dart';
 import '../pages/change_email_student.dart';
 import '../pages/cookie_policy.dart';
@@ -12,7 +14,7 @@ import '../pages/privacy_policy_hamburger.dart';
 import '../pages/terms_of_services.dart';
 import '../pages/about_us.dart';
 import '../pages/help_page.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 class EndDrawerMenuStudent extends StatefulWidget {
    EndDrawerMenuStudent({Key? key, required this.setLocale,this.userName, this.email,this.userId})
       : super(key: key);
@@ -44,7 +46,6 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   @override
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
-    double localWidth = MediaQuery.of(context).size.width;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     print(userDataModel.data?.countryNationality);
     return Drawer(
@@ -373,7 +374,44 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                           letterSpacing: -0.02,
                           fontSize: 16),
                     ),
-                    onTap: () async {}),
+                    onTap: () async {
+                      print("dfdfb");
+                      showDialog(
+                          context: context,
+                          builder: (ctx) =>
+                       AlertDialog(
+                        title: const Text('Do you want to exit this application?'),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: const Text('No'),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            onPressed: () async {
+                              SharedPreferences preferences = await SharedPreferences.getInstance();
+                              await preferences.clear();
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child:
+                                  StudentMemberLoginPage(setLocale: widget.setLocale),
+                                ),
+                              );
+                            },
+                            child: const Text('Yes'),
+                          ),
+                        ],
+                      ));
+                    },),
                 SizedBox(height: localHeight * 0.03),
                 const Align(
                   alignment: Alignment.center,

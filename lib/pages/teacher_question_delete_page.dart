@@ -5,16 +5,21 @@ import '../Components/custom_radio_option.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import 'teacher_add_my_question_bank.dart';
-
+import '../EntityModel/create_question_model.dart' as create_question_model;
 class TeacherQuesDelete extends StatefulWidget {
   const TeacherQuesDelete({
     Key? key,
-    required this.question,
+    this.question,
+    required this.quesNum,
+    required this.finalQuestion,
     required this.setLocale,
   }) : super(key: key);
 
-  final Question question;
+  final Question? question;
+  final int quesNum;
+  final create_question_model.Question finalQuestion;
   final void Function(Locale locale) setLocale;
   @override
   TeacherQuesDeleteState createState() => TeacherQuesDeleteState();
@@ -23,7 +28,7 @@ class TeacherQuesDelete extends StatefulWidget {
 class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   late int _count;
   String? _groupValue;
-  List<Choice>? selected = [];
+  List<create_question_model.Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -35,6 +40,30 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
+  }
+
+  final List<TextEditingController> chooses = [];
+  final List<bool> radioList = [];
+  final _formKey = GlobalKey<FormState>();
+
+  _onRadioChange(int key) {
+    setState(() {
+      radioList[key] = !radioList[key];
+    });
+  }
+
+  addField() {
+    setState(() {
+      chooses.add(TextEditingController());
+      radioList.add(false);
+    });
+  }
+
+  removeItem(i) {
+    setState(() {
+      chooses.removeAt(i);
+      radioList.removeAt(i);
+    });
   }
 
   showAlertDialog(BuildContext context, double height) {
@@ -78,8 +107,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        Provider.of<QuestionPrepareProvider>(context, listen: false)
-            .deleteQuestionList(widget.question.questionId!);
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+            .deleteQuestionList(widget.quesNum!);
         Navigator.push(
           context,
           PageTransition(
@@ -132,15 +161,23 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   @override
   void initState() {
     super.initState();
-    _groupValue = widget.question.questionType;
-    subjectController.text = widget.question.subject!;
-    topicController.text = widget.question.topic!;
-    subtopicController.text = widget.question.subTopic!;
-    classRoomController.text = widget.question.questionClass!;
-    questionController.text = widget.question.question!;
-    urlController.text = widget.question.advisorUrl!;
-    adviceController.text = widget.question.advisorText!;
-    selected = widget.question.choicesAnswer;
+    _groupValue = widget.finalQuestion!.questionType;
+    subjectController.text = widget.finalQuestion!.subject!;
+    topicController.text = widget.finalQuestion!.topic!;
+    subtopicController.text = widget.finalQuestion!.subTopic!;
+    classRoomController.text = widget.finalQuestion!.questionClass!;
+    questionController.text = widget.finalQuestion!.question!;
+    urlController.text = widget.finalQuestion!.advisorUrl!;
+    adviceController.text = widget.finalQuestion!.advisorText!;
+    selected = widget.finalQuestion!.choices;
+    for (int i = 0; i < widget.finalQuestion!.choices!.length; i++) {
+      chooses.add(TextEditingController());
+      chooses[i].text = widget.finalQuestion!.choices![i]!.choiceText!;
+      radioList.add(false);
+      if (widget.finalQuestion!.choices![i].rightChoice!) {
+        radioList[i] = true;
+      }
+    }
   }
 
   @override
@@ -246,34 +283,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             ),
                             onPressed: () {
                               showAlertDialog(context, height);
-                              // showDialog(
-                              //     context: context,
-                              //     builder: (context) {
-                              //       Future.delayed(Duration(seconds: 1), () {
-                              //         Navigator.of(context).pop(true);
-                              //         Navigator.push(
-                              //           context,
-                              //           PageTransition(
-                              //             type: PageTransitionType.rightToLeft,
-                              //             child: TeacherAddMyQuestionBank(question: widget.question,),
-                              //           ),
-                              //         );
-                              //       });
-                              //       return AlertDialog(
-                              //         backgroundColor: const Color.fromRGBO(28, 78, 80, 1),
-                              //         title: Text(
-                              //           "Selected Question/s Deleted",
-                              //           style: TextStyle(
-                              //             color: const Color.fromRGBO(255, 255, 255, 1),
-                              //             fontSize: height * 0.018,
-                              //             fontFamily: "Inter",
-                              //             fontWeight: FontWeight.w500,
-                              //           ),
-                              //         ),
-                              //       );
-                              //     });
 
-                              //Navigator.of(context).pop;
                             },
                           ),
                           Text(
@@ -578,7 +588,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         ),
                         onChanged: (val) {
                           setState(() {
-                            widget.question.question = val;
+                            widget.finalQuestion.question = val;
                           });
                         },
                       ),
@@ -616,17 +626,78 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                   ],
                 ),
                 SizedBox(height: height * 0.010),
-                ChooseWidget(
-                    question: widget.question,
-                    selected: selected,
-                    height: height,
-                    width: width),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      for (int i = 0; i < chooses.length; i++)
+                        Padding(
+                          padding: EdgeInsets.only(bottom: height * 0.02),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: chooses[i],
+                                  style: TextStyle(
+                                      color:
+                                      const Color.fromRGBO(82, 165, 160, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: height * 0.018),
+                                  keyboardType: TextInputType.text,
+                                  decoration: InputDecoration(
+                                    floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                    hintStyle: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 0.3),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: height * 0.02),
+                                    hintText: "Type Option Here",
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(5)),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  _onRadioChange(i);
+                                },
+                                icon: Icon(
+                                  //radioIcon,
+                                  radioList[i]
+                                      ? Icons.radio_button_checked_outlined
+                                      : Icons.radio_button_unchecked_outlined,
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.03,
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  removeItem(i);
+                                },
+                                icon: const Icon(
+                                  //radioIcon,
+                                  Icons.delete_outline,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                    ],
+                  ),
+                ),
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   TextButton(
                     onPressed: () {
-                      setState(() {
-                        _count++;
-                      });
+                      addField();
                     },
                     child: Text(
                       "Add more choice",
@@ -683,7 +754,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.advisorText = val;
+                      widget.finalQuestion.advisorText = val;
                     });
                   },
                 ),
@@ -712,7 +783,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                   ),
                   onChanged: (val) {
                     setState(() {
-                      widget.question.advisorUrl = val;
+                      widget.finalQuestion.advisorUrl = val;
                     });
                   },
                 ),
@@ -741,32 +812,35 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  widget.question.subject =
+                                  List<create_question_model.Choice> temp = [];
+                                  for (int i = 0; i < chooses.length; i++) {
+                                    create_question_model.Choice ch=create_question_model.Choice();
+                                    temp.add(ch);
+                                    temp[i].choiceText=chooses[i].text;
+                                    temp[i].rightChoice=false;
+                                    if (radioList[i]) {
+                                      temp[i].rightChoice=radioList[i];
+                                    }
+                                  }
+                                  widget.finalQuestion.subject =
                                       subjectController.text;
-                                  widget.question.topic = topicController.text;
-                                  widget.question.subTopic =
+                                  widget.finalQuestion.topic = topicController.text;
+                                  widget.finalQuestion.subTopic =
                                       subtopicController.text;
-                                  widget.question.questionClass =
+                                  widget.finalQuestion.questionClass =
                                       classRoomController.text;
-                                  widget.question.question =
+                                  widget.finalQuestion.question =
                                       questionController.text;
-                                  widget.question.choicesAnswer = selected;
-                                  widget.question.advisorText =
+                                  widget.finalQuestion.choices = selected;
+                                  widget.finalQuestion.advisorText =
                                       adviceController.text;
-                                  widget.question.advisorUrl = urlController.text;
-                                  //demoQuestionModel.choices=temp;
+                                  widget.finalQuestion.advisorUrl = urlController.text;
+                                  widget.finalQuestion?.choices = temp;
                                 });
-                                Provider.of<QuestionPrepareProvider>(context,
+                                Provider.of<QuestionPrepareProviderFinal>(context,
                                         listen: false)
                                     .updateQuestionList(
-                                        widget.question.questionId!, widget.question);
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child:  TeacherPreparePreview(question: widget.question,),
-                                //   ),
-                                // );
+                                        widget.quesNum, widget.finalQuestion);
                                 Navigator.of(context).pop();
                               },
                               child: const Text("Save"),
@@ -800,8 +874,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final Question question;
-  final List<Choice>? selected;
+  final create_question_model.Question question;
+  final List<create_question_model.Choice>? selected;
   final double height;
   final double width;
 
@@ -814,14 +888,14 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 1; j <= widget.question.choices!.length; j++)
+        for (int j = 0; j < widget.question.choices!.length; j++)
           GestureDetector(
             onTap: () {
               setState(() {
-                if (widget.selected!.contains(widget.question.choices![j])) {
-                  widget.selected!.remove(widget.question.choices![j]);
+                if (widget.question.choices![j].rightChoice!) {
+                  widget.question.choices![j].rightChoice=false;
                 } else {
-                  widget.selected!.add(widget.question.choices![j]);
+                  widget.question.choices![j].rightChoice=true;
                 }
               });
             },
@@ -834,7 +908,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.choicesAnswer!.contains(j))
+                    color: (widget.question.choices![j].rightChoice!)
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -846,10 +920,10 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         ),
                         Expanded(
                           child: Text(
-                            widget.question.choices![j].choiceText,
+                            widget.question.choices![j].choiceText!,
                             style: TextStyle(
                               color:
-                                  (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                                  (widget.question.choices![j].rightChoice!)
                                       ? const Color.fromRGBO(255, 255, 255, 1)
                                       : const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: widget.height * 0.0162,

@@ -196,7 +196,7 @@ class QnaRepo {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NzcwODEwNTcsInJvbGUiOiJzdHVkZW50IiwidXNlcl9pZCI6MTF9.UkIi7sCyOryLj73ZB79FOzKFx_k3lGXeGbxVU4kj8Rc',
+      'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
     var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions'));
@@ -204,11 +204,72 @@ class QnaRepo {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      String temp = await response.stream.bytesToString();
+      loginModel = loginModelFromJson(temp);
+    }
+    else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!);
+      createQuestionTeacher(question);
     }
     else {
       print(response.reasonPhrase);
     }
     return loginModel;
   }
+
+  static Future<int> createAssessment() async {
+    int statusCode = 500;
+    SharedPreferences loginData=await SharedPreferences.getInstance();
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('POST',Uri.parse('https://dev.qnatest.com/api/v1/assessment'));
+    request.body = json.encode({
+      "user_id": 14,
+      "assessment_type": "test",
+      "assessment_status": "publish",
+      "total_score": 0,
+      "total_questions": 0,
+      "assessment_startdate": 1648229877,
+      "assessment_enddate": 1648233477,
+      "assessment_duration": 1800,
+      "subject": "Math",
+      "topic": "sum",
+      "sub_topic": "Solving equations",
+      "class": "10th",
+      "assessment_settings":
+      {
+        "allowed_number_of_test_retries": 0,
+        "avalability_for_practice": true,
+        "allow_guest_student": false,
+        "show_solved_answer_sheet_in_advisor": false,
+        "show_advisor_name": true,
+        "show_advisor_email": true,
+        "not_available": false
+      },
+      "questions": [
+        {
+          "question_id": 6,
+          "question_marks": 5
+        }
+      ]
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return response.statusCode;
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+
+    return statusCode;
+  }
+
 }

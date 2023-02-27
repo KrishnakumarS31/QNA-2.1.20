@@ -3,23 +3,25 @@ import 'package:page_transition/page_transition.dart';
 import '../Components/custom_radio_option.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
 import 'teacher_qn_preview.dart';
-
+import '../EntityModel/create_question_model.dart' as create_question_model;
 class PreparePreviewQnBank extends StatefulWidget {
-  const PreparePreviewQnBank({
+  PreparePreviewQnBank({
     Key? key,
     required this.question,
     required this.setLocale,
+    this.finalQuestion
   }) : super(key: key);
 
   final Question question;
   final void Function(Locale locale) setLocale;
+  create_question_model.Question? finalQuestion;
   @override
   PreparePreviewQnBankState createState() => PreparePreviewQnBankState();
 }
 
 class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
-  String? _groupValue;
-  List<Choice>? selected = [];
+  late String _groupValue;
+  List<create_question_model.Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -59,21 +61,21 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   @override
   void initState() {
     super.initState();
-    _groupValue = widget.question.questionType;
-    subjectController.text = widget.question.subject!;
-    topicController.text = widget.question.topic!;
-    subtopicController.text = widget.question.subTopic!;
-    classRoomController.text = widget.question.questionClass!;
-    questionController.text = widget.question.question!;
-    urlController.text = widget.question.advisorUrl!;
-    adviceController.text = widget.question.advisorText!;
-    selected = widget.question.choicesAnswer;
-    for (int i = 0; i < widget.question.choices!.length; i++) {
+    _groupValue = widget.finalQuestion!.questionType!;
+    subjectController.text = widget.finalQuestion!.subject!;
+    topicController.text = widget.finalQuestion!.topic!;
+    subtopicController.text = widget.finalQuestion!.subTopic!;
+    classRoomController.text = widget.finalQuestion!.questionClass!;
+    questionController.text = widget.finalQuestion!.question!;
+    urlController.text = widget.finalQuestion!.advisorUrl!;
+    adviceController.text = widget.finalQuestion!.advisorText!;
+    selected = widget.finalQuestion!.choices;
+    for (int i = 0; i < widget.finalQuestion!.choices!.length; i++) {
       chooses.add(TextEditingController());
-      chooses[i].text = widget.question.choices![i]!.choiceText;
+      chooses[i].text = widget.finalQuestion!.choices![i]!.choiceText!;
       radioList.add(false);
-      if (widget.question.choicesAnswer!.contains(widget.question.choices![i])) {
-        radioList[i - 1] = true;
+      if (widget.finalQuestion!.choices![i].rightChoice!) {
+        radioList[i] = true;
       }
     }
   }
@@ -723,28 +725,29 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  List<Choice> temp = [];
-                                  List<Choice> selectedTemp = [];
+                                  List<create_question_model.Choice> temp = [];
                                   for (int i = 0; i < chooses.length; i++) {
+                                    create_question_model.Choice ch=create_question_model.Choice();
+                                    temp.add(ch);
+                                    temp[i].choiceText=chooses[i].text;
+                                    temp[i].rightChoice=false;
                                     if (radioList[i]) {
-                                      selectedTemp.add(widget.question.choices![i]);
+                                      temp[i].rightChoice=radioList[i];
                                     }
-                                    temp.add(widget.question.choices![i]);
                                   }
-                                  widget.question.subject =
+                                  widget.finalQuestion?.subject =
                                       subjectController.text;
-                                  widget.question.topic = topicController.text;
-                                  widget.question.subTopic =
+                                  widget.finalQuestion?.topic = topicController.text;
+                                  widget.finalQuestion?.subTopic =
                                       subtopicController.text;
-                                  widget.question.questionClass =
+                                  widget.finalQuestion?.questionClass =
                                       classRoomController.text;
-                                  widget.question.question =
+                                  widget.finalQuestion?.question =
                                       questionController.text;
-                                  widget.question.choicesAnswer = selectedTemp;
-                                  widget.question.advisorText =
+                                  widget.finalQuestion?.advisorText =
                                       adviceController.text;
-                                  widget.question.advisorUrl = urlController.text;
-                                  widget.question.choices = temp;
+                                  widget.finalQuestion?.advisorUrl = urlController.text;
+                                  widget.finalQuestion?.choices = temp;
                                 });
 
                                 Navigator.push(
@@ -752,6 +755,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
                                     child: TeacherPreparePreview(
+                                      finalQuestion: widget.finalQuestion,
                                         question: widget.question,
                                         setLocale: widget.setLocale),
                                   ),

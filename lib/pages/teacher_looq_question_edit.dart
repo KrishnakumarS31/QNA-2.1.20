@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/Pages/teacher_looq_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
+import '../Providers/question_prepare_provider_final.dart';
 class LooqQuestionEdit extends StatefulWidget {
   const LooqQuestionEdit({
     Key? key,
@@ -91,6 +95,97 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
       builder: (BuildContext context) {
         return TeacherLooqPreview(
             question: widget.question, setLocale: widget.setLocale);
+      },
+    );
+  }
+  showAlertDialog(BuildContext context, double height) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        // Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+        //     .deleteQuestionList(widget.question.questionId!);
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
+        //   ),
+        // );
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Are you sure you want to delete this Question?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
       },
     );
   }
@@ -184,35 +279,64 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.clear_sharp,
-                      size: height * 0.028,
-                      color: const Color.fromRGBO(28, 78, 80, 1),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          icon: const Icon(
+                            Icons.delete,
+                            size: 30,
+                            color: Color.fromRGBO(28, 78, 80, 1),
+                          ),
+                          onPressed: () {
+                            showAlertDialog(context, height);
+
+                          },
+                        ),
+                        Text(
+                          "Delete",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.018,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
-                    onPressed: () {
-                      setState(() {
-                        subjectController.text = '';
-                        topicController.text = '';
-                        subtopicController.text = '';
-                        classRoomController.text = '';
-                        questionController.text = '';
-                        urlController.text = '';
-                        adviceController.text = '';
-                      });
-                    },
-                  ),
-                  Text(
-                    "Clear All",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.018,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  )
-                ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.clear_sharp,
+                          size: height * 0.028,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            subjectController.text = '';
+                            topicController.text = '';
+                            subtopicController.text = '';
+                            classRoomController.text = '';
+                            questionController.text = '';
+                            urlController.text = '';
+                            adviceController.text = '';
+                          });
+                        },
+                      ),
+                      Text(
+                        "Clear All",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: height * 0.018,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                    ]),
+                  ],
+                ),
                 SizedBox(height: height * 0.001),
                 Container(
                   margin: const EdgeInsets.all(5),

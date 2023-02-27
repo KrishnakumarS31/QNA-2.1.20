@@ -35,6 +35,7 @@ class TeacherLoginState extends State<TeacherLogin> {
   @override
   void initState() {
     super.initState();
+    check_if_alread_loggedin();
   }
 
   void check_if_alread_loggedin()async{

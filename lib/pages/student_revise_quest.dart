@@ -14,11 +14,12 @@ import '../Services/qna_service.dart';
 import 'student_result_page.dart';
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
-    required this.questions, required this.userName, required this.assessmentID,required this.startTime
+    required this.questions, required this.userName, required this.assessmentID,required this.startTime, required this.endTime
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
   final int startTime;
+  final DateFormat endTime;
   final String assessmentID;
 
 
@@ -867,7 +868,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child:  StudentResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName),
+                        child:  StudentResultPage(endTime: widget.endTime,totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName),
                       ),
                     );
                   }

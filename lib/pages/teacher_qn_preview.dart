@@ -228,7 +228,8 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             type: PageTransitionType.rightToLeft,
                             child: PreparePreviewQnBank(
                                 question: widget.question,
-                                setLocale: widget.setLocale),
+                                setLocale: widget.setLocale,
+                            finalQuestion: widget.finalQuestion,),
                           ),
                         );
                       },
@@ -254,12 +255,8 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-                        Provider.of<QuestionPrepareProvider>(context,
-                                listen: false)
-                            .addQuestion(widget.question);
-                        Provider.of<QuestionPrepareProviderFinal>(context,
-                            listen: false)
-                            .addQuestion(widget.finalQuestion!);
+                        Provider.of<QuestionPrepareProvider>(context, listen: false).addQuestion(widget.question);
+                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.finalQuestion!);
                         Navigator.push(
                           context,
                           PageTransition(
