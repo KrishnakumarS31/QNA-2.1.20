@@ -9,6 +9,7 @@ import '../Entity/demo_question_model.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
+import '../Services/qna_service.dart';
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank(
       {Key? key, this.assessment, required this.setLocale})
@@ -139,7 +140,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                   ),
                 ),
                 //shape: StadiumBorder(),
-                onPressed: () {
+                onPressed: () async {
                   if (true == widget.assessment) {
                     Navigator.push(
                       context,
@@ -150,11 +151,12 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       ),
                     );
                   } else {
+                    GetQuestionBankModel questionBank=await QnaService.getQuestionBankMockService();
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherQuestionBank(setLocale: widget.setLocale),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale, quesList: questionBank.data!.questions,),
                       ),
                     );
                   }

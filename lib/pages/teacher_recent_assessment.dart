@@ -111,8 +111,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         Container(
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(8.0),
-                                topRight: Radius.circular(8.0)),
+                                topLeft: Radius.circular(1.0),
+                                topRight: Radius.circular(1.0)),
                             color: Color.fromRGBO(82, 165, 160, 1),
                           ),
                           child: Padding(

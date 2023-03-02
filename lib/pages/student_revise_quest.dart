@@ -41,9 +41,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
       List<dynamic> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
-        if(widget.questions.data!.questions[j-1].questionType=='mcq'){
-          selectedAnswers.add(widget.questions.data!.questions[j-1].choices[t].choiceText);
-          print(widget.questions.data!.questions[j-1].choices[t].choiceText);
+        if(widget.questions.data!.questions![j-1].questionType=='mcq'){
+          selectedAnswers.add(widget.questions.data!.questions![j-1].choices![t].choiceText);
         }
         else{
           String temp='';
@@ -205,7 +204,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Row(children: [
-                                                      Text("Q${values.data!.questions[index-1].questionId}",
+                                                      Text("Q${values.data!.questions![index-1].questionId}",
                                                           style: TextStyle(
                                                               color: const Color.fromRGBO(
                                                                   82, 165, 160, 1),
@@ -214,7 +213,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                               fontSize: localHeight * 0.022)),
                                                       SizedBox(width: localHeight * 0.010),
                                                       Text(
-                                                        "(${values.data!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                                        "(${values.data!.questions![index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                                         style: TextStyle(
                                                             color: const Color.fromRGBO(
                                                                 179, 179, 179, 1),
@@ -239,7 +238,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                           : SizedBox(width: localHeight * 0.010),
                                                     ]),
                                                     SizedBox(height: localHeight * 0.010),
-                                                    Text(values.data!.questions[index-1].question,
+                                                    Text(values.data!.questions![index-1].question!,
                                                       textAlign: TextAlign.start,
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
@@ -312,7 +311,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Row(children: [
-                                                      Text("Q${values.data!.questions[index-1].questionId}",
+                                                      Text("Q${values.data!.questions![index-1].questionId}",
                                                           style: TextStyle(
                                                               color: const Color.fromRGBO(
                                                                   82, 165, 160, 1),
@@ -321,7 +320,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                               fontSize: localHeight * 0.022)),
                                                       SizedBox(width: localHeight * 0.010),
                                                       Text(
-                                                        "(${values.data!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                                        "(${values.data!.questions![index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                                         style: TextStyle(
                                                             color: const Color.fromRGBO(
                                                                 179, 179, 179, 1),
@@ -346,7 +345,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                           : SizedBox(width: localHeight * 0.010),
                                                     ]),
                                                     SizedBox(height: localHeight * 0.010),
-                                                    Text(values.data!.questions[index-1].question,
+                                                    Text(values.data!.questions![index-1].question!,
                                                       textAlign: TextAlign.start,
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
@@ -584,7 +583,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Row(children: [
-                                                  Text("Q${values.data!.questions[index-1].questionId}",
+                                                  Text("Q${values.data!.questions![index-1].questionId}",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               82, 165, 160, 1),
@@ -593,7 +592,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                           fontSize: localHeight * 0.012)),
                                                   SizedBox(width: localHeight * 0.010),
                                                   Text(
-                                                    "(${values.data!.questions[index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                                    "(${values.data!.questions![index-1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             179, 179, 179, 1),
@@ -618,7 +617,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                       : SizedBox(width: localHeight * 0.010),
                                                 ]),
                                                 SizedBox(height: localHeight * 0.010),
-                                                Text(values.data!.questions[index-1].question,
+                                                Text(values.data!.questions![index-1].question!,
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       color: const Color.fromRGBO(
@@ -798,13 +797,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
                     List<int> selectedAnsId=[];
                     AssessmentResult quesResult=AssessmentResult();
-                    quesResult.questionId=values.data!.questions[j-1].questionId;
+                    quesResult.questionId=values.data!.questions![j-1].questionId;
                     quesResult.statusId=6;
-                    quesResult.questionTypeId=values.data!.questions[j-1].questionTypeId;
+                    quesResult.questionTypeId=values.data!.questions![j-1].questionTypeId;
                     quesResult.marks=0;
                     List<dynamic> correctAns=[];
-                    for(int i=0;i<values.data!.questions[j-1].choices_answer.length;i++){
-                      correctAns.add(values.data!.questions[j-1].choices_answer[i].choiceText);
+                    for(int i=0;i<values.data!.questions![j-1].choicesAnswer!.length;i++){
+                      correctAns.add(values.data!.questions![j-1].choicesAnswer![i].choiceText);
                     }
                     correctAns.sort();
                     List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
@@ -812,10 +811,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
                     List<int> key=[];
                     List<String> value=[];
-                    for(int s=0;s<values.data!.questions[j-1].choices.length;s++)
+                    for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
                     {
-                      key.add(values.data!.questions[j-1].choices[s].choiceId);
-                      value.add(values.data!.questions[j-1].choices[s].choiceText);
+                      key.add(values.data!.questions![j-1].choices![s].choiceId!);
+                      value.add(values.data!.questions![j-1].choices![s].choiceText!);
                     }
                     Map<int, String> map = Map.fromIterables(key, value);
                     for(int f=0;f<selectedAns.length;f++){
@@ -824,28 +823,24 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     quesResult.selectedQuestionChoice=selectedAnsId;
 
                     if(listEquals(correctAns, selectedAns)){
-                      quesResult.marks=values.data!.questions[j-1].questionMarks;
-                      totalMark=totalMark+values.data!.questions[j-1].questionMarks;
+                      quesResult.marks=values.data!.questions![j-1].questionMarks;
+                      totalMark=totalMark+values.data!.questions![j-1].questionMarks!;
                       ansCorrect++;
                     }
                     assessment.assessmentResults?.add(quesResult);
                   }
                   assessment.attemptScore=totalMark;
-                  int percent=((ansCorrect/values.data!.questions.length) * 100).round();
-                  if(percent<=values.data!.assessment_score_message[0].assessment_percent){
-                    assessment.assessmentScoreId=values.data!.assessment_score_message[0].assessmentScoreId;
+                  int percent=((ansCorrect/values.data!.questions!.length) * 100).round();
+                  if(percent<=values.data!.assessmentScoreMessage![0].assessmentPercent!){
+                    assessment.assessmentScoreId=values.data!.assessmentScoreMessage![0].assessmentScoreId;
                   }
-                  else if(percent<=values.data!.assessment_score_message[1].assessment_percent)
+                  else if(percent<=values.data!.assessmentScoreMessage![1].assessmentPercent!)
                     {
-                      assessment.assessmentScoreId=values.data!.assessment_score_message[1].assessmentScoreId;
+                      assessment.assessmentScoreId=values.data!.assessmentScoreMessage![1].assessmentScoreId;
                     }
                   else{
-                    assessment.assessmentScoreId=values.data!.assessment_score_message[2].assessmentScoreId;
+                    assessment.assessmentScoreId=values.data!.assessmentScoreMessage![2].assessmentScoreId;
                   }
-
-
-
-                  const String assessmentCode = "12345678";
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');
                   final DateFormat timeFormatter = DateFormat('hh:mm a');
@@ -861,7 +856,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   48, 145, 139, 1),
                             ));
                       });
-                  LoginModel loginResponse = await QnaService.postAssessmentService(assessment);
+                  LoginModel loginResponse = await QnaService.postAssessmentService(assessment,values);
                   Navigator.of(context).pop();
                   if (loginResponse.code == 200) {
                     Navigator.push(

@@ -402,9 +402,8 @@ class StudQuestionState extends State<StudQuestion> {
       }
     });
     String start_formatted = formatter.format(now);
-    print(start_formatted);
     values = widget.ques;
-    context.read<Questions>().createQuesAns(values.data!.questions.length);
+    context.read<Questions>().createQuesAns(values.data!.questions!.length);
     context.read<QuestionNumProvider>().reset();
 
     countdownTimer =
@@ -474,10 +473,10 @@ class StudQuestionState extends State<StudQuestion> {
                   ),
                 ),
                 flexibleSpace: Banner(
-                  color: values.data!.assessment_type_id == 'test'
+                  color: values.data!.assessmentType == 'test'
                       ? const Color.fromRGBO(188, 191, 8, 1)
                       : const Color.fromRGBO(255, 157, 77, 1),
-                  message: values.data!.assessment_type_id,
+                  message: values.data!.assessmentType!,
                   textStyle: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.015,
@@ -509,7 +508,7 @@ class StudQuestionState extends State<StudQuestion> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions.length}",
+                            "Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyLarge
@@ -571,7 +570,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     width: width * 0.1277,
                                     child: Center(
                                       child: Text(
-                                        "${values.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].questionId}",
+                                        "${context.watch<QuestionNumProvider>().questionNum}",
                                         style: Theme.of(context)
                                             .primaryTextTheme
                                             .bodyLarge
@@ -598,7 +597,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "${values.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].questionMarks}",
+                                          "${values.data!.questions![context.watch<QuestionNumProvider>().questionNum - 1].questionMarks}",
                                           style: Theme.of(context)
                                               .primaryTextTheme
                                               .bodyLarge
@@ -643,11 +642,11 @@ class StudQuestionState extends State<StudQuestion> {
                                       child: Text(
                                         values
                                             .data!
-                                            .questions[context
+                                            .questions![context
                                             .watch<QuestionNumProvider>()
                                             .questionNum -
                                             1]
-                                            .question,
+                                            .question!,
                                         style: Theme.of(context)
                                             .primaryTextTheme
                                             .bodyLarge
@@ -669,7 +668,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   scrollDirection: Axis.vertical,
                                   child: values
                                       .data!
-                                      .questions[context
+                                      .questions![context
                                       .watch<
                                       QuestionNumProvider>()
                                       .questionNum -
@@ -955,7 +954,7 @@ class StudQuestionState extends State<StudQuestion> {
                             )
                                 : const SizedBox(),
                             context.watch<QuestionNumProvider>().questionNum >=
-                                values.data!.questions.length
+                                values.data!.questions!.length
                                 ? IconButton(
                               icon: Icon(
                                 Icons.arrow_circle_right,
@@ -1043,7 +1042,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   color: context
                                       .watch<QuestionNumProvider>()
                                       .questionNum ==
-                                      values.data!.questions.length
+                                      values.data!.questions!.length
                                       ? const Color.fromRGBO(
                                       209, 209, 209, 1)
                                       : const Color.fromRGBO(
@@ -1072,10 +1071,10 @@ class StudQuestionState extends State<StudQuestion> {
                   ),
                 ),
                 flexibleSpace: Banner(
-                  color: values.data!.assessment_type_id == 'test'
+                  color: values.data!.assessmentType == 'test'
                       ? const Color.fromRGBO(188, 191, 8, 1)
                       : const Color.fromRGBO(255, 157, 77, 1),
-                  message: values.data!.assessment_type_id,
+                  message: values.data!.assessmentType!,
                   textStyle: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.015,
@@ -1107,7 +1106,7 @@ class StudQuestionState extends State<StudQuestion> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions.length}",
+                            "Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyLarge
@@ -1169,7 +1168,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     width: width * 0.2277,
                                     child: Center(
                                       child: Text(
-                                        "${values.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].questionId}",
+                                        "${context.watch<QuestionNumProvider>().questionNum}",
                                         style: Theme.of(context)
                                             .primaryTextTheme
                                             .bodyLarge
@@ -1196,7 +1195,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          "${values.data!.questions[context.watch<QuestionNumProvider>().questionNum - 1].questionMarks}",
+                                          "${values.data!.questions![context.watch<QuestionNumProvider>().questionNum - 1].questionMarks}",
                                           style: Theme.of(context)
                                               .primaryTextTheme
                                               .bodyLarge
@@ -1240,11 +1239,11 @@ class StudQuestionState extends State<StudQuestion> {
                                     child: Text(
                                       values
                                           .data!
-                                          .questions[context
+                                          .questions![context
                                                   .watch<QuestionNumProvider>()
                                                   .questionNum -
                                               1]
-                                          .question,
+                                          .question!,
                                       style: Theme.of(context)
                                           .primaryTextTheme
                                           .bodyLarge
@@ -1265,7 +1264,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   scrollDirection: Axis.vertical,
                                   child: values
                                               .data!
-                                              .questions[context
+                                              .questions![context
                                                       .watch<
                                                           QuestionNumProvider>()
                                                       .questionNum -
@@ -1555,7 +1554,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       )
                                 : const SizedBox(),
                             context.watch<QuestionNumProvider>().questionNum >=
-                                    values.data!.questions.length
+                                    values.data!.questions!.length
                                 ? IconButton(
                                     icon: Icon(
                                       Icons.arrow_circle_right,
@@ -1681,7 +1680,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       color: context
                                                   .watch<QuestionNumProvider>()
                                                   .questionNum ==
-                                              values.data!.questions.length
+                                              values.data!.questions!.length
                                           ? const Color.fromRGBO(
                                               209, 209, 209, 1)
                                           : const Color.fromRGBO(
@@ -1721,28 +1720,28 @@ class ChooseWidget extends StatelessWidget {
             j <=
                 question
                     .data!
-                    .questions[
+                    .questions![
                         context.watch<QuestionNumProvider>().questionNum - 1]
-                    .choices
+                    .choices!
                     .length;
             j++)
           GestureDetector(
             onTap: () {
               if (selected.contains(question
                   .data!
-                  .questions[
+                  .questions![
                       Provider.of<QuestionNumProvider>(context, listen: false)
                               .questionNum -
                           1]
-                  .choices[j - 1]
+                  .choices![j - 1]
                   .choiceText)) {
                 selected.remove(question
                     .data!
-                    .questions[
+                    .questions![
                         Provider.of<QuestionNumProvider>(context, listen: false)
                                 .questionNum -
                             1]
-                    .choices[j - 1]
+                    .choices![j - 1]
                     .choiceText);
                 if (selected.isEmpty) {
                   context.read<Questions>().selectOption(
@@ -1762,11 +1761,11 @@ class ChooseWidget extends StatelessWidget {
               } else {
                 selected.add(question
                     .data!
-                    .questions[
+                    .questions![
                         Provider.of<QuestionNumProvider>(context, listen: false)
                                 .questionNum -
                             1]
-                    .choices[j - 1]
+                    .choices![j - 1]
                     .choiceText);
                 //print(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText);
                 context.read<Questions>().selectOption(
@@ -1789,11 +1788,11 @@ class ChooseWidget extends StatelessWidget {
                         color: const Color.fromRGBO(209, 209, 209, 1)),
                     color: (selected.contains(question
                             .data!
-                            .questions[Provider.of<QuestionNumProvider>(context,
+                            .questions![Provider.of<QuestionNumProvider>(context,
                                         listen: false)
                                     .questionNum -
                                 1]
-                            .choices[j - 1]
+                            .choices![j - 1]
                             .choiceText))
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
@@ -1810,22 +1809,22 @@ class ChooseWidget extends StatelessWidget {
                             child: Text(
                               question
                                   .data!
-                                  .questions[context
+                                  .questions![context
                                           .watch<QuestionNumProvider>()
                                           .questionNum -
                                       1]
-                                  .choices[j - 1]
-                                  .choiceText,
+                                  .choices![j - 1]
+                                  .choiceText!,
                               style: TextStyle(
                                 color: (selected.contains(question
                                         .data!
-                                        .questions[
+                                        .questions![
                                             Provider.of<QuestionNumProvider>(
                                                         context,
                                                         listen: false)
                                                     .questionNum -
                                                 1]
-                                        .choices[j - 1]
+                                        .choices![j - 1]
                                         .choiceText))
                                     ? const Color.fromRGBO(255, 255, 255, 1)
                                     : const Color.fromRGBO(102, 102, 102, 1),

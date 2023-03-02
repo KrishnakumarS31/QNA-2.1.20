@@ -11,7 +11,10 @@ class TeacherQuestionBank extends StatefulWidget {
   const TeacherQuestionBank({
     Key? key,
     required this.setLocale,
+    required this.quesList
   }) : super(key: key);
+
+  final List<Question> quesList;
 
   final void Function(Locale locale) setLocale;
   @override
@@ -26,15 +29,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   @override
   void initState() {
     super.initState();
-    getQuestionData();
+    questionList=widget.quesList;
   }
 
-  getQuestionData() async {
-    questionBank=await QnaService.getQuestionBankMockService();
-    setState(() {
-      questionList=questionBank.data!.questions!;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {

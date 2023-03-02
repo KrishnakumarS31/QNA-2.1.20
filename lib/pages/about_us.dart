@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class AboutUs extends StatefulWidget {
   const AboutUs({
     Key? key,
@@ -22,7 +22,14 @@ class AboutUsState extends State<AboutUs> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    List<String> str = ["Globally Collaborative", "Light Weight", "Anonymous"];
+    List<String> str = [
+      AppLocalizations.of(context)!.globally_collaborative,
+      //"Globally Collaborative",
+      AppLocalizations.of(context)!.light_weight,
+      //"Light Weight",
+      AppLocalizations.of(context)!.anonymous,
+      //"Anonymous"
+    ];
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -42,7 +49,8 @@ class AboutUsState extends State<AboutUs> {
         title:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
-            "ABOUT US",
+            AppLocalizations.of(context)!.about_us_caps,
+            // "ABOUT US",
             style: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.0225,
@@ -80,7 +88,8 @@ class AboutUsState extends State<AboutUs> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    "ITNEducation Inc., builds range of IT in\nEducation products and services that help\nmillions of students / learners  and\nteachers / instructors to learn digitally and\nfreely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\nplatform, which is:",
+                    AppLocalizations.of(context)!.about_us_description,
+                    // "ITNEducation Inc., builds range of IT in\nEducation products and services that help\nmillions of students / learners  and\nteachers / instructors to learn digitally and\nfreely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\nplatform, which is:",
                     style: TextStyle(
                         fontSize: height * 0.018,
                         fontWeight: FontWeight.w400,

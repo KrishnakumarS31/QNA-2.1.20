@@ -126,7 +126,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           SizedBox(
                                               height: localHeight * 0.050),
                                           Text(
-                                              "Q${values.data!.questions[index - 1].questionId}",
+                                              "Q${values.data!.questions![index - 1].questionId}",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),
@@ -137,7 +137,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           SizedBox(
                                               width: localHeight * 0.020),
                                           Text(
-                                            "${values.data!.questions[index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                            "${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     179, 179, 179, 1),
@@ -216,8 +216,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
                                         Text(
-                                          values.data!.questions[index - 1]
-                                              .question,
+                                          values.data!.questions![index - 1]
+                                              .question!,
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
@@ -250,7 +250,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               text: TextSpan(children: [
                                                 TextSpan(
                                                     text:
-                                                    "${AppLocalizations.of(context)!.study_chapter} ${values.data!.sub_topic}\t",
+                                                    "${AppLocalizations.of(context)!.study_chapter} ${values.data!.subTopic!}\t",
                                                     style: TextStyle(
                                                         color:
                                                         const Color.fromRGBO(
@@ -263,7 +263,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 TextSpan(
                                                     text: values
                                                         .data!
-                                                        .questions[index]
+                                                        .questions![index]
                                                         .advisorText,
                                                     style: TextStyle(
                                                         color:
@@ -295,8 +295,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 child: Text(
                                                     values
                                                         .data!
-                                                        .questions[index - 1]
-                                                        .advisorUrl,
+                                                        .questions![index - 1]
+                                                        .advisorUrl!,
                                                     style: TextStyle(
                                                         fontFamily: 'Inter',
                                                         fontSize:
@@ -344,7 +344,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           SizedBox(
                                               height: localHeight * 0.050),
                                           Text(
-                                              "Q${values.data!.questions[index - 1].questionId}",
+                                              "Q${values.data!.questions![index - 1].questionId}",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),
@@ -355,7 +355,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           SizedBox(
                                               width: localHeight * 0.020),
                                           Text(
-                                            "${values.data!.questions[index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                            "${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     179, 179, 179, 1),
@@ -434,8 +434,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
                                         Text(
-                                          values.data!.questions[index - 1]
-                                              .question,
+                                          values.data!.questions![index - 1]
+                                              .question!,
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
@@ -468,7 +468,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               text: TextSpan(children: [
                                                 TextSpan(
                                                     text:
-                                                    "${AppLocalizations.of(context)!.study_chapter} ${values.data!.sub_topic}\t",
+                                                    "${AppLocalizations.of(context)!.study_chapter} ${values.data!.subTopic}\t",
                                                     style: TextStyle(
                                                         color:
                                                         const Color.fromRGBO(
@@ -481,7 +481,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 TextSpan(
                                                     text: values
                                                         .data!
-                                                        .questions[index]
+                                                        .questions![index]
                                                         .advisorText,
                                                     style: TextStyle(
                                                         color:
@@ -513,8 +513,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 child: Text(
                                                     values
                                                         .data!
-                                                        .questions[index - 1]
-                                                        .advisorUrl,
+                                                        .questions![index - 1]
+                                                        .advisorUrl!,
                                                     style: TextStyle(
                                                         fontFamily: 'Inter',
                                                         fontSize:
@@ -761,7 +761,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         SizedBox(
                                             height: localHeight * 0.050),
                                         Text(
-                                            "Q${values.data!.questions[index - 1].questionId}",
+                                            "Q${values.data!.questions![index - 1].questionId}",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -772,7 +772,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         SizedBox(
                                             width: localHeight * 0.020),
                                         Text(
-                                          "${values.data!.questions[index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                          "${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   179, 179, 179, 1),
@@ -851,8 +851,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       ]),
                                       SizedBox(height: localHeight * 0.010),
                                       Text(
-                                        values.data!.questions[index - 1]
-                                            .question,
+                                        values.data!.questions![index - 1]
+                                            .question!,
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
@@ -885,7 +885,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             text: TextSpan(children: [
                                               TextSpan(
                                                   text:
-                                                  "${AppLocalizations.of(context)!.study_chapter} ${values.data!.sub_topic}\t",
+                                                  "${AppLocalizations.of(context)!.study_chapter} ${values.data!.subTopic}\t",
                                                   style: TextStyle(
                                                       color:
                                                       const Color.fromRGBO(
@@ -898,7 +898,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               TextSpan(
                                                   text: values
                                                       .data!
-                                                      .questions[index]
+                                                      .questions![index]
                                                       .advisorText,
                                                   style: TextStyle(
                                                       color:
@@ -930,8 +930,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               child: Text(
                                                   values
                                                       .data!
-                                                      .questions[index - 1]
-                                                      .advisorUrl,
+                                                      .questions![index - 1]
+                                                      .advisorUrl!,
                                                   style: TextStyle(
                                                       fontFamily: 'Inter',
                                                       fontSize:

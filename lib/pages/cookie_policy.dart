@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class CookiePolicy extends StatefulWidget {
   const CookiePolicy({
     Key? key,
@@ -40,8 +40,8 @@ class CookiePolicyState extends State<CookiePolicy> {
         centerTitle: true,
         title:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(
-            "COOKIE POLICY",
+          Text(AppLocalizations.of(context)!.cookie_policy_caps,
+            //"COOKIE POLICY",
             style: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.0225,
@@ -79,7 +79,8 @@ class CookiePolicyState extends State<CookiePolicy> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    "QNATest App does not use Cookies.",
+                    AppLocalizations.of(context)!.not_use_cookies,
+//                    "QNATest App does not use Cookies.",
                     style: TextStyle(
                         fontSize: height * 0.018,
                         fontWeight: FontWeight.w500,
@@ -91,7 +92,8 @@ class CookiePolicyState extends State<CookiePolicy> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    "QNATest apps will not request cookies to\nbe set on your device. We do not use\ncookies, when you visit QNATEST web\nsite or deploy the app.  There are no\nsettings related to cookie preferences.",
+                    AppLocalizations.of(context)!.cookie_policy_description,
+                    //"QNATest apps will not request cookies to\nbe set on your device. We do not use\ncookies, when you visit QNATEST web\nsite or deploy the app.  There are no\nsettings related to cookie preferences.",
                     style: TextStyle(
                         fontSize: height * 0.018,
                         fontWeight: FontWeight.w400,

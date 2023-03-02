@@ -7,6 +7,7 @@ import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
+import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,14 +43,24 @@ class TeacherLoginState extends State<TeacherLogin> {
     loginData=await SharedPreferences.getInstance();
     newUser=(loginData?.getBool('login')??true);
     if(newUser==false){
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromRGBO(48, 145, 139, 1),
+                ));
+          });
+      UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+      userDataModel = await QnaService.getUserDataService(loginData?.getInt('userId'));
       Navigator.push(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: TeacherSelectionPage(
-            name: name,
+
             setLocale: widget.setLocale,
-            userId: loginData?.getInt('userId'),
+            userId: loginData?.getInt('userId'), userData: userDataModel,
           ),
         ),
       ).then((value) {
@@ -432,20 +443,21 @@ class TeacherLoginState extends State<TeacherLogin> {
 
                         Navigator.of(context).pop();
                         if (loginResponse.code == 200) {
-                          //print("KOLARU GOPAL-------------------------------------------->");
                           loginData?.setBool('login', false);
                           loginData?.setString('email', regNumber);
                           loginData?.setString('password', passWord);
                           loginData?.setString('token', loginResponse.data.accessToken);
                           loginData?.setInt('userId', loginResponse.data.userId);
+                          UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+                          userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
                           Navigator.push(
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: TeacherSelectionPage(
-                                name: name,
+
                                 setLocale: widget.setLocale,
-                                userId: loginResponse.data!.userId,
+                                userId: loginResponse.data!.userId, userData: userDataModel,
                               ),
                             ),
                           ).then((value) {

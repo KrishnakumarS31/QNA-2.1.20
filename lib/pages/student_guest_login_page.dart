@@ -29,6 +29,13 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    nameController.clear();
+    rollNumController.clear();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
@@ -339,14 +346,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           if (agree) {
                             if (formKey.currentState!.validate()) {
                               name = nameController.text;
+
                               Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudGuestAssessment(
-                                      setLocale: widget.setLocale, name: name),
+                                      setLocale: widget.setLocale, name: name,rollNum: rollNumController.text,),
                                 ),
                               );
+                              nameController.clear();
+                              rollNumController.clear();
                             }
                           } else {
                             Navigator.push(
@@ -515,23 +525,31 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 ],
                               ),
                               SizedBox(height: height * 0.06),
+
                               Column(
                                 children: [
                                   Align(
                                     alignment: Alignment.topLeft,
-                                    child: Text(
-                                      AppLocalizations.of(context)!
-                                          .registrationIdRollNum,
-                                      style: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyLarge
-                                          ?.merge(TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                    ),
+                                    child: RichText(
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!.registrationIdRollNum,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.017),
+                                          ),
+                                          TextSpan(
+                                              text: "\t*",
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      219, 35, 35, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: height * 0.017)),
+                                        ])),
                                   ),
                                   SizedBox(
                                     height: height * 0.0001,
@@ -540,6 +558,19 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                       alignment: Alignment.center,
                                       child: TextFormField(
                                         controller: rollNumController,
+                                        onChanged: (val) {
+                                          formKey.currentState!.validate();
+                                        },
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(r'^[a-z A-Z 0-9]+$')
+                                                  .hasMatch(value)) {
+                                            return AppLocalizations.of(context)!
+                                                .enter_id;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
                                         keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
                                           hintText:
@@ -675,9 +706,11 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudGuestAssessment(
-                                      setLocale: widget.setLocale, name: name),
+                                      setLocale: widget.setLocale, name: name,rollNum: rollNumController.text,),
                                 ),
                               );
+                              nameController.clear();
+                              rollNumController.clear();
                             }
                           } else {
                             Navigator.push(

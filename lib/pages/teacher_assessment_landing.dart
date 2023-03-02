@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/pages/teacher_assessment_searched.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
@@ -7,9 +8,8 @@ import 'package:qna_test/pages/teacher_inactive_assessment.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-
-import '../Services/qna_service.dart';
-
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';import 'package:shared_preferences/shared_preferences.dart';
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
     Key? key,
@@ -30,6 +30,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+  CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
   final PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -38,6 +39,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     buildSignature: 'Unknown',
     installerStore: 'Unknown',
   );
+
   @override
   void initState() {
     super.initState();
@@ -491,6 +493,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         ),
                       ),
                       onPressed: () {
+                        assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
                         showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -851,31 +854,33 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 bool valid = formKey
                                                     .currentState!
                                                     .validate();
-                                                showDialog(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return const Center(
-                                                          child: CircularProgressIndicator(
-                                                            color: Color.fromRGBO(48, 145, 139, 1),
-                                                          ));
-                                                    });
                                                 if (valid) {
-                                                  int statusCode = await QnaService
-                                                      .createAssessmentService();
-                                                  Navigator.of(context).pop();
-                                                  if (statusCode == 200) {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .rightToLeft,
-                                                        child:
-                                                        TeacherCreateAssessment(
-                                                            setLocale: widget
-                                                                .setLocale),
-                                                      ),
-                                                    );
-                                                  }
+                                                  SharedPreferences loginData=await SharedPreferences.getInstance();
+                                                  assessment.topic=topicController.text;
+                                                  assessment.subTopic=subTopicController.text;
+                                                  assessment.subject=subjectController.text;
+                                                  assessment.createAssessmentModelClass=classController.text;
+                                                  assessment.userId=loginData?.getInt('userId');
+                                                  List<Question> quesList=[];
+                                                  Question ques=Question();
+                                                  ques.questionId=6;
+                                                  ques.questionMarks=10;
+                                                  quesList.add(ques);
+                                                  ques.questionId=7;
+                                                  ques.questionMarks=10;
+                                                  quesList.add(ques);
+                                                  Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .rightToLeft,
+                                                      child:
+                                                          TeacherCreateAssessment(
+                                                              setLocale: widget
+                                                                  .setLocale),
+                                                    ),
+                                                  );
                                                 }
                                               },
                                               child: Text(

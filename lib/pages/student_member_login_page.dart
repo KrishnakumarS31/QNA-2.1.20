@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Components/preference.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../DataSource/app_user_repo.dart';
@@ -9,10 +10,12 @@ import '../Entity/app_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
+import '../EntityModel/user_data_model.dart';
 import 'forgot_password_email.dart';
 import 'student_registration_page.dart';
 import 'student_assessment_start.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+// import 'package:universal_html/html.dart';
 
 class StudentMemberLoginPage extends StatefulWidget {
   const StudentMemberLoginPage({super.key, required this.setLocale});
@@ -33,10 +36,15 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   late SharedPreferences loginData;
   late bool newUser;
+  final PrefService _prefService = PrefService();
   @override
   void initState() {
     super.initState();
     check_if_alread_loggedin();
+    _prefService.readCache("password").then((value)
+    {
+
+    });
     //getData();
   }
 
@@ -44,6 +52,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
     loginData=await SharedPreferences.getInstance();
     newUser=(loginData.getBool('login')??true);
     if(newUser==false){
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromRGBO(
+                      48, 145, 139, 1),
+                ));
+          });
+      UserDataModel userDataModel=await QnaService.getUserDataService(loginData.getInt('userId'));
       Navigator.push(
         context,
         PageTransition(
@@ -51,7 +69,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
           child: StudentAssessment(
             regNumber: regNumber,
             setLocale: widget.setLocale,
-            userId: loginData.getInt('userId'),
+            usedData: userDataModel,
           ),
         ),
       ).then((value) {
@@ -60,6 +78,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
       });
     }
   }
+
   // getData() async {
   //   AppUser? user = await AppUserRepo().getUserDetail();
   //   print("Storage");
@@ -444,6 +463,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           LoginModel loginResponse =
                                           await QnaService.logInUser(
                                               regNumber, passWord);
+                                          UserDataModel userDataModel=await QnaService.getUserDataService(loginResponse.data!.userId);
                                           Navigator.of(context).pop();
                                           if (loginResponse.code == 200) {
                                             Navigator.push(
@@ -453,7 +473,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 child: StudentAssessment(
                                                   regNumber: regNumber,
                                                   setLocale: widget.setLocale,
-                                                  userId: loginResponse.data!.userId,
+                                                  usedData: userDataModel,
                                                 ),
                                               ),
                                             ).then((value) {
@@ -890,59 +910,71 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             fontWeight: FontWeight.w600)),
                                     onPressed: () async {
                                       if (agree) {
-                                        if (formKey.currentState!.validate()) {
-                                          regNumber = regNumberController.text;
-                                          passWord = passWordController.text;
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return const Center(
-                                                    child: CircularProgressIndicator(
-                                                      color:
-                                                      Color.fromRGBO(48, 145, 139, 1),
-                                                    ));
+                                        _prefService.createCache(passWordController.text).whenComplete(() async {
+                                          if (formKey.currentState!.validate()) {
+                                            regNumber = regNumberController.text;
+                                            passWord = passWordController.text;
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return const Center(
+                                                      child: CircularProgressIndicator(
+                                                        color:
+                                                        Color.fromRGBO(48, 145, 139, 1),
+                                                      ));
+                                                });
+                                            LoginModel loginResponse =
+                                            await QnaService.logInUser(
+                                                regNumber, passWord);
+                                            Navigator.of(context).pop();
+                                            if (loginResponse.code == 200) {
+                                              // var email = window.localStorage['email'];
+                                              // var password = window.localStorage['password'];
+                                              // var token = window.localStorage['token'];
+                                              // var userId = window.localStorage['userId'];
+                                              // window.localStorage['email'] = email!;
+                                              // window.localStorage['passWord'] = password!;
+                                              // window.localStorage['token'] = token!;
+                                              // window.localStorage['userId'] = userId!;
+                                              loginData.setBool('login', false);
+                                              loginData.setString('email', regNumber);
+                                              loginData.setString('password', passWord);
+                                              loginData.setString('token', loginResponse.data.accessToken);
+                                              loginData.setInt('userId', loginResponse.data.userId);
+                                              UserDataModel userDataModel=await QnaService.getUserDataService(loginResponse.data!.userId);
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: StudentAssessment(
+                                                    regNumber: regNumber,
+                                                    setLocale: widget.setLocale,
+                                                    usedData: userDataModel,
+                                                  ),
+                                                ),
+                                              ).then((value) {
+                                                regNumberController.clear();
+                                                passWordController.clear();
                                               });
-                                          LoginModel loginResponse =
-                                          await QnaService.logInUser(
-                                              regNumber, passWord);
-                                          Navigator.of(context).pop();
-                                          if (loginResponse.code == 200) {
-                                            loginData.setBool('login', false);
-                                            loginData.setString('email', regNumber);
-                                            loginData.setString('password', passWord);
-                                            loginData.setString('token', loginResponse.data.accessToken);
-                                            loginData.setInt('userId', loginResponse.data.userId);
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.rightToLeft,
-                                                child: StudentAssessment(
-                                                  regNumber: regNumber,
-                                                  setLocale: widget.setLocale,
-                                                  userId: loginResponse.data!.userId,
+                                            } else {
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: CustomDialog(
+                                                    title: 'Wrong password',
+                                                    content:
+                                                    'please enter the correct password',
+                                                    button:
+                                                    AppLocalizations.of(context)!
+                                                        .retry,
+                                                  ),
                                                 ),
-                                              ),
-                                            ).then((value) {
-                                              regNumberController.clear();
-                                              passWordController.clear();
-                                            });
-                                          } else {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.rightToLeft,
-                                                child: CustomDialog(
-                                                  title: 'Wrong password',
-                                                  content:
-                                                  'please enter the correct password',
-                                                  button:
-                                                  AppLocalizations.of(context)!
-                                                      .retry,
-                                                ),
-                                              ),
-                                            );
+                                              );
+                                            }
                                           }
                                         }
+                                        );
                                       } else {
                                         Navigator.push(
                                           context,

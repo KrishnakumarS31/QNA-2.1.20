@@ -418,4 +418,18 @@ class QnaTestRepo {
     return statusCode;
   }
 
+  static Future<GetQuestionBankModel> getResultMock() async {
+    GetQuestionBankModel questionBank=GetQuestionBankModel(status: 500, message: 'null');
+    var request = http.Request('GET', Uri.parse('https://ba347605-fbd9-441c-b76a-66d01960da1d.mock.pstmn.io/api/v1/results'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      questionBank = getQuestionBankModelFromJson(value);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return questionBank;
+  }
+
 }

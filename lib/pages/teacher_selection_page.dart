@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
+import '../EntityModel/GetQuestionBankModel.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -11,12 +12,12 @@ import 'teacher_questionBank_page.dart';
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage(
       {Key? key,
-      required this.name,
+      required this.userData,
       required this.setLocale,
       required this.userId})
       : super(key: key);
 
-  final String name;
+  final UserDataModel userData;
   final void Function(Locale locale) setLocale;
   final int? userId;
 
@@ -26,22 +27,13 @@ class TeacherSelectionPage extends StatefulWidget {
 
 class TeacherSelectionPageState extends State<TeacherSelectionPage> {
   UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-  String name = '';
-  String email = "";
 
   @override
   void initState() {
     super.initState();
-    getData();
   }
 
-  getData() async {
-    userDataModel = await QnaService.getUserDataService(widget.userId);
-    setState(() {
-      name = userDataModel.data!.firstName;
-      email = userDataModel.data!.email;
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +112,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height: height * 0.015),
                 Text(
-                  name,
+                  widget.userData.data!.firstName!,
                   style: TextStyle(
                     fontSize: height * 0.04,
                     color: const Color.fromRGBO(28, 78, 80, 1),
@@ -149,12 +141,22 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       borderRadius: BorderRadius.circular(39),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const Center(
+                              child: CircularProgressIndicator(
+                                color: Color.fromRGBO(48, 145, 139, 1),
+                              ));
+                        });
+                    GetQuestionBankModel questionBank=await QnaService.getQuestionBankMockService();
+                    Navigator.of(context).pop();
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherQuestionBank(setLocale: widget.setLocale),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale, quesList: questionBank.data!.questions,),
                       ),
                     );
                   },

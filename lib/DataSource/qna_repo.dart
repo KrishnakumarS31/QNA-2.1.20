@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../Entity/question_paper_model.dart';
 import '../EntityModel/create_question_model.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
@@ -163,11 +164,20 @@ class QnaRepo {
     return responses;
   }
 
-  static postAssessmentRepo(PostAssessmentModel? assessment) async {
+  static postAssessmentRepo(PostAssessmentModel? assessment,QuestionPaperModel? questionPaper) async {
+    String? token;
     SharedPreferences loginData=await SharedPreferences.getInstance();
+
+   if(questionPaper!.data!.accessTokenDetails!.accessToken==null){
+     token=loginData.getString('token');
+   }else{
+     assessment!.userId=questionPaper.data!.accessTokenDetails!.userId!;
+     token=questionPaper!.data!.accessTokenDetails!.accessToken!;
+   }
+
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}',
+      'Authorization': 'Bearer $token',
       'Content-Type': 'application/json'
     };
     var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment/result'));
@@ -176,13 +186,14 @@ class QnaRepo {
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
+      print(temp);
       loginModel = loginModelFromJson(temp);
     }
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
       LoginModel loginModel=await logInUser(email!, pass!);
-      postAssessmentRepo(assessment);
+      postAssessmentRepo(assessment,questionPaper);
     }
     else {
       String temp = await response.stream.bytesToString();
@@ -270,6 +281,34 @@ class QnaRepo {
     }
 
     return statusCode;
+  }
+
+  static Future<QuestionPaperModel> getQuestionPaperGuest(String assessmentId,String name,String rollNum) async {
+    QuestionPaperModel questionPaperModel;
+    var headers = {
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/guest?code=$assessmentId'));
+    request.body = json.encode({
+      "first_name": name,
+      "roll_number": rollNum
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    String value = await response.stream.bytesToString();
+
+    print(value);
+    questionPaperModel = questionPaperModelFromJson(value);
+
+
+    return questionPaperModel;
+    //}
+    // else {
+    //   print(response.reasonPhrase);
+    // }
+    //return questionPaperModel;
   }
 
 }

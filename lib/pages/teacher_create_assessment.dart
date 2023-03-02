@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';
 
 class TeacherCreateAssessment extends StatefulWidget {
   const TeacherCreateAssessment({
@@ -19,10 +22,12 @@ class TeacherCreateAssessment extends StatefulWidget {
 class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   bool agree = false;
   bool? assessment = true;
-
+  CreateAssessmentModel assessmentVal=CreateAssessmentModel(questions: []);
+  //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
   @override
   void initState() {
     super.initState();
+    assessmentVal=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
   }
 
   @override
@@ -259,21 +264,28 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                   onChanged: (value) {},
                 ),
                 SizedBox(height: height * 0.08),
-                Center(
-                  child: Image.asset("assets/images/create_assessment.png"),
-                ),
-                SizedBox(height: height * 0.03),
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Search from my question bank",
-                    style: TextStyle(
-                        fontSize: height * 0.015,
-                        fontWeight: FontWeight.w500,
-                        color: const Color.fromRGBO(153, 153, 153, 1),
-                        fontFamily: "Inter"),
+                Container(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Image.asset("assets/images/create_assessment.png"),
+                      ),
+                      SizedBox(height: height * 0.03),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Search from my question bank",
+                          style: TextStyle(
+                              fontSize: height * 0.015,
+                              fontWeight: FontWeight.w500,
+                              color: const Color.fromRGBO(153, 153, 153, 1),
+                              fontFamily: "Inter"),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
+
                 SizedBox(height: height * 0.08),
                 Center(
                   child: SizedBox(

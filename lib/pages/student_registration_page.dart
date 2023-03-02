@@ -679,7 +679,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         fontSize: localHeight * 0.015),
                                   ),
                                   TextSpan(
-                                      text: "\t*",
+                                      text: "\t* \t",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               219, 35, 35, 1),
@@ -697,7 +697,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              padding: const EdgeInsets.only(left: 5, top: 7),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   //background color of dropdown button
@@ -764,7 +764,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 child: RichText(
                                     text: TextSpan(children: [
                                   TextSpan(
-                                    text: "COUNTRY CITIZEN",
+                                    text: "\tCOUNTRY CITIZEN",
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -773,7 +773,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         fontSize: localHeight * 0.013),
                                   ),
                                   TextSpan(
-                                      text: "\t*",
+                                      text: "\t* \t",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               219, 35, 35, 1),
@@ -791,7 +791,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              padding: const EdgeInsets.only(left: 5, top: 7),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   //background color of dropdown button
@@ -866,7 +866,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 child: RichText(
                                     text: TextSpan(children: [
                                   TextSpan(
-                                    text: 'COUNTRY RESIDENT',
+                                    text: '\tCOUNTRY RESIDENT',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -875,7 +875,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         fontSize: localHeight * 0.013),
                                   ),
                                   TextSpan(
-                                      text: "\t*",
+                                      text: "\t*\t",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               219, 35, 35, 1),

@@ -46,8 +46,8 @@ class QnaService{
     return await QnaTestRepo.getQuestionPaper(assessmentId);
   }
 
-  static Future<LoginModel> postAssessmentService(PostAssessmentModel? assessment) async {
-    return await QnaRepo.postAssessmentRepo(assessment);
+  static Future<LoginModel> postAssessmentService(PostAssessmentModel? assessment,QuestionPaperModel? questionPaper) async {
+    return await QnaRepo.postAssessmentRepo(assessment,questionPaper);
   }
 
 
@@ -56,7 +56,7 @@ class QnaService{
     return await QnaTestRepo.putUserDetails();
   }
 
-   static logOut() async{
+  static logOut() async{
     return await QnaTestRepo.logOut();
   }
 
@@ -76,5 +76,8 @@ class QnaService{
     return await QnaRepo.createQuestionTeacher(question);
   }
 
+  static Future<QuestionPaperModel> getQuestionGuest(String assessmentId, String name, String rollNum) async{
+    return await QnaRepo.getQuestionPaperGuest(assessmentId,name,rollNum);
+  }
 
 }

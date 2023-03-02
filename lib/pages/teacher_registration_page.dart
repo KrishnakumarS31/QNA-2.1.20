@@ -589,7 +589,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                         Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              padding: const EdgeInsets.only(left: 5, top: 7),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   //background color of dropdown button
@@ -668,8 +668,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               ),
                             ),
                             Positioned(
-                              top: -(localHeight * 0.005),
-                              left: localWidth * 0.040,
+                              left: localWidth * 0.038,
                               child: Container(
                                 color: Colors.white,
                                 child: RichText(
@@ -684,7 +683,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                         fontSize: localHeight * 0.015),
                                   ),
                                   TextSpan(
-                                      text: "\t*",
+                                      text: "\t*\t",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               219, 35, 35, 1),
@@ -702,7 +701,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                         Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              padding: const EdgeInsets.only(left: 5, top: 7),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   //background color of dropdown button
@@ -763,14 +762,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               ),
                             ),
                             Positioned(
-                              top: -(localHeight * 0.005),
                               left: localWidth * 0.038,
                               child: Container(
                                 color: Colors.white,
                                 child: RichText(
                                     text: TextSpan(children: [
                                   TextSpan(
-                                    text: "COUNTRY CITIZEN",
+                                    text: "\tCOUNTRY CITIZEN",
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -779,7 +777,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                         fontSize: localHeight * 0.014),
                                   ),
                                   TextSpan(
-                                      text: "\t*",
+                                      text: "\t*\t",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               219, 35, 35, 1),
@@ -797,7 +795,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                         Stack(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 3, top: 3),
+                              padding: const EdgeInsets.only(left: 5, top: 7),
                               child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   //background color of dropdown button
@@ -866,14 +864,13 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               ),
                             ),
                             Positioned(
-                              top: -(localHeight * 0.005),
                               left: localWidth * 0.038,
                               child: Container(
                                 color: Colors.white,
                                 child: RichText(
                                     text: TextSpan(children: [
                                   TextSpan(
-                                    text: 'COUNTRY RESIDENT',
+                                    text: '\tCOUNTRY RESIDENT',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),

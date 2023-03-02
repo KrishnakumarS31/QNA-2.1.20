@@ -4,6 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import 'package:qna_test/pages/student_assessment_questions.dart';
+import 'package:qna_test/pages/student_search_library.dart';
 import '../Components/end_drawer_menu_student.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
@@ -11,11 +12,11 @@ import '../Services/qna_service.dart';
 
 class StudentAssessment extends StatefulWidget {
   StudentAssessment({
-    Key? key,required this.regNumber, required this.setLocale,this.userId
+    Key? key,required this.regNumber, required this.setLocale,required this.usedData,
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final String? regNumber;
-  int? userId;
+  UserDataModel? usedData;
 
   @override
   StudentAssessmentState createState() => StudentAssessmentState();
@@ -38,10 +39,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
   }
 
   getData() async {
-      userDataModel=await QnaService.getUserDataService(widget.userId);
       setState((){
-        name=userDataModel.data!.firstName;
-        email = userDataModel.data!.email;
+        name=widget.usedData!.data!.firstName!;
+        email = widget.usedData!.data!.email!;
       });
   }
   @override
@@ -68,7 +68,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                 ),
                 backgroundColor: Colors.transparent,
               ),
-              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email,userId: widget.userId),
+              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email,userId: widget.usedData!.data!.id),
               body:
               SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
@@ -296,25 +296,33 @@ class StudentAssessmentState extends State<StudentAssessment> {
                         SizedBox(
                           height: localHeight * 0.02,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-
-                            IconButton(
-                              icon: const Icon(
-                                Icons.search,
-                                color: Color.fromRGBO(141, 167, 167, 1),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: StudentSearchLibrary(setLocale: widget.setLocale),
                               ),
-                              onPressed: () {},
-                            ),
-                            Text(AppLocalizations.of(context)!.search_library,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16)),
-                          ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                                const Icon(
+                                  Icons.search,
+                                  color: Color.fromRGBO(141, 167, 167, 1),
+                                ),
+                              Text(AppLocalizations.of(context)!.search_library,
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(48, 145, 139, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16)),
+                            ],
+                          ),
                         ),
+
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
@@ -337,7 +345,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                 ),
                 backgroundColor: Colors.transparent,
               ),
-              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email,userId: widget.userId),
+              endDrawer: EndDrawerMenuStudent(setLocale: widget.setLocale,userName: name,email: email,userId: widget.usedData!.data!.id),
               body:
               SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
@@ -523,7 +531,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             child: StudQuestion(
                                                 assessmentId: assessmentID.text,
                                                 ques: values,
-                                                userName: userDataModel.data!.firstName),
+                                                userName: name),
                                           ),
                                         );
                                       }
@@ -565,24 +573,35 @@ class StudentAssessmentState extends State<StudentAssessment> {
                         SizedBox(
                           height: localHeight * 0.02,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-
-                            IconButton(
-                              icon: const Icon(
-                                Icons.search,
-                                color: Color.fromRGBO(141, 167, 167, 1),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: StudentSearchLibrary(setLocale: widget.setLocale),
                               ),
-                              onPressed: () {},
-                            ),
-                            Text(AppLocalizations.of(context)!.search_library,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16)),
-                          ],
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.search,
+                                  color: Color.fromRGBO(141, 167, 167, 1),
+                                ),
+                                onPressed: () {},
+                              ),
+                              Text(AppLocalizations.of(context)!.search_library,
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(48, 145, 139, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16)),
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: localHeight * 0.03,
@@ -594,3 +613,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
 
   }
 }
+
+
+// ElevatedButton(onPressed: (){print("Button");}, child: Text("Button")),

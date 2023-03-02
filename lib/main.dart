@@ -8,6 +8,7 @@ import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'Providers/LanguageChangeProvider.dart';
+import 'Providers/create_assessment_provider.dart';
 import 'Providers/question_prepare_provider.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
@@ -20,7 +21,8 @@ void main() {
       ChangeNotifierProvider(create: (_)=> Questions(),),
       ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
       ChangeNotifierProvider(create: (_)=> QuestionPrepareProvider(),),
-      ChangeNotifierProvider(create: (_)=> QuestionPrepareProviderFinal(),)
+      ChangeNotifierProvider(create: (_)=> QuestionPrepareProviderFinal(),),
+      ChangeNotifierProvider(create: (_)=> CreateAssessmentProvider(),)
     ],
     child: MyApp(),
     ),
