@@ -1,30 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-
+import '../EntityModel/get_assessment_model.dart' as assessment_model;
+import '../Providers/edit_assessment_provider.dart';
 class TeacherRecentAssessment extends StatefulWidget {
   const TeacherRecentAssessment({
     Key? key,
     required this.setLocale,
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
-
   @override
   TeacherRecentAssessmentState createState() => TeacherRecentAssessmentState();
 }
 
 class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   bool additionalDetails = true;
-
+  bool questionShirnk = true;
+  assessment_model.Datum assessment =assessment_model.Datum();
   showAdditionalDetails() {
     setState(() {
-      !additionalDetails;
+      additionalDetails=!additionalDetails;
+      print(additionalDetails);
+    });
+  }
+
+  showQuestionDetails() {
+    setState(() {
+      questionShirnk=!questionShirnk;
+      print(questionShirnk);
     });
   }
 
   @override
   void initState() {
+    assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     super.initState();
   }
 
@@ -120,7 +131,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             child: Row(
                               children: [
                                 Text(
-                                  "Maths",
+                                  assessment.subject!,
                                   style: TextStyle(
                                     color:
                                     const Color.fromRGBO(255, 255, 255, 1),
@@ -130,7 +141,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   ),
                                 ),
                                 Text(
-                                  "  |  Class IX",
+                                  "  |  ${assessment.datumClass}",
                                   style: TextStyle(
                                     color:
                                     const Color.fromRGBO(255, 255, 255, 1),
@@ -154,7 +165,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                               ),
                             ),
                             Text(
-                              "Calculus - Chapter 12.2/13",
+                              "${assessment.topic} - ${assessment.subTopic}",
                               style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.015,
@@ -481,203 +492,209 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                Row(
+                additionalDetails?
+                Column(
                   children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Category",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Category",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Test/Practice",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "Test/Practice",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Retries",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Allowed (3 Times)",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Guest",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Allowed",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Answer Sheet",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Viewable",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Advisor",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "Subash",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Email",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "No",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: width * 0.4,
+                          child: Text(
+                            "Inactive",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "No",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Retries",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Allowed (3 Times)",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Guest",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Allowed",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Answer Sheet",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Viewable",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Advisor",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Subash",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Email",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "No",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      width: width * 0.4,
-                      child: Text(
-                        "Inactive",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "No",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
+                ):const SizedBox(height: 0,),
+
                 SizedBox(
                   height: height * 0.03,
                 ),
-                Container(
+                questionShirnk?Container(
                   height: height * 0.05,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
@@ -701,21 +718,67 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(right: width * 0.02),
-                          child: const Icon(
-                            Icons.arrow_circle_up_outlined,
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                          child: IconButton(
+                            onPressed: (){
+                              showQuestionDetails();
+                            },
+                            icon: const Icon(
+                              Icons.arrow_circle_up_outlined,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+                :Container(
+                  height: height * 0.05,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8.0),
+                        topRight: Radius.circular(8.0)),
+                    color: Color.fromRGBO(82, 165, 160, 1),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.only(left: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Questions",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.02,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: width * 0.02),
+                          child: IconButton(
+                            onPressed: (){
+                              showQuestionDetails();
+                            },
+                            icon: const Icon(
+                              Icons.arrow_circle_down_outlined,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
                           ),
                         )
                       ],
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                QuestionWidget(height: height),
-                QuestionWidget(height: height),
-                QuestionWidget(height: height),
+                questionShirnk?
+                    SizedBox(
+                      height: height * 0.4,
+                      child: ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: assessment.questions!.length,
+                          itemBuilder: (context,index)=>QuestionWidget(height: height, question: assessment.questions![index],)),
+                    )
+                    :const SizedBox(height: 0,),
                 SizedBox(
                   height: height * 0.02,
                 ),
@@ -862,13 +925,30 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   }
 }
 
-class QuestionWidget extends StatelessWidget {
-  const QuestionWidget({
+class QuestionWidget extends StatefulWidget {
+  QuestionWidget({
     Key? key,
     required this.height,
+    required this.question
   }) : super(key: key);
 
   final double height;
+  assessment_model.Question question;
+
+  @override
+  State<QuestionWidget> createState() => _QuestionWidgetState();
+}
+
+class _QuestionWidgetState extends State<QuestionWidget> {
+  String ans='';
+
+  @override
+  void initState() {
+    for(int i=0;i<widget.question.choicesAnswer!.length;i++){
+      ans='$ans, ${widget.question.choicesAnswer![i].choiceText}';
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -882,40 +962,40 @@ class QuestionWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
               Text(
-                "MCQ",
+                widget.question.questionType!,
                 style: TextStyle(
                   color: const Color.fromRGBO(28, 78, 80, 1),
-                  fontSize: height * 0.015,
+                  fontSize: widget.height * 0.015,
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w600,
                 ),
               ),
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
               Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim",
+                widget.question.question!,
                 style: TextStyle(
                   color: const Color.fromRGBO(51, 51, 51, 1),
-                  fontSize: height * 0.015,
+                  fontSize: widget.height * 0.015,
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w400,
                 ),
               ),
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "C. Lorem ipsum dolor sit amet",
+                    ans,
                     style: TextStyle(
                       color: const Color.fromRGBO(82, 165, 160, 1),
-                      fontSize: height * 0.015,
+                      fontSize: widget.height * 0.015,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
                     ),
@@ -926,16 +1006,16 @@ class QuestionWidget extends StatelessWidget {
                         "Marks: ",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.015,
+                          fontSize: widget.height * 0.015,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       Text(
-                        "5",
+                        "${widget.question.questionMarks}",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
-                          fontSize: height * 0.015,
+                          fontSize: widget.height * 0.015,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w600,
                         ),

@@ -140,5 +140,17 @@
   "check_out":"Please first check out the\t\t",
   "faq": "FAQs",
   "find_answers" : "If you are unable to find answers to your\nqueries related to the QNATest App,please\nfeel free to\t\t",
-  "email_help": "email"
+  "email_help": "email",
+  "not_sure_flag": "Not Sure Flag: Press Flag to re-check later",
+  "skip_to_end": "Skip to End of question paper",
+  "test_qn_page": "  Test",
+  "practice_qn_page":  "  Practice",
+  "not_sure_press": "Not Sure Flag:\nPress Flag to re-check later",
+  "skip_end": "Skip to end",
+  "not_sure": "Not Sure",
+  "enter_text_here": "Enter your text here",
+  "marks_qn": " Marks",
+  "qn_qn_page": "Question",
+  "not_answered": "Not Answered",
+  "ques": "Q"
 }

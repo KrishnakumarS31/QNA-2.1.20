@@ -189,8 +189,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
                                       GestureDetector(
                                         onTap: (){
-                                          print("fwegv");
-                                          print(index);
                                         },
                                         child: Container(
                                             width: localWidth * 0.4,
@@ -204,7 +202,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Row(children: [
-                                                      Text("Q${values.data!.questions![index-1].questionId}",
+                                                      Text("${AppLocalizations.of(context)!.ques}$index",
                                                           style: TextStyle(
                                                               color: const Color.fromRGBO(
                                                                   82, 165, 160, 1),
@@ -264,7 +262,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                       child:
                                                       Text(
                                                           Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
-                                                              ? "Not Answered"
+                                                              ? AppLocalizations.of(context)!.not_answered
                                                               : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
                                                           //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                           style:
@@ -311,7 +309,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Row(children: [
-                                                      Text("Q${values.data!.questions![index-1].questionId}",
+                                                      Text("${AppLocalizations.of(context)!.ques}$index",
                                                           style: TextStyle(
                                                               color: const Color.fromRGBO(
                                                                   82, 165, 160, 1),
@@ -371,7 +369,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                       child:
                                                       Text(
                                                           Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
-                                                              ? "Not Answered"
+                                                              ? AppLocalizations.of(context)!.not_answered
                                                               : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
                                                           //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                           style:
@@ -583,7 +581,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
                                                 Row(children: [
-                                                  Text("Q${values.data!.questions![index-1].questionId}",
+                                                  Text("${AppLocalizations.of(
+                                                      context)!.ques}$index",
                                                       style: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               82, 165, 160, 1),
@@ -643,7 +642,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   child:
                                                   Text(
                                                       Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
-                                                          ? "Not Answered"
+                                                          ? AppLocalizations.of(context)!.not_answered
                                                           : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
                                                       //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                       style:
@@ -793,7 +792,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime.now().microsecondsSinceEpoch);
                   int difference = d2.difference(d1).inMinutes;
                   assessment.attemptDuration=difference;
-
+                  int timeTaken = d2.difference(d1).inMicroseconds;
+                  print('fyuj');
+                  print(timeTaken);
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
                     List<int> selectedAnsId=[];
                     AssessmentResult quesResult=AssessmentResult();

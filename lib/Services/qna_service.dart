@@ -1,6 +1,6 @@
 
 import 'package:qna_test/EntityModel/user_data_model.dart';
-
+import '../EntityModel/CreateAssessmentModel.dart';
 import '../DataSource/qna_repo.dart';
 import '../DataSource/qna_test_repo.dart';
 import '../Entity/question_paper_model.dart';
@@ -8,6 +8,7 @@ import '../Entity/response_entity.dart';
 import '../Entity/student.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
 import '../EntityModel/create_question_model.dart';
+import '../EntityModel/get_assessment_model.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
@@ -68,16 +69,24 @@ class QnaService{
     return await QnaTestRepo.getQuestionBankMock();
   }
 
-  static createAssessmentService() async{
-    return await QnaRepo.createAssessment();
-  }
+  // static createAssessmentService() async{
+  //   return await QnaRepo.createAssessment();
+  // }
 
   static Future<LoginModel> createQuestionTeacherService(CreateQuestionModel question) async {
     return await QnaRepo.createQuestionTeacher(question);
+  }
+
+
+  static Future<LoginModel> createAssessmentTeacherService(CreateAssessmentModel question) async {
+    return await QnaRepo.createAssessmentTeacher(question);
   }
 
   static Future<QuestionPaperModel> getQuestionGuest(String assessmentId, String name, String rollNum) async{
     return await QnaRepo.getQuestionPaperGuest(assessmentId,name,rollNum);
   }
 
+  static Future<GetAssessmentModel> getAllAssessment(int pageLimit,int pageNumber) async{
+    return await QnaRepo.getAllAssessment(pageLimit,pageNumber);
+  }
 }

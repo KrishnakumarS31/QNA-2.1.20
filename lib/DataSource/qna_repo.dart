@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../Entity/question_paper_model.dart';
+import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/create_question_model.dart';
+import '../EntityModel/get_assessment_model.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
@@ -230,58 +232,88 @@ class QnaRepo {
     return loginModel;
   }
 
-  static Future<int> createAssessment() async {
-    int statusCode = 500;
-    SharedPreferences loginData=await SharedPreferences.getInstance();
+
+  static Future<LoginModel> createAssessmentTeacher(CreateAssessmentModel question) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('POST',Uri.parse('https://dev.qnatest.com/api/v1/assessment'));
-    request.body = json.encode({
-      "user_id": 14,
-      "assessment_type": "test",
-      "assessment_status": "publish",
-      "total_score": 0,
-      "total_questions": 0,
-      "assessment_startdate": 1648229877,
-      "assessment_enddate": 1648233477,
-      "assessment_duration": 1800,
-      "subject": "Math",
-      "topic": "sum",
-      "sub_topic": "Solving equations",
-      "class": "10th",
-      "assessment_settings":
-      {
-        "allowed_number_of_test_retries": 0,
-        "avalability_for_practice": true,
-        "allow_guest_student": false,
-        "show_solved_answer_sheet_in_advisor": false,
-        "show_advisor_name": true,
-        "show_advisor_email": true,
-        "not_available": false
-      },
-      "questions": [
-        {
-          "question_id": 6,
-          "question_marks": 5
-        }
-      ]
-    });
+    var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment'));
+    request.body = createAssessmentModelToJson(question);
+    print("=========================================");
+    print(request.body);
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-      return response.statusCode;
+      String temp = await response.stream.bytesToString();
+      loginModel = loginModelFromJson(temp);
+    }
+    else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!);
+      createAssessmentTeacher(question);
     }
     else {
       print(response.reasonPhrase);
     }
-
-    return statusCode;
+    return loginModel;
   }
+
+  // static Future<int> createAssessment() async {
+  //   int statusCode = 500;
+  //   SharedPreferences loginData=await SharedPreferences.getInstance();
+  //   var headers = {
+  //     'Authorization': 'Bearer ${loginData.getString('token')}',
+  //     'Content-Type': 'application/json'
+  //   };
+  //   var request = http.Request('POST',Uri.parse('https://dev.qnatest.com/api/v1/assessment'));
+  //   request.body = json.encode({
+  //     "user_id": 14,
+  //     "assessment_type": "test",
+  //     "assessment_status": "publish",
+  //     "total_score": 0,
+  //     "total_questions": 0,
+  //     "assessment_startdate": 1648229877,
+  //     "assessment_enddate": 1648233477,
+  //     "assessment_duration": 1800,
+  //     "subject": "Math",
+  //     "topic": "sum",
+  //     "sub_topic": "Solving equations",
+  //     "class": "10th",
+  //     "assessment_settings":
+  //     {
+  //       "allowed_number_of_test_retries": 0,
+  //       "avalability_for_practice": true,
+  //       "allow_guest_student": false,
+  //       "show_solved_answer_sheet_in_advisor": false,
+  //       "show_advisor_name": true,
+  //       "show_advisor_email": true,
+  //       "not_available": false
+  //     },
+  //     "questions": [
+  //       {
+  //         "question_id": 6,
+  //         "question_marks": 5
+  //       }
+  //     ]
+  //   });
+  //   request.headers.addAll(headers);
+  //
+  //   http.StreamedResponse response = await request.send();
+  //
+  //   if (response.statusCode == 200) {
+  //     print(await response.stream.bytesToString());
+  //     return response.statusCode;
+  //   }
+  //   else {
+  //     print(response.reasonPhrase);
+  //   }
+  //
+  //   return statusCode;
+  // }
 
   static Future<QuestionPaperModel> getQuestionPaperGuest(String assessmentId,String name,String rollNum) async {
     QuestionPaperModel questionPaperModel;
@@ -294,21 +326,32 @@ class QnaRepo {
       "roll_number": rollNum
     });
     request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    String value = await response.stream.bytesToString();
+    print(value);
+    questionPaperModel = questionPaperModelFromJson(value);
+    return questionPaperModel;
+  }
+
+  static Future<GetAssessmentModel> getAllAssessment(int pageLimit,int pageNumber) async {
+    GetAssessmentModel allAssessment=GetAssessmentModel();
+    SharedPreferences loginData=await SharedPreferences.getInstance();
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}'
+    };
+    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/all/${loginData.getInt('userId')}/?page_limit=$pageLimit&page_number=$pageNumber'));
+
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
 
-    String value = await response.stream.bytesToString();
-
-    print(value);
-    questionPaperModel = questionPaperModelFromJson(value);
-
-
-    return questionPaperModel;
-    //}
-    // else {
-    //   print(response.reasonPhrase);
-    // }
-    //return questionPaperModel;
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      allAssessment = getAssessmentModelFromJson(value);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return allAssessment;
   }
-
 }

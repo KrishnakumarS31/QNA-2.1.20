@@ -9,7 +9,11 @@ import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../Providers/create_assessment_provider.dart';import 'package:shared_preferences/shared_preferences.dart';
+import '../Providers/create_assessment_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../EntityModel/get_assessment_model.dart' as assessment_model;
+import '../Providers/edit_assessment_provider.dart';
+import '../Services/qna_service.dart';
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
     Key? key,
@@ -39,6 +43,11 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     buildSignature: 'Unknown',
     installerStore: 'Unknown',
   );
+  assessment_model.GetAssessmentModel allAssessment =assessment_model.GetAssessmentModel();
+  List<assessment_model.Datum> assessments=[];
+  bool loading=true;
+  ScrollController scrollController =ScrollController();
+  int pageLimit =0;
 
   @override
   void initState() {
@@ -228,6 +237,17 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     });
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pop();
+    });
+    getData();
+  }
+
+  getData()async{
+    allAssessment = await QnaService.getAllAssessment(pageLimit,1+pageLimit);
+    assessments = assessments + allAssessment.data!;
+    setState(() {
+      assessments;
+      loading = false;
+      pageLimit++;
     });
   }
 
@@ -435,27 +455,26 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                CardInfo(
-                    height: height,
-                    width: width,
-                    status: 'In progress',
-                    setLocale: widget.setLocale),
-                SizedBox(
-                  height: height * 0.02,
+                Container(
+                  height: height * 0.35,
+                  child: ListView.builder(
+                    itemCount: assessments.length,
+                    itemBuilder: (context,index) =>
+                      Column(
+                        children: [
+                          CardInfo(
+                              height: height,
+                              width: width,
+                              status: 'In progress',
+                              setLocale: widget.setLocale,
+                          assessment: assessments[index],),
+                    SizedBox(
+                        height: height * 0.02,
+                      ),
+                        ],
+                      ),
+                   ),
                 ),
-                CardInfo(
-                    height: height,
-                    width: width,
-                    status: 'Active',
-                    setLocale: widget.setLocale),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                CardInfo(
-                    height: height,
-                    width: width,
-                    status: 'Inactive',
-                    setLocale: widget.setLocale),
                 SizedBox(
                   height: height * 0.02,
                 ),
@@ -466,13 +485,18 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       padding: EdgeInsets.only(right: width * 0.05),
                       child: const Divider(),
                     )),
-                    Text(
-                      "View More",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
+                    GestureDetector(
+                      onTap: (){
+                        getData();
+                      },
+                      child: Text(
+                        "View More",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: height * 0.0175,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                     const Icon(Icons.chevron_right)
@@ -936,25 +960,28 @@ class CardInfo extends StatelessWidget {
       required this.height,
       required this.width,
       required this.status,
-      required this.setLocale})
+      required this.setLocale,
+      required this.assessment})
       : super(key: key);
 
   final double height;
   final double width;
   final String status;
   final void Function(Locale locale) setLocale;
+  final assessment_model.Datum assessment;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
         onTap: () {
+          Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
           if (status == 'In progress') {
             Navigator.push(
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherRecentAssessment(setLocale: setLocale),
+                child: TeacherRecentAssessment(setLocale: setLocale,),
               ),
             );
           } else if (status == 'Active') {
@@ -998,7 +1025,7 @@ class CardInfo extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Maths ",
+                          assessment.subject!,
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0175,
@@ -1007,7 +1034,7 @@ class CardInfo extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " | Class IX",
+                          " | ${assessment.datumClass}",
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0175,
@@ -1042,7 +1069,7 @@ class CardInfo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      " 0123456789",
+                      " ${assessment.assessmentId}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.015,

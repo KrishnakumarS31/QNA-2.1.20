@@ -6,7 +6,7 @@ import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 import 'student_revise_quest.dart';
 import 'package:intl/intl.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class StudQuestion extends StatefulWidget {
   const StudQuestion(
       {Key? key,
@@ -121,7 +121,8 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               SizedBox(width: MediaQuery.of(context).copyWith().size.width * 0.02,),
                               Text(
-                                "Not Sure Flag: Press Flag to re-check later",
+                              AppLocalizations.of(context)!.not_sure_flag,
+                               // "Not Sure Flag: Press Flag to re-check later",
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodyLarge
@@ -147,7 +148,8 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               SizedBox(width: MediaQuery.of(context).copyWith().size.width * 0.02,),
                               Text(
-                                "Skip to End of question paper",
+                                AppLocalizations.of(context)!.skip_to_end,
+                                //"Skip to End of question paper",
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodyLarge
@@ -180,7 +182,8 @@ class StudQuestionState extends State<StudQuestion> {
                               0.03,
                         ),
                         Text(
-                          "  Test",
+                          AppLocalizations.of(context)!.test_qn_page,
+                          // "  Test",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -207,7 +210,8 @@ class StudQuestionState extends State<StudQuestion> {
                               0.03,
                         ),
                         Text(
-                          "  Practice",
+                          AppLocalizations.of(context)!.practice_qn_page,
+                          //"  Practice",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -302,7 +306,8 @@ class StudQuestionState extends State<StudQuestion> {
                           ],
                         ),
                         title: Text(
-                          "Not Sure Flag:\nPress Flag to re-check later",
+                          AppLocalizations.of(context)!.not_sure_press,
+                          //"Not Sure Flag:\nPress Flag to re-check later",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -325,7 +330,8 @@ class StudQuestionState extends State<StudQuestion> {
                               0.036,
                         ),
                         title: Text(
-                          "Skip to End of question paper",
+                          AppLocalizations.of(context)!.skip_to_end,
+                          //"Skip to End of question paper",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -351,7 +357,8 @@ class StudQuestionState extends State<StudQuestion> {
                                 0.02,
                           ),
                           Text(
-                            "  Test",
+                            AppLocalizations.of(context)!.test_qn_page,
+                            // "  Test",
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyLarge
@@ -378,7 +385,8 @@ class StudQuestionState extends State<StudQuestion> {
                                 0.02,
                           ),
                           Text(
-                            "  Practice",
+                            AppLocalizations.of(context)!.practice_qn_page,
+                            //"  Practice",
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyLarge
@@ -508,7 +516,7 @@ class StudQuestionState extends State<StudQuestion> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
+                          "${AppLocalizations.of(context)!.qn_qn_page}${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyLarge
@@ -609,7 +617,8 @@ class StudQuestionState extends State<StudQuestion> {
                                               fontSize: height * 0.0337)),
                                         ),
                                         Text(
-                                          " Marks",
+                                          AppLocalizations.of(context)!.practice_qn_page,
+                                          //" Marks",
                                           style: Theme.of(context)
                                               .primaryTextTheme
                                               .bodyLarge
@@ -713,10 +722,11 @@ class StudQuestionState extends State<StudQuestion> {
                                             }
                                           },
                                           controller: ansController,
-                                          decoration: const InputDecoration(
+                                          decoration:  InputDecoration(
                                             hintText:
-                                            "Enter your text here",
-                                            border: OutlineInputBorder(
+                                            AppLocalizations.of(context)!.practice_qn_page,
+                                            //"Enter your text here",
+                                            border: const OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Colors.black54)),
                                           ),
@@ -797,7 +807,8 @@ class StudQuestionState extends State<StudQuestion> {
                                         ),
                                       ),
                                       Text(
-                                        "Not Sure",
+                                        AppLocalizations.of(context)!.not_sure,
+                                        //"Not Sure",
                                         style: Theme.of(context)
                                             .primaryTextTheme
                                             .bodyLarge
@@ -933,7 +944,8 @@ class StudQuestionState extends State<StudQuestion> {
                                       size: height * 0.05,
                                     ),
                                     Text(
-                                      "Skip to end",
+                                      AppLocalizations.of(context)!.skip_end,
+                                     // "Skip to end",
                                       style: Theme.of(context)
                                           .primaryTextTheme
                                           .bodyLarge
@@ -963,7 +975,6 @@ class StudQuestionState extends State<StudQuestion> {
                                 size: height * 0.06,
                               ),
                               onPressed: () {
-                                print("$hours:$minutes:$seconds");
                                 Navigator.push(
                                   context,
                                   PageTransition(
@@ -1106,7 +1117,7 @@ class StudQuestionState extends State<StudQuestion> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Question ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
+                            "${AppLocalizations.of(context)!.qn_qn_page} ${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
                             style: Theme.of(context)
                                 .primaryTextTheme
                                 .bodyLarge
@@ -1207,7 +1218,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                   fontSize: height * 0.0237)),
                                         ),
                                         Text(
-                                          " Marks",
+                                            AppLocalizations.of(context)!.marks_qn,
+                                         // " Marks",
                                           style: Theme.of(context)
                                               .primaryTextTheme
                                               .bodyLarge
@@ -1279,8 +1291,6 @@ class StudQuestionState extends State<StudQuestion> {
                                               onChanged: (ans) {
                                                 if (ansController
                                                     .text.isEmpty) {
-                                                  print("IF");
-                                                  print(selected);
                                                   selected = [];
                                                   context
                                                       .read<Questions>()
@@ -1311,10 +1321,10 @@ class StudQuestionState extends State<StudQuestion> {
                                                 }
                                               },
                                               controller: ansController,
-                                              decoration: const InputDecoration(
-                                                hintText:
-                                                    "Enter your text here",
-                                                border: OutlineInputBorder(
+                                              decoration:  InputDecoration(
+                                                hintText: AppLocalizations.of(context)!.enter_text_here,
+                                                 //   "Enter your text here",
+                                                border: const OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                         color: Colors.black54)),
                                               ),
@@ -1395,7 +1405,8 @@ class StudQuestionState extends State<StudQuestion> {
                                               ),
                                       ),
                                       Text(
-                                        "Not Sure",
+                                          AppLocalizations.of(context)!.not_sure,
+                                        //   "Not Sure",
                                         style: Theme.of(context)
                                             .primaryTextTheme
                                             .bodyLarge
@@ -1533,7 +1544,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 size: height * 0.05,
                                               ),
                                               Text(
-                                                "Skip to end",
+                                                  AppLocalizations.of(context)!.skip_end,
+                                                //"Skip to end",
                                                 style: Theme.of(context)
                                                     .primaryTextTheme
                                                     .bodyLarge
@@ -1608,9 +1620,6 @@ class StudQuestionState extends State<StudQuestion> {
                                       //           listen: false)
                                       //           .questionNum);
                                       // }
-                                      print(Endtime.add_Hm());
-                                      print(Endtime.pattern?.contains("00:00"));
-                                      print("Dfvbfdbfdb");
                                       Navigator.push(
                                         context,
                                         PageTransition(
