@@ -14,10 +14,12 @@ class Question {
     this.subTopic,
     this.datumClass,
     this.choices,
+    this.questionMark
   });
 
   dynamic questionId;
   String? question;
+  int? questionMark;
   String? questionType;
   String? advisorText;
   String? advisorUrl;
@@ -38,6 +40,8 @@ class Question {
     subTopic: json["sub_topic"] ?? '',
     datumClass: json["class"] ?? '',
     choices: List<Choice>.from(json["choices"].map((x) => Choice.fromJson(x))),
+      questionMark: json["question_marks"] ?? 0,
+
   );
 
   Map<String, dynamic> toJson() => {
@@ -51,6 +55,7 @@ class Question {
     "sub_topic": subTopic ?? '',
     "class": datumClass ?? '',
     "choices": choices==null?'':List<dynamic>.from(choices!.map((x) => x.toJson())),
+    "question_marks": questionMark ?? 0
   };
 
   @override

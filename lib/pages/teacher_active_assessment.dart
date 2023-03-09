@@ -3,14 +3,18 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/Teacher/get_assessment_model.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../EntityModel/get_assessment_model.dart' as assessment_model;
 import '../Providers/edit_assessment_provider.dart';
 class TeacherActiveAssessment extends StatefulWidget {
   const TeacherActiveAssessment({
     Key? key,
     required this.setLocale,
+    required this.assessment
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
+  final GetAssessmentModel assessment;
 
   @override
   TeacherActiveAssessmentState createState() => TeacherActiveAssessmentState();
@@ -19,7 +23,7 @@ class TeacherActiveAssessment extends StatefulWidget {
 class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   bool additionalDetails = true;
   bool questionShirnk = true;
-  assessment_model.Datum assessment =assessment_model.Datum();
+  GetAssessmentModel assessment =GetAssessmentModel();
   showAdditionalDetails() {
     setState(() {
       additionalDetails=!additionalDetails;
@@ -36,7 +40,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   @override
   void initState() {
     super.initState();
-    //assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    assessment=widget.assessment;
     super.initState();
   }
 
@@ -163,7 +167,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   ),
                                 ),
                                 Text(
-                                  "  |  ${assessment.datumClass!}",
+                                  "  |  ${assessment.getAssessmentModelClass!}",
                                   style: TextStyle(
                                     color:
                                         const Color.fromRGBO(255, 255, 255, 1),
@@ -962,7 +966,7 @@ class QuestionWidget extends StatefulWidget {
   }) : super(key: key);
 
   final double height;
-  assessment_model.Question question;
+  Question question;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -973,8 +977,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   @override
   void initState() {
-    for(int i=0;i<widget.question.choicesAnswer!.length;i++){
-      ans='$ans, ${widget.question.choicesAnswer![i].choiceText}';
+    for(int i=0;i<widget.question.choices!.length;i++){
+      if(widget.question.choices![i].rightChoice!){
+        ans='$ans, ${widget.question.choices![i].choiceText}';
+      }
     }
     super.initState();
   }
@@ -1041,7 +1047,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         ),
                       ),
                       Text(
-                        "${widget.question.questionMarks}",
+                        "${widget.question.questionMark}",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontSize: widget.height * 0.015,

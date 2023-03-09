@@ -1019,7 +1019,7 @@ class CardInfo extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherActiveAssessment(setLocale: setLocale),
+                child: TeacherActiveAssessment(setLocale: setLocale,assessment: assessment,),
               ),
             );
           } else {

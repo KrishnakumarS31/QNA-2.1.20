@@ -1689,11 +1689,9 @@ class TeacherAssessmentSettingPublishState
                                         assessment.assessmentType='test';
                                       }
                                       else{
-                                        assessment.assessmentType='Practice';
+                                        assessment.assessmentType='practice';
                                       }
-                                      assessment.assessmentStatus='publish';
-                                      assessment.totalScore=0;
-                                      assessment.totalQuestions=0;
+                                      assessment.assessmentStatus='active';
                                       //assessment.assessmentSettings?.allowedNumberOfTestRetries= int.parse(retriesController.text);
                                       //assessment.assessmentSettings?.avalabilityForPractice=true;
                                       AssessmentSettings assessmentSettings=AssessmentSettings();
@@ -1704,23 +1702,25 @@ class TeacherAssessmentSettingPublishState
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor=solvedAnsStatus;
                                       assessmentSettings.allowGuestStudent=allowedGuestStatus;
                                       assessmentSettings.avalabilityForPractice=true;
-                                      assessmentSettings.allowedNumberOfTestRetries=2;
-                                      //assessment.assessmentSettings?.allowGuestStudent=allowedGuestStatus;
-                                      //assessment.assessmentSettings?.showSolvedAnswerSheetInAdvisor=solvedAnsStatus;
-                                      //assessment.assessmentSettings?.showAdvisorName=showNameStatus;
-                                      //assessment.assessmentSettings?.showAdvisorEmail=showEmailStatus;
-                                      //assessment.assessmentSettings?.notAvailable=activeStatus;
+                                      assessmentSettings.allowedNumberOfTestRetries=0;
                                       assessment.assessmentSettings=assessmentSettings;
                                       assessment.assessmentStartdate=1648229877;
                                       assessment.assessmentEnddate=1648233477;
                                       assessment.assessmentDuration=1800;
-                                      ques.questionId=6;
-                                      ques.questionMarks=10;
-                                      quesList.add(ques);
-                                      ques.questionId=7;
-                                      ques.questionMarks=10;
-                                      quesList.add(ques);
-                                      assessment.questions=quesList;
+                                      // String tod='11:11';
+                                      // TimeOfDay stringToTimeOfDay(String tod) {
+                                      //   final format = DateFormat.Hm(); //"6:00 AM"
+                                      //   return TimeOfDay.fromDateTime(format.parse(tod));
+                                      // }
+                                      // TimeOfDay a =stringToTimeOfDay(tod);
+                                      // print(a.toString().substring(10,a.toString().length-1));
+                                      // DateTime time = DateTime(1,1,1,a.hour,a.minute);
+                                      // DateTime tempdate =DateTime(1,1,1);
+                                      // print(time.toString());
+                                      // print(tempdate.toString());
+                                      // int timeEpoch = time.millisecondsSinceEpoch;
+                                      // int tempDateEpoch = tempdate.millisecondsSinceEpoch;
+                                      // print(timeEpoch-tempDateEpoch);
                                       showDialog(
                                           context: context,
                                           builder: (context) {
