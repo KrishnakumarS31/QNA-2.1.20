@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 import 'student_answersheet.dart';
@@ -62,7 +63,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                   ),
                   Text(
                     widget.assessmentId,
-                    //values.data!.assessment!.assessmentCode,
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: localHeight * 0.026,
@@ -107,13 +107,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                           for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index=index+2)
-                            Container(
-                              // margin: const EdgeInsets.all(5),
-                              //padding: const EdgeInsets.all(5),
+                            SizedBox(
                               width: localWidth * 0.4,
                                 child:
-                                //question.answer == "*** not answered ***"
-                                //?
                                 Provider.of<Questions>(context, listen: false)
                                     .totalQuestion['$index'][1] !=
                                     const Color(0xff52a5a0)
@@ -137,7 +133,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           SizedBox(
                                               width: localHeight * 0.020),
                                           Text(
-                                            "${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                            "(${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     179, 179, 179, 1),
@@ -190,11 +186,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   ))
                                             ],
                                           )
-                                              : Text("Not answered",
+                                              : Text(AppLocalizations.of(context)!.not_answered,
+                                              //"Not answered",
                                               style:
-                                              // question.answer ==
-                                              //   "*** not answered ***"
-                                              //?
                                               TextStyle(
                                                   color: const Color
                                                       .fromRGBO(
@@ -205,13 +199,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   fontSize:
                                                   localHeight *
                                                       0.024)
-                                            // :
-                                            // TextStyle(
-                                            //     color: const Color.fromRGBO(
-                                            //         82, 165, 160, 1),
-                                            //     fontFamily: 'Inter',
-                                            //     fontWeight: FontWeight.w600,
-                                            //     fontSize: localHeight * 0.014)
                                           ),
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
@@ -325,13 +312,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                           for (int index = 2; index < context.watch<QuestionNumProvider>().questionNum; index=index+2)
-                            Container(
-                              // margin: const EdgeInsets.all(5),
-                              //padding: const EdgeInsets.all(5),
+                            SizedBox(
                                 width: localWidth * 0.4,
                                 child:
-                                //question.answer == "*** not answered ***"
-                                //?
                                 Provider.of<Questions>(context, listen: false)
                                     .totalQuestion['$index'][1] !=
                                     const Color(0xff52a5a0)
@@ -355,7 +338,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           SizedBox(
                                               width: localHeight * 0.020),
                                           Text(
-                                            "${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                            "(${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     179, 179, 179, 1),
@@ -408,11 +391,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   ))
                                             ],
                                           )
-                                              : Text("Not answered",
+                                              : Text(AppLocalizations.of(context)!.not_answered,
                                               style:
-                                              // question.answer ==
-                                              //   "*** not answered ***"
-                                              //?
                                               TextStyle(
                                                   color: const Color
                                                       .fromRGBO(
@@ -423,13 +403,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   fontSize:
                                                   localHeight *
                                                       0.024)
-                                            // :
-                                            // TextStyle(
-                                            //     color: const Color.fromRGBO(
-                                            //         82, 165, 160, 1),
-                                            //     fontFamily: 'Inter',
-                                            //     fontWeight: FontWeight.w600,
-                                            //     fontSize: localHeight * 0.014)
                                           ),
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
@@ -552,6 +525,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             color: const Color.fromRGBO(48, 145, 139, 1),
                           ),
                           onPressed: () {
+                            print(values.data!.assessmentType);
                             Navigator.push(
                               context,
                               PageTransition(
@@ -571,15 +545,26 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     color: const Color.fromRGBO(48, 145, 139, 1),
                                     fontWeight: FontWeight.w500)),
                             onPressed: () {
-                              Navigator.push(
+                              print(values.data!.assessmentType);
+                              values.data!.assessmentType != "test"
+                              ?  Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudentMemAnswerSheet(
                                       questions: values,
-                                      assessmentId: widget.assessmentId),
-                                ),
-                              );
+                                      assessmentId: widget.assessmentId)))
+                                  : Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(
+                                      title: 'Alert',
+                                      content: 'You can see only Practice test Answersheet',
+                                      button: AppLocalizations.of(context)!.retry,
+                                    ),
+                                  ),
+                                );
                             }),
                         const SizedBox(width: 150),
                         IconButton(
@@ -589,6 +574,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             color: const Color.fromRGBO(48, 145, 139, 1),
                           ),
                           onPressed: () {
+                            print(values.data!.assessmentType);
                             Navigator.push(
                               context,
                               PageTransition(
@@ -624,7 +610,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 localWidth / 1.0, localHeight * 0.3)),
                       ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                         Text(
                           AppLocalizations.of(context)!.pls_contact,
@@ -744,11 +730,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                         index < context.watch<QuestionNumProvider>().questionNum;
                         index++)
                           Container(
-                            // margin: const EdgeInsets.all(5),
-                            //padding: const EdgeInsets.all(5),
                               child:
-                              //question.answer == "*** not answered ***"
-                              //?
                               Provider.of<Questions>(context, listen: false)
                                   .totalQuestion['$index'][1] !=
                                   const Color(0xff52a5a0)
@@ -772,7 +754,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         SizedBox(
                                             width: localHeight * 0.020),
                                         Text(
-                                          "${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
+                                          "(${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   179, 179, 179, 1),
@@ -825,11 +807,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 ))
                                           ],
                                         )
-                                            : Text("Not answered",
+                                            : Text(AppLocalizations.of(context)!.not_answered,
+                                            //"Not answered",
                                             style:
-                                            // question.answer ==
-                                            //   "*** not answered ***"
-                                            //?
                                             TextStyle(
                                                 color: const Color
                                                     .fromRGBO(
@@ -840,13 +820,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 fontSize:
                                                 localHeight *
                                                     0.014)
-                                          // :
-                                          // TextStyle(
-                                          //     color: const Color.fromRGBO(
-                                          //         82, 165, 160, 1),
-                                          //     fontFamily: 'Inter',
-                                          //     fontWeight: FontWeight.w600,
-                                          //     fontSize: localHeight * 0.014)
                                         ),
                                       ]),
                                       SizedBox(height: localHeight * 0.010),
@@ -968,6 +941,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               color: const Color.fromRGBO(48, 145, 139, 1),
                             ),
                             onPressed: () {
+                              print(values.data!.assessmentType);
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -987,13 +961,23 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       color: const Color.fromRGBO(48, 145, 139, 1),
                                       fontWeight: FontWeight.w500)),
                               onPressed: () {
-                                Navigator.push(
+                                values.data!.assessmentType != "test"
+                                    ?  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: StudentMemAnswerSheet(
+                                            questions: values,
+                                            assessmentId: widget.assessmentId)))
+                                    : Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: StudentMemAnswerSheet(
-                                        questions: values,
-                                        assessmentId: widget.assessmentId),
+                                    child: CustomDialog(
+                                      title: 'Alert',
+                                      content: 'You can see only Practice test Answersheet',
+                                      button: AppLocalizations.of(context)!.retry,
+                                    ),
                                   ),
                                 );
                               }),
@@ -1021,7 +1005,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       const Divider(
                         thickness: 2,
                       ),
-                      // SizedBox(height: localHeight * 0.070),
                       const SizedBox(height: 30.0),
                       Container(
                         height: localHeight * 0.20,
@@ -1042,8 +1025,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                  top: localHeight * 0.03, left: localWidth * 0.23),
-                              child: Column(children: [
+                                  top: localHeight * 0.03),
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
                                 Text(
                                   AppLocalizations.of(context)!.pls_contact,
                                   textAlign: TextAlign.center,
@@ -1053,7 +1038,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       fontWeight: FontWeight.w700,
                                       fontSize: localHeight * 0.020),
                                 ),
-                                const SizedBox(height: 20.0),
+                               SizedBox(height: localHeight * 0.010),
                                 RichText(
                                     textAlign: TextAlign.start,
                                     text: TextSpan(children: [

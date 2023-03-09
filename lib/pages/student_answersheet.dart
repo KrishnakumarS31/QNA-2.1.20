@@ -27,7 +27,6 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
       List<String> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
         if(widget.questions.data!.questions![j-1].questionType=='mcq'){
-         // selectedAnswers.add(widget.questions.data!.questions[j-1].choices[selectedAns[t]-1].choiceText);
         }
         else{
           String temp='';
@@ -72,7 +71,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                     ),
                   ),
                   Text(
-                    widget.assessmentId,
+                   widget.assessmentId,
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: localHeight * 0.026,
@@ -134,13 +133,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                           for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
                             Container(
                               width: localWidth * 0.4,
-                              //decoration: BoxDecoration(border: Border.all()),
                                 margin: const EdgeInsets.all(5),
                                 padding: const EdgeInsets.all(5),
-                                //color: const Color.fromRGBO(255, 255, 255, 1),
                                 child: ListTile(
                                     title: Column(
-                                      //mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Row(children: [

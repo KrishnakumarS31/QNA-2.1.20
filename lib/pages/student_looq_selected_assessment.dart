@@ -3,13 +3,13 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/question_paper_model.dart';
+import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
-import '../Components/end_drawer_menu_teacher.dart';
 
 class StudentLooqSelectedAssessment extends StatefulWidget {
   const StudentLooqSelectedAssessment({
     Key? key,
-    required this.setLocale,
+    required this.setLocale
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
 
@@ -453,6 +453,7 @@ class StudentLooqSelectedAssessmentState
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: StudQuestion(
+                                setLocale: widget.setLocale,
                                 userName: "firstName",
                                 assessmentId: '98765432',
                                 ques: values,

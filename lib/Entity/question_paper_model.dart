@@ -31,6 +31,11 @@ class QuestionPaperModel {
     "message": message,
     "data": data!.toJson(),
   };
+
+  @override
+  String toString() {
+    return 'QuestionPaperModel{code: $code, message: $message, data: $data}';
+  }
 }
 
 class Data {
@@ -171,7 +176,6 @@ class Question {
     this.advisorText,
     this.advisorUrl,
     this.choices,
-    this.choicesAnswer,
   });
 
   int? questionId;
@@ -182,7 +186,6 @@ class Question {
   String? advisorText;
   String? advisorUrl;
   List<Choice>? choices;
-  List<Choice>? choicesAnswer;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
     questionId: json["question_id"],
@@ -193,7 +196,6 @@ class Question {
     advisorText: json["advisor_text"],
     advisorUrl: json["advisor_url"],
     choices: List<Choice>.from(json["choices"].map((x) => Choice.fromJson(x))),
-    choicesAnswer: List<Choice>.from(json["choices_answer"].map((x) => Choice.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -205,7 +207,6 @@ class Question {
     "advisor_text": advisorText,
     "advisor_url": advisorUrl,
     "choices": List<dynamic>.from(choices!.map((x) => x.toJson())),
-    "choices_answer": List<dynamic>.from(choicesAnswer!.map((x) => x.toJson())),
   };
 }
 
@@ -213,18 +214,22 @@ class Choice {
   Choice({
     this.choiceId,
     this.choiceText,
+    this.rightChoice,
   });
 
   int? choiceId;
   String? choiceText;
+  bool? rightChoice;
 
   factory Choice.fromJson(Map<String, dynamic> json) => Choice(
     choiceId: json["choice_id"],
     choiceText: json["choice_text"],
+    rightChoice: json["right_choice"],
   );
 
   Map<String, dynamic> toJson() => {
     "choice_id": choiceId,
     "choice_text": choiceText,
+    "right_choice": rightChoice,
   };
 }

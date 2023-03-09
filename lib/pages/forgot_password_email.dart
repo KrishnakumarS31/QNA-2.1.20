@@ -125,7 +125,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                       ),
                       validator: (value) {
                         if (value!.isEmpty ||
-                            !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
                           return AppLocalizations.of(context)!
                               .enter_valid_email;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/pages/teacher_assessment_searched.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
@@ -8,12 +9,14 @@ import 'package:qna_test/pages/teacher_inactive_assessment.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import '../Entity/Teacher/get_assessment_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../EntityModel/get_assessment_model.dart' as assessment_model;
 import '../Providers/edit_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
     Key? key,
@@ -43,11 +46,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     buildSignature: 'Unknown',
     installerStore: 'Unknown',
   );
-  assessment_model.GetAssessmentModel allAssessment =assessment_model.GetAssessmentModel();
-  List<assessment_model.Datum> assessments=[];
+  List<GetAssessmentModel> allAssessment =[];
+  List<GetAssessmentModel> assessments=[];
   bool loading=true;
   ScrollController scrollController =ScrollController();
-  int pageLimit =0;
+  int pageLimit =1;
+
+
 
   @override
   void initState() {
@@ -100,7 +105,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Legend",
+                        AppLocalizations.of(context)!.legend,
+                        //"Legend",
                         style: Theme.of(context)
                             .primaryTextTheme
                             .bodyLarge
@@ -133,7 +139,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               0.02,
                         ),
                         Text(
-                          "  Active",
+                          AppLocalizations.of(context)!.active,
+                          //"  Active",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -158,7 +165,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               0.02,
                         ),
                         Text(
-                          "  In progress",
+                          AppLocalizations.of(context)!.in_progress,
+                          //"  In progress",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -188,7 +196,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               0.02,
                         ),
                         Text(
-                          "  Inactive",
+                          AppLocalizations.of(context)!.in_active,
+                          //"  Inactive",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -213,7 +222,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               0.02,
                         ),
                         Text(
-                          "  Practice",
+                          AppLocalizations.of(context)!.practice,
+                          //"  Practice",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -242,10 +252,10 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   }
 
   getData()async{
-    allAssessment = await QnaService.getAllAssessment(pageLimit,1+pageLimit);
-    assessments = assessments + allAssessment.data!;
+    ResponseEntity response =await QnaService.getAllAssessment(1,pageLimit);
+    allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
-      assessments;
+      assessments.addAll(allAssessment);
       loading = false;
       pageLimit++;
     });
@@ -277,7 +287,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         title:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
-            "MY ASSESSMENTS",
+            AppLocalizations.of(context)!.my_assessments,
+            //"MY ASSESSMENTS",
             style: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.0225,
@@ -311,7 +322,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Search",
+                      AppLocalizations.of(context)!.search,
+                      //"Search",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.02,
@@ -340,7 +352,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           },
                         ),
                         Text(
-                          "Only My Assessments",
+                          AppLocalizations.of(context)!.only_my_assessments,
+                          //"Only My Assessments",
                           style: TextStyle(
                             color: const Color.fromRGBO(0, 0, 0, 1),
                             fontSize: height * 0.015,
@@ -353,7 +366,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   ],
                 ),
                 Text(
-                  "Library of Assessments",
+                  AppLocalizations.of(context)!.lib_of_assessments,
+                  //"Library of Assessments",
                   style: TextStyle(
                     color: const Color.fromRGBO(153, 153, 153, 1),
                     fontSize: height * 0.015,
@@ -372,7 +386,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
                         fontSize: height * 0.016),
-                    hintText: "Maths, 10th, 2022, CBSE, Science",
+                    hintText:
+                    AppLocalizations.of(context)!.sub_hint_text,
+                    //"Maths, 10th, 2022, CBSE, Science",
                     suffixIcon: Column(children: [
                       Container(
                           height: height * 0.073,
@@ -413,7 +429,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     textAlign: TextAlign.center,
                     text: TextSpan(children: [
                       TextSpan(
-                        text: "DISCLAIMER:",
+                        text:
+                        AppLocalizations.of(context)!.disclaimer_qn_prepare,
+                    //"DISCLAIMER:",
                         style: TextStyle(
                             fontSize: height * 0.015,
                             fontWeight: FontWeight.w500,
@@ -422,7 +440,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ),
                       TextSpan(
                         text:
-                            "\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
+                        AppLocalizations.of(context)!.disclaimer_text_qn_prepare,
+                        //"\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
                         style: TextStyle(
                             fontSize: height * 0.015,
                             fontWeight: FontWeight.w500,
@@ -432,7 +451,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     ])),
                 SizedBox(height: height * 0.02),
                 Text(
-                  "Tests",
+                  AppLocalizations.of(context)!.tests,
+                  //"Tests",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.02,
@@ -444,7 +464,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   height: height * 0.02,
                 ),
                 Text(
-                  "Tap to Review/Edit/Delete",
+                  AppLocalizations.of(context)!.tap_to_review,
+                  //"Tap to Review/Edit/Delete",
                   style: TextStyle(
                     color: const Color.fromRGBO(153, 153, 153, 1),
                     fontSize: height * 0.015,
@@ -455,7 +476,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                Container(
+                SizedBox(
                   height: height * 0.35,
                   child: ListView.builder(
                     itemCount: assessments.length,
@@ -465,7 +486,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           CardInfo(
                               height: height,
                               width: width,
-                              status: 'In progress',
+                              status: 'Active',
                               setLocale: widget.setLocale,
                           assessment: assessments[index],),
                     SizedBox(
@@ -490,7 +511,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         getData();
                       },
                       child: Text(
-                        "View More",
+                        AppLocalizations.of(context)!.view_more,
+                        //"View More",
                         style: TextStyle(
                           color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0175,
@@ -550,7 +572,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             Align(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                'Assessment Title',
+                                                AppLocalizations.of(context)!.assessment_title,
+                                                //'Assessment Title',
                                                 style: TextStyle(
                                                     fontSize: height * 0.02,
                                                     fontFamily: "Inter",
@@ -563,7 +586,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             Align(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                'Subject, Class and Other details',
+                                                AppLocalizations.of(context)!.sub_class_others,
+                                                // 'Subject, Class and Other details',
                                                 style: TextStyle(
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
@@ -591,7 +615,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                     child: Row(
                                                       children: [
                                                         Text(
-                                                          'SUBJECT',
+                                                          AppLocalizations.of(context)!.sub_caps,
+                                                          //'SUBJECT',
                                                           style: TextStyle(
                                                               fontSize: height *
                                                                   0.015,
@@ -638,7 +663,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: height * 0.02),
-                                                  hintText: 'Type Subject Here',
+                                                  hintText: AppLocalizations.of(context)!.sub_hint,
+                                                  //'Type Subject Here',
                                                   focusedBorder: OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
@@ -658,7 +684,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 ),
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
-                                                    return 'Enter Subject';
+                                                    return AppLocalizations.of(context)!.enter_subject;
+                                                      //'Enter Subject';
                                                   } else {
                                                     return null;
                                                   }
@@ -683,7 +710,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                     child: Row(
                                                       children: [
                                                         Text(
-                                                          'CLASS',
+                                                          AppLocalizations.of(context)!.class_caps,
+                                                          // 'CLASS',
                                                           style: TextStyle(
                                                               fontSize: height *
                                                                   0.015,
@@ -730,7 +758,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: height * 0.02),
-                                                  hintText: 'Type Here',
+                                                  hintText:
+                                                  AppLocalizations.of(context)!.type_here,
+                                                  //'Type Here',
                                                   focusedBorder: OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
@@ -750,7 +780,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 ),
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
-                                                    return 'Enter Class';
+                                                    return AppLocalizations.of(context)!.enter_class;
+                                                      //'Enter Class';
                                                   } else {
                                                     return null;
                                                   }
@@ -770,7 +801,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   floatingLabelBehavior:
                                                       FloatingLabelBehavior
                                                           .always,
-                                                  labelText: 'TOPIC (Optional)',
+                                                  labelText: AppLocalizations.of(context)!.topic_optional,
+                                                  //'TOPIC (Optional)',
                                                   labelStyle: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -787,7 +819,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       fontSize: height * 0.02),
-                                                  hintText: 'Type Topic Here',
+                                                  hintText: AppLocalizations.of(context)!.topic_hint,
+                                                  //'Type Topic Here',
                                                   focusedBorder: OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
@@ -821,7 +854,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       FloatingLabelBehavior
                                                           .always,
                                                   labelText:
-                                                      'SUB TOPIC (Optional)',
+                                                  AppLocalizations.of(context)!.sub_topic_optional,
+                                                  // 'SUB TOPIC (Optional)',
                                                   labelStyle: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -839,7 +873,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           FontWeight.w400,
                                                       fontSize: height * 0.02),
                                                   hintText:
-                                                      'Type Sub Topic Here',
+                                                  AppLocalizations.of(context)!.sub_topic_hint,
+                                                  //'Type Sub Topic Here',
                                                   focusedBorder: OutlineInputBorder(
                                                       borderSide:
                                                           const BorderSide(
@@ -880,19 +915,12 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                     .validate();
                                                 if (valid) {
                                                   SharedPreferences loginData=await SharedPreferences.getInstance();
+                                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                                                   assessment.topic=topicController.text;
                                                   assessment.subTopic=subTopicController.text;
                                                   assessment.subject=subjectController.text;
                                                   assessment.createAssessmentModelClass=classController.text;
                                                   assessment.userId=loginData?.getInt('userId');
-                                                  List<Question> quesList=[];
-                                                  Question ques=Question();
-                                                  ques.questionId=6;
-                                                  ques.questionMarks=10;
-                                                  quesList.add(ques);
-                                                  ques.questionId=7;
-                                                  ques.questionMarks=10;
-                                                  quesList.add(ques);
                                                   Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                                   Navigator.push(
                                                     context,
@@ -908,7 +936,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 }
                                               },
                                               child: Text(
-                                                'Save & Continue',
+                                                AppLocalizations.of(context)!.save_continue,
+                                                //'Save & Continue',
                                                 style: TextStyle(
                                                     fontSize: height * 0.025,
                                                     fontFamily: "Inter",
@@ -931,7 +960,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Prepare New Assessment',
+                            AppLocalizations.of(context)!.prepare_new_assessment,
+                            //'Prepare New Assessment',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -968,7 +998,7 @@ class CardInfo extends StatelessWidget {
   final double width;
   final String status;
   final void Function(Locale locale) setLocale;
-  final assessment_model.Datum assessment;
+  final GetAssessmentModel assessment;
 
   @override
   Widget build(BuildContext context) {
@@ -976,7 +1006,7 @@ class CardInfo extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-          if (status == 'In progress') {
+          if (assessment.assessmentStatus == 'inprogress') {
             Navigator.push(
               context,
               PageTransition(
@@ -984,7 +1014,7 @@ class CardInfo extends StatelessWidget {
                 child: TeacherRecentAssessment(setLocale: setLocale,),
               ),
             );
-          } else if (status == 'Active') {
+          } else if (assessment.assessmentStatus == 'active') {
             Navigator.push(
               context,
               PageTransition(
@@ -1034,7 +1064,7 @@ class CardInfo extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " | ${assessment.datumClass}",
+                          " | ${assessment.getAssessmentModelClass}",
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0175,
@@ -1060,7 +1090,8 @@ class CardInfo extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Assessment ID: ",
+                      AppLocalizations.of(context)!.assessment_id_caps,
+                      //"Assessment ID: ",
                       style: TextStyle(
                         color: const Color.fromRGBO(102, 102, 102, 1),
                         fontSize: height * 0.015,
@@ -1089,7 +1120,8 @@ class CardInfo extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Institute Test ID: ",
+                          AppLocalizations.of(context)!.institute_test_id,
+                          // "Institute Test ID: ",
                           style: TextStyle(
                             color: const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: height * 0.015,

@@ -5,6 +5,7 @@ import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
+import '../EntityModel/user_data_model.dart';
 
 class StudentForgotPassword extends StatefulWidget {
   const StudentForgotPassword(
@@ -17,6 +18,7 @@ class StudentForgotPassword extends StatefulWidget {
   final String email;
   final String otp;
   final void Function(Locale locale) setLocale;
+
   @override
   StudentForgotPasswordState createState() => StudentForgotPasswordState();
 }

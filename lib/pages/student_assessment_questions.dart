@@ -12,11 +12,12 @@ class StudQuestion extends StatefulWidget {
       {Key? key,
       required this.assessmentId,
       required this.ques,
-      required this.userName})
+      required this.userName, required this.setLocale})
       : super(key: key);
   final String assessmentId;
   final QuestionPaperModel ques;
   final String userName;
+  final void Function(Locale locale) setLocale;
 
   @override
   StudQuestionState createState() => StudQuestionState();
@@ -409,14 +410,12 @@ class StudQuestionState extends State<StudQuestion> {
             });
       }
     });
-    String start_formatted = formatter.format(now);
     values = widget.ques;
     context.read<Questions>().createQuesAns(values.data!.questions!.length);
     context.read<QuestionNumProvider>().reset();
 
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    //getDatas();
     super.initState();
   }
 
@@ -440,11 +439,7 @@ class StudQuestionState extends State<StudQuestion> {
     final hours = strDigits(myDuration.inHours.remainder(24));
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
-    DateFormat Endtime = DateFormat("$hours:$minutes");
-        //"$hours:$minutes:$seconds";
     int i;
-    //print(Provider.of<Questions>(context, listen: false).totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0]);
-    // setState(() {
     selected = Provider.of<Questions>(context, listen: false).totalQuestion[
         '${context.watch<QuestionNumProvider>().questionNum}'][0];
     ansController.text = Provider.of<Questions>(context, listen: false)
@@ -828,7 +823,6 @@ class StudQuestionState extends State<StudQuestion> {
                           ),
                         ),
                       ),
-// Questioncard(quesAns: context.watch<QuestionNumProvider>().questionNum),
                       Padding(
                         padding: EdgeInsets.only(
                           right: height * 0.035,
@@ -980,8 +974,8 @@ class StudQuestionState extends State<StudQuestion> {
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
                                     child: StudentReviseQuest(
-                                        endTime: Endtime,
                                         questions: values,
+                                        setLocale: widget.setLocale,
                                         userName: widget.userName,
                                         startTime:
                                         now.microsecondsSinceEpoch,
@@ -1426,7 +1420,6 @@ class StudQuestionState extends State<StudQuestion> {
                           ),
                         ),
                       ),
-// Questioncard(quesAns: context.watch<QuestionNumProvider>().questionNum),
                       Padding(
                         padding: EdgeInsets.only(
                           right: height * 0.035,
@@ -1625,11 +1618,11 @@ class StudQuestionState extends State<StudQuestion> {
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: StudentReviseQuest(
-                                              endTime: Endtime,
                                               questions: values,
                                               userName: widget.userName,
                                               startTime:
                                                   now.microsecondsSinceEpoch,
+                                              setLocale: widget.setLocale,
                                               assessmentID:
                                                   widget.assessmentId),
                                         ),

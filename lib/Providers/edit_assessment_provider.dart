@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import '../Entity/Teacher/get_assessment_model.dart';
+import '../Entity/Teacher/question_entity.dart';
 
-import '../EntityModel/get_assessment_model.dart';
 
 
 class EditAssessmentProvider extends ChangeNotifier {
-  Datum _assessment=Datum();
+  GetAssessmentModel _assessment=GetAssessmentModel();
 
-  Datum get getAssessment => _assessment;
+  GetAssessmentModel get getAssessment => _assessment;
 
-  void updateAssessment(Datum assessment){
+  void updateAssessment(GetAssessmentModel assessment){
     _assessment=assessment;
+    notifyListeners();
+  }
+
+  void addQuestion(Question question){
+    _assessment.questions?.add(question);
     notifyListeners();
   }
 

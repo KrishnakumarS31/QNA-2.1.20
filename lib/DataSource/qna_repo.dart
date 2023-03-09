@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import '../Entity/Teacher/edit_question_model.dart';
+import '../Entity/Teacher/response_entity.dart';
+import '../Entity/get_question_model.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/create_question_model.dart';
@@ -10,8 +13,8 @@ import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../EntityModel/user_data_model.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Entity/Teacher/question_entity.dart';
 class QnaRepo {
   static logInUser(String email, String password) async {
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
@@ -205,9 +208,10 @@ class QnaRepo {
     return loginModel;
   }
 
-  static Future<LoginModel> createQuestionTeacher(CreateQuestionModel question) async {
+  static Future<ResponseEntity> createQuestionTeacher(CreateQuestionModel question) async {
+    print(question.questions![0].subject);
     SharedPreferences loginData = await SharedPreferences.getInstance();
-    LoginModel loginModel = LoginModel(code: 0, message: 'message');
+    ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
@@ -218,7 +222,7 @@ class QnaRepo {
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
-      loginModel = loginModelFromJson(temp);
+      loginModel = responseEntityFromJson(temp);
     }
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
@@ -243,6 +247,7 @@ class QnaRepo {
     var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment'));
     request.body = createAssessmentModelToJson(question);
     print("=========================================");
+    print(question.toString());
     print(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -333,8 +338,8 @@ class QnaRepo {
     return questionPaperModel;
   }
 
-  static Future<GetAssessmentModel> getAllAssessment(int pageLimit,int pageNumber) async {
-    GetAssessmentModel allAssessment=GetAssessmentModel();
+  static Future<ResponseEntity> getAllAssessment(int pageLimit,int pageNumber) async {
+    ResponseEntity allAssessment=ResponseEntity();
     SharedPreferences loginData=await SharedPreferences.getInstance();
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}'
@@ -347,11 +352,87 @@ class QnaRepo {
 
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();
-      allAssessment = getAssessmentModelFromJson(value);
+      allAssessment = responseEntityFromJson(value);
     }
     else {
       print(response.reasonPhrase);
     }
     return allAssessment;
   }
+
+  static Future<ResponseEntity> getAllQuestion(int pageLimit,int pageNumber) async {
+    ResponseEntity responseEntity=ResponseEntity();
+    SharedPreferences loginData=await SharedPreferences.getInstance();
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}'
+    };
+    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/all/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      print("-----------------");
+      responseEntity = responseEntityFromJson(value);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return responseEntity;
+  }
+
+  static Future<LoginModel> deleteQuestion(int questionId) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    LoginModel loginModel = LoginModel(code: 0, message: 'message');
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('DELETE', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/$questionId'));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      loginModel = loginModelFromJson(temp);
+    }
+    else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!);
+      deleteQuestion(questionId);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return loginModel;
+  }
+
+  static Future<ResponseEntity> editQuestionTeacher(EditQuestionModel question,int questionId) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/$questionId'));
+    request.body = editQuestionModelToJson(question);
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      loginModel = responseEntityFromJson(temp);
+    }
+    else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!);
+      editQuestionTeacher(question,questionId);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return loginModel;
+  }
+
 }

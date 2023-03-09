@@ -42,6 +42,7 @@ class Datum {
     this.topic,
     this.subTopic,
     this.datumClass,
+    this.assessmentStatus,
     this.assessmentScoreMessage,
     this.assessmentSettings,
     this.questions,
@@ -55,6 +56,7 @@ class Datum {
   String? topic;
   String? subTopic;
   String? datumClass;
+  String? assessmentStatus;
   dynamic assessmentScoreMessage;
   AssessmentSettings? assessmentSettings;
   List<Question>? questions;
@@ -68,6 +70,7 @@ class Datum {
     topic: json["topic"],
     subTopic: json["sub_topic"],
     datumClass: json["class"],
+    assessmentStatus: json["assessment_status"],
     assessmentScoreMessage: json["assessment_score_message"],
     assessmentSettings: AssessmentSettings.fromJson(json["assessment_settings"]),
     questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
@@ -82,6 +85,7 @@ class Datum {
     "topic": topic,
     "sub_topic": subTopic,
     "class": datumClass,
+    "assessment_status": assessmentStatus,
     "assessment_score_message": assessmentScoreMessage,
     "assessment_settings": assessmentSettings?.toJson(),
     "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
@@ -123,6 +127,7 @@ class Question {
     this.advisorUrl,
     this.choices,
     this.choicesAnswer,
+    this.removeQuestions
   });
 
   int? questionId;
@@ -134,6 +139,7 @@ class Question {
   String? advisorUrl;
   List<Choice>? choices;
   List<Choice>? choicesAnswer;
+  List<int>? removeQuestions;
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
     questionId: json["question_id"],
@@ -145,6 +151,7 @@ class Question {
     advisorUrl: json["advisor_url"],
     choices: List<Choice>.from(json["choices"].map((x) => Choice.fromJson(x))),
     choicesAnswer: List<Choice>.from(json["choices_answer"].map((x) => Choice.fromJson(x))),
+    removeQuestions: json["remove_questions"]==null?[]:List<int>.from(json["remove_questions"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -157,6 +164,7 @@ class Question {
     "advisor_url": advisorUrl,
     "choices": List<dynamic>.from(choices!.map((x) => x.toJson())),
     "choices_answer": List<dynamic>.from(choicesAnswer!.map((x) => x.toJson())),
+    "remove_questions": removeQuestions==null?[]:List<dynamic>.from(removeQuestions!.map((x) => x)),
   };
 }
 

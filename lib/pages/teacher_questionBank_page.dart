@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
 import 'package:qna_test/Pages/teacher_looq_search_question.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../EntityModel/GetQuestionBankModel.dart';
+import '../Entity/Teacher/response_entity.dart';
+import '../Entity/get_question_model.dart';
 import '../Services/qna_service.dart';
 import 'teacher_prepare_qnBank.dart';
 
@@ -23,13 +25,21 @@ class TeacherQuestionBank extends StatefulWidget {
 
 class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   bool agree = false;
-
-  GetQuestionBankModel questionBank=GetQuestionBankModel(status: 500, message: 'message');
+  int pageNumber=2;
   List<Question> questionList=[];
   @override
   void initState() {
     super.initState();
     questionList=widget.quesList;
+  }
+
+  getQuestionData() async {
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(3,pageNumber);
+    List<Question> questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+    setState(() {
+      questionList.addAll(questions);
+      pageNumber++;
+    });
   }
 
 
@@ -39,7 +49,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     TextEditingController teacherQuestionBankSearchController =
-        TextEditingController();
+    TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -57,7 +67,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
             "MY QUESTIONS",
             style: TextStyle(
@@ -74,9 +84,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
         ),
       ),
       endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -108,12 +118,12 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         Checkbox(
                           activeColor: const Color.fromRGBO(82, 165, 160, 1),
                           fillColor: MaterialStateProperty.resolveWith<Color>(
-                              (states) {
-                            if (states.contains(MaterialState.selected)) {
-                              return const Color.fromRGBO(82, 165, 160, 1);
-                            }
-                            return const Color.fromRGBO(82, 165, 160, 1);
-                          }),
+                                  (states) {
+                                if (states.contains(MaterialState.selected)) {
+                                  return const Color.fromRGBO(82, 165, 160, 1);
+                                }
+                                return const Color.fromRGBO(82, 165, 160, 1);
+                              }),
                           value: agree,
                           onChanged: (val) {
                             setState(() {
@@ -158,7 +168,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                           width: width * 0.13,
                           decoration: const BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
+                            BorderRadius.all(Radius.circular(8.0)),
                             color: Color.fromRGBO(82, 165, 160, 1),
                           ),
                           child: IconButton(
@@ -203,7 +213,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         ),
                         TextSpan(
                           text:
-                              "\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
+                          "\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontWeight: FontWeight.w500,
@@ -235,21 +245,25 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         question: i,
                         setLocale: widget.setLocale),
                   SizedBox(height: height * 0.02),
-                  Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                    Text(
-                      "View More",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
+                  GestureDetector( onTap: (){
+                    getQuestionData();
+                  },
+                    child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                      Text(
+                        "View More",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: height * 0.0175,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    const Icon(
-                      Icons.chevron_right,
-                      color: Color.fromRGBO(28, 78, 80, 1),
-                    ),
-                  ]),
+                      const Icon(
+                        Icons.chevron_right,
+                        color: Color.fromRGBO(28, 78, 80, 1),
+                      ),
+                    ]),
+                  ),
                   SizedBox(height: height * 0.02),
                   Center(
                     child: SizedBox(
@@ -257,7 +271,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -322,8 +336,8 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 0; i < question.choicesAnswer!.length; i++) {
-      answer = '$answer ${question.choicesAnswer![i].choiceText}';
+    for (int i = 0; i < question.choices!.length; i++) {
+      answer = '$answer ${question.choices![i].choiceText}';
     }
     return GestureDetector(
       onTap: () {
@@ -376,7 +390,7 @@ class QuestionPreview extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          question.questionClass!,
+                          question.datumClass!,
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontFamily: "Inter",

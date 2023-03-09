@@ -169,6 +169,7 @@ class QnaTestRepo {
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();
     questionPaperModel = questionPaperModelFromJson(value);
+    print(questionPaperModel.toString());
     if(response.statusCode == 401){
     String? email=loginData.getString('email');
     String? pass=loginData.getString('password');

@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_Advisor.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:flutter/foundation.dart';
+import 'package:qna_test/Pages/student_selection_page.dart';
 import '../Entity/question_paper_model.dart';
 import 'package:intl/intl.dart';
-
 class StudentResultPage extends StatefulWidget {
   const StudentResultPage(
       {Key? key,
@@ -14,7 +13,7 @@ class StudentResultPage extends StatefulWidget {
       required this.time,
       required this.questions,
       required this.assessmentCode,
-      required this.userName, required this.endTime})
+      required this.userName, required this.endTime, required this.setLocale})
       : super(key: key);
   final int totalMarks;
   final QuestionPaperModel questions;
@@ -22,7 +21,8 @@ class StudentResultPage extends StatefulWidget {
   final String time;
   final String userName;
   final String assessmentCode;
-  final DateFormat endTime;
+  final String endTime;
+  final void Function(Locale locale) setLocale;
 
   @override
   StudentResultPageState createState() => StudentResultPageState();
@@ -47,7 +47,39 @@ class StudentResultPageState extends State<StudentResultPage> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return Scaffold(
+          return WillPopScope(
+              onWillPop: () async {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("Alert"),
+                    content: const Text("Are you sure you want to exit?"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text("No"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: StudentSelectionPage(
+                                    setLocale: widget.setLocale),
+                              ),
+                            );
+                        },
+                        child: const Text("Yes"),
+                      ),
+                    ],
+                  ),
+                );
+                return false;
+              },
+            child: Scaffold(
             body: Stack(
               children: [
                 Column(
@@ -152,14 +184,42 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     borderRadius: BorderRadius.circular(39),
                                   ),
                                 ),
-                                //shape: StadiumBorder(),
                                 child: Text(AppLocalizations.of(context)!.exit,
                                     style: TextStyle(
                                         fontFamily: 'Inter',
                                         fontSize: localHeight * 0.022,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600)),
-                                onPressed: () {}),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text("Alert"),
+                                      content: const Text("Are you sure you want to exit?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text("No"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: StudentSelectionPage(
+                                                    setLocale: widget.setLocale),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text("Yes"),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },),
                           ],
                         )),
                   ],
@@ -169,7 +229,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                   left: localHeight * 0.50,
                   child: SizedBox(
                     height: localHeight * 0.60,
-                    width: localWidth * 0.5,
+                    width: localWidth * 0.6,
                     child: Card(
                       elevation: 12,
                       child: Column(children: [
@@ -242,7 +302,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     fontWeight: FontWeight.w500,
                                     fontSize: localHeight * 0.022)),
                             const SizedBox(width: 25.0),
-                            Text(widget.endTime.locale,
+                            Text(widget.endTime,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
@@ -285,9 +345,41 @@ class StudentResultPageState extends State<StudentResultPage> {
                 ),
               ],
             ),
-          );
+          ));
         } else {
-          return Scaffold(
+          return WillPopScope(
+              onWillPop: () async {
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: const Text("Alert"),
+                content: const Text("Are you sure you want to exit?"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("No"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: StudentSelectionPage(
+                              setLocale: widget.setLocale),
+                        ),
+                      );
+                    },
+                    child: const Text("Yes"),
+                  ),
+                ],
+              ),
+            );
+            return false;
+          },
+        child: Scaffold(
             body: Stack(
               children: [
                 Column(
@@ -346,14 +438,14 @@ class StudentResultPageState extends State<StudentResultPage> {
                     Expanded(
                         child: Column(
                           children: [
-                            SizedBox(height: localHeight * 0.2),
+                            SizedBox(height: localHeight * 0.27),
                             Text(AppLocalizations.of(context)!.for_incorrect,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w400,
                                     fontSize: localHeight * 0.018)),
-                            SizedBox(height: localHeight * 0.040),
+                            SizedBox(height: localHeight * 0.020),
                             ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -392,25 +484,53 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     borderRadius: BorderRadius.circular(39),
                                   ),
                                 ),
-                                //shape: StadiumBorder(),
                                 child: Text(AppLocalizations.of(context)!.exit,
                                     style: TextStyle(
                                         fontFamily: 'Inter',
                                         fontSize: localHeight * 0.022,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600)),
-                                onPressed: () {}),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text("Alert"),
+                                      content: const Text("Are you sure you want to exit?"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: const Text("No"),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: StudentSelectionPage(
+                                                    setLocale: widget.setLocale),
+                                              ),
+                                            );
+                                          },
+                                          child: const Text("Yes"),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },),
                           ],
                         )),
                   ],
                 ),
                 Positioned(
-                  top: localHeight * 0.15,
-                  left: localHeight * 0.030,
-                  right: localHeight * 0.030,
+                  top: localHeight * 0.17,
+                  left: localHeight * 0.010,
+                  right: localHeight * 0.010,
                   child: SizedBox(
                     height: localHeight * 0.60,
-                    width: localWidth * 1,
+                    width: localWidth * 1.5,
                     child: Card(
                       elevation: 12,
                       child: Column(children: [
@@ -530,9 +650,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                 ),
               ],
             ),
-          );
+          ));
         }
       },
     );
   }
-}
+  }

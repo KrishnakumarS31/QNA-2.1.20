@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import '../Components/custom_radio_option.dart';
 import '../Components/custom_result_card1.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {
@@ -16,7 +17,10 @@ class TeacherResultIndividualStudentState
     extends State<TeacherResultIndividualStudent> {
   Uint8List? bytes;
   IconData showIcon = Icons.expand_circle_down_outlined;
-
+  String? _groupValue;
+  ValueChanged<String?> _valueChangedHandler() {
+    return (value) => setState(() => _groupValue = value!);
+  }
   @override
   void initState() {
     super.initState();
@@ -59,7 +63,7 @@ class TeacherResultIndividualStudentState
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'results Report',
+                  'RESULTS REPORT',
                   style: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.0175,
@@ -68,7 +72,7 @@ class TeacherResultIndividualStudentState
                   ),
                 ),
                 Text(
-                  "ASSID23515A225",
+                  "STUDENT",
                   style: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.0225,
@@ -182,17 +186,52 @@ class TeacherResultIndividualStudentState
               SizedBox(
                 height: height * 0.02,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  ' *** Incorrect Answered ***',
-                  style: TextStyle(
-                      fontSize: height * 0.017,
-                      color: const Color.fromRGBO(238, 100, 0, 1),
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
+                  Container(
+                    height: height * 0.06,
+                   margin: const EdgeInsets.only(left: 15,right:6),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                      border: Border.all(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        MyRadioOption<String>(
+                          icon: Icons.check_box_outlined,
+                          value: 'Correct\nAnswers',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: 'Correct Answers',
+                        ),
+                        MyRadioOption<String>(
+                          icon: Icons.account_tree_outlined,
+                          value: 'Incorrect\nAnswers',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: 'Incorrect Answers',
+                        ),
+                        MyRadioOption<String>(
+                          icon: Icons.library_books_sharp,
+                          value: 'All Answers',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: 'All Answers',
+                        ),
+                      ],
+                    ),
+                  ),
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(
+              //     ' *** Incorrect Answered ***',
+              //     style: TextStyle(
+              //         fontSize: height * 0.017,
+              //         color: const Color.fromRGBO(238, 100, 0, 1),
+              //         fontFamily: "Inter",
+              //         fontWeight: FontWeight.w600),
+              //   ),
+              // ),
               SizedBox(
                 height: height * 0.03,
               ),

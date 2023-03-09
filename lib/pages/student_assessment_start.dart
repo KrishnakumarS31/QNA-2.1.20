@@ -12,7 +12,7 @@ import '../Services/qna_service.dart';
 
 class StudentAssessment extends StatefulWidget {
   StudentAssessment({
-    Key? key,required this.regNumber, required this.setLocale,required this.usedData,
+    Key? key,required this.regNumber, required this.setLocale,required this.usedData
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final String? regNumber;
@@ -40,8 +40,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
 
   getData() async {
       setState((){
-        name=widget.usedData!.data!.firstName!;
-        email = widget.usedData!.data!.email!;
+        name=widget.usedData!.data!.firstName;
+        email = widget.usedData!.data!.email;
       });
   }
   @override
@@ -144,7 +144,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               ]),
 
                         ),
-                        Container(
+                        SizedBox(
                           width: localWidth * 0.4,
 
                           child: Column(
@@ -253,6 +253,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             type: PageTransitionType.rightToLeft,
                                             child: StudQuestion(
                                                 assessmentId: assessmentID.text,
+                                                setLocale: widget.setLocale,
                                                 ques: values,
                                                 userName: userDataModel.data!.firstName),
                                           ),
@@ -531,6 +532,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             child: StudQuestion(
                                                 assessmentId: assessmentID.text,
                                                 ques: values,
+                                                setLocale: widget.setLocale,
                                                 userName: name),
                                           ),
                                         );

@@ -3,7 +3,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../EntityModel/get_assessment_model.dart' as assessment_model;
+import '../Entity/Teacher/get_assessment_model.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Providers/edit_assessment_provider.dart';
 class TeacherRecentAssessment extends StatefulWidget {
   const TeacherRecentAssessment({
@@ -18,11 +19,11 @@ class TeacherRecentAssessment extends StatefulWidget {
 class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   bool additionalDetails = true;
   bool questionShirnk = true;
-  assessment_model.Datum assessment =assessment_model.Datum();
+  GetAssessmentModel assessment =GetAssessmentModel();
   showAdditionalDetails() {
     setState(() {
       additionalDetails=!additionalDetails;
-      print(additionalDetails);
+
     });
   }
 
@@ -141,7 +142,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   ),
                                 ),
                                 Text(
-                                  "  |  ${assessment.datumClass}",
+                                  "  |  ${assessment.getAssessmentModelClass}",
                                   style: TextStyle(
                                     color:
                                     const Color.fromRGBO(255, 255, 255, 1),
@@ -933,7 +934,7 @@ class QuestionWidget extends StatefulWidget {
   }) : super(key: key);
 
   final double height;
-  assessment_model.Question question;
+  Question question;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -944,8 +945,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   @override
   void initState() {
-    for(int i=0;i<widget.question.choicesAnswer!.length;i++){
-      ans='$ans, ${widget.question.choicesAnswer![i].choiceText}';
+    for(int i=0;i<widget.question.choices!.length;i++){
+      ans='$ans, ${widget.question.choices![i].choiceText}';
     }
     super.initState();
   }
@@ -1012,7 +1013,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         ),
                       ),
                       Text(
-                        "${widget.question.questionMarks}",
+                        "${"widget.question."}",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontSize: widget.height * 0.015,

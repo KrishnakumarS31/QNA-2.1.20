@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../EntityModel/GetQuestionBankModel.dart';
+import '../Entity/Teacher/question_entity.dart';
+
 class QuestionPrepareProvider extends ChangeNotifier {
   final List<Question> _questionList = [];
 

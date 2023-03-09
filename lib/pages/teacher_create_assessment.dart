@@ -7,6 +7,7 @@ import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 
 class TeacherCreateAssessment extends StatefulWidget {
   const TeacherCreateAssessment({
@@ -115,7 +116,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             Row(
                               children: [
                                 Text(
-                                  'Maths',
+                                  '${assessmentVal.subject}',
                                   style: TextStyle(
                                       fontSize: height * 0.017,
                                       fontFamily: "Inter",
@@ -124,7 +125,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                       fontWeight: FontWeight.w600),
                                 ),
                                 Text(
-                                  '  |  Class X',
+                                  '  |  ${assessmentVal.createAssessmentModelClass}',
                                   style: TextStyle(
                                       fontSize: height * 0.015,
                                       fontFamily: "Inter",
@@ -157,7 +158,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           ],
                         ),
                         Text(
-                          'Topic: Calculus',
+                          'Topic: ${assessmentVal.topic}',
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontFamily: "Inter",
@@ -168,7 +169,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Sub Topic: N/A',
+                              'Sub Topic: ${assessmentVal.subTopic}',
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontFamily: "Inter",
@@ -302,6 +303,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                         ),
                       ),
                       onPressed: () {
+                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                         Navigator.push(
                           context,
                           PageTransition(

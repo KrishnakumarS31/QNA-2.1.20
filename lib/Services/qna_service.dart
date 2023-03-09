@@ -1,10 +1,12 @@
 
 import 'package:qna_test/EntityModel/user_data_model.dart';
+import '../Entity/Teacher/edit_question_model.dart';
+import '../Entity/get_question_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../DataSource/qna_repo.dart';
 import '../DataSource/qna_test_repo.dart';
 import '../Entity/question_paper_model.dart';
-import '../Entity/response_entity.dart';
+import '../Entity/Teacher/response_entity.dart';
 import '../Entity/student.dart';
 import '../EntityModel/GetQuestionBankModel.dart';
 import '../EntityModel/create_question_model.dart';
@@ -73,7 +75,7 @@ class QnaService{
   //   return await QnaRepo.createAssessment();
   // }
 
-  static Future<LoginModel> createQuestionTeacherService(CreateQuestionModel question) async {
+  static Future<ResponseEntity> createQuestionTeacherService(CreateQuestionModel question) async {
     return await QnaRepo.createQuestionTeacher(question);
   }
 
@@ -86,7 +88,19 @@ class QnaService{
     return await QnaRepo.getQuestionPaperGuest(assessmentId,name,rollNum);
   }
 
-  static Future<GetAssessmentModel> getAllAssessment(int pageLimit,int pageNumber) async{
+  static Future<ResponseEntity> getAllAssessment(int pageLimit,int pageNumber) async{
     return await QnaRepo.getAllAssessment(pageLimit,pageNumber);
+  }
+
+  static Future<ResponseEntity> getQuestionBankService(int pageLimit,int pageNumber) async {
+    return await QnaRepo.getAllQuestion(pageLimit,pageNumber);
+  }
+
+  static Future<LoginModel> deleteQuestion(int questionId) async {
+    return await QnaRepo.deleteQuestion(questionId);
+  }
+
+  static Future<ResponseEntity> editQuestionTeacherService(EditQuestionModel question,int questionId) async {
+    return await QnaRepo.editQuestionTeacher(question,questionId);
   }
 }

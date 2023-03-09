@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_looq_landing_page.dart';
 
+import '../EntityModel/user_data_model.dart';
+
 class StudentSearchLibrary extends StatefulWidget {
   const StudentSearchLibrary({
     Key? key,
-    required this.setLocale,
+    required this.setLocale
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
 

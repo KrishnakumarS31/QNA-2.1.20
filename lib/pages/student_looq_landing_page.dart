@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_looq_selected_assessment.dart';
-
+import '../EntityModel/user_data_model.dart';
 class StudentLooqLanding extends StatefulWidget {
   const StudentLooqLanding({Key? key, required this.setLocale})
       : super(key: key);

@@ -1,10 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
-import '../EntityModel/GetQuestionBankModel.dart';
+import '../Entity/Teacher/question_entity.dart';
+import '../Entity/Teacher/response_entity.dart';
+
 import '../EntityModel/user_data_model.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'teacher_questionBank_page.dart';
@@ -122,7 +128,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height: height * 0.037),
                 Text(
-                  'PREPARE',
+                  AppLocalizations.of(context)!.prepare_caps,
+                 // 'PREPARE',
                   style: TextStyle(
                     fontSize: height * 0.018,
                     color: const Color.fromRGBO(209, 209, 209, 1),
@@ -150,18 +157,23 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                 color: Color.fromRGBO(48, 145, 139, 1),
                               ));
                         });
-                    GetQuestionBankModel questionBank=await QnaService.getQuestionBankMockService();
+                    ResponseEntity responseEntity=await QnaService.getQuestionBankService(1,1);
+                    List<Question> questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
                     Navigator.of(context).pop();
+                    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherQuestionBank(setLocale: widget.setLocale, quesList: questionBank.data!.questions,),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale,
+                          quesList: questions,
+                        ),
                       ),
                     );
                   },
                   child: Text(
-                    'Questions',
+                    AppLocalizations.of(context)!.qn_button,
+                    //'Questions',
                     style: TextStyle(
                         fontSize: height * 0.032,
                         fontFamily: "Inter",
@@ -170,7 +182,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height: height * 0.0375),
                 Text(
-                  'VIEW/EDIT/PREPARE',
+                  AppLocalizations.of(context)!.view_edit_del,
+                  //'VIEW/EDIT/PREPARE',
                   style: TextStyle(
                     fontSize: height * 0.018,
                     color: const Color.fromRGBO(209, 209, 209, 1),
@@ -201,7 +214,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     );
                   },
                   child: Text(
-                    'Assessments',
+                    AppLocalizations.of(context)!.assessment_button,
+                    //'Assessments',
                     style: TextStyle(
                         fontSize: height * 0.032,
                         fontFamily: "Inter",
@@ -210,7 +224,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height: height * 0.0375),
                 Text(
-                  'VIEW',
+                  AppLocalizations.of(context)!.view_caps,
+                  //'VIEW',
                   style: TextStyle(
                     fontSize: height * 0.018,
                     color: const Color.fromRGBO(209, 209, 209, 1),
@@ -239,7 +254,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     );
                   },
                   child: Text(
-                    'Results',
+                    AppLocalizations.of(context)!.results_button,
+                    //'Results',
                     style: TextStyle(
                         fontSize: height * 0.032,
                         fontFamily: "Inter",

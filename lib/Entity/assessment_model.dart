@@ -1,4 +1,4 @@
-import 'package:qna_test/Entity/question_entity.dart';
+import 'package:qna_test/Entity/Teacher/question_entity.dart';
 
 class Assessment {
   Assessment({

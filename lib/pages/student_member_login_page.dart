@@ -4,9 +4,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Components/preference.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
-import '../DataSource/app_user_repo.dart';
-import '../Entity/app_user.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
@@ -69,7 +66,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
           child: StudentAssessment(
             regNumber: regNumber,
             setLocale: widget.setLocale,
-            usedData: userDataModel,
+            usedData: userDataModel
           ),
         ),
       ).then((value) {
@@ -162,7 +159,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Container(
+                            SizedBox(
                               width: localWidth * 0.3,
                               child: Column(
                                 children: [
@@ -227,7 +224,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               ),
                             ),
                             SizedBox(height: localHeight * 0.06),
-                            Container(
+                            SizedBox(
                               width: localWidth * 0.3,
                               child: Column(
                                 children: [
@@ -295,7 +292,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         ),
                                         validator: (value) {
                                           if (value!.isEmpty || value.length < 8) {
-                                            return "Enter password Min 8 Characters";
+                                            return AppLocalizations.of(context)!
+                                                .enter_pass_min;
+                                              //"Enter password Min 8 Characters";
                                           } else {
                                             return null;
                                           }
@@ -305,7 +304,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               ),
                             ),
                             SizedBox(height: localHeight * 0.02),
-                            Container(
+                            SizedBox(
                                 width: localWidth * 0.3,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -339,26 +338,32 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child: RichText(
                                   text: TextSpan(children: [
                                     TextSpan(
-                                      text: "CERTIFY",
+                                      text: AppLocalizations.of(context)!.certify,
+                                      //"CERTIFY",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(102, 102, 102, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
                                           fontSize: localHeight * 0.017),
                                     ),
-                                    TextSpan(
-                                        text: "\t*",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(219, 35, 35, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.017)),
+                                    // TextSpan(
+                                    //     text: "\t*",
+                                    //     style: TextStyle(
+                                    //         color: const Color.fromRGBO(219, 35, 35, 1),
+                                    //         fontFamily: 'Inter',
+                                    //         fontWeight: FontWeight.w600,
+                                    //         fontSize: localHeight * 0.017)),
                                   ])),
                             ),
                             SizedBox(height: localHeight * 0.02),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              //mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                Transform.scale(
+                                  alignment: Alignment.topLeft,
+                                  scale: 1.5,
+                                  child:
                                 Checkbox(
                                   activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                   fillColor: MaterialStateProperty.resolveWith<Color>(
@@ -376,6 +381,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     });
                                   },
                                 ),
+                                ),
+                                SizedBox(width: localWidth * 0.05),
                                 RichText(
                                     text: TextSpan(children: [
                                       TextSpan(
@@ -473,7 +480,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 child: StudentAssessment(
                                                   regNumber: regNumber,
                                                   setLocale: widget.setLocale,
-                                                  usedData: userDataModel,
+                                                  usedData: userDataModel
                                                 ),
                                               ),
                                             ).then((value) {
@@ -486,9 +493,13 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               PageTransition(
                                                 type: PageTransitionType.rightToLeft,
                                                 child: CustomDialog(
-                                                  title: 'Wrong password',
+                                                  title: AppLocalizations.of(context)!
+                                                      .wrong_password,
+                                                  //'Wrong password',
                                                   content:
-                                                  'please enter the correct password',
+                                                  AppLocalizations.of(context)!
+                                                      .pls_enter_cr_pass,
+                                                  //'please enter the correct password',
                                                   button:
                                                   AppLocalizations.of(context)!
                                                       .retry,
@@ -759,7 +770,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       ),
                                       validator: (value) {
                                         if (value!.isEmpty || value.length < 8) {
-                                          return "Enter password Min 8 Characters";
+                                          return AppLocalizations.of(context)!
+                                              .enter_pass_min;
+                                            //"Enter password Min 8 Characters";
                                         } else {
                                           return null;
                                         }
@@ -801,7 +814,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               child: RichText(
                                   text: TextSpan(children: [
                                     TextSpan(
-                                      text: "CERTIFY",
+                                      text: AppLocalizations.of(context)!.certify,
+                                      //"CERTIFY",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(102, 102, 102, 1),
                                           fontFamily: 'Inter',
@@ -819,9 +833,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             ),
                             SizedBox(height: localHeight * 0.02),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              //mainAxisAlignment: MainAxisAlignment.start,
+                             crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Checkbox(
+                              Transform.scale(
+                               // alignment: Alignment.bottomCenter,
+                              scale: 1.5,
+                                  child:
+                                  Checkbox(
                                   activeColor: const Color.fromRGBO(82, 165, 160, 1),
                                   fillColor: MaterialStateProperty.resolveWith<Color>(
                                           (states) {
@@ -838,6 +857,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     });
                                   },
                                 ),
+                             ),
+                                SizedBox(width: localWidth * 0.05),
                                 RichText(
                                     text: TextSpan(children: [
                                       TextSpan(
@@ -949,7 +970,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   child: StudentAssessment(
                                                     regNumber: regNumber,
                                                     setLocale: widget.setLocale,
-                                                    usedData: userDataModel,
+                                                    usedData: userDataModel
                                                   ),
                                                 ),
                                               ).then((value) {
@@ -962,9 +983,13 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 PageTransition(
                                                   type: PageTransitionType.rightToLeft,
                                                   child: CustomDialog(
-                                                    title: 'Wrong password',
+                                                    title: AppLocalizations.of(context)!
+                                                        .wrong_password,
+                                                    //'Wrong password',
                                                     content:
-                                                    'please enter the correct password',
+                                                    AppLocalizations.of(context)!
+                                                        .pls_enter_cr_pass,
+                                                    //'please enter the correct password',
                                                     button:
                                                     AppLocalizations.of(context)!
                                                         .retry,

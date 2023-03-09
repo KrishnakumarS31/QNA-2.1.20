@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
-import '../Entity/demo_question_model.dart';
-import '../Providers/question_prepare_provider.dart';
+import '../Entity/Teacher/choice_entity.dart';
+import '../Entity/Teacher/question_entity.dart';
 import 'teacher_prepare_preview_qnBank.dart';
-import '../EntityModel/create_question_model.dart' as create_question_model;
 
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   TeacherQuestionPreviewDelete(
       {this.assessment,
-      required this.question,
-      required this.index,
-      required this.setLocale});
+        required this.question,
+        required this.index,
+        required this.setLocale});
 
-  final create_question_model.Question question;
+  final Question question;
   final int index;
   final bool? assessment;
   final void Function(Locale locale) setLocale;
@@ -32,7 +30,7 @@ class TeacherQuestionPreviewDeleteState
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
 
-  List<create_question_model.Choice> selected = [];
+  List<Choice> selected = [];
 
   @override
   void initState() {
@@ -184,7 +182,7 @@ class TeacherQuestionPreviewDeleteState
                         decoration: InputDecoration(
                             border: UnderlineInputBorder(),
                             labelText:
-                                'Suggest what to study if answered incorrectly ',
+                            'Suggest what to study if answered incorrectly ',
                             labelStyle: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 0.25),
                                 fontFamily: 'Inter',
@@ -230,7 +228,7 @@ class TeacherQuestionPreviewDeleteState
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
                             child: PreparePreviewQnBank(
-                              finalQuestion: widget.question,
+                                finalQuestion: widget.question,
                                 question: ques,
                                 setLocale: widget.setLocale),
                           ),
@@ -259,7 +257,7 @@ class TeacherQuestionPreviewDeleteState
                       //shape: StadiumBorder(),
                       onPressed: () {
                         Provider.of<QuestionPrepareProviderFinal>(context,
-                                listen: false)
+                            listen: false)
                             .deleteQuestionList(widget.index);
                         Navigator.push(
                           context,
@@ -308,8 +306,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final create_question_model.Question question;
-  final List<create_question_model.Choice> selected;
+  final Question question;
+  final List<Choice> selected;
   final double height;
   final double width;
 

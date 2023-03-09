@@ -8,6 +8,7 @@ import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/get_assessment_model.dart' as assessment_model;
 import '../Providers/edit_assessment_provider.dart';
+import '../EntityModel/user_data_model.dart';
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
     Key? key,
@@ -30,7 +31,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
 
   @override
   void initState() {
-    assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    //assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     super.initState();
   }
 
@@ -243,7 +244,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                     child: ListView.builder(
                       itemCount: assessment.questions!.length,
                       itemBuilder: (context, index)=> QuestionWidget(
-                                 height: height, setLocale: widget.setLocale,assessment: assessment,index: index,),),
+                                 height: height, setLocale: widget.setLocale,assessment: assessment,index: index)),
                     // child: SingleChildScrollView(
                     //   scrollDirection: Axis.vertical,
                     //   child: Column(
@@ -314,13 +315,17 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child:  TeacherClonedAssessmentPreview(setLocale: widget.setLocale),
-                        ),
-                      );
+                      int count = 0;
+                      Navigator.popUntil(context, (route) {
+                        return count++ == 2;
+                      });
+                      // Navigator.push(
+                      //   context,
+                      //   PageTransition(
+                      //     type: PageTransitionType.rightToLeft,
+                      //     child:  TeacherClonedAssessmentPreview(setLocale: widget.setLocale),
+                      //   ),
+                      // );
                     },
                     child: Text(
                       'Save Assessment',
@@ -447,13 +452,17 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       ),
       onPressed: () {
         Navigator.of(context).pop();
-        // Navigator.push(
-        //   context,F
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAddMyQuestionBank(),
-        //   ),
-        // );
+        widget.assessment.questions![widget.index].removeQuestions?.add(widget.index);
+        widget.assessment.questions!.removeAt(widget.index);
+        //Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(widget.assessment);
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: TeacherAssessmentSummary(
+                setLocale: widget.setLocale),
+          ),
+        );
       },
     );
     AlertDialog alert = AlertDialog(
@@ -494,14 +503,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     );
   }
 
-  showPreview(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return TeacherAssessmentQuestionPreview(setLocale: widget.setLocale);
-      },
-    );
-  }
+  // showPreview(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return TeacherAssessmentQuestionPreview(setLocale: widget.setLocale);
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -567,7 +576,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ),
               GestureDetector(
                 onTap: () {
-                  showPreview(context);
+                  //showPreview(context);
                 },
                 child: Align(
                   alignment: AlignmentDirectional.topStart,

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import 'package:qna_test/pages/teacher_question_preview_delete.dart';
-import '../Entity/demo_question_model.dart';
-import '../Providers/question_prepare_provider.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
 import '../Services/qna_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank(
       {Key? key, this.assessment, required this.setLocale})
@@ -23,13 +22,13 @@ class TeacherMyQuestionBank extends StatefulWidget {
 }
 
 class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
-  List<create_question_model.Question> quesList = [];
+  List<Question> quesList = [];
 
   @override
   void initState() {
     super.initState();
 
-     quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+    quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
         .getAllQuestion;
   }
 
@@ -45,7 +44,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
           toolbarHeight: height * 0.100,
           centerTitle: true,
           title: Text(
-            "MY QUESTION BANK",
+            AppLocalizations.of(context)!.my_qn_bank_caps,
+            //"MY QUESTION BANK",
             style: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.0225,
@@ -59,9 +59,9 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                     end: Alignment.bottomCenter,
                     begin: Alignment.topCenter,
                     colors: [
-                  Color.fromRGBO(0, 106, 100, 1),
-                  Color.fromRGBO(82, 165, 160, 1),
-                ])),
+                      Color.fromRGBO(0, 106, 100, 1),
+                      Color.fromRGBO(82, 165, 160, 1),
+                    ])),
           ),
         ),
         body: Container(
@@ -71,7 +71,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
             children: [
               Container(
                 padding:
-                    EdgeInsets.only(left: width * 0.055, right: width * 0.055),
+                EdgeInsets.only(left: width * 0.055, right: width * 0.055),
                 height: height * 0.7,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
@@ -85,7 +85,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Tap to Review/Edit/Delete',
+                            AppLocalizations.of(context)!.tap_to_review,
+                            //'Tap to Review/Edit/Delete',
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -95,7 +96,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                           Row(
                             children: [
                               Text(
-                                'My Questions',
+                                AppLocalizations.of(context)!.my_qns_small,
+                                // 'My Questions',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
@@ -139,9 +141,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                     borderRadius: BorderRadius.circular(39),
                   ),
                 ),
-                //shape: StadiumBorder(),
                 onPressed: () async {
-                  if (true == widget.assessment) {
+                  if (widget.assessment != null) {
                     Navigator.push(
                       context,
                       PageTransition(
@@ -151,18 +152,19 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       ),
                     );
                   } else {
-                    GetQuestionBankModel questionBank=await QnaService.getQuestionBankMockService();
+                    //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherQuestionBank(setLocale: widget.setLocale, quesList: questionBank.data!.questions,),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale, quesList: [],),
                       ),
                     );
                   }
                 },
                 child: Text(
-                  'Back to Questions',
+                  AppLocalizations.of(context)!.back_to_qns,
+                  //'Back to Questions',
                   style: TextStyle(
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
@@ -179,17 +181,17 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
 class QuestionPreview extends StatelessWidget {
   const QuestionPreview(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.question,
-      required this.index,
-      this.assessment,
-      required this.setLocale})
+        required this.height,
+        required this.width,
+        required this.question,
+        required this.index,
+        this.assessment,
+        required this.setLocale})
       : super(key: key);
 
   final double height;
   final double width;
-  final create_question_model.Question question;
+  final Question question;
   final int index;
   final bool? assessment;
   final void Function(Locale locale) setLocale;
@@ -255,7 +257,7 @@ class QuestionPreview extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          question.questionClass!,
+                          question.datumClass!,
                           style: TextStyle(
                               fontSize: height * 0.015,
                               fontFamily: "Inter",

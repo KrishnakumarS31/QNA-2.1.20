@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_settings_publish.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../Providers/edit_assessment_provider.dart';
 import 'about_us.dart';
 import 'cookie_policy.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -14,7 +15,7 @@ import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
 import 'package:qna_test/Pages/terms_of_services.dart';
 import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'teacher_prepare_qnBank.dart';
-
+import '../EntityModel/get_assessment_model.dart' as assessment_model;
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
     Key? key,
@@ -30,6 +31,8 @@ class TeacherClonedAssessmentPreview extends StatefulWidget {
 class TeacherClonedAssessmentPreviewState
     extends State<TeacherClonedAssessmentPreview> {
   bool additionalDetails = true;
+  assessment_model.Datum assessment =assessment_model.Datum();
+  int totalMarks =0;
 
   showAdditionalDetails() {
     setState(() {
@@ -37,10 +40,14 @@ class TeacherClonedAssessmentPreviewState
     });
   }
 
+
   @override
   void initState() {
     super.initState();
-    //quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
+    //assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    for(int i=0;i<assessment.questions!.length;i++){
+      totalMarks = totalMarks + assessment.questions![i].questionMarks!;
+    }
   }
 
   @override
@@ -119,7 +126,7 @@ class TeacherClonedAssessmentPreviewState
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '20',
+                        '${assessment.questions!.length}',
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
@@ -139,7 +146,7 @@ class TeacherClonedAssessmentPreviewState
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '100',
+                        '$totalMarks',
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
@@ -164,20 +171,8 @@ class TeacherClonedAssessmentPreviewState
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // for ( DemoQuestionModel i in quesList )
-                          //   QuestionPreview(height: height, width: width,question: i,),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
+                          for (int i =0;i< assessment.questions!.length;i++ )
+                          QuestionWidget(height: height,index: i,assessment: assessment, setLocale: widget.setLocale,),
                         ],
                       ),
                     ),
@@ -192,7 +187,7 @@ class TeacherClonedAssessmentPreviewState
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: TeacherPrepareQnBank(
-                                  setLocale: widget.setLocale),
+                                  setLocale: widget.setLocale,assessmentStatus: 'TeacherClonedAssessmentPreview',),
                             ),
                           );
                         },
@@ -286,20 +281,124 @@ class TeacherClonedAssessmentPreviewState
   }
 }
 
-class QuestionWidget extends StatelessWidget {
-  const QuestionWidget({
+class QuestionWidget extends StatefulWidget {
+  QuestionWidget({
     Key? key,
     required this.height,
+    required this.index,
+    required this.assessment,
+    required this.setLocale
   }) : super(key: key);
 
   final double height;
+  final int index;
+  assessment_model.Datum assessment;
+  final void Function(Locale locale) setLocale;
+
+  @override
+  State<QuestionWidget> createState() => _QuestionWidgetState();
+}
+
+class _QuestionWidgetState extends State<QuestionWidget> {
+
+  showAlertDialog(BuildContext context, double height) {
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+        widget.assessment.questions![widget.index].removeQuestions?.add(widget.index);
+        widget.assessment.questions!.removeAt(widget.index);
+        //Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(widget.assessment);
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: TeacherClonedAssessmentPreview(
+                setLocale: widget.setLocale),
+          ),
+        );
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            'Confirm',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Are you sure you want to remove this Question?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          height: height * 0.01,
+          height: widget.height * 0.01,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -307,17 +406,17 @@ class QuestionWidget extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Q1',
+                  'Q${widget.index + 1}',
                   style: TextStyle(
-                      fontSize: height * 0.017,
+                      fontSize: widget.height * 0.017,
                       fontFamily: "Inter",
                       color: Color.fromRGBO(82, 165, 160, 1),
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '  MCQ',
+                  '  ${widget.assessment.questions![widget.index].questionType}',
                   style: TextStyle(
-                      fontSize: height * 0.017,
+                      fontSize: widget.height * 0.017,
                       fontFamily: "Inter",
                       color: Color.fromRGBO(51, 51, 51, 1),
                       fontWeight: FontWeight.w400),
@@ -329,56 +428,64 @@ class QuestionWidget extends StatelessWidget {
                 Text(
                   'Marks: ',
                   style: TextStyle(
-                      fontSize: height * 0.017,
+                      fontSize: widget.height * 0.017,
                       fontFamily: "Inter",
                       color: Color.fromRGBO(0, 0, 0, 1),
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  '5',
+                  '${widget.assessment.questions![widget.index].questionMarks}',
                   style: TextStyle(
-                      fontSize: height * 0.017,
+                      fontSize: widget.height * 0.017,
                       fontFamily: "Inter",
                       color: Color.fromRGBO(82, 165, 160, 1),
                       fontWeight: FontWeight.w700),
                 ),
               ],
             ),
-            Row(
-              children: [
-                Icon(
-                  Icons.close,
-                  color: Color.fromRGBO(51, 51, 51, 1),
-                ),
-                Text(
-                  ' Remove',
-                  style: TextStyle(
-                      fontSize: height * 0.017,
-                      fontFamily: "Inter",
-                      color: Color.fromRGBO(51, 51, 51, 1),
-                      fontWeight: FontWeight.w400),
-                ),
-              ],
+            GestureDetector(
+              onTap: (){
+                showAlertDialog(context,widget.height);
+              },
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.close,
+                    color: Color.fromRGBO(51, 51, 51, 1),
+                  ),
+                  Text(
+                    ' Remove',
+                    style: TextStyle(
+                        fontSize: widget.height * 0.017,
+                        fontFamily: "Inter",
+                        color: Color.fromRGBO(51, 51, 51, 1),
+                        fontWeight: FontWeight.w400),
+                  ),
+                ],
+              ),
             )
           ],
         ),
         SizedBox(
-          height: height * 0.01,
+          height: widget.height * 0.01,
         ),
-        Text(
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim',
-          style: TextStyle(
-              fontSize: height * 0.015,
-              fontFamily: "Inter",
-              color: Color.fromRGBO(51, 51, 51, 1),
-              fontWeight: FontWeight.w400),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Text(
+            '${widget.assessment.questions![widget.index].question}',
+            style: TextStyle(
+                fontSize: widget.height * 0.015,
+                fontFamily: "Inter",
+                color: Color.fromRGBO(51, 51, 51, 1),
+                fontWeight: FontWeight.w400),
+          ),
         ),
         SizedBox(
-          height: height * 0.01,
+          height: widget.height * 0.01,
         ),
         Divider(),
         SizedBox(
-          height: height * 0.01,
+          height: widget.height * 0.01,
         ),
       ],
     );

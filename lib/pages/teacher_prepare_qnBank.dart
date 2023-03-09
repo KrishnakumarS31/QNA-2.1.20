@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Entity/demo_question_model.dart';
-import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import '../Components/custom_radio_option.dart';
-import '../EntityModel/create_question_model.dart' as create_question_model;
+import '../Entity/Teacher/choice_entity.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
@@ -16,9 +16,11 @@ class TeacherPrepareQnBank extends StatefulWidget {
     Key? key,
     this.assessment,
     required this.setLocale,
+    this.assessmentStatus
   }) : super(key: key);
 
   final bool? assessment;
+  final String? assessmentStatus;
   final void Function(Locale locale) setLocale;
 
   @override
@@ -31,7 +33,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   IconData radioIcon = Icons.radio_button_off_outlined;
   late int _count;
   Question demoQuestionModel = Question();
-  Choice choice=Choice(choiceId: 0, choiceText: '');
+  Choice choice=Choice();
   TextEditingController subjectController = TextEditingController();
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -49,13 +51,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
   final _formKey = GlobalKey<FormState>();
-  create_question_model.Question finalQuestion=create_question_model.Question();
+  Question finalQuestion=Question();
   late SharedPreferences loginData;
-  List<create_question_model.Choice> tempChoiceList=[];
+  List<Choice> tempChoiceList=[];
 
   addField() async {
     setState(() {
-      tempChoiceList.add(create_question_model.Choice(choiceText: '',rightChoice: false));
+      tempChoiceList.add(Choice(choiceText: '',rightChoice: false));
       chooses.add(TextEditingController());
       radioList.add(false);
     });
@@ -73,11 +75,15 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        String status='';
+        if(widget.assessmentStatus!=null){
+          status=widget.assessmentStatus!;
+        }
         return TeacherPreparePreview(
-            question: demoQuestionModel,
             assessment: widget.assessment,
             setLocale: widget.setLocale,
-            finalQuestion: finalQuestion
+            finalQuestion: finalQuestion,
+            assessmentStatus: status
         );
       },
     );
@@ -125,7 +131,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "PREPARE QUESTION",
+                  AppLocalizations.of(context)!.prepare_qn_title,
+                  //"PREPARE QUESTION",
                   style: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.0225,
@@ -169,24 +176,31 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                       children: [
                         MyRadioOption<String>(
                           icon: Icons.check_box_outlined,
-                          value: 'MCQ',
+                          value: AppLocalizations.of(context)!.mcq,
+                          //'MCQs',
                           groupValue: _groupValue,
                           onChanged: _valueChangedHandler(),
                           label: 'MCQ',
                         ),
                         MyRadioOption<String>(
                           icon: Icons.account_tree_outlined,
-                          value: 'Survey',
+                          value: AppLocalizations.of(context)!.survey,
+                          //'Survey',
                           groupValue: _groupValue,
                           onChanged: _valueChangedHandler(),
-                          label: 'Survey',
+                          label:
+                          //AppLocalizations.of(context)!.survey,
+                          'Survey',
                         ),
                         MyRadioOption<String>(
                           icon: Icons.library_books_sharp,
-                          value: 'Descriptive',
+                          value: AppLocalizations.of(context)!.descriptive,
+                          //'Descriptive',
                           groupValue: _groupValue,
                           onChanged: _valueChangedHandler(),
-                          label: 'Descriptive',
+                          label:
+                          //AppLocalizations.of(context)!.descriptive,
+                          'Descriptive',
                         ),
                       ],
                     ),
@@ -209,7 +223,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             },
                           ),
                           Text(
-                            "Delete",
+                            AppLocalizations.of(context)!.delete,
+                            //"Delete",
                             style: TextStyle(
                               color: const Color.fromRGBO(209, 209, 209, 1),
                               fontSize: height * 0.018,
@@ -232,7 +247,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             },
                           ),
                           Text(
-                            "Clear All",
+                            AppLocalizations.of(context)!.clear_all,
+                            //"Clear All",
                             style: TextStyle(
                               color: const Color.fromRGBO(209, 209, 209, 1),
                               fontSize: height * 0.018,
@@ -258,7 +274,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           child: Row(children: [
                             SizedBox(width: width * 0.10),
-                            Text("Subject and Topic",
+                            Text(AppLocalizations.of(context)!.subject_topic,
+                                //"Subject and Topic",
                                 style: TextStyle(
                                     color:
                                         const Color.fromRGBO(255, 255, 255, 1),
@@ -292,7 +309,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: height * 0.018),
                                 decoration: InputDecoration(
-                                  labelText: "SUBJECT",
+                                  labelText: AppLocalizations.of(context)!.sub_caps,
+                                  //"SUBJECT",
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   labelStyle: TextStyle(
@@ -307,7 +325,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: height * 0.02),
-                                  hintText: "Type Subject Here",
+                                  hintText: AppLocalizations.of(context)!.sub_hint,
+                                  //"Type Subject Here",
                                   focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                           color:
@@ -327,7 +346,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: height * 0.018),
                                 decoration: InputDecoration(
-                                  labelText: "TOPIC",
+                                  labelText: AppLocalizations.of(context)!.topic_caps,
+                                  //"TOPIC",
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   labelStyle: TextStyle(
@@ -342,7 +362,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: height * 0.02),
-                                  hintText: "Type Topic Here",
+                                  hintText: AppLocalizations.of(context)!.topic_hint,
+                                  //"Type Topic Here",
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15)),
                                 )),
@@ -357,7 +378,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: height * 0.018),
                                 decoration: InputDecoration(
-                                  labelText: 'SUB TOPIC',
+                                  labelText: AppLocalizations.of(context)!.sub_topic_caps,
+                                  //'SUB TOPIC',
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   labelStyle: TextStyle(
@@ -372,7 +394,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: height * 0.02),
-                                  hintText: 'Type Sub Topic Here',
+                                  hintText: AppLocalizations.of(context)!.sub_topic_hint,
+                                  //'Type Sub Topic Here',
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15)),
                                 )),
@@ -387,7 +410,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     fontWeight: FontWeight.w700,
                                     fontSize: height * 0.018),
                                 decoration: InputDecoration(
-                                  labelText: "CLASS",
+                                  labelText: AppLocalizations.of(context)!.class_caps,
+                                  //"CLASS",
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   labelStyle: TextStyle(
@@ -402,7 +426,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: height * 0.02),
-                                  hintText: "Type Here",
+                                  hintText: AppLocalizations.of(context)!.type_here,
+                                  //"Type Here",
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15)),
                                 )),
@@ -419,7 +444,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     children: [
                       Row(children: [
                         Text(
-                          "Question",
+                          AppLocalizations.of(context)!.qn_qn_page,
+                         // "Question",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.025,
@@ -452,7 +478,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w400,
                                 fontSize: height * 0.02),
-                            hintText: "Type Question Here",
+                            hintText: AppLocalizations.of(context)!.type_qn_here,
+                            //"Type Question Here",
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5)),
                           )),
@@ -464,7 +491,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             child: Container(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Choices",
+                                AppLocalizations.of(context)!.choices,
+                                //"Choices",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontSize: height * 0.016,
@@ -475,7 +503,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             ),
                           ),
                           Text(
-                            "Correct\nAnswer",
+                            AppLocalizations.of(context)!.correct_answer,
+                            //"Correct\nAnswer",
                             style: TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontSize: height * 0.016,
@@ -487,7 +516,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             width: width * 0.02,
                           ),
                           Text(
-                            "Delete",
+                            AppLocalizations.of(context)!.delete,
+                            //"Delete",
                             style: TextStyle(
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontSize: height * 0.016,
@@ -529,7 +559,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.02),
-                                    hintText: "Type Option Here",
+                                    hintText: AppLocalizations.of(context)!.type_op_here,
+                                    //"Type Option Here",
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
@@ -577,7 +608,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                       addField();
                     },
                     child: Text(
-                      "Add more choice",
+                      AppLocalizations.of(context)!.add_more_choice,
+                      //"Add more choice",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0225,
@@ -593,7 +625,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                         left: width * 0.05, right: width * 0.04),
                     child: Row(children: [
                       Text(
-                        "Advisor",
+                        AppLocalizations.of(context)!.advisor,
+                        //"Advisor",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontSize: height * 0.025,
@@ -627,7 +660,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
                           fontSize: height * 0.02),
-                      hintText: "Suggest what to study if answered incorrectly",
+                      hintText: AppLocalizations.of(context)!.suggest_study,
+                      //"Suggest what to study if answered incorrectly",
                     )),
                 SizedBox(height: height * 0.020),
                 TextFormField(
@@ -650,7 +684,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w400,
                           fontSize: height * 0.02),
-                      hintText: "URL - Any reference (Optional)",
+                      hintText: AppLocalizations.of(context)!.url_reference,
+                      //"URL - Any reference (Optional)",
                     )),
                 SizedBox(height: height * 0.030),
                 Column(
@@ -690,23 +725,18 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         topicController.text;
                                     demoQuestionModel.subTopic =
                                         subtopicController.text;
-                                    demoQuestionModel.questionClass =
+                                    demoQuestionModel.datumClass =
                                         classRoomController.text;
                                     demoQuestionModel.question =
                                         questionController.text;
                                     demoQuestionModel.questionType = 'mcq';
-                                    demoQuestionModel.choicesAnswer =
+                                    demoQuestionModel.choices =
                                         selectedTemp;
                                     demoQuestionModel.advisorText =
                                         adviceController.text;
                                     demoQuestionModel.advisorUrl = urlController.text;
                                     demoQuestionModel.choices = temp;
-                                    List<Question> ques =
-                                        Provider.of<QuestionPrepareProvider>(
-                                                context,
-                                                listen: false)
-                                            .getAllQuestion;
-                                    demoQuestionModel.questionId = ques.length;
+                                    //demoQuestionModel.questionId = ques!.length;
 
                                     //---------**************Actual API Integration DATA-------------
                                     finalQuestion.question=questionController.text;
@@ -715,11 +745,14 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     finalQuestion.subject=subjectController.text;
                                     finalQuestion.topic=topicController.text;
                                     finalQuestion.subTopic=subtopicController.text;
-                                    finalQuestion.questionClass=classRoomController.text;
+                                    finalQuestion.datumClass=classRoomController.text;
                                     finalQuestion.choices=tempChoiceList;
                                     showQuestionPreview(context);
                                   },
-                                  child: const Text("Preview"),
+                                  child: Text(
+                                    AppLocalizations.of(context)!.preview
+                                    //"Preview"
+                                  ),
                                 ),
                               ]),
                           onPressed: () {}),

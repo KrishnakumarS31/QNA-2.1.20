@@ -3,16 +3,23 @@ import 'package:page_transition/page_transition.dart';
 
 import 'package:qna_test/pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
+import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/get_assessment_model.dart' as assessment_model;
 import '../Entity/demo_question_model.dart';
 import '../Entity/question_model.dart';
-
+import '../Entity/Teacher/question_entity.dart' as Question;
 class TeacherAssessmentQuestionPreview extends StatefulWidget {
   const TeacherAssessmentQuestionPreview({
     Key? key,
     required this.setLocale,
+    required this.assessment,
+    required this.question,
+    required this.index
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
+  final CreateAssessmentModel assessment;
+  final Question.Question question;
+  final int index;
 
   @override
   TeacherAssessmentQuestionPreviewState createState() =>
@@ -21,14 +28,6 @@ class TeacherAssessmentQuestionPreview extends StatefulWidget {
 
 class TeacherAssessmentQuestionPreviewState
     extends State<TeacherAssessmentQuestionPreview> {
-  String? _groupValue;
-  TextEditingController adviceController = TextEditingController();
-  TextEditingController urlController = TextEditingController();
-  IconData showIcon = Icons.expand_circle_down_outlined;
-  List<dynamic> selected = [];
-  ValueChanged<String?> _valueChangedHandler() {
-    return (value) => setState(() => _groupValue = value!);
-  }
 
 
   @override
@@ -43,58 +42,6 @@ class TeacherAssessmentQuestionPreviewState
     return Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        // appBar: AppBar(
-        //   actions: [
-        //     Padding(
-        //       padding: const EdgeInsets.only(right: 10),
-        //       child: IconButton(
-        //         icon: const Icon(
-        //           Icons.menu,
-        //           size: 40.0,
-        //           color: Colors.white,
-        //         ),
-        //         onPressed: () {
-        //           Navigator.of(context).pop();
-        //         },
-        //       ),
-        //     ),
-        //   ],
-        //   leading: IconButton(
-        //     icon: const Icon(
-        //       Icons.chevron_left,
-        //       size: 40.0,
-        //       color: Colors.white,
-        //     ),
-        //     onPressed: () {
-        //       Navigator.of(context).pop();
-        //     },
-        //   ),
-        //   toolbarHeight: height * 0.100,
-        //   centerTitle: true,
-        //   title: Column(
-        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //       children: [
-        //         Text(
-        //           "SELECTED QUESTION",
-        //           style: TextStyle(
-        //             color: const Color.fromRGBO(255, 255, 255, 1),
-        //             fontSize: height * 0.0225,
-        //             fontFamily: "Inter",
-        //             fontWeight: FontWeight.w400,
-        //           ),
-        //         ),
-        //       ]),
-        //   flexibleSpace: Container(
-        //     decoration: const BoxDecoration(
-        //         gradient: LinearGradient(
-        //             end: Alignment.bottomCenter,
-        //             begin: Alignment.topCenter,
-        //             colors: [
-        //               Color.fromRGBO(0, 106, 100, 1),
-        //               Color.fromRGBO(82, 165, 160, 1),
-        //             ])),
-        //   ),
-        // ),
         body: Center(
           child: SizedBox(
             height: height * 0.85,
@@ -135,7 +82,7 @@ class TeacherAssessmentQuestionPreviewState
                                   width: width * 0.02,
                                 ),
                                 Text(
-                                  '01',
+                                  '${widget.index + 1}',
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontSize: height * 0.02,
@@ -161,7 +108,7 @@ class TeacherAssessmentQuestionPreviewState
                                   width: width * 0.02,
                                 ),
                                 Text(
-                                  '5',
+                                  '${widget.assessment.questions[widget.index].questionMarks}',
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontSize: height * 0.02,
@@ -178,7 +125,7 @@ class TeacherAssessmentQuestionPreviewState
                           height: height * 0.02,
                         ),
                         Text(
-                          'MCQ',
+                          '${widget.question.questionType}',
                           style: TextStyle(
                               fontSize: height * 0.02,
                               fontFamily: "Inter",
@@ -189,7 +136,7 @@ class TeacherAssessmentQuestionPreviewState
                           height: height * 0.015,
                         ),
                         Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Etiam et nulla cursus, dictum risus sit',
+                          '${widget.question.question}',
                           style: TextStyle(
                               fontSize: height * 0.017,
                               fontFamily: "Inter",
@@ -202,8 +149,7 @@ class TeacherAssessmentQuestionPreviewState
                         ChooseWidget(
                           height: height,
                           width: width,
-                          selected: selected,
-                          choices: const ['yellow', 'apple', 'red', 'orange'],
+                          question: widget.question,
                         ),
                         SizedBox(
                           height: height * 0.02,
@@ -220,7 +166,7 @@ class TeacherAssessmentQuestionPreviewState
                           height: height * 0.015,
                         ),
                         Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum',
+                          '${widget.question.advisorText}',
                           style: TextStyle(
                               fontSize: height * 0.017,
                               fontFamily: "Inter",
@@ -235,7 +181,7 @@ class TeacherAssessmentQuestionPreviewState
                           height: height * 0.02,
                         ),
                         Text(
-                          'www.gworkspacetest.bestschool.com/SN8u9*VHcvasok',
+                          '${widget.question.advisorUrl}',
                           style: TextStyle(
                               fontSize: height * 0.015,
                               decoration: TextDecoration.underline,
@@ -296,14 +242,14 @@ class TeacherAssessmentQuestionPreviewState
                                   )),
                               //shape: StadiumBorder(),
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: TeacherAssessmentSummary(
-                                        setLocale: widget.setLocale),
-                                  ),
-                                );
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: TeacherAssessmentSummary(
+                                //         setLocale: widget.setLocale),
+                                //   ),
+                                // );
                               },
                               child: Text(
                                 'Save',
@@ -322,18 +268,6 @@ class TeacherAssessmentQuestionPreviewState
           ),
         ));
   }
-
-  changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
-      setState(() {
-        showIcon = Icons.arrow_circle_up_outlined;
-      });
-    } else {
-      setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
-      });
-    }
-  }
 }
 
 class ChooseWidget extends StatefulWidget {
@@ -341,12 +275,10 @@ class ChooseWidget extends StatefulWidget {
     Key? key,
     required this.height,
     required this.width,
-    required this.choices,
-    required this.selected,
+    required this.question
   }) : super(key: key);
 
-  final List<dynamic> choices;
-  final List<dynamic> selected;
+  final Question.Question question;
   final double height;
   final double width;
 
@@ -359,54 +291,39 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 1; j <= widget.choices.length; j++)
-          GestureDetector(
-            onTap: () {
-              // setState(() {
-              // print("dsfsdf");
-              // print(widget.selected);
-              // if(widget.selected.contains(j)){
-              //   widget.selected.remove(j);
-              //   print("remove");
-              //   print(widget.selected);
-              // }
-              // else{
-              //   widget.selected.add(j);
-              //   print("add");
-              //   print(widget.selected);
-              // }
-              // });
-            },
-            child: Padding(
-              padding: EdgeInsets.only(bottom: widget.height * 0.013),
-              child: Container(
-                  width: widget.width * 0.744,
-                  height: widget.height * 0.0412,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: const Color.fromRGBO(82, 165, 160, 1),
-                  ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: widget.width * 0.02,
-                        ),
-                        Expanded(
-                          child: Text(
-                            '${widget.choices[j - 1]}',
-                            style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: widget.height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
-                            ),
+        for (int j = 0; j < widget.question.choices!.length; j++)
+          Padding(
+            padding: EdgeInsets.only(bottom: widget.height * 0.013),
+            child: Container(
+                width: widget.width * 0.744,
+                height: widget.height * 0.0412,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  border: Border.all(
+                      color: const Color.fromRGBO(209, 209, 209, 1)),
+
+                  color: widget.question.choices![j].rightChoice! ? const Color.fromRGBO(82, 165, 160, 1):
+                  const Color.fromRGBO(0, 0, 0, 0),
+                ),
+                child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: widget.width * 0.02,
+                      ),
+                      Expanded(
+                        child: Text(
+                          '${widget.question.choices![j].choiceText}',
+                          style: TextStyle(
+                            color: widget.question.choices![j].rightChoice! ?const Color.fromRGBO(255, 255, 255, 1):
+                            const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: widget.height * 0.0162,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                      ])),
-            ),
+                      ),
+                    ])),
           )
       ],
     );

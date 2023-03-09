@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
-import '../Entity/demo_question_model.dart';
-import '../Entity/question_model.dart';
-import '../Providers/question_prepare_provider.dart';
+import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
+import 'package:qna_test/Entity/Teacher/question_entity.dart';
+import 'package:qna_test/Pages/teacher_selection_page.dart';
 
-import '../EntityModel/GetQuestionBankModel.dart';
+import '../Entity/Teacher/response_entity.dart';
+import '../Services/qna_service.dart';
+
+
+
 class TeacherLooqPreview extends StatefulWidget {
   const TeacherLooqPreview({
     Key? key,
     required this.question,
+    required this.editQuestionModel,
     required this.setLocale,
   }) : super(key: key);
 
   final Question question;
+  final EditQuestionModel editQuestionModel;
   final void Function(Locale locale) setLocale;
   @override
   TeacherLooqPreviewState createState() => TeacherLooqPreviewState();
@@ -25,14 +29,14 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
-    List<Choice> selected = [];
+  List<dynamic> selected = [];
 
 
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question.advisorText!;
-    urlController.text = widget.question.advisorUrl!;
+    adviceController.text = widget.question!.advisorText!;
+    urlController.text = widget.question!.advisorUrl!;
   }
 
   @override
@@ -122,7 +126,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             Row(
                               children: [
                                 Text(
-                                  widget.question.subject!,
+                                  widget.question!.subject!,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.0175,
@@ -131,10 +135,10 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                                   ),
                                 ),
                                 Text(
-                                  '  |  ${widget.question.topic}  -  ${widget.question.subTopic}',
+                                  '  |  ${widget.question!.topic}  -  ${widget.question!.subTopic}',
                                   style: TextStyle(
                                     color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
+                                    const Color.fromRGBO(102, 102, 102, 1),
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w400,
@@ -143,7 +147,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                               ],
                             ),
                             Text(
-                              widget.question.questionClass!,
+                              widget.question!.datumClass!,
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.015,
@@ -161,12 +165,12 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       child: Row(children: <Widget>[
                         const Expanded(
                             child: Divider(
-                          color: Color.fromRGBO(233, 233, 233, 1),
-                          thickness: 2,
-                        )),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              thickness: 2,
+                            )),
                         Padding(
                           padding: const EdgeInsets.only(right: 10, left: 10),
-                          child: Text(widget.question.questionType!,
+                          child: Text(widget.question!.questionType!,
                               style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontFamily: 'Inter',
@@ -175,9 +179,9 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         ),
                         const Expanded(
                             child: Divider(
-                          color: Color.fromRGBO(233, 233, 233, 1),
-                          thickness: 2,
-                        )),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              thickness: 2,
+                            )),
                       ]),
                     ),
                     Padding(
@@ -185,7 +189,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                           left: width * 0.03, top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(widget.question.question!,
+                        child: Text(widget.question!.question!,
                             style: TextStyle(
                                 color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontFamily: 'Inter',
@@ -201,7 +205,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       child: SingleChildScrollView(
                           scrollDirection: Axis.vertical,
                           child: ChooseWidget(
-                              question: widget.question,
+                              question: widget.question!,
                               selected: selected,
                               height: height,
                               width: width)),
@@ -230,7 +234,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         decoration: InputDecoration(
                             border: const UnderlineInputBorder(),
                             labelText:
-                                'Suggest what to study if answered incorrectly ',
+                            'Suggest what to study if answered incorrectly ',
                             labelStyle: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 0.25),
                                 fontFamily: 'Inter',
@@ -293,18 +297,13 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         ),
                       ),
                       //shape: StadiumBorder(),
-                      onPressed: () {
-                        Provider.of<QuestionPrepareProvider>(context,
-                                listen: false)
-                            .addQuestion(widget.question);
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherAddMyQuestionBank(
-                                setLocale: widget.setLocale),
-                          ),
-                        );
+                      onPressed: () async {
+                        ResponseEntity statusCode = await QnaService.editQuestionTeacherService(widget.editQuestionModel,widget.question.questionId);
+                        print(statusCode.message);
+                        int count = 0;
+                        Navigator.popUntil(context, (route) {
+                          return count++ == 3;
+                        });
                       },
                       child: Text(
                         'Finalize',
@@ -321,17 +320,6 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
         ));
   }
 
-  changeIcon(IconData pramIcon) {
-    if (pramIcon == Icons.expand_circle_down_outlined) {
-      setState(() {
-        showIcon = Icons.arrow_circle_up_outlined;
-      });
-    } else {
-      setState(() {
-        showIcon = Icons.expand_circle_down_outlined;
-      });
-    }
-  }
 }
 
 class ChooseWidget extends StatefulWidget {
@@ -343,8 +331,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final Question question;
-  final List<Choice> selected;
+  final dynamic question;
+  final List<dynamic> selected;
   final double height;
   final double width;
 
@@ -376,7 +364,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                   border: Border.all(
                       color: const Color.fromRGBO(209, 209, 209, 1)),
                   color:
-                  (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
+                  (widget.question.choices![j].rightChoice!)
                       ? const Color.fromRGBO(82, 165, 160, 1)
                       : const Color.fromRGBO(255, 255, 255, 1),
                 ),
@@ -388,12 +376,12 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       ),
                       Expanded(
                         child: Text(
-                          widget.question.choices![j].choiceText,
+                          widget.question.choices![j].choiceText!,
                           style: TextStyle(
                             color:
-                                (widget.question.choicesAnswer!.contains(widget.question.choices![j]))
-                                    ? const Color.fromRGBO(255, 255, 255, 1)
-                                    : const Color.fromRGBO(102, 102, 102, 1),
+                            (widget.question.choices![j].rightChoice!)
+                                ? const Color.fromRGBO(255, 255, 255, 1)
+                                : const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: widget.height * 0.0162,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w700,

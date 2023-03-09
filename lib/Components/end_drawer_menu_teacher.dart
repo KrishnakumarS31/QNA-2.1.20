@@ -57,7 +57,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     ),
                     const SizedBox(height: 2.0),
                     Text(
-                      "Teacher Name",
+                      "firstName",
                       style: Theme.of(context)
                           .primaryTextTheme
                           .bodyLarge
@@ -350,11 +350,11 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     ),
                     onTap: () async {}),
                 SizedBox(height: height * 0.03),
-                const Align(
+                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Version : 1.0.0",
-                    style: TextStyle(
+                    "${AppLocalizations.of(context)!.version}: 1.0.0",
+                    style: const TextStyle(
                         color: Color.fromRGBO(180, 180, 180, 1),
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,

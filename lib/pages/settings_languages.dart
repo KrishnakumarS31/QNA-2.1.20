@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
+import '../EntityModel/user_data_model.dart';
 
 class SettingsLanguages extends StatefulWidget {
   const SettingsLanguages({Key? key, required this.setLocale})
@@ -23,7 +24,8 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
     'नमस्कार Marathi',
     'Hola (Spanish)',
     'హలో (Telugu)',
-    'ഹലോ (Malayalam)'
+    'ഹലോ (Malayalam)',
+    'ਪੰਜਾਬੀ (Punjabi)'
   ];
   String? selected;
   Color selectedColor = const Color.fromRGBO(82, 165, 160, 1);
@@ -44,7 +46,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
       setState(() {
         selected = 'नमस्ते (Hindi)';
       });
-    } else if (user.locale == 'ka') {
+    } else if (user.locale == 'kn') {
       setState(() {
         selected = 'ಕನ್ನಡ (Kannada)';
       });
@@ -64,7 +66,12 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
       setState(() {
         selected = 'ഹലോ (Malayalam)';
       });
-    } else {
+    } else if (user.locale == 'pa') {
+      setState(() {
+        selected = 'ਪੰਜਾਬੀ (Punjabi)';
+      });
+    }
+    else {
       setState(() {
         selected = 'Hello (English)';
       });
@@ -93,7 +100,9 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: Text(
-            "LANGUAGE",
+            AppLocalizations.of(context)!
+                .language,
+            //"LANGUAGE",
             style: TextStyle(
               color: const Color.fromRGBO(255, 255, 255, 1),
               fontSize: height * 0.025,
@@ -156,8 +165,8 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                               } else if (selected == 'ಕನ್ನಡ (Kannada)') {
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(const Locale.fromSubtags(
-                                    languageCode: 'ka'));
-                                selectedLocale = 'ka';
+                                    languageCode: 'kn'));
+                                selectedLocale = 'kn';
                               } else if (selected == 'नमस्कार Marathi') {
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(const Locale.fromSubtags(
@@ -178,7 +187,13 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                 widget.setLocale(const Locale.fromSubtags(
                                     languageCode: 'ml'));
                                 selectedLocale = 'ml';
-                              } else {
+                              } else if (selected == 'ਪੰਜਾਬੀ (Punjabi)') {
+                                AppUserRepo().deleteUserDetail();
+                                widget.setLocale(const Locale.fromSubtags(
+                                    languageCode: 'pa'));
+                                selectedLocale = 'pa';
+                              }
+                              else {
                                 AppUserRepo().deleteUserDetail();
                                 widget.setLocale(const Locale.fromSubtags(
                                     languageCode: 'en'));

@@ -7,6 +7,7 @@ import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../Components/custom_radio_button.dart';
+import '../EntityModel/user_data_model.dart';
 
 class StudentSelectionPage extends StatefulWidget {
   const StudentSelectionPage({super.key, required this.setLocale});

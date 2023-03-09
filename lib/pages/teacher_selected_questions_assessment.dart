@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
+import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/Teacher/question_entity.dart' as Question;
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment({
@@ -21,7 +29,8 @@ class TeacherSelectedQuestionAssessmentState
     extends State<TeacherSelectedQuestionAssessment> {
   bool additionalDetails = true;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-
+  List<Question.Question> questionList = [];
+  CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;
@@ -121,7 +130,13 @@ class TeacherSelectedQuestionAssessmentState
   @override
   void initState() {
     super.initState();
-    //quesList = Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion;
+    getData();
+  }
+  getData(){
+    setState(() {
+      questionList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+      assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    });
   }
 
   @override
@@ -335,20 +350,8 @@ class TeacherSelectedQuestionAssessmentState
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // for ( DemoQuestionModel i in quesList )
-                          //   QuestionPreview(height: height, width: width,question: i,),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
-                          QuestionWidget(height: height),
+                          for ( int i = 0;i< questionList.length;i++ )
+                            QuestionWidget(height: height, question: questionList[i],index: i,assessment: assessment, setLocale: widget.setLocale,),
                         ],
                       ),
                     ),
@@ -448,14 +451,28 @@ class TeacherSelectedQuestionAssessmentState
   }
 }
 
-class QuestionWidget extends StatelessWidget {
+class QuestionWidget extends StatefulWidget {
   const QuestionWidget({
     Key? key,
     required this.height,
+    required this.question,
+    required this.index,
+    required this.assessment,
+    required this.setLocale
   }) : super(key: key);
 
   final double height;
+  final Question.Question question;
+  final int index;
+  final CreateAssessmentModel assessment;
+  final void Function(Locale locale) setLocale;
 
+
+  @override
+  State<QuestionWidget> createState() => _QuestionWidgetState();
+}
+
+class _QuestionWidgetState extends State<QuestionWidget> {
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
     Widget cancelButton = ElevatedButton(
@@ -497,14 +514,19 @@ class QuestionWidget extends StatelessWidget {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
+        Provider.of<CreateAssessmentProvider>(context, listen: false).removeQuestion(widget.question.questionId);
         Navigator.of(context).pop();
-        // Navigator.push(
-        //   context,F
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAddMyQuestionBank(),
-        //   ),
-        // );
+        setState(() {
+
+        });
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: TeacherSelectedQuestionAssessment(setLocale: widget.setLocale,),
+          ),
+        );
       },
     );
     // set up the AlertDialog
@@ -546,6 +568,23 @@ class QuestionWidget extends StatelessWidget {
       },
     );
   }
+  String ans ='';
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    setState(() {
+     for(int i=0;i< widget.question.choices!.length;i++){
+       if(widget.question.choices![i].rightChoice!){
+         ans='${widget.question.choices![i].choiceText}, $ans';
+       }
+     }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -558,7 +597,7 @@ class QuestionWidget extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -566,17 +605,17 @@ class QuestionWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Q1',
+                        'Q${widget.index+1}',
                         style: TextStyle(
-                            fontSize: height * 0.017,
+                            fontSize: widget.height * 0.017,
                             fontFamily: "Inter",
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        '  MCQ',
+                        '  ${widget.question.questionType}',
                         style: TextStyle(
-                            fontSize: height * 0.017,
+                            fontSize: widget.height * 0.017,
                             fontFamily: "Inter",
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontWeight: FontWeight.w400),
@@ -585,7 +624,7 @@ class QuestionWidget extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      showAlertDialog(context, height);
+                      showAlertDialog(context, widget.height,);
                     },
                     child: Row(
                       children: [
@@ -596,7 +635,7 @@ class QuestionWidget extends StatelessWidget {
                         Text(
                           ' Remove',
                           style: TextStyle(
-                              fontSize: height * 0.017,
+                              fontSize: widget.height * 0.017,
                               fontFamily: "Inter",
                               color: const Color.fromRGBO(51, 51, 51, 1),
                               fontWeight: FontWeight.w400),
@@ -607,55 +646,58 @@ class QuestionWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
               GestureDetector(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   PageTransition(
-                  //     type: PageTransitionType.rightToLeft,
-                  //     child: TeacherAssessmentQuestionPreview(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: TeacherAssessmentQuestionPreview(setLocale: widget.setLocale, assessment: widget.assessment, question: widget.question, index: widget.index,),
+                    ),
+                  );
                 },
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim',
+                  '${widget.question.question}',
                   style: TextStyle(
-                      fontSize: height * 0.015,
+                      fontSize: widget.height * 0.015,
                       fontFamily: "Inter",
                       color: const Color.fromRGBO(51, 51, 51, 1),
                       fontWeight: FontWeight.w400),
                 ),
               ),
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'C. Lorem ipsum dolor sit amet',
-                    style: TextStyle(
-                        fontSize: height * 0.017,
-                        fontFamily: "Inter",
-                        color: const Color.fromRGBO(0, 0, 0, 1),
-                        fontWeight: FontWeight.w400),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      ans,
+                      style: TextStyle(
+                          fontSize: widget.height * 0.017,
+                          fontFamily: "Inter",
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          fontWeight: FontWeight.w400),
+                    ),
                   ),
                   Row(
                     children: [
                       Text(
                         'Marks: ',
                         style: TextStyle(
-                            fontSize: height * 0.017,
+                            fontSize: widget.height * 0.017,
                             fontFamily: "Inter",
                             color: const Color.fromRGBO(0, 0, 0, 1),
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '5',
+                        '${widget.assessment.questions[widget.index].questionMarks}',
                         style: TextStyle(
-                            fontSize: height * 0.017,
+                            fontSize: widget.height * 0.017,
                             fontFamily: "Inter",
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w700),
@@ -666,7 +708,7 @@ class QuestionWidget extends StatelessWidget {
               ),
               const Divider(),
               SizedBox(
-                height: height * 0.01,
+                height: widget.height * 0.01,
               ),
             ],
           ),

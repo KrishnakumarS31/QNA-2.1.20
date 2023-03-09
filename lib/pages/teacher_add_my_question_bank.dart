@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:qna_test/EntityModel/login_entity.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../EntityModel/GetQuestionBankModel.dart';
-import '../Entity/question_model.dart';
-import '../Providers/question_num_provider.dart';
-import '../Providers/question_prepare_provider.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
-import 'teacher_prepare_preview_qnBank.dart';
-
 import '../EntityModel/create_question_model.dart' as create_question_model;
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherAddMyQuestionBank extends StatefulWidget {
   const TeacherAddMyQuestionBank({
     Key? key,
     this.assessment,
     required this.setLocale,
+    this.assessmentStatus,
+
   }) : super(key: key);
 
   final bool? assessment;
+  final String? assessmentStatus;
   final void Function(Locale locale) setLocale;
   @override
   TeacherAddMyQuestionBankState createState() =>
@@ -31,8 +31,7 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
 }
 
 class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
-  List<Question> quesList = [];
-  List<create_question_model.Question> finalQuesList = [];
+  List<Question> finalQuesList = [];
 
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
@@ -46,7 +45,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -67,7 +67,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -80,14 +81,15 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             builder: (context) {
               return const Center(
                   child: CircularProgressIndicator(
-                color: Color.fromRGBO(48, 145, 139, 1),
-              ));
+                    color: Color.fromRGBO(48, 145, 139, 1),
+                  ));
             });
+
         create_question_model.CreateQuestionModel createQuestionModel=create_question_model.CreateQuestionModel();
         createQuestionModel.questions=finalQuesList;
         SharedPreferences loginData=await SharedPreferences.getInstance();
         createQuestionModel.authorId=loginData.getInt('userId');
-        LoginModel statusCode = await QnaService.createQuestionTeacherService(createQuestionModel);
+        ResponseEntity statusCode = await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
           Navigator.push(
@@ -104,7 +106,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text(
-        'Confirm',
+        AppLocalizations.of(context)!.confirm,
+        //'Confirm',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -112,7 +115,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             fontWeight: FontWeight.w700),
       ),
       content: Text(
-        'Are you sure you want to submit to My Question Bank?',
+        AppLocalizations.of(context)!.sure_to_submit_qn_bank,
+        //'Are you sure you want to submit to My Question Bank?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -136,9 +140,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   @override
   void initState() {
     super.initState();
-    quesList = Provider.of<QuestionPrepareProvider>(context, listen: false)
-        .getAllQuestion;
-    finalQuesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+    finalQuesList.addAll(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
   }
 
   @override
@@ -165,7 +167,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  'ADD',
+                  AppLocalizations.of(context)!.add,
+                  //'ADD',
                   style: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.0175,
@@ -174,7 +177,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                   ),
                 ),
                 Text(
-                  "MY QUESTION",
+                  AppLocalizations.of(context)!.add_my_qn,
+                  //"MY QUESTION",
                   style: TextStyle(
                     color: const Color.fromRGBO(255, 255, 255, 1),
                     fontSize: height * 0.0225,
@@ -189,9 +193,9 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                     end: Alignment.bottomCenter,
                     begin: Alignment.topCenter,
                     colors: [
-                  Color.fromRGBO(0, 106, 100, 1),
-                  Color.fromRGBO(82, 165, 160, 1),
-                ])),
+                      Color.fromRGBO(0, 106, 100, 1),
+                      Color.fromRGBO(82, 165, 160, 1),
+                    ])),
           ),
         ),
         body: Container(
@@ -212,7 +216,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         color: const Color.fromRGBO(28, 78, 80, 0.08),
                       ),
                       borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
+                      const BorderRadius.all(Radius.circular(20))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -288,7 +292,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            finalQuesList[0].questionClass!,
+                            finalQuesList[0].datumClass!,
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -321,7 +325,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           //     itemBuilder: (context, index){
                           //     return
                           //     }),
-                            for(int i =0;i<finalQuesList.length;i++)
+                          for(int i =0;i<finalQuesList.length;i++)
                             QuestionPreview(
                                 height: height,
                                 width: width,
@@ -347,13 +351,13 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             ),
                           );
                         },
-                        child: const Icon(Icons.add),
                         backgroundColor: const Color.fromRGBO(28, 78, 80, 1),
+                        child: const Icon(Icons.add),
                       ))
                 ],
               ),
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.02
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -368,7 +372,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                   showAlertDialog(context, height);
                 },
                 child: Text(
-                  'Submit',
+                  AppLocalizations.of(context)!.submit,
+                  //'Submit',
                   style: TextStyle(
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
@@ -389,13 +394,13 @@ class QuestionPreview extends StatelessWidget {
     required this.width,
     required this.question,
     required this.quesNum,
-    required this.setLocale,
+    required this.setLocale
   }) : super(key: key);
 
   final double height;
   final int quesNum;
   final double width;
-  final create_question_model.Question question;
+  final dynamic question;
   final void Function(Locale locale) setLocale;
 
   @override
@@ -434,8 +439,8 @@ class QuestionPreview extends StatelessWidget {
                           type: PageTransitionType.rightToLeft,
                           child: TeacherQuesDelete(
                               setLocale: setLocale,
-                            quesNum: quesNum,
-                            finalQuestion: question,),
+                                quesNum: quesNum,
+                            finalQuestion: question),
                         ),
                       );
                     },
@@ -443,7 +448,8 @@ class QuestionPreview extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          'Edit',
+                          AppLocalizations.of(context)!.edit_button,
+                          //'Edit',
                           style: TextStyle(
                               fontSize: height * 0.0185,
                               fontFamily: "Inter",

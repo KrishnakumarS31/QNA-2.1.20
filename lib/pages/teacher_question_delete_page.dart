@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
 import '../Components/custom_radio_option.dart';
-import '../EntityModel/GetQuestionBankModel.dart';
+import '../Entity/Teacher/choice_entity.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/question_prepare_provider_final.dart';
-import 'teacher_add_my_question_bank.dart';
-import '../EntityModel/create_question_model.dart' as create_question_model;
+
 class TeacherQuesDelete extends StatefulWidget {
   const TeacherQuesDelete({
     Key? key,
-    this.question,
     required this.quesNum,
     required this.finalQuestion,
     required this.setLocale,
   }) : super(key: key);
 
-  final Question? question;
+
   final int quesNum;
-  final create_question_model.Question finalQuestion;
+  final Question finalQuestion;
   final void Function(Locale locale) setLocale;
   @override
   TeacherQuesDeleteState createState() => TeacherQuesDeleteState();
@@ -28,7 +28,7 @@ class TeacherQuesDelete extends StatefulWidget {
 class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   late int _count;
   String? _groupValue;
-  List<create_question_model.Choice>? selected = [];
+  List<Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
   TextEditingController topicController = TextEditingController();
   TextEditingController urlController = TextEditingController();
@@ -165,7 +165,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
     subjectController.text = widget.finalQuestion!.subject!;
     topicController.text = widget.finalQuestion!.topic!;
     subtopicController.text = widget.finalQuestion!.subTopic!;
-    classRoomController.text = widget.finalQuestion!.questionClass!;
+    classRoomController.text = widget.finalQuestion!.datumClass!;
     questionController.text = widget.finalQuestion!.question!;
     urlController.text = widget.finalQuestion!.advisorUrl!;
     adviceController.text = widget.finalQuestion!.advisorText!;
@@ -812,9 +812,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 //   temp.add(_values[i]['value']);
                                 // }
                                 setState(() {
-                                  List<create_question_model.Choice> temp = [];
+                                  List<Choice> temp = [];
                                   for (int i = 0; i < chooses.length; i++) {
-                                    create_question_model.Choice ch=create_question_model.Choice();
+                                    Choice ch=Choice();
                                     temp.add(ch);
                                     temp[i].choiceText=chooses[i].text;
                                     temp[i].rightChoice=false;
@@ -827,7 +827,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   widget.finalQuestion.topic = topicController.text;
                                   widget.finalQuestion.subTopic =
                                       subtopicController.text;
-                                  widget.finalQuestion.questionClass =
+                                  widget.finalQuestion.datumClass =
                                       classRoomController.text;
                                   widget.finalQuestion.question =
                                       questionController.text;
@@ -837,10 +837,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   widget.finalQuestion.advisorUrl = urlController.text;
                                   widget.finalQuestion?.choices = temp;
                                 });
-                                Provider.of<QuestionPrepareProviderFinal>(context,
-                                        listen: false)
-                                    .updateQuestionList(
-                                        widget.quesNum, widget.finalQuestion);
+                                // Provider.of<QuestionPrepareProviderFinal>(context,
+                                //         listen: false)
+                                //     .updateQuestionList(
+                                //         widget.quesNum, widget.finalQuestion);
                                 Navigator.of(context).pop();
                               },
                               child: const Text("Save"),
@@ -874,8 +874,8 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final create_question_model.Question question;
-  final List<create_question_model.Choice>? selected;
+  final Question question;
+  final List<Choice>? selected;
   final double height;
   final double width;
 

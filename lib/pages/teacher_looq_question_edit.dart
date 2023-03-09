@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
+import 'package:qna_test/Entity/Teacher/choice_entity.dart';
+import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Pages/teacher_looq_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../EntityModel/GetQuestionBankModel.dart';
-import '../Providers/question_prepare_provider_final.dart';
+import '../Entity/Teacher/question_entity.dart';
+import '../EntityModel/login_entity.dart';
+import '../Services/qna_service.dart';
 class LooqQuestionEdit extends StatefulWidget {
   const LooqQuestionEdit({
     Key? key,
@@ -37,29 +37,56 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     return (value) => setState(() => _groupValue = value!);
   }
   List<int> tempChoiceId=[];
+  EditQuestionModel editQuestion = EditQuestionModel(editChoices: [],addChoices: [],removeChoices: []);
 
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
   final _formKey = GlobalKey<FormState>();
 
+  List<int> editChoiceId=[];
+  List<int> addChoiceId=[];
+  AddChoice addChoice =AddChoice();
+  int tempAddChoiceId=-100;
+
   _onRadioChange(int key) {
     setState(() {
       radioList[key] = !radioList[key];
-
+      widget.question.choices?[key].rightChoice=radioList[key];
     });
   }
 
   addField() {
     setState(() {
+      widget.question.choices?.add(Choice(choiceText: '',rightChoice: false));
       chooses.add(TextEditingController());
       radioList.add(false);
+      editQuestion.addChoices?.add(AddChoice(questionId: tempAddChoiceId,choiceText: '',rightChoice: false));
+      tempChoiceId.add(tempAddChoiceId);
+      addChoiceId.add(tempAddChoiceId);
+      tempAddChoiceId++;
     });
   }
 
   removeItem(i) {
     setState(() {
+
+      if(addChoiceId.contains(tempChoiceId[i])){
+        int index = addChoiceId.indexOf(tempChoiceId[i]);
+        addChoiceId.removeAt(index);
+        editQuestion.addChoices?.removeAt(index);
+      }
+      else {
+        if (editChoiceId.contains(tempChoiceId[i])) {
+          int index = editChoiceId.indexOf(tempChoiceId[i]);
+          editChoiceId.removeAt(index);
+          editQuestion.editChoices?.removeAt(index);
+        }
+      }
       chooses.removeAt(i);
       radioList.removeAt(i);
+      editQuestion.removeChoices!.add(tempChoiceId[i]);
+      widget.question.choices?.removeAt(i);
+      tempChoiceId.removeAt(i);
     });
   }
 
@@ -70,31 +97,37 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     subtopicController.text = widget.question.subTopic!;
-    classRoomController.text = widget.question.questionClass!;
+    classRoomController.text = widget.question.datumClass!;
     questionController.text = widget.question.question!;
     urlController.text = widget.question.advisorUrl!;
     adviceController.text = widget.question.advisorText!;
-    for(int i =0;i<widget.question.choicesAnswer!.length;i++){
-      selected=widget.question.choicesAnswer;
-      tempChoiceId.add(widget.question.choicesAnswer![i].choiceId);
+    for(int i =0;i<widget.question.choices!.length;i++){
+      selected=widget.question.choices;
+      tempChoiceId.add(widget.question.choices![i].questionChoiceId!);
     }
     for (int i = 0; i < widget.question.choices!.length; i++) {
       chooses.add(TextEditingController());
       radioList.add(false);
       chooses[i].text = widget.question.choices![i].choiceText!;
-      if (tempChoiceId!.contains(widget.question.choices![i].choiceId)) {
+      if (widget.question.choices![i].rightChoice!) {
         radioList[i] = true;
       }
     }
   }
 
   showQuestionPreview(BuildContext context) {
-    //print(widget.question.choices![3].choiceText);
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        editQuestion.question=widget.question.question;
+        editQuestion.subject=widget.question.subject;
+        editQuestion.topic=widget.question.topic;
+        editQuestion.subTopic=widget.question.subTopic;
+        editQuestion.editQuestionModelClass=widget.question.datumClass;
+        editQuestion.advisorUrl=widget.question.advisorUrl;
+        editQuestion.advisorText=widget.question.advisorText;
         return TeacherLooqPreview(
-            question: widget.question, setLocale: widget.setLocale);
+            question: widget.question, setLocale: widget.setLocale,editQuestionModel: editQuestion,);
       },
     );
   }
@@ -138,16 +171,12 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             color: const Color.fromRGBO(250, 250, 250, 1),
             fontWeight: FontWeight.w500),
       ),
-      onPressed: () {
-        // Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-        //     .deleteQuestionList(widget.question.questionId!);
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
-        //   ),
-        // );
+      onPressed: () async {
+        LoginModel statusCode = await QnaService.deleteQuestion(widget.question.questionId!);
+        int count = 0;
+        Navigator.popUntil(context, (route) {
+          return count++ == 2;
+        });
       },
     );
     // set up the AlertDialog
@@ -653,9 +682,38 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         borderRadius: BorderRadius.circular(5)),
                                   ),
                                   onChanged: (val){
+                                    EditChoice editChoice = EditChoice();
                                     setState(() {
-                                      chooses[i].text=val!;
+                                      chooses[i].text=val;
                                       widget.question.choices![i].choiceText=val;
+                                      if(addChoiceId.contains(tempChoiceId[i])){
+                                        int index = addChoiceId.indexOf(tempChoiceId[i]);
+                                        editQuestion.addChoices?.removeAt(index);
+                                        addChoice.rightChoice = radioList[i];
+                                        addChoice.questionId = tempChoiceId[i];
+                                        addChoice.choiceText = val;
+                                        editQuestion.addChoices?.add(addChoice);
+                                      }
+                                      else {
+                                        if (editChoiceId.contains(
+                                            tempChoiceId[i])) {
+                                          int index = tempChoiceId.indexOf(tempChoiceId[i]);
+                                          editQuestion.editChoices?.removeAt(index);
+                                          editChoice.rightChoice = radioList[i];
+                                          editChoice.choiceId = tempChoiceId[i];
+                                          editChoice.choiceText = val;
+                                          editQuestion.editChoices?.add(
+                                              editChoice);
+                                        }
+                                        else {
+                                          editChoiceId.add(tempChoiceId[i]);
+                                          editChoice.rightChoice = radioList[i];
+                                          editChoice.choiceId = tempChoiceId[i];
+                                          editChoice.choiceText = val;
+                                          editQuestion.editChoices?.add(
+                                              editChoice);
+                                        }
+                                      }
                                     });
                                   },
                                 ),
@@ -665,7 +723,34 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               ),
                               IconButton(
                                 onPressed: () {
-                                  print(i);
+                                  EditChoice editChoice = EditChoice();
+                                  if(addChoiceId.contains(tempChoiceId[i])){
+                                    int index = addChoiceId.indexOf(
+                                        tempChoiceId[i]);
+                                    editQuestion.addChoices![index].choiceText = chooses[i].text;
+                                    editQuestion.addChoices![index].questionId = tempChoiceId[i];
+                                    editQuestion.addChoices![index].rightChoice = !radioList[i];
+                                  }
+                                  else {
+                                    if (editChoiceId.contains(
+                                        tempChoiceId[i])) {
+                                      int index = editChoiceId.indexOf(
+                                          tempChoiceId[i]);
+                                      editQuestion.editChoices![index]
+                                          .choiceText = chooses[i].text;
+                                      editQuestion.editChoices![index]
+                                          .choiceId = tempChoiceId[i];
+                                      editQuestion.editChoices![index]
+                                          .rightChoice = !radioList[i];
+                                    }
+                                    else {
+                                      editChoiceId.add(tempChoiceId[i]);
+                                      editChoice.rightChoice = !radioList[i];
+                                      editChoice.choiceId = tempChoiceId[i];
+                                      editChoice.choiceText = chooses[i].text;
+                                      editQuestion.editChoices?.add(editChoice);
+                                    }
+                                  }
                                   _onRadioChange(i);
                                 },
                                 icon: Icon(
@@ -696,9 +781,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                   TextButton(
                     onPressed: () {
-                      setState(() {
-                        _count++;
-                      });
+                      addField();
                     },
                     child: Text(
                       "Add more choice",
@@ -816,12 +899,13 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   widget.question.subject = subjectController.text;
                                   widget.question.topic = topicController.text;
                                   widget.question.subTopic = subtopicController.text;
-                                  widget.question.questionClass = classRoomController.text;
+                                  widget.question.datumClass = classRoomController.text;
                                   widget.question.question = questionController.text;
-                                  widget.question.choicesAnswer = selected;
+                                  widget.question.choices = selected;
                                   widget.question.advisorText = adviceController.text;
                                   widget.question.advisorUrl = urlController.text;
                                 });
+                                print(tempChoiceId);
                                 showQuestionPreview(context);
 
                               },

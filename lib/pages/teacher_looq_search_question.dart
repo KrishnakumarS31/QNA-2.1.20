@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_looq_clone_preview.dart';
-import '../Entity/demo_question_model.dart';
+
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/Teacher/question_entity.dart';
+import '../Entity/Teacher/response_entity.dart';
+import '../Services/qna_service.dart';
 
 class TeacherLooqQuestionBank extends StatefulWidget {
   const TeacherLooqQuestionBank({
@@ -17,82 +20,22 @@ class TeacherLooqQuestionBank extends StatefulWidget {
 
 class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
   bool agree = false;
-  List<DemoQuestionModel> quesList = getData();
+
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  static List<DemoQuestionModel> getData() {
-    const data = [
-      {
-        "id": 1,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 2,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 3,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 4,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 5,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 - 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [4],
-        "advice": "agraefweg",
-        "url": "waffar"
-      }
-    ];
-    return data.map<DemoQuestionModel>(DemoQuestionModel.fromJson).toList();
-  }
+  List<Question> questions=[];
 
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(100,1);
+    setState(() {
+      questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+    });
+
   }
 
   @override
@@ -257,7 +200,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                   ],
                 ),
                 SizedBox(height: height * 0.02),
-                for (DemoQuestionModel i in quesList)
+                for (Question i in questions)
                   GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -314,15 +257,13 @@ class QuestionPreview extends StatelessWidget {
 
   final double height;
   final double width;
-  final DemoQuestionModel question;
+  final Question question;
 
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 1; i <= question.correctChoice!.length; i++) {
-      int j = 1;
-      j = question.correctChoice![i - 1]!;
-      answer = '$answer ${question.choices![j - 1]}';
+    for (int i = 0; i < question.choices!.length; i++) {
+      answer = '$answer ${question.choices![i]}';
     }
     return Column(
       children: [
@@ -338,7 +279,7 @@ class QuestionPreview extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      question.subject,
+                      question.subject!,
                       style: TextStyle(
                           fontSize: height * 0.017,
                           fontFamily: "Inter",
@@ -356,7 +297,7 @@ class QuestionPreview extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  question.studentClass,
+                  question.datumClass!,
                   style: TextStyle(
                       fontSize: height * 0.015,
                       fontFamily: "Inter",
@@ -370,29 +311,35 @@ class QuestionPreview extends StatelessWidget {
         SizedBox(
           height: height * 0.01,
         ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            question.questionType,
-            style: TextStyle(
-                fontSize: height * 0.015,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(28, 78, 80, 1),
-                fontWeight: FontWeight.w600),
+        Padding(
+          padding:  EdgeInsets.only(left: width * 0.03),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              question.questionType!,
+              style: TextStyle(
+                  fontSize: height * 0.015,
+                  fontFamily: "Inter",
+                  color: const Color.fromRGBO(28, 78, 80, 1),
+                  fontWeight: FontWeight.w600),
+            ),
           ),
         ),
         SizedBox(
           height: height * 0.01,
         ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            question.question,
-            style: TextStyle(
-                fontSize: height * 0.0175,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(51, 51, 51, 1),
-                fontWeight: FontWeight.w400),
+        Padding(
+          padding:  EdgeInsets.only(left: width * 0.03),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              question.question!,
+              style: TextStyle(
+                  fontSize: height * 0.0175,
+                  fontFamily: "Inter",
+                  color: const Color.fromRGBO(51, 51, 51, 1),
+                  fontWeight: FontWeight.w400),
+            ),
           ),
         ),
         SizedBox(

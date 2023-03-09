@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/EntityModel/GetQuestionBankModel.dart';
-import '../Providers/question_prepare_provider.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'teacher_add_my_question_bank.dart';
 import 'teacher_prepare_preview_qnBank.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherPreparePreview extends StatefulWidget {
   TeacherPreparePreview({
     this.assessment,
-    required this.question,
     required this.setLocale,
-    this.finalQuestion
+    required this.finalQuestion,
+    this.assessmentStatus
   });
-  create_question_model.Question? finalQuestion;
-  final Question question;
+  Question finalQuestion;
   bool? assessment;
   final void Function(Locale locale) setLocale;
+  final String? assessmentStatus;
   @override
   TeacherPreparePreviewState createState() => TeacherPreparePreviewState();
 }
@@ -150,11 +150,10 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: ChooseWidget(
-                            question: widget.question,
-                            selected: selected,
-                            height: height,
-                            width: width,
-                            finalQuestion: widget.finalQuestion,
+                          selected: selected,
+                          height: height,
+                          width: width,
+                          finalQuestion: widget.finalQuestion,
                         ),
                       ),
                     ),
@@ -165,7 +164,9 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                       padding: EdgeInsets.only(left: width * 0.03),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text("Advisor",
+                        child: Text(
+                            AppLocalizations.of(context)!.sub_topic_hint,
+                          //"Advisor",
                             style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontFamily: 'Inter',
@@ -180,9 +181,10 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                         controller: adviceController,
                         enabled: false,
                         decoration: InputDecoration(
-                            border: UnderlineInputBorder(),
+                            border: const UnderlineInputBorder(),
                             labelText:
-                                'Suggest what to study if answered incorrectly ',
+                            AppLocalizations.of(context)!.suggest_study,
+                            // 'Suggest what to study if answered incorrectly ',
                             labelStyle: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 0.25),
                                 fontFamily: 'Inter',
@@ -200,8 +202,9 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                         controller: urlController,
                         enabled: false,
                         decoration: InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'URL - Any reference (Optional)',
+                            border: const UnderlineInputBorder(),
+                            labelText: AppLocalizations.of(context)!.url_reference,
+                            //'URL - Any reference (Optional)',
                             labelStyle: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 0.25),
                                 fontFamily: 'Inter',
@@ -220,25 +223,25 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                           borderRadius: BorderRadius.circular(39),
                         ),
                       ),
-                      //shape: StadiumBorder(),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: PreparePreviewQnBank(
-                                question: widget.question,
-                                setLocale: widget.setLocale,
-                            finalQuestion: widget.finalQuestion,),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: PreparePreviewQnBank(
+                        //       question: widget.question,
+                        //       setLocale: widget.setLocale,
+                        //       finalQuestion: widget.finalQuestion,),
+                        //   ),
+                        // );
                       },
                       child: Text(
-                        'Edit',
+                        AppLocalizations.of(context)!.edit_button,
+                        //'Edit',
                         style: TextStyle(
                             fontSize: height * 0.025,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -255,7 +258,6 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-                        Provider.of<QuestionPrepareProvider>(context, listen: false).addQuestion(widget.question);
                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.finalQuestion!);
                         Navigator.push(
                           context,
@@ -263,16 +265,19 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             type: PageTransitionType.rightToLeft,
                             child: TeacherAddMyQuestionBank(
                                 assessment: widget.assessment,
-                                setLocale: widget.setLocale),
+                                setLocale: widget.setLocale,
+                                assessmentStatus: widget.assessmentStatus,
+                            ),
                           ),
                         );
                       },
                       child: Text(
-                        'Finalize',
+                        AppLocalizations.of(context)!.finalize,
+                        //'Finalize',
                         style: TextStyle(
                             fontSize: height * 0.025,
                             fontFamily: "Inter",
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                            color: const Color.fromRGBO(255, 255, 255, 1),
                             fontWeight: FontWeight.w600),
                       ),
                     ),
@@ -298,18 +303,17 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
 class ChooseWidget extends StatefulWidget {
   ChooseWidget({
     Key? key,
-    required this.question,
     required this.height,
     required this.width,
     required this.selected,
-    this.finalQuestion
+    this.finalQuestion,
   }) : super(key: key);
 
-  final Question question;
+
   final List<dynamic> selected;
   final double height;
   final double width;
-  create_question_model.Question? finalQuestion;
+  Question? finalQuestion;
 
   @override
   State<ChooseWidget> createState() => _ChooseWidgetState();
@@ -323,7 +327,6 @@ class _ChooseWidgetState extends State<ChooseWidget> {
         for (int j = 0; j < widget.finalQuestion!.choices!.length; j++)
           GestureDetector(
             onTap: () {
-              print(widget.finalQuestion!.choices![j].rightChoice!);
               // setState(() {
               // print("dsfsdf");
               // print(widget.selected);

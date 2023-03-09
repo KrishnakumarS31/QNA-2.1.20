@@ -139,4 +139,9 @@ class Question {
     "question_id": questionId,
     "question_marks": questionMarks,
   };
+
+  @override
+  String toString() {
+    return 'Question{questionId: $questionId, questionMarks: $questionMarks}';
+  }
 }

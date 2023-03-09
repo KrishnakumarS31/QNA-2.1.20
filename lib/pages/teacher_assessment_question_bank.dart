@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
+import '../Entity/Teacher/question_entity.dart';
+import '../Entity/Teacher/response_entity.dart';
 import '../Entity/demo_question_model.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
+import '../Services/qna_service.dart';
 
 class TeacherAssessmentQuestionBank extends StatefulWidget {
   const TeacherAssessmentQuestionBank(
@@ -22,88 +28,21 @@ class TeacherAssessmentQuestionBankState
   bool additionalDetails = true;
   TextEditingController teacherQuestionBankSearchController =
       TextEditingController();
-  List<DemoQuestionModel> quesList = getData();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  static List<DemoQuestionModel> getData() {
-    const data = [
-      {
-        "id": 1,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 2,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 3,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 4,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      },
-      {
-        "id": 5,
-        "questionType": "MCQ",
-        "subject": "Maths",
-        "topic": "ADD",
-        "subTopic": "Add",
-        "studentClass": "2",
-        "question": "2 + 2",
-        "choices": ["1", "2", "4", "0"],
-        "correctChoice": [3],
-        "advice": "agraefweg",
-        "url": "waffar"
-      }
-    ];
-    return data.map<DemoQuestionModel>(DemoQuestionModel.fromJson).toList();
-  }
+  List<Question> questions=[];
 
-  showAdditionalDetails() {
-    setState(() {
-      !additionalDetails;
-    });
-  }
 
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(100,1);
+    setState(() {
+      questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+    });
   }
 
   showAlertDialog(BuildContext context) {
@@ -281,7 +220,7 @@ class TeacherAssessmentQuestionBankState
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    for (DemoQuestionModel i in quesList)
+                    for (Question i in questions)
                       QuestionPreview(
                         height: height,
                         width: width,
@@ -308,6 +247,7 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
+
                     Navigator.push(
                       context,
                       PageTransition(
@@ -348,7 +288,7 @@ class QuestionPreview extends StatefulWidget {
 
   final double height;
   final double width;
-  final DemoQuestionModel question;
+  final Question question;
 
   @override
   State<QuestionPreview> createState() => _QuestionPreviewState();
@@ -356,14 +296,11 @@ class QuestionPreview extends StatefulWidget {
 
 class _QuestionPreviewState extends State<QuestionPreview> {
   bool? valuefirst = false;
-  List<DemoQuestionModel> selectedQuestion = [];
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 1; i <= widget.question.correctChoice!.length; i++) {
-      int j = 1;
-      j = widget.question.correctChoice![i - 1]!;
-      answer = '$answer ${widget.question.choices![j - 1]}';
+    for (int i = 0; i < widget.question.choices!.length; i++) {
+      answer = '$answer ${widget.question.choices![i]}';
     }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -374,88 +311,102 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           value: valuefirst,
           onChanged: (bool? value) {
             setState(() {
+              if(value!){
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.question!);
+
+                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(widget.question.questionId, 10);
+              }
+              else{
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
+                Provider.of<CreateAssessmentProvider>(context, listen: false).removeQuestion(widget.question.questionId);
+              }
               valuefirst = value;
             });
           },
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: widget.height * 0.04,
-              width: widget.width * 0.75,
-              color: const Color.fromRGBO(82, 165, 160, 0.1),
-              child: Padding(
-                padding: EdgeInsets.only(
-                    right: widget.width * 0.02, left: widget.width * 0.02),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: widget.width * 0.75,
+                color: const Color.fromRGBO(82, 165, 160, 0.1),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      right: widget.width * 0.02, left: widget.width * 0.02),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            widget.question.subject!,
+                            style: TextStyle(
+                                fontSize: widget.height * 0.017,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "  |  ${widget.question.topic} - ${widget.question.subTopic}",
+                            style: TextStyle(
+                                fontSize: widget.height * 0.015,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        widget.question.datumClass!,
+                        style: TextStyle(
+                            fontSize: widget.height * 0.015,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: widget.height * 0.01,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.question.questionType!,
+                  style: TextStyle(
+                      fontSize: widget.height * 0.0175,
+                      fontFamily: "Inter",
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: widget.height * 0.01,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
                   children: [
-                    Row(
-                      children: [
-                        Text(
-                          widget.question.subject,
-                          style: TextStyle(
-                              fontSize: widget.height * 0.017,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "  |  ${widget.question.topic} - ${widget.question.subTopic}",
-                          style: TextStyle(
-                              fontSize: widget.height * 0.015,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(102, 102, 102, 1),
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
                     Text(
-                      widget.question.studentClass,
+                      widget.question.question!,
                       style: TextStyle(
-                          fontSize: widget.height * 0.015,
+                          fontSize: widget.height * 0.0175,
                           fontFamily: "Inter",
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontWeight: FontWeight.w600),
+                          color: const Color.fromRGBO(51, 51, 51, 1),
+                          fontWeight: FontWeight.w400),
                     ),
                   ],
                 ),
               ),
-            ),
-            SizedBox(
-              height: widget.height * 0.01,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                widget.question.questionType,
-                style: TextStyle(
-                    fontSize: widget.height * 0.0175,
-                    fontFamily: "Inter",
-                    color: const Color.fromRGBO(28, 78, 80, 1),
-                    fontWeight: FontWeight.w400),
+              SizedBox(
+                height: widget.height * 0.01,
               ),
-            ),
-            SizedBox(
-              height: widget.height * 0.01,
-            ),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                widget.question.question,
-                style: TextStyle(
-                    fontSize: widget.height * 0.0175,
-                    fontFamily: "Inter",
-                    color: const Color.fromRGBO(51, 51, 51, 1),
-                    fontWeight: FontWeight.w400),
-              ),
-            ),
-            SizedBox(
-              height: widget.height * 0.01,
-            ),
-            const Divider()
-          ],
+              const Divider()
+            ],
+          ),
         ),
       ],
     );

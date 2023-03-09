@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/reset_password_student.dart';
 import 'package:qna_test/pages/settings_languages.dart';
@@ -47,7 +46,6 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-    print(userDataModel.data?.countryNationality);
     return Drawer(
       child: Column(
         children: [
@@ -146,8 +144,6 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     trailing: const Icon(Icons.navigate_next,
                         color: Color.fromRGBO(153, 153, 153, 1)),
                     onTap: () {
-                      print("rfv");
-                      print(userDataModel.data!.password);
                       Navigator.push(
                         context,
                         PageTransition(
@@ -261,10 +257,11 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                       );
                     }),
                 ListTile(
-                    leading: const Icon(Icons.verified_user_outlined,
+                    leading: const Icon(Icons.library_books_sharp,
                         color: Color.fromRGBO(141, 167, 167, 1)),
                     title: Text(
-                      'Terms of Services',
+                      AppLocalizations.of(context)!.terms_of_services,
+                      //'Terms of Services',
                       style: TextStyle(
                           color: textColor,
                           fontFamily: 'Inter',
@@ -375,7 +372,6 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                           fontSize: 16),
                     ),
                     onTap: () async {
-                      print("dfdfb");
                       showDialog(
                           context: context,
                           builder: (ctx) =>
@@ -413,11 +409,11 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                       ));
                     },),
                 SizedBox(height: localHeight * 0.03),
-                const Align(
+                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Version : 1.0.0",
-                    style: TextStyle(
+                    "${AppLocalizations.of(context)!.version}: 1.0.0",
+                    style: const TextStyle(
                         color: Color.fromRGBO(180, 180, 180, 1),
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,

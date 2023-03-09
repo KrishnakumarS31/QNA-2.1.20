@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
-import '../Entity/demo_question_model.dart';
-import '../Entity/question_model.dart';
+
 import '../Components/end_drawer_menu_teacher.dart';
 
 class TeacherLooqClonePreview extends StatefulWidget {
@@ -12,7 +12,7 @@ class TeacherLooqClonePreview extends StatefulWidget {
     required this.setLocale,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final void Function(Locale locale) setLocale;
   @override
   TeacherLooqClonePreviewState createState() => TeacherLooqClonePreviewState();
@@ -24,132 +24,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  List<Ques> question = getData();
-  static List<Ques> getData() {
-    const data = [
-      {
-        "id": 1,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 2,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["Option 1", "Option 2", "Option 3"]
-      },
-      {
-        "id": 3,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      },
-      {
-        "id": 4,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 5,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 6,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      },
-      {
-        "id": 7,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 8,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["Option 1", "Option 2", "Option 3"]
-      },
-      {
-        "id": 9,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      },
-      {
-        "id": 10,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec dolor sollicitudin, ultricies ante in, suscipit orci. Nulla pretium faucibus libero tincidunt congue. Nam dignissim imperdiet mauris, in rhoncus lectus efficitur",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 11,
-        "questionType": "choose",
-        "mark": 5,
-        "question": "What type of music are you into?",
-        "options": ["a. Option 1", "b. Option 2", "c. Option 3"]
-      },
-      {
-        "id": 12,
-        "questionType": "choose",
-        "mark": 25,
-        "question":
-            "If you could only eat one food for the rest of your life, what would it be?",
-        "options": [
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3",
-          "a. Option 1",
-          "b. Option 2",
-          "c. Option 3"
-        ]
-      }
-    ];
-    return data.map<Ques>(Ques.fromJson).toList();
-  }
+
 
   List<dynamic> selected = [];
   ValueChanged<String?> _valueChangedHandler() {
@@ -159,8 +34,8 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question.advice!;
-    urlController.text = widget.question.url!;
+    adviceController.text = widget.question.advisorText!;
+    urlController.text = widget.question.advisorUrl!;
   }
 
   @override
@@ -235,7 +110,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                             Row(
                               children: [
                                 Text(
-                                  widget.question.subject,
+                                  widget.question.subject!,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.0175,
@@ -256,7 +131,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                               ],
                             ),
                             Text(
-                              widget.question.studentClass,
+                              widget.question.datumClass!,
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.015,
@@ -279,7 +154,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                         )),
                         Padding(
                           padding: const EdgeInsets.only(right: 10, left: 10),
-                          child: Text(widget.question.questionType,
+                          child: Text(widget.question.questionType!,
                               style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontFamily: 'Inter',
@@ -298,7 +173,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                           left: width * 0.03, top: height * 0.02),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(widget.question.question,
+                        child: Text(widget.question.question!,
                             style: TextStyle(
                                 color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontFamily: 'Inter',
@@ -377,15 +252,15 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                         ),
                       ),
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: LooqQuestionEdit(
-                        //         question: widget.question,
-                        //         setLocale: widget.setLocale),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: LooqQuestionEdit(
+                                question: widget.question,
+                                setLocale: widget.setLocale),
+                          ),
+                        );
                       },
                       child: Text(
                         'Clone',
@@ -454,7 +329,7 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
   }) : super(key: key);
 
-  final DemoQuestionModel question;
+  final Question question;
   final List<dynamic> selected;
   final double height;
   final double width;
@@ -468,7 +343,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (int j = 1; j <= widget.question.choices!.length; j++)
+        for (int j = 0; j < widget.question.choices!.length; j++)
           GestureDetector(
             onTap: () {
               // setState(() {
@@ -495,7 +370,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.correctChoice!.contains(j))
+                    color: (widget.question.choices![j].rightChoice!)
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -507,10 +382,10 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         ),
                         Expanded(
                           child: Text(
-                            '${widget.question.choices![j - 1]}',
+                            widget.question.choices![j].choiceText!,
                             style: TextStyle(
                               color:
-                                  (widget.question.correctChoice!.contains(j))
+                                  (widget.question.choices![j].rightChoice!)
                                       ? const Color.fromRGBO(255, 255, 255, 1)
                                       : const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: widget.height * 0.0162,

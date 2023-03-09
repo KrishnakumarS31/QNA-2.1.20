@@ -14,13 +14,13 @@ import '../Services/qna_service.dart';
 import 'student_result_page.dart';
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
-    required this.questions, required this.userName, required this.assessmentID,required this.startTime, required this.endTime
+    required this.questions, required this.userName, required this.assessmentID,required this.startTime, required this.setLocale
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
   final int startTime;
-  final DateFormat endTime;
   final String assessmentID;
+  final void Function(Locale locale) setLocale;
 
 
   @override
@@ -170,17 +170,17 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               fontWeight: FontWeight.w600,
                             ),),
                           SizedBox(height: localHeight * 0.030),
-                          Padding(
-                            padding: EdgeInsets.only(left: 8.0),
-                            child: Text(
-                                AppLocalizations.of(context)!.pls_tap_ques,
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontStyle: FontStyle.italic,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: localHeight * 0.021)),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 8.0),
+                          //   child: Text(
+                          //       AppLocalizations.of(context)!.pls_tap_ques,
+                          //       style: TextStyle(
+                          //           color: const Color.fromRGBO(102, 102, 102, 1),
+                          //           fontFamily: 'Inter',
+                          //           fontStyle: FontStyle.italic,
+                          //           fontWeight: FontWeight.w500,
+                          //           fontSize: localHeight * 0.021)),
+                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -192,12 +192,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         },
                                         child: Container(
                                             width: localWidth * 0.4,
-                                          //decoration: BoxDecoration(border: Border.all()),
                                             margin: const EdgeInsets.all(5),
                                             padding: const EdgeInsets.all(5),
-                                            //color: const Color.fromRGBO(255, 255, 255, 1),
                                             child:
                                             ListTile(
+                                              tileColor: const Color.fromRGBO(82, 165, 160, 0.03),
                                               title: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
@@ -295,8 +294,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     for (int index = 2; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
                                       GestureDetector(
                                         onTap: (){
-                                          print("wevfwvf");
-                                          print(index);
                                         },
                                         child: Container(
                                           //decoration: BoxDecoration(border: Border.all()),
@@ -305,6 +302,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             width: localWidth * 0.4,
                                             child:
                                             ListTile(
+                                              tileColor: const Color.fromRGBO(82, 165, 160, 0.03),
                                               title: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
@@ -354,13 +352,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                     ),
                                                     SizedBox(height: localHeight * 0.015),
                                                   ]),
-                                              //for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++)
-                                              // {
-                                              // List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-                                              // for(int t=0;t<selectedAns.length;t++)
-                                              // {
-                                              // print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);  }
-                                              // }
                                               subtitle:
                                               Column(
                                                   children: [
@@ -371,7 +362,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                           Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                               ? AppLocalizations.of(context)!.not_answered
                                                               : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
-                                                          //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                           style:
                                                           Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                               ?
@@ -410,7 +400,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         borderRadius: BorderRadius.circular(39),
                                       ),
                                     ),
-                                    //shape: StadiumBorder(),
                                     child:Text(AppLocalizations.of(context)!.submit,
                                         style: const TextStyle(
                                             fontFamily: 'Inter',
@@ -525,7 +514,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   ),
                                 ),
                                 SizedBox(height: localHeight * 0.025),
-
                               ],
                             ),
                           ),
@@ -538,45 +526,21 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               fontWeight: FontWeight.w600,
                             ),),
                           SizedBox(height: localHeight * 0.030),
-                          Row(children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: localWidth * 0.056),
-                              child: Text(
-                                  AppLocalizations.of(context)!.pls_tap_ques,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontStyle: FontStyle.italic,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: localHeight * 0.011)),
-                            )
-                          ]),
                           Column(
                               children: [
                                 for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
                                   GestureDetector(
                                     onTap: (){
-                                      // context
-                                      //     .read<QuestionNumProvider>()
-                                      //     .skipToEnd(3);
-                                      // Navigator.push(
-                                      //   context,
-                                      //   PageTransition(
-                                      //     type: PageTransitionType.rightToLeft,
-                                      //     child: StudQuestion(
-                                      //         assessmentId: "12345678",
-                                      //         ques: values,
-                                      //         userName: widget.userName),
-                                      //   ),
-                                      // );
                                     },
                                     child: Container(
-                                      //decoration: BoxDecoration(border: Border.all()),
                                         margin: const EdgeInsets.all(5),
                                         padding: const EdgeInsets.all(5),
-                                        //color: const Color.fromRGBO(255, 255, 255, 1),
                                         child:
                                         ListTile(
+                                          tileColor:
+                                          Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] ==  const Color(0xff52a5a0)
+                                          ? const Color.fromRGBO(82, 165, 160, 0.03)
+                                          : const Color.fromRGBO(250, 250, 250, 1),
                                           title: Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
@@ -627,13 +591,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                 ),
                                                 SizedBox(height: localHeight * 0.015),
                                               ]),
-                                          //for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++)
-                                          // {
-                                          // List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-                                          // for(int t=0;t<selectedAns.length;t++)
-                                          // {
-                                          // print(widget.questions.data!.assessment!.questions[j].choices[selectedAns[t]-1].choiceText);  }
-                                          // }
                                           subtitle:
                                           Column(
                                               children: [
@@ -644,7 +601,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                       Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                           ? AppLocalizations.of(context)!.not_answered
                                                           : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
-                                                      //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                       style:
                                                       Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
                                                           ?
@@ -780,8 +736,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                 ),
                 onPressed: () async {
                   int ansCorrect=0;
-                  print(widget.startTime);
-                  print(DateTime.now().microsecondsSinceEpoch);
                   int totalMark=0;
                   assessment.assessmentId=1002;
                   assessment.assessmentCode=widget.assessmentID;
@@ -793,8 +747,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   int difference = d2.difference(d1).inMinutes;
                   assessment.attemptDuration=difference;
                   int timeTaken = d2.difference(d1).inMicroseconds;
-                  print('fyuj');
-                  print(timeTaken);
+                  var endTimeTaken = (d2.difference(d1).toString());
+                  print(endTimeTaken.matchAsPrefix("0:33:40.045976"));
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
                     List<int> selectedAnsId=[];
                     AssessmentResult quesResult=AssessmentResult();
@@ -803,8 +757,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     quesResult.questionTypeId=values.data!.questions![j-1].questionTypeId;
                     quesResult.marks=0;
                     List<dynamic> correctAns=[];
-                    for(int i=0;i<values.data!.questions![j-1].choicesAnswer!.length;i++){
-                      correctAns.add(values.data!.questions![j-1].choicesAnswer![i].choiceText);
+                    //changes are made
+                    for(int i=0;i<values.data!.questions![j-1].choices!.length;i++){
+                      if(values.data!.questions![j-1].choices![i].rightChoice!){
+                        correctAns.add(values.data!.questions![j-1].choices![i].choiceText);
+                      }
                     }
                     correctAns.sort();
                     List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
@@ -828,7 +785,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       totalMark=totalMark+values.data!.questions![j-1].questionMarks!;
                       ansCorrect++;
                     }
-                    assessment.assessmentResults?.add(quesResult);
+                    assessment.assessmentResults.add(quesResult);
                   }
                   assessment.attemptScore=totalMark;
                   int percent=((ansCorrect/values.data!.questions!.length) * 100).round();
@@ -864,13 +821,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child:  StudentResultPage(endTime: widget.endTime,totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName),
+                        child:  StudentResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName, setLocale: widget.setLocale,endTime: endTimeTaken,),
                       ),
                     );
                   }
                   else {
-                    print(loginResponse.code);
-                    print(loginResponse.message);
                     Navigator.push(
                       context,
                       PageTransition(
