@@ -5,6 +5,7 @@ import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/Pages/student_guest_login_page.dart';
 import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Pages/welcome_page.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../Components/custom_radio_button.dart';
 import '../EntityModel/user_data_model.dart';
@@ -50,7 +51,15 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        type: PageTransitionType.rightToLeft,
+                        child:
+                        WelcomePage(setLocale: widget.setLocale),
+                      ),
+                    );
+                   // Navigator.of(context).pop();
                   },
                 ),
                 backgroundColor: Colors.transparent,
@@ -228,7 +237,14 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                     color: Colors.white,
                   ),
                   onPressed: () {
-                    Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child:
+                          WelcomePage(setLocale: widget.setLocale),
+                        ),
+                      );
                   },
                 ),
                 backgroundColor: Colors.transparent,

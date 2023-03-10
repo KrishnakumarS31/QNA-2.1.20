@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
+import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
+import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
+import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../EntityModel/get_assessment_model.dart' as assessment_model;
-import '../Providers/edit_assessment_provider.dart';
-import '../EntityModel/user_data_model.dart';
+import '../Entity/Teacher/question_entity.dart' as Question;
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
     Key? key,
@@ -22,17 +27,121 @@ class TeacherAssessmentSummary extends StatefulWidget {
 
 class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   bool additionalDetails = true;
-  assessment_model.Datum assessment =assessment_model.Datum();
+  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+  List<Question.Question> questionList = [];
+  CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
+  int totalQues =0;
+  int totalMark=0;
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;
     });
   }
 
+  showAlertDialog(BuildContext context, double height) {
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: TeacherAssessmentSettingPublish(setLocale: widget.setLocale),
+          ),
+        );
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          Icon(
+            Icons.error,
+            color: const Color.fromRGBO(238, 71, 0, 1),
+            size: height * 0.05,
+          ),
+          Text(
+            'Marks not filled',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Do you want to still continue?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   void initState() {
-    //assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     super.initState();
+    getData();
+  }
+  getData(){
+    setState(() {
+      questionList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+      assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+      totalQues=assessment.questions.length;
+      for(int i =0;i<assessment.questions.length;i++){
+        totalMark=totalMark+assessment.questions[i].questionMarks!;
+      }
+    });
   }
 
   @override
@@ -57,7 +166,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
             "SELECTED QUESTIONS",
             style: TextStyle(
@@ -83,9 +192,9 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
         ),
       ),
       body: Padding(
@@ -121,7 +230,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                     fontWeight: FontWeight.w600),
                               ),
                               Text(
-                                '  |  ${assessment.datumClass}',
+                                '  |  ${assessment.createAssessmentModelClass}',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
@@ -241,42 +350,16 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   SizedBox(
                     height: height * 0.48,
                     width: width * 0.9,
-                    child: ListView.builder(
-                      itemCount: assessment.questions!.length,
-                      itemBuilder: (context, index)=> QuestionWidget(
-                                 height: height, setLocale: widget.setLocale,assessment: assessment,index: index)),
-                    // child: SingleChildScrollView(
-                    //   scrollDirection: Axis.vertical,
-                    //   child: Column(
-                    //     mainAxisSize: MainAxisSize.min,
-                    //     children: [
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //       QuestionWidget(
-                    //           height: height, setLocale: widget.setLocale),
-                    //     ],
-                    //   ),
-                    // ),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for ( int i = 0;i< assessment.questions.length;i++ )
+                            QuestionWidget(height: height, question: questionList[i],index: i,assessment: assessment, setLocale: widget.setLocale,),
+                        ],
+                      ),
+                    ),
                   ),
                   Positioned(
                       top: height * 0.4,
@@ -382,36 +465,29 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
 }
 
 class QuestionWidget extends StatefulWidget {
-  QuestionWidget({
+  const QuestionWidget({
     Key? key,
     required this.height,
-    required this.setLocale,
+    required this.question,
+    required this.index,
     required this.assessment,
-    required this.index
+    required this.setLocale
   }) : super(key: key);
 
   final double height;
-  final void Function(Locale locale) setLocale;
-  assessment_model.Datum assessment;
+  final Question.Question question;
   final int index;
+  final CreateAssessmentModel assessment;
+  final void Function(Locale locale) setLocale;
+
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
 }
 
 class _QuestionWidgetState extends State<QuestionWidget> {
-
-  String ans= '';
-
-  @override
-  void initState() {
-    for(int i =0;i<widget.assessment.questions![widget.index].choicesAnswer!.length;i++){
-      ans='$ans, ${widget.assessment.questions![widget.index].choicesAnswer![i].choiceText}';
-    }
-    super.initState();
-  }
-
   showAlertDialog(BuildContext context, double height) {
+    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -451,20 +527,22 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
+        Provider.of<CreateAssessmentProvider>(context, listen: false).removeQuestion(widget.question.questionId);
         Navigator.of(context).pop();
-        widget.assessment.questions![widget.index].removeQuestions?.add(widget.index);
-        widget.assessment.questions!.removeAt(widget.index);
-        //Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(widget.assessment);
+        setState(() {
+
+        });
         Navigator.push(
           context,
           PageTransition(
             type: PageTransitionType.rightToLeft,
-            child: TeacherAssessmentSummary(
-                setLocale: widget.setLocale),
+            child: TeacherSelectedQuestionAssessment(setLocale: widget.setLocale,),
           ),
         );
       },
     );
+    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -495,6 +573,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         continueButton,
       ],
     );
+    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -502,15 +581,23 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       },
     );
   }
+  String ans ='';
 
-  // showPreview(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return TeacherAssessmentQuestionPreview(setLocale: widget.setLocale);
-  //     },
-  //   );
-  // }
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    setState(() {
+      for(int i=0;i< widget.question.choices!.length;i++){
+        if(widget.question.choices![i].rightChoice!){
+          ans='${widget.question.choices![i].choiceText}, $ans';
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -539,7 +626,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        '  ${widget.assessment.questions![widget.index].questionType}',
+                        '  ${widget.question.questionType}',
                         style: TextStyle(
                             fontSize: widget.height * 0.017,
                             fontFamily: "Inter",
@@ -550,7 +637,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      showAlertDialog(context, widget.height);
+                      showAlertDialog(context, widget.height,);
                     },
                     child: Row(
                       children: [
@@ -576,12 +663,18 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ),
               GestureDetector(
                 onTap: () {
-                  //showPreview(context);
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      child: TeacherAssessmentQuestionPreview(setLocale: widget.setLocale, assessment: widget.assessment, question: widget.question, index: widget.index,),
+                    ),
+                  );
                 },
                 child: Align(
-                  alignment: AlignmentDirectional.topStart,
+                  alignment: Alignment.topLeft,
                   child: Text(
-                    '${widget.assessment.questions![widget.index].question}',
+                    '${widget.question.question}',
                     style: TextStyle(
                         fontSize: widget.height * 0.015,
                         fontFamily: "Inter",
@@ -596,13 +689,16 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    ans,
-                    style: TextStyle(
-                        fontSize: widget.height * 0.017,
-                        fontFamily: "Inter",
-                        color: const Color.fromRGBO(0, 0, 0, 1),
-                        fontWeight: FontWeight.w400),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      ans,
+                      style: TextStyle(
+                          fontSize: widget.height * 0.017,
+                          fontFamily: "Inter",
+                          color: const Color.fromRGBO(0, 0, 0, 1),
+                          fontWeight: FontWeight.w400),
+                    ),
                   ),
                   Row(
                     children: [
@@ -615,7 +711,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '${widget.assessment.questions![widget.index].questionMarks}',
+                        '${widget.assessment.questions[widget.index].questionMarks}',
                         style: TextStyle(
                             fontSize: widget.height * 0.017,
                             fontFamily: "Inter",

@@ -4,7 +4,6 @@ import 'package:qna_test/Pages/student_Advisor.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/student_selection_page.dart';
 import '../Entity/question_paper_model.dart';
-import 'package:intl/intl.dart';
 class StudentResultPage extends StatefulWidget {
   const StudentResultPage(
       {Key? key,
@@ -52,28 +51,92 @@ class StudentResultPageState extends State<StudentResultPage> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: const Text("Alert"),
-                    content: const Text("Are you sure you want to exit?"),
-                    actions: [
-                      TextButton(
+                    insetPadding: EdgeInsets.only(left: localWidth * 0.13,right: localWidth * 0.13),
+                    title: Row(
+                        children:  [
+                          SizedBox(width: localHeight * 0.030),
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            height: localHeight * 0.1,
+                            width: localWidth * 0.1,
+                            child: const Icon(Icons.info_outline_rounded,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                          ),
+                          SizedBox(width: localHeight * 0.015),
+                          Text(AppLocalizations.of(context)!.confirm,
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: localHeight * 0.024,
+                                color: const Color.fromRGBO(0, 106, 100, 1),
+                                fontWeight: FontWeight.w700
+                            ),),
+                        ]
+                    ),
+                    content:
+                    const Text("Are you sure you want to exit ?"),
+                    actions: <Widget>[
+                      SizedBox(width: localWidth * 0.020),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                          minimumSize: const Size(90, 30),
+                          side: const BorderSide(
+                            width: 1.5,
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          ),
+                        ),
+                        child:  Text(AppLocalizations.of(context)!.no,
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: localHeight * 0.018,
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w500
+                            )
+                        ),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text("No"),
                       ),
-                      TextButton(
-                        onPressed: () {
-                            Navigator.push(
-                              context,
+                      SizedBox(width: localWidth * 0.005),
+                      ElevatedButton(
+                          style:
+                          ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(90, 30),
+                          ),
+                          child:  Text(AppLocalizations.of(context)!.yes,
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: localHeight * 0.018,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500
+                              )
+                          ),
+                          onPressed: () async {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const Center(
+                                      child: CircularProgressIndicator(
+                                        color: Color.fromRGBO(
+                                            48, 145, 139, 1),
+                                      ));
+                                });
+                            Navigator.of(context).pop();
+                            Navigator.push(context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: StudentSelectionPage(
                                     setLocale: widget.setLocale),
                               ),
                             );
-                        },
-                        child: const Text("Yes"),
+                          }
                       ),
+                      SizedBox(width: localHeight * 0.030),
                     ],
                   ),
                 );
@@ -194,28 +257,92 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: const Text("Alert"),
-                                      content: const Text("Are you sure you want to exit?"),
-                                      actions: [
-                                        TextButton(
+                                      insetPadding: EdgeInsets.only(left: localWidth * 0.13,right: localWidth * 0.13),
+                                      title: Row(
+                                          children:  [
+                                            SizedBox(width: localHeight * 0.030),
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                              ),
+                                              height: localHeight * 0.1,
+                                              width: localWidth * 0.1,
+                                              child: const Icon(Icons.info_outline_rounded,
+                                                color: Color.fromRGBO(255, 255, 255, 1),
+                                              ),
+                                            ),
+                                            SizedBox(width: localHeight * 0.015),
+                                            Text(AppLocalizations.of(context)!.confirm,
+                                              style: TextStyle(
+                                                  fontFamily: 'Inter',
+                                                  fontSize: localHeight * 0.024,
+                                                  color: const Color.fromRGBO(0, 106, 100, 1),
+                                                  fontWeight: FontWeight.w700
+                                              ),),
+                                          ]
+                                      ),
+                                      content:
+                                      const Text("Are you sure you want to exit ?"),
+                                      actions: <Widget>[
+                                        SizedBox(width: localWidth * 0.020),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                                            minimumSize: const Size(90, 30),
+                                            side: const BorderSide(
+                                              width: 1.5,
+                                              color: Color.fromRGBO(82, 165, 160, 1),
+                                            ),
+                                          ),
+                                          child:  Text(AppLocalizations.of(context)!.no,
+                                              style: TextStyle(
+                                                  fontFamily: 'Inter',
+                                                  fontSize: localHeight * 0.018,
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontWeight: FontWeight.w500
+                                              )
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: const Text("No"),
                                         ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.rightToLeft,
-                                                child: StudentSelectionPage(
-                                                    setLocale: widget.setLocale),
-                                              ),
-                                            );
-                                          },
-                                          child: const Text("Yes"),
+                                        SizedBox(width: localWidth * 0.005),
+                                        ElevatedButton(
+                                            style:
+                                            ElevatedButton.styleFrom(
+                                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                              minimumSize: const Size(90, 30),
+                                            ),
+                                            child:  Text(AppLocalizations.of(context)!.yes,
+                                                style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: localHeight * 0.018,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w500
+                                                )
+                                            ),
+                                            onPressed: () async {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return const Center(
+                                                        child: CircularProgressIndicator(
+                                                          color: Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                        ));
+                                                  });
+                                              Navigator.of(context).pop();
+                                              Navigator.push(context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: StudentSelectionPage(
+                                                      setLocale: widget.setLocale),
+                                                ),
+                                              );
+                                            }
                                         ),
+                                        SizedBox(width: localHeight * 0.030),
                                       ],
                                     ),
                                   );
@@ -352,28 +479,92 @@ class StudentResultPageState extends State<StudentResultPage> {
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                title: const Text("Alert"),
-                content: const Text("Are you sure you want to exit?"),
-                actions: [
-                  TextButton(
+                insetPadding: EdgeInsets.only(left: localWidth * 0.13,right: localWidth * 0.13),
+                title: Row(
+                    children:  [
+                      SizedBox(width: localHeight * 0.030),
+                      Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color.fromRGBO(82, 165, 160, 1),
+                        ),
+                        height: localHeight * 0.1,
+                        width: localWidth * 0.1,
+                        child: const Icon(Icons.info_outline_rounded,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
+                      ),
+                      SizedBox(width: localHeight * 0.015),
+                      Text(AppLocalizations.of(context)!.confirm,
+                        style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: localHeight * 0.024,
+                            color: const Color.fromRGBO(0, 106, 100, 1),
+                            fontWeight: FontWeight.w700
+                        ),),
+                    ]
+                ),
+                content:
+                const Text("Are you sure you want to exit ?"),
+                actions: <Widget>[
+                  SizedBox(width: localWidth * 0.020),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                      minimumSize: const Size(90, 30),
+                      side: const BorderSide(
+                        width: 1.5,
+                        color: Color.fromRGBO(82, 165, 160, 1),
+                      ),
+                    ),
+                    child:  Text(AppLocalizations.of(context)!.no,
+                        style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: localHeight * 0.018,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w500
+                        )
+                    ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text("No"),
                   ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: StudentSelectionPage(
-                              setLocale: widget.setLocale),
-                        ),
-                      );
-                    },
-                    child: const Text("Yes"),
+                  SizedBox(width: localWidth * 0.005),
+                  ElevatedButton(
+                      style:
+                      ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                        minimumSize: const Size(90, 30),
+                      ),
+                      child:  Text(AppLocalizations.of(context)!.yes,
+                          style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontSize: localHeight * 0.018,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500
+                          )
+                      ),
+                      onPressed: () async {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                  child: CircularProgressIndicator(
+                                    color: Color.fromRGBO(
+                                        48, 145, 139, 1),
+                                  ));
+                            });
+                        Navigator.of(context).pop();
+                        Navigator.push(context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: StudentSelectionPage(
+                                setLocale: widget.setLocale),
+                          ),
+                        );
+                      }
                   ),
+                  SizedBox(width: localHeight * 0.030),
                 ],
               ),
             );
@@ -494,28 +685,92 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: const Text("Alert"),
-                                      content: const Text("Are you sure you want to exit?"),
-                                      actions: [
-                                        TextButton(
+                                      insetPadding: EdgeInsets.only(left: localWidth * 0.13,right: localWidth * 0.13),
+                                      title: Row(
+                                          children:  [
+                                            SizedBox(width: localHeight * 0.030),
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                              ),
+                                              height: localHeight * 0.1,
+                                              width: localWidth * 0.1,
+                                              child: const Icon(Icons.info_outline_rounded,
+                                                color: Color.fromRGBO(255, 255, 255, 1),
+                                              ),
+                                            ),
+                                            SizedBox(width: localHeight * 0.015),
+                                            Text(AppLocalizations.of(context)!.confirm,
+                                              style: TextStyle(
+                                                  fontFamily: 'Inter',
+                                                  fontSize: localHeight * 0.024,
+                                                  color: const Color.fromRGBO(0, 106, 100, 1),
+                                                  fontWeight: FontWeight.w700
+                                              ),),
+                                          ]
+                                      ),
+                                      content:
+                                      const Text("Are you sure you want to exit ?"),
+                                      actions: <Widget>[
+                                        SizedBox(width: localWidth * 0.020),
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                                            minimumSize: const Size(90, 30),
+                                            side: const BorderSide(
+                                              width: 1.5,
+                                              color: Color.fromRGBO(82, 165, 160, 1),
+                                            ),
+                                          ),
+                                          child:  Text(AppLocalizations.of(context)!.no,
+                                              style: TextStyle(
+                                                  fontFamily: 'Inter',
+                                                  fontSize: localHeight * 0.018,
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontWeight: FontWeight.w500
+                                              )
+                                          ),
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: const Text("No"),
                                         ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.rightToLeft,
-                                                child: StudentSelectionPage(
-                                                    setLocale: widget.setLocale),
-                                              ),
-                                            );
-                                          },
-                                          child: const Text("Yes"),
+                                        SizedBox(width: localWidth * 0.005),
+                                        ElevatedButton(
+                                            style:
+                                            ElevatedButton.styleFrom(
+                                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                              minimumSize: const Size(90, 30),
+                                            ),
+                                            child:  Text(AppLocalizations.of(context)!.yes,
+                                                style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: localHeight * 0.018,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w500
+                                                )
+                                            ),
+                                            onPressed: () async {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return const Center(
+                                                        child: CircularProgressIndicator(
+                                                          color: Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                        ));
+                                                  });
+                                              Navigator.of(context).pop();
+                                              Navigator.push(context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: StudentSelectionPage(
+                                                      setLocale: widget.setLocale),
+                                                ),
+                                              );
+                                            }
                                         ),
+                                        SizedBox(width: localHeight * 0.030),
                                       ],
                                     ),
                                   );
@@ -630,14 +885,14 @@ class StudentResultPageState extends State<StudentResultPage> {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: localWidth * 0.33),
+                                  padding: EdgeInsets.only(left: localWidth * 0.4),
                                   child: Text(
                                     AppLocalizations.of(context)!.good,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(255, 255, 255, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
-                                        fontSize: localHeight * 0.024),
+                                        fontSize: localHeight * 0.03),
                                   ),
                                 ),
                               ],

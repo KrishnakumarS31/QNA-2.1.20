@@ -4,11 +4,13 @@ import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Pages/teacher_login.dart';
 import '../pages/cookie_policy.dart';
 import '../pages/privacy_policy_hamburger.dart';
 import '../pages/terms_of_services.dart';
 import '../pages/about_us.dart';
 import '../pages/help_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EndDrawerMenuTeacher extends StatefulWidget {
   const EndDrawerMenuTeacher({Key? key, required this.setLocale})
@@ -337,20 +339,105 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                   thickness: 2,
                 ),
                 ListTile(
-                    leading: const Icon(Icons.power_settings_new,
-                        color: Color.fromRGBO(141, 167, 167, 1)),
-                    title: Text(
-                      AppLocalizations.of(context)!.logout,
-                      style: const TextStyle(
-                          color: Color.fromRGBO(226, 68, 0, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 16),
-                    ),
-                    onTap: () async {}),
+                  leading: const Icon(Icons.power_settings_new,
+                      color: Color.fromRGBO(141, 167, 167, 1)),
+                  title: Text(
+                    AppLocalizations.of(context)!.logout,
+                    style: const TextStyle(
+                        color: Color.fromRGBO(226, 68, 0, 1),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.02,
+                        fontSize: 16),
+                  ),
+                  onTap: () async {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        insetPadding: EdgeInsets.only(
+                            left: width * 0.13, right: width * 0.13),
+                        title: Row(children: [
+                          SizedBox(width: height * 0.030),
+                          Container(
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            height: height * 0.1,
+                            width: width * 0.1,
+                            child: const Icon(
+                              Icons.info_outline_rounded,
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                            ),
+                          ),
+                          SizedBox(width: height * 0.015),
+                          Text(
+                            AppLocalizations.of(context)!.confirm,
+                            style: TextStyle(
+                                fontFamily: 'Inter',
+                                fontSize: height * 0.024,
+                                color: const Color.fromRGBO(0, 106, 100, 1),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ]),
+                        content: const Text("Are you sure you want to logout ??"),
+                        actions: <Widget>[
+                          SizedBox(width: width * 0.020),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(255, 255, 255, 1),
+                              minimumSize: const Size(90, 30),
+                              side: const BorderSide(
+                                width: 1.5,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              ),
+                            ),
+                            child: Text(AppLocalizations.of(context)!.no,
+                                style: TextStyle(
+                                    fontFamily: 'Inter',
+                                    fontSize: height * 0.018,
+                                    color:
+                                        const Color.fromRGBO(82, 165, 160, 1),
+                                    fontWeight: FontWeight.w500)),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          SizedBox(width: width * 0.005),
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromRGBO(82, 165, 160, 1),
+                                minimumSize: const Size(90, 30),
+                              ),
+                              child: Text(AppLocalizations.of(context)!.yes,
+                                  style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: height * 0.018,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500)),
+                              onPressed: () async {
+                                SharedPreferences preferences =
+                                    await SharedPreferences.getInstance();
+                                await preferences.clear();
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: TeacherLogin(
+                                        setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }),
+                          SizedBox(width: height * 0.030),
+                        ],
+                      ),
+                    );
+                  },
+                ),
                 SizedBox(height: height * 0.03),
-                 Align(
+                Align(
                   alignment: Alignment.center,
                   child: Text(
                     "${AppLocalizations.of(context)!.version}: 1.0.0",

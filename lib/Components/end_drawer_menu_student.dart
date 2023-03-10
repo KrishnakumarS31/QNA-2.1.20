@@ -45,6 +45,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   @override
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return Drawer(
       child: Column(
@@ -373,40 +374,87 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     ),
                     onTap: () async {
                       showDialog(
-                          context: context,
-                          builder: (ctx) =>
-                       AlertDialog(
-                        title: const Text('Do you want to exit this application?'),
-                        actions: <Widget>[
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          insetPadding: EdgeInsets.only(
+                              left: width * 0.13, right: width * 0.13),
+                          title: Row(children: [
+                            SizedBox(width: localHeight * 0.030),
+                            Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              ),
+                              height: localHeight * 0.1,
+                              width: width * 0.1,
+                              child: const Icon(
+                                Icons.info_outline_rounded,
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                              ),
                             ),
-                            onPressed: () {
-                              Navigator.of(context).pop(false);
-                            },
-                            child: const Text('No'),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            SizedBox(width: localHeight * 0.015),
+                            Text(
+                              AppLocalizations.of(context)!.confirm,
+                              style: TextStyle(
+                                  fontFamily: 'Inter',
+                                  fontSize: localHeight * 0.024,
+                                  color: const Color.fromRGBO(0, 106, 100, 1),
+                                  fontWeight: FontWeight.w700),
                             ),
-                            onPressed: () async {
-                              SharedPreferences preferences = await SharedPreferences.getInstance();
-                              await preferences.clear();
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child:
-                                  StudentMemberLoginPage(setLocale: widget.setLocale),
+                          ]),
+                          content: const Text("Are you sure you want to logout ??"),
+                          actions: <Widget>[
+                            SizedBox(width: width * 0.020),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                const Color.fromRGBO(255, 255, 255, 1),
+                                minimumSize: const Size(90, 30),
+                                side: const BorderSide(
+                                  width: 1.5,
+                                  color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
-                              );
-                            },
-                            child: const Text('Yes'),
-                          ),
-                        ],
-                      ));
+                              ),
+                              child: Text(AppLocalizations.of(context)!.no,
+                                  style: TextStyle(
+                                      fontFamily: 'Inter',
+                                      fontSize: localHeight * 0.018,
+                                      color:
+                                      const Color.fromRGBO(82, 165, 160, 1),
+                                      fontWeight: FontWeight.w500)),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            SizedBox(width: width * 0.005),
+                            ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                  const Color.fromRGBO(82, 165, 160, 1),
+                                  minimumSize: const Size(90, 30),
+                                ),
+                                child: Text(AppLocalizations.of(context)!.yes,
+                                    style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: localHeight * 0.018,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500)),
+                                onPressed: () async {
+                                  SharedPreferences preferences =
+                                  await SharedPreferences.getInstance();
+                                  await preferences.clear();
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: StudentMemberLoginPage(setLocale: widget.setLocale),
+                                    ),
+                                  );
+                                }),
+                            SizedBox(width: localHeight * 0.030),
+                          ],
+                        ),
+                      );
                     },),
                 SizedBox(height: localHeight * 0.03),
                  Align(

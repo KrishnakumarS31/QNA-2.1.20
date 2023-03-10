@@ -31,6 +31,8 @@ class TeacherSelectedQuestionAssessmentState
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question.Question> questionList = [];
   CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
+  int totalQues =0;
+  int totalMark=0;
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;
@@ -136,6 +138,10 @@ class TeacherSelectedQuestionAssessmentState
     setState(() {
       questionList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
       assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+      totalQues=assessment.questions.length;
+      for(int i =0;i<assessment.questions.length;i++){
+        totalMark=totalMark+assessment.questions[i].questionMarks!;
+      }
     });
   }
 
@@ -217,7 +223,7 @@ class TeacherSelectedQuestionAssessmentState
                           Row(
                             children: [
                               Text(
-                                'Maths',
+                                '${assessment.subject}',
                                 style: TextStyle(
                                     fontSize: height * 0.017,
                                     fontFamily: "Inter",
@@ -225,7 +231,7 @@ class TeacherSelectedQuestionAssessmentState
                                     fontWeight: FontWeight.w600),
                               ),
                               Text(
-                                '  |  Class X',
+                                '  |  ${assessment.createAssessmentModelClass}',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
@@ -234,29 +240,34 @@ class TeacherSelectedQuestionAssessmentState
                               ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                'Edit',
-                                style: TextStyle(
-                                    fontSize: height * 0.017,
-                                    fontFamily: "Inter",
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SizedBox(
-                                width: width * 0.01,
-                              ),
-                              const Icon(
-                                Icons.edit_outlined,
-                                color: Color.fromRGBO(28, 78, 80, 1),
-                              )
-                            ],
+                          GestureDetector(
+                            onTap: (){
+
+                            },
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Edit',
+                                  style: TextStyle(
+                                      fontSize: height * 0.017,
+                                      fontFamily: "Inter",
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                const Icon(
+                                  Icons.edit_outlined,
+                                  color: Color.fromRGBO(28, 78, 80, 1),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
                       Text(
-                        'Topic: Calculus',
+                        'Topic: ${assessment.topic}',
                         style: TextStyle(
                             fontSize: height * 0.015,
                             fontFamily: "Inter",
@@ -267,7 +278,7 @@ class TeacherSelectedQuestionAssessmentState
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Sub Topic: N/A',
+                            'Sub Topic: ${assessment.subTopic}',
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -275,7 +286,7 @@ class TeacherSelectedQuestionAssessmentState
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            '14/1/2023',
+                            '10/03/2023',
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -305,7 +316,7 @@ class TeacherSelectedQuestionAssessmentState
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '20',
+                        '$totalQues',
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
@@ -325,7 +336,7 @@ class TeacherSelectedQuestionAssessmentState
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '100',
+                        '$totalMark',
                         style: TextStyle(
                             fontSize: height * 0.017,
                             fontFamily: "Inter",
@@ -350,7 +361,7 @@ class TeacherSelectedQuestionAssessmentState
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          for ( int i = 0;i< questionList.length;i++ )
+                          for ( int i = 0;i< assessment.questions.length;i++ )
                             QuestionWidget(height: height, question: questionList[i],index: i,assessment: assessment, setLocale: widget.setLocale,),
                         ],
                       ),
@@ -658,13 +669,16 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                     ),
                   );
                 },
-                child: Text(
-                  '${widget.question.question}',
-                  style: TextStyle(
-                      fontSize: widget.height * 0.015,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(51, 51, 51, 1),
-                      fontWeight: FontWeight.w400),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    '${widget.question.question}',
+                    style: TextStyle(
+                        fontSize: widget.height * 0.015,
+                        fontFamily: "Inter",
+                        color: const Color.fromRGBO(51, 51, 51, 1),
+                        fontWeight: FontWeight.w400),
+                  ),
                 ),
               ),
               SizedBox(

@@ -4,14 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/question_entity.dart';
+import '../Entity/Teacher/question_entity.dart' as Question;
+import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/edit_assessment_provider.dart';
 class TeacherRecentAssessment extends StatefulWidget {
-  const TeacherRecentAssessment({
+   TeacherRecentAssessment({
     Key? key,
     required this.setLocale,
+     required this.finalAssessment
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
+  CreateAssessmentModel finalAssessment;
   @override
   TeacherRecentAssessmentState createState() => TeacherRecentAssessmentState();
 }
@@ -20,6 +23,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   bool additionalDetails = true;
   bool questionShirnk = true;
   GetAssessmentModel assessment =GetAssessmentModel();
+  CreateAssessmentModel finalAssessment=CreateAssessmentModel(questions: []);
   showAdditionalDetails() {
     setState(() {
       additionalDetails=!additionalDetails;
@@ -37,6 +41,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   @override
   void initState() {
     assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    print(assessment.toString());
+    finalAssessment=widget.finalAssessment;
     super.initState();
   }
 
@@ -187,13 +193,6 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           children: [
                             Container(
                               decoration: const BoxDecoration(
-                                // borderRadius: BorderRadius.vertical(
-                                //     bottom: Radius.circular(5)),
-                                // border: Border(
-                                //   right: BorderSide(
-                                //     color: Color.fromRGBO(204, 204, 204, 1),
-                                //   ),
-                                // ),
                                 color: Colors.white,
                               ),
                               width: width * 0.44,
@@ -280,13 +279,19 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                       ),
                     ),
                     Text(
-                      "------------------",
+                      "${assessment.assessmentId}",
                       style: TextStyle(
-                        color: const Color.fromRGBO(153, 153, 153, 1),
+                        color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
                         fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                       ),
+                      // style: TextStyle(
+                      //   color: const Color.fromRGBO(153, 153, 153, 1),
+                      //   fontSize: height * 0.0175,
+                      //   fontFamily: "Inter",
+                      //   fontWeight: FontWeight.w400,
+                      // ),
                     ),
                   ],
                 ),
@@ -777,7 +782,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                       child: ListView.builder(
                           padding: EdgeInsets.zero,
                           itemCount: assessment.questions!.length,
-                          itemBuilder: (context,index)=>QuestionWidget(height: height, question: assessment.questions![index],)),
+                          itemBuilder: (context,index)=>QuestionWidget(height: height, question: assessment.questions![index],assessment: finalAssessment,index: index,)),
                     )
                     :const SizedBox(height: 0,),
                 SizedBox(
@@ -930,11 +935,15 @@ class QuestionWidget extends StatefulWidget {
   QuestionWidget({
     Key? key,
     required this.height,
-    required this.question
+    required this.question,
+    required this.assessment,
+    required this.index
   }) : super(key: key);
 
   final double height;
-  Question question;
+  Question.Question question;
+  CreateAssessmentModel assessment;
+  int index;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -942,11 +951,15 @@ class QuestionWidget extends StatefulWidget {
 
 class _QuestionWidgetState extends State<QuestionWidget> {
   String ans='';
-
+  CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
   @override
   void initState() {
+    assessment=widget.assessment;
     for(int i=0;i<widget.question.choices!.length;i++){
-      ans='$ans, ${widget.question.choices![i].choiceText}';
+      if(widget.question.choices![i].rightChoice!){
+        ans='${widget.question.choices![i].choiceText}, $ans';
+      }
+
     }
     super.initState();
   }
@@ -1013,7 +1026,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         ),
                       ),
                       Text(
-                        "${"widget.question."}",
+                        "${assessment.questions[widget.index].questionMarks}",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontSize: widget.height * 0.015,

@@ -558,10 +558,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: CustomDialog(
+                                    child: const CustomDialog(
                                       title: 'Alert',
-                                      content: 'You can see only Practice test Answersheet',
-                                      button: AppLocalizations.of(context)!.retry,
+                                      content: 'Answersheet are shown only in Practice mode',
+                                      button: "OK",
                                     ),
                                   ),
                                 );
@@ -973,10 +973,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: CustomDialog(
+                                    child: const CustomDialog(
                                       title: 'Alert',
-                                      content: 'You can see only Practice test Answersheet',
-                                      button: AppLocalizations.of(context)!.retry,
+                                      content: 'Answersheet are shown only in Practice mode',
+                                      button: "OK",
                                     ),
                                   ),
                                 );
@@ -1025,7 +1025,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                  top: localHeight * 0.03),
+                                  top: localHeight * 0.03,left: localHeight * 0.12),
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

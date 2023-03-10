@@ -24,6 +24,7 @@ class CreateAssessmentModel {
     this.createAssessmentModelClass,
     this.assessmentSettings,
     required this.questions,
+    this.removeQuestions,
   });
 
   int? userId;
@@ -40,6 +41,7 @@ class CreateAssessmentModel {
   String? createAssessmentModelClass;
   AssessmentSettings? assessmentSettings;
   List<Question> questions;
+  List<int>? removeQuestions;
 
   factory CreateAssessmentModel.fromJson(Map<String, dynamic> json) => CreateAssessmentModel(
     userId: json["user_id"],
@@ -56,6 +58,7 @@ class CreateAssessmentModel {
     createAssessmentModelClass: json["class"],
     assessmentSettings: AssessmentSettings.fromJson(json["assessment_settings"]),
     questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
+    removeQuestions: json["remove_questions"]==null?[]:List<int>.from(json["remove_questions"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -73,11 +76,12 @@ class CreateAssessmentModel {
     "class": createAssessmentModelClass,
     "assessment_settings": assessmentSettings?.toJson(),
     "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
+    "remove_questions": removeQuestions==null?[]:List<dynamic>.from(removeQuestions!.map((x) => x)),
   };
 
   @override
   String toString() {
-    return 'CreateAssessmentModel{userId: $userId, assessmentType: $assessmentType, assessmentStatus: $assessmentStatus, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartdate: $assessmentStartdate, assessmentEnddate: $assessmentEnddate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, createAssessmentModelClass: $createAssessmentModelClass, assessmentSettings: $assessmentSettings, questions: $questions}';
+    return 'CreateAssessmentModel{userId: $userId, assessmentType: $assessmentType, assessmentStatus: $assessmentStatus, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartdate: $assessmentStartdate, assessmentEnddate: $assessmentEnddate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, createAssessmentModelClass: $createAssessmentModelClass, assessmentSettings: $assessmentSettings, questions: $questions, removeQuestions: $removeQuestions}';
   }
 }
 

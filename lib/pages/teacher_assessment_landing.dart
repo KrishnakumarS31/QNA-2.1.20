@@ -1006,12 +1006,37 @@ class CardInfo extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+
           if (assessment.assessmentStatus == 'inprogress') {
+            CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: []);
+            editAssessment.assessmentType=assessment.assessmentType;
+            editAssessment.assessmentStatus=assessment.assessmentStatus;
+            editAssessment.subject=assessment.subject;
+            editAssessment.createAssessmentModelClass=assessment.getAssessmentModelClass;
+            assessment.topic==null?0:editAssessment.topic=assessment.topic;
+            assessment.subTopic==null?0:editAssessment.subTopic=assessment.subTopic;
+            assessment.totalScore==null?0:editAssessment.totalScore=assessment.totalScore;
+            assessment.questions!.isEmpty?0:editAssessment.totalQuestions=assessment.questions!.length;
+            assessment.assessmentDuration==null?'':editAssessment.totalScore=assessment.totalScore;
+            if(assessment.questions!.isEmpty){
+
+            }
+            else{
+              for(int i =0;i<assessment.questions!.length;i++){
+                Question question=Question();
+                question.questionMarks=assessment.questions![i].questionMark;
+                question.questionId=assessment.questions![i].questionId;
+                editAssessment.questions.add(question);
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+              }
+            }
+
+            Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(editAssessment);
             Navigator.push(
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: TeacherRecentAssessment(setLocale: setLocale,),
+                child: TeacherRecentAssessment(setLocale: setLocale,finalAssessment: editAssessment,),
               ),
             );
           } else if (assessment.assessmentStatus == 'active') {
@@ -1076,9 +1101,9 @@ class CardInfo extends StatelessWidget {
                     ),
                     Icon(
                       Icons.circle_rounded,
-                      color: status == 'In progress'
+                      color: assessment.assessmentStatus == 'inprogress'
                           ? const Color.fromRGBO(255, 166, 0, 1)
-                          : status == 'Active'
+                          : assessment.assessmentStatus == 'active'
                               ? const Color.fromRGBO(60, 176, 0, 1)
                               : const Color.fromRGBO(136, 136, 136, 1),
                     )

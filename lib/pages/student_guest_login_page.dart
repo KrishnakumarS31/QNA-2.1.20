@@ -194,19 +194,26 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   children: [
                                     Align(
                                       alignment: Alignment.topLeft,
-                                      child: Text(
-                                        AppLocalizations.of(context)!
-                                            .registrationIdRollNum,
-                                        style: Theme.of(context)
-                                            .primaryTextTheme
-                                            .bodyLarge
-                                            ?.merge(TextStyle(
-                                            color: const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.02)),
-                                      ),
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.registrationIdRollNum,
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: height * 0.017),
+                                            ),
+                                            TextSpan(
+                                                text: "\t*",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        219, 35, 35, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: height * 0.017)),
+                                          ])),
                                     ),
                                     SizedBox(
                                       height: height * 0.0001,
@@ -215,6 +222,19 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                         alignment: Alignment.center,
                                         child: TextFormField(
                                           controller: rollNumController,
+                                          onChanged: (val) {
+                                            formKey.currentState!.validate();
+                                          },
+                                          validator: (value) {
+                                            if (value!.isEmpty ||
+                                                !RegExp(r'^[a-z A-Z\d]+$')
+                                                    .hasMatch(value)) {
+                                              return AppLocalizations.of(context)!
+                                                  .enter_id;
+                                            } else {
+                                              return null;
+                                            }
+                                          },
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
                                             hintText:
@@ -224,12 +244,12 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                     102, 102, 102, 0.3),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.03),
+                                                fontSize: height * 0.02),
                                             prefixIcon: Icon(
                                                 Icons.assignment_ind_outlined,
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
-                                                size: height * 0.04),
+                                                size: height * 0.03),
                                           ),
                                         )),
                                   ],
@@ -237,7 +257,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               ),
                               SizedBox(height: height * 0.04),
                               Align(
-                                alignment: Alignment.center,
+                                alignment: Alignment.topLeft,
                                 child: RichText(
                                     text: TextSpan(children: [
                                       TextSpan(
@@ -350,13 +370,12 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           if (agree) {
                             if (formKey.currentState!.validate()) {
                               name = nameController.text;
-
                               Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudGuestAssessment(
-                                      setLocale: widget.setLocale, name: name,rollNum: rollNumController.text,),
+                                    setLocale: widget.setLocale, name: name,rollNum: rollNumController.text,),
                                 ),
                               );
                               nameController.clear();

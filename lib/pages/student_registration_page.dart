@@ -949,7 +949,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               formKey.currentState!.validate();
                             },
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              if (value!.isEmpty || !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(value)) {
                                 return 'Enter Valid Email';
                               } else {
                                 return null;
