@@ -230,9 +230,9 @@ class TeacherAssessmentQuestionBankState
                 ),
               ),
             ),
-            SizedBox(
-              height: height * 0.02,
-            ),
+            // SizedBox(
+            //   height: height * 0.02,
+            // ),
             Center(
               child: SizedBox(
                 width: width * 0.8,
@@ -247,7 +247,6 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
-
                     Navigator.push(
                       context,
                       PageTransition(

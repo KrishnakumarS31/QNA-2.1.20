@@ -953,8 +953,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               formKey.currentState!.validate();
                             },
                             validator: (value) {
-                              if (!RegExp(r"^[a-zA-Za-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z]+[a-zA-Z]+")
-                                      .hasMatch(value!)) {
+                              if (value!.isEmpty || !RegExp(r"^[a-zA-Za-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z]+[a-zA-Z]+")
+                                      .hasMatch(value)) {
                                 return AppLocalizations.of(context)!
                                     .error_regID;
                               } else {

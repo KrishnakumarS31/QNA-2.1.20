@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
@@ -118,7 +116,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                 ),
                 SizedBox(height: height * 0.015),
                 Text(
-                  widget.userData.data!.firstName!,
+                  widget.userData.data!.firstName.toString(),
                   style: TextStyle(
                     fontSize: height * 0.04,
                     color: const Color.fromRGBO(28, 78, 80, 1),

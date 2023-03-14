@@ -10,10 +10,12 @@ import 'package:qna_test/pages/teacher_published_assessment.dart';
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
+import '../Services/qna_service.dart';
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
     Key? key,
@@ -137,11 +139,12 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
     setState(() {
       questionList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
       assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-      totalQues=assessment.questions.length;
-      for(int i =0;i<assessment.questions.length;i++){
-        totalMark=totalMark+assessment.questions[i].questionMarks!;
+      totalQues=assessment.questions!.length;
+      for(int i =0;i<assessment.questions!.length;i++){
+        totalMark=totalMark+assessment.questions![i].questionMarks!;
       }
     });
+
   }
 
   @override
@@ -355,7 +358,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          for ( int i = 0;i< assessment.questions.length;i++ )
+                          for ( int i = 0;i< assessment.questions!.length;i++ )
                             QuestionWidget(height: height, question: questionList[i],index: i,assessment: assessment, setLocale: widget.setLocale,),
                         ],
                       ),
@@ -397,11 +400,21 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                         borderRadius: BorderRadius.circular(39),
                       ),
                     ),
-                    onPressed: () {
-                      int count = 0;
-                      Navigator.popUntil(context, (route) {
-                        return count++ == 2;
-                      });
+                    onPressed: () async {
+                      assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+                      ResponseEntity statusCode=ResponseEntity();
+                      statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!);
+                      if(statusCode.code==200){
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherAssessmentLanding(
+                                setLocale: widget.setLocale),
+                          ),
+                        );
+                      }
+
                       // Navigator.push(
                       //   context,
                       //   PageTransition(
@@ -529,6 +542,13 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       onPressed: () {
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
         Provider.of<CreateAssessmentProvider>(context, listen: false).removeQuestion(widget.question.questionId);
+        //Provider.of<CreateAssessmentProvider>(context, listen: false).addRemoveQuesList(widget.question.questionId);
+
+        CreateAssessmentModel assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        print(assessment.toString());
+        // assessment.removeQuestions?.add(widget.question.questionId);
+        // Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
         Navigator.of(context).pop();
         setState(() {
 
@@ -711,7 +731,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '${widget.assessment.questions[widget.index].questionMarks}',
+                        '${widget.assessment.questions![widget.index].questionMarks}',
                         style: TextStyle(
                             fontSize: widget.height * 0.017,
                             fontFamily: "Inter",

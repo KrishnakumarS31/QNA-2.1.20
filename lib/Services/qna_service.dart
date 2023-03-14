@@ -38,7 +38,7 @@ class QnaService{
     return await QnaRepo.updatePasswordOtp(email, otp, password);
   }
 
-  static Future<StaticResponse> updatePassword(String oldPassword,String newPassword,int userId) async{
+  static Future<ResponseEntity> updatePassword(String oldPassword,String newPassword,int userId) async{
     return await QnaRepo.updatePassword(oldPassword, newPassword,userId);
   }
 
@@ -80,7 +80,7 @@ class QnaService{
   }
 
 
-  static Future<LoginModel> createAssessmentTeacherService(CreateAssessmentModel question) async {
+  static Future<ResponseEntity> createAssessmentTeacherService(CreateAssessmentModel question) async {
     return await QnaRepo.createAssessmentTeacher(question);
   }
 
@@ -102,5 +102,8 @@ class QnaService{
 
   static Future<ResponseEntity> editQuestionTeacherService(EditQuestionModel question,int questionId) async {
     return await QnaRepo.editQuestionTeacher(question,questionId);
+  }
+  static Future<ResponseEntity> editAssessmentTeacherService(CreateAssessmentModel assessment,int assessmentId) async {
+    return await QnaRepo.editAssessmentTeacher(assessment,assessmentId);
   }
 }

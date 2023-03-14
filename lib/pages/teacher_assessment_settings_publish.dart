@@ -6,8 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 
+import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
@@ -54,6 +56,10 @@ class TeacherAssessmentSettingPublishState
   TextEditingController timeinput = TextEditingController();
   int totalQues=0;
   int totalMark=0;
+  DateTime startDate=DateTime.now();
+  DateTime startTime=DateTime.now();
+  DateTime endDate=DateTime.now();
+  DateTime endTime=DateTime.now();
   @override
   void initState() {
     super.initState();
@@ -555,17 +561,8 @@ class TeacherAssessmentSettingPublishState
                                                           (context, child) {
                                                         return Theme(
                                                           data:
-                                                              Theme.of(context)
-                                                                  .copyWith(
-                                                            colorScheme:
-                                                                const ColorScheme
-                                                                    .light(
-                                                              primary: Color
-                                                                  .fromRGBO(
-                                                                      82,
-                                                                      165,
-                                                                      160,
-                                                                      1),
+                                                          Theme.of(context).copyWith(
+                                                            colorScheme: const ColorScheme.light(primary: Color.fromRGBO(82, 165, 160, 1),
                                                               onPrimary:
                                                                   Colors.white,
                                                               onSurface: Colors
@@ -595,7 +592,7 @@ class TeacherAssessmentSettingPublishState
                                                     final String formatted =
                                                         formatter.format(
                                                             pickedDate!);
-
+                                                    startDate=pickedDate!;
                                                     startDateController.text =
                                                         formatted;
                                                   },
@@ -677,8 +674,9 @@ class TeacherAssessmentSettingPublishState
                                                     );
 
                                                     if(pickedTime != null ){
-                                                      //print(pickedTime.format(context));   //output 10:51 PM
+
                                                       DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+                                                      startTime=parsedTime;
                                                       //converting to DateTime so that we can further format on different pattern.
                                                      // print(parsedTime); //output 1970-01-01 22:53:00.000
                                                       String formattedTime = DateFormat('HH:mm').format(parsedTime);
@@ -833,7 +831,7 @@ class TeacherAssessmentSettingPublishState
                                                     final String formatted =
                                                     formatter.format(
                                                         pickedDate!);
-
+                                                    endDate=pickedDate;
                                                     endDateController.text =
                                                         formatted;
                                                   },
@@ -920,6 +918,7 @@ class TeacherAssessmentSettingPublishState
                                                         if(pickedTime != null ){
                                                           //print(pickedTime.format(context));   //output 10:51 PM
                                                           DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
+                                                          endTime=parsedTime;
                                                           //converting to DateTime so that we can further format on different pattern.
                                                           // print(parsedTime); //output 1970-01-01 22:53:00.000
                                                           String formattedTime = DateFormat('HH:mm').format(parsedTime);
@@ -1062,7 +1061,7 @@ class TeacherAssessmentSettingPublishState
                                                 "MCQ",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
-                                                      51, 51, 51, 1),
+                                                      153, 153, 153, 0.8),
                                                   fontSize: height * 0.015,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w700,
@@ -1390,7 +1389,7 @@ class TeacherAssessmentSettingPublishState
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                "Allowed guest students",
+                                                "Allow guest students",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
@@ -1639,17 +1638,49 @@ class TeacherAssessmentSettingPublishState
                                       ),
                                     ),
                                     //shape: StadiumBorder(),
-                                    onPressed: () {
-                                      print(timePermitController.text);
-                                      print("timePermitController");
-                                      // Navigator.push(
-                                      //   context,
-                                      //   PageTransition(
-                                      //     type: PageTransitionType.rightToLeft,
-                                      //     child: TeacherAssessmentLanding(
-                                      //         setLocale: widget.setLocale),
-                                      //   ),
-                                      // );
+                                    onPressed: () async {
+                                      if(val==1){
+                                        assessment.assessmentType='test';
+                                      }
+                                      else{
+                                        assessment.assessmentType='practice';
+                                      }
+                                      assessment.assessmentStatus='inprogress';
+                                      //assessment.assessmentSettings?.allowedNumberOfTestRetries= int.parse(retriesController.text);
+                                      //assessment.assessmentSettings?.avalabilityForPractice=true;
+                                      AssessmentSettings assessmentSettings=AssessmentSettings();
+                                      assessmentSettings.notAvailable=activeStatus;
+                                      assessmentSettings.notAvailable=publicAccessStatus;
+                                      assessmentSettings.showAdvisorEmail=showEmailStatus;
+                                      assessmentSettings.showAdvisorName=showNameStatus;
+                                      assessmentSettings.showSolvedAnswerSheetInAdvisor=solvedAnsStatus;
+                                      assessmentSettings.allowGuestStudent=allowedGuestStatus;
+                                      assessmentSettings.avalabilityForPractice=false;
+                                      assessmentSettings.allowedNumberOfTestRetries=retriesController.text==''?0:int.parse(retriesController.text);
+                                      assessment.assessmentSettings=assessmentSettings;
+                                      startDate=DateTime(startDate.year,startDate.month,startDate.day,startTime.hour,startTime.minute);
+                                      assessment.assessmentStartdate=startDate.microsecondsSinceEpoch;
+                                      endDate=DateTime(endDate.year,endDate.month,endDate.day,endTime.hour,endTime.minute);
+                                      assessment.assessmentEnddate=endDate.microsecondsSinceEpoch;
+                                      assessment.assessmentDuration=1800;
+                                      ResponseEntity statusCode=ResponseEntity();
+                                      if(assessment.assessmentId!=null){
+                                        statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!);
+                                      }
+                                      else{
+                                        statusCode = await QnaService.createAssessmentTeacherService(assessment);
+                                      }
+                                      if(statusCode.code==200){
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: TeacherAssessmentLanding(
+                                                setLocale: widget.setLocale),
+                                          ),
+                                        );
+                                      }
+
                                     },
                                     child: Text(
                                       'Publish Later',
@@ -1701,11 +1732,9 @@ class TeacherAssessmentSettingPublishState
                                       assessmentSettings.showSolvedAnswerSheetInAdvisor=solvedAnsStatus;
                                       assessmentSettings.allowGuestStudent=allowedGuestStatus;
                                       assessmentSettings.avalabilityForPractice=true;
-                                      assessmentSettings.allowedNumberOfTestRetries=0;
+                                      assessmentSettings.allowedNumberOfTestRetries=retriesController.text==''?0:int.parse(retriesController.text);
                                       assessment.assessmentSettings=assessmentSettings;
-                                      assessment.assessmentStartdate=1648229877;
-                                      assessment.assessmentEnddate=1648233477;
-                                      assessment.assessmentDuration=1800;
+
                                       // String tod='11:11';
                                       // TimeOfDay stringToTimeOfDay(String tod) {
                                       //   final format = DateFormat.Hm(); //"6:00 AM"
@@ -1720,6 +1749,15 @@ class TeacherAssessmentSettingPublishState
                                       // int timeEpoch = time.millisecondsSinceEpoch;
                                       // int tempDateEpoch = tempdate.millisecondsSinceEpoch;
                                       // print(timeEpoch-tempDateEpoch);
+                                      startDate=DateTime(startDate.year,startDate.month,startDate.day,startTime.hour,startTime.minute);
+                                      assessment.assessmentStartdate=startDate.microsecondsSinceEpoch;
+                                      endDate=DateTime(endDate.year,endDate.month,endDate.day,endTime.hour,endTime.minute);
+                                      assessment.assessmentEnddate=endDate.microsecondsSinceEpoch;
+                                      assessment.assessmentDuration=1800;
+
+
+
+                                      print(assessment.toString());
                                       showDialog(
                                           context: context,
                                           builder: (context) {
@@ -1728,7 +1766,13 @@ class TeacherAssessmentSettingPublishState
                                                   color: Color.fromRGBO(48, 145, 139, 1),
                                                 ));
                                           });
-                                      LoginModel statusCode = await QnaService.createAssessmentTeacherService(assessment);
+                                      ResponseEntity statusCode=ResponseEntity();
+                                      if(assessment.assessmentId!=null){
+                                        statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!);
+                                      }
+                                      else{
+                                        statusCode = await QnaService.createAssessmentTeacherService(assessment);
+                                      }
                                       Navigator.of(context).pop();
                                       if (statusCode.code == 200) {
                                         Navigator.push(

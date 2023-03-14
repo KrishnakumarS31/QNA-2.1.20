@@ -23,7 +23,7 @@ class QuestionPaperModel {
   factory QuestionPaperModel.fromJson(Map<String, dynamic> json) => QuestionPaperModel(
     code: json["code"],
     message: json["message"],
-    data: Data.fromJson(json["data"]),
+    data: json["data"]==null?Data():Data.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {

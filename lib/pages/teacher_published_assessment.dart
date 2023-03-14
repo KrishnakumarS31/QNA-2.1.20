@@ -805,7 +805,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   children: [
                     SizedBox(
                       width: width * 0.4,
-                      child: Text("Retries",
+                      child: Text("Number of Retries allowed",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: height * 0.02,
@@ -827,7 +827,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   children: [
                     SizedBox(
                       width: width * 0.4,
-                      child: Text("Guest",
+                      child: Text("Allow Guest students",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: height * 0.02,
@@ -849,7 +849,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   children: [
                     SizedBox(
                       width: width * 0.4,
-                      child: Text("Answer Sheet",
+                      child: Text("Show answer Sheet after test",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: height * 0.02,
@@ -871,7 +871,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   children: [
                     SizedBox(
                       width: width * 0.4,
-                      child: Text("Advisor",
+                      child: Text("Show my name in Advisor",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: height * 0.02,
@@ -893,7 +893,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   children: [
                     SizedBox(
                       width: width * 0.4,
-                      child: Text("Email",
+                      child: Text("Show my Email in Advisor",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: height * 0.02,
@@ -915,13 +915,71 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   children: [
                     SizedBox(
                       width: width * 0.4,
-                      child: Text("Inactive",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: height * 0.02,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600,
-                        ),),
+                      child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Inactive",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(
+                                    51, 51, 51, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              "Not available for student",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(
+                                    153, 153, 153, 0.8),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ]),
+                    ),
+                    Text("No",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),),
+                  ],
+                ),
+                SizedBox(height: height*0.01,),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: width * 0.4,
+                      child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Allow  Public access ",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(
+                                    51, 51, 51, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Text(
+                              "Available to public for practice",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(
+                                    153, 153, 153, 0.8),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ]),
                     ),
                     Text("No",
                       style: TextStyle(

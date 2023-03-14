@@ -8,10 +8,12 @@ import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
+import '../Services/qna_service.dart';
 
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment({
@@ -136,11 +138,12 @@ class TeacherSelectedQuestionAssessmentState
   }
   getData(){
     setState(() {
-      questionList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+      print(Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment);
+      questionList.addAll(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
       assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-      totalQues=assessment.questions.length;
-      for(int i =0;i<assessment.questions.length;i++){
-        totalMark=totalMark+assessment.questions[i].questionMarks!;
+      totalQues=assessment.questions!.length;
+      for(int i =0;i<assessment.questions!.length;i++){
+        totalMark=totalMark+assessment.questions![i].questionMarks!;
       }
     });
   }
@@ -361,7 +364,7 @@ class TeacherSelectedQuestionAssessmentState
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          for ( int i = 0;i< assessment.questions.length;i++ )
+                          for ( int i = 0;i< assessment.questions!.length;i++ )
                             QuestionWidget(height: height, question: questionList[i],index: i,assessment: assessment, setLocale: widget.setLocale,),
                         ],
                       ),
@@ -387,7 +390,7 @@ class TeacherSelectedQuestionAssessmentState
                 ],
               ),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.01,
               ),
               Center(
                 child: SizedBox(
@@ -404,7 +407,19 @@ class TeacherSelectedQuestionAssessmentState
                       ),
                     ),
                     //shape: StadiumBorder(),
-                    onPressed: () {
+                    onPressed: () async {
+
+                      ResponseEntity statusCode=ResponseEntity();
+                      if(assessment.assessmentId!=null){
+                        assessment.assessmentStatus='inprogress';
+                        statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!);
+                      }
+                      else{
+                        assessment.assessmentStatus='inprogress';
+                        assessment.assessmentType='practice';
+                        assessment.removeQuestions=null;
+                        statusCode = await QnaService.createAssessmentTeacherService(assessment);
+                      }
                       Navigator.push(
                         context,
                         PageTransition(
@@ -426,7 +441,7 @@ class TeacherSelectedQuestionAssessmentState
                 ),
               ),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.01,
               ),
               Center(
                 child: SizedBox(
@@ -441,7 +456,6 @@ class TeacherSelectedQuestionAssessmentState
                         side: const BorderSide(
                           color: Color.fromRGBO(82, 165, 160, 1),
                         )),
-                    //shape: StadiumBorder(),
                     onPressed: () {
                       showAlertDialog(context, height);
                     },
@@ -709,7 +723,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '${widget.assessment.questions[widget.index].questionMarks}',
+                        '${widget.assessment.questions![widget.index].questionMarks}',
                         style: TextStyle(
                             fontSize: widget.height * 0.017,
                             fontFamily: "Inter",

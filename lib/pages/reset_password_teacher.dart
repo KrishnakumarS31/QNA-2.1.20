@@ -3,7 +3,9 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../Entity/Teacher/response_entity.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
 class ResetPassword extends StatefulWidget {
   const ResetPassword({
     Key? key,
@@ -21,7 +23,7 @@ class ResetPasswordState extends State<ResetPassword> {
 
   @override
   void initState() {
-    QnaService.sendOtp('ggg');
+    //QnaService.sendOtp('ggg');
     super.initState();
   }
 
@@ -217,17 +219,13 @@ class ResetPasswordState extends State<ResetPassword> {
                         borderRadius: BorderRadius.circular(39),
                       ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       bool valid = formKey.currentState!.validate();
                       if (valid || newPassword.text == reNewPassword.text) {
-                        //int statusCode= QnaService.updatePassword(oldPassword.text, newPassword.text,4);
-                        if (200 == 200) {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade,
-                                child: showAlertDialog(context)),
-                          );
+                        SharedPreferences loginData = await SharedPreferences.getInstance();
+                        ResponseEntity statusCode=await QnaService.updatePassword(oldPassword.text, newPassword.text,loginData.getInt('userId')!);
+                        if (statusCode.code == 200) {
+                         showAlertDialog(context);
                         } else {
                           Navigator.push(
                             context,

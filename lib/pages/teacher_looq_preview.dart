@@ -299,7 +299,6 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       //shape: StadiumBorder(),
                       onPressed: () async {
                         ResponseEntity statusCode = await QnaService.editQuestionTeacherService(widget.editQuestionModel,widget.question.questionId);
-                        print(statusCode.message);
                         int count = 0;
                         Navigator.popUntil(context, (route) {
                           return count++ == 3;

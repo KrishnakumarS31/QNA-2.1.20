@@ -37,7 +37,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
+  CreateAssessmentModel assessment=CreateAssessmentModel(questions: [],removeQuestions: []);
   final PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -252,7 +252,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   }
 
   getData()async{
-    ResponseEntity response =await QnaService.getAllAssessment(1,pageLimit);
+    ResponseEntity response =await QnaService.getAllAssessment(5,pageLimit);
     allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
       assessments.addAll(allAssessment);
@@ -916,6 +916,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 if (valid) {
                                                   SharedPreferences loginData=await SharedPreferences.getInstance();
                                                   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                                  print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
                                                   assessment.topic=topicController.text;
                                                   assessment.subTopic=subTopicController.text;
                                                   assessment.subject=subjectController.text;
@@ -1008,7 +1009,8 @@ class CardInfo extends StatelessWidget {
           Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
 
           if (assessment.assessmentStatus == 'inprogress') {
-            CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: []);
+            CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: [],removeQuestions: []);
+            editAssessment.assessmentId=assessment.assessmentId;
             editAssessment.assessmentType=assessment.assessmentType;
             editAssessment.assessmentStatus=assessment.assessmentStatus;
             editAssessment.subject=assessment.subject;
@@ -1026,7 +1028,7 @@ class CardInfo extends StatelessWidget {
                 Question question=Question();
                 question.questionMarks=assessment.questions![i].questionMark;
                 question.questionId=assessment.questions![i].questionId;
-                editAssessment.questions.add(question);
+                editAssessment.questions?.add(question);
                 Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
               }
             }

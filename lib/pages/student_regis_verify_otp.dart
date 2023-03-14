@@ -88,56 +88,7 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
           ),
         ),
         body: Column(children: [
-          // Container(
-          //   height: height * 0.26,
-          //   width: width,
-          //   decoration: BoxDecoration(
-          //     // color: Theme.of(context).primaryColor,
-          //     gradient: const LinearGradient(
-          //       begin: Alignment.topLeft,
-          //       end: Alignment.bottomRight,
-          //       colors: [
-          //         Color.fromRGBO(0, 106, 100, 1),
-          //         Color.fromRGBO(82, 165, 160, 1)
-          //       ],
-          //     ),
-          //     borderRadius: BorderRadius.vertical(
-          //         bottom: Radius.elliptical(
-          //             width ,
-          //             height * 0.30)
-          //     ),
-          //   ),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children : [
-          //
-          //       Container(
-          //         width: width * 0.03,
-          //
-          //       ),
-          //       Center(
-          //         child: Container(
-          //           padding: const EdgeInsets.all(0.0),
-          //           height: height * 0.22,
-          //           width: width * 0.22,
-          //           // decoration: BoxDecoration(
-          //           //     //color: Colors.yellow[100],
-          //           //     border: Border.all(
-          //           //       color: Colors.red,
-          //           //       width: 1,
-          //           //     )),
-          //           child: Image.asset("assets/images/question_mark_logo.png"),
-          //         ),
-          //       ),
-          //       Container(
-          //         width: width * 0.03,
-          //       )
-          //
-          //     ],
-          //   ),
-          // ),
-
-          SizedBox(height: height * 0.04),
+         SizedBox(height: height * 0.04),
           Form(
             key: formKey,
             child: SizedBox(
@@ -262,7 +213,6 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                           StaticResponse res =
                               await QnaService.verifyOtp(widget.email, otp);
                           int statusCode = 200;
-                          //QnaService.verifyOtp(widget.email,otp);
                           if (res.code == 200) {
                             Navigator.push(
                               context,

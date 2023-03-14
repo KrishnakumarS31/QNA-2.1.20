@@ -245,6 +245,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               ));
                                         });
                                     values = await QnaService.getQuestion(assessmentId: assessmentID.text);
+                                    Navigator.of(context).pop();
                                     if (values.code == 200) {
                                       if (assessmentID.text.length >= 8) {
                                         Navigator.push(
@@ -523,6 +524,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               ));
                                         });
                                     values = await QnaService.getQuestion(assessmentId: assessmentID.text);
+                                    Navigator.of(context).pop();
                                     if (values.code == 200) {
                                       if (assessmentID.text.length >= 8) {
                                         Navigator.push(

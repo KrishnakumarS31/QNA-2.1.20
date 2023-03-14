@@ -108,7 +108,7 @@ class TeacherAssessmentQuestionPreviewState
                                   width: width * 0.02,
                                 ),
                                 Text(
-                                  '${widget.assessment.questions[widget.index].questionMarks}',
+                                  '${widget.assessment.questions![widget.index].questionMarks}',
                                   style: TextStyle(
                                       decoration: TextDecoration.underline,
                                       fontSize: height * 0.02,

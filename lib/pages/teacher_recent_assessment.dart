@@ -24,6 +24,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   bool questionShirnk = true;
   GetAssessmentModel assessment =GetAssessmentModel();
   CreateAssessmentModel finalAssessment=CreateAssessmentModel(questions: []);
+  int mark=0;
   showAdditionalDetails() {
     setState(() {
       additionalDetails=!additionalDetails;
@@ -41,8 +42,12 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   @override
   void initState() {
     assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
-    print(assessment.toString());
     finalAssessment=widget.finalAssessment;
+    finalAssessment.removeQuestions=[];
+    for(int i=0;i< finalAssessment.questions!.length;i++){
+      mark=mark + finalAssessment.questions![i].questionMarks!;
+    }
+    print(finalAssessment.toString());
     super.initState();
   }
 
@@ -202,7 +207,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                 MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
-                                    "50",
+                                    "$mark",
                                     style: TextStyle(
                                       color:
                                       const Color.fromRGBO(28, 78, 80, 1),
@@ -233,7 +238,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                 MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
-                                    "50",
+                                    "${finalAssessment.questions?.length}",
                                     style: TextStyle(
                                       color:
                                       const Color.fromRGBO(28, 78, 80, 1),
@@ -372,6 +377,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         ),
                       ),
                     ),
+                    finalAssessment.assessmentStartdate==null?
                     Text(
                       "DD/MM/YYYY      HH:MM AM",
                       style: TextStyle(
@@ -379,6 +385,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         fontSize: height * 0.0175,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w400,
+                      ),
+                    ):Text(
+                      "ABC903857928",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],
@@ -516,7 +530,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           ),
                         ),
                         Text(
-                          "Test/Practice",
+                          "${finalAssessment.assessmentType}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -543,8 +557,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             ),
                           ),
                         ),
-                        Text(
-                          "Allowed (3 Times)",
+                        Text(finalAssessment.assessmentSettings?.allowedNumberOfTestRetries != null?
+                        "Allowed (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries} Times)":"Not Allowed",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -1026,7 +1040,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         ),
                       ),
                       Text(
-                        "${assessment.questions[widget.index].questionMarks}",
+                        "${assessment.questions![widget.index].questionMarks}",
                         style: TextStyle(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                           fontSize: widget.height * 0.015,

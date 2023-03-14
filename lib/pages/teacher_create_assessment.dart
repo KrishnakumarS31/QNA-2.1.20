@@ -6,6 +6,7 @@ import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/login_entity.dart';
 import '../Providers/create_assessment_provider.dart';
@@ -28,7 +29,7 @@ class TeacherCreateAssessment extends StatefulWidget {
 class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   bool agree = false;
   bool? assessment = true;
-  CreateAssessmentModel assessmentVal=CreateAssessmentModel(questions: []);
+  CreateAssessmentModel assessmentVal=CreateAssessmentModel(questions: [],removeQuestions: []);
   TextEditingController subjectController = TextEditingController();
   TextEditingController classController = TextEditingController();
   TextEditingController topicController = TextEditingController();
@@ -301,6 +302,9 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                             return null;
                                                           }
                                                         },
+                                                        onChanged: (value) {
+                                                          formKey.currentState!.validate();
+                                                        },
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -389,6 +393,9 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                               BorderRadius.circular(
                                                                   15)),
                                                         ),
+                                                        onChanged: (value) {
+                                                          formKey.currentState!.validate();
+                                                        },
                                                         validator: (value) {
                                                           if (value!.isEmpty) {
                                                             return AppLocalizations.of(context)!.enter_class;
@@ -688,26 +695,24 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                   onChanged: (value) {},
                 ),
                 SizedBox(height: height * 0.08),
-                Container(
-                  child: Column(
-                    children: [
-                      Center(
-                        child: Image.asset("assets/images/create_assessment.png"),
+                Column(
+                  children: [
+                    Center(
+                      child: Image.asset("assets/images/create_assessment.png"),
+                    ),
+                    SizedBox(height: height * 0.03),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Search from my question bank",
+                        style: TextStyle(
+                            fontSize: height * 0.015,
+                            fontWeight: FontWeight.w500,
+                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            fontFamily: "Inter"),
                       ),
-                      SizedBox(height: height * 0.03),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Search from my question bank",
-                          style: TextStyle(
-                              fontSize: height * 0.015,
-                              fontWeight: FontWeight.w500,
-                              color: const Color.fromRGBO(153, 153, 153, 1),
-                              fontFamily: "Inter"),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
 
                 SizedBox(height: height * 0.08),
@@ -774,7 +779,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                     color: Color.fromRGBO(48, 145, 139, 1),
                                   ));
                             });
-                        LoginModel statusCode = await QnaService.createAssessmentTeacherService(assessmentVal);
+                        ResponseEntity statusCode = await QnaService.createAssessmentTeacherService(assessmentVal);
                         Navigator.of(context).pop();
                         if (statusCode.code == 200) {
                           Navigator.push(

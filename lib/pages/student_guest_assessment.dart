@@ -438,7 +438,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           !RegExp(r'^\d+$')
                                               .hasMatch(value)) {
                                         return AppLocalizations.of(context)!
-                                            .assessment_id_not_found;
+                                            .enter_assId;
                                       } else {
                                         return null;
                                       }
@@ -463,30 +463,50 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                             ),
                           ),
                           onPressed: () async {
+                            if (formKey.currentState!.validate()) {
                             if (assessmentIdController.text.length >= 8) {
                               showDialog(
                                   context: context,
                                   builder: (context) {
                                     return const Center(
                                         child: CircularProgressIndicator(
-                                          color: Color.fromRGBO(48, 145, 139, 1),
+                                          color: Color.fromRGBO(
+                                              48, 145, 139, 1),
                                         ));
                                   });
-                              values = await QnaService.getQuestionGuest(assessmentIdController.text,widget.name,widget.rollNum);
+                              values = await QnaService.getQuestionGuest(
+                                  assessmentIdController.text, widget.name,
+                                  widget.rollNum);
                               Navigator.of(context).pop();
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: StudQuestion(
-                                    userName: widget.name,
-                                    setLocale: widget.setLocale,
-                                    assessmentId: assessmentIdController.text,
-                                    ques: values,
+                              if (values.code == 200) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: StudQuestion(
+                                      userName: widget.name,
+                                      setLocale: widget.setLocale,
+                                      assessmentId: assessmentIdController.text,
+                                      ques: values,
+                                    ),
                                   ),
-                                ),
-                              );
-                              assessmentIdController.clear();
+                                );
+                                assessmentIdController.clear();
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(
+                                      title: AppLocalizations.of(context)!
+                                          .invalid_assessment_iD,
+                                      content: '',
+                                      button: AppLocalizations.of(context)!
+                                          .retry,
+                                    ),
+                                  ),
+                                );
+                              }
                             } else {
                               Navigator.push(
                                 context,
@@ -501,6 +521,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 ),
                               );
                             }
+                          }
                           },
                           child: Text(
                             AppLocalizations.of(context)!.start,

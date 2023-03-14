@@ -10,6 +10,7 @@ String createAssessmentModelToJson(CreateAssessmentModel data) => json.encode(da
 
 class CreateAssessmentModel {
   CreateAssessmentModel({
+    this.assessmentId,
     this.userId,
     this.assessmentType,
     this.assessmentStatus,
@@ -27,6 +28,7 @@ class CreateAssessmentModel {
     this.removeQuestions,
   });
 
+  int? assessmentId;
   int? userId;
   String? assessmentType;
   String? assessmentStatus;
@@ -40,10 +42,11 @@ class CreateAssessmentModel {
   String? subTopic;
   String? createAssessmentModelClass;
   AssessmentSettings? assessmentSettings;
-  List<Question> questions;
-  List<int>? removeQuestions;
+  List<Question>? questions;
+  List<int>? removeQuestions=[];
 
   factory CreateAssessmentModel.fromJson(Map<String, dynamic> json) => CreateAssessmentModel(
+    assessmentId: json["assessment_id"] ?? 0,
     userId: json["user_id"],
     assessmentType: json["assessment_type"],
     assessmentStatus: json["assessment_status"],
@@ -58,10 +61,11 @@ class CreateAssessmentModel {
     createAssessmentModelClass: json["class"],
     assessmentSettings: AssessmentSettings.fromJson(json["assessment_settings"]),
     questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
-    removeQuestions: json["remove_questions"]==null?[]:List<int>.from(json["remove_questions"].map((x) => x)),
+    removeQuestions: List<int>.from(json["remove_questions"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
+    "assessment_id": assessmentId ?? 0,
     "user_id": userId,
     "assessment_type": assessmentType,
     "assessment_status": assessmentStatus,
@@ -76,12 +80,12 @@ class CreateAssessmentModel {
     "class": createAssessmentModelClass,
     "assessment_settings": assessmentSettings?.toJson(),
     "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
-    "remove_questions": removeQuestions==null?[]:List<dynamic>.from(removeQuestions!.map((x) => x)),
+    "remove_questions": removeQuestions==null?null:List<dynamic>.from(removeQuestions!.map((x) => x)),
   };
 
   @override
   String toString() {
-    return 'CreateAssessmentModel{userId: $userId, assessmentType: $assessmentType, assessmentStatus: $assessmentStatus, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartdate: $assessmentStartdate, assessmentEnddate: $assessmentEnddate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, createAssessmentModelClass: $createAssessmentModelClass, assessmentSettings: $assessmentSettings, questions: $questions, removeQuestions: $removeQuestions}';
+    return 'CreateAssessmentModel{assessmentId: $assessmentId, userId: $userId, assessmentType: $assessmentType, assessmentStatus: $assessmentStatus, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartdate: $assessmentStartdate, assessmentEnddate: $assessmentEnddate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, createAssessmentModelClass: $createAssessmentModelClass, assessmentSettings: $assessmentSettings, questions: $questions, removeQuestions: $removeQuestions}';
   }
 }
 
