@@ -1,151 +1,189 @@
-// // To parse this JSON data, do
-// //
-// //     final getQuestionBankModel = getQuestionBankModelFromJson(jsonString);
-//
-// import 'dart:convert';
-//
-// import 'package:flutter/cupertino.dart';
-//
-// GetResultModel getResultModelFromJson(String str) => GetResultModel.fromJson(json.decode(str));
-//
-// String getResultModelToJson(GetResultModel data) => json.encode(data.toJson());
-//
-// class GetResultModel {
-//   GetResultModel({
-//     required this.status,
-//     required this.message,
-//     this.data,
-//   });
-//
-//   int status;
-//   String message;
-//   Data? data;
-//
-//   factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
-//     status: json["status"],
-//     message: json["message"],
-//     data: Data.fromJson(json["data"]),
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "status": status,
-//     "message": message,
-//     "data": data?.toJson(),
-//   };
-// }
-//
-// class Data {
-//   Data({
-//     required this.questions,
-//   });
-//
-//   List<Question> questions;
-//
-//   factory Data.fromJson(Map<String, dynamic> json) => Data(
-//     questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "questions": List<dynamic>.from(questions.map((x) => x.toJson())),
-//   };
-// }
-//
-// class Question {
-//   Question({
-//      this.questionId,
-//      this.userId,
-//      this.questionTypeId,
-//      this.questionType,
-//      this.questionMarks,
-//      this.subject,
-//      this.topic,
-//      this.subTopic,
-//      this.questionClass,
-//      this.question,
-//      this.choices,
-//     this.choicesAnswer,
-//     this.advisorText,
-//     this.advisorUrl,
-//   });
-//
-//   int? questionId;
-//   int? userId;
-//   int? questionTypeId;
-//   String? questionType;
-//   int? questionMarks;
-//   String? subject;
-//   String? topic;
-//   String? subTopic;
-//   String? questionClass;
-//   String? question;
-//   List<Choice>? choices;
-//   List<Choice>? choicesAnswer;
-//   String? advisorText;
-//   String? advisorUrl;
-//
-//   factory Question.fromJson(Map<String, dynamic> json) => Question(
-//     questionId: json["question_id"],
-//     userId: json["user_id"],
-//     questionTypeId: json["question_type_id"],
-//     questionType: json["question_type"],
-//     questionMarks: json["question_marks"],
-//     subject: json["subject"],
-//     topic: json["topic"],
-//     subTopic: json["sub_topic"],
-//     questionClass: json["class"],
-//     question: json["question"],
-//     choices: List<Choice>.from(json["choices"].map((x) => Choice.fromJson(x))),
-//     choicesAnswer: json["choices_answer"] == null ? [] : List<Choice>.from(json["choices_answer"]!.map((x) => Choice.fromJson(x))),
-//     advisorText: json["advisor_text"],
-//     advisorUrl: json["advisor_url"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "question_id": questionId,
-//     "user_id": userId,
-//     "question_type_id": questionTypeId,
-//     "question_type": questionType,
-//     "question_marks": questionMarks,
-//     "subject": subject,
-//     "topic": topic,
-//     "sub_topic": subTopic,
-//     "class": questionClass,
-//     "question": question,
-//     "choices": List<dynamic>.from(choices!.map((x) => x.toJson())),
-//     "choices_answer": choicesAnswer == null ? [] : List<dynamic>.from(choicesAnswer!.map((x) => x.toJson())),
-//     "advisor_text": advisorText,
-//     "advisor_url": advisorUrl,
-//   };
-// }
-//
-// @immutable
-// class Choice {
-//   Choice({
-//     required this.choiceId,
-//     required this.choiceText,
-//   });
-//
-//   int choiceId;
-//   String choiceText;
-//
-//   @override
-//   bool operator ==(covariant Choice other){
-//     if(identical(this, other)) return true;
-//     return other.runtimeType==Choice && other.choiceId==choiceId && other.choiceText==choiceText;
-//   }
-//
-//   factory Choice.fromJson(Map<String, dynamic> json) => Choice(
-//     choiceId: json["choice_id"],
-//     choiceText: json["choice_text"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "choice_id": choiceId,
-//     "choice_text": choiceText,
-//   };
-//
-//   @override
-//   // TODO: implement hashCode
-//   int get hashCode => choiceId.hashCode ^ choiceText.hashCode;
-//
-// }
+
+import 'dart:convert';
+GetResultModel getResultModelFromJson(String str) => GetResultModel.fromJson(json.decode(str));
+String getResultModelToJson(GetResultModel data) => json.encode(data.toJson());
+
+class GetResultModel {
+  GetResultModel({
+    required this.status,
+    required this.message,
+    this.data,
+  });
+
+  int status;
+  String message;
+  List<Data>? data;
+
+  factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
+    status: json["status"],
+    message: json["message"],
+    data: List<Data>.from(json["data"].map((x) => Data.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "message": message,
+    "data": List<dynamic>.from(data!.map((x) => x.toJson())),
+  };
+}
+
+class Data {
+  Data ({
+    this.assessmentId,
+    this.assessmentCode,
+    this.assessmentType,
+    this.totalScore,
+    this.totalQuestions,
+    this.assessmentStartDate,
+    this.assessmentEndDate,
+    this.assessmentDuration,
+    this.subject,
+    this.topic,
+    this.subTopic,
+    this.studentClass,
+    this.assessmentResults,
+    required this.guestStudentAllowed
+  });
+
+  dynamic assessmentId;
+  String? assessmentCode;
+  String? assessmentType;
+  int? totalScore;
+  int? totalQuestions;
+  int? assessmentStartDate;
+  int? assessmentEndDate;
+  int? assessmentDuration;
+  String? subject;
+  String? topic;
+  String? subTopic;
+  String? studentClass;
+  bool guestStudentAllowed;
+  List<AssessmentResults>? assessmentResults;
+
+
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    assessmentId: json["assessment_id"],
+    assessmentType: json["assessment_type"],
+    assessmentCode: json["assessment_code"],
+    totalScore: json["total_score"],
+    totalQuestions: json["total_questions"],
+    assessmentEndDate: json["assessment_enddate"],
+    assessmentStartDate: json["assessment_startdate"],
+    assessmentDuration: json["assessment_duration"],
+    subject: json["subject"],
+    topic: json["topic"],
+    subTopic: json["sub_topic"],
+    studentClass: json["class"],
+    assessmentResults: List<AssessmentResults>.from(json["assessment_results"].map((x) => AssessmentResults.fromJson(x))),
+    guestStudentAllowed: json["guest_student_allowed"],
+  );
+
+
+  Map<String, dynamic> toJson() =>
+      {
+        "assessment_id": assessmentId,
+        "assessment_type": assessmentType,
+        "total_score": totalScore,
+        "total_questions":totalQuestions,
+        "assessment_duration": assessmentDuration,
+        "assessment_enddate":assessmentEndDate,
+        "assessment_startdate":assessmentStartDate,
+        "subject": subject,
+        "topic": topic,
+        "sub_topic": subTopic,
+        "class": studentClass,
+        "assessment_results":assessmentResults,
+        "guest_student_allowed":guestStudentAllowed
+      };
+}
+
+class AssessmentResults {
+  AssessmentResults({
+    this.userId,
+    this.firstName,
+    this.lastName,
+    this.rollNumber,
+    this.organizationName,
+    this.attemptId,
+    this.attemptStartDate,
+    this.attemptEndDate,
+    this.attemptDuration,
+    this.questions
+
+
+  });
+
+  int? userId;
+  String? firstName;
+  String? lastName;
+  String? rollNumber;
+  String? organizationName;
+  int? attemptId;
+  int? attemptStartDate;
+  int? attemptEndDate;
+  int? attemptDuration;
+  List<Questions>? questions;
+
+
+  factory AssessmentResults.fromJson(Map<String, dynamic> json) => AssessmentResults(
+    userId: json["user_id"],
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    rollNumber: json["roll_number"],
+    organizationName: json["organisation_name"],
+    attemptId: json["attempt_id"],
+    attemptStartDate: json["attempt_startdate"],
+    attemptEndDate: json["attempt_enddate"],
+    attemptDuration: json["attempt_duration"],
+    questions: List<Questions>.from(json["questions"].map((x) => Questions.fromJson(x))),
+
+
+  );
+
+  Map<String, dynamic> toJson() => {
+    "user_id": userId,
+    "first_name": firstName,
+    "last_name": lastName,
+    "roll_number": rollNumber,
+    "organisation_name": organizationName,
+    "attempt_id": attemptId,
+    "attempt_startdate": attemptStartDate,
+    "attempt_enddate": attemptEndDate,
+    "attempt_duration":attemptDuration,
+    "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
+  };
+}
+
+class Questions {
+  Questions({
+    this.question,
+    this.questionType,
+    this.selectedChoices,
+    this.descriptiveAnswers,
+    this.status
+  });
+
+  String? question;
+  String? questionType;
+  String? selectedChoices;
+  String? descriptiveAnswers;
+  String? status;
+
+  factory Questions.fromJson(Map<String, dynamic> json) => Questions(
+    question: json["question"],
+    questionType: json["question_type"],
+    selectedChoices: json["selected_choices"],
+    descriptiveAnswers: json["descriptive_answer"],
+    status: json["status"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "question": question,
+    "question_type": questionType,
+    "selected_choices": selectedChoices,
+    "descriptive_answer": descriptiveAnswers,
+    "status": status
+  };
+
+}

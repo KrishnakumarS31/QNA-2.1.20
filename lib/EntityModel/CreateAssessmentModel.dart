@@ -3,6 +3,7 @@
 //     final createAssessmentModel = createAssessmentModelFromJson(jsonString);
 
 import 'dart:convert';
+import '../Entity/Teacher/question_entity.dart' as Questions;
 
 CreateAssessmentModel createAssessmentModelFromJson(String str) => CreateAssessmentModel.fromJson(json.decode(str));
 
@@ -26,6 +27,7 @@ class CreateAssessmentModel {
     this.assessmentSettings,
     required this.questions,
     this.removeQuestions,
+    this.addQuestion
   });
 
   int? assessmentId;
@@ -43,6 +45,7 @@ class CreateAssessmentModel {
   String? createAssessmentModelClass;
   AssessmentSettings? assessmentSettings;
   List<Question>? questions;
+  List<Questions.Question>? addQuestion;
   List<int>? removeQuestions=[];
 
   factory CreateAssessmentModel.fromJson(Map<String, dynamic> json) => CreateAssessmentModel(
@@ -62,6 +65,7 @@ class CreateAssessmentModel {
     assessmentSettings: AssessmentSettings.fromJson(json["assessment_settings"]),
     questions: List<Question>.from(json["questions"].map((x) => Question.fromJson(x))),
     removeQuestions: List<int>.from(json["remove_questions"].map((x) => x)),
+    addQuestion: List<Questions.Question>.from(json["add_questions"].map((x) => Questions.Question.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -81,11 +85,12 @@ class CreateAssessmentModel {
     "assessment_settings": assessmentSettings?.toJson(),
     "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
     "remove_questions": removeQuestions==null?null:List<dynamic>.from(removeQuestions!.map((x) => x)),
+    "add_questions": addQuestion==null?null:List<dynamic>.from(addQuestion!.map((x) => x.toJson())),
   };
 
   @override
   String toString() {
-    return 'CreateAssessmentModel{assessmentId: $assessmentId, userId: $userId, assessmentType: $assessmentType, assessmentStatus: $assessmentStatus, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartdate: $assessmentStartdate, assessmentEnddate: $assessmentEnddate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, createAssessmentModelClass: $createAssessmentModelClass, assessmentSettings: $assessmentSettings, questions: $questions, removeQuestions: $removeQuestions}';
+    return 'CreateAssessmentModel{assessmentId: $assessmentId,\n userId: $userId,\n assessmentType: $assessmentType,\n assessmentStatus: $assessmentStatus,\n totalScore: $totalScore,\n totalQuestions: $totalQuestions,\n assessmentStartdate: $assessmentStartdate,\n assessmentEnddate: $assessmentEnddate,\n assessmentDuration: $assessmentDuration,\n subject: $subject,\n topic: $topic,\n subTopic: $subTopic,\n createAssessmentModelClass: $createAssessmentModelClass,\n assessmentSettings: $assessmentSettings,\n questions: $questions,\n addQuestion: $addQuestion,\n removeQuestions: $removeQuestions}';
   }
 }
 

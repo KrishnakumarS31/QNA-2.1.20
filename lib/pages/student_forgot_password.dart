@@ -218,6 +218,9 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                       if (valid) {
                         StaticResponse res = await QnaService.updatePasswordOtp(
                             widget.email, widget.otp, newPassword.text);
+                        print(res);
+                        print(res.message);
+                        print("res");
                         //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
                         if (res.code == 200) {
                           Navigator.push(

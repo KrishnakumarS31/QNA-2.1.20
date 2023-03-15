@@ -27,8 +27,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
   bool autoValidate = false;
   late QuestionPaperModel values;
   UserDataModel userDataModel=UserDataModel(code: 0, message: '');
-  String name='';
-  String email = "";
+  String name = "Student";
+  String email = "Student@gmail.com";
   String assessmentId = "";
 
 

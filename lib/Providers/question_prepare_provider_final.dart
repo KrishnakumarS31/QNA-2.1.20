@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 
 import '../Entity/Teacher/question_entity.dart';
@@ -39,6 +41,11 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
     }
     int index =quesIds.indexOf(questionId);
     _questionList.removeAt(index);
+    notifyListeners();
+  }
+
+  void updatemark(int mark,int quesIndex){
+    _questionList[quesIndex].questionMark=mark;
     notifyListeners();
   }
 }

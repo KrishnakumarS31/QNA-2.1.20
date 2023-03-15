@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 
 import 'package:qna_test/pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
@@ -8,18 +9,23 @@ import '../EntityModel/get_assessment_model.dart' as assessment_model;
 import '../Entity/demo_question_model.dart';
 import '../Entity/question_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 class TeacherAssessmentQuestionPreview extends StatefulWidget {
   const TeacherAssessmentQuestionPreview({
     Key? key,
     required this.setLocale,
     required this.assessment,
     required this.question,
-    required this.index
+    required this.index,
+    this.pageName
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final CreateAssessmentModel assessment;
   final Question.Question question;
   final int index;
+  final String? pageName;
+
 
   @override
   TeacherAssessmentQuestionPreviewState createState() =>
@@ -28,10 +34,11 @@ class TeacherAssessmentQuestionPreview extends StatefulWidget {
 
 class TeacherAssessmentQuestionPreviewState
     extends State<TeacherAssessmentQuestionPreview> {
-
+  TextEditingController markController= TextEditingController();
 
   @override
   void initState() {
+    markController.text=widget.assessment.questions![widget.index].questionMarks.toString();
     super.initState();
   }
 
@@ -107,15 +114,17 @@ class TeacherAssessmentQuestionPreviewState
                                 SizedBox(
                                   width: width * 0.02,
                                 ),
-                                Text(
-                                  '${widget.assessment.questions![widget.index].questionMarks}',
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      fontSize: height * 0.02,
-                                      fontFamily: "Inter",
-                                      color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                      fontWeight: FontWeight.w700),
+                                SizedBox(
+                                  width: width * 0.05,
+                                  child: TextField(
+                                    controller: markController,
+                                    style: TextStyle(
+                                        fontSize: height * 0.02,
+                                        fontFamily: "Inter",
+                                        color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                        fontWeight: FontWeight.w700),
+                                  ),
                                 ),
                               ],
                             )
@@ -242,14 +251,21 @@ class TeacherAssessmentQuestionPreviewState
                                   )),
                               //shape: StadiumBorder(),
                               onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: TeacherAssessmentSummary(
-                                //         setLocale: widget.setLocale),
-                                //   ),
-                                // );
+                                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updatemark(int.parse(markController.text),widget.index);
+                                Provider.of<CreateAssessmentProvider>(context, listen: false).updatemark(int.parse(markController.text),widget.index);
+                                if(widget.pageName=='TeacherAssessmentSummary'){
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: TeacherAssessmentSummary(
+                                          setLocale: widget.setLocale),
+                                    ),
+                                  );
+                                }else{
+                                  Navigator.of(context).pop();
+                                }
+
                               },
                               child: Text(
                                 'Save',

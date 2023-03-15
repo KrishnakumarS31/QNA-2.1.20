@@ -4,7 +4,7 @@ import '../EntityModel/CreateAssessmentModel.dart';
 
 
 class CreateAssessmentProvider extends ChangeNotifier {
-  CreateAssessmentModel _assessment =CreateAssessmentModel(questions: [],removeQuestions: []);
+  CreateAssessmentModel _assessment =CreateAssessmentModel(questions: [],removeQuestions: [],addQuestion: []);
 
   CreateAssessmentModel get getAssessment => _assessment;
 
@@ -37,6 +37,30 @@ class CreateAssessmentProvider extends ChangeNotifier {
     // quesInt
     _assessment.removeQuestions?.add(questionId);
     print(_assessment.toString());
+    notifyListeners();
+  }
+
+  void addLooqQuestion(int questionId,int mark){
+    Question question=Question(questionId: questionId,questionMarks: mark);
+    _assessment.questions?.add(question);
+    print(_assessment.toString());
+    notifyListeners();
+  }
+
+  void removeLooqQuestion(int questionId){
+    List<int> quesIds=[];
+    for(int i=0;i < _assessment.questions!.length;i++){
+      quesIds.add(_assessment.questions![i].questionId!);
+    }
+    int index =quesIds.indexOf(questionId);
+    _assessment.questions!.removeAt(index);
+    _assessment.removeQuestions!.add(questionId);
+    print(_assessment.toString());
+    notifyListeners();
+  }
+
+  void updatemark(int mark,int quesIndex){
+    _assessment.questions![quesIndex].questionMarks=mark;
     notifyListeners();
   }
 

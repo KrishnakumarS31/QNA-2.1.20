@@ -7,6 +7,7 @@ import '../Entity/get_question_model.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/create_question_model.dart';
+import '../EntityModel/getResultModel.dart';
 import '../EntityModel/get_assessment_model.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
@@ -129,7 +130,7 @@ class QnaRepo {
         StaticResponse(code: 0, message: 'Incorrect OTP');
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'PUT', Uri.parse('http://18.215.198.141:8080/api/v1/forgot-password'));
+        'PUT', Uri.parse('https://dev.qnatest.com/api/v1/forgot-password'));
     request.body =
         json.encode({"email": email, "otp": otp, "password": password});
     request.headers.addAll(headers);
@@ -467,6 +468,22 @@ class QnaRepo {
     return loginModel;
   }
 
+  static Future<GetResultModel> getResultTeacherRepo(int pageLimit,int pageNumber) async {
+    GetResultModel getResult =GetResultModel(status: 500, message: 'null');
+    SharedPreferences loginData=await SharedPreferences.getInstance();
+    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/results/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
+    http.StreamedResponse response = await request.send();
+    print("SDvsdscdsv");
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      getResult = getResultModelFromJson(value);
+      print("SDvsfv");
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return getResult;
+  }
   // static Future<ResponseEntity> getAllResults(assessmentId) async {
   //   ResponseEntity responseEntity=ResponseEntity();
   //   SharedPreferences loginData=await SharedPreferences.getInstance();

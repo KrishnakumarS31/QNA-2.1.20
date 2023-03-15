@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/question_entity.dart';
+import '../Entity/Teacher/question_entity.dart' as Question;
+import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/get_assessment_model.dart' as assessment_model;
+import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 class TeacherActiveAssessment extends StatefulWidget {
   const TeacherActiveAssessment({
@@ -24,6 +26,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   bool additionalDetails = true;
   bool questionShirnk = true;
   GetAssessmentModel assessment =GetAssessmentModel();
+  CreateAssessmentModel finalAssessment=CreateAssessmentModel(questions: []);
+  int mark=0;
   showAdditionalDetails() {
     setState(() {
       additionalDetails=!additionalDetails;
@@ -39,8 +43,13 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
 
   @override
   void initState() {
-    super.initState();
-    assessment=widget.assessment;
+    assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    finalAssessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    finalAssessment.removeQuestions=[];
+    for(int i=0;i< finalAssessment.questions!.length;i++){
+      mark=mark + finalAssessment.questions![i].questionMarks!;
+    }
+    print(finalAssessment.toString());
     super.initState();
   }
 
@@ -226,7 +235,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
-                                    "50",
+                                    "$mark",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(28, 78, 80, 1),
@@ -533,7 +542,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          "Test/Practice",
+                          "${finalAssessment.assessmentType}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -561,7 +570,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          "Allowed (3 Times)",
+                          "Allowed (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries ?? "0"} Times)",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -966,7 +975,7 @@ class QuestionWidget extends StatefulWidget {
   }) : super(key: key);
 
   final double height;
-  Question question;
+  Question.Question question;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();

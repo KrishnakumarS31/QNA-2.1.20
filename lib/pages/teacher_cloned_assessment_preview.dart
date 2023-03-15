@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_prepare_preview_qnBank.dart';
+import 'package:qna_test/pages/teacher_assessment_looq_preapare_ques.dart';
+import 'package:qna_test/pages/teacher_assessment_looq_ques_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_settings_publish.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import '../Providers/edit_assessment_provider.dart';
-import 'about_us.dart';
-import 'cookie_policy.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import 'help_page.dart';
-import 'settings_languages.dart';
-import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
-import 'package:qna_test/Pages/terms_of_services.dart';
-import 'package:qna_test/pages/reset_password_teacher.dart';
+import '../Entity/Teacher/get_assessment_model.dart';
+import '../Entity/Teacher/question_entity.dart' as Questions;
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';
+import '../Providers/edit_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import 'teacher_prepare_qnBank.dart';
-import '../EntityModel/get_assessment_model.dart' as assessment_model;
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
     Key? key,
@@ -31,7 +27,11 @@ class TeacherClonedAssessmentPreview extends StatefulWidget {
 class TeacherClonedAssessmentPreviewState
     extends State<TeacherClonedAssessmentPreview> {
   bool additionalDetails = true;
-  assessment_model.Datum assessment =assessment_model.Datum();
+  GetAssessmentModel assessment =GetAssessmentModel();
+  CreateAssessmentModel finalAssessment=CreateAssessmentModel(questions: []);
+  List<Questions.Question> quesList=[];
+
+  int mark=0;
   int totalMarks =0;
 
   showAdditionalDetails() {
@@ -43,11 +43,16 @@ class TeacherClonedAssessmentPreviewState
 
   @override
   void initState() {
-    super.initState();
-    //assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
-    for(int i=0;i<assessment.questions!.length;i++){
-      totalMarks = totalMarks + assessment.questions![i].questionMarks!;
+    assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
+    finalAssessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    quesList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
+    finalAssessment.removeQuestions=[];
+    for(int i=quesList.length;i< finalAssessment.questions!.length;i++){
+      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+      mark=mark + finalAssessment.questions![i].questionMarks!;
     }
+    print(finalAssessment.toString());
+    super.initState();
   }
 
   @override
@@ -171,8 +176,8 @@ class TeacherClonedAssessmentPreviewState
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          for (int i =0;i< assessment.questions!.length;i++ )
-                          QuestionWidget(height: height,index: i,assessment: assessment, setLocale: widget.setLocale,),
+                          for (int i =0;i< quesList.length;i++ )
+                          QuestionWidget(height: height,index: i,assessment: assessment, setLocale: widget.setLocale,question: quesList[i]),
                         ],
                       ),
                     ),
@@ -186,8 +191,8 @@ class TeacherClonedAssessmentPreviewState
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: TeacherPrepareQnBank(
-                                  setLocale: widget.setLocale,assessmentStatus: 'TeacherClonedAssessmentPreview',),
+                              child: TeacherAssessmentLooqQuestionBank(
+                                  setLocale: widget.setLocale,),
                             ),
                           );
                         },
@@ -225,6 +230,7 @@ class TeacherClonedAssessmentPreviewState
                       );
                     },
                     child: Text(
+
                       'Save List',
                       style: TextStyle(
                           fontSize: height * 0.025,
@@ -287,12 +293,14 @@ class QuestionWidget extends StatefulWidget {
     required this.height,
     required this.index,
     required this.assessment,
+    required this.question,
     required this.setLocale
   }) : super(key: key);
 
   final double height;
   final int index;
-  assessment_model.Datum assessment;
+  GetAssessmentModel assessment;
+  Questions.Question question;
   final void Function(Locale locale) setLocale;
 
   @override
@@ -342,7 +350,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       ),
       onPressed: () {
         Navigator.of(context).pop();
-        widget.assessment.questions![widget.index].removeQuestions?.add(widget.index);
+        //widget.assessment.questions![widget.index].removeQuestions?.add(widget.index);
         widget.assessment.questions!.removeAt(widget.index);
         //Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(widget.assessment);
         Navigator.push(
@@ -414,7 +422,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '  ${widget.assessment.questions![widget.index].questionType}',
+                  '  ${widget.question.questionType}',
                   style: TextStyle(
                       fontSize: widget.height * 0.017,
                       fontFamily: "Inter",
@@ -434,7 +442,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       fontWeight: FontWeight.w400),
                 ),
                 Text(
-                  '${widget.assessment.questions![widget.index].questionMarks}',
+                  '${widget.question!.questionMark}',
                   style: TextStyle(
                       fontSize: widget.height * 0.017,
                       fontFamily: "Inter",
@@ -472,7 +480,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         Align(
           alignment: Alignment.topLeft,
           child: Text(
-            '${widget.assessment.questions![widget.index].question}',
+            '${widget.question.question}',
             style: TextStyle(
                 fontSize: widget.height * 0.015,
                 fontFamily: "Inter",

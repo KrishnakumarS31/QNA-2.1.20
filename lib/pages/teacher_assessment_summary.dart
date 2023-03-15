@@ -683,13 +683,22 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: TeacherAssessmentQuestionPreview(setLocale: widget.setLocale, assessment: widget.assessment, question: widget.question, index: widget.index,),
-                    ),
-                  );
+
+                  showQuestionPreview(context);
+                  // Navigator.push(
+                  //   context,
+                  //   PageTransition(
+                  //     type: PageTransitionType.rightToLeft,
+                  //     child: TeacherAssessmentQuestionPreview(
+                  //       setLocale: widget.setLocale,
+                  //       assessment: widget.assessment,
+                  //       question: widget.question,
+                  //       index: widget.index,),
+                  //   ),
+                  // );
+                  setState(() {
+
+                  });
                 },
                 child: Align(
                   alignment: Alignment.topLeft,
@@ -750,6 +759,19 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           ),
         ),
       ),
+    );
+  }
+  showQuestionPreview(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return TeacherAssessmentQuestionPreview(
+          setLocale: widget.setLocale,
+          assessment: widget.assessment,
+          question: widget.question,
+          index: widget.index,
+        pageName: 'TeacherAssessmentSummary',);
+      },
     );
   }
 }

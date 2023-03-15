@@ -10,6 +10,7 @@ import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
+import '../Entity/Teacher/question_entity.dart' as Questions;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,7 +38,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  CreateAssessmentModel assessment=CreateAssessmentModel(questions: [],removeQuestions: []);
+  CreateAssessmentModel assessment=CreateAssessmentModel(questions: [],removeQuestions: [],addQuestion: []);
   final PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
     packageName: 'Unknown',
@@ -1005,9 +1006,9 @@ class CardInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: () {
+        onTap: () async {
           Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-
+          print(assessment.toString());
           if (assessment.assessmentStatus == 'inprogress') {
             CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: [],removeQuestions: []);
             editAssessment.assessmentId=assessment.assessmentId;
@@ -1041,7 +1042,32 @@ class CardInfo extends StatelessWidget {
                 child: TeacherRecentAssessment(setLocale: setLocale,finalAssessment: editAssessment,),
               ),
             );
-          } else if (assessment.assessmentStatus == 'active') {
+          }
+          else if (assessment.assessmentStatus == 'active') {
+            SharedPreferences loginData = await SharedPreferences.getInstance();
+            CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: [],removeQuestions: [],addQuestion: []);
+            editAssessment.userId=loginData.getInt('userId');
+            editAssessment.subject=assessment.subject;
+            editAssessment.assessmentType=assessment.assessmentType??'Not Mentioned';
+            editAssessment.createAssessmentModelClass=assessment.getAssessmentModelClass;
+            assessment.topic==null?0:editAssessment.topic=assessment.topic;
+            assessment.subTopic==null?0:editAssessment.subTopic=assessment.subTopic;
+            assessment.totalScore==null?0:editAssessment.totalScore=assessment.totalScore;
+            assessment.questions!.isEmpty?0:editAssessment.totalQuestions=assessment.questions!.length;
+            assessment.assessmentDuration==null?'':editAssessment.totalScore=assessment.totalScore;
+            if(assessment.questions!.isEmpty){
+
+            }
+            else{
+              for(int i =0;i<assessment.questions!.length;i++){
+                Questions.Question question=Questions.Question();
+                question=assessment.questions![i];
+                editAssessment.addQuestion?.add(question);
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+              }
+            }
+
+            Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(editAssessment);
             Navigator.push(
               context,
               PageTransition(
