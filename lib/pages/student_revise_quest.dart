@@ -104,6 +104,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             color: Colors.white,
                                           ),
                                           onPressed: () {
+                                            context.read<QuestionNumProvider>().skipQuestionNum(1);
                                             Navigator.of(context).pop();
                                           },
                                         ),
@@ -461,6 +462,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             color: Colors.white,
                                           ),
                                           onPressed: () {
+                                            context.read<QuestionNumProvider>().skipQuestionNum(1);
                                             Navigator.of(context).pop();
                                           },
                                         ),
@@ -746,8 +748,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime.now().microsecondsSinceEpoch);
                   int difference = d2.difference(d1).inMinutes;
                   assessment.attemptDuration=difference;
-                  int timeTaken = d2.difference(d1).inMicroseconds;
+
+                  int timeTaken = d2.difference(d1).inSeconds;
+
                   var endTimeTaken = (d2.difference(d1).toString());
+
                   print(endTimeTaken.matchAsPrefix("0:33:40.045976"));
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
                     List<int> selectedAnsId=[];

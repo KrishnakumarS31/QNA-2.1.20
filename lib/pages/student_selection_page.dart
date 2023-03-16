@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
+import 'package:qna_test/Pages/student_assessment_start.dart';
 import 'package:qna_test/Pages/student_guest_login_page.dart';
 import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../Components/custom_radio_button.dart';
+import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Services/qna_service.dart';
 class StudentSelectionPage extends StatefulWidget {
   const StudentSelectionPage({super.key, required this.setLocale});
   final void Function(Locale locale) setLocale;
@@ -23,6 +28,46 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
   String? _groupValue = '1';
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
+  }
+
+  SharedPreferences? loginData;
+  late bool newUser;
+  Future<bool> check_if_alread_loggedin()async{
+    loginData=await SharedPreferences.getInstance();
+    newUser=(loginData?.getBool('login')??true);
+    if(newUser==false){
+      showDialog(
+          context: context,
+          builder: (context) {
+            return const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromRGBO(48, 145, 139, 1),
+                ));
+          });
+      LoginModel loginResponse = await QnaService.logInUser(loginData!.getString('email')!, loginData!.getString('password')!);
+      if (loginResponse.code == 200) {
+        loginData?.setBool('login', false);
+        loginData?.setString('email', loginData!.getString('email')!);
+        loginData?.setString('password', loginData!.getString('password')!);
+        loginData?.setString('token', loginResponse.data.accessToken);
+        loginData?.setInt('userId', loginResponse.data.userId);
+      }
+      UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+      userDataModel = await QnaService.getUserDataService(loginData?.getInt('userId'));
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: StudentAssessment(
+              regNumber: loginData?.getString('email'),
+              setLocale: widget.setLocale,
+              usedData: userDataModel
+          ),
+        ),
+      );
+      return true;
+    }
+    return false;
   }
 
   @override
@@ -156,16 +201,18 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           borderRadius: BorderRadius.circular(39),
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_groupValue == '2') {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child:
-                              StudentMemberLoginPage(setLocale: widget.setLocale),
-                            ),
-                          );
+                            bool status =await check_if_alread_loggedin();
+                            if(status==false){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => StudentMemberLoginPage(
+                                      setLocale: widget.setLocale),
+                                ),
+                              );
+                          }
                         } else {
                           Navigator.push(
                             context,
@@ -222,7 +269,8 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                   ],
                 ),
               ]));
-        } else {
+        }
+        else {
           return Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
@@ -339,16 +387,18 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           borderRadius: BorderRadius.circular(39),
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async{
                         if (_groupValue == '2') {
+                          bool status =await check_if_alread_loggedin();
+                        if(status==false){
                           Navigator.push(
                             context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child:
-                              StudentMemberLoginPage(setLocale: widget.setLocale),
+                            MaterialPageRoute(
+                              builder: (context) => StudentMemberLoginPage(
+                                  setLocale: widget.setLocale),
                             ),
                           );
+                        }
                         } else {
                           Navigator.push(
                             context,

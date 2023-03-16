@@ -113,4 +113,8 @@ class QnaService{
     return await QnaRepo.getResultTeacherRepo(pageLimit,pageNumber);
   }
 
+  static Future<ResponseEntity> getSearchAssessment(int pageLimit,int pageNumber,String searchVal) async{
+    return await QnaRepo.getSearchAssessment(pageLimit,pageNumber,searchVal);
+  }
+
 }

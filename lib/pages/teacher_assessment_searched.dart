@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
+import 'package:qna_test/pages/teacher_active_assessment.dart';
+import 'package:qna_test/pages/teacher_inactive_assessment.dart';
+import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../Entity/demo_question_model.dart';
-
+import '../Entity/Teacher/get_assessment_model.dart';
+import '../Entity/Teacher/response_entity.dart';
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';
+import '../Providers/edit_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../Entity/Teacher/question_entity.dart' as Questions;
+import '../Services/qna_service.dart';
 class TeacherAssessmentSearched extends StatefulWidget {
   const TeacherAssessmentSearched({
     Key? key,
@@ -17,18 +29,67 @@ class TeacherAssessmentSearched extends StatefulWidget {
 
 class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   bool agree = false;
+  List<GetAssessmentModel> assessments=[];
+  List<GetAssessmentModel> allAssessment =[];
+  bool loading=true;
+  ScrollController scrollController =ScrollController();
+  int pageLimit =1;
+  String searchValue='';
 
   @override
   void initState() {
     super.initState();
   }
 
+  getData(String searchVal)async{
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color:
+                Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    pageLimit=1;
+    ResponseEntity response =await QnaService.getSearchAssessment(1,pageLimit,searchVal);
+    allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    Navigator.of(context).pop();
+    setState(() {
+      searchValue=searchVal;
+      assessments.addAll(allAssessment);
+      loading = false;
+      pageLimit++;
+    });
+  }
+
+  loadMore(String searchValue)async{
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color:
+                Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    ResponseEntity response =await QnaService.getSearchAssessment(1,pageLimit,searchValue);
+    allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    Navigator.of(context).pop();
+    setState(() {
+      assessments.addAll(allAssessment);
+      loading = false;
+      pageLimit++;
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController =
-        TextEditingController();
+    TextEditingController teacherQuestionBankSearchController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -189,7 +250,11 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                         borderRadius: BorderRadius.circular(15)),
                   ),
                   enabled: true,
-                  onChanged: (value) {},
+                  onSubmitted: (value) {
+
+                    getData(value);
+
+                  },
                 ),
                 SizedBox(height: height * 0.04),
                 Text(
@@ -213,79 +278,53 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                 SizedBox(
                   height: height * 0.02,
                 ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'In progress',
+                SizedBox(
+                  height: height * 0.5,
+                  child: ListView.builder(
+                    itemCount: assessments.length,
+                    itemBuilder: (context,index) =>
+                        Column(
+                          children: [
+                            CardInfo(
+                              height: height,
+                              width: width,
+                              status: 'Active',
+                              setLocale: widget.setLocale,
+                              assessment: assessments[index],),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                          ],
+                        ),
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.02,
                 ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'In progress',
-                ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'Active',
-                ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'In progress',
-                ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'Inactive',
-                ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'Active',
-                ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                CardInfo(
-                  height: height,
-                  width: width,
-                  status: 'Inactive',
-                ),
-                SizedBox(
-                  height: height * 0.02,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Load More",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
+                GestureDetector(
+                  onTap: (){
+
+                    loadMore(searchValue);
+
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Load More",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          fontSize: height * 0.0175,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    const Icon(
-                      Icons.expand_more_outlined,
-                      color: Color.fromRGBO(82, 165, 160, 1),
-                    )
-                  ],
+                      const Icon(
+                        Icons.expand_more_outlined,
+                        color: Color.fromRGBO(82, 165, 160, 1),
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: height * 0.02,
@@ -297,51 +336,106 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   }
 }
 
+
+
 class CardInfo extends StatelessWidget {
   const CardInfo(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.status})
+        required this.height,
+        required this.width,
+        required this.status,
+        required this.setLocale,
+        required this.assessment})
       : super(key: key);
 
   final double height;
   final double width;
   final String status;
+  final void Function(Locale locale) setLocale;
+  final GetAssessmentModel assessment;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: GestureDetector(
-        onTap: () {
-          // if (status == 'In progress')
-          // {
-          //   Navigator.push(
-          //     context,
-          //     PageTransition(
-          //       type: PageTransitionType.rightToLeft,
-          //       child: TeacherRecentAssessment(),
-          //     ),
-          //   );
-          // }
-          // else if(status == 'Active'){
-          //   Navigator.push(
-          //     context,
-          //     PageTransition(
-          //       type: PageTransitionType.rightToLeft,
-          //       child: TeacherActiveAssessment(),
-          //     ),
-          //   );
-          // }
-          // else{
-          //   Navigator.push(
-          //     context,
-          //     PageTransition(
-          //       type: PageTransitionType.rightToLeft,
-          //       child: TeacherInactiveAssessment(),
-          //     ),
-          //   );
-          // }
+        onTap: () async {
+          Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+          print(assessment.toString());
+          if (assessment.assessmentStatus == 'inprogress') {
+            CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: [],removeQuestions: []);
+            editAssessment.assessmentId=assessment.assessmentId;
+            editAssessment.assessmentType=assessment.assessmentType;
+            editAssessment.assessmentStatus=assessment.assessmentStatus;
+            editAssessment.subject=assessment.subject;
+            editAssessment.createAssessmentModelClass=assessment.getAssessmentModelClass;
+            assessment.topic==null?0:editAssessment.topic=assessment.topic;
+            assessment.subTopic==null?0:editAssessment.subTopic=assessment.subTopic;
+            assessment.totalScore==null?0:editAssessment.totalScore=assessment.totalScore;
+            assessment.questions!.isEmpty?0:editAssessment.totalQuestions=assessment.questions!.length;
+            assessment.assessmentDuration==null?'':editAssessment.totalScore=assessment.totalScore;
+            if(assessment.questions!.isEmpty){
+
+            }
+            else{
+              for(int i =0;i<assessment.questions!.length;i++){
+                Question question=Question();
+                question.questionMarks=assessment.questions![i].questionMark;
+                question.questionId=assessment.questions![i].questionId;
+                editAssessment.questions?.add(question);
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+              }
+            }
+
+            Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(editAssessment);
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: TeacherRecentAssessment(setLocale: setLocale,finalAssessment: editAssessment,),
+              ),
+            );
+          }
+          else if (assessment.assessmentStatus == 'active') {
+            SharedPreferences loginData = await SharedPreferences.getInstance();
+            CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: [],removeQuestions: [],addQuestion: []);
+            editAssessment.userId=loginData.getInt('userId');
+            editAssessment.subject=assessment.subject;
+            editAssessment.assessmentType=assessment.assessmentType??'Not Mentioned';
+            editAssessment.createAssessmentModelClass=assessment.getAssessmentModelClass;
+            assessment.topic==null?0:editAssessment.topic=assessment.topic;
+            assessment.subTopic==null?0:editAssessment.subTopic=assessment.subTopic;
+            assessment.totalScore==null?0:editAssessment.totalScore=assessment.totalScore;
+            assessment.questions!.isEmpty?0:editAssessment.totalQuestions=assessment.questions!.length;
+            assessment.assessmentDuration==null?'':editAssessment.totalScore=assessment.totalScore;
+            if(assessment.questions!.isEmpty){
+
+            }
+            else{
+              for(int i =0;i<assessment.questions!.length;i++){
+                Questions.Question question=Questions.Question();
+                question=assessment.questions![i];
+                editAssessment.addQuestion?.add(question);
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+              }
+            }
+
+            Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(editAssessment);
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: TeacherActiveAssessment(setLocale: setLocale,assessment: assessment,),
+              ),
+            );
+          } else {
+            Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: TeacherInactiveAssessment(setLocale: setLocale),
+              ),
+            );
+          }
         },
         child: Container(
           height: height * 0.1087,
@@ -359,14 +453,14 @@ class CardInfo extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                EdgeInsets.only(left: width * 0.02, right: width * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Text(
-                          "Maths ",
+                          assessment.subject!,
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0175,
@@ -375,7 +469,7 @@ class CardInfo extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " | Class IX",
+                          " | ${assessment.getAssessmentModelClass}",
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0175,
@@ -387,11 +481,11 @@ class CardInfo extends StatelessWidget {
                     ),
                     Icon(
                       Icons.circle_rounded,
-                      color: status == 'In progress'
+                      color: assessment.assessmentStatus == 'inprogress'
                           ? const Color.fromRGBO(255, 166, 0, 1)
-                          : status == 'Active'
-                              ? const Color.fromRGBO(60, 176, 0, 1)
-                              : const Color.fromRGBO(136, 136, 136, 1),
+                          : assessment.assessmentStatus == 'active'
+                          ? const Color.fromRGBO(60, 176, 0, 1)
+                          : const Color.fromRGBO(136, 136, 136, 1),
                     )
                   ],
                 ),
@@ -401,7 +495,8 @@ class CardInfo extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Assessment ID: ",
+                      AppLocalizations.of(context)!.assessment_id_caps,
+                      //"Assessment ID: ",
                       style: TextStyle(
                         color: const Color.fromRGBO(102, 102, 102, 1),
                         fontSize: height * 0.015,
@@ -410,7 +505,7 @@ class CardInfo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      " 0123456789",
+                      " ${assessment.assessmentId}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.015,
@@ -423,14 +518,15 @@ class CardInfo extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                EdgeInsets.only(left: width * 0.02, right: width * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Text(
-                          "Institute Test ID: ",
+                          AppLocalizations.of(context)!.institute_test_id,
+                          // "Institute Test ID: ",
                           style: TextStyle(
                             color: const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: height * 0.015,
@@ -465,120 +561,6 @@ class CardInfo extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class QuestionPreview extends StatelessWidget {
-  const QuestionPreview({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.question,
-  }) : super(key: key);
-
-  final double height;
-  final double width;
-  final DemoQuestionModel question;
-
-  @override
-  Widget build(BuildContext context) {
-    String answer = '';
-    for (int i = 1; i <= question.correctChoice!.length; i++) {
-      int j = 1;
-      j = question.correctChoice![i - 1]!;
-      answer = '$answer ${question.choices![j - 1]}';
-      //question.choices[question.correctChoice[i]];
-    }
-    return Column(
-      children: [
-        SizedBox(
-          height: height * 0.02,
-        ),
-        Container(
-          height: height * 0.04,
-          width: width * 0.95,
-          color: const Color.fromRGBO(82, 165, 160, 0.1),
-          child: Padding(
-            padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      question.subject,
-                      style: TextStyle(
-                          fontSize: height * 0.017,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Text(
-                      "  |  ${question.topic} - ${question.subTopic}",
-                      style: TextStyle(
-                          fontSize: height * 0.015,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ],
-                ),
-                Text(
-                  question.studentClass,
-                  style: TextStyle(
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontWeight: FontWeight.w600),
-                ),
-              ],
-            ),
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(
-            question.question,
-            style: TextStyle(
-                fontSize: height * 0.0175,
-                fontFamily: "Inter",
-                color: const Color.fromRGBO(51, 51, 51, 1),
-                fontWeight: FontWeight.w400),
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              answer,
-              style: TextStyle(
-                  fontSize: height * 0.02,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(82, 165, 160, 1),
-                  fontWeight: FontWeight.w600),
-            ),
-            Text(
-              question.questionType,
-              style: TextStyle(
-                  fontSize: height * 0.02,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(82, 165, 160, 1),
-                  fontWeight: FontWeight.w600),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        const Divider()
-      ],
     );
   }
 }

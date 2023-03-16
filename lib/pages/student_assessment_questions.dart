@@ -1568,51 +1568,34 @@ class StudQuestionState extends State<StudQuestion> {
                                       size: height * 0.06,
                                     ),
                                     onPressed: () {
-                                      // context.read<QuestionNumProvider>().increment();
-                                      // print();
-                                      // if (Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2] == true)
-                                      // {
-                                      //   context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1, selected, const Color.fromRGBO(239, 218, 30, 1), true);
-                                      // }
-                                      // else if (selected.isNotEmpty)
-                                      // {
-                                      //   context.read<Questions>().selectOption(
-                                      //       Provider.of<QuestionNumProvider>(
-                                      //           context,
-                                      //           listen: false)
-                                      //           .questionNum -
-                                      //           1,
-                                      //       selected,
-                                      //       const Color.fromRGBO(
-                                      //           82, 165, 160, 1),
-                                      //       false);
-                                      // }
-                                      // else
-                                      // {
-                                      //   context.read<Questions>().selectOption(
-                                      //       Provider.of<QuestionNumProvider>(
-                                      //           context,
-                                      //           listen: false)
-                                      //           .questionNum -
-                                      //           1,
-                                      //       selected,
-                                      //       const Color.fromRGBO(
-                                      //           219, 35, 35, 1),
-                                      //       false);
-                                      // }
-                                      // if (tilecount.contains(
-                                      //     Provider.of<QuestionNumProvider>(
-                                      //         context,
-                                      //         listen: false)
-                                      //         .questionNum)) {
-                                      // }
-                                      // else {
-                                      //   tilecount.add(
-                                      //       Provider.of<QuestionNumProvider>(
-                                      //           context,
-                                      //           listen: false)
-                                      //           .questionNum);
-                                      // }
+                                      if (Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2] == true)
+                                      {
+                                        context.read<Questions>().selectOption(Provider.of<QuestionNumProvider>(context, listen: false).questionNum, selected, const Color.fromRGBO(239, 218, 30, 1), true);
+                                      }
+                                      else if (selected.isNotEmpty)
+                                      {
+                                        context.read<Questions>().selectOption(
+                                            Provider.of<QuestionNumProvider>(
+                                                context,
+                                                listen: false)
+                                                .questionNum,
+                                            selected,
+                                            const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            false);
+                                      }
+                                      else
+                                      {
+                                        context.read<Questions>().selectOption(
+                                            Provider.of<QuestionNumProvider>(
+                                                context,
+                                                listen: false)
+                                                .questionNum,
+                                            selected,
+                                            const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            false);
+                                      }
                                       Navigator.push(
                                         context,
                                         PageTransition(
@@ -1631,7 +1614,6 @@ class StudQuestionState extends State<StudQuestion> {
                                   )
                                 : IconButton(
                                     onPressed: () {
-
                                       context.read<QuestionNumProvider>().increment();
                                       if (Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2] == true)
                                       {

@@ -247,6 +247,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     values = await QnaService.getQuestion(assessmentId: assessmentID.text);
                                     Navigator.of(context).pop();
                                     if (values.code == 200) {
+
+                                      //print(userDataModel.data!.firstName);
                                       if (assessmentID.text.length >= 8) {
                                         Navigator.push(
                                           context,
@@ -256,7 +258,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                 assessmentId: assessmentID.text,
                                                 setLocale: widget.setLocale,
                                                 ques: values,
-                                                userName: userDataModel.data!.firstName),
+                                                userName: widget.usedData!.data!.firstName),
                                           ),
                                         );
                                       }
