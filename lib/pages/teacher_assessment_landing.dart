@@ -691,6 +691,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                     return null;
                                                   }
                                                 },
+                                                onChanged: (value) {
+                                                  formKey.currentState!.validate();
+                                                },
                                               ),
                                             ),
                                             SizedBox(
@@ -786,6 +789,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   } else {
                                                     return null;
                                                   }
+                                                },
+                                                onChanged: (value) {
+                                                  formKey.currentState!.validate();
                                                 },
                                               ),
                                             ),

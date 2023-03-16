@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -22,12 +23,39 @@ class StudMemAdvisor extends StatefulWidget {
 class StudMemAdvisorState extends State<StudMemAdvisor> {
   late Future<QuestionPaperModel> questionPaperModel;
   late QuestionPaperModel values;
+  List<int> inCorrectAns=[];
 
   @override
   void initState() {
     super.initState();
     values = widget.questions;
+    getData();
   }
+
+  getData(){
+    for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++) {
+      List<int> selectedAnsId = [];
+      List<dynamic> correctAns = [];
+      //changes are made
+      for (int i = 0; i < values.data!.questions![j - 1].choices!.length; i++) {
+        if (values.data!.questions![j - 1].choices![i].rightChoice!) {
+          correctAns.add(values.data!.questions![j - 1].choices![i].choiceText);
+        }
+      }
+      correctAns.sort();
+      List<dynamic> selectedAns = Provider
+          .of<Questions>(context, listen: false)
+          .totalQuestion['$j'][0];
+      selectedAns.sort();
+      if (listEquals(correctAns, selectedAns)) {
+        print("correct");
+      }else{
+        print("wrong");
+        inCorrectAns.add(j);
+      }
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,9 +138,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             SizedBox(
                               width: localWidth * 0.4,
                                 child:
-                                Provider.of<Questions>(context, listen: false)
-                                    .totalQuestion['$index'][1] !=
-                                    const Color(0xff52a5a0)
+                                inCorrectAns.contains(index)
                                     ? ListTile(
                                   title: Column(
                                       crossAxisAlignment:
@@ -655,7 +681,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                     ),
                     //const SizedBox(height: 30.0),
                   ])));
-        } else {
+        }
+        else {
           return Scaffold(
               appBar: AppBar(
                 leading: IconButton(
@@ -726,15 +753,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       ),
                       SizedBox(height: localHeight * 0.020),
                       Column(children: [
-                        for (int index = 1;
-                        index < context.watch<QuestionNumProvider>().questionNum;
-                        index++)
+                        for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
                           Container(
-                              child:
-                              Provider.of<Questions>(context, listen: false)
-                                  .totalQuestion['$index'][1] !=
-                                  const Color(0xff52a5a0)
-                                  ? ListTile(
+                              child: inCorrectAns.contains(index)
+                                  ?
+                              ListTile(
                                 title: Column(
                                     crossAxisAlignment:
                                     CrossAxisAlignment.start,
@@ -743,7 +766,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         SizedBox(
                                             height: localHeight * 0.050),
                                         Text(
-                                            "Q${values.data!.questions![index - 1].questionId}",
+                                            "Q${index}",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -871,7 +894,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               TextSpan(
                                                   text: values
                                                       .data!
-                                                      .questions![index]
+                                                      .questions![index-1]
                                                       .advisorText,
                                                   style: TextStyle(
                                                       color:

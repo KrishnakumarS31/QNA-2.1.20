@@ -419,7 +419,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           SizedBox(height: localHeight * 0.030),
                         ])
                   ])));
-        } else {
+        }
+        else {
           return Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,

@@ -1075,7 +1075,9 @@ class StudQuestionState extends State<StudQuestion> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                flexibleSpace: Banner(
+                flexibleSpace:
+
+                Banner(
                   color: values.data!.assessmentType == 'test'
                       ? const Color.fromRGBO(188, 191, 8, 1)
                       : const Color.fromRGBO(255, 157, 77, 1),

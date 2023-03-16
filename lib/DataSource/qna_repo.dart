@@ -513,7 +513,7 @@ class QnaRepo {
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}'
     };
-    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/search?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/assessments-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
