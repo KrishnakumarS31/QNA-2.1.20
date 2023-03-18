@@ -13,6 +13,11 @@ class CreateAssessmentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void resetAssessment(){
+    _assessment=CreateAssessmentModel(questions: [],removeQuestions: [],addQuestion: []);
+    notifyListeners();
+  }
+
   void addQuestion(int questionId,int mark){
     Question question=Question(questionId: questionId,questionMarks: mark);
     _assessment.questions?.add(question);

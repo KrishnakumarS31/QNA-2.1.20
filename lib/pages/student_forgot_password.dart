@@ -5,7 +5,6 @@ import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
-import '../EntityModel/user_data_model.dart';
 
 class StudentForgotPassword extends StatefulWidget {
   const StudentForgotPassword(
@@ -218,7 +217,8 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                       if (valid) {
                         StaticResponse res = await QnaService.updatePasswordOtp(
                             widget.email, widget.otp, newPassword.text);
-                        print(res);
+                        print("Machan ippa Mapula");
+                        print(res.code);
                         print(res.message);
                         print("res");
                         //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
@@ -229,13 +229,14 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                                 type: PageTransitionType.fade,
                                 child: showAlertDialog(context)),
                           );
-                        } else {
+                        }
+                        else if(res.code == 400) {
                           Navigator.push(
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: CustomDialog(
-                                title: 'Incorrect Password',
+                                title: 'Incorrect OTP',
                                 content: 'Your Password has not been changed',
                                 button: AppLocalizations.of(context)!.retry,
                               ),

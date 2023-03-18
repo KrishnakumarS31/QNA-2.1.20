@@ -27,7 +27,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
     'ഹലോ (Malayalam)',
     'ਪੰਜਾਬੀ (Punjabi)'
   ];
-  String? selected;
+  String selected='Hello (English)';
   Color selectedColor = const Color.fromRGBO(82, 165, 160, 1);
   Color notSelectedColor = const Color.fromRGBO(51, 51, 51, 1);
   @override
@@ -38,6 +38,15 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
 
   getdata() async {
     AppUser? user = await AppUserRepo().getUserDetail();
+    // if(user==null){
+    //   setState(()  {
+    //     selected = 'Hello (English)';
+    //     widget.setLocale(const Locale.fromSubtags(
+    //         languageCode: 'en'));
+    //     user?.locale = 'en';
+    //   });
+    //   int i = await AppUserRepo().createUserDetail(AppUser(locale: 'en', id: 35));
+    // }
     if (user!.locale == 'ta') {
       setState(() {
         selected = 'வணக்கம் (Tamil)';

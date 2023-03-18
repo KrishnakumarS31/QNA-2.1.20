@@ -84,7 +84,7 @@ class CreateAssessmentModel {
     "class": createAssessmentModelClass,
     "assessment_settings": assessmentSettings?.toJson(),
     "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
-    "remove_questions": removeQuestions==null?null:List<dynamic>.from(removeQuestions!.map((x) => x)),
+    "remove_questions": (removeQuestions==null)|(removeQuestions==[])?null:List<dynamic>.from(removeQuestions!.map((x) => x)),
     "add_questions": addQuestion==null?null:List<dynamic>.from(addQuestion!.map((x) => x.toJson())),
   };
 

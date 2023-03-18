@@ -162,11 +162,11 @@ class TeacherLoginState extends State<TeacherLogin> {
                                         .primaryTextTheme
                                         .bodyLarge
                                         ?.merge(TextStyle(
-                                            color: const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.017)),
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),
                                   ),
                                   const Text('\t*',
                                       style: TextStyle(color: Colors.red)),
@@ -183,7 +183,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                   controller: emailController,
                                   decoration: InputDecoration(
                                     hintText:
-                                        AppLocalizations.of(context)!.email_id,
+                                    AppLocalizations.of(context)!.email_id,
                                     hintStyle: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 0.3),
@@ -193,7 +193,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     prefixIcon: Icon(
                                       Icons.account_box_outlined,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       size: height * 0.03,
                                     ),
                                   ),
@@ -224,11 +224,11 @@ class TeacherLoginState extends State<TeacherLogin> {
                                         .primaryTextTheme
                                         .bodyLarge
                                         ?.merge(TextStyle(
-                                            color: const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.017)),
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017)),
                                   ),
                                   const Text('\t*',
                                       style: TextStyle(color: Colors.red)),
@@ -269,7 +269,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     prefixIcon: Icon(
                                       Icons.lock,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       size: height * 0.03,
                                     ),
                                   ),
@@ -307,11 +307,11 @@ class TeacherLoginState extends State<TeacherLogin> {
                                   .primaryTextTheme
                                   .bodyLarge
                                   ?.merge(TextStyle(
-                                      color:
-                                          const Color.fromRGBO(48, 145, 139, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: height * 0.017)),
+                                  color:
+                                  const Color.fromRGBO(48, 145, 139, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: height * 0.017)),
                             ),
                           ),
                         ),
@@ -326,23 +326,23 @@ class TeacherLoginState extends State<TeacherLogin> {
                     alignment: Alignment.topLeft,
                     child: RichText(
                         text: TextSpan(children: [
-                      TextSpan(
-                        text: AppLocalizations.of(context)!.certify,
-                        //"CERTIFY",
-                        style: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600,
-                            fontSize: height * 0.017),
-                      ),
-                      TextSpan(
-                          text: "\t*",
-                          style: TextStyle(
-                              color: const Color.fromRGBO(219, 35, 35, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w600,
-                              fontSize: height * 0.017)),
-                    ])),
+                          TextSpan(
+                            text: AppLocalizations.of(context)!.certify,
+                            //"CERTIFY",
+                            style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                                fontSize: height * 0.017),
+                          ),
+                          TextSpan(
+                              text: "\t*",
+                              style: TextStyle(
+                                  color: const Color.fromRGBO(219, 35, 35, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: height * 0.017)),
+                        ])),
                   ),
                 ),
                 SizedBox(height: height * 0.01),
@@ -351,74 +351,74 @@ class TeacherLoginState extends State<TeacherLogin> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Transform.scale(
-                      filterQuality: FilterQuality.high,
-                    scale: 1.8,
-                    child:
-                      Checkbox(
-                        activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                        fillColor:
-                            MaterialStateProperty.resolveWith<Color>((states) {
-                          if (states.contains(MaterialState.selected)) {
+                      Transform.scale(
+                        filterQuality: FilterQuality.high,
+                        scale: 1.8,
+                        child:
+                        Checkbox(
+                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                          fillColor:
+                          MaterialStateProperty.resolveWith<Color>((states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return const Color.fromRGBO(82, 165, 160, 1);
+                            }
                             return const Color.fromRGBO(82, 165, 160, 1);
-                          }
-                          return const Color.fromRGBO(82, 165, 160, 1);
-                        }),
-                        value: agree,
-                        onChanged: (val) {
-                          setState(() {
-                            agree = val!;
-                            if (agree) {}
-                          });
-                        },
-                      ),),
+                          }),
+                          value: agree,
+                          onChanged: (val) {
+                            setState(() {
+                              agree = val!;
+                              if (agree) {}
+                            });
+                          },
+                        ),),
                       SizedBox(width: width * 0.05),
                       RichText(
                           text: TextSpan(children: [
-                        TextSpan(
-                          text: AppLocalizations.of(context)!.agree_msg,
-                          style:  TextStyle(
-                              fontSize: height * 0.017,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: "Inter"),
-                        ),
-                        TextSpan(
-                          text: AppLocalizations.of(context)!.privacy_Policy,
-                          style:  TextStyle(
-                              fontSize: height * 0.017,
-                              fontWeight: FontWeight.w400,
-                              decoration: TextDecoration.underline,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontFamily: "Inter"),
-                        ),
-                        TextSpan(
-                          text: AppLocalizations.of(context)!.and,
-                          style:  TextStyle(
-                              fontSize: height * 0.017,
-                              fontWeight: FontWeight.w400,
-                              decoration: TextDecoration.underline,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontFamily: "Inter"),
-                        ),
-                        TextSpan(
-                          text: AppLocalizations.of(context)!.terms,
-                          style:  TextStyle(
-                              fontSize: height * 0.017,
-                              fontWeight: FontWeight.w400,
-                              decoration: TextDecoration.underline,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontFamily: "Inter"),
-                        ),
-                        TextSpan(
-                          text: AppLocalizations.of(context)!.services,
-                          style:  TextStyle(
-                              fontSize: height * 0.017,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: "Inter"),
-                        ),
-                      ])),
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.agree_msg,
+                              style:  TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontFamily: "Inter"),
+                            ),
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.privacy_Policy,
+                              style:  TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.underline,
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontFamily: "Inter"),
+                            ),
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.and,
+                              style:  TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.underline,
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontFamily: "Inter"),
+                            ),
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.terms,
+                              style:  TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontWeight: FontWeight.w400,
+                                  decoration: TextDecoration.underline,
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontFamily: "Inter"),
+                            ),
+                            TextSpan(
+                              text: AppLocalizations.of(context)!.services,
+                              style:  TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontFamily: "Inter"),
+                            ),
+                          ])),
                     ],
                   ),
                 ),
@@ -442,11 +442,11 @@ class TeacherLoginState extends State<TeacherLogin> {
                             builder: (context) {
                               return const Center(
                                   child: CircularProgressIndicator(
-                                color: Color.fromRGBO(48, 145, 139, 1),
-                              ));
+                                    color: Color.fromRGBO(48, 145, 139, 1),
+                                  ));
                             });
                         LoginModel loginResponse =
-                            await QnaService.logInUser(regNumber, passWord);
+                        await QnaService.logInUser(regNumber, passWord);
 
                         Navigator.of(context).pop();
                         if (loginResponse.code == 200) {
@@ -455,23 +455,47 @@ class TeacherLoginState extends State<TeacherLogin> {
                           loginData?.setString('password', passWord);
                           loginData?.setString('token', loginResponse.data.accessToken);
                           loginData?.setInt('userId', loginResponse.data.userId);
-                          UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+                          UserDataModel userDataModel = UserDataModel();
                           userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TeacherSelectionPage(
+                          if (userDataModel.data!.role
+                              .contains("teacher")) {
+                            print(userDataModel.data!.role);
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: TeacherSelectionPage(
 
-                                setLocale: widget.setLocale,
-                                userId: loginResponse.data!.userId, userData: userDataModel,
+                                  setLocale: widget.setLocale,
+                                  userId: loginResponse.data!.userId, userData: userDataModel,
+                                ),
                               ),
-                            ),
-                          ).then((value) {
-                            emailController.clear();
-                            passwordController.clear();
-                          });
-                        } else {
+                            ).then((value) {
+                              emailController.clear();
+                              passwordController.clear();
+                            });
+                          }
+                          else if(!userDataModel.data!.role.contains("teacher"))
+                          {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: "OOPS!",
+                                  //'Wrong password',
+                                  content:"Sorry You are not a Teacher!",
+                                  //'please enter the correct password',
+                                  button:
+                                  AppLocalizations.of(context)!
+                                      .retry,
+                                ),
+                              ),
+                            );
+                          }
+
+                        }
+                        else if(loginResponse.code == 401) {
                           Navigator.push(
                             context,
                             PageTransition(
@@ -534,10 +558,10 @@ class TeacherLoginState extends State<TeacherLogin> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: height * 0.0225))),
+                              color: const Color.fromRGBO(48, 145, 139, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              fontSize: height * 0.0225))),
                     ],
                   ),
                 ),

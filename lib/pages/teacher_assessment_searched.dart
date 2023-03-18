@@ -362,7 +362,6 @@ class CardInfo extends StatelessWidget {
       child: GestureDetector(
         onTap: () async {
           Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-          print(assessment.toString());
           if (assessment.assessmentStatus == 'inprogress') {
             CreateAssessmentModel editAssessment =CreateAssessmentModel(questions: [],removeQuestions: []);
             editAssessment.assessmentId=assessment.assessmentId;

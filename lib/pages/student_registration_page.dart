@@ -297,6 +297,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
       SingleValueDropDownController();
   int d = 0;
 
+
   @override
   void initState() {
     super.initState();
@@ -312,6 +313,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
+    bool isAlso = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -1131,7 +1133,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 onChanged: (val) {
                                   setState(() {
                                     pPCheck = val!;
-                                    if (pPCheck) {}
+                                    if (pPCheck) {
+                                      isAlso = true;
+                                    }
                                   });
                                 },
                               ),
@@ -1396,11 +1400,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             studentOrganisationNameController.text,
                         countryResident:
                             selectedCountryResident.dropDownValue?.value,
-                        role: 'student');
+                        role:isAlso ?["student","teacher"]: ["student"]);
                     if (valid) {
                       LoginModel res =
                           await QnaService.postUserDetailsService(student);
                       if (res.code == 200) {
+                        print("LOG IN");
+                        print(res.data);
                         Navigator.push(
                           context,
                           PageTransition(

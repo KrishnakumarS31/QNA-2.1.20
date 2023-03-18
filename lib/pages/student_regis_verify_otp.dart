@@ -131,14 +131,14 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                     fontSize: 16),
                                 hintText: "Enter OTP",
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty ||
-                                    !RegExp(r'^[0-9]+$').hasMatch(value)) {
-                                  return "Incorrect OTP";
-                                } else {
-                                  return null;
-                                }
-                              },
+                              // validator: (value) {
+                              //   if (!value!.isEmpty ||
+                              //       RegExp(r'^[0-9]+$').hasMatch(value)) {
+                              //     return "Incorrect OTP";
+                              //   } else {
+                              //     return null;
+                              //   }
+                              //},
                             )),
                         SizedBox(height: height * 0.04),
                         Row(
@@ -209,10 +209,13 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                       ),
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
+                          print("Inside OTP");
+                          //print()
                           otp = otpController.text;
                           StaticResponse res =
                               await QnaService.verifyOtp(widget.email, otp);
-                          int statusCode = 200;
+                          print("RESPONSE CODE");
+                          print(res.code);
                           if (res.code == 200) {
                             Navigator.push(
                               context,

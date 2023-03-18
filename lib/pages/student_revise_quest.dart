@@ -738,6 +738,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     )
                 ),
                 onPressed: () async {
+                  String message='';
                   int ansCorrect=0;
                   int totalMark=0;
                   assessment.assessmentId=1002;
@@ -795,15 +796,19 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   }
                   assessment.attemptScore=totalMark;
                   int percent=((ansCorrect/values.data!.questions!.length) * 100).round();
+                  print("percent =$percent");
                   if(percent<=values.data!.assessmentScoreMessage![0].assessmentPercent!){
                     assessment.assessmentScoreId=values.data!.assessmentScoreMessage![0].assessmentScoreId;
+                    message=values.data!.assessmentScoreMessage![0].assessmentScoreStatus!;
                   }
                   else if(percent<=values.data!.assessmentScoreMessage![1].assessmentPercent!)
                     {
                       assessment.assessmentScoreId=values.data!.assessmentScoreMessage![1].assessmentScoreId;
+                      message=values.data!.assessmentScoreMessage![1].assessmentScoreStatus!;
                     }
                   else{
                     assessment.assessmentScoreId=values.data!.assessmentScoreMessage![2].assessmentScoreId;
+                    message=values.data!.assessmentScoreMessage![2].assessmentScoreStatus!;
                   }
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');
@@ -827,7 +832,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child:  StudentResultPage(totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName, setLocale: widget.setLocale,endTime: endTimeTaken,),
+                        child:  StudentResultPage(message: message,totalMarks: totalMark,date: formatted,time: time, questions: values,assessmentCode: widget.assessmentID,userName: widget.userName, setLocale: widget.setLocale,endTime: endTimeTaken,),
                       ),
                     );
                   }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 import '../Entity/Teacher/edit_question_model.dart';
@@ -63,7 +64,7 @@ class QnaRepo {
 
   static Future<UserDataModel> getUserData(int? userId) async {
     SharedPreferences loginData=await SharedPreferences.getInstance();
-    UserDataModel userData = UserDataModel(code: 0, message: 'message');
+    UserDataModel userData = UserDataModel();
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}'
     };
@@ -107,16 +108,18 @@ class QnaRepo {
 
   static Future<StaticResponse> verifyOtp(String email, String otp) async {
     StaticResponse responses =
-        StaticResponse(code: 0, message: 'Incorrect OTP');
+        StaticResponse();
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'POST', Uri.parse('https://dev.qnatest.com/api/v1/otp'));
+        'POST', Uri.parse('https://dev.qnatest.com/api/v1/users/otp'));
     request.body = json.encode({"email": email, "otp": otp});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
+    print("rES cODE");
+    print(response.statusCode);
     if (response.statusCode == 200) {
+      print("Inside 2000");
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
     } else {
@@ -127,24 +130,25 @@ class QnaRepo {
 
   static Future<StaticResponse> updatePasswordOtp(
       String email, String otp, String password) async {
-    StaticResponse responses =
-        StaticResponse(code: 0, message: 'Incorrect OTP');
+    StaticResponse responses = StaticResponse();
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
-        'PUT', Uri.parse('https://dev.qnatest.com/api/v1/forgot-password'));
+        'PUT', Uri.parse('https://dev.qnatest.com/api/v1/users/forgot-password'));
     request.body =
         json.encode({"email": email, "otp": otp, "password": password});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
-    if (response.statusCode == 200) {
+    print("Ab toh Hosh Na kabbar hai");
+    print(response.statusCode);
+    if (response.statusCode != null) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
-    } else {
+    }
+    else {
+      print("Inside Else");
       print(response.reasonPhrase);
     }
-
     return responses;
   }
 
@@ -327,15 +331,14 @@ class QnaRepo {
   //   return statusCode;
   // }
 
-  static Future<QuestionPaperModel> getQuestionPaperGuest(String assessmentId,String name,String rollNum) async {
+  static Future<QuestionPaperModel> getQuestionPaperGuest(String assessmentId,String name) async {
     QuestionPaperModel questionPaperModel;
     var headers = {
       'Content-Type': 'application/json'
     };
     var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/guest?code=$assessmentId'));
     request.body = json.encode({
-      "first_name": name,
-      "roll_number": rollNum
+      "first_name": name
     });
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

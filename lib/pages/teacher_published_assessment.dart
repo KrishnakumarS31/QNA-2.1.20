@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
+import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/create_assessment_provider.dart';
 import 'about_us.dart';
 import 'cookie_policy.dart';
 import 'help_page.dart';
@@ -26,7 +29,11 @@ class TeacherPublishedAssessment extends StatefulWidget {
 class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> {
   bool additionalDetails = true;
   bool _visible = true;
-
+  int mark=0;
+  int questionTotal=0;
+  var startDate;
+  var endDate;
+  CreateAssessmentModel assessmentVal=CreateAssessmentModel(questions: [],removeQuestions: []);
   showAdditionalDetails(){
     setState(() {
       !additionalDetails;
@@ -44,6 +51,21 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
         });
       }
     });
+    getData();
+  }
+  getData(){
+    setState(() {
+      assessmentVal=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+      questionTotal=assessmentVal.questions!.length;
+      for(int i =0;i<assessmentVal.questions!.length;i++){
+        mark=mark+assessmentVal.questions![i].questionMarks!;
+      }
+      startDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentStartdate==null?0:assessmentVal.assessmentStartdate!);
+      endDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentStartdate==null?0:assessmentVal.assessmentEnddate!);
+      print(startDate);
+      print(endDate);
+    });
+
   }
 
 
@@ -511,14 +533,14 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                             padding:  EdgeInsets.only(left: width * 0.02),
                             child: Row(
                               children: [
-                                Text("Maths",
+                                Text("${assessmentVal.subject}",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: height * 0.02,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w700,
                                   ),),
-                                Text("  |  Class IX",
+                                Text("  |  ${assessmentVal.createAssessmentModelClass}",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: height * 0.015,
@@ -534,7 +556,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           children: [
                             Padding(
                               padding:  EdgeInsets.only(left: width * 0.02),
-                              child: Text("Calculus - Chapter 12.2/13",
+                              child: Text("${assessmentVal.topic} - ${assessmentVal.subTopic}",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -544,7 +566,11 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                             ),
                             Padding(
                               padding:  EdgeInsets.only(right: width * 0.02),
-                              child: const Icon(Icons.circle,color: Color.fromRGBO(60, 176, 0, 1),),
+                              child: assessmentVal.assessmentStatus=='active'?
+                              const Icon(Icons.circle,color: Color.fromRGBO(60, 176, 0, 1),):
+                              assessmentVal.assessmentStatus=='inprogress'?
+                              const Icon(Icons.circle,color: Color.fromRGBO(255, 166, 0, 1),):
+                              const Icon(Icons.circle,color: Color.fromRGBO(136, 136, 136, 1),),
                             )
                           ],
                         ),
@@ -563,7 +589,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text("50",
+                                  Text("$mark",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.03,
@@ -587,7 +613,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text("50",
+                                  Text("$questionTotal",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.03,
@@ -623,7 +649,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("0123456789",
+                    Text("${assessmentVal.assessmentId}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -669,7 +695,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("180 Minutes",
+                    Text(assessmentVal.assessmentDuration==null?"00 Minutes":"${assessmentVal.assessmentDuration} Minutes",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,

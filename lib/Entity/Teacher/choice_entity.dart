@@ -20,4 +20,9 @@ class Choice {
     "choice_text": choiceText,
     "right_choice": rightChoice,
   };
+
+  @override
+  String toString() {
+    return 'Choice{questionChoiceId: $questionChoiceId, choiceText: $choiceText, rightChoice: $rightChoice}';
+  }
 }

@@ -8,13 +8,13 @@ String userDataModelToJson(UserDataModel data) => json.encode(data.toJson());
 
 class UserDataModel {
   UserDataModel({
-    required this.code,
-    required this.message,
+ this.code,
+ this.message,
     this.data,
   });
 
-  int code;
-  String message;
+  int? code;
+  String? message;
   Data? data;
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) => UserDataModel(
@@ -60,7 +60,7 @@ class Data {
   String email;
   String rollNumber;
   String organisationName;
-  String role;
+  List<dynamic> role;
   String password;
   String createdBy;
   String updatedBy;
@@ -78,7 +78,7 @@ class Data {
     email: json["email"],
     rollNumber: json["roll_number"],
     organisationName: json["organisation_name"],
-    role: json["role"],
+    role: List<dynamic>.from(json["role"].map((x) => x)),
     password: json["password"],
     createdBy: json["created_by"],
     updatedBy: json["updated_by"],
@@ -97,7 +97,7 @@ class Data {
     "email": email,
     "roll_number": rollNumber,
     "organisation_name": organisationName,
-    "role": role,
+    "role": role==null?[]:List<dynamic>.from(role!.map((x) => x)),
     "password": password,
     "created_by": createdBy,
     "updated_by": updatedBy,

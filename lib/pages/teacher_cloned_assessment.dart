@@ -47,6 +47,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
     for(int i=0;i< finalAssessment.questions!.length;i++){
       mark=mark + finalAssessment.questions![i].questionMarks!;
     }
+    print("is't me???????????????");
     print(finalAssessment.toString());
     super.initState();
   }
@@ -536,7 +537,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                           ),
                         ),
                         Text(
-                          "Test/Practice",
+                          "${finalAssessment.assessmentType}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,

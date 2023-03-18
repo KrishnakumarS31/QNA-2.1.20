@@ -1754,6 +1754,9 @@ class TeacherAssessmentSettingPublishState
                                       endDate=DateTime(endDate.year,endDate.month,endDate.day,endTime.hour,endTime.minute);
                                       assessment.assessmentEnddate=endDate.microsecondsSinceEpoch;
                                       assessment.assessmentDuration=1800;
+                                      // if(assessment.removeQuestions==[]){
+                                      //   assessment.removeQuestions=null;
+                                      // }
 
 
 

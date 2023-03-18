@@ -85,8 +85,8 @@ class QnaService{
     return await QnaRepo.createAssessmentTeacher(question);
   }
 
-  static Future<QuestionPaperModel> getQuestionGuest(String assessmentId, String name, String rollNum) async{
-    return await QnaRepo.getQuestionPaperGuest(assessmentId,name,rollNum);
+  static Future<QuestionPaperModel> getQuestionGuest(String assessmentId, String name) async{
+    return await QnaRepo.getQuestionPaperGuest(assessmentId,name);
   }
 
   static Future<ResponseEntity> getAllAssessment(int pageLimit,int pageNumber) async{

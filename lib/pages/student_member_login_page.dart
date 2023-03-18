@@ -933,7 +933,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       if (agree) {
                                         _prefService.createCache(passWordController.text).whenComplete(() async {
                                           if (formKey.currentState!.validate()) {
-                                            regNumber = regNumberController.text;
+                                            regNumber =
+                                                regNumberController.text;
                                             passWord = passWordController.text;
                                             showDialog(
                                                 context: context,
@@ -941,7 +942,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   return const Center(
                                                       child: CircularProgressIndicator(
                                                         color:
-                                                        Color.fromRGBO(48, 145, 139, 1),
+                                                        Color.fromRGBO(
+                                                            48, 145, 139, 1),
                                                       ));
                                                 });
                                             LoginModel loginResponse =
@@ -949,35 +951,64 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 regNumber, passWord);
                                             Navigator.of(context).pop();
                                             if (loginResponse.code == 200) {
-                                              // var email = window.localStorage['email'];
-                                              // var password = window.localStorage['password'];
-                                              // var token = window.localStorage['token'];
-                                              // var userId = window.localStorage['userId'];
-                                              // window.localStorage['email'] = email!;
-                                              // window.localStorage['passWord'] = password!;
-                                              // window.localStorage['token'] = token!;
-                                              // window.localStorage['userId'] = userId!;
+                                              print("LOG IN");
+                                              //UserDataModel userDataModel = UserDataModel();
+                                              //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
+
                                               loginData.setBool('login', false);
-                                              loginData.setString('email', regNumber);
-                                              loginData.setString('password', passWord);
-                                              loginData.setString('token', loginResponse.data.accessToken);
-                                              loginData.setInt('userId', loginResponse.data.userId);
-                                              UserDataModel userDataModel=await QnaService.getUserDataService(loginResponse.data!.userId);
+                                              loginData.setString(
+                                                  'email', regNumber);
+                                              loginData.setString(
+                                                  'password', passWord);
+                                              loginData.setString('token',
+                                                  loginResponse.data
+                                                      .accessToken);
+                                              loginData.setInt('userId',
+                                                  loginResponse.data.userId);
+                                              UserDataModel userDataModel = await QnaService
+                                                  .getUserDataService(
+                                                  loginResponse.data!.userId);
+                                              if (userDataModel.data!.role
+                                                  .contains("student")) {
+                                                print(userDataModel.data!.role);
                                               Navigator.push(
                                                 context,
                                                 PageTransition(
-                                                  type: PageTransitionType.rightToLeft,
+                                                  type: PageTransitionType
+                                                      .rightToLeft,
                                                   child: StudentAssessment(
-                                                    regNumber: regNumber,
-                                                    setLocale: widget.setLocale,
-                                                    usedData: userDataModel
+                                                      regNumber: regNumber,
+                                                      setLocale: widget
+                                                          .setLocale,
+                                                      usedData: userDataModel
                                                   ),
                                                 ),
                                               ).then((value) {
                                                 regNumberController.clear();
                                                 passWordController.clear();
                                               });
-                                            } else {
+                                            }
+                                              else if(!userDataModel.data!.role.contains("student"))
+                                              {
+                                                Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: CustomDialog(
+                                                      title: "OOPS!",
+                                                      //'Wrong password',
+                                                      content:"Sorry You are not a Student!",
+                                                      //'please enter the correct password',
+                                                      button:
+                                                      AppLocalizations.of(context)!
+                                                          .retry,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            }
+
+                                            else if(loginResponse.code == 401){
                                               Navigator.push(
                                                 context,
                                                 PageTransition(
@@ -996,6 +1027,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   ),
                                                 ),
                                               );
+
                                             }
                                           }
                                         }

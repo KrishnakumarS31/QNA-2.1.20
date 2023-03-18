@@ -33,7 +33,7 @@ class StudentRegistrationModel {
   String rollNumber;
   String organisationName;
   String countryResident;
-  String role;
+  List<String> role;
 
   factory StudentRegistrationModel.fromJson(Map<String, dynamic> json) => StudentRegistrationModel(
     firstName: json["first_name"],

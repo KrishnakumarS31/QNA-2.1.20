@@ -12,7 +12,10 @@ class StudentResultPage extends StatefulWidget {
       required this.time,
       required this.questions,
       required this.assessmentCode,
-      required this.userName, required this.endTime, required this.setLocale})
+      required this.userName,
+        required this.message,
+        required this.endTime,
+        required this.setLocale})
       : super(key: key);
   final int totalMarks;
   final QuestionPaperModel questions;
@@ -21,6 +24,7 @@ class StudentResultPage extends StatefulWidget {
   final String userName;
   final String assessmentCode;
   final String endTime;
+  final String message;
   final void Function(Locale locale) setLocale;
 
   @override
@@ -456,7 +460,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
-                                AppLocalizations.of(context)!.good,
+                                widget.message,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontFamily: 'Inter',
@@ -883,17 +887,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       localWidth / 1.0, localHeight * 0.3)),
                             ),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: localWidth * 0.4),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.good,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(255, 255, 255, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: localHeight * 0.03),
-                                  ),
+                                Text(
+                                  widget.message,
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(255, 255, 255, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: localHeight * 0.03),
                                 ),
                               ],
                             ),

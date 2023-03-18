@@ -115,15 +115,15 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           //     fontWeight: FontWeight.w600,
                           //   ),
                           // ),
-                          Text(
-                            '${widget.userDataModel.data?.role}',
-                            style: TextStyle(
-                              color: const Color.fromRGBO(221, 221, 221, 1),
-                              fontSize: height * 0.015,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          // Text(
+                          //   '${widget.userDataModel.data?.role}',
+                          //   style: TextStyle(
+                          //     color: const Color.fromRGBO(221, 221, 221, 1),
+                          //     fontSize: height * 0.015,
+                          //     fontFamily: "Inter",
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
                         ],
                       )
                     ],
@@ -260,19 +260,19 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.01,
+                      height: height * 0.01
                     ),
-                    Text(
-                      widget.userDataModel.data?.role == "student,teacher"
-                          ? "Yes"
-                          : "No",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(48, 145, 139, 1),
-                        fontSize: height * 0.02,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    // Text(
+                    //   widget.userDataModel.data?.role == "student,teacher"
+                    //       ? "Yes"
+                    //       : "No",
+                    //   style: TextStyle(
+                    //     color: const Color.fromRGBO(48, 145, 139, 1),
+                    //     fontSize: height * 0.02,
+                    //     fontFamily: "Inter",
+                    //     fontWeight: FontWeight.w600,
+                    //   ),
+                    // ),
                     SizedBox(height: height * 0.02),
                     Text(
                       'RegistrationID / Roll Number',

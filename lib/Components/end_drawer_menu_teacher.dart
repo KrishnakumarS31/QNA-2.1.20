@@ -5,8 +5,10 @@ import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Pages/teacher_login.dart';
+import '../Services/qna_service.dart';
 import '../pages/cookie_policy.dart';
 import '../pages/privacy_policy_hamburger.dart';
+import '../pages/teacher_user_profile.dart';
 import '../pages/terms_of_services.dart';
 import '../pages/about_us.dart';
 import '../pages/help_page.dart';
@@ -24,6 +26,21 @@ class EndDrawerMenuTeacher extends StatefulWidget {
 class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
   UserDataModel userDataModel = UserDataModel(code: 0, message: '');
   String name = '';
+  String email='';
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  getData() async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    userDataModel=await QnaService.getUserDataService(loginData.getInt('userId'));
+    setState((){
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -59,7 +76,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     ),
                     const SizedBox(height: 2.0),
                     Text(
-                      "firstName",
+                      userDataModel.data!.firstName,
                       style: Theme.of(context)
                           .primaryTextTheme
                           .bodyLarge
@@ -93,9 +110,9 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                   children: [
                     Container(
                         padding: EdgeInsets.only(left: width * 0.09),
-                        child: const Text(
-                          "teacher@gmail.com",
-                          style: TextStyle(
+                        child: Text(
+                          userDataModel.data!.email,
+                          style: const TextStyle(
                               color: Color.fromRGBO(221, 221, 221, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
@@ -129,13 +146,14 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     trailing: const Icon(Icons.navigate_next,
                         color: Color.fromRGBO(153, 153, 153, 1)),
                     onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: TeacherUserProfile(userDataModel: userDataModel,),
-                      //   ),
-                      // );
+
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: TeacherUserProfile(userDataModel: userDataModel,),
+                        ),
+                      );
                     }),
                 ListTile(
                     leading: const Icon(Icons.key_outlined,

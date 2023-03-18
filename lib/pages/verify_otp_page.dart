@@ -223,16 +223,16 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                       onPressed: () async {
                         if (formKey.currentState!.validate()) {
                           otp = otpController.text;
-                          StaticResponse res =
-                              await QnaService.verifyOtp(widget.email, otp);
-                          if (res.code == 200) {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: showAlertDialog(context, res.message)),
-                            );
-                          } else {
+                          // StaticResponse res =
+                          //     await QnaService.verifyOtp(widget.email, otp);
+                          // if (res.code == 200) {
+                          //   Navigator.push(
+                          //     context,
+                          //     PageTransition(
+                          //         type: PageTransitionType.fade,
+                          //         child: showAlertDialog(context, res.message)),
+                          //   );
+                          // }
                             Navigator.push(
                               context,
                               PageTransition(
@@ -243,7 +243,6 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                     setLocale: widget.setLocale
                                   )),
                             );
-                          }
                         }
                       },
                       child: Text(
@@ -265,7 +264,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
         ]));
   }
 
-  showAlertDialog(BuildContext context, String msg) {
+  showAlertDialog(BuildContext context, String? msg) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
     // set up the AlertDialog
@@ -291,7 +290,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
         ],
       ),
       content: Text(
-        msg,
+        msg!,
         style: const TextStyle(
             color: Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',

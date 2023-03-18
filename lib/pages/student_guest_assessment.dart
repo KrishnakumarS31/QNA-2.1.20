@@ -15,11 +15,10 @@ import 'privacy_policy_hamburger.dart';
 class StudGuestAssessment extends StatefulWidget {
   const StudGuestAssessment({
     Key? key,
-    required this.name,required this.rollNum, required this.setLocale
+    required this.name, required this.setLocale
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final String name;
-  final String rollNum;
   @override
   StudGuestAssessmentState createState() => StudGuestAssessmentState();
 }
@@ -232,7 +231,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           color: Color.fromRGBO(48, 145, 139, 1),
                                         ));
                                   });
-                              values = await QnaService.getQuestionGuest(assessmentIdController.text,widget.name,widget.rollNum);
+                              values = await QnaService.getQuestionGuest(assessmentIdController.text,widget.name);
                               Navigator.of(context).pop();
                               Navigator.push(
                                 context,
@@ -475,8 +474,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         ));
                                   });
                               values = await QnaService.getQuestionGuest(
-                                  assessmentIdController.text, widget.name,
-                                  widget.rollNum);
+                                  assessmentIdController.text, widget.name);
                               Navigator.of(context).pop();
                               if (values.code == 200) {
                                 Navigator.push(

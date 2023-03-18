@@ -205,14 +205,14 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: height * 0.017),
                                             ),
-                                            TextSpan(
-                                                text: "\t*",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        219, 35, 35, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: height * 0.017)),
+                                            // TextSpan(
+                                            //     text: "\t*",
+                                            //     style: TextStyle(
+                                            //         color: const Color.fromRGBO(
+                                            //             219, 35, 35, 1),
+                                            //         fontFamily: 'Inter',
+                                            //         fontWeight: FontWeight.w600,
+                                            //         fontSize: height * 0.017)),
                                           ])),
                                     ),
                                     SizedBox(
@@ -223,18 +223,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                         child: TextFormField(
                                           controller: rollNumController,
                                           onChanged: (val) {
-                                            formKey.currentState!.validate();
+                                            //formKey.currentState!.validate();
                                           },
-                                          validator: (value) {
-                                            if (value!.isEmpty ||
-                                                !RegExp(r'^[a-z A-Z\d]+$')
-                                                    .hasMatch(value)) {
-                                              return AppLocalizations.of(context)!
-                                                  .enter_id;
-                                            } else {
-                                              return null;
-                                            }
-                                          },
+                                          // validator: (value) {
+                                          //   if (value!.isEmpty ||
+                                          //       !RegExp(r'^[a-z A-Z\d]+$')
+                                          //           .hasMatch(value)) {
+                                          //     return AppLocalizations.of(context)!
+                                          //         .enter_id;
+                                          //   } else {
+                                          //     return null;
+                                          //   }
+                                          // },
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
                                             hintText:
@@ -375,7 +375,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudGuestAssessment(
-                                    setLocale: widget.setLocale, name: name,rollNum: rollNumController.text,),
+                                    setLocale: widget.setLocale, name: name),
                                 ),
                               );
                               nameController.clear();
@@ -565,14 +565,14 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: height * 0.017),
                                           ),
-                                          TextSpan(
-                                              text: "\t*",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      219, 35, 35, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: height * 0.017)),
+                                          // TextSpan(
+                                          //     text: "\t*",
+                                          //     style: TextStyle(
+                                          //         color: const Color.fromRGBO(
+                                          //             219, 35, 35, 1),
+                                          //         fontFamily: 'Inter',
+                                          //         fontWeight: FontWeight.w600,
+                                          //         fontSize: height * 0.017)),
                                         ])),
                                   ),
                                   SizedBox(
@@ -583,18 +583,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                       child: TextFormField(
                                         controller: rollNumController,
                                         onChanged: (val) {
-                                          formKey.currentState!.validate();
+                                          //formKey.currentState!.validate();
                                         },
-                                        validator: (value) {
-                                          if (value!.isEmpty ||
-                                              !RegExp(r'^[a-z A-Z\d]+$')
-                                                  .hasMatch(value)) {
-                                            return AppLocalizations.of(context)!
-                                                .enter_id;
-                                          } else {
-                                            return null;
-                                          }
-                                        },
+                                        // validator: (value) {
+                                        //   if (value!.isEmpty ||
+                                        //       !RegExp(r'^[a-z A-Z\d]+$')
+                                        //           .hasMatch(value)) {
+                                        //     return AppLocalizations.of(context)!
+                                        //         .enter_id;
+                                        //   } else {
+                                        //     return null;
+                                        //   }
+                                        // },
                                         keyboardType: TextInputType.text,
                                         decoration: InputDecoration(
                                           hintText:
@@ -735,7 +735,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: StudGuestAssessment(
-                                      setLocale: widget.setLocale, name: name,rollNum: rollNumController.text,),
+                                      setLocale: widget.setLocale, name: name),
                                 ),
                               );
                               nameController.clear();

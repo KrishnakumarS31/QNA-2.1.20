@@ -923,6 +923,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 if (valid) {
                                                   SharedPreferences loginData=await SharedPreferences.getInstance();
                                                   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                                  Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
                                                   print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
                                                   assessment.topic=topicController.text;
                                                   assessment.subTopic=subTopicController.text;

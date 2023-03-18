@@ -1373,7 +1373,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             teacherOrganisationNameController.text,
                         countryResident:
                             selectedCountryResident.dropDownValue?.value,
-                        role: 'teacher');
+                        role: ["teacher"]);
                     if (valid) {
                       LoginModel res =
                           await QnaService.postUserDetailsService(student);
