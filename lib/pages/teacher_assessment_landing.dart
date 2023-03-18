@@ -1160,7 +1160,7 @@ class CardInfo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      " ${assessment.assessmentId}",
+                      " ${assessment.assessmentCode}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.015,

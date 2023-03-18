@@ -717,7 +717,15 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("14/01/2023      08:00 AM",
+                    assessmentVal.assessmentStartdate==null?
+                    Text("----------------------",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),):
+                    Text("${startDate.toString().substring(0,startDate.toString().length-13)}      ${startDate.toString().substring(11,startDate.toString().length-7)}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -739,7 +747,15 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("17/01/2023      09:00 PM",
+                    assessmentVal.assessmentEnddate==null?
+                    Text("----------------------",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),):
+                    Text("${endDate.toString().substring(0,endDate.toString().length-13)}      ${endDate.toString().substring(11,endDate.toString().length-7)}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -817,7 +833,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("Test/Practice",
+                    Text("${assessmentVal.assessmentType}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -839,7 +855,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("Allowed (3 Times)",
+                    Text(assessmentVal.assessmentSettings?.allowedNumberOfTestRetries==null?"Not Allowed":
+                      "Allowed (${assessmentVal.assessmentSettings!.allowedNumberOfTestRetries} Times)",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -861,7 +878,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("Allowed",
+                    Text(assessmentVal.assessmentSettings?.allowGuestStudent==null?"Not Allowed":
+                    assessmentVal.assessmentSettings!.allowGuestStudent! ? "Allowed":"Not Allowed",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -883,7 +901,9 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("Viewable",
+                    Text(assessmentVal.assessmentSettings?.showSolvedAnswerSheetInAdvisor==null?"Not Viewable":
+                    assessmentVal.assessmentSettings!.showSolvedAnswerSheetInAdvisor! ? "Viewable":"Not Viewable",
+
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -905,7 +925,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("Subash",
+                    Text(assessmentVal.assessmentSettings?.showSolvedAnswerSheetInAdvisor==null?"Not Viewable":
+                    assessmentVal.assessmentSettings!.showSolvedAnswerSheetInAdvisor! ? "Viewable":"Not Viewable",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,

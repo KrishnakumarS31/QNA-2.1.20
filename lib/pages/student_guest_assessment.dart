@@ -432,12 +432,12 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         size: height * 0.04,
                                       ),
                                     ),
+                                    onChanged: (value) {
+                                      formKey.currentState!.validate();
+                                    },
                                     validator: (value) {
-                                      if (value!.isEmpty ||
-                                          !RegExp(r'^\d+$')
-                                              .hasMatch(value)) {
-                                        return AppLocalizations.of(context)!
-                                            .enter_assId;
+                                      if (value!.isEmpty) {
+                                        return 'Enter Assessment ID';
                                       } else {
                                         return null;
                                       }
@@ -464,6 +464,10 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                             if (assessmentIdController.text.length >= 8) {
+                              print("Pesiklam");
+                              print(assessmentIdController.text);
+                              print(assessmentIdController.text.length);
+
                               showDialog(
                                   context: context,
                                   builder: (context) {

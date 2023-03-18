@@ -44,7 +44,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                   color: Color.fromRGBO(48, 145, 139, 1),
                 ));
           });
-      LoginModel loginResponse = await QnaService.logInUser(loginData!.getString('email')!, loginData!.getString('password')!);
+      LoginModel loginResponse = await QnaService.logInUser(loginData!.getString('email')!, loginData!.getString('password')!,loginData!.getString('role')!);
       if (loginResponse.code == 200) {
         loginData?.setBool('login', false);
         loginData?.setString('email', loginData!.getString('email')!);

@@ -18,13 +18,13 @@ import '../EntityModel/user_data_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart';
 class QnaRepo {
-  static logInUser(String email, String password) async {
+  static logInUser(String email, String password,String? role) async {
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     SharedPreferences loginData=await SharedPreferences.getInstance();
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
         'POST', Uri.parse('https://dev.qnatest.com/api/v1/users/login'));
-    request.body = json.encode({"email": email, "password": password});
+    request.body = json.encode({"email": email, "password": password, "role": role});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -80,7 +80,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       getUserData(userId);
     }
     return userData;
@@ -208,7 +208,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       postAssessmentRepo(assessment,questionPaper);
     }
     else {
@@ -238,7 +238,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       createQuestionTeacher(question);
     }
     else {
@@ -269,7 +269,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       createAssessmentTeacher(question);
     }
     else {
@@ -409,7 +409,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       deleteQuestion(questionId);
     }
     else {
@@ -436,7 +436,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       editQuestionTeacher(question,questionId);
     }
     else {
@@ -463,7 +463,7 @@ class QnaRepo {
     else if(response.statusCode == 401){
       String? email=loginData.getString('email');
       String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!);
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       editAssessmentTeacher(assessment,assessmentId);
     }
     else {

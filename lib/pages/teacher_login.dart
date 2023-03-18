@@ -446,13 +446,16 @@ class TeacherLoginState extends State<TeacherLogin> {
                                   ));
                             });
                         LoginModel loginResponse =
-                        await QnaService.logInUser(regNumber, passWord);
+                        await QnaService.logInUser(regNumber, passWord,'teacher');
 
                         Navigator.of(context).pop();
                         if (loginResponse.code == 200) {
                           loginData?.setBool('login', false);
                           loginData?.setString('email', regNumber);
                           loginData?.setString('password', passWord);
+                          loginData?.setString('role', 'teacher');
+                          loginData?.setString('firstName', loginResponse.data.firstName);
+                          loginData?.setString('lastName', loginResponse.data.lastName);
                           loginData?.setString('token', loginResponse.data.accessToken);
                           loginData?.setInt('userId', loginResponse.data.userId);
                           UserDataModel userDataModel = UserDataModel();

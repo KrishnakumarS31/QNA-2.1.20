@@ -120,14 +120,14 @@ class AccessTokenDetails {
 
 class AssessmentScoreMessage {
   AssessmentScoreMessage({
-    this.assessmentScoreId,
-    this.assessmentScoreStatus,
-    this.assessmentPercent,
+    required this.assessmentScoreId,
+    required this.assessmentScoreStatus,
+    required this.assessmentPercent,
   });
 
-  int? assessmentScoreId;
-  String? assessmentScoreStatus;
-  int? assessmentPercent;
+  int assessmentScoreId;
+  String assessmentScoreStatus;
+  int assessmentPercent;
 
   factory AssessmentScoreMessage.fromJson(Map<String, dynamic> json) => AssessmentScoreMessage(
     assessmentScoreId: json["assessment_score_id"],

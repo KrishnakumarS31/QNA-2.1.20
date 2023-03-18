@@ -156,7 +156,13 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                               ));
                         });
                     ResponseEntity responseEntity=await QnaService.getQuestionBankService(1,1);
-                    List<Question> questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+                    List<Question> questions=[];
+                    if(responseEntity.data==null){
+
+                    }
+                    else{
+                      questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+                    }
                     Navigator.of(context).pop();
                     Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                     Navigator.push(

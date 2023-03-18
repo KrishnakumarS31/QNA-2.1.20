@@ -469,7 +469,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               });
                                           LoginModel loginResponse =
                                           await QnaService.logInUser(
-                                              regNumber, passWord);
+                                              regNumber, passWord,'student');
                                           UserDataModel userDataModel=await QnaService.getUserDataService(loginResponse.data!.userId);
                                           Navigator.of(context).pop();
                                           if (loginResponse.code == 200) {
@@ -948,7 +948,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 });
                                             LoginModel loginResponse =
                                             await QnaService.logInUser(
-                                                regNumber, passWord);
+                                                regNumber, passWord,'student');
                                             Navigator.of(context).pop();
                                             if (loginResponse.code == 200) {
                                               print("LOG IN");
@@ -960,6 +960,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   'email', regNumber);
                                               loginData.setString(
                                                   'password', passWord);
+                                              loginData?.setString('role', 'student');
+                                              loginData?.setString('firstName', loginResponse.data.firstName);
+                                              loginData?.setString('lastName', loginResponse.data.lastName);
                                               loginData.setString('token',
                                                   loginResponse.data
                                                       .accessToken);

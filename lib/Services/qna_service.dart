@@ -23,8 +23,8 @@ class QnaService{
     return await QnaRepo.getUserData(userId);
   }
 
-  static Future<LoginModel> logInUser(String email,String password) async{
-    return await QnaRepo.logInUser(email, password);
+  static Future<LoginModel> logInUser(String email,String password,String role) async{
+    return await QnaRepo.logInUser(email, password,role);
   }
 
   static Future<StaticResponse> sendOtp(String email) async{

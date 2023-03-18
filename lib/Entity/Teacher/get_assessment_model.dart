@@ -17,6 +17,7 @@ class GetAssessmentModel {
   GetAssessmentModel({
     this.assessmentId,
     this.assessmentType,
+    this.assessmentCode,
     this.totalScore,
     this.assessmentDuration,
     this.assessmentStatus,
@@ -31,6 +32,7 @@ class GetAssessmentModel {
 
   int? assessmentId;
   String? assessmentType;
+  String? assessmentCode;
   int? totalScore;
   int? assessmentDuration;
   String? assessmentStatus;
@@ -45,6 +47,7 @@ class GetAssessmentModel {
   factory GetAssessmentModel.fromJson(Map<String, dynamic> json) => GetAssessmentModel(
     assessmentId: json["assessment_id"],
     assessmentType: json["assessment_type"],
+    assessmentCode: json["assessment_code"],
     totalScore: json["total_score"],
     assessmentDuration: json["assessment_duration"],
     assessmentStatus: json["assessment_status"],
@@ -60,6 +63,7 @@ class GetAssessmentModel {
   Map<String, dynamic> toJson() => {
     "assessment_id": assessmentId,
     "assessment_type": assessmentType,
+    "assessment_code": assessmentCode,
     "total_score": totalScore,
     "assessment_duration": assessmentDuration,
     "assessment_status": assessmentStatus,
