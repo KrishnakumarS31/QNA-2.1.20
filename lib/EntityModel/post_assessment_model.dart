@@ -60,6 +60,11 @@ class PostAssessmentModel {
     "assessment_score_id": assessmentScoreId,
     "assessment_results": List<dynamic>.from(assessmentResults.map((x) => x.toJson())),
   };
+
+  @override
+  String toString() {
+    return 'PostAssessmentModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, userId: $userId, statusId: $statusId, attemptStartdate: $attemptStartdate, attemptEnddate: $attemptEnddate, attemptDuration: $attemptDuration, attemptScore: $attemptScore, assessmentScoreId: $assessmentScoreId, assessmentResults: $assessmentResults}';
+  }
 }
 
 class AssessmentResult {
@@ -96,4 +101,9 @@ class AssessmentResult {
     "selected_question_choice": selectedQuestionChoice==null?[]:List<dynamic>.from(selectedQuestionChoice!.map((x) => x)),
     "descriptive_text": descriptiveText,
   };
+
+  @override
+  String toString() {
+    return 'AssessmentResult{questionId: $questionId, statusId: $statusId, questionTypeId: $questionTypeId, marks: $marks, selectedQuestionChoice: $selectedQuestionChoice, descriptiveText: $descriptiveText}';
+  }
 }

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
+import 'package:qna_test/EntityModel/create_question_model.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
 
 import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 
@@ -298,7 +300,22 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () async {
-                        ResponseEntity statusCode = await QnaService.editQuestionTeacherService(widget.editQuestionModel,widget.question.questionId);
+                        Question question = Question();
+                        question.subject=widget.editQuestionModel.subject;
+                        question.topic=widget.editQuestionModel.topic;
+                        question.subTopic=widget.editQuestionModel.subTopic;
+                        question.datumClass=widget.editQuestionModel.editQuestionModelClass;
+                        question.question=widget.editQuestionModel.question;
+                        question.questionType='mcq';
+                        question.advisorUrl=widget.editQuestionModel.advisorUrl;
+                        question.advisorText=widget.editQuestionModel.advisorText;
+                        question.choices=widget.question.choices;
+
+                        CreateQuestionModel createQuestion=CreateQuestionModel(questions: []);
+                        createQuestion.questions?.add(question);
+                        SharedPreferences loginData=await SharedPreferences.getInstance();
+                        createQuestion.authorId=loginData.getInt('userId');
+                        ResponseEntity statusCode = await QnaService.createQuestionTeacherService(createQuestion);
                         int count = 0;
                         Navigator.popUntil(context, (route) {
                           return count++ == 3;

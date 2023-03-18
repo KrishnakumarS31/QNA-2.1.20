@@ -14,12 +14,13 @@ import '../Services/qna_service.dart';
 import 'student_result_page.dart';
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
-    required this.questions, required this.userName, required this.assessmentID,required this.startTime, required this.setLocale
+    required this.questions, required this.userName, required this.assessmentID,required this.startTime, required this.setLocale,required this.assessmentid
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
   final int startTime;
   final String assessmentID;
+  final int assessmentid;
   final void Function(Locale locale) setLocale;
 
 
@@ -738,10 +739,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     )
                 ),
                 onPressed: () async {
+
                   String message='';
                   int ansCorrect=0;
                   int totalMark=0;
-                  assessment.assessmentId=1002;
+                  assessment.assessmentId=widget.assessmentid;
                   assessment.assessmentCode=widget.assessmentID;
                   assessment.statusId=2;
                   assessment.attemptStartdate=widget.startTime;

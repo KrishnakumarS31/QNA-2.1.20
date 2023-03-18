@@ -181,6 +181,31 @@ class QnaRepo {
   }
 
   static postAssessmentRepo(PostAssessmentModel? assessment,QuestionPaperModel? questionPaper) async {
+    print("The Champp is here");
+    print("ASS RESULTS");
+    // print(assessment!.assessmentResults[0]);
+    // print(assessment!.assessmentResults[1]);
+    // print(assessment!.assessmentResults[2]);
+    // print(assessment!.assessmentResults[3]);
+    // print(assessment!.assessmentResults[4]);
+    // print("id");
+    // print(assessment?.assessmentId);
+    // print("code");
+    // print(assessment?.assessmentCode);
+    // print("scoreId");
+    // print(assessment?.assessmentScoreId);
+    // print("attempt duration");
+    // print(assessment?.attemptDuration);
+    // print("start date");
+    // print(assessment?.attemptStartdate);
+    // print("end date");
+    // print(assessment?.attemptEnddate);
+    // print("user Id");
+    // print(assessment?.userId);
+    // print("Status Id");
+    // print(assessment?.statusId);
+    // print("attempt score");
+    // print(assessment?.attemptScore);
     String? token;
     SharedPreferences loginData=await SharedPreferences.getInstance();
 
@@ -190,7 +215,7 @@ class QnaRepo {
      assessment!.userId=questionPaper.data!.accessTokenDetails!.userId!;
      token=questionPaper!.data!.accessTokenDetails!.accessToken!;
    }
-
+    assessment?.userId = loginData.getInt('userId');
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer $token',
@@ -198,8 +223,12 @@ class QnaRepo {
     };
     var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment/result'));
     request.body = postAssessmentModelToJson(assessment!);
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    print(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print("Response Code");
+    debugPrint(assessment.toString());
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       print(temp);
@@ -213,6 +242,7 @@ class QnaRepo {
     }
     else {
       String temp = await response.stream.bytesToString();
+      print(temp);
       loginModel = loginModelFromJson(temp);
       return loginModel;
     }

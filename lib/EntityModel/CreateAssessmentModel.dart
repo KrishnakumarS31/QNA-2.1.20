@@ -100,6 +100,7 @@ class AssessmentSettings {
     this.avalabilityForPractice,
     this.allowGuestStudent,
     this.showSolvedAnswerSheetInAdvisor,
+    this.showSolvedAnswerSheetDuringPractice,
     this.showAdvisorName,
     this.showAdvisorEmail,
     this.notAvailable,
@@ -109,6 +110,7 @@ class AssessmentSettings {
   bool? avalabilityForPractice;
   bool? allowGuestStudent;
   bool? showSolvedAnswerSheetInAdvisor;
+  bool? showSolvedAnswerSheetDuringPractice;
   bool? showAdvisorName;
   bool? showAdvisorEmail;
   bool? notAvailable;
@@ -118,6 +120,7 @@ class AssessmentSettings {
     avalabilityForPractice: json["avalability_for_practice"],
     allowGuestStudent: json["allow_guest_student"],
     showSolvedAnswerSheetInAdvisor: json["show_solved_answer_sheet_in_advisor"],
+    showSolvedAnswerSheetDuringPractice: json[""],
     showAdvisorName: json["show_advisor_name"],
     showAdvisorEmail: json["show_advisor_email"],
     notAvailable: json["not_available"],
@@ -128,6 +131,7 @@ class AssessmentSettings {
     "avalability_for_practice": avalabilityForPractice,
     "allow_guest_student": allowGuestStudent,
     "show_solved_answer_sheet_in_advisor": showSolvedAnswerSheetInAdvisor,
+    "":showSolvedAnswerSheetDuringPractice,
     "show_advisor_name": showAdvisorName,
     "show_advisor_email": showAdvisorEmail,
     "not_available": notAvailable,

@@ -37,7 +37,8 @@ class TeacherAssessmentSettingPublishState
   bool descriptiveAgree = false;
   bool numOfRetriesStatus = false;
   bool allowedGuestStatus = false;
-  bool solvedAnsStatus = false;
+  bool showAnsAfterTest = false;
+  bool showAnsDuringPractice = false;
   bool showNameStatus = false;
   bool showEmailStatus = false;
   bool activeStatus = false;
@@ -492,7 +493,7 @@ class TeacherAssessmentSettingPublishState
                                         ),
                                         Row(children: [
                                           Text(
-                                            "Time Permitted",
+                                            "Duration",
                                             style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   28, 78, 80, 1),
@@ -1289,9 +1290,7 @@ class TeacherAssessmentSettingPublishState
                             ),
                             Center(
                               child: Container(
-                                padding: const EdgeInsets.only(left: 10),
-                                // height: height * 0.1087,
-                                // width: width * 0.888,
+                                padding: const EdgeInsets.only(left: 10,right: 10),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(8.0)),
@@ -1308,7 +1307,6 @@ class TeacherAssessmentSettingPublishState
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
-                                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         SizedBox(
                                           height: height * 0.015,
@@ -1440,11 +1438,44 @@ class TeacherAssessmentSettingPublishState
                                                         217, 217, 217, 1),
                                                 width: 65.0,
                                                 height: 35.0,
-                                                value: solvedAnsStatus,
+                                                value: showAnsAfterTest,
                                                 borderRadius: 30.0,
                                                 onToggle: (val) {
                                                   setState(() {
-                                                    solvedAnsStatus = val;
+                                                    showAnsAfterTest = val;
+                                                  });
+                                                },
+                                              ),
+                                            ]),
+                                        SizedBox(height: height * 0.01),
+                                        Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Show answer sheet during Practice",
+                                                style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      51, 51, 51, 1),
+                                                  fontSize: height * 0.015,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                              FlutterSwitch(
+                                                activeColor:
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                inactiveColor:
+                                                const Color.fromRGBO(
+                                                    217, 217, 217, 1),
+                                                width: 65.0,
+                                                height: 35.0,
+                                               value: showAnsDuringPractice,
+                                                borderRadius: 30.0,
+                                                onToggle: (val) {
+                                                  setState(() {
+                                                showAnsDuringPractice = val;
                                                   });
                                                 },
                                               ),
@@ -1525,7 +1556,7 @@ class TeacherAssessmentSettingPublishState
                                                   CrossAxisAlignment.start,
                                                 children: [
                                               Text(
-                                                "Inactive",
+                                                "Show assessment Inactive",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
@@ -1653,7 +1684,8 @@ class TeacherAssessmentSettingPublishState
                                       assessmentSettings.notAvailable=publicAccessStatus;
                                       assessmentSettings.showAdvisorEmail=showEmailStatus;
                                       assessmentSettings.showAdvisorName=showNameStatus;
-                                      assessmentSettings.showSolvedAnswerSheetInAdvisor=solvedAnsStatus;
+                                      assessmentSettings.showSolvedAnswerSheetInAdvisor=showAnsAfterTest;
+                                      assessmentSettings.showSolvedAnswerSheetDuringPractice = showAnsDuringPractice;
                                       assessmentSettings.allowGuestStudent=allowedGuestStatus;
                                       assessmentSettings.avalabilityForPractice=false;
                                       assessmentSettings.allowedNumberOfTestRetries=retriesController.text==''?0:int.parse(retriesController.text);
@@ -1729,7 +1761,8 @@ class TeacherAssessmentSettingPublishState
                                       assessmentSettings.notAvailable=publicAccessStatus;
                                       assessmentSettings.showAdvisorEmail=showEmailStatus;
                                       assessmentSettings.showAdvisorName=showNameStatus;
-                                      assessmentSettings.showSolvedAnswerSheetInAdvisor=solvedAnsStatus;
+                                      assessmentSettings.showSolvedAnswerSheetInAdvisor=showAnsAfterTest;
+                                      assessmentSettings.showSolvedAnswerSheetDuringPractice=showAnsDuringPractice;
                                       assessmentSettings.allowGuestStudent=allowedGuestStatus;
                                       assessmentSettings.avalabilityForPractice=true;
                                       assessmentSettings.allowedNumberOfTestRetries=retriesController.text==''?0:int.parse(retriesController.text);
@@ -1754,9 +1787,6 @@ class TeacherAssessmentSettingPublishState
                                       endDate=DateTime(endDate.year,endDate.month,endDate.day,endTime.hour,endTime.minute);
                                       assessment.assessmentEnddate=endDate.microsecondsSinceEpoch;
                                       assessment.assessmentDuration=1800;
-                                      // if(assessment.removeQuestions==[]){
-                                      //   assessment.removeQuestions=null;
-                                      // }
 
 
 

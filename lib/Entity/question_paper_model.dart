@@ -127,7 +127,7 @@ class AssessmentScoreMessage {
 
   int assessmentScoreId;
   String assessmentScoreStatus;
-  int assessmentPercent;
+  String assessmentPercent;
 
   factory AssessmentScoreMessage.fromJson(Map<String, dynamic> json) => AssessmentScoreMessage(
     assessmentScoreId: json["assessment_score_id"],
