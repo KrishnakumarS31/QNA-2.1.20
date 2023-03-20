@@ -16,7 +16,7 @@ class CustomCard1 extends StatelessWidget {
 
   final double height;
   final double width;
-  final String subject;
+  final String? subject;
   final String title;
   final String subTitle;
   final String subTopic;

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
-
-import '../Components/custom_card.dart';
+import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
 import '../Components/custom_result_card.dart';
 
 class TeacherResultTotal extends StatefulWidget {
-  TeacherResultTotal({
+  const TeacherResultTotal({
     Key? key,
+    required this.result,
+    this.userId,
+    this.advisorName,
   }) : super(key: key);
+  final GetResultModel result;
+  final int? userId;
+  final String? advisorName;
 
   @override
   TeacherResultTotalState createState() => TeacherResultTotalState();
@@ -19,7 +24,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   IconData showIcon = Icons.expand_circle_down_outlined;
 
   @override
-  void initState() {}
+  void initState() {
+    super.initState();
+  }
 
   changeIcon(IconData pramIcon) {
     if (pramIcon == Icons.expand_circle_down_outlined) {
@@ -37,7 +44,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
+    print("DFVfdv");
+    print(widget.result.assessmentResults![0].attemptDuration);
     return Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
@@ -102,7 +110,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "UCE112233",
+                      widget.result.assessmentCode!,
                       style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: height * 0.025,
@@ -111,23 +119,21 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                       ),
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.drafts_outlined,
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        ),
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                        Icon(
-                          Icons.print_outlined,
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        )
-                      ],
-                    ),
-                  )
+                  // Row(
+                  //   children: [
+                  //     const Icon(
+                  //       Icons.drafts_outlined,
+                  //       color: Color.fromRGBO(82, 165, 160, 1),
+                  //     ),
+                  //     SizedBox(
+                  //       width: width * 0.03,
+                  //     ),
+                  //     const Icon(
+                  //       Icons.print_outlined,
+                  //       color: Color.fromRGBO(82, 165, 160, 1),
+                  //     )
+                  //   ],
+                  // )
                 ],
               ),
               SizedBox(
@@ -140,29 +146,31 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                       ? CustomCard1(
                           height: height,
                           width: width,
-                          subject: 'Maths',
-                          title: 'Lesson 14 &15 / Calculus',
-                          subTitle: 'Internal Assessment ID: UCE112233',
-                          subTopic: 'Chapter 12',
-                          std: 'XI',
-                          date: '28/12/2022',
+                          subject: widget.result.subject,
+                          title: widget.result.topic!,
+                          subTitle:
+                              'Internal Assessment ID: ${widget.result.assessmentCode!}',
+                          subTopic: widget.result.subTopic!,
+                          std: widget.result.studentClass!,
+                          date: "${widget.result.assessmentResults![0].attemptStartDate!}",
                           status: const Color.fromRGBO(255, 157, 77, 1),
                         )
                       : Container(
                           decoration: BoxDecoration(
                               border: Border.all(
-                                color: Color.fromRGBO(233, 233, 233, 1),
+                                color: const Color.fromRGBO(233, 233, 233, 1),
                               ),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20))),
+                                  const BorderRadius.all(Radius.circular(20))),
                           height: height * 0.6912,
                           child: Column(
                             children: [
                               ListTile(
                                 title: Text(
-                                  'Subject - Maths',
+                                  'Subject - ${widget.result.subject}',
                                   style: TextStyle(
-                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                      color:
+                                          const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.0187,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w700),
@@ -179,9 +187,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       size: width * 0.05,
                                     ),
                                     Text(
-                                      '28/12/2022',
+                                      "${widget.result.assessmentStartDate}",
                                       style: TextStyle(
-                                          color: Color.fromRGBO(
+                                          color: const Color.fromRGBO(
                                               102, 102, 102, 0.7),
                                           fontSize: height * 0.0125,
                                           fontFamily: "Inter",
@@ -193,7 +201,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     right: width * 0.02, left: width * 0.02),
-                                child: Divider(),
+                                child: const Divider(),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
@@ -207,17 +215,20 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'Advisor',
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(28, 78, 80, 1),
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
                                             fontSize: height * 0.0185,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w700),
                                       ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
                                       Text(
-                                        ' Raghavan, Shanmugam',
+                                        widget.advisorName!,
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
                                             fontSize: height * 0.0175,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w500),
@@ -232,9 +243,10 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'Title - Lesson 14 &15 / Calculus',
+                                    'Title - ${widget.result.topic}',
                                     style: TextStyle(
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500),
@@ -247,9 +259,10 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'Sub Topic Chapter 12',
+                                    'Sub Topic ${widget.result.subTopic}',
                                     style: TextStyle(
-                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500),
@@ -262,20 +275,21 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    'Class XI',
+                                    'Class ${widget.result.studentClass}',
                                     style: TextStyle(
-                                        color: Color.fromRGBO(102, 102, 102, 1),
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
-                              Divider(),
+                              const Divider(),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: height * 0.103,
                                     width: width * 0.31,
                                     child: Column(
@@ -284,9 +298,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       //crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Test',
+                                          widget.result.assessmentType!,
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontSize: height * 0.02,
                                               fontFamily: "Inter",
@@ -295,7 +309,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         Text(
                                           'Category',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
                                               fontSize: height * 0.015,
                                               fontFamily: "Inter",
@@ -325,9 +339,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       //crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          '20',
+                                          "${widget.result.totalQuestions!}",
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontSize: height * 0.02,
                                               fontFamily: "Inter",
@@ -336,7 +350,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         Text(
                                           'Total',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
                                               fontSize: height * 0.015,
                                               fontFamily: "Inter",
@@ -345,7 +359,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         Text(
                                           'Questions',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
                                               fontSize: height * 0.015,
                                               fontFamily: "Inter",
@@ -354,18 +368,17 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       ],
                                     ),
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: height * 0.103,
                                     width: width * 0.265,
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      //crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          '150',
+                                          "${widget.result.totalScore!}",
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontSize: height * 0.02,
                                               fontFamily: "Inter",
@@ -374,7 +387,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         Text(
                                           'Total',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
                                               fontSize: height * 0.015,
                                               fontFamily: "Inter",
@@ -383,7 +396,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         Text(
                                           'Marks',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
                                               fontSize: height * 0.015,
                                               fontFamily: "Inter",
@@ -394,7 +407,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                   )
                                 ],
                               ),
-                              Divider(),
+                              const Divider(),
                               Padding(
                                 padding: EdgeInsets.only(left: width * 0.03),
                                 child: Align(
@@ -402,7 +415,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                   child: Text(
                                     'Schedule',
                                     style: TextStyle(
-                                        color: Color.fromRGBO(28, 78, 80, 1),
+                                        color:
+                                            const Color.fromRGBO(28, 78, 80, 1),
                                         fontSize: height * 0.017,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w700),
@@ -419,17 +433,17 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'Test max. Time permitted:',
                                         style: TextStyle(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
-                                        ' 01:30 Hrs',
+                                        "${widget.result.assessmentDuration!}",
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w600),
@@ -448,17 +462,17 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'Test Opening Date & Time:',
                                         style: TextStyle(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
-                                        ' 28/12/2022  09:00 AM',
+                                        ' ${widget.result.assessmentStartDate!},${widget.result.assessmentDuration!}',
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w600),
@@ -477,17 +491,17 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'Test Closing Date & Time:',
                                         style: TextStyle(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w400),
                                       ),
                                       Text(
-                                        ' 31/12/2022  08:30 PM',
+                                        "${widget.result.assessmentEndDate},${widget.result.assessmentDuration!}",
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w600),
@@ -511,17 +525,23 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'Guest',
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(28, 78, 80, 1),
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
                                             fontSize: height * 0.0185,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w700),
                                       ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
                                       Text(
-                                        '   Allowed',
+                                        widget.result.guestStudentAllowed ==
+                                                true
+                                            ? "Allowed"
+                                            : "Not Allowed",
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
                                             fontSize: height * 0.0175,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w500),
@@ -542,7 +562,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'URL: ',
                                         style: TextStyle(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
@@ -556,9 +576,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         width: width * 0.52,
                                         alignment: Alignment.center,
                                         child: Text(
-                                          'http://www.qnatest.com/test/132215012345678',
+                                          widget.result.url!,
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontSize: height * 0.0175,
                                               fontFamily: "Inter",
@@ -581,7 +601,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'Android APP:',
                                         style: TextStyle(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
@@ -595,9 +615,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         width: width * 0.52,
                                         alignment: Alignment.center,
                                         child: Text(
-                                          'http://www.qnatest.com/test/132215012345678',
+                                          widget.result.androidUrl!,
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontSize: height * 0.0175,
                                               fontFamily: "Inter",
@@ -620,7 +640,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       Text(
                                         'IOS APP:',
                                         style: TextStyle(
-                                            color: Color.fromRGBO(
+                                            color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
                                             fontSize: height * 0.015,
                                             fontFamily: "Inter",
@@ -634,9 +654,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         width: width * 0.52,
                                         alignment: Alignment.center,
                                         child: Text(
-                                          'http://www.qnatest.com/test/132215012345678',
+                                          widget.result.iosUrl!,
                                           style: TextStyle(
-                                              color: Color.fromRGBO(
+                                              color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               fontSize: height * 0.0175,
                                               fontFamily: "Inter",
@@ -658,7 +678,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                     child: IconButton(
                       icon: Icon(
                         showIcon,
-                        color: Color.fromRGBO(82, 165, 160, 1),
+                        color: const Color.fromRGBO(82, 165, 160, 1),
                         size: height * 0.03,
                       ),
                       onPressed: () {
@@ -674,10 +694,10 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Total Participants List (43)',
+                  'Total Participants List (${widget.result.assessmentResults!.length})',
                   style: TextStyle(
                       fontSize: height * 0.0187,
-                      color: Color.fromRGBO(28, 78, 80, 1),
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700),
                 ),
@@ -691,7 +711,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                   'Tap on respective student for details',
                   style: TextStyle(
                       fontSize: height * 0.0125,
-                      color: Color.fromRGBO(148, 148, 148, 1),
+                      color: const Color.fromRGBO(148, 148, 148, 1),
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
                 ),
@@ -705,28 +725,50 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                     context,
                     PageTransition(
                       type: PageTransitionType.rightToLeft,
-                      child: TeacherResultIndividualStudent(),
+                      child: TeacherResultIndividualStudent(
+                          result: widget.result,
+                          advisorName: widget.advisorName),
                     ),
                   );
                 },
-                child: Result_card(
-                  height: height,
-                  width: width,
-                  name: "Ramesh Kumar",
-                  testCode: 'SSSUHE10112025',
-                  percent: 95,
-                  securedMark: '45',
-                  totalMark: '50',
+                child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: widget.result.assessmentResults!.length,
+                  itemBuilder: (context, index) => Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: TeacherResultIndividualStudent(
+                                  result: widget.result),
+                            ),
+                          );
+                        },
+                        child: Result_card(
+                            height: height,
+                            width: width,
+                            name: widget
+                                .result.assessmentResults![index].firstName!,
+                            testCode: widget.result.assessmentCode!,
+                            percent: 95,
+                            securedMark: widget
+                                .result.assessmentResults![0].attemptScore!,
+                            totalMark: widget.result.totalScore!,
+                            timeTaken: widget
+                                .result.assessmentResults![0].attemptDuration!,
+                            startedTime: widget.result.assessmentResults![0]
+                                .attemptStartDate!),
+                      ),
+                      SizedBox(
+                        height: height * 0.02,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Result_card(
-                height: height,
-                width: width,
-                name: "Praveen Kumar",
-                testCode: 'SSSUHE10112025',
-                percent: 0,
-                securedMark: '00',
-                totalMark: '50',
               ),
               SizedBox(
                 height: height * 0.03,

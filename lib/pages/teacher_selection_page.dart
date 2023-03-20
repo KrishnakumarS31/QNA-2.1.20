@@ -253,7 +253,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: const TeacherResultLanding(),
+                        child: TeacherResultLanding(userId: widget.userId,advisorName:widget.userData.data!.firstName),
                       ),
                     );
                   },

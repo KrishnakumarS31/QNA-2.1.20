@@ -2,11 +2,16 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/custom_result_card1.dart';
+import '../EntityModel/get_result_model.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {
   const TeacherResultIndividualStudent({
     Key? key,
+    required this.result,
+    this.advisorName,
   }) : super(key: key);
+  final GetResultModel result;
+  final String? advisorName;
 
   @override
   TeacherResultIndividualStudentState createState() =>
@@ -21,6 +26,9 @@ class TeacherResultIndividualStudentState
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
+
+
+
   @override
   void initState() {
     super.initState();
@@ -107,7 +115,7 @@ class TeacherResultIndividualStudentState
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "UCE112233",
+                      widget.result.assessmentCode!,
                       style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: height * 0.025,
@@ -116,23 +124,23 @@ class TeacherResultIndividualStudentState
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.drafts_outlined,
-                        color: Color.fromRGBO(82, 165, 160, 1),
-                      ),
-                      SizedBox(
-                        width: width * 0.03,
-                      ),
-                      IconButton(
-                          onPressed: () async {},
-                          icon: const Icon(
-                            Icons.print_outlined,
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                          ))
-                    ],
-                  )
+                  // Row(
+                  //   children: [
+                  //     const Icon(
+                  //       Icons.drafts_outlined,
+                  //       color: Color.fromRGBO(82, 165, 160, 1),
+                  //     ),
+                  //     SizedBox(
+                  //       width: width * 0.03,
+                  //     ),
+                  //     IconButton(
+                  //         onPressed: () async {},
+                  //         icon: const Icon(
+                  //           Icons.print_outlined,
+                  //           color: Color.fromRGBO(82, 165, 160, 1),
+                  //         ))
+                  //   ],
+                  // )
                 ],
               ),
               Padding(
@@ -141,7 +149,7 @@ class TeacherResultIndividualStudentState
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'SSSUHE10112025',
+                    " ${widget.result.assessmentId!}",
                     style: TextStyle(
                         color: const Color.fromRGBO(102, 102, 102, 1),
                         fontSize: height * 0.015,
@@ -161,7 +169,7 @@ class TeacherResultIndividualStudentState
                     color: Color.fromRGBO(82, 165, 160, 1),
                   ),
                   Text(
-                    '  SSSUHE, Gulbarga',
+                    widget.result.assessmentResults![0].organizationName!,
                     style: TextStyle(
                         fontSize: height * 0.017,
                         color: const Color.fromRGBO(102, 102, 102, 1),
@@ -174,71 +182,64 @@ class TeacherResultIndividualStudentState
                 height: height * 0.02,
               ),
               Result_card1(
-                height: height,
-                width: width,
-                name: "Ramesh Kumar",
-                testCode: 'SSSUHE10112025',
-                percent: 95,
-                securedMark: '45',
-                totalMark: '50',
-              ),
-              //if(bytes!=null) Image.memory(bytes!),
+                  height: height,
+                  width: width,
+                  name: widget.result.assessmentResults![0].firstName!,
+                  testCode: widget.result.assessmentCode!,
+                  percent: 95,
+                  securedMark:
+                      widget.result.assessmentResults![0].attemptScore!,
+                  totalMark: widget.result.totalScore!,
+                  timeTaken:
+                      widget.result.assessmentResults![0].attemptDuration!,
+                  startedTime:
+                      widget.result.assessmentResults![0].attemptStartDate!),
               SizedBox(
                 height: height * 0.02,
               ),
-                  Container(
-                    height: height * 0.06,
-                   margin: const EdgeInsets.only(left: 15,right:6),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                      border: Border.all(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        MyRadioOption<String>(
-                          icon: Icons.check_box_outlined,
-                          value: 'Correct\nAnswers',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: 'Correct Answers',
-                        ),
-                        MyRadioOption<String>(
-                          icon: Icons.account_tree_outlined,
-                          value: 'Incorrect\nAnswers',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: 'Incorrect Answers',
-                        ),
-                        MyRadioOption<String>(
-                          icon: Icons.library_books_sharp,
-                          value: 'All Answers',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: 'All Answers',
-                        ),
-                      ],
-                    ),
+              Container(
+                height: height * 0.06,
+                margin: const EdgeInsets.only(left: 15, right: 6),
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                  border: Border.all(
+                    color: const Color.fromRGBO(82, 165, 160, 1),
                   ),
-              // Align(
-              //   alignment: Alignment.centerLeft,
-              //   child: Text(
-              //     ' *** Incorrect Answered ***',
-              //     style: TextStyle(
-              //         fontSize: height * 0.017,
-              //         color: const Color.fromRGBO(238, 100, 0, 1),
-              //         fontFamily: "Inter",
-              //         fontWeight: FontWeight.w600),
-              //   ),
-              // ),
+                ),
+                child: Row(
+                  children:
+                    [
+                      MyRadioOption<String>(
+                        icon: Icons.check_box_outlined,
+                        value: 'Correct\nAnswers',
+                        groupValue: _groupValue,
+                        onChanged: _valueChangedHandler(),
+                        label: 'Correct Answers',
+                      ),
+                    MyRadioOption<String>(
+                      icon: Icons.account_tree_outlined,
+                      value: 'Incorrect\nAnswers',
+                      groupValue: _groupValue,
+                      onChanged: _valueChangedHandler(),
+                      label: 'Incorrect Answers',
+                    ),
+                    MyRadioOption<String>(
+                      icon: Icons.library_books_sharp,
+                      value: 'All Answers',
+                      groupValue: _groupValue,
+                      onChanged: _valueChangedHandler(),
+                      label: 'All Answers',
+                    ),
+                ],
+                ),
+              ),
               SizedBox(
                 height: height * 0.03,
               ),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'MCQ',
+                  "MCQ",
                   style: TextStyle(
                       fontSize: height * 0.02,
                       color: const Color.fromRGBO(28, 78, 80, 1),
@@ -246,15 +247,31 @@ class TeacherResultIndividualStudentState
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              QuesAndAns(
-                height: height,
-                ques: ' ..........how many years?',
-                ans: ' They are conducted every 5years',
-              ),
-              QuesAndAns(
-                height: height,
-                ques: ' Where is Mt. Everest located?',
-                ans: ' India',
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: widget.result.assessmentResults!.length,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    widget.result.assessmentResults![0].questions![index]
+                                .questionType! ==
+                            "MCQ"
+                        ? GestureDetector(
+                            onTap: () {},
+                            child: QuesAndAns(
+                              height: height,
+                              ques: widget.result.assessmentResults![0]
+                                  .questions![index].question!,
+                              ans: widget.result.assessmentResults![0]
+                                  .questions![index].descriptiveAnswers!,
+                            ),
+                          )
+                        : const SizedBox(),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                  ],
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -271,10 +288,31 @@ class TeacherResultIndividualStudentState
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              QuesAndAns(
-                height: height,
-                ques: ' Which sports you like the most ?',
-                ans: ' Football',
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: widget.result.assessmentResults!.length,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    widget.result.assessmentResults![0].questions![index]
+                                .questionType! ==
+                            "survey"
+                        ? GestureDetector(
+                            onTap: () {},
+                            child: QuesAndAns(
+                              height: height,
+                              ques: widget.result.assessmentResults![0]
+                                  .questions![index].question!,
+                              ans: widget.result.assessmentResults![0]
+                                  .questions![index].descriptiveAnswers!,
+                            ),
+                          )
+                        : const SizedBox(),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                  ],
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
@@ -291,11 +329,31 @@ class TeacherResultIndividualStudentState
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              QuesAndAns(
-                height: height,
-                ques: ' Write a brief description about .....',
-                ans:
-                    ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim imperdiet pharetra, odio erat euismod libero, sit amet ullamcorper nunc massa in eros.',
+              ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: widget.result.assessmentResults!.length,
+                itemBuilder: (context, index) => Column(
+                  children: [
+                    widget.result.assessmentResults![0].questions![index]
+                                .questionType! ==
+                            "descriptive"
+                        ? GestureDetector(
+                            onTap: () {},
+                            child: QuesAndAns(
+                              height: height,
+                              ques: widget.result.assessmentResults![0]
+                                  .questions![index].question!,
+                              ans: widget.result.assessmentResults![0]
+                                  .questions![index].descriptiveAnswers!,
+                            ),
+                          )
+                        : const SizedBox(),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                  ],
+                ),
               ),
             ]),
           ),
@@ -303,21 +361,33 @@ class TeacherResultIndividualStudentState
   }
 }
 
-class QuesAndAns extends StatelessWidget {
-  const QuesAndAns(
+class NumberList {
+  String number;
+  int index;
+  NumberList({required this.number, required this.index});
+
+}
+
+class QuesAndAns extends StatefulWidget {
+  QuesAndAns(
       {Key? key, required this.height, required this.ques, required this.ans})
       : super(key: key);
 
   final double height;
   final String ques;
-  final String ans;
+  String ans;
 
+  @override
+  State<QuesAndAns> createState() => _QuesAndAnsState();
+}
+
+class _QuesAndAnsState extends State<QuesAndAns> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          height: height * 0.015,
+          height: widget.height * 0.015,
         ),
         Align(
           alignment: Alignment.centerLeft,
@@ -326,16 +396,16 @@ class QuesAndAns extends StatelessWidget {
               Text(
                 'Q 03',
                 style: TextStyle(
-                    fontSize: height * 0.014,
+                    fontSize: widget.height * 0.014,
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
               Expanded(
                 child: Text(
-                  ques,
+                  widget.ques,
                   style: TextStyle(
-                      fontSize: height * 0.014,
+                      fontSize: widget.height * 0.014,
                       color: const Color.fromRGBO(102, 102, 102, 1),
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
@@ -345,7 +415,7 @@ class QuesAndAns extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: height * 0.01,
+          height: widget.height * 0.01,
         ),
         Align(
           alignment: Alignment.centerLeft,
@@ -355,16 +425,16 @@ class QuesAndAns extends StatelessWidget {
               Text(
                 'Answered:',
                 style: TextStyle(
-                    fontSize: height * 0.014,
+                    fontSize: widget.height * 0.014,
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
               Expanded(
                 child: Text(
-                  ans,
+                  widget.ans,
                   style: TextStyle(
-                      fontSize: height * 0.014,
+                      fontSize: widget.height * 0.014,
                       color: const Color.fromRGBO(102, 102, 102, 1),
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),

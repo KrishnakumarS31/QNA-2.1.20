@@ -505,21 +505,24 @@ class QnaRepo {
     return loginModel;
   }
 
-  static Future<GetResultModel> getResultTeacherRepo(int pageLimit,int pageNumber) async {
-    GetResultModel getResult =GetResultModel(status: 500, message: 'null');
+  static Future<ResponseEntity> getResult(int? userId,int pageLimit,int pageNumber) async {
     SharedPreferences loginData=await SharedPreferences.getInstance();
-    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/results/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
+    ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}'
+    };
+    var request = http.Request(
+        'GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/results/1?page_limit=$pageLimit&page_number=$pageNumber'));
+    //${loginData.getInt('userId')}
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("SDvsdscdsv");
     if (response.statusCode == 200) {
-      String value = await response.stream.bytesToString();
-      getResult = getResultModelFromJson(value);
-      print("SDvsfv");
+      String temp = await response.stream.bytesToString();
+      resultData = responseEntityFromJson(temp);
     }
-    else {
-      print(response.reasonPhrase);
+    else if(response.statusCode == 401){
     }
-    return getResult;
+    return resultData;
   }
   // static Future<ResponseEntity> getAllResults(assessmentId) async {
   //   ResponseEntity responseEntity=ResponseEntity();

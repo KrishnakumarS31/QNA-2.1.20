@@ -1,45 +1,68 @@
 import 'package:flutter/material.dart';
-
-class CustomCard extends StatelessWidget {
+import '../EntityModel/get_result_model.dart';
+class CustomCard extends StatefulWidget {
   const CustomCard({
     Key? key,
     required this.height,
     required this.width,
-    required this.subject,
-    required this.title,
-    required this.subTopic,
-    required this.std,
-    required this.date,
-    required this.status,
+    this.subject,
+    this.title,
+    required this.result,
+    this.d1,
+    this.subTopic,
+    this.std,
+    this.date,
+    this.status,
+    this.index,
   }) : super(key: key);
 
   final double height;
   final double width;
-  final String subject;
-  final String title;
-  final String subTopic;
-  final String std;
-  final String date;
-  final Color status;
+  final GetResultModel result;
+  final String? subject;
+  final String? title;
+  final String? subTopic;
+  final String? std;
+  final int? date;
+  final Color? status;
+  final String? d1;
+  final int? index;
+
+  @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
+
+  @override
+  void initState() {
+    super.initState();
+    print("dfhtrh");
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
+    var d = DateTime.fromMicrosecondsSinceEpoch(widget.result!.assessmentStartDate!);
+    print("fdvdfbb ");
+    var startDate = "${d.day}/${d.month}/${d.year}";
     return Container(
-      height: height * 0.1825,
+      height: widget.height * 0.1825,
       decoration: BoxDecoration(
-        color: Color.fromRGBO(28, 78, 80, 0.08),
+        color: const Color.fromRGBO(28, 78, 80, 0.08),
           border: Border.all(
-            color: Color.fromRGBO(233, 233, 233, 1),
+            color: const Color.fromRGBO(233, 233, 233, 1),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         children: [
           ListTile(
             title: Text(
-              subject,
+              'Subject - ${widget.result.assessmentCode}',
               style: TextStyle(
-                  color: Color.fromRGBO(28, 78, 80, 1),
-                  fontSize: height * 0.0187,
+                  color: const Color.fromRGBO(28, 78, 80, 1),
+                  fontSize: widget.height * 0.0187,
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w700),
             ),
@@ -49,14 +72,13 @@ class CustomCard extends StatelessWidget {
               children: [
                 Icon(
                   Icons.circle,
-                  color: status,
-                  size: width * 0.05,
+                  color: widget.status,
+                  size: widget.width * 0.05,
                 ),
-                Text(
-                  date,
+                Text(startDate,
                   style: TextStyle(
-                      color: Color.fromRGBO(102, 102, 102, 0.7),
-                      fontSize: height * 0.0125,
+                      color: const Color.fromRGBO(102, 102, 102, 0.7),
+                      fontSize: widget.height * 0.0125,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
                 ),
@@ -64,19 +86,19 @@ class CustomCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
-            child: Divider(),
+            padding: EdgeInsets.only(right: widget.width * 0.02, left: widget.width * 0.02),
+            child: const Divider(),
           ),
           Padding(
             padding:
-                EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
+                EdgeInsets.only(left: widget.width * 0.03, bottom: widget.height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                title,
+                'Title - ${widget.title}',
                 style: TextStyle(
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontSize: height * 0.0175,
+                    color: const Color.fromRGBO(82, 165, 160, 1),
+                    fontSize: widget.height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),
               ),
@@ -84,28 +106,28 @@ class CustomCard extends StatelessWidget {
           ),
           Padding(
             padding:
-                EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
+                EdgeInsets.only(left: widget.width * 0.03, bottom: widget.height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                subTopic,
+                'Subtopic ${widget.subTopic}',
                 style: TextStyle(
-                    color: Color.fromRGBO(82, 165, 160, 1),
-                    fontSize: height * 0.0175,
+                    color: const Color.fromRGBO(82, 165, 160, 1),
+                    fontSize: widget.height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),
               ),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(left: width * 0.03),
+            padding: EdgeInsets.only(left: widget.width * 0.03),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Class $std',
+                'Class ${widget.std}',
                 style: TextStyle(
-                    color: Color.fromRGBO(102, 102, 102, 1),
-                    fontSize: height * 0.0175,
+                    color: const Color.fromRGBO(102, 102, 102, 1),
+                    fontSize: widget.height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),
               ),
