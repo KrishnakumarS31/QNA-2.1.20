@@ -129,9 +129,8 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                                 borderRadius: BorderRadius.circular(15)),
                           ),
                           validator: (value) {
-                            if (value!.isEmpty) {
-                              return AppLocalizations.of(context)!
-                                  .enter_email_id;
+                            if (value!.length<8) {
+                              return "New password is required(Password Should be 8 Characters)";
                             } else {
                               return null;
                             }

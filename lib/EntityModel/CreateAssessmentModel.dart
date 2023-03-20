@@ -131,7 +131,7 @@ class AssessmentSettings {
     "avalability_for_practice": avalabilityForPractice,
     "allow_guest_student": allowGuestStudent,
     "show_solved_answer_sheet_in_advisor": showSolvedAnswerSheetInAdvisor,
-    "":showSolvedAnswerSheetDuringPractice,
+    //"":showSolvedAnswerSheetDuringPractice,
     "show_advisor_name": showAdvisorName,
     "show_advisor_email": showAdvisorEmail,
     "not_available": notAvailable,

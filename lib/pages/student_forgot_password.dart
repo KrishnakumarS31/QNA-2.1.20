@@ -133,8 +133,8 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                                 borderRadius: BorderRadius.circular(15)),
                           ),
                           validator: (value) {
-                            if (value!.isEmpty) {
-                              return "New password is required";
+                            if (value!.length<8) {
+                              return "New password is required(Password Should be 8 Characters)";
                             } else {
                               return null;
                             }
@@ -217,10 +217,6 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                       if (valid) {
                         StaticResponse res = await QnaService.updatePasswordOtp(
                             widget.email, widget.otp, newPassword.text);
-                        print("Machan ippa Mapula");
-                        print(res.code);
-                        print(res.message);
-                        print("res");
                         //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
                         if (res.code == 200) {
                           Navigator.push(

@@ -35,6 +35,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   ScrollController scrollController =ScrollController();
   int pageLimit =1;
   String searchValue='';
+  TextEditingController teacherQuestionBankSearchController = TextEditingController();
 
   @override
   void initState() {
@@ -53,8 +54,6 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
         });
     pageLimit=1;
     ResponseEntity response =await QnaService.getSearchAssessment(1,pageLimit,searchVal);
-    print(response.code);
-    print(response.data);
     allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
     Navigator.of(context).pop();
     setState(() {
@@ -91,7 +90,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController = TextEditingController();
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -232,14 +231,10 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                             iconSize: height * 0.04,
                             color: const Color.fromRGBO(255, 255, 255, 1),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherAssessmentSearched(
-                                      setLocale: widget.setLocale),
-                                ),
-                              );
+                              setState(() {
+                                assessments=[];
+                              });
+                              getData(teacherQuestionBankSearchController.text);
                             },
                             icon: const Icon(Icons.search),
                           )),
@@ -252,8 +247,15 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                         borderRadius: BorderRadius.circular(15)),
                   ),
                   enabled: true,
+                  onChanged: (val){
+                    setState(() {
+                      assessments=[];
+                    });
+                  },
                   onSubmitted: (value) {
-
+                    setState(() {
+                      assessments=[];
+                    });
                     getData(value);
 
                   },
@@ -281,7 +283,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                   height: height * 0.02,
                 ),
                 SizedBox(
-                  height: height * 0.5,
+                  height: height * 0.45,
                   child: ListView.builder(
                     itemCount: assessments.length,
                     itemBuilder: (context,index) =>

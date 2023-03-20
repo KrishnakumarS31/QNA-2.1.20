@@ -11,7 +11,8 @@ import '../Services/qna_service.dart';
 import 'student_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import "package:shared_preferences/shared_preferences.dart";
+
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key, required this.setLocale}) : super(key: key);
   final void Function(Locale locale) setLocale;
@@ -22,10 +23,24 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   SharedPreferences? loginData;
   late bool newUser;
-  Future<bool> check_if_alread_loggedin()async{
+  bool teacherClick = false;
+  bool memberStudentClick = false;
+
+  Future<bool> checkIfAlreadyLoggedIn(bool teacherClick)async{
     loginData=await SharedPreferences.getInstance();
-    newUser=(loginData?.getBool('login')??true);
-    if(newUser==false){
+    newUser=(loginData?.getBool('login') ??true);
+    // print("role");
+    // print(loginData?.getString('role'));
+    // print(newUser == false && loginData?.getString('role') == 'teacher');
+    // if(newUser==false && loginData?.getString('role') != 'teacher') {
+    //   print("Inside If");
+    //   return false;
+    // }
+    print("AAAAAAA");
+    print(newUser==false && loginData?.getString('role') == 'teacher');
+    if(newUser==false && loginData?.getString('role') == 'teacher')
+      {
+      print("Inside IFF");
       showDialog(
           context: context,
           builder: (context) {
@@ -56,6 +71,7 @@ class _WelcomePageState extends State<WelcomePage> {
       );
       return true;
     }
+
     return false;
   }
 
@@ -233,7 +249,10 @@ class _WelcomePageState extends State<WelcomePage> {
                                                         fontSize: localHeight * 0.044,
                                                         color: Colors.white)),
                                                 onPressed: () async {
-                                                  bool status =await check_if_alread_loggedin();
+                                                  teacherClick == true;
+                                                  bool status =await checkIfAlreadyLoggedIn(teacherClick);
+                                                  print("Status");
+                                                  print(status);
                                                   if(status==false){
                                                     Navigator.push(
                                                       context,
@@ -325,8 +344,6 @@ class _WelcomePageState extends State<WelcomePage> {
                     ],
                   )));
         }
-
-
 
         else {
           return Scaffold(
@@ -488,7 +505,8 @@ class _WelcomePageState extends State<WelcomePage> {
                                                     fontSize: localHeight * 0.024,
                                                     color: Colors.white)),
                                             onPressed: () async {
-                                              bool status =await check_if_alread_loggedin();
+                                              teacherClick == true;
+                                              bool status =await checkIfAlreadyLoggedIn(teacherClick);
                                               if(status==false){
                                                 Navigator.push(
                                                   context,

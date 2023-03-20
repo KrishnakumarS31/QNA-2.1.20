@@ -42,7 +42,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
       List<dynamic> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
-        if(widget.questions.data!.questions![j-1].questionType=='mcq'){
+        if(widget.questions.data!.questions![j-1].questionType=='MCQ'){
           selectedAnswers.add(widget.questions.data!.questions![j-1].choices![t].choiceText);
         }
         else{

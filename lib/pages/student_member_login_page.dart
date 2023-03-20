@@ -37,18 +37,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   @override
   void initState() {
     super.initState();
-    check_if_alread_loggedin();
-    _prefService.readCache("password").then((value)
-    {
-
-    });
+    checkIfAlreadyLoggedIn();
     //getData();
   }
 
-  void check_if_alread_loggedin()async{
+  void checkIfAlreadyLoggedIn()async{
     loginData=await SharedPreferences.getInstance();
     newUser=(loginData.getBool('login')??true);
-    if(newUser==false){
+    if(newUser==false && loginData?.getString('role') == 'student'){
       showDialog(
           context: context,
           builder: (context) {
@@ -950,6 +946,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             await QnaService.logInUser(
                                                 regNumber, passWord,'student');
                                             Navigator.of(context).pop();
+
                                             if (loginResponse.code == 200) {
                                               print("LOG IN");
                                               //UserDataModel userDataModel = UserDataModel();
@@ -991,24 +988,25 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 passWordController.clear();
                                               });
                                             }
-                                              else if(!userDataModel.data!.role.contains("student"))
-                                              {
-                                                Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType.rightToLeft,
-                                                    child: CustomDialog(
-                                                      title: "OOPS!",
-                                                      //'Wrong password',
-                                                      content:"Sorry You are not a Student!",
-                                                      //'please enter the correct password',
-                                                      button:
-                                                      AppLocalizations.of(context)!
-                                                          .retry,
-                                                    ),
+                                            }
+
+                                            else if(loginResponse.code == 400)
+                                            {
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType.rightToLeft,
+                                                  child: CustomDialog(
+                                                    title: "OOPS!",
+                                                    //'Wrong password',
+                                                    content:"Invalid Role,CheckYour Login Data",
+                                                    //'please enter the correct password',
+                                                    button:
+                                                    AppLocalizations.of(context)!
+                                                        .retry,
                                                   ),
-                                                );
-                                              }
+                                                ),
+                                              );
                                             }
 
                                             else if(loginResponse.code == 401){

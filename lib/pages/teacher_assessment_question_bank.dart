@@ -40,6 +40,7 @@ class TeacherAssessmentQuestionBankState
 
   getData() async {
     ResponseEntity responseEntity=await QnaService.getQuestionBankService(100,1);
+    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     setState(() {
       questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
     });

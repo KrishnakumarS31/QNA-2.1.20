@@ -151,9 +151,9 @@ class AssessmentResultHeader {
 enum QuestionTypeId { MCQ, SURVEY, DESCRIPTIVE }
 
 final questionTypeIdValues = EnumValues({
-  "descriptive": QuestionTypeId.DESCRIPTIVE,
-  "mcq": QuestionTypeId.MCQ,
-  "survey": QuestionTypeId.SURVEY
+  "Descriptive": QuestionTypeId.DESCRIPTIVE,
+  "MCQ": QuestionTypeId.MCQ,
+  "Survey": QuestionTypeId.SURVEY
 });
 
 class EnumValues<T> {

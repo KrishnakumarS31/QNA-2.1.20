@@ -42,7 +42,7 @@ class TeacherLoginState extends State<TeacherLogin> {
   void check_if_alread_loggedin()async{
     loginData=await SharedPreferences.getInstance();
     newUser=(loginData?.getBool('login')??true);
-    if(newUser==false){
+    if(newUser==false && loginData?.getString('role') == 'teacher'){
       showDialog(
           context: context,
           builder: (context) {
@@ -449,6 +449,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                         await QnaService.logInUser(regNumber, passWord,'teacher');
 
                         Navigator.of(context).pop();
+                        print(loginResponse.message);
+                        print(loginResponse.code);
+
                         if (loginResponse.code == 200) {
                           loginData?.setBool('login', false);
                           loginData?.setString('email', regNumber);
@@ -478,26 +481,30 @@ class TeacherLoginState extends State<TeacherLogin> {
                               passwordController.clear();
                             });
                           }
-                          else if(!userDataModel.data!.role.contains("teacher"))
-                          {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: CustomDialog(
-                                  title: "OOPS!",
-                                  //'Wrong password',
-                                  content:"Sorry You are not a Teacher!",
-                                  //'please enter the correct password',
-                                  button:
-                                  AppLocalizations.of(context)!
-                                      .retry,
-                                ),
-                              ),
-                            );
-                          }
 
                         }
+
+
+                        else if(loginResponse.code == 400)
+                        {
+                          print("Inside Else");
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: CustomDialog(
+                                title: "OOPS!",
+                                //'Wrong password',
+                                content:"Invalid Role, Please Check Your Login Data",
+                                //'please enter the correct password',
+                                button:
+                                AppLocalizations.of(context)!
+                                    .retry,
+                              ),
+                            ),
+                          );
+                        }
+
                         else if(loginResponse.code == 401) {
                           Navigator.push(
                             context,
@@ -511,8 +518,10 @@ class TeacherLoginState extends State<TeacherLogin> {
                             ),
                           );
                         }
+
                       }
-                    } else {
+                    }
+                    else {
                       Navigator.push(
                         context,
                         PageTransition(

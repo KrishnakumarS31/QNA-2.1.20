@@ -855,7 +855,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     fontWeight: FontWeight.w500,
                                     fontSize: localHeight * 0.022)),
                             const SizedBox(width: 20.0),
-                            Text(widget.time,
+                            Text(widget.endTime.toString().substring(0,7),
                                 style: TextStyle(
                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                     fontFamily: 'Inter',

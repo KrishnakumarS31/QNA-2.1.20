@@ -103,7 +103,7 @@ class TeacherAssessmentLooqPrepareQuesState extends State<TeacherAssessmentLooqP
   setData()async {
     loginData=await SharedPreferences.getInstance();
     setState(()  {
-      finalQuestion.questionType='mcq';
+      finalQuestion.questionType='MCQ';
     });
   }
 
@@ -730,7 +730,7 @@ class TeacherAssessmentLooqPrepareQuesState extends State<TeacherAssessmentLooqP
                                         classRoomController.text;
                                     demoQuestionModel.question =
                                         questionController.text;
-                                    demoQuestionModel.questionType = 'mcq';
+                                    demoQuestionModel.questionType = 'MCQ';
                                     demoQuestionModel.choices =
                                         selectedTemp;
                                     demoQuestionModel.advisorText =

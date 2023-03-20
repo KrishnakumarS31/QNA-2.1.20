@@ -35,7 +35,10 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
   Future<bool> check_if_alread_loggedin()async{
     loginData=await SharedPreferences.getInstance();
     newUser=(loginData?.getBool('login')??true);
-    if(newUser==false){
+    print("Role");
+    print(loginData?.getString('role'));
+    print(newUser==false && loginData?.getString('role') == 'student');
+    if(newUser==false && loginData?.getString('role') == 'student'){
       showDialog(
           context: context,
           builder: (context) {

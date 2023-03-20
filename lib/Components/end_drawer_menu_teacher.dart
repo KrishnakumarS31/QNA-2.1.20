@@ -5,6 +5,7 @@ import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Pages/teacher_login.dart';
+import '../Pages/welcome_page.dart';
 import '../Services/qna_service.dart';
 import '../pages/cookie_policy.dart';
 import '../pages/privacy_policy_hamburger.dart';
@@ -24,9 +25,9 @@ class EndDrawerMenuTeacher extends StatefulWidget {
 }
 
 class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
-  UserDataModel userDataModel = UserDataModel(code: 0, message: '');
   String name = '';
   String email='';
+  int userId=0;
 
   @override
   void initState() {
@@ -36,8 +37,10 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
 
   getData() async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
-    userDataModel=await QnaService.getUserDataService(loginData.getInt('userId'));
     setState((){
+      name=loginData.getString("firstName")!;
+      email=loginData.getString("email")!;
+      userId=loginData.getInt("userId")!;
     });
   }
 
@@ -76,7 +79,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     ),
                     const SizedBox(height: 2.0),
                     Text(
-                      userDataModel.data!.firstName,
+                      name,
                       style: Theme.of(context)
                           .primaryTextTheme
                           .bodyLarge
@@ -111,7 +114,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     Container(
                         padding: EdgeInsets.only(left: width * 0.09),
                         child: Text(
-                          userDataModel.data!.email,
+                          email,
                           style: const TextStyle(
                               color: Color.fromRGBO(221, 221, 221, 1),
                               fontFamily: 'Inter',
@@ -145,8 +148,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     ),
                     trailing: const Icon(Icons.navigate_next,
                         color: Color.fromRGBO(153, 153, 153, 1)),
-                    onTap: () {
-
+                    onTap: () async {
+                      UserDataModel userDataModel =await QnaService.getUserDataService(userId);
                       Navigator.push(
                         context,
                         PageTransition(
@@ -443,7 +446,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: TeacherLogin(
+                                    child: WelcomePage(
                                         setLocale: widget.setLocale),
                                   ),
                                 );

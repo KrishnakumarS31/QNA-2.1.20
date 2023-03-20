@@ -26,7 +26,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
       List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
       List<String> selectedAnswers =[];
       for(int t=0;t<selectedAns.length;t++){
-        if(widget.questions.data!.questions![j-1].questionType=='mcq'){
+        if(widget.questions.data!.questions![j-1].questionType=='MCQ'){
         }
         else{
           String temp='';
@@ -111,18 +111,18 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                 fontSize: localHeight * 0.03),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: localWidth * 0.05, top: localWidth * 0.026),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.file_download_outlined,
-                              size: localHeight * 0.03,
-                              color: const Color.fromRGBO(48, 145, 139, 1),
-                            ),
-                            onPressed: () {},
-                          ),
-                        )
+                        // Padding(
+                        //   padding: EdgeInsets.only(
+                        //       left: localWidth * 0.05, top: localWidth * 0.026),
+                        //   child: IconButton(
+                        //     icon: Icon(
+                        //       Icons.file_download_outlined,
+                        //       size: localHeight * 0.03,
+                        //       color: const Color.fromRGBO(48, 145, 139, 1),
+                        //     ),
+                        //     onPressed: () {},
+                        //   ),
+                        // )
                       ],
                     ),
                     SizedBox(height: localHeight * 0.020),
@@ -400,18 +400,18 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                   fontSize: localHeight * 0.02),
                             ),
                           ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: localWidth * 0.2, top: localWidth * 0.056),
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.file_download_outlined,
-                                size: localHeight * 0.02,
-                                color: const Color.fromRGBO(48, 145, 139, 1),
-                              ),
-                              onPressed: () {},
-                            ),
-                          )
+                          // Padding(
+                          //   padding: EdgeInsets.only(
+                          //       left: localWidth * 0.2, top: localWidth * 0.056),
+                          //   child: IconButton(
+                          //     icon: Icon(
+                          //       Icons.file_download_outlined,
+                          //       size: localHeight * 0.02,
+                          //       color: const Color.fromRGBO(48, 145, 139, 1),
+                          //     ),
+                          //     onPressed: () {},
+                          //   ),
+                          // )
                         ],
                       ),
                       SizedBox(height: localHeight * 0.020),

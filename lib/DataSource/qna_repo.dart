@@ -19,7 +19,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart';
 class QnaRepo {
   static logInUser(String email, String password,String? role) async {
-    LoginModel loginModel = LoginModel(code: 0, message: 'message');
+    LoginModel loginModel = LoginModel();
+
     SharedPreferences loginData=await SharedPreferences.getInstance();
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
@@ -28,15 +29,17 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
+    String temp = await response.stream.bytesToString();
+
 
     if (response.statusCode == 200) {
-
-      String temp = await response.stream.bytesToString();
       print(temp);
       loginModel = loginModelFromJson(temp);
       //print(temp);
       loginData.setString('token', loginModel.data.accessToken);
-    } else {
+    }
+    else {
+      loginModel = loginModelFromJson(temp);
       print(response.reasonPhrase);
     }
     return loginModel;
@@ -429,7 +432,7 @@ class QnaRepo {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('DELETE', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/$questionId'));
+    var request = http.Request('DELETE', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/$questionId?user_id=${loginData.getInt('userId')}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -455,7 +458,7 @@ class QnaRepo {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/$questionId'));
+    var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions/$questionId?user_id=${loginData.getInt('userId')}'));
     request.body = editQuestionModelToJson(question);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -482,7 +485,7 @@ class QnaRepo {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/assessment/$assessmentId'));
+    var request = http.Request('PUT', Uri.parse('https://dev.qnatest.com/api/v1/assessment/$assessmentId?user_id=${loginData.getInt('userId')}'));
     request.body = createAssessmentModelToJson(assessment);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

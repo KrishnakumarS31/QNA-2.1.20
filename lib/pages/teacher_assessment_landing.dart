@@ -924,11 +924,11 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   SharedPreferences loginData=await SharedPreferences.getInstance();
                                                   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                                                   Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
-                                                  print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
                                                   assessment.topic=topicController.text;
                                                   assessment.subTopic=subTopicController.text;
                                                   assessment.subject=subjectController.text;
                                                   assessment.createAssessmentModelClass=classController.text;
+                                                  assessment.questions=[];
                                                   assessment.userId=loginData?.getInt('userId');
                                                   Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
                                                   Navigator.push(

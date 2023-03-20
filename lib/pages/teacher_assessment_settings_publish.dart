@@ -51,7 +51,8 @@ class TeacherAssessmentSettingPublishState
   int val = -1;
   CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
   TextEditingController retriesController=TextEditingController();
-  TextEditingController timePermitController=TextEditingController();
+  TextEditingController timePermitHoursController=TextEditingController();
+  TextEditingController timePermitMinutesController=TextEditingController();
   List<Question> quesList=[];
   Question ques=Question();
   TextEditingController timeinput = TextEditingController();
@@ -61,6 +62,8 @@ class TeacherAssessmentSettingPublishState
   DateTime startTime=DateTime.now();
   DateTime endDate=DateTime.now();
   DateTime endTime=DateTime.now();
+  int hours=0;
+  int minutes=0;
   @override
   void initState() {
     super.initState();
@@ -504,19 +507,55 @@ class TeacherAssessmentSettingPublishState
                                           ),
                                           SizedBox(width: width * 0.4),
                                           SizedBox(
-                                            width: width * 0.17,
+                                            width: width * 0.1,
                                             child: TextField(
-                                              controller: timePermitController,
-                                              inputFormatters: <
-                                                  TextInputFormatter>[
-                                                timeMaskFormatter
-                                                // Not sure if it can be done with RegExp or a custom class here instead
-                                           ],
+                                              controller: timePermitHoursController,
                                               keyboardType: const TextInputType
                                                       .numberWithOptions(
                                                   decimal: false),
                                               decoration: InputDecoration(
-                                                hintText: "HH:MM",
+                                                hintText: "HH",
+                                                hintStyle: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 0.3),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: height * 0.020),
+                                              ),
+                                              onChanged: (val){
+                                                setState(() {
+                                                  hours=int.parse(val);
+                                                });
+                                              },
+                                              style: TextStyle(
+                                                  fontSize: height * 0.020,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                          Text(
+                                            " : ",
+                                            style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  28, 78, 80, 1),
+                                              fontSize: height * 0.0175,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.1,
+                                            child: TextField(
+                                              onChanged: (val){
+                                                setState(() {
+                                                  minutes=int.parse(val);
+                                                });
+                                              },
+                                              controller: timePermitMinutesController,
+                                              keyboardType: const TextInputType
+                                                  .numberWithOptions(
+                                                  decimal: false),
+                                              decoration: InputDecoration(
+                                                hintText: "MM",
                                                 hintStyle: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 0.3),
@@ -1669,7 +1708,8 @@ class TeacherAssessmentSettingPublishState
                                       ),
                                     ),
                                     //shape: StadiumBorder(),
-                                    onPressed: () async {
+                                    onPressed: () async
+                                    {
                                       if(val==1){
                                         assessment.assessmentType='test';
                                       }
@@ -1677,8 +1717,6 @@ class TeacherAssessmentSettingPublishState
                                         assessment.assessmentType='practice';
                                       }
                                       assessment.assessmentStatus='inprogress';
-                                      //assessment.assessmentSettings?.allowedNumberOfTestRetries= int.parse(retriesController.text);
-                                      //assessment.assessmentSettings?.avalabilityForPractice=true;
                                       AssessmentSettings assessmentSettings=AssessmentSettings();
                                       assessmentSettings.notAvailable=activeStatus;
                                       assessmentSettings.notAvailable=publicAccessStatus;
@@ -1694,7 +1732,7 @@ class TeacherAssessmentSettingPublishState
                                       assessment.assessmentStartdate=startDate.microsecondsSinceEpoch;
                                       endDate=DateTime(endDate.year,endDate.month,endDate.day,endTime.hour,endTime.minute);
                                       assessment.assessmentEnddate=endDate.microsecondsSinceEpoch;
-                                      assessment.assessmentDuration=1800;
+                                      assessment.assessmentDuration=(hours*60) + minutes;
                                       ResponseEntity statusCode=ResponseEntity();
                                       if(assessment.assessmentId!=null){
                                         statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!);
@@ -1786,7 +1824,7 @@ class TeacherAssessmentSettingPublishState
                                       assessment.assessmentStartdate=startDate.microsecondsSinceEpoch;
                                       endDate=DateTime(endDate.year,endDate.month,endDate.day,endTime.hour,endTime.minute);
                                       assessment.assessmentEnddate=endDate.microsecondsSinceEpoch;
-                                      assessment.assessmentDuration=1800;
+                                      assessment.assessmentDuration=(hours*60) + minutes;
 
 
 

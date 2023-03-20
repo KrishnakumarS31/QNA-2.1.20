@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Pages/student_member_login_page.dart';
+import '../Pages/welcome_page.dart';
 import '../Services/qna_service.dart';
 import '../pages/change_email_student.dart';
 import '../pages/cookie_policy.dart';
@@ -27,8 +28,8 @@ class EndDrawerMenuStudent extends StatefulWidget {
 }
 
 class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
-  UserDataModel userDataModel = UserDataModel(code: 0, message: '');
 
+int userId=0;
   @override
   void initState() {
     super.initState();
@@ -36,8 +37,9 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   }
 
   getData() async {
-    userDataModel=await QnaService.getUserDataService(widget.userId);
+    SharedPreferences loginData=await SharedPreferences.getInstance();
     setState((){
+      userId=loginData.getInt("userId")!;
     });
   }
 
@@ -144,7 +146,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     ),
                     trailing: const Icon(Icons.navigate_next,
                         color: Color.fromRGBO(153, 153, 153, 1)),
-                    onTap: () {
+                    onTap: () async {
+                      UserDataModel userDataModel =await QnaService.getUserDataService(widget.userId);
                       Navigator.push(
                         context,
                         PageTransition(
@@ -175,7 +178,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
                           child: ResetPasswordStudent(
-                            userId: userDataModel.data!.id,
+                            userId: userId,
                           ),
                         ),
                       );
@@ -200,7 +203,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
                           child: ChangeEmailStudent(
-                              userId: userDataModel.data!.id),
+                              userId: userId),
                         ),
                       );
                     }),
@@ -447,7 +450,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
-                                      child: StudentMemberLoginPage(setLocale: widget.setLocale),
+                                      child: WelcomePage(setLocale: widget.setLocale),
                                     ),
                                   );
                                 }),

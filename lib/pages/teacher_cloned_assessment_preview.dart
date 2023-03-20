@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_preapare_ques.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_ques_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_settings_publish.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Questions;
-import '../EntityModel/CreateAssessmentModel.dart';
+
+import '../Entity/Teacher/response_entity.dart';
+import '../EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
+import '../Services/qna_service.dart';
 import 'teacher_prepare_qnBank.dart';
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
@@ -28,7 +32,7 @@ class TeacherClonedAssessmentPreviewState
     extends State<TeacherClonedAssessmentPreview> {
   bool additionalDetails = true;
   GetAssessmentModel assessment =GetAssessmentModel();
-  CreateAssessmentModel finalAssessment=CreateAssessmentModel(questions: []);
+  CreateAssessmentModel.CreateAssessmentModel finalAssessment=CreateAssessmentModel.CreateAssessmentModel(questions: []);
   List<Questions.Question> quesList=[];
 
   int mark=0;
@@ -43,6 +47,7 @@ class TeacherClonedAssessmentPreviewState
 
   @override
   void initState() {
+    print("Yeah page loading");
     assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     finalAssessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     quesList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
@@ -219,15 +224,23 @@ class TeacherClonedAssessmentPreviewState
                       ),
                     ),
                     //shape: StadiumBorder(),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: TeacherClonedAssessmentPreview(
-                              setLocale: widget.setLocale),
-                        ),
-                      );
+                    onPressed: () async {
+                      print("Hi THere");
+                      finalAssessment.assessmentStatus='inprogress';
+                      CreateAssessmentModel.AssessmentSettings assessmentSettings=CreateAssessmentModel.AssessmentSettings();
+                      finalAssessment.assessmentSettings=assessmentSettings;
+                      print(finalAssessment.toString());
+                      ResponseEntity statusCode = await QnaService.createAssessmentTeacherService(finalAssessment);
+                      if(statusCode.code==200){
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherAssessmentLanding(
+                                setLocale: widget.setLocale),
+                          ),
+                        );
+                      }
                     },
                     child: Text(
 
@@ -350,9 +363,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       ),
       onPressed: () {
         Navigator.of(context).pop();
-        //widget.assessment.questions![widget.index].removeQuestions?.add(widget.index);
-        widget.assessment.questions!.removeAt(widget.index);
-        //Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(widget.assessment);
+        //widget.assessment.questions!.removeAt(widget.index);
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.index);
+        Provider.of<CreateAssessmentProvider>(context, listen: false).removeLooqQuestionInAssess(widget.question!.questionId);
         Navigator.push(
           context,
           PageTransition(

@@ -64,9 +64,7 @@ class QnaService{
     return await QnaTestRepo.logOut();
   }
 
-  static createQuestionService() async{
-    return await QnaTestRepo.createQuestion();
-  }
+
 
   static Future<GetQuestionBankModel> getQuestionBankMockService() async {
     return await QnaTestRepo.getQuestionBankMock();
