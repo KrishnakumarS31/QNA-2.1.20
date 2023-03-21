@@ -1448,6 +1448,8 @@ class TeacherAssessmentSettingPublishState
                                                 borderRadius: 30.0,
                                                 onToggle: (val) {
                                                   setState(() {
+                                                    print("Value of val");
+                                                    print(val);
                                                     allowedGuestStatus = val;
                                                   });
                                                 },

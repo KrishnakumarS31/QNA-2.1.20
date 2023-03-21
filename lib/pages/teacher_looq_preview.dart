@@ -306,7 +306,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         question.subTopic=widget.editQuestionModel.subTopic;
                         question.datumClass=widget.editQuestionModel.editQuestionModelClass;
                         question.question=widget.editQuestionModel.question;
-                        question.questionType='mcq';
+                        question.questionType='MCQ';
                         question.advisorUrl=widget.editQuestionModel.advisorUrl;
                         question.advisorText=widget.editQuestionModel.advisorText;
                         question.choices=widget.question.choices;

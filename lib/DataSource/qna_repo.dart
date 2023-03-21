@@ -264,6 +264,9 @@ class QnaRepo {
     request.body = createQuestionModelToJson(question);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print("RESPONSE CODE :");
+    print(question);
+    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
@@ -369,7 +372,7 @@ class QnaRepo {
     var headers = {
       'Content-Type': 'application/json'
     };
-    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/guest?code=$assessmentId'));
+    var request = http.Request('POST', Uri.parse('https://dev.qnatest.com/api/v1/assessment/guest?code=$assessmentId'));
     request.body = json.encode({
       "first_name": name
     });

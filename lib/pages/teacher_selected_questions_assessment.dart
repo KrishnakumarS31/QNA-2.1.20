@@ -142,7 +142,7 @@ class TeacherSelectedQuestionAssessmentState
       questionList.addAll(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
       assessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
       totalQues=assessment.questions!.length;
-      for(int i =0;i<assessment.questions!.length;i++){
+      for(int i =0;i<questionList!.length;i++){
         totalMark=totalMark+assessment.questions![i].questionMarks!;
       }
     });

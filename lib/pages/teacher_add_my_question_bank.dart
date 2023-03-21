@@ -12,6 +12,7 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Components/today_date.dart';
 
 class TeacherAddMyQuestionBank extends StatefulWidget {
   const TeacherAddMyQuestionBank({
@@ -25,6 +26,7 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
   final bool? assessment;
   final String? assessmentStatus;
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherAddMyQuestionBankState createState() =>
       TeacherAddMyQuestionBankState();
@@ -235,7 +237,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              '26/12/2022',
+                             todayDate(),
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontFamily: "Inter",

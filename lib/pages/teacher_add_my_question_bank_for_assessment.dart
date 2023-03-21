@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Components/today_date.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:qna_test/EntityModel/login_entity.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
-import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
-import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +13,8 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:intl/intl.dart';
+
 
 class TeacherAddMyQuestionBankForAssessment extends StatefulWidget {
   const TeacherAddMyQuestionBankForAssessment({
@@ -78,14 +79,14 @@ class TeacherAddMyQuestionBankForAssessmentState extends State<TeacherAddMyQuest
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return const Center(
-                  child: CircularProgressIndicator(
-                    color: Color.fromRGBO(48, 145, 139, 1),
-                  ));
-            });
+        // showDialog(
+        //     context: context,
+        //     builder: (context) {
+        //       return const Center(
+        //           child: CircularProgressIndicator(
+        //             color: Color.fromRGBO(48, 145, 139, 1),
+        //           ));
+        //     });
 
         create_question_model.CreateQuestionModel createQuestionModel=create_question_model.CreateQuestionModel();
         createQuestionModel.questions=finalQuesList;
@@ -238,7 +239,7 @@ class TeacherAddMyQuestionBankForAssessmentState extends State<TeacherAddMyQuest
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              '26/12/2022',
+                             todayDate(),
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontFamily: "Inter",

@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
 import 'package:qna_test/Pages/teacher_looq_search_question.dart';
+import 'package:qna_test/pages/teacher_question_edit.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/get_question_model.dart';
@@ -345,7 +346,7 @@ class QuestionPreview extends StatelessWidget {
           context,
           PageTransition(
             type: PageTransitionType.rightToLeft,
-            child: LooqQuestionEdit(question: question, setLocale: setLocale),
+            child: QuestionEdit(question: question, setLocale: setLocale),
           ),
         );
       },

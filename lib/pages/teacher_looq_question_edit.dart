@@ -285,7 +285,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                     children: [
                       MyRadioOption<String>(
                         icon: Icons.check_box_outlined,
-                        value: 'mcq',
+                        value: 'MCQ',
                         groupValue: _groupValue,
                         onChanged: _valueChangedHandler(),
                         label: 'MCQ',

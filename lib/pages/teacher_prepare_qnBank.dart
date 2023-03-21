@@ -102,7 +102,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   setData()async {
     loginData=await SharedPreferences.getInstance();
     setState(()  {
-      finalQuestion.questionType='mcq';
+      finalQuestion.questionType='MCQ';
     });
   }
 
@@ -729,7 +729,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         classRoomController.text;
                                     demoQuestionModel.question =
                                         questionController.text;
-                                    demoQuestionModel.questionType = 'mcq';
+                                    demoQuestionModel.questionType = 'MCQ';
                                     demoQuestionModel.choices =
                                         selectedTemp;
                                     demoQuestionModel.advisorText =
