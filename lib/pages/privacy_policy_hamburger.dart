@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class PrivacyPolicyHamburger extends StatefulWidget {
   const PrivacyPolicyHamburger({
     Key? key,
@@ -93,6 +93,9 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                 SizedBox(height: height * 0.05),
                 Padding(
                   padding: EdgeInsets.only(left: height * 0.03),
+                  child:
+                  GestureDetector(
+                    onTap: _launchUrl,
                   child: RichText(
                       text: TextSpan(children: [
                     TextSpan(
@@ -110,11 +113,18 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                             decoration: TextDecoration.underline,
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.018)),
-                  ])),
+                  ])),),
                 ),
               ],
             )),
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    final Uri _url = Uri.parse('Https://www.ITNEDUCATION.com/privacypolicy');
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }

@@ -242,7 +242,7 @@ class ResetPasswordState extends State<ResetPassword> {
                       }
                     },
                     child: Text(
-                      AppLocalizations.of(context)!.send_otp,
+                      AppLocalizations.of(context)!.submit,
                       style: TextStyle(
                           fontSize: height * 0.024,
                           fontFamily: "Inter",

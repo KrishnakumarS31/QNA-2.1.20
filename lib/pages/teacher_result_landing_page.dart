@@ -191,7 +191,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
 
   getData() async {
     ResponseEntity response =
-        await QnaService.getResultDataService(1, 1, pageLimit);
+        await QnaService.getResultDataService(widget.userId, 1, pageLimit);
+    //widget.userId
     allResults = List<GetResultModel>.from(
         response.data.map((x) => GetResultModel.fromJson(x)));
     setState(() {

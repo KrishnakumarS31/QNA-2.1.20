@@ -837,7 +837,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 1
                                 ? IconButton(
                               icon: Icon(
-                                Icons.arrow_circle_left,
+                                Icons.arrow_left,
                                 color: const Color.fromRGBO(
                                     209, 209, 209, 1),
                                 size: height * 0.06,
@@ -846,7 +846,7 @@ class StudQuestionState extends State<StudQuestion> {
                             )
                                 : IconButton(
                               icon: Icon(
-                                Icons.arrow_circle_left,
+                                Icons.arrow_left,
                                 color: context
                                     .watch<QuestionNumProvider>()
                                     .questionNum ==
@@ -963,7 +963,7 @@ class StudQuestionState extends State<StudQuestion> {
                                 values.data!.questions!.length
                                 ? IconButton(
                               icon: Icon(
-                                Icons.arrow_circle_right,
+                                Icons.arrow_right,
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
                                 size: height * 0.06,
@@ -1043,7 +1043,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   }
                                 },
                                 icon: Icon(
-                                  Icons.arrow_circle_right,
+                                  Icons.arrow_right,
                                   color: context
                                       .watch<QuestionNumProvider>()
                                       .questionNum ==

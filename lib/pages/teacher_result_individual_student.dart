@@ -197,42 +197,42 @@ class TeacherResultIndividualStudentState
               SizedBox(
                 height: height * 0.02,
               ),
-              Container(
-                height: height * 0.06,
-                margin: const EdgeInsets.only(left: 15, right: 6),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  border: Border.all(
-                    color: const Color.fromRGBO(82, 165, 160, 1),
-                  ),
-                ),
-                child: Row(
-                  children:
-                    [
-                      MyRadioOption<String>(
-                        icon: Icons.check_box_outlined,
-                        value: 'Correct\nAnswers',
-                        groupValue: _groupValue,
-                        onChanged: _valueChangedHandler(),
-                        label: 'Correct Answers',
-                      ),
-                    MyRadioOption<String>(
-                      icon: Icons.account_tree_outlined,
-                      value: 'Incorrect\nAnswers',
-                      groupValue: _groupValue,
-                      onChanged: _valueChangedHandler(),
-                      label: 'Incorrect Answers',
-                    ),
-                    MyRadioOption<String>(
-                      icon: Icons.library_books_sharp,
-                      value: 'All Answers',
-                      groupValue: _groupValue,
-                      onChanged: _valueChangedHandler(),
-                      label: 'All Answers',
-                    ),
-                ],
-                ),
-              ),
+              // Container(
+              //   height: height * 0.06,
+              //   margin: const EdgeInsets.only(left: 15, right: 6),
+              //   decoration: BoxDecoration(
+              //     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+              //     border: Border.all(
+              //       color: const Color.fromRGBO(82, 165, 160, 1),
+              //     ),
+              //   ),
+              //   child: Row(
+              //     children:
+              //       [
+              //         MyRadioOption<String>(
+              //           icon: Icons.check_box_outlined,
+              //           value: 'Correct\nAnswers',
+              //           groupValue: _groupValue,
+              //           onChanged: _valueChangedHandler(),
+              //           label: 'Correct Answers',
+              //         ),
+              //       MyRadioOption<String>(
+              //         icon: Icons.account_tree_outlined,
+              //         value: 'Incorrect\nAnswers',
+              //         groupValue: _groupValue,
+              //         onChanged: _valueChangedHandler(),
+              //         label: 'Incorrect Answers',
+              //       ),
+              //       MyRadioOption<String>(
+              //         icon: Icons.library_books_sharp,
+              //         value: 'All Answers',
+              //         groupValue: _groupValue,
+              //         onChanged: _valueChangedHandler(),
+              //         label: 'All Answers',
+              //       ),
+              //   ],
+              //   ),
+              // ),
               SizedBox(
                 height: height * 0.03,
               ),
@@ -296,7 +296,7 @@ class TeacherResultIndividualStudentState
                   children: [
                     widget.result.assessmentResults![0].questions![index]
                                 .questionType! ==
-                            "survey"
+                            "SURVEY"
                         ? GestureDetector(
                             onTap: () {},
                             child: QuesAndAns(
@@ -321,7 +321,7 @@ class TeacherResultIndividualStudentState
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Descriptive',
+                  'DESCRIPTIVE',
                   style: TextStyle(
                       fontSize: height * 0.02,
                       color: const Color.fromRGBO(28, 78, 80, 1),
@@ -394,7 +394,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
           child: Row(
             children: [
               Text(
-                'Q 03',
+                'Q',
                 style: TextStyle(
                     fontSize: widget.height * 0.014,
                     color: const Color.fromRGBO(82, 165, 160, 1),

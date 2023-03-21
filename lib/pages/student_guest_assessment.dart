@@ -233,20 +233,39 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   });
                               values = await QnaService.getQuestionGuest(assessmentIdController.text,widget.name);
                               Navigator.of(context).pop();
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: StudQuestion(
-                                    userName: widget.name,
-                                    setLocale: widget.setLocale,
-                                    assessmentId: assessmentIdController.text,
-                                    ques: values,
+                              if(values.code == 200) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: StudQuestion(
+                                      userName: widget.name,
+                                      setLocale: widget.setLocale,
+                                      assessmentId: assessmentIdController.text,
+                                      ques: values,
+                                    ),
                                   ),
-                                ),
-                              );
-                              assessmentIdController.clear();
-                            } else {
+                                );
+                                assessmentIdController.clear();
+                              }
+                              else if(values.code == 400){
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(
+                                      title: AppLocalizations.of(context)!
+                                          .invalid_assessment_iD,
+                                      content: '',
+                                      button: AppLocalizations.of(context)!.retry,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+
+                            else {
+                              print("ELSE");
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -464,7 +483,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                             if (assessmentIdController.text.length >= 8) {
-                              print("Pesiklam");
                               print(assessmentIdController.text);
                               print(assessmentIdController.text.length);
 
