@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/choice_entity.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Pages/teacher_looq_preview.dart';
+import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -173,10 +175,13 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
       ),
       onPressed: () async {
         LoginModel statusCode = await QnaService.deleteQuestion(widget.question.questionId!);
-        int count = 0;
-        Navigator.popUntil(context, (route) {
-          return count++ == 2;
-        });
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: TeacherQuestionBank(setLocale: widget.setLocale,),
+          ),
+        );
       },
     );
     // set up the AlertDialog

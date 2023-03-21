@@ -147,30 +147,29 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     ),
                   ),
                   onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const Center(
-                              child: CircularProgressIndicator(
-                                color: Color.fromRGBO(48, 145, 139, 1),
-                              ));
-                        });
-                    ResponseEntity responseEntity=await QnaService.getQuestionBankService(1,1);
-                    List<Question> questions=[];
-                    if(responseEntity.data==null){
-
-                    }
-                    else{
-                      questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
-                    }
-                    Navigator.of(context).pop();
+                    // showDialog(
+                    //     context: context,
+                    //     builder: (context) {
+                    //       return const Center(
+                    //           child: CircularProgressIndicator(
+                    //             color: Color.fromRGBO(48, 145, 139, 1),
+                    //           ));
+                    //     });
+                    // ResponseEntity responseEntity=await QnaService.getQuestionBankService(3,1);
+                    // List<Question> questions=[];
+                    // if(responseEntity.data==null){
+                    //
+                    // }
+                    // else{
+                    //   questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+                    // }
+                    // Navigator.of(context).pop();
                     Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                     Navigator.push(
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
                         child: TeacherQuestionBank(setLocale: widget.setLocale,
-                          quesList: questions,
                         ),
                       ),
                     );

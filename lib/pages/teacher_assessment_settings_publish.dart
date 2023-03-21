@@ -72,7 +72,11 @@ class TeacherAssessmentSettingPublishState
     for(int i =0;i< assessment.questions!.length;i++){
       totalMark=totalMark + assessment.questions![i].questionMarks!;
     }
+    for(int i =0;i< assessment.addQuestion!.length;i++){
+      totalMark=totalMark + assessment.addQuestion![i].questionMark!;
+    }
     totalQues=assessment.questions!.length;
+    totalQues=assessment.addQuestion!.length;
     assessment.totalQuestions=totalQues;
     assessment.totalScore=totalMark;
 
@@ -168,7 +172,7 @@ class TeacherAssessmentSettingPublishState
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Maths\t |\t Class IX",
+                          "${assessment.subject}\t |\t ${assessment.createAssessmentModelClass}",
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.0175,
@@ -200,7 +204,7 @@ class TeacherAssessmentSettingPublishState
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
-                                text: "\tCalculus",
+                                text: "\t${assessment.topic}",
                                 style: TextStyle(
                                     fontSize: height * 0.018,
                                     fontWeight: FontWeight.w400,
@@ -230,7 +234,7 @@ class TeacherAssessmentSettingPublishState
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
-                                text: "\tN/A",
+                                text: "\t${assessment.subTopic}",
                                 style: TextStyle(
                                     fontSize: height * 0.018,
                                     fontWeight: FontWeight.w400,
@@ -255,7 +259,7 @@ class TeacherAssessmentSettingPublishState
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
-                                text: "\t 05",
+                                text: "\t ${assessment.totalQuestions}",
                                 style: TextStyle(
                                     fontSize: height * 0.018,
                                     fontWeight: FontWeight.w500,
@@ -277,7 +281,7 @@ class TeacherAssessmentSettingPublishState
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
-                                text: "\t 50",
+                                text: "\t ${assessment.totalScore}",
                                 style: TextStyle(
                                     fontSize: height * 0.018,
                                     fontWeight: FontWeight.w500,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Entity/student.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
-import 'package:qna_test/Pages/student_regis_verify_otp.dart';
 import 'package:qna_test/Pages/teacher_registration_verify_page.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';

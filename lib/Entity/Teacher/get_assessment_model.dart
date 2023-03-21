@@ -75,6 +75,11 @@ class GetAssessmentModel {
     "assessment_settings": assessmentSettings==null?'':assessmentSettings!.toJson(),
     "questions": questions==null?[]:List<dynamic>.from(questions!.map((x) => x.toJson())),
   };
+
+  @override
+  String toString() {
+    return 'GetAssessmentModel{assessmentId: $assessmentId, assessmentType: $assessmentType, assessmentCode: $assessmentCode, totalScore: $totalScore, assessmentDuration: $assessmentDuration, assessmentStatus: $assessmentStatus, subject: $subject, topic: $topic, subTopic: $subTopic, getAssessmentModelClass: $getAssessmentModelClass, assessmentScoreMessage: $assessmentScoreMessage, assessmentSettings: $assessmentSettings, questions: $questions}';
+  }
 }
 
 class AssessmentSettings {

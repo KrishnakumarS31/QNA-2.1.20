@@ -157,7 +157,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       context,
                       PageTransition(
                         type: PageTransitionType.rightToLeft,
-                        child: TeacherQuestionBank(setLocale: widget.setLocale, quesList: [],),
+                        child: TeacherQuestionBank(setLocale: widget.setLocale,),
                       ),
                     );
                   }

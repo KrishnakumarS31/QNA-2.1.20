@@ -1065,10 +1065,14 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   ),
                 ),
                 SizedBox(height: height*0.01,),
-
-                QuestionWidget(height: height),
-                QuestionWidget(height: height),
-                QuestionWidget(height: height),
+                assessmentVal.questions==null||assessmentVal.questions==[]?
+                SizedBox(
+                  height: height * 0.4,
+                  child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: assessmentVal.questions?.length,
+                      itemBuilder: (context,index)=>QuestionWidget(height: height,question: assessmentVal.questions![index],)),
+                ):const SizedBox(height: 0,),
                 SizedBox(height: height*0.02,),
                 Row(
                   children: [
@@ -1203,9 +1207,11 @@ class QuestionWidget extends StatelessWidget {
   const QuestionWidget({
     Key? key,
     required this.height,
+    required this.question
   }) : super(key: key);
 
   final double height;
+  final Question question;
 
   @override
   Widget build(BuildContext context) {
@@ -1248,7 +1254,7 @@ class QuestionWidget extends StatelessWidget {
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w600,
                   ),),
-                Text("5",
+                Text("${question.questionMarks}",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.015,

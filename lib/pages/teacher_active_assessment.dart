@@ -6,7 +6,6 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../EntityModel/get_assessment_model.dart' as assessment_model;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 class TeacherActiveAssessment extends StatefulWidget {
@@ -43,14 +42,21 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
 
   @override
   void initState() {
+    getData();
+
+    super.initState();
+  }
+  getData(){
     assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
     finalAssessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     finalAssessment.removeQuestions=[];
     for(int i=0;i< finalAssessment.questions!.length;i++){
-      mark=mark + finalAssessment.questions![i].questionMarks!;
+      mark=mark + assessment.questions![i].questionMark!;
     }
-    print(finalAssessment.toString());
-    super.initState();
+    setState(() {
+      mark=mark;
+    });
+    print(assessment.toString());
   }
 
   @override
