@@ -799,18 +799,18 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   assessment.attemptScore=totalMark;
                   int percent=((ansCorrect/values.data!.questions!.length) * 100).round();
                   print("percent =${values.data!.assessmentScoreMessage?[0].assessmentPercent}");
-                  if(percent<=40){
-                    assessment.assessmentScoreId=values.data!.assessmentScoreMessage![2].assessmentScoreId;
-                    message=values.data!.assessmentScoreMessage![2].assessmentScoreStatus!;
-                  }
-                  else if(percent<=99)
+                  // if(percent<=40){
+                  //   assessment.assessmentScoreId=values.data!.assessmentScoreMessage![2].assessmentScoreId;
+                  //   message=values.data!.assessmentScoreMessage![2].assessmentScoreStatus!;
+                  // }
+                  if(percent == 100)
                     {
-                      assessment.assessmentScoreId=values.data!.assessmentScoreMessage![1].assessmentScoreId;
-                      message=values.data!.assessmentScoreMessage![1].assessmentScoreStatus!;
+                      assessment.assessmentScoreId=values.data!.assessmentScoreMessage![0].assessmentScoreId;
+                      message=values.data!.assessmentScoreMessage![0].assessmentScoreStatus!;
                     }
                   else{
-                    assessment.assessmentScoreId=values.data!.assessmentScoreMessage![0].assessmentScoreId;
-                    message=values.data!.assessmentScoreMessage![0].assessmentScoreStatus!;
+                    assessment.assessmentScoreId=values.data!.assessmentScoreMessage![1].assessmentScoreId;
+                    message=values.data!.assessmentScoreMessage![1].assessmentScoreStatus!;
                   }
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');

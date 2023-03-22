@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Pages/forgot_password_email.dart';
 import 'package:qna_test/Pages/teacher_forgot_password_email.dart';
 import 'package:qna_test/Pages/teacher_registration_page.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
@@ -294,7 +295,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: TeacherForgotPasswordEmail(
+                                child: ForgotPasswordEmail(
                                     setLocale: widget.setLocale),
                               ),
                             );

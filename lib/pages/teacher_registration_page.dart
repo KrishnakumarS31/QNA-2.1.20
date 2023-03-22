@@ -32,6 +32,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   TextEditingController teacherconfirmPasswordController =
       TextEditingController();
   bool tocCheck = false;
+  bool also = false;
   bool pPCheck = false;
   bool error = true;
   String? gender;
@@ -1094,8 +1095,11 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               value: tocCheck,
                               onChanged: (val) {
                                 setState(() {
+
                                   tocCheck = val!;
-                                  if (tocCheck) {}
+                                  if (tocCheck) {
+                                    also = true;
+                                  }
                                 });
                               },
                             ),
@@ -1371,7 +1375,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             teacherOrganisationNameController.text,
                         countryResident:
                             selectedCountryResident.dropDownValue?.value,
-                        role: ["teacher"]);
+                        role: also == true ? ["teacher","student"] : ["teacher"]);
                     if (valid) {
                       LoginModel res =
                           await QnaService.postUserDetailsService(student);

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/pages/student_registration_update_page.dart';
 import '../EntityModel/user_data_model.dart';
 
 class StudentUserProfile extends StatefulWidget {
@@ -262,17 +264,17 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                     SizedBox(
                       height: height * 0.01
                     ),
-                    // Text(
-                    //   widget.userDataModel.data?.role == "student,teacher"
-                    //       ? "Yes"
-                    //       : "No",
-                    //   style: TextStyle(
-                    //     color: const Color.fromRGBO(48, 145, 139, 1),
-                    //     fontSize: height * 0.02,
-                    //     fontFamily: "Inter",
-                    //     fontWeight: FontWeight.w600,
-                    //   ),
-                    // ),
+                    Text(
+                      widget.userDataModel.data!.role!.contains("teacher")
+                          ? "Yes"
+                          : "No",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(48, 145, 139, 1),
+                        fontSize: height * 0.02,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     SizedBox(height: height * 0.02),
                     Text(
                       'RegistrationID / Roll Number',
@@ -337,7 +339,11 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 fontSize: height * 0.03,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600)),
-                        onPressed: () {},
+                        onPressed: () {
+                          PageTransition(type: PageTransitionType.rightToLeft,
+                            child: StudentRegistrationUpdatePage(userData: widget, isEdit: true),
+                          );
+                        },
                       ),
                     )
                   ]),

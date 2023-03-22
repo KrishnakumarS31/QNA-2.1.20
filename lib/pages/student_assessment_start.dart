@@ -527,8 +527,10 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         });
                                     values = await QnaService.getQuestion(assessmentId: assessmentID.text);
                                     Navigator.of(context).pop();
+                                    print(values.code);
+                                    if (assessmentID.text.length >= 8) {
+                                      print("INSIDE IF");
                                     if (values.code == 200) {
-                                      if (assessmentID.text.length >= 8) {
                                         Navigator.push(
                                           context,
                                           PageTransition(
@@ -541,19 +543,34 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                           ),
                                         );
                                       }
-                                    }
-                                    else {
+                                    else if(values.code == 400) {
+                                      print("INSIDE ELSE IF");
                                       Navigator.push(
                                         context,
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: CustomDialog(
-                                            title: AppLocalizations.of(context)!.invalid_assessment_iD,
+                                            title: '${values.message}',
                                             content: '',
                                             button: AppLocalizations.of(context)!.retry,),
                                         ),
                                       );
                                     }
+                                    }
+                                    else {
+                                      print("INSIDE ELSE IF");
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: CustomDialog(
+                                            title: '${values.message}',
+                                            content: '',
+                                            button: AppLocalizations.of(context)!.retry,),
+                                        ),
+                                      );
+                                    }
+
                                   }
                                 },
                                 // onPressed: () async {

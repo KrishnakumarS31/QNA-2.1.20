@@ -99,7 +99,8 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
+    print("RESPONSE");
+    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);

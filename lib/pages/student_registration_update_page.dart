@@ -4,38 +4,46 @@ import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
+import 'package:qna_test/EntityModel/user_data_model.dart';
 import 'package:qna_test/Pages/student_regis_verify_otp.dart';
+import 'package:qna_test/pages/student_user_profile.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../Services/qna_service.dart';
 
-class StudentRegistrationPage extends StatefulWidget {
-  const StudentRegistrationPage({super.key});
+class StudentRegistrationUpdatePage extends StatefulWidget {
+
+  const StudentRegistrationUpdatePage({Key? key, this.userData,this.isEdit}) : super(key: key);
+
+  final StudentUserProfile? userData;
+  final bool? isEdit;
 
   @override
-  StudentRegistrationPageState createState() => StudentRegistrationPageState();
+  StudentRegistrationUpdatePageState createState() => StudentRegistrationUpdatePageState();
 }
 
-class StudentRegistrationPageState extends State<StudentRegistrationPage> {
+class StudentRegistrationUpdatePageState extends State<StudentRegistrationUpdatePage> {
   final formKey = GlobalKey<FormState>();
   TextEditingController studentFirstNameController = TextEditingController();
   TextEditingController studentLastNameController = TextEditingController();
   TextEditingController studentEmailController = TextEditingController();
   TextEditingController studentRollNumberController = TextEditingController();
   TextEditingController studentOrganisationNameController =
-      TextEditingController();
+  TextEditingController();
   TextEditingController studentIsTeacherController = TextEditingController();
   TextEditingController studentPasswordController = TextEditingController();
   TextEditingController studentconfirmPasswordController =
-      TextEditingController();
+  TextEditingController();
+  DateTime date = DateTime.now();
+  final DateFormat formatter = DateFormat('dd/MM/yyyy');
+  late String formatted = '';
   bool tocCheck = false;
   bool pPCheck = false;
-  bool also = false;
   bool error = true;
   String? gender;
-  final studentDobController = TextEditingController();
+  TextEditingController studentDobController = TextEditingController();
   late Response userDetails;
   int n = 244;
   List<String> countryCitizenList = [
@@ -287,7 +295,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
     "Zimbabwe"
   ];
   SingleValueDropDownController selectedCountryCitizen =
-      SingleValueDropDownController();
+  SingleValueDropDownController();
   List<String> countryResidentList = [
     "India",
     "United States",
@@ -295,12 +303,23 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
     "Rest of World"
   ];
   SingleValueDropDownController selectedCountryResident =
-      SingleValueDropDownController();
+  SingleValueDropDownController();
   int d = 0;
 
 
   @override
   void initState() {
+    if(widget.isEdit == true)
+    {
+      date = DateTime.fromMicrosecondsSinceEpoch(widget.userData!.userDataModel.data!.dob);
+      formatted = formatter.format(date);
+      studentFirstNameController = widget.userData?.userDataModel.data?.firstName!= null ?TextEditingController(text: widget.userData?.userDataModel.data?.firstName) : studentFirstNameController;
+      studentLastNameController = widget.userData?.userDataModel.data?.lastName!= null ?TextEditingController(text: widget.userData?.userDataModel.data?.lastName) : studentLastNameController;
+      studentEmailController = widget.userData?.userDataModel.data?.email!= null ?TextEditingController(text: widget.userData?.userDataModel.data?.email) : studentEmailController;
+      studentRollNumberController = widget.userData?.userDataModel.data?.rollNumber != null ? TextEditingController(text: widget.userData?.userDataModel.data?.rollNumber) : studentRollNumberController;
+      studentOrganisationNameController = widget.userData?.userDataModel.data?.organisationName!= null ?TextEditingController(text: widget.userData?.userDataModel.data?.organisationName) : studentOrganisationNameController;
+      studentDobController = formatted!= null ?TextEditingController(text: formatted) : studentDobController;
+    }
     super.initState();
   }
 
@@ -344,9 +363,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
         ),
       ),
       body: SingleChildScrollView(
@@ -370,39 +389,40 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                           alignment: Alignment.topLeft,
                           child: TextFormField(
                             controller: studentFirstNameController,
+                            //initialValue: widget.isEdit == true ? widget.userData?.userDataModel.data?.firstName : " ",
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               label: RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .first_name_caps,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.018),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.018)),
-                              ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!
+                                          .first_name_caps,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: localHeight * 0.018),
+                                    ),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.018)),
+                                  ])),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: localHeight * 0.016),
                               hintText:
-                                  AppLocalizations.of(context)!.first_name_hint,
+                              AppLocalizations.of(context)!.first_name_hint,
                               focusedBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                       color: Color.fromRGBO(82, 165, 160, 1)),
@@ -433,35 +453,35 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             decoration: InputDecoration(
                               label: RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .last_name_caps,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.018),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.018)),
-                              ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!
+                                          .last_name_caps,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: localHeight * 0.018),
+                                    ),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.018)),
+                                  ])),
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: localHeight * 0.016),
                               hintText:
-                                  AppLocalizations.of(context)!.last_name_hint,
+                              AppLocalizations.of(context)!.last_name_hint,
                               focusedBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                       color: Color.fromRGBO(82, 165, 160, 1)),
@@ -517,7 +537,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             final String formatted =
                             formatter.format(pickedDate!);
                             d = pickedDate.microsecondsSinceEpoch;
-                              studentDobController.text = formatted;
+                            studentDobController.text = formatted;
                             formKey.currentState!.validate();
 
 
@@ -528,28 +548,28 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               keyboardType: TextInputType.datetime,
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 label: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text:
+                                      TextSpan(
+                                        text:
                                         AppLocalizations.of(context)!.dob_caps,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.018),
-                                  ),
-                                  TextSpan(
-                                      text: "\t*",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.018)),
-                                ])),
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.018),
+                                      ),
+                                      TextSpan(
+                                          text: "\t*",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.018)),
+                                    ])),
                                 hintStyle: TextStyle(
                                     color: const Color.fromRGBO(
                                         102, 102, 102, 0.3),
@@ -557,7 +577,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                     fontWeight: FontWeight.w400,
                                     fontSize: localHeight * 0.016),
                                 hintText:
-                                    AppLocalizations.of(context)!.dob_format,
+                                AppLocalizations.of(context)!.dob_format,
                                 suffixIcon: const Icon(
                                   Icons.calendar_today_outlined,
                                   color: Color.fromRGBO(141, 167, 167, 1),
@@ -604,7 +624,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   child: DropdownButtonHideUnderline(
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       children: [
                                         Radio(
                                           value: "male",
@@ -672,24 +692,24 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 color: Colors.white,
                                 child: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!.gender,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.015),
-                                  ),
-                                  TextSpan(
-                                      text: "\t* \t",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.016)),
-                                ])),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!.gender,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.015),
+                                      ),
+                                      TextSpan(
+                                          text: "\t* \t",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.016)),
+                                    ])),
                               ),
                             )
                           ],
@@ -720,7 +740,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       enableSearch: true,
                                       textFieldDecoration: InputDecoration(
                                           floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
                                               color: const Color.fromRGBO(
@@ -766,24 +786,24 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 color: Colors.white,
                                 child: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: "\tCOUNTRY CITIZEN",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.013),
-                                  ),
-                                  TextSpan(
-                                      text: "\t* \t",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.016)),
-                                ])),
+                                      TextSpan(
+                                        text: "\tCOUNTRY CITIZEN",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.013),
+                                      ),
+                                      TextSpan(
+                                          text: "\t* \t",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.016)),
+                                    ])),
                               ),
                             )
                           ],
@@ -814,7 +834,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       enableSearch: true,
                                       textFieldDecoration: InputDecoration(
                                           floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
                                               color: const Color.fromRGBO(
@@ -868,24 +888,24 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 color: Colors.white,
                                 child: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: '\tCOUNTRY RESIDENT',
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.013),
-                                  ),
-                                  TextSpan(
-                                      text: "\t*\t",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.016)),
-                                ])),
+                                      TextSpan(
+                                        text: '\tCOUNTRY RESIDENT',
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.013),
+                                      ),
+                                      TextSpan(
+                                          text: "\t*\t",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.016)),
+                                    ])),
                               ),
                             )
                           ],
@@ -900,28 +920,28 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               label: RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .email_id_caps,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.018),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.018)),
-                              ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!
+                                          .email_id_caps,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: localHeight * 0.018),
+                                    ),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.018)),
+                                  ])),
                               helperText: 'an OTP will be sent to Email ID',
                               labelStyle: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
@@ -930,13 +950,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   fontSize: localHeight * 0.016),
                               helperStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: localHeight * 0.016),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: localHeight * 0.016),
@@ -970,28 +990,28 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               label: RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .reg_roll_caps,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.018),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.018)),
-                              ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!
+                                          .reg_roll_caps,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: localHeight * 0.018),
+                                    ),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.018)),
+                                  ])),
                               labelStyle: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: 'Inter',
@@ -999,7 +1019,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   fontSize: localHeight * 0.016),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: localHeight * 0.016),
@@ -1033,31 +1053,31 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               label: RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .ins_org_caps,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.018),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.018)),
-                              ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!
+                                          .ins_org_caps,
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: localHeight * 0.018),
+                                    ),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: localHeight * 0.018)),
+                                  ])),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: localHeight * 0.016),
@@ -1094,9 +1114,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               onChanged: (val) {
                                 setState(() {
                                   tocCheck = val!;
-                                  if (tocCheck) {
-                                    also = true;
-                                  }
+                                  if (tocCheck) {}
                                 });
                               },
                             ),
@@ -1137,57 +1155,58 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   setState(() {
                                     pPCheck = val!;
                                     if (pPCheck) {
+                                      isAlso = true;
                                     }
                                   });
                                 },
                               ),
                               RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!.agree_msg,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(51, 51, 51, 1),
-                                      fontFamily: "Inter"),
-                                ),
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .privacy_Policy,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w400,
-                                      decoration: TextDecoration.underline,
-                                      color: Color.fromRGBO(82, 165, 160, 1),
-                                      fontFamily: "Inter"),
-                                ),
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!.and,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w400,
-                                      decoration: TextDecoration.underline,
-                                      color: Color.fromRGBO(82, 165, 160, 1),
-                                      fontFamily: "Inter"),
-                                ),
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!.terms,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w400,
-                                      decoration: TextDecoration.underline,
-                                      color: Color.fromRGBO(82, 165, 160, 1),
-                                      fontFamily: "Inter"),
-                                ),
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!.services,
-                                  style: const TextStyle(
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: Color.fromRGBO(51, 51, 51, 1),
-                                      fontFamily: "Inter"),
-                                ),
-                              ])),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.agree_msg,
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                          fontFamily: "Inter"),
+                                    ),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!
+                                          .privacy_Policy,
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          decoration: TextDecoration.underline,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                          fontFamily: "Inter"),
+                                    ),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.and,
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          decoration: TextDecoration.underline,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                          fontFamily: "Inter"),
+                                    ),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.terms,
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          decoration: TextDecoration.underline,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                          fontFamily: "Inter"),
+                                    ),
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.services,
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                          fontFamily: "Inter"),
+                                    ),
+                                  ])),
                             ]),
                         SizedBox(
                           height: localHeight * 0.03,
@@ -1205,158 +1224,158 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         SizedBox(
                           height: localHeight * 0.02,
                         ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: TextFormField(
-                            controller: studentPasswordController,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              label: RichText(
-                                  text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .password_caps,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.017),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.017)),
-                              ])),
-                              hintStyle: TextStyle(
-                                  color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: localHeight * 0.016),
-                              hintText:
-                                  AppLocalizations.of(context)!.password_hint,
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Color.fromRGBO(82, 165, 160, 1)),
-                                  borderRadius: BorderRadius.circular(15)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                            ),
-                            inputFormatters: [
-                              FilteringTextInputFormatter.deny(' ')
-                            ],
-                            onChanged: (val) {
-                              formKey.currentState!.validate();
-                            },
-                            validator: (value) {
-                              if (value!.length < 8) {
-                                return "Enter Minimum 8 Characters";
-                              } else {
-                                return null;
-                              }
-                            },
-                            // validator: (value){
-                            //   if(value!.isEmpty){
-                            //     return 'Enter Password';
-                            //   }
-                            //   else if(value!.length < 8){
-                            //     return 'Enter Minimum 8 characters for password';
-                            //   }
-                            //   else{
-                            //     return null;
-                            //   }
-                            // },
-                          ),
-                        ),
-                        SizedBox(
-                          height: localHeight * 0.03,
-                        ),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: TextFormField(
-                            controller: studentconfirmPasswordController,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              label: RichText(
-                                  text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!
-                                      .confirm_password,
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: localHeight * 0.017),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.017)),
-                              ])),
-                              // SizedBox(
-                              //   width: localWidth * 0.25,
-                              //   child: Row(
-                              //     children: [
-                              //       Text(AppLocalizations.of(context)!.confirm_password,
-                              //         style: TextStyle(
-                              //           color: const Color.fromRGBO(51, 51, 51, 1),
-                              //           fontSize: localHeight *0.016,
-                              //           fontFamily: "Inter",
-                              //           fontWeight: FontWeight.w600,
-                              //         ),),
-                              //       const Text("\t*", style: TextStyle(color: Colors.red)),
-                              //     ],
-                              //   ),
-                              // ),
-                              labelStyle: TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: localHeight * 0.016),
-                              hintStyle: TextStyle(
-                                  color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: localHeight * 0.016),
-                              hintText:
-                                  AppLocalizations.of(context)!.verify_password,
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Color.fromRGBO(82, 165, 160, 1)),
-                                  borderRadius: BorderRadius.circular(15)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                            ),
-                            onChanged: (value) {
-                              formKey.currentState!.validate();
-                            },
-                            validator: (value) {
-                              if (studentPasswordController.text !=
-                                  studentconfirmPasswordController.text) {
-                                return 'Re-Enter Password';
-                              } else if (value!.isEmpty) {
-                                return 'Enter Confirm Password';
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                        )
+                        // Align(
+                        //   alignment: Alignment.topLeft,
+                        //   child: TextFormField(
+                        //     controller: studentPasswordController,
+                        //     keyboardType: TextInputType.text,
+                        //     decoration: InputDecoration(
+                        //       floatingLabelBehavior:
+                        //       FloatingLabelBehavior.always,
+                        //       label: RichText(
+                        //           text: TextSpan(children: [
+                        //             TextSpan(
+                        //               text: AppLocalizations.of(context)!
+                        //                   .password_caps,
+                        //               style: TextStyle(
+                        //                   color: const Color.fromRGBO(
+                        //                       102, 102, 102, 1),
+                        //                   fontFamily: 'Inter',
+                        //                   fontWeight: FontWeight.w600,
+                        //                   fontSize: localHeight * 0.017),
+                        //             ),
+                        //             TextSpan(
+                        //                 text: "\t*",
+                        //                 style: TextStyle(
+                        //                     color: const Color.fromRGBO(
+                        //                         219, 35, 35, 1),
+                        //                     fontFamily: 'Inter',
+                        //                     fontWeight: FontWeight.w600,
+                        //                     fontSize: localHeight * 0.017)),
+                        //           ])),
+                        //       hintStyle: TextStyle(
+                        //           color:
+                        //           const Color.fromRGBO(102, 102, 102, 0.3),
+                        //           fontFamily: 'Inter',
+                        //           fontWeight: FontWeight.w400,
+                        //           fontSize: localHeight * 0.016),
+                        //       hintText:
+                        //       AppLocalizations.of(context)!.password_hint,
+                        //       focusedBorder: OutlineInputBorder(
+                        //           borderSide: const BorderSide(
+                        //               color: Color.fromRGBO(82, 165, 160, 1)),
+                        //           borderRadius: BorderRadius.circular(15)),
+                        //       border: OutlineInputBorder(
+                        //           borderRadius: BorderRadius.circular(15)),
+                        //     ),
+                        //     inputFormatters: [
+                        //       FilteringTextInputFormatter.deny(' ')
+                        //     ],
+                        //     onChanged: (val) {
+                        //       formKey.currentState!.validate();
+                        //     },
+                        //     validator: (value) {
+                        //       if (value!.length < 8) {
+                        //         return "Enter Minimum 8 Characters";
+                        //       } else {
+                        //         return null;
+                        //       }
+                        //     },
+                        //     // validator: (value){
+                        //     //   if(value!.isEmpty){
+                        //     //     return 'Enter Password';
+                        //     //   }
+                        //     //   else if(value!.length < 8){
+                        //     //     return 'Enter Minimum 8 characters for password';
+                        //     //   }
+                        //     //   else{
+                        //     //     return null;
+                        //     //   }
+                        //     // },
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: localHeight * 0.03,
+                        // ),
+                        // Align(
+                        //   alignment: Alignment.topLeft,
+                        //   child: TextFormField(
+                        //     controller: studentconfirmPasswordController,
+                        //     keyboardType: TextInputType.text,
+                        //     decoration: InputDecoration(
+                        //       floatingLabelBehavior:
+                        //       FloatingLabelBehavior.always,
+                        //       label: RichText(
+                        //           text: TextSpan(children: [
+                        //             TextSpan(
+                        //               text: AppLocalizations.of(context)!
+                        //                   .confirm_password,
+                        //               style: TextStyle(
+                        //                   color: const Color.fromRGBO(
+                        //                       102, 102, 102, 1),
+                        //                   fontFamily: 'Inter',
+                        //                   fontWeight: FontWeight.w600,
+                        //                   fontSize: localHeight * 0.017),
+                        //             ),
+                        //             TextSpan(
+                        //                 text: "\t*",
+                        //                 style: TextStyle(
+                        //                     color: const Color.fromRGBO(
+                        //                         219, 35, 35, 1),
+                        //                     fontFamily: 'Inter',
+                        //                     fontWeight: FontWeight.w600,
+                        //                     fontSize: localHeight * 0.017)),
+                        //           ])),
+                        //       // SizedBox(
+                        //       //   width: localWidth * 0.25,
+                        //       //   child: Row(
+                        //       //     children: [
+                        //       //       Text(AppLocalizations.of(context)!.confirm_password,
+                        //       //         style: TextStyle(
+                        //       //           color: const Color.fromRGBO(51, 51, 51, 1),
+                        //       //           fontSize: localHeight *0.016,
+                        //       //           fontFamily: "Inter",
+                        //       //           fontWeight: FontWeight.w600,
+                        //       //         ),),
+                        //       //       const Text("\t*", style: TextStyle(color: Colors.red)),
+                        //       //     ],
+                        //       //   ),
+                        //       // ),
+                        //       labelStyle: TextStyle(
+                        //           color: const Color.fromRGBO(51, 51, 51, 1),
+                        //           fontFamily: 'Inter',
+                        //           fontWeight: FontWeight.w600,
+                        //           fontSize: localHeight * 0.016),
+                        //       hintStyle: TextStyle(
+                        //           color:
+                        //           const Color.fromRGBO(102, 102, 102, 0.3),
+                        //           fontFamily: 'Inter',
+                        //           fontWeight: FontWeight.w400,
+                        //           fontSize: localHeight * 0.016),
+                        //       hintText:
+                        //       AppLocalizations.of(context)!.verify_password,
+                        //       focusedBorder: OutlineInputBorder(
+                        //           borderSide: const BorderSide(
+                        //               color: Color.fromRGBO(82, 165, 160, 1)),
+                        //           borderRadius: BorderRadius.circular(15)),
+                        //       border: OutlineInputBorder(
+                        //           borderRadius: BorderRadius.circular(15)),
+                        //     ),
+                        //     onChanged: (value) {
+                        //       formKey.currentState!.validate();
+                        //     },
+                        //     validator: (value) {
+                        //       if (studentPasswordController.text !=
+                        //           studentconfirmPasswordController.text) {
+                        //         return 'Re-Enter Password';
+                        //       } else if (value!.isEmpty) {
+                        //         return 'Enter Confirm Password';
+                        //       } else {
+                        //         return null;
+                        //       }
+                        //     },
+                        //   ),
+                        // )
                       ],
                     ),
                     //SizedBox(height:localHeight * 0.05),
@@ -1394,18 +1413,18 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         dob: d,
                         gender: gender,
                         countryNationality:
-                            selectedCountryCitizen.dropDownValue?.value,
+                        selectedCountryCitizen.dropDownValue?.value,
                         email: studentEmailController.text,
                         password: studentPasswordController.text,
                         rollNumber: studentRollNumberController.text,
                         organisationName:
-                            studentOrganisationNameController.text,
+                        studentOrganisationNameController.text,
                         countryResident:
-                            selectedCountryResident.dropDownValue?.value,
-                        role: also == true ?["student","teacher"]: ["student"]);
+                        selectedCountryResident.dropDownValue?.value,
+                        role:isAlso ?["student","teacher"]: ["student"]);
                     if (valid) {
                       LoginModel res =
-                          await QnaService.postUserDetailsService(student);
+                      await QnaService.postUserDetailsService(student);
                       if (res.code == 200) {
                         print("LOG IN");
                         print(res.data);

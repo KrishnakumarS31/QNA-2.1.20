@@ -268,6 +268,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     double height = MediaQuery.of(context).size.height;
     TextEditingController teacherQuestionBankSearchController =
         TextEditingController();
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,

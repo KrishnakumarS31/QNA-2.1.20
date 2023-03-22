@@ -39,7 +39,7 @@ class QnaTestRepo {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId'));
+            'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();

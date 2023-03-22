@@ -21,6 +21,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
     super.initState();
     date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
     formatted = formatter.format(date);
+    print("Init ROLE");
+    print(widget.userDataModel.data?.role);
   }
 
   @override
@@ -251,7 +253,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                     ),
                     SizedBox(height: height * 0.02),
                     Text(
-                      'Registered as Teacher also',
+                      'Registered as Student also',
                       style: TextStyle(
                         color: const Color.fromRGBO(102, 102, 102, 1),
                         fontSize: height * 0.015,
@@ -263,7 +265,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                       height: height * 0.01,
                     ),
                     Text(
-                      widget.userDataModel.data?.role == "student,teacher"
+                      widget.userDataModel.data!.role!.contains("student")
                           ? "Yes"
                           : "No",
                       style: TextStyle(
