@@ -235,7 +235,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: TeacherResultSubmitted(result : widget.result),
+                          child: TeacherResultSubmitted(result : widget.result,advisorName: widget.advisorName),
                         ),
                       );
                     },
@@ -306,7 +306,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: TeacherResultInprogress(result : widget.result),
+                          child: TeacherResultInprogress(result : widget.result,advisorName: widget.advisorName),
                         ),
                       );
                     },

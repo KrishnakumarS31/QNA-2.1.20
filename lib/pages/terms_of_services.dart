@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class TermsOfServiceHamburger extends StatefulWidget {
   const TermsOfServiceHamburger({
@@ -77,7 +78,11 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                 ),
                 SizedBox(height: height * 0.05),
                 Center(
-                  child: RichText(
+                  child:
+                  GestureDetector(
+                    onTap: _launchUrl,
+                    child:
+                  RichText(
                       text: TextSpan(children: [
                     TextSpan(
                         text: "Terms of Service",
@@ -96,10 +101,18 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.018)),
                   ])),
+                  ),
                 ),
               ],
             )),
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    final Uri _url = Uri.parse('Https://www.ITNEDUCATION.com/privacypolicy');
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 }

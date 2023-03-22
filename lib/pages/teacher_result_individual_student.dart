@@ -247,7 +247,8 @@ class TeacherResultIndividualStudentState
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              ListView.builder(
+                  widget.result.assessmentResults != ""
+                      ? ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: widget.result.assessmentResults!.length,
@@ -272,7 +273,8 @@ class TeacherResultIndividualStudentState
                     ),
                   ],
                 ),
-              ),
+              )
+                      : const SizedBox(),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Divider(),
@@ -288,7 +290,8 @@ class TeacherResultIndividualStudentState
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              ListView.builder(
+              widget.result.assessmentResults != ""
+              ? ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: widget.result.assessmentResults!.length,
@@ -313,7 +316,8 @@ class TeacherResultIndividualStudentState
                     ),
                   ],
                 ),
-              ),
+              )
+                  :const SizedBox(),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Divider(),
@@ -329,7 +333,8 @@ class TeacherResultIndividualStudentState
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              ListView.builder(
+            widget.result.assessmentResults != ""
+                ? ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: widget.result.assessmentResults!.length,
@@ -354,7 +359,8 @@ class TeacherResultIndividualStudentState
                     ),
                   ],
                 ),
-              ),
+              )
+                : const SizedBox(),
             ]),
           ),
         ));

@@ -6,10 +6,11 @@ import '../Components/custom_card1.dart';
 import '../Components/custom_result_card.dart';
 
 class TeacherResultSubmitted extends StatefulWidget {
-  TeacherResultSubmitted({
-    Key? key, required this.result, this.advisorName,
+  const TeacherResultSubmitted({
+    Key? key, required this.result, this.advisorName, this.userId,
   }) : super(key: key);
   final GetResultModel result;
+  final int? userId;
   final String? advisorName;
 
   @override
@@ -20,7 +21,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
   IconData showIcon = Icons.expand_circle_down_outlined;
 
   @override
-  void initState() {}
+  void initState() {
+    super.initState();
+  }
 
   changeIcon(IconData pramIcon) {
     if (pramIcon == Icons.expand_circle_down_outlined) {
@@ -103,7 +106,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "UCE112233",
+                      widget.result.assessmentCode!,
                       style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: height * 0.025,
@@ -139,12 +142,13 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       ? CustomCard1(
                           height: height,
                           width: width,
-                          subject:  widget.result.subject,
-                          title:  widget.result.topic!,
-                          subTitle: 'Internal Assessment ID: ${widget.result.assessmentCode!}',
+                          subject: widget.result.subject,
+                          title: widget.result.topic!,
+                          subTitle:
+                              'Internal Assessment ID: ${widget.result.assessmentCode!}',
                           subTopic: widget.result.subTopic!,
-                          std:  widget.result.studentClass!,
-                          date: "${widget.result.assessmentResults![0].attemptStartDate!}",
+                          std: widget.result.studentClass!,
+                          date: "${widget.result.assessmentResults![0].attemptStartDate!}" ?? "",
                           status: const Color.fromRGBO(255, 157, 77, 1),
                         )
                       : Container(
@@ -161,7 +165,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                 title: Text(
                                   'Subject - ${widget.result.subject}',
                                   style: TextStyle(
-                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      color:
+                                          const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.0187,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w700),
@@ -206,17 +211,20 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       Text(
                                         'Advisor',
                                         style: TextStyle(
-                                            color:
-                                                const Color.fromRGBO(28, 78, 80, 1),
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
                                             fontSize: height * 0.0185,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w700),
                                       ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
                                       Text(
                                         widget.advisorName!,
                                         style: TextStyle(
-                                            color:
-                                                const Color.fromRGBO(82, 165, 160, 1),
+                                            color: const Color.fromRGBO(
+                                                82, 165, 160, 1),
                                             fontSize: height * 0.0175,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w500),
@@ -233,7 +241,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Text(
                                     'Title - ${widget.result.topic}',
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500),
@@ -248,7 +257,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Text(
                                     'Sub Topic ${widget.result.subTopic}',
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500),
@@ -263,7 +273,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Text(
                                     'Class ${widget.result.studentClass}',
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(102, 102, 102, 1),
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500),
@@ -359,7 +370,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      //crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Text(
                                           "${widget.result.totalScore!}",
@@ -401,7 +411,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Text(
                                     'Schedule',
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        color:
+                                            const Color.fromRGBO(28, 78, 80, 1),
                                         fontSize: height * 0.017,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w700),
