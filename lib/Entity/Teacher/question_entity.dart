@@ -60,6 +60,6 @@ class Question {
 
   @override
   String toString() {
-    return 'Question{questionId: $questionId, question: $question, questionType: $questionType, advisorText: $advisorText, advisorUrl: $advisorUrl, subject: $subject, topic: $topic, subTopic: $subTopic, datumClass: $datumClass, choices: $choices}';
+    return 'Question{questionId: $questionId,\n question: $question, questionType: $questionType, advisorText: $advisorText, advisorUrl: $advisorUrl, subject: $subject, topic: $topic, subTopic: $subTopic, datumClass: $datumClass,\n choices: $choices}';
   }
 }

@@ -90,7 +90,7 @@ class CreateAssessmentModel {
 
   @override
   String toString() {
-    return 'CreateAssessmentModel{assessmentId: $assessmentId,\n userId: $userId,\n assessmentType: $assessmentType,\n assessmentStatus: $assessmentStatus,\n totalScore: $totalScore,\n totalQuestions: $totalQuestions,\n assessmentStartdate: $assessmentStartdate,\n assessmentEnddate: $assessmentEnddate,\n assessmentDuration: $assessmentDuration,\n subject: $subject,\n topic: $topic,\n subTopic: $subTopic,\n createAssessmentModelClass: $createAssessmentModelClass,\n assessmentSettings: $assessmentSettings,\n questions: $questions,\n addQuestion: $addQuestion,\n removeQuestions: $removeQuestions}';
+    return 'CreateAssessmentModel{assessmentId: $assessmentId, userId: $userId, assessmentType: $assessmentType, assessmentStatus: $assessmentStatus, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartdate: $assessmentStartdate, assessmentEnddate: $assessmentEnddate,\n assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, createAssessmentModelClass: $createAssessmentModelClass,\n assessmentSettings: $assessmentSettings,\n questions: $questions,\n addQuestion: $addQuestion, removeQuestions: $removeQuestions}';
   }
 }
 
@@ -136,6 +136,11 @@ class AssessmentSettings {
     "show_advisor_email": showAdvisorEmail,
     "not_available": notAvailable,
   };
+
+  @override
+  String toString() {
+    return 'AssessmentSettings{allowedNumberOfTestRetries: $allowedNumberOfTestRetries, avalabilityForPractice: $avalabilityForPractice, allowGuestStudent: $allowGuestStudent, showSolvedAnswerSheetInAdvisor: $showSolvedAnswerSheetInAdvisor, showSolvedAnswerSheetDuringPractice: $showSolvedAnswerSheetDuringPractice, showAdvisorName: $showAdvisorName, showAdvisorEmail: $showAdvisorEmail, notAvailable: $notAvailable}';
+  }
 }
 
 class Question {

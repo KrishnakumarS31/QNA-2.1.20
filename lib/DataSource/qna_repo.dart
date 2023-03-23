@@ -207,11 +207,12 @@ class QnaRepo {
     var request = http.Request('POST', Uri.parse(resultUrl));
     request.body = postAssessmentModelToJson(assessment!);
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    print(request.body);
+    print("Final");
+    debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     print("Response Code");
-    debugPrint(assessment.toString());
+    //debugPrint(assessment.toString());
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       print(temp);

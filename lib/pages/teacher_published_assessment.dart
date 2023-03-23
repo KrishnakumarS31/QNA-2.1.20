@@ -3,8 +3,10 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
+import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
+import '../Services/qna_service.dart';
 import 'about_us.dart';
 import 'cookie_policy.dart';
 import 'help_page.dart';
@@ -15,11 +17,13 @@ import 'package:qna_test/pages/reset_password_teacher.dart';
 
 
 class TeacherPublishedAssessment extends StatefulWidget {
-  const TeacherPublishedAssessment({
-    Key? key, required this.setLocale,
+  TeacherPublishedAssessment({
+    Key? key, required this.setLocale,required this.assessmentCode,required this.questionList
 
   }) : super(key: key);
+  String assessmentCode;
   final void Function(Locale locale) setLocale;
+  List<QuestionPaperModel.Question> questionList;
 
 
   @override
@@ -44,21 +48,26 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 2), () { //asynchronous delay
+    getData();
+    Future.delayed(const Duration(seconds: 3), () { //asynchronous delay
       if (this.mounted) { //checks if widget is still active and not disposed
         setState(() { //tells the widget builder to rebuild again because ui has updated
           _visible=false; //update the variable declare this under your class so its accessible for both your widget build and initState which is located under widget build{}
         });
       }
     });
-    getData();
+
   }
-  getData(){
+  getData() async {
+    print("inside getData");
+    //QuestionPaperModel.QuestionPaperModel value = await QnaService.getQuestion(assessmentId: widget.assessmentCode);
+    print("after getData");
     setState(() {
+      //values=value;
       assessmentVal=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-      questionTotal=assessmentVal.questions!.length;
-      for(int i =0;i<assessmentVal.questions!.length;i++){
-        mark=mark+assessmentVal.questions![i].questionMarks!;
+      questionTotal=widget.questionList!.length;
+      for(int i =0;i<widget.questionList!.length;i++){
+        mark=mark+widget.questionList[i].questionMarks!;
       }
       startDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentStartdate==null?0:assessmentVal.assessmentStartdate!);
       endDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentStartdate==null?0:assessmentVal.assessmentEnddate!);
@@ -649,7 +658,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("${assessmentVal.assessmentId}",
+                    Text("${widget.assessmentCode}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -925,8 +934,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text(assessmentVal.assessmentSettings?.showSolvedAnswerSheetInAdvisor==null?"Not Viewable":
-                    assessmentVal.assessmentSettings!.showSolvedAnswerSheetInAdvisor! ? "Viewable":"Not Viewable",
+                    Text(assessmentVal.assessmentSettings?.showAdvisorName==null?"No":
+                    assessmentVal.assessmentSettings!.showAdvisorName! ? "Yes":"No",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -948,7 +957,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("No",
+                    Text(assessmentVal.assessmentSettings?.showAdvisorEmail==null?"No":
+                    assessmentVal.assessmentSettings!.showAdvisorEmail! ? "Yes":"No",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -1065,13 +1075,13 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   ),
                 ),
                 SizedBox(height: height*0.01,),
-                assessmentVal.questions==null||assessmentVal.questions==[]?
+                widget.questionList.length!=0?
                 SizedBox(
                   height: height * 0.4,
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
-                      itemCount: assessmentVal.questions?.length,
-                      itemBuilder: (context,index)=>QuestionWidget(height: height,question: assessmentVal.questions![index],)),
+                      itemCount: widget.questionList.length,
+                      itemBuilder: (context,index)=>QuestionWidget(height: height,question: widget.questionList![index],)),
                 ):const SizedBox(height: 0,),
                 SizedBox(height: height*0.02,),
                 Row(
@@ -1203,7 +1213,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
 
 }
 
-class QuestionWidget extends StatelessWidget {
+class QuestionWidget extends StatefulWidget {
   const QuestionWidget({
     Key? key,
     required this.height,
@@ -1211,53 +1221,68 @@ class QuestionWidget extends StatelessWidget {
   }) : super(key: key);
 
   final double height;
-  final Question question;
+  final QuestionPaperModel.Question question;
 
+  @override
+  State<QuestionWidget> createState() => _QuestionWidgetState();
+}
+
+class _QuestionWidgetState extends State<QuestionWidget> {
+  String correctAns='';
+  @override
+  void initState() {
+    for(int i = 0;i<widget.question.choices!.length;i++){
+      if(widget.question.choices![i].rightChoice!){
+        correctAns='${widget.question.choices![i].choiceText!},$correctAns';
+      }
+    }
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: height*0.01,),
-        Text("MCQ",
+        SizedBox(height: widget.height*0.01,),
+        Text(widget.question.questionType!,
           style: TextStyle(
             color: const Color.fromRGBO(28, 78, 80, 1),
-            fontSize: height * 0.015,
+            fontSize: widget.height * 0.015,
             fontFamily: "Inter",
             fontWeight: FontWeight.w600,
           ),),
-        SizedBox(height: height*0.01,),
-        Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et nulla cursus, dictum risus sit amet, semper massa. Sed sit. Phasellus viverra, odio dignissim",
+        SizedBox(height: widget.height*0.01,),
+        Text(widget.question.question!,
           style: TextStyle(
             color: const Color.fromRGBO(51, 51, 51, 1),
-            fontSize: height * 0.015,
+            fontSize: widget.height * 0.015,
             fontFamily: "Inter",
             fontWeight: FontWeight.w400,
           ),),
-        SizedBox(height: height*0.01,),
+        SizedBox(height: widget.height*0.01,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("C. Lorem ipsum dolor sit amet",
+            Text(correctAns,
               style: TextStyle(
                 color: const Color.fromRGBO(82, 165, 160, 1),
-                fontSize: height * 0.015,
+                fontSize: widget.height * 0.015,
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w600,
               ),),
             Row(
               children: [
-                Text("Marks: ",
+                Text('Marks : ',
                   style: TextStyle(
                     color: const Color.fromRGBO(102, 102, 102, 1),
-                    fontSize: height * 0.015,
+                    fontSize: widget.height * 0.015,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w600,
                   ),),
-                Text("${question.questionMarks}",
+                Text("${widget.question.questionMarks}",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
-                    fontSize: height * 0.015,
+                    fontSize: widget.height * 0.015,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w600,
                   ),),
@@ -1272,100 +1297,3 @@ class QuestionWidget extends StatelessWidget {
   }
 }
 
-class CardInfo extends StatelessWidget {
-  const CardInfo({
-    Key? key,
-    required this.height,
-    required this.width,
-  }) : super(key: key);
-
-  final double height;
-  final double width;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: height * 0.1087,
-        width: width * 0.888,
-        decoration:  BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          border: Border.all(
-            color: const Color.fromRGBO(82, 165, 160, 0.15),
-          ),
-          color: const Color.fromRGBO(82, 165, 160, 0.1),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Maths",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.0175,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    "In progress",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 166, 0, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02),
-              child: Text(
-                "Calculus - Chapter 12.2",
-                style: TextStyle(
-                  color: const Color.fromRGBO(102, 102, 102, 1),
-                  fontSize: height * 0.015,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ),
-            Padding(
-              padding:  EdgeInsets.only(left: width * 0.02,right: width * 0.02),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Class IX",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "10/1/2023",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(28, 78, 80, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

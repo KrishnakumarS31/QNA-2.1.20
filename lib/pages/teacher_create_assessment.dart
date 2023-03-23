@@ -15,6 +15,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Services/qna_service.dart';
+import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 class TeacherCreateAssessment extends StatefulWidget {
   const TeacherCreateAssessment({
     Key? key,
@@ -780,6 +781,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                   ));
                             });
                         ResponseEntity statusCode = await QnaService.createAssessmentTeacherService(assessmentVal);
+                        String assessmentCode=statusCode.data.toString().substring(18,statusCode.data.toString().length-1);
+                        QuestionPaperModel.QuestionPaperModel value = await QnaService.getQuestion(assessmentId: assessmentCode);
                         Navigator.of(context).pop();
                         if (statusCode.code == 200) {
                           Navigator.push(
@@ -787,18 +790,10 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
                               child: TeacherPublishedAssessment(
-                                  setLocale: widget.setLocale),
+                                  setLocale: widget.setLocale, assessmentCode: assessmentCode, questionList: value.data!.questions!,),
                             ),
                           );
                         }
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherPublishedAssessment(
-                                setLocale: widget.setLocale),
-                          ),
-                        );
                       },
                       child: Text(
                         'Save',

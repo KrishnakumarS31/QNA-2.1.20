@@ -15,6 +15,7 @@ import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Services/qna_service.dart';
+import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({
@@ -722,6 +723,7 @@ class TeacherAssessmentSettingPublishState
                                                       DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
                                                       startTime=parsedTime;
                                                       //converting to DateTime so that we can further format on different pattern.
+                                                     // print(parsedTime); //output 1970-01-01 22:53:00.000
                                                      // print(parsedTime); //output 1970-01-01 22:53:00.000
                                                       String formattedTime = DateFormat('HH:mm').format(parsedTime);
                                                       //print(formattedTime); //output 14:59:00
@@ -1452,8 +1454,8 @@ class TeacherAssessmentSettingPublishState
                                                 borderRadius: 30.0,
                                                 onToggle: (val) {
                                                   setState(() {
-                                                    print("Value of val");
-                                                    print(val);
+                                                    // print("Value of val");
+                                                    // print(val);
                                                     allowedGuestStatus = val;
                                                   });
                                                 },
@@ -1833,8 +1835,8 @@ class TeacherAssessmentSettingPublishState
                                       assessment.assessmentDuration=(hours*60) + minutes;
 
 
-
-                                      print(assessment.toString());
+                                      // print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                                      // debugPrint(assessment.toString());
                                       showDialog(
                                           context: context,
                                           builder: (context) {
@@ -1851,13 +1853,23 @@ class TeacherAssessmentSettingPublishState
                                         statusCode = await QnaService.createAssessmentTeacherService(assessment);
                                       }
                                       Navigator.of(context).pop();
+
+                                      // print(statusCode.code);
+                                      String assessmentCode=statusCode.data.toString().substring(18,statusCode.data.toString().length-1);
+                                      QuestionPaperModel.QuestionPaperModel value = await QnaService.getQuestion(assessmentId: assessmentCode);
+                                      // print(assessmentCode);
+                                      // print(value.data!.questions!.length);
                                       if (statusCode.code == 200) {
+                                        // print("inside 200 block");
                                         Navigator.push(
                                           context,
                                           PageTransition(
                                             type: PageTransitionType.rightToLeft,
                                             child: TeacherPublishedAssessment(
-                                                setLocale: widget.setLocale),
+                                                setLocale: widget.setLocale,
+                                                assessmentCode:assessmentCode,
+                                              questionList: value.data!.questions!
+                                            ),
                                           ),
                                         );
                                       }
@@ -1895,7 +1907,7 @@ class TeacherAssessmentSettingPublishState
       initialTime: selectedTime,
       initialEntryMode: TimePickerEntryMode.input);
       setState(() {
-        print(selectedTime);
+        // print(selectedTime);
         selectedTime = timeOfDay;
       });
   }

@@ -4,12 +4,10 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
-import '../Entity/Teacher/question_entity.dart';
-import '../Entity/Teacher/response_entity.dart';
+
 
 import '../EntityModel/user_data_model.dart';
 import '../Providers/question_prepare_provider_final.dart';
-import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'teacher_questionBank_page.dart';
 
