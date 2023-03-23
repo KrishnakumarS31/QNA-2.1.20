@@ -45,6 +45,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   late List<Map<String, dynamic>> _values;
   IconData showIcon = Icons.expand_circle_down_outlined;
   ValueChanged<String?> _valueChangedHandler() {
+    print("-------------77777777777777777-----------");
+    print(_groupValue!);
     return (value) => setState(() => _groupValue = value!);
   }
 
@@ -194,13 +196,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                         ),
                         MyRadioOption<String>(
                           icon: Icons.library_books_sharp,
-                          value: AppLocalizations.of(context)!.descriptive,
+                          value: "Descripitive",
                           //'Descriptive',
                           groupValue: _groupValue,
                           onChanged: _valueChangedHandler(),
                           label:
                           //AppLocalizations.of(context)!.descriptive,
-                          'Descriptive',
+                          'Descripitive',
                         ),
                       ],
                     ),
@@ -719,17 +721,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       }
                                       //temp.add(demoQuestionModel.choices![i]);
                                     }
-                                    demoQuestionModel.subject =
-                                        subjectController.text;
-                                    demoQuestionModel.topic =
-                                        topicController.text;
-                                    demoQuestionModel.subTopic =
-                                        subtopicController.text;
-                                    demoQuestionModel.datumClass =
-                                        classRoomController.text;
+                                    demoQuestionModel.subject = subjectController.text;
+                                    demoQuestionModel.topic = topicController.text;
+                                    demoQuestionModel.subTopic = subtopicController.text;
+                                    demoQuestionModel.datumClass = classRoomController.text;
                                     demoQuestionModel.question =
                                         questionController.text;
-                                    demoQuestionModel.questionType = 'MCQ';
+                                    demoQuestionModel.questionType = _groupValue;
                                     demoQuestionModel.choices =
                                         selectedTemp;
                                     demoQuestionModel.advisorText =
@@ -747,6 +745,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     finalQuestion.subTopic=subtopicController.text;
                                     finalQuestion.datumClass=classRoomController.text;
                                     finalQuestion.choices=tempChoiceList;
+                                    finalQuestion.questionType=_groupValue;
+                                    if(_groupValue=='Descriptive'){
+                                      finalQuestion.choices=[];
+                                    }
                                     showQuestionPreview(context);
                                   },
                                   child: Text(

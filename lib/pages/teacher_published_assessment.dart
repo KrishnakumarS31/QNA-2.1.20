@@ -4,6 +4,8 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/question_paper_model.dart';
+import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Services/qna_service.dart';

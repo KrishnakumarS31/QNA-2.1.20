@@ -99,5 +99,8 @@ class QnaService{
   static Future<ResponseEntity> getSearchAssessment(int pageLimit,int pageNumber,String searchVal) async{
     return await QnaRepo.getSearchAssessment(pageLimit,pageNumber,searchVal);
   }
+  static Future<ResponseEntity> getSearchQuestion(int pageLimit,int pageNumber,String searchVal) async{
+    return await QnaRepo.getSearchQuestion(pageLimit,pageNumber,searchVal);
+  }
 
 }

@@ -20,30 +20,66 @@ class TeacherLooqQuestionBank extends StatefulWidget {
 
 class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
   bool agree = false;
-
-  Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  List<Question> questions=[];
+  List<Question> question=[];
+  List<Question> allQuestion =[];
+  bool loading=true;
+  ScrollController scrollController =ScrollController();
+  int pageLimit =1;
+  String searchValue='';
+  TextEditingController teacherQuestionBankSearchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    getData();
   }
 
-  getData() async {
-    ResponseEntity responseEntity=await QnaService.getQuestionBankService(100,1);
+  getData(String searchVal)async{
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color:
+                Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    pageLimit=1;
+    ResponseEntity response =await QnaService.getSearchQuestion(100,pageLimit,searchVal);
+    allQuestion=List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    Navigator.of(context).pop();
     setState(() {
-      questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+      searchValue=searchVal;
+      question.addAll(allQuestion);
+      loading = false;
+      pageLimit++;
     });
+  }
 
+  loadMore(String searchValue)async{
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color:
+                Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    ResponseEntity response =await QnaService.getSearchQuestion(1,pageLimit,searchValue);
+    allQuestion=List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    Navigator.of(context).pop();
+    setState(() {
+      question.addAll(allQuestion);
+      loading = false;
+      pageLimit++;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController =
-        TextEditingController();
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -126,6 +162,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                 ),
                 SizedBox(height: height * 0.02),
                 TextField(
+
                   controller: teacherQuestionBankSearchController,
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
@@ -148,7 +185,12 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                           child: IconButton(
                             iconSize: height * 0.04,
                             color: const Color.fromRGBO(255, 255, 255, 1),
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                question=[];
+                              });
+                              getData(teacherQuestionBankSearchController.text);
+                            },
                             icon: const Icon(Icons.search),
                           )),
                     ]),
@@ -160,7 +202,18 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                         borderRadius: BorderRadius.circular(15)),
                   ),
                   enabled: true,
-                  onChanged: (value) {},
+                  onChanged: (val){
+                    setState(() {
+                      question=[];
+                    });
+                  },
+                  onSubmitted: (value) {
+                    setState(() {
+                      question=[];
+                    });
+                    getData(value);
+
+                  },
                 ),
                 SizedBox(height: height * 0.04),
                 Row(
@@ -200,7 +253,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                   ],
                 ),
                 SizedBox(height: height * 0.02),
-                for (Question i in questions)
+                for (Question i in question)
                   GestureDetector(
                       onTap: () {
                         Navigator.push(

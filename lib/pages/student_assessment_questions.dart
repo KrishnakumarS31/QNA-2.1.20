@@ -670,15 +670,10 @@ class StudQuestionState extends State<StudQuestion> {
                                 height: height * 0.32,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
-                                  child: values
-                                      .data!
-                                      .questions![context
-                                      .watch<
-                                      QuestionNumProvider>()
-                                      .questionNum -
+                                  child: values.data!.questions![context.watch<QuestionNumProvider>().questionNum -
                                       1]
                                       .questionType ==
-                                      "descriptive"
+                                      "Descripitive"
                                       ? Card(
                                       color: Colors.white,
                                       child: Padding(
@@ -1278,7 +1273,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                       .questionNum -
                                                   1]
                                               .questionType ==
-                                          "descriptive"
+                                          "Descripitive"
                                       ? Card(
                                           color: Colors.white,
                                           child: Padding(

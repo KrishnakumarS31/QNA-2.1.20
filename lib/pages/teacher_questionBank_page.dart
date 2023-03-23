@@ -24,7 +24,7 @@ class TeacherQuestionBank extends StatefulWidget {
 
 class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   bool agree = false;
-  int pageNumber=2;
+  int pageNumber=1;
   List<Question> questionList=[];
   @override
   void initState() {
@@ -34,24 +34,17 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 
   getData()async{
     print("inside teacher question Bank");
-    // showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return const Center(
-    //           child: CircularProgressIndicator(
-    //             color: Color.fromRGBO(48, 145, 139, 1),
-    //           ));
-    //     });
-    ResponseEntity responseEntity=await QnaService.getQuestionBankService(3,pageNumber);
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(5,pageNumber);
     List<Question> questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
     //Navigator.of(context).pop();
     setState(() {
       questionList.addAll(questions);
+      pageNumber++;
     });
   }
 
   getQuestionData() async {
-    ResponseEntity responseEntity=await QnaService.getQuestionBankService(3,pageNumber);
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(5,pageNumber);
     List<Question> questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
     setState(() {
       questionList.addAll(questions);

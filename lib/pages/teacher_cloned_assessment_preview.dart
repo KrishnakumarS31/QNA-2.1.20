@@ -53,7 +53,7 @@ class TeacherClonedAssessmentPreviewState
     quesList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
     finalAssessment.removeQuestions=[];
     for(int i=quesList.length;i< finalAssessment.questions!.length;i++){
-      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
+      //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
       mark=mark + finalAssessment.questions![i].questionMarks!;
     }
     print(finalAssessment.toString());

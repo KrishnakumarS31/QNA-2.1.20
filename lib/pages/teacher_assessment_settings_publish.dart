@@ -1847,6 +1847,7 @@ class TeacherAssessmentSettingPublishState
                                           });
                                       ResponseEntity statusCode=ResponseEntity();
                                       if(assessment.assessmentId!=null){
+
                                         statusCode = await QnaService.editAssessmentTeacherService(assessment,assessment.assessmentId!);
                                       }
                                       else{

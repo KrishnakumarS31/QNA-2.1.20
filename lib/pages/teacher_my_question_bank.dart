@@ -143,6 +143,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                 ),
                 onPressed: () async {
                   if (widget.assessment != null) {
+                    print("create Aseessment page");
                     Navigator.push(
                       context,
                       PageTransition(
@@ -152,6 +153,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       ),
                     );
                   } else {
+                    print("create question page");
                     //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
                     Navigator.push(
                       context,

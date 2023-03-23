@@ -14,6 +14,7 @@ import '../EntityModel/student_registration_model.dart';
 import '../EntityModel/user_data_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart';
+import 'dart:developer';
 import 'http_url.dart';
 class QnaRepo {
 
@@ -208,7 +209,8 @@ class QnaRepo {
     request.body = postAssessmentModelToJson(assessment!);
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
     print("Final");
-    debugPrint(request.body);
+    log(request.body);
+
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     print("Response Code");
@@ -274,8 +276,8 @@ class QnaRepo {
     var request = http.Request('POST', Uri.parse(assessmentDomain));
     request.body = createAssessmentModelToJson(question);
     print("=========================================");
-    print(question.toString());
-    print(request.body);
+    debugPrint(request.body);
+    log(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -289,6 +291,7 @@ class QnaRepo {
       createAssessmentTeacher(question);
     }
     else {
+      print("\n\n\n\n\nassessment submit ah agala");
       print(response.reasonPhrase);
     }
     return loginModel;
@@ -487,6 +490,32 @@ class QnaRepo {
       String? pass=loginData.getString('password');
       LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
       getSearchAssessment(pageLimit,pageNumber,searchVal);
+    }
+    else {
+      print(response.reasonPhrase);
+    }
+    return allAssessment;
+  }
+
+  static Future<ResponseEntity> getSearchQuestion(int pageLimit,int pageNumber,String searchVal) async {
+    ResponseEntity allAssessment=ResponseEntity();
+    SharedPreferences loginData=await SharedPreferences.getInstance();
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}'
+    };
+    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      allAssessment = responseEntityFromJson(value);
+    }else if(response.statusCode == 401){
+      String? email=loginData.getString('email');
+      String? pass=loginData.getString('password');
+      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
+      getSearchQuestion(pageLimit,pageNumber,searchVal);
     }
     else {
       print(response.reasonPhrase);

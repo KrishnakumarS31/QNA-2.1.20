@@ -1015,6 +1015,7 @@ class CardInfo extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () async {
+          Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
           Provider.of<EditAssessmentProvider>(context, listen: false).updateAssessment(assessment);
           print(assessment.toString());
           if (assessment.assessmentStatus == 'inprogress') {
@@ -1191,7 +1192,7 @@ class CardInfo extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " ABC903857928",
+                          "-------------",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.015,

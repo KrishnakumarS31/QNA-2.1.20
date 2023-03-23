@@ -94,6 +94,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         ResponseEntity statusCode = await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
+          print(statusCode.message);
           Navigator.push(
             context,
             PageTransition(
