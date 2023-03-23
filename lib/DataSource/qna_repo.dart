@@ -454,7 +454,7 @@ class QnaRepo {
       'Authorization': 'Bearer ${loginData.getString('token')}'
     };
     var request = http.Request(
-        'GET', Uri.parse('$resultsUrl/1?page_limit=$pageLimit&page_number=$pageNumber'));
+        'GET', Uri.parse('$resultsUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
     //${loginData.getInt('userId')}
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

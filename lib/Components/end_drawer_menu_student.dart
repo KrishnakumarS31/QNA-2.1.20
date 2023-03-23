@@ -5,7 +5,6 @@ import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../EntityModel/user_data_model.dart';
-import '../Pages/student_member_login_page.dart';
 import '../Pages/welcome_page.dart';
 import '../Services/qna_service.dart';
 import '../pages/change_email_student.dart';
@@ -34,6 +33,7 @@ int userId=0;
   void initState() {
     super.initState();
     getData();
+    super.initState();
   }
 
   getData() async {
@@ -65,15 +65,11 @@ int userId=0;
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 50),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                Container(
-                  alignment: Alignment.center,
-                  // height: localHeight / 6,
+                SizedBox(height: localHeight * 0.050),
+                SizedBox(
+                  // alignment: Alignment.center,
+                  height: localHeight / 6,
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                     CircleAvatar(
                       backgroundColor: const Color.fromRGBO(0, 106, 100, 0),
@@ -82,7 +78,7 @@ int userId=0;
                         "assets/images/ProfilePic_Avatar.png",
                       ),
                     ),
-                    //const SizedBox(height: 2.0),
+                    const SizedBox(height: 2.0),
                     Text(
                         widget.userName!,
                       style: Theme.of(context)
@@ -97,29 +93,37 @@ int userId=0;
                     ),
                   ]),
                 ),
-                ]
-                ),
+                const SizedBox(height: 0.022),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      AppLocalizations.of(context)!.student,
-                      style: const TextStyle(
-                          color: Color.fromRGBO(221, 221, 221, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 12),
-                    ),
-                    Text(
-                      widget.email!,
-                      style: const TextStyle(
-                          color: Color.fromRGBO(221, 221, 221, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
-                          fontSize: 12),
-                    ),
+                    Container(
+                        padding: EdgeInsets.only(left: width * 0.09),
+                        child: Text(
+                          AppLocalizations.of(context)!.student,
+                          style: const TextStyle(
+                              color: Color.fromRGBO(221, 221, 221, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 12),
+                        )),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                        padding: EdgeInsets.only(left: width * 0.09),
+                        child: Text(
+                          widget.email!,
+                          style: const TextStyle(
+                              color: Color.fromRGBO(221, 221, 221, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w500,
+                              letterSpacing: -0.02,
+                              fontSize: 12),
+                        )),
                   ],
                 ),
                 SizedBox(height: localHeight * 0.02),

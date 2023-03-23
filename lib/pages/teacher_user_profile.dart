@@ -92,7 +92,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                         width: width * 0.3,
                         child: Icon(
                           Icons.account_circle_outlined,
-                          size: width * 0.2,
+                          size: width * 0.05,
                           color: const Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
@@ -117,15 +117,15 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                           //     fontWeight: FontWeight.w600,
                           //   ),
                           // ),
-                          Text(
-                            '${widget.userDataModel.data?.role}',
-                            style: TextStyle(
-                              color: const Color.fromRGBO(221, 221, 221, 1),
-                              fontSize: height * 0.015,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                          // Text(
+                          //   '${widget.userDataModel.data?.role}',
+                          //   style: TextStyle(
+                          //     color: const Color.fromRGBO(221, 221, 221, 1),
+                          //     fontSize: height * 0.015,
+                          //     fontFamily: "Inter",
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
                         ],
                       )
                     ],
@@ -262,7 +262,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.01,
+                      height: height * 0.01
                     ),
                     Text(
                       widget.userDataModel.data!.role!.contains("student")

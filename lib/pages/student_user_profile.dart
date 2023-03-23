@@ -92,7 +92,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                         width: width * 0.3,
                         child: Icon(
                           Icons.account_circle_outlined,
-                          size: width * 0.2,
+                          size: width * 0.05,
                           color: const Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),

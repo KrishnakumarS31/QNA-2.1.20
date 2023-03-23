@@ -39,7 +39,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
             AppLocalizations.of(context)!.help_caps,
             //"HELP",
@@ -57,9 +57,9 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
         ),
       ),
       body: SingleChildScrollView(
@@ -94,52 +94,65 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                   padding: EdgeInsets.only(left: height * 0.03),
                   child: RichText(
                       text: TextSpan(children: [
-                    TextSpan(
-                        text: AppLocalizations.of(context)!.check_out,
-                        //"Please first check out the\t\t",
-                        style: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.018)),
-                    TextSpan(
-                        text: AppLocalizations.of(context)!.faq,
-                        //"FAQs",
-                        style: TextStyle(
-                            color: const Color.fromRGBO(0, 107, 232, 1),
-                            fontFamily: 'Inter',
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.018)),
-                  ])),
+                        TextSpan(
+                            text: AppLocalizations.of(context)!.check_out,
+                            //"Please first check out the\t\t",
+                            style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.018)),
+                        TextSpan(
+                            text: AppLocalizations.of(context)!.faq,
+                            //"FAQs",
+                            style: TextStyle(
+                                color: const Color.fromRGBO(0, 107, 232, 1),
+                                fontFamily: 'Inter',
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.018)),
+                      ])),
                 ),
                 SizedBox(height: height * 0.04),
                 Padding(
-                  padding: EdgeInsets.only(left: height * 0.03),
-                  child: RichText(
-                      text: TextSpan(children: [
-                    TextSpan(
-                        text: AppLocalizations.of(context)!.find_answers,
-                           // "If you are unable to find answers to your\nqueries related to the QNATest App,please\nfeel free to\t\t",
-                        style: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.018)),
-                    TextSpan(
-                        text: AppLocalizations.of(context)!.email_help,
-                        //"email",
-                        style: TextStyle(
-                            color: const Color.fromRGBO(0, 107, 232, 1),
-                            fontFamily: 'Inter',
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.018)),
-                  ])),
+                    padding: EdgeInsets.only(left: height * 0.03),
+                    child:
+                    GestureDetector(
+                      onTap: _launchUrl,
+                      child: RichText(
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: AppLocalizations.of(context)!.find_answers,
+                                // "If you are unable to find answers to your\nqueries related to the QNATest App,please\nfeel free to\t\t",
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(102, 102, 102, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.018)),
+                            TextSpan(
+                                text: AppLocalizations.of(context)!.email_help,
+                                //"email",
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(0, 107, 232, 1),
+                                    fontFamily: 'Inter',
+                                    decoration: TextDecoration.underline,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.018)),
+                          ])),)
                 ),
               ],
             )),
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    String email = Uri.encodeComponent("help@itneducation.com");
+    String subject = Uri.encodeComponent("Need Help");
+    String body = Uri.encodeComponent("Hi Team!");
+    Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
+    if (await launchUrl(mail)) {
+    }else{
+    }
   }
 }
