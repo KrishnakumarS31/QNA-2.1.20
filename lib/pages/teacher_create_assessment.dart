@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Components/today_date.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
@@ -41,7 +42,6 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   void initState() {
     super.initState();
     assessmentVal=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-    print(assessmentVal.toString());
     subjectController.text=assessmentVal.subject!;
     classController.text=assessmentVal.createAssessmentModelClass!;
     topicController.text=assessmentVal.topic!;
@@ -609,7 +609,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                   fontWeight: FontWeight.w400),
                             ),
                             Text(
-                              '14/1/2023',
+                              todayDate(),
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontFamily: "Inter",

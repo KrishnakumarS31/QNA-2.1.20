@@ -150,12 +150,13 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             StaticResponse(code: 0, message: 'Incorrect Email');
                         response = await QnaService.sendOtp(_controller.text);
                         if (response.code == 200) {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade,
-                                child: showAlertDialog(context)),
-                          );
+                          showAlertDialog(context);
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //       type: PageTransitionType.rightToLeft,
+                          //       child: showAlertDialog(context)),
+                          // );
                         }
                       }
                     },
@@ -204,6 +205,29 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
+    Widget okButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+      ),
+      child: Text(
+        "Enter OTP",
+        style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: VerifyOtpPage(
+                email: _controller.text, setLocale: widget.setLocale),
+          ),
+        );
+      },
+    );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -235,29 +259,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
             fontSize: height * 0.018),
       ),
       actions: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
-          ),
-          child: Text(
-            "Enter OTP",
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: height * 0.018),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: VerifyOtpPage(
-                    email: _controller.text, setLocale: widget.setLocale),
-              ),
-            );
-          },
-        )
+              okButton
       ],
     );
 
@@ -269,4 +271,6 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
       },
     );
   }
+
+
 }

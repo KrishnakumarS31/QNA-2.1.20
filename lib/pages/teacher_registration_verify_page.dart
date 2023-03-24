@@ -29,10 +29,11 @@ class TeacherRegistrationOtpPageState
   Duration myDuration = const Duration(minutes: 5);
   @override
   void initState() {
+    super.initState();
     error = false;
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    super.initState();
+
   }
 
   void setCountDown() {
@@ -218,12 +219,7 @@ class TeacherRegistrationOtpPageState
                           int statusCode = 200;
                           //QnaService.verifyOtp(widget.email,otp);
                           if (res.code == 200) {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: showAlertDialog(context)),
-                            );
+                            showAlertDialog(context);
                           } else {
                             Navigator.push(
                               context,
