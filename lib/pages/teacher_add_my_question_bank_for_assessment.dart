@@ -9,6 +9,7 @@ import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
@@ -144,7 +145,7 @@ class TeacherAddMyQuestionBankForAssessmentState extends State<TeacherAddMyQuest
   @override
   void initState() {
     super.initState();
-    finalQuesList.addAll(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
+    finalQuesList.addAll(Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion);
   }
 
   @override

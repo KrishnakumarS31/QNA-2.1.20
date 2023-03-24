@@ -201,12 +201,17 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 0; i < question.choices!.length; i++) {
-      if(question.choices![i].rightChoice!) {
-        answer = '$answer ${question.choices![i].choiceText}';
-      }
-      //question.choices[question.correctChoice[i]];
+    if(question.choices==null){
+      question.choices=[];
     }
+    else{
+      for (int i = 0; i < question.choices!.length; i++) {
+        if(question.choices![i].rightChoice!) {
+          answer = '$answer ${question.choices![i].choiceText}';
+        }
+      }
+    }
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -276,7 +281,7 @@ class QuestionPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    question.questionType!,
+                    '${question.questionType}',
                     style: TextStyle(
                         fontSize: height * 0.02,
                         fontFamily: "Inter",

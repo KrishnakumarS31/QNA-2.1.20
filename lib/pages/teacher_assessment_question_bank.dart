@@ -39,8 +39,7 @@ class TeacherAssessmentQuestionBankState
   }
 
   getData() async {
-    ResponseEntity responseEntity=await QnaService.getQuestionBankService(100,1);
-    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(500,1);
     setState(() {
       questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
     });
@@ -298,10 +297,6 @@ class _QuestionPreviewState extends State<QuestionPreview> {
   bool? valuefirst = false;
   @override
   Widget build(BuildContext context) {
-    String answer = '';
-    for (int i = 0; i < widget.question.choices!.length; i++) {
-      answer = '$answer ${widget.question.choices![i]}';
-    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -312,8 +307,8 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           onChanged: (bool? value) {
             setState(() {
               if(value!){
+                widget.question.questionMark=10;
                 Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.question!);
-
                 Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(widget.question.questionId, 10);
               }
               else{

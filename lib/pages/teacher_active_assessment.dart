@@ -56,7 +56,6 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
     setState(() {
       mark=mark;
     });
-    print(assessment.toString());
   }
 
   @override
@@ -317,7 +316,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                       ),
                     ),
                     Text(
-                      "${assessment.assessmentId!}",
+                      "${assessment.assessmentCode!}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -345,7 +344,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                       ),
                     ),
                     Text(
-                      "ABC903857928",
+                      "----------",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -377,7 +376,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                       ),
                     ),
                     Text(
-                      "180 Minutes",
+                      "${finalAssessment.assessmentDuration} Minutes",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,

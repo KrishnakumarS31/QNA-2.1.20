@@ -31,12 +31,8 @@ class QnaRepo {
 
     http.StreamedResponse response = await request.send();
     String temp = await response.stream.bytesToString();
-
-
     if (response.statusCode == 200) {
-      print(temp);
       loginModel = loginModelFromJson(temp);
-      //print(temp);
       loginData.setString('token', loginModel.data.accessToken);
     }
     else {
@@ -248,7 +244,7 @@ class QnaRepo {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     print("RESPONSE CODE :");
-    print(question);
+    print(request.body);
     print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();

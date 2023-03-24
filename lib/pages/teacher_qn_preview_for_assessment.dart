@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'teacher_add_my_question_bank.dart';
 import 'teacher_prepare_preview_qnBank.dart';
@@ -259,7 +260,8 @@ class TeacherQnPreviewAssessmentState extends State<TeacherQnPreviewAssessment> 
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.finalQuestion!);
+                        Provider.of<QuestionPrepareProvider>(context, listen: false).addQuestion(widget.finalQuestion!);
+                        print("Yeah its here");
                         Navigator.push(
                           context,
                           PageTransition(

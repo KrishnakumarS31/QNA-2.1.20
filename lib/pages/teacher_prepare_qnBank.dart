@@ -96,7 +96,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     super.initState();
     _count = 0;
     _values = [];
-    addField();
     demoQuestionModel.choices?.add(choice);
     setData();
   }
@@ -725,13 +724,11 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     demoQuestionModel.topic = topicController.text;
                                     demoQuestionModel.subTopic = subtopicController.text;
                                     demoQuestionModel.datumClass = classRoomController.text;
-                                    demoQuestionModel.question =
-                                        questionController.text;
+                                    demoQuestionModel.question = questionController.text;
                                     demoQuestionModel.questionType = _groupValue;
                                     demoQuestionModel.choices =
                                         selectedTemp;
-                                    demoQuestionModel.advisorText =
-                                        adviceController.text;
+                                    demoQuestionModel.advisorText = adviceController.text;
                                     demoQuestionModel.advisorUrl = urlController.text;
                                     demoQuestionModel.choices = temp;
                                     //demoQuestionModel.questionId = ques!.length;

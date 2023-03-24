@@ -41,6 +41,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   void initState() {
     super.initState();
     assessmentVal=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    print(assessmentVal.toString());
     subjectController.text=assessmentVal.subject!;
     classController.text=assessmentVal.createAssessmentModelClass!;
     topicController.text=assessmentVal.topic!;

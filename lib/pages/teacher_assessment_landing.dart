@@ -253,7 +253,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   }
 
   getData()async{
-    ResponseEntity response =await QnaService.getAllAssessment(5,pageLimit);
+    ResponseEntity response =await QnaService.getAllAssessment(10,pageLimit);
     allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
       assessments.addAll(allAssessment);
@@ -333,38 +333,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Checkbox(
-                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                          fillColor: MaterialStateProperty.resolveWith<Color>(
-                              (states) {
-                            if (states.contains(MaterialState.selected)) {
-                              return const Color.fromRGBO(82, 165, 160, 1);
-                            }
-                            return const Color.fromRGBO(82, 165, 160, 1);
-                          }),
-                          value: agree,
-                          onChanged: (val) {
-                            setState(() {
-                              agree = val!;
-                              if (agree) {}
-                            });
-                          },
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.only_my_assessments,
-                          //"Only My Assessments",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(0, 0, 0, 1),
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    )
+
                   ],
                 ),
                 Text(
@@ -925,8 +894,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   SharedPreferences loginData=await SharedPreferences.getInstance();
                                                   Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
                                                   Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
-                                                  assessment.topic=topicController.text;
-                                                  assessment.subTopic=subTopicController.text;
+                                                  assessment.topic=topicController.text ?? '';
+                                                  assessment.subTopic=subTopicController.text ?? '';
                                                   assessment.subject=subjectController.text;
                                                   assessment.createAssessmentModelClass=classController.text;
                                                   assessment.questions=[];

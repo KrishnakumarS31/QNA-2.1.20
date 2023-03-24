@@ -767,33 +767,58 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     quesResult.marks=0;
                     List<dynamic> correctAns=[];
                     //changes are made
-                    for(int i=0;i<values.data!.questions![j-1].choices!.length;i++){
-                      if(values.data!.questions![j-1].choices![i].rightChoice!){
-                        correctAns.add(values.data!.questions![j-1].choices![i].choiceText);
+                    if(values.data!.questions![j-1].questionType=="Descripitive"){
+                      quesResult.marks=0;
+                      quesResult.descriptiveText=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString();
+                    }
+                    else if(values.data!.questions![j-1].questionType=="Survey"){
+                      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+                      selectedAns.sort();
+                      List<int> key=[];
+                      List<String> value=[];
+                      for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
+                      {
+                        key.add(values.data!.questions![j-1].choices![s].choiceId!);
+                        value.add(values.data!.questions![j-1].choices![s].choiceText!);
+                      }
+                      Map<int, String> map = Map.fromIterables(key, value);
+                      for(int f=0;f<selectedAns.length;f++){
+                        selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+                      }
+                      quesResult.selectedQuestionChoice=selectedAnsId;
+                      print(quesResult.selectedQuestionChoice);
+                      quesResult.marks=0;
+                    }
+                    else{
+                      for(int i=0;i<values.data!.questions![j-1].choices!.length;i++){
+                        if(values.data!.questions![j-1].choices![i].rightChoice!){
+                          correctAns.add(values.data!.questions![j-1].choices![i].choiceText);
+                        }
+                      }
+                      correctAns.sort();
+                      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+                      selectedAns.sort();
+
+                      List<int> key=[];
+                      List<String> value=[];
+                      for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
+                      {
+                        key.add(values.data!.questions![j-1].choices![s].choiceId!);
+                        value.add(values.data!.questions![j-1].choices![s].choiceText!);
+                      }
+                      Map<int, String> map = Map.fromIterables(key, value);
+                      for(int f=0;f<selectedAns.length;f++){
+                        selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+                      }
+                      quesResult.selectedQuestionChoice=selectedAnsId;
+
+                      if(listEquals(correctAns, selectedAns)){
+                        quesResult.marks=values.data!.questions![j-1].questionMarks;
+                        totalMark=totalMark+values.data!.questions![j-1].questionMarks!;
+                        ansCorrect++;
                       }
                     }
-                    correctAns.sort();
-                    List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-                    selectedAns.sort();
 
-                    List<int> key=[];
-                    List<String> value=[];
-                    for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
-                    {
-                      key.add(values.data!.questions![j-1].choices![s].choiceId!);
-                      value.add(values.data!.questions![j-1].choices![s].choiceText!);
-                    }
-                    Map<int, String> map = Map.fromIterables(key, value);
-                    for(int f=0;f<selectedAns.length;f++){
-                      selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
-                    }
-                    quesResult.selectedQuestionChoice=selectedAnsId;
-
-                    if(listEquals(correctAns, selectedAns)){
-                      quesResult.marks=values.data!.questions![j-1].questionMarks;
-                      totalMark=totalMark+values.data!.questions![j-1].questionMarks!;
-                      ansCorrect++;
-                    }
                     assessment.assessmentResults.add(quesResult);
                   }
                   assessment.attemptScore=totalMark;
@@ -817,7 +842,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   final DateFormat timeFormatter = DateFormat('hh:mm a');
                   final String formatted = formatter.format(now);
                   final String time=timeFormatter.format(now);
-
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+print(assessment.toString());
                   showDialog(
                       context: context,
                       builder: (context) {
