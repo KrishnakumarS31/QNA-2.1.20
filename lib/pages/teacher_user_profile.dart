@@ -29,7 +29,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope( onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         body: Column(
@@ -265,7 +265,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                       height: height * 0.01
                     ),
                     Text(
-                      widget.userDataModel.data!.role!.contains("student")
+                      widget.userDataModel.data!.role.contains("student")
                           ? "Yes"
                           : "No",
                       style: TextStyle(
@@ -345,6 +345,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                   ]),
             ),
           ],
-        ));
+        )));
   }
 }

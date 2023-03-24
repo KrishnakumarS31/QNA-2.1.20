@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-EditQuestionModel editQuestionModelFromJson(String str) => EditQuestionModel.fromJson(json.decode(str));
+EditQuestionModel editQuestionModelFromJson(String str) =>
+    EditQuestionModel.fromJson(json.decode(str));
 
-String editQuestionModelToJson(EditQuestionModel data) => json.encode(data.toJson());
+String editQuestionModelToJson(EditQuestionModel data) =>
+    json.encode(data.toJson());
 
 class EditQuestionModel {
   EditQuestionModel({
@@ -33,31 +35,40 @@ class EditQuestionModel {
   List<AddChoice>? addChoices;
   List<int>? removeChoices;
 
-  factory EditQuestionModel.fromJson(Map<String, dynamic> json) => EditQuestionModel(
-    question: json["question"],
-    subject: json["subject"],
-    topic: json["topic"],
-    subTopic: json["sub_topic"],
-    editQuestionModelClass: json["class"],
-    advisorText: json["advisor_text"],
-    advisorUrl: json["advisor_url"],
-    editChoices: List<EditChoice>.from(json["edit_choices"].map((x) => EditChoice.fromJson(x))),
-    addChoices: List<AddChoice>.from(json["add_choices"].map((x) => AddChoice.fromJson(x))),
-    removeChoices: List<int>.from(json["remove_choices"].map((x) => x)),
-  );
+  factory EditQuestionModel.fromJson(Map<String, dynamic> json) =>
+      EditQuestionModel(
+        question: json["question"],
+        subject: json["subject"],
+        topic: json["topic"],
+        subTopic: json["sub_topic"],
+        editQuestionModelClass: json["class"],
+        advisorText: json["advisor_text"],
+        advisorUrl: json["advisor_url"],
+        editChoices: List<EditChoice>.from(
+            json["edit_choices"].map((x) => EditChoice.fromJson(x))),
+        addChoices: List<AddChoice>.from(
+            json["add_choices"].map((x) => AddChoice.fromJson(x))),
+        removeChoices: List<int>.from(json["remove_choices"].map((x) => x)),
+      );
 
   Map<String, dynamic> toJson() => {
-    "question": question,
-    "subject": subject,
-    "topic": topic,
-    "sub_topic": subTopic,
-    "class": editQuestionModelClass,
-    "advisor_text": advisorText,
-    "advisor_url": advisorUrl,
-    "edit_choices": editChoices==null?[]:List<dynamic>.from(editChoices!.map((x) => x.toJson())),
-    "add_choices": addChoices==null?[]:List<dynamic>.from(addChoices!.map((x) => x.toJson())),
-    "remove_choices": removeChoices==null?[]:List<dynamic>.from(removeChoices!.map((x) => x)),
-  };
+        "question": question,
+        "subject": subject,
+        "topic": topic,
+        "sub_topic": subTopic,
+        "class": editQuestionModelClass,
+        "advisor_text": advisorText,
+        "advisor_url": advisorUrl,
+        "edit_choices": editChoices == null
+            ? []
+            : List<dynamic>.from(editChoices!.map((x) => x.toJson())),
+        "add_choices": addChoices == null
+            ? []
+            : List<dynamic>.from(addChoices!.map((x) => x.toJson())),
+        "remove_choices": removeChoices == null
+            ? []
+            : List<dynamic>.from(removeChoices!.map((x) => x)),
+      };
 
   @override
   String toString() {
@@ -77,16 +88,16 @@ class AddChoice {
   bool? rightChoice;
 
   factory AddChoice.fromJson(Map<String, dynamic> json) => AddChoice(
-    questionId: json["question_id"],
-    choiceText: json["choice_text"],
-    rightChoice: json["right_choice"],
-  );
+        questionId: json["question_id"],
+        choiceText: json["choice_text"],
+        rightChoice: json["right_choice"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "question_id": questionId,
-    "choice_text": choiceText,
-    "right_choice": rightChoice,
-  };
+        "question_id": questionId,
+        "choice_text": choiceText,
+        "right_choice": rightChoice,
+      };
 }
 
 class EditChoice {
@@ -101,16 +112,16 @@ class EditChoice {
   bool? rightChoice;
 
   factory EditChoice.fromJson(Map<String, dynamic> json) => EditChoice(
-    choiceId: json["choice_id"],
-    choiceText: json["choice_text"],
-    rightChoice: json["right_choice"],
-  );
+        choiceId: json["choice_id"],
+        choiceText: json["choice_text"],
+        rightChoice: json["right_choice"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "choice_id": choiceId,
-    "choice_text": choiceText,
-    "right_choice": rightChoice,
-  };
+        "choice_id": choiceId,
+        "choice_text": choiceText,
+        "right_choice": rightChoice,
+      };
 
   @override
   String toString() {

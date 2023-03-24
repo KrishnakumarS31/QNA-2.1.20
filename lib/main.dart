@@ -17,16 +17,29 @@ import 'Providers/question_prepare_provider_final.dart';
 
 void main() {
   runApp(
-    MultiProvider(providers:[
-      ChangeNotifierProvider(create: (_)=> QuestionNumProvider(),),
-      ChangeNotifierProvider(create: (_)=> Questions(),),
-      ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
-      ChangeNotifierProvider(create: (_)=> QuestionPrepareProvider(),),
-      ChangeNotifierProvider(create: (_)=> QuestionPrepareProviderFinal(),),
-      ChangeNotifierProvider(create: (_)=> CreateAssessmentProvider(),),
-      ChangeNotifierProvider(create: (_)=> EditAssessmentProvider(),)
-    ],
-    child: MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => QuestionNumProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => Questions(),
+        ),
+        ChangeNotifierProvider(create: (_) => LanguageChangeProvider()),
+        ChangeNotifierProvider(
+          create: (_) => QuestionPrepareProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => QuestionPrepareProviderFinal(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CreateAssessmentProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => EditAssessmentProvider(),
+        )
+      ],
+      child: MyApp(),
     ),
   );
 }
@@ -42,8 +55,6 @@ class _MyAppState extends State<MyApp> {
   var lang;
   Locale? _locale;
 
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -51,36 +62,28 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-
-
-
-
-  void setLocale(Locale locale){
+  void setLocale(Locale locale) {
     setState(() {
-      _locale=locale;
+      _locale = locale;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: _locale,
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-      ),
-       home:
-      // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
-      //     ?
-          WelcomePage(setLocale: setLocale)
+        locale: _locale,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+        ),
+        home:
+            // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
+            //     ?
+            WelcomePage(setLocale: setLocale)
         //  :
-       // SplashScreen(setLocale: setLocale)
-    );
+        // SplashScreen(setLocale: setLocale)
+        );
   }
-
-
 }
-

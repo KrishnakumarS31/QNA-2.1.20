@@ -4,7 +4,9 @@
 
 import 'dart:convert';
 import '../Teacher/question_entity.dart';
-ResponseEntity responseEntityFromJson(String str) => ResponseEntity.fromJson(json.decode(str));
+
+ResponseEntity responseEntityFromJson(String str) =>
+    ResponseEntity.fromJson(json.decode(str));
 
 String responseEntityToJson(ResponseEntity data) => json.encode(data.toJson());
 
@@ -20,15 +22,14 @@ class ResponseEntity {
   dynamic data;
 
   factory ResponseEntity.fromJson(Map<String, dynamic> json) => ResponseEntity(
-    code: json["code"],
-    message: json["message"],
-    data: json["data"],
-  );
+        code: json["code"],
+        message: json["message"],
+        data: json["data"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "code": code,
-    "message": message,
-    "data": data,
-  };
+        "code": code,
+        "message": message,
+        "data": data,
+      };
 }
-

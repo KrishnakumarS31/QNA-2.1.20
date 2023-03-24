@@ -1,7 +1,5 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-
 
 class LanguageChangeProvider with ChangeNotifier {
   late Locale _currentLocale;

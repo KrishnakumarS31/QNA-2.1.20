@@ -52,6 +52,7 @@ class TeacherAssessmentSettingPublishState
   int val = -1;
   CreateAssessmentModel assessment=CreateAssessmentModel(questions: []);
   TextEditingController retriesController=TextEditingController();
+  TextEditingController instituteTestIdcontroller =TextEditingController();
   TextEditingController timePermitHoursController=TextEditingController();
   TextEditingController timePermitMinutesController=TextEditingController();
   List<Question> quesList=[];
@@ -91,8 +92,8 @@ class TeacherAssessmentSettingPublishState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    bool isChecked = false;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -637,7 +638,7 @@ class TeacherAssessmentSettingPublishState
                                                     final String formatted =
                                                         formatter.format(
                                                             pickedDate!);
-                                                    startDate=pickedDate!;
+                                                    startDate=pickedDate;
                                                     startDateController.text =
                                                         formatted;
                                                   },
@@ -732,7 +733,6 @@ class TeacherAssessmentSettingPublishState
                                                         startTimeController.text = formattedTime.toString(); //set the value of text field.
                                                       });
                                                     }else{
-                                                      print("Time is not selected");
                                                     }
                                                   },
                                                 )
@@ -974,7 +974,6 @@ class TeacherAssessmentSettingPublishState
                                                             endTimeController.text = formattedTime.toString(); //set the value of text field.
                                                           });
                                                         }else{
-                                                          print("Time is not selected");
                                                         }
                                                       },
                                                     )
@@ -1308,6 +1307,7 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             width: width * 0.4,
                                             child: TextField(
+                                              controller: instituteTestIdcontroller,
                                               decoration: InputDecoration(
                                                 hintText: "UCE1122334455",
                                                 hintStyle: TextStyle(
@@ -1898,7 +1898,7 @@ class TeacherAssessmentSettingPublishState
           ),
         ],
       ),
-    );
+    ));
   }
 
   _selectTime(BuildContext context) async {

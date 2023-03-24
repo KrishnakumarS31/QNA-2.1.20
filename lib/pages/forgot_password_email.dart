@@ -30,180 +30,213 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: Text(
-            AppLocalizations.of(context)!.forgot_password_caps,
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.025,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomRight,
-                    begin: Alignment.topLeft,
-                    colors: [
-                  Color.fromRGBO(82, 165, 160, 1),
-                  Color.fromRGBO(0, 106, 100, 1),
-                ])),
-          ),
-        ),
-        body: Column(children: [
-          SizedBox(height: height * 0.1),
-          Form(
-            key: formKey,
-            child: SizedBox(
-              height: height * 0.45,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: height * 0.025, right: height * 0.025),
-                    child: TextFormField(
-                      controller: _controller,
-                      keyboardType: TextInputType.emailAddress,
-                      onChanged: (val) {
-                        formKey.currentState!.validate();
-                      },
-                      decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        label: RichText(
-                            text: TextSpan(children: [
-                          TextSpan(
-                            text: AppLocalizations.of(context)!.enter_email_id,
-                            style: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: height * 0.017),
-                          ),
-                          TextSpan(
-                              text: "\t*",
-                              style: TextStyle(
-                                  color: const Color.fromRGBO(219, 35, 35, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: height * 0.017)),
-                        ])),
-                        helperText: 'an OTP will be sent to Email ID',
-                        helperStyle: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.016),
-                        hintStyle: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.016),
-                        hintText: "emailID@email.com",
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color.fromRGBO(82, 165, 160, 1)),
-                            borderRadius: BorderRadius.circular(15)),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                      ),
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                .hasMatch(value)) {
-                          return AppLocalizations.of(context)!
-                              .enter_valid_email;
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      minimumSize: Size(width * 0.77, height * 0.06),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
-                      ),
-                    ),
-                    onPressed: () async {
-                      bool valid = formKey.currentState!.validate();
-                      if (valid) {
-                        StaticResponse response =
-                            StaticResponse(code: 0, message: 'Incorrect Email');
-                        response = await QnaService.sendOtp(_controller.text);
-                        if (response.code == 200) {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade,
-                                child: showAlertDialog(context)),
-                          );
-                        }
-                      }
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.send_otp,
-                      style: TextStyle(
-                          fontSize: height * 0.024,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  size: 40.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              automaticallyImplyLeading: false,
+              centerTitle: true,
+              title: Text(
+                AppLocalizations.of(context)!.forgot_password_caps,
+                style: TextStyle(
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: height * 0.025,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomRight,
+                        begin: Alignment.topLeft,
+                        colors: [
+                      Color.fromRGBO(82, 165, 160, 1),
+                      Color.fromRGBO(0, 106, 100, 1),
+                    ])),
               ),
             ),
-          ),
-          SizedBox(
-            height: height * 0.06,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    color: Color.fromRGBO(82, 165, 160, 1),
+            body: Column(children: [
+              SizedBox(height: height * 0.1),
+              Form(
+                key: formKey,
+                child: SizedBox(
+                  height: height * 0.45,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: height * 0.025, right: height * 0.025),
+                        child: TextFormField(
+                          controller: _controller,
+                          keyboardType: TextInputType.emailAddress,
+                          onChanged: (val) {
+                            formKey.currentState!.validate();
+                          },
+                          decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            label: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                text: AppLocalizations.of(context)!
+                                    .enter_email_id,
+                                style: TextStyle(
+                                    color:
+                                        const Color.fromRGBO(102, 102, 102, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: height * 0.017),
+                              ),
+                              TextSpan(
+                                  text: "\t*",
+                                  style: TextStyle(
+                                      color:
+                                          const Color.fromRGBO(219, 35, 35, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: height * 0.017)),
+                            ])),
+                            helperText: 'an OTP will be sent to Email ID',
+                            helperStyle: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.016),
+                            hintStyle: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.016),
+                            hintText: "emailID@email.com",
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Color.fromRGBO(82, 165, 160, 1)),
+                                borderRadius: BorderRadius.circular(15)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty ||
+                                !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                    .hasMatch(value)) {
+                              return AppLocalizations.of(context)!
+                                  .enter_valid_email;
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(82, 165, 160, 1),
+                          minimumSize: Size(width * 0.77, height * 0.06),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
+                          ),
+                        ),
+                        onPressed: () async {
+                          bool valid = formKey.currentState!.validate();
+                          if (valid) {
+                            StaticResponse response = StaticResponse(
+                                code: 0, message: 'Incorrect Email');
+                            response =
+                                await QnaService.sendOtp(_controller.text);
+                            if (response.code == 200) {
+                              showAlertDialog(context);
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //       type: PageTransitionType.rightToLeft,
+                              //       child: showAlertDialog(context)),
+                              // );
+                            }
+                          }
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.send_otp,
+                          style: TextStyle(
+                              fontSize: height * 0.024,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ],
                   ),
-                  onPressed: () {},
                 ),
-                Text(AppLocalizations.of(context)!.back,
-                    style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                        const TextStyle(
-                            color: Color.fromRGBO(48, 145, 139, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16))),
-              ],
-            ),
-          ),
-        ]));
+              ),
+              SizedBox(
+                height: height * 0.06,
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        color: Color.fromRGBO(82, 165, 160, 1),
+                      ),
+                      onPressed: () {},
+                    ),
+                    Text(AppLocalizations.of(context)!.back,
+                        style: Theme.of(context)
+                            .primaryTextTheme
+                            .bodyLarge
+                            ?.merge(const TextStyle(
+                                color: Color.fromRGBO(48, 145, 139, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16))),
+                  ],
+                ),
+              ),
+            ])));
   }
 
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
+    Widget okButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+      ),
+      child: Text(
+        "Enter OTP",
+        style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: VerifyOtpPage(
+                email: _controller.text, setLocale: widget.setLocale),
+          ),
+        );
+      },
+    );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -234,31 +267,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
             fontWeight: FontWeight.w500,
             fontSize: height * 0.018),
       ),
-      actions: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
-          ),
-          child: Text(
-            "Enter OTP",
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: height * 0.018),
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: VerifyOtpPage(
-                    email: _controller.text, setLocale: widget.setLocale),
-              ),
-            );
-          },
-        )
-      ],
+      actions: [okButton],
     );
 
     // show the dialog

@@ -90,7 +90,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                     leading: const Icon(Icons.library_books_sharp,
                         color: Color.fromRGBO(141, 167, 167, 1)),
                     title: Text(
-                        AppLocalizations.of(context)!.terms_of_services,
+                      AppLocalizations.of(context)!.terms_of_services,
                       //'Terms of Services',
                       style: TextStyle(
                           color: textColor,
@@ -187,7 +187,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                       );
                     }),
                 SizedBox(height: localHeight * 0.03),
-                 Align(
+                Align(
                   alignment: Alignment.center,
                   child: Text(
                     "${AppLocalizations.of(context)!.version}: 1.0.0",

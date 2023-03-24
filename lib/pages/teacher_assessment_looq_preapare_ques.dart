@@ -111,7 +111,8 @@ class TeacherAssessmentLooqPrepareQuesState extends State<TeacherAssessmentLooqP
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -762,7 +763,7 @@ class TeacherAssessmentLooqPrepareQuesState extends State<TeacherAssessmentLooqP
                   ],
                 ),
               ]),
-            )));
+            ))));
   }
 
   changeIcon(IconData pramIcon) {

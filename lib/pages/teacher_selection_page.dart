@@ -41,7 +41,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false,
+    child:Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           elevation: 0,
@@ -267,6 +269,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   height: height * 0.025,
                 ),
               ]),
-        ));
+        )));
   }
 }

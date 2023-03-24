@@ -52,7 +52,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700)
         {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
                 elevation: 0,
@@ -330,10 +331,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
-                      ])));
+                      ]))));
         }
         else {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
                 elevation: 0,
@@ -527,9 +529,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         });
                                     values = await QnaService.getQuestion(assessmentId: assessmentID.text);
                                     Navigator.of(context).pop();
-                                    print(values.code);
                                     if (assessmentID.text.length >= 8) {
-                                      print("INSIDE IF");
                                     if (values.code == 200) {
                                         Navigator.push(
                                           context,
@@ -544,7 +544,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         );
                                       }
                                     else if(values.code == 400) {
-                                      print("INSIDE ELSE IF");
                                       Navigator.push(
                                         context,
                                         PageTransition(
@@ -558,7 +557,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     }
                                     }
                                     else {
-                                      print("INSIDE ELSE IF");
                                       Navigator.push(
                                         context,
                                         PageTransition(
@@ -629,7 +627,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                         SizedBox(
                           height: localHeight * 0.03,
                         ),
-                      ])));
+                      ]))));
         }
       },
     );

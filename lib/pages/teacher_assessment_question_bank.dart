@@ -29,8 +29,7 @@ class TeacherAssessmentQuestionBankState
   TextEditingController teacherQuestionBankSearchController =
       TextEditingController();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  List<Question> questions=[];
-
+  List<Question> questions = [];
 
   @override
   void initState() {
@@ -39,10 +38,11 @@ class TeacherAssessmentQuestionBankState
   }
 
   getData() async {
-    ResponseEntity responseEntity=await QnaService.getQuestionBankService(100,1);
-    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+    ResponseEntity responseEntity =
+        await QnaService.getQuestionBankService(500, 1);
     setState(() {
-      questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
+      questions = List<Question>.from(
+          responseEntity.data.map((x) => Question.fromJson(x)));
     });
   }
 
@@ -72,209 +72,214 @@ class TeacherAssessmentQuestionBankState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
-      endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.chevron_left,
-            size: 40.0,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        toolbarHeight: height * 0.100,
-        centerTitle: true,
-        title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(
-            "SEARCH RESULTS",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-          Text(
-            "MY QUESTION BANK",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ]),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  end: Alignment.bottomCenter,
-                  begin: Alignment.topCenter,
-                  colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
-        child: Column(
-          children: [
-            SizedBox(
-              height: height * 0.02,
-            ),
-            TextField(
-              controller: teacherQuestionBankSearchController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                hintStyle: TextStyle(
-                    color: const Color.fromRGBO(102, 102, 102, 0.3),
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
-                    fontSize: height * 0.016),
-                hintText: "Maths, 10th, 2022, CBSE, Science",
-                suffixIcon: Column(children: [
-                  Container(
-                      height: height * 0.073,
-                      width: width * 0.13,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        color: Color.fromRGBO(82, 165, 160, 1),
-                      ),
-                      child: IconButton(
-                        iconSize: height * 0.04,
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child:  TeacherAssessmentSearched(),
-                          //   ),
-                          // );
-                        },
-                        icon: const Icon(Icons.search),
-                      )),
-                ]),
-                focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                        color: Color.fromRGBO(82, 165, 160, 1)),
-                    borderRadius: BorderRadius.circular(15)),
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 40.0,
+                color: Colors.white,
               ),
-              enabled: true,
-              onChanged: (value) {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            SizedBox(
-              height: height * 0.015,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Tap to Review/Edit/Delete",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    color: const Color.fromRGBO(153, 153, 153, 1),
-                    fontSize: height * 0.015,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
+            toolbarHeight: height * 0.100,
+            centerTitle: true,
+            title: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "SEARCH RESULTS",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
+                  Text(
+                    "MY QUESTION BANK",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ]),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      end: Alignment.bottomCenter,
+                      begin: Alignment.topCenter,
+                      colors: [
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
+            ),
+          ),
+          body: Padding(
+            padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height * 0.02,
+                ),
+                TextField(
+                  controller: teacherQuestionBankSearchController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintStyle: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        fontSize: height * 0.016),
+                    hintText: "Maths, 10th, 2022, CBSE, Science",
+                    suffixIcon: Column(children: [
+                      Container(
+                          height: height * 0.073,
+                          width: width * 0.13,
+                          decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          ),
+                          child: IconButton(
+                            iconSize: height * 0.04,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            onPressed: () {
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child:  TeacherAssessmentSearched(),
+                              //   ),
+                              // );
+                            },
+                            icon: const Icon(Icons.search),
+                          )),
+                    ]),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromRGBO(82, 165, 160, 1)),
+                        borderRadius: BorderRadius.circular(15)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                  ),
+                  enabled: true,
+                  onChanged: (value) {},
+                ),
+                SizedBox(
+                  height: height * 0.015,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "My Questions",
+                      "Tap to Review/Edit/Delete",
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                        color: const Color.fromRGBO(0, 0, 0, 1),
+                        color: const Color.fromRGBO(153, 153, 153, 1),
                         fontSize: height * 0.015,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(
-                      width: width * 0.02,
-                    ),
-                    const Icon(
-                      Icons.circle_rounded,
-                      color: Color.fromRGBO(82, 165, 160, 1),
+                    Row(
+                      children: [
+                        Text(
+                          "My Questions",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(
+                          width: width * 0.02,
+                        ),
+                        const Icon(
+                          Icons.circle_rounded,
+                          color: Color.fromRGBO(82, 165, 160, 1),
+                        )
+                      ],
                     )
                   ],
-                )
-              ],
-            ),
-            SizedBox(
-              height: height * 0.015,
-            ),
-            SizedBox(
-              height: height * 0.6,
-              width: width * 0.9,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    for (Question i in questions)
-                      QuestionPreview(
-                        height: height,
-                        width: width,
-                        question: i,
-                      ),
-                  ],
                 ),
-              ),
-            ),
-            // SizedBox(
-            //   height: height * 0.02,
-            // ),
-            Center(
-              child: SizedBox(
-                width: width * 0.8,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      minimumSize: const Size(280, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
-                      ),
-                      side: const BorderSide(
-                        color: Color.fromRGBO(82, 165, 160, 1),
-                      )),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: TeacherSelectedQuestionAssessment(
-                            setLocale: widget.setLocale),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'Add',
-                    style: TextStyle(
-                        fontSize: height * 0.025,
-                        fontFamily: "Inter",
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontWeight: FontWeight.w600),
+                SizedBox(
+                  height: height * 0.015,
+                ),
+                SizedBox(
+                  height: height * 0.6,
+                  width: width * 0.9,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        for (Question i in questions)
+                          QuestionPreview(
+                            height: height,
+                            width: width,
+                            question: i,
+                          ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
+                // SizedBox(
+                //   height: height * 0.02,
+                // ),
+                Center(
+                  child: SizedBox(
+                    width: width * 0.8,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(82, 165, 160, 1),
+                          minimumSize: const Size(280, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
+                          ),
+                          side: const BorderSide(
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          )),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherSelectedQuestionAssessment(
+                                setLocale: widget.setLocale),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Add',
+                        style: TextStyle(
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.02,
+                ),
+              ],
             ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
 
@@ -298,10 +303,6 @@ class _QuestionPreviewState extends State<QuestionPreview> {
   bool? valuefirst = false;
   @override
   Widget build(BuildContext context) {
-    String answer = '';
-    for (int i = 0; i < widget.question.choices!.length; i++) {
-      answer = '$answer ${widget.question.choices![i]}';
-    }
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -311,14 +312,19 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           value: valuefirst,
           onChanged: (bool? value) {
             setState(() {
-              if(value!){
-                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.question!);
-
-                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(widget.question.questionId, 10);
-              }
-              else{
-                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
-                Provider.of<CreateAssessmentProvider>(context, listen: false).removeQuestion(widget.question.questionId);
+              if (value!) {
+                widget.question.questionMark = 10;
+                Provider.of<QuestionPrepareProviderFinal>(context,
+                        listen: false)
+                    .addQuestion(widget.question!);
+                Provider.of<CreateAssessmentProvider>(context, listen: false)
+                    .addQuestion(widget.question.questionId, 10);
+              } else {
+                Provider.of<QuestionPrepareProviderFinal>(context,
+                        listen: false)
+                    .removeQuestion(widget.question.questionId);
+                Provider.of<CreateAssessmentProvider>(context, listen: false)
+                    .removeQuestion(widget.question.questionId);
               }
               valuefirst = value;
             });

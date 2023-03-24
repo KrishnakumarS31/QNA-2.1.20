@@ -34,9 +34,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
 
   getData(){
     for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++) {
-      List<int> selectedAnsId = [];
       List<dynamic> correctAns = [];
-      //changes are made
       for (int i = 0; i < values.data!.questions![j - 1].choices!.length; i++) {
         if (values.data!.questions![j - 1].choices![i].rightChoice!) {
           correctAns.add(values.data!.questions![j - 1].choices![i].choiceText);
@@ -48,9 +46,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
           .totalQuestion['$j'][0];
       selectedAns.sort();
       if (listEquals(correctAns, selectedAns)) {
-        print("correct");
       }else{
-        print("wrong");
         inCorrectAns.add(j);
       }
     }
@@ -65,7 +61,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   icon: const Icon(
@@ -551,7 +548,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             color: const Color.fromRGBO(48, 145, 139, 1),
                           ),
                           onPressed: () {
-                            print(values.data!.assessmentType);
                             Navigator.push(
                               context,
                               PageTransition(
@@ -571,7 +567,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     color: const Color.fromRGBO(48, 145, 139, 1),
                                     fontWeight: FontWeight.w500)),
                             onPressed: () {
-                              print(values.data!.assessmentType);
                               values.data!.assessmentType != "test"
                               ?  Navigator.push(
                                 context,
@@ -600,7 +595,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             color: const Color.fromRGBO(48, 145, 139, 1),
                           ),
                           onPressed: () {
-                            print(values.data!.assessmentType);
                             Navigator.push(
                               context,
                               PageTransition(
@@ -680,10 +674,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       ]),
                     ),
                     //const SizedBox(height: 30.0),
-                  ])));
+                  ]))));
         }
         else {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   icon: const Icon(
@@ -766,7 +761,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         SizedBox(
                                             height: localHeight * 0.050),
                                         Text(
-                                            "Q${index}",
+                                            "Q$index",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -964,7 +959,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               color: const Color.fromRGBO(48, 145, 139, 1),
                             ),
                             onPressed: () {
-                              print(values.data!.assessmentType);
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -1098,7 +1092,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       ),
                       //const SizedBox(height: 30.0),
                     ])
-                  ])));
+                  ]))));
         }
       },
     );

@@ -1,4 +1,3 @@
-
 import 'package:qna_test/EntityModel/user_data_model.dart';
 import '../Entity/Teacher/edit_question_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
@@ -12,95 +11,101 @@ import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
 
-class QnaService{
-
-  static Future<UserDataModel> getUserDataService(int? userId)async {
+class QnaService {
+  static Future<UserDataModel> getUserDataService(int? userId) async {
     return await QnaRepo.getUserData(userId);
   }
 
-  static Future<LoginModel> logInUser(String email,String password,String role) async{
-    return await QnaRepo.logInUser(email, password,role);
+  static Future<LoginModel> logInUser(
+      String email, String password, String role) async {
+    return await QnaRepo.logInUser(email, password, role);
   }
 
-  static Future<StaticResponse> sendOtp(String email) async{
+  static Future<StaticResponse> sendOtp(String email) async {
     return await QnaRepo.sendOtp(email);
   }
 
-  static Future<StaticResponse> verifyOtp(String email,String otp) async{
-    return await QnaRepo.verifyOtp(email,otp);
+  static Future<StaticResponse> verifyOtp(String email, String otp) async {
+    return await QnaRepo.verifyOtp(email, otp);
   }
 
-  static Future<StaticResponse> updatePasswordOtp(String email,String otp,String password) async{
+  static Future<StaticResponse> updatePasswordOtp(
+      String email, String otp, String password) async {
     return await QnaRepo.updatePasswordOtp(email, otp, password);
   }
 
-  static Future<ResponseEntity> updatePassword(String oldPassword,String newPassword,int userId) async{
-    return await QnaRepo.updatePassword(oldPassword, newPassword,userId);
+  static Future<ResponseEntity> updatePassword(
+      String oldPassword, String newPassword, int userId) async {
+    return await QnaRepo.updatePassword(oldPassword, newPassword, userId);
   }
 
-  static Future<LoginModel> postUserDetailsService(StudentRegistrationModel student) async{
+  static Future<LoginModel> postUserDetailsService(
+      StudentRegistrationModel student) async {
     return await QnaRepo.registerUserDetails(student);
   }
-  static Future<QuestionPaperModel> getQuestion( {required String assessmentId}) async{
+
+  static Future<QuestionPaperModel> getQuestion(
+      {required String assessmentId}) async {
     return await QnaTestRepo.getQuestionPaper(assessmentId);
   }
 
-  static Future<LoginModel> postAssessmentService(PostAssessmentModel? assessment,QuestionPaperModel? questionPaper) async {
-    return await QnaRepo.postAssessmentRepo(assessment,questionPaper);
+  static Future<LoginModel> postAssessmentService(
+      PostAssessmentModel? assessment,
+      QuestionPaperModel? questionPaper) async {
+    return await QnaRepo.postAssessmentRepo(assessment, questionPaper);
   }
 
-
-
-
-
-
-
-
-
-
-
-  static Future<ResponseEntity> createQuestionTeacherService(CreateQuestionModel question) async {
+  static Future<ResponseEntity> createQuestionTeacherService(
+      CreateQuestionModel question) async {
     return await QnaRepo.createQuestionTeacher(question);
   }
 
-
-  static Future<ResponseEntity> createAssessmentTeacherService(CreateAssessmentModel question) async {
+  static Future<ResponseEntity> createAssessmentTeacherService(
+      CreateAssessmentModel question) async {
     return await QnaRepo.createAssessmentTeacher(question);
   }
 
-  static Future<QuestionPaperModel> getQuestionGuest(String assessmentId, String name) async{
-    return await QnaRepo.getQuestionPaperGuest(assessmentId,name);
+  static Future<QuestionPaperModel> getQuestionGuest(
+      String assessmentId, String name) async {
+    return await QnaRepo.getQuestionPaperGuest(assessmentId, name);
   }
 
-  static Future<ResponseEntity> getAllAssessment(int pageLimit,int pageNumber) async{
-    return await QnaRepo.getAllAssessment(pageLimit,pageNumber);
+  static Future<ResponseEntity> getAllAssessment(
+      int pageLimit, int pageNumber) async {
+    return await QnaRepo.getAllAssessment(pageLimit, pageNumber);
   }
 
-  static Future<ResponseEntity> getQuestionBankService(int pageLimit,int pageNumber) async {
-    return await QnaRepo.getAllQuestion(pageLimit,pageNumber);
+  static Future<ResponseEntity> getQuestionBankService(
+      int pageLimit, int pageNumber) async {
+    return await QnaRepo.getAllQuestion(pageLimit, pageNumber);
   }
 
   static Future<LoginModel> deleteQuestion(int questionId) async {
     return await QnaRepo.deleteQuestion(questionId);
   }
 
-  static Future<ResponseEntity> editQuestionTeacherService(EditQuestionModel question,int questionId) async {
-    return await QnaRepo.editQuestionTeacher(question,questionId);
-  }
-  static Future<ResponseEntity> editAssessmentTeacherService(CreateAssessmentModel assessment,int assessmentId) async {
-    return await QnaRepo.editAssessmentTeacher(assessment,assessmentId);
+  static Future<ResponseEntity> editQuestionTeacherService(
+      EditQuestionModel question, int questionId) async {
+    return await QnaRepo.editQuestionTeacher(question, questionId);
   }
 
-
-  static Future<ResponseEntity>getResultDataService(int? userId,int pageLimit,int pageNumber) async {
-    return await QnaRepo.getResult(userId,pageLimit,pageNumber);
+  static Future<ResponseEntity> editAssessmentTeacherService(
+      CreateAssessmentModel assessment, int assessmentId) async {
+    return await QnaRepo.editAssessmentTeacher(assessment, assessmentId);
   }
 
-  static Future<ResponseEntity> getSearchAssessment(int pageLimit,int pageNumber,String searchVal) async{
-    return await QnaRepo.getSearchAssessment(pageLimit,pageNumber,searchVal);
-  }
-  static Future<ResponseEntity> getSearchQuestion(int pageLimit,int pageNumber,String searchVal) async{
-    return await QnaRepo.getSearchQuestion(pageLimit,pageNumber,searchVal);
+  static Future<ResponseEntity> getResultDataService(
+      int? userId, int pageLimit, int pageNumber) async {
+    return await QnaRepo.getResult(userId, pageLimit, pageNumber);
   }
 
+  static Future<ResponseEntity> getSearchAssessment(
+      int pageLimit, int pageNumber, String searchVal) async {
+    return await QnaRepo.getSearchAssessment(pageLimit, pageNumber, searchVal);
+  }
+
+  static Future<ResponseEntity> getSearchQuestion(
+      int pageLimit, int pageNumber, String searchVal) async {
+    return await QnaRepo.getSearchQuestion(pageLimit, pageNumber, searchVal);
+  }
 }

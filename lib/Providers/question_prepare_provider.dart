@@ -7,26 +7,25 @@ class QuestionPrepareProvider extends ChangeNotifier {
 
   List<Question> get getAllQuestion => _questionList;
 
-  void addQuestion(Question question){
+  void addQuestion(Question question) {
     _questionList.add(question);
     notifyListeners();
   }
 
-  void reSetQuestionList(){
+  void reSetQuestionList() {
     _questionList.clear();
     notifyListeners();
   }
 
-  void deleteQuestionList(int id){
+  void deleteQuestionList(int id) {
     _questionList.removeAt(id);
     print("deleted");
     notifyListeners();
   }
 
-  void updateQuestionList(int id,Question demoQuestionModel){
-    _questionList[id]=demoQuestionModel;
+  void updateQuestionList(int id, Question demoQuestionModel) {
+    _questionList[id] = demoQuestionModel;
     print("updated");
     notifyListeners();
   }
 }
-

@@ -46,7 +46,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   icon: const Icon(
@@ -333,9 +334,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                       ],
                     ),
                     SizedBox(height: localHeight * 0.030),
-                  ])));
+                  ]))));
         } else {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   icon: const Icon(
@@ -518,7 +520,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                       ]),
                       SizedBox(height: localHeight * 0.030),
                     ])
-                  ])));
+                  ]))));
         }
       },
     );

@@ -36,224 +36,227 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  size: 40.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              automaticallyImplyLeading: false,
+              centerTitle: true,
+              title: Text(
+                AppLocalizations.of(context)!.reset_password_caps,
+                style: TextStyle(
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: height * 0.025,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomRight,
+                        begin: Alignment.topLeft,
+                        colors: [
+                      Color.fromRGBO(82, 165, 160, 1),
+                      Color.fromRGBO(0, 106, 100, 1),
+                    ])),
+              ),
             ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: Text(
-            AppLocalizations.of(context)!.reset_password_caps,
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.025,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomRight,
-                    begin: Alignment.topLeft,
-                    colors: [
-                  Color.fromRGBO(82, 165, 160, 1),
-                  Color.fromRGBO(0, 106, 100, 1),
-                ])),
-          ),
-        ),
-        body: Column(children: [
-          SizedBox(
-            height: height * 0.055,
-          ),
-          Form(
-            key: formKey,
-            child: SizedBox(
-              height: height * 0.55,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+            body: Column(children: [
+              SizedBox(
+                height: height * 0.055,
+              ),
+              Form(
+                key: formKey,
+                child: SizedBox(
+                  height: height * 0.55,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: height * 0.025, right: height * 0.025),
-                        child: TextFormField(
-                          controller: oldPassword,
-                          keyboardType: TextInputType.text,
-                          onChanged: (val) {
-                            formKey.currentState!.validate();
-                          },
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            label: RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                text: AppLocalizations.of(context)!
-                                    .new_password_caps,
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: height * 0.025, right: height * 0.025),
+                            child: TextFormField(
+                              controller: oldPassword,
+                              keyboardType: TextInputType.text,
+                              onChanged: (val) {
+                                formKey.currentState!.validate();
+                              },
+                              decoration: InputDecoration(
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                label: RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!
+                                        .new_password_caps,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017),
+                                  ),
+                                  TextSpan(
+                                      text: "\t*",
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              219, 35, 35, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.017)),
+                                ])),
+                                hintText:
+                                    AppLocalizations.of(context)!.new_password,
+                                hintStyle: TextStyle(
+                                    color: const Color.fromRGBO(
+                                        102, 102, 102, 0.3),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017),
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.02),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: Color.fromRGBO(82, 165, 160, 1)),
+                                    borderRadius: BorderRadius.circular(15)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
                               ),
-                              TextSpan(
-                                  text: "\t*",
-                                  style: TextStyle(
-                                      color:
-                                          const Color.fromRGBO(219, 35, 35, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: height * 0.017)),
-                            ])),
-                            hintText:
-                                AppLocalizations.of(context)!.new_password,
-                            hintStyle: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: height * 0.02),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Color.fromRGBO(82, 165, 160, 1)),
-                                borderRadius: BorderRadius.circular(15)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
+                              validator: (value) {
+                                if (value!.length < 8) {
+                                  return "New password is required(Password Should be 8 Characters)";
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
                           ),
-                          validator: (value) {
-                            if (value!.length<8) {
-                              return "New password is required(Password Should be 8 Characters)";
-                            } else {
-                              return null;
-                            }
-                          },
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: height * 0.025, right: height * 0.025),
+                            child: TextFormField(
+                              controller: newPassword,
+                              keyboardType: TextInputType.text,
+                              onChanged: (val) {
+                                formKey.currentState!.validate();
+                              },
+                              decoration: InputDecoration(
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                label: RichText(
+                                    text: TextSpan(children: [
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!
+                                        .confirm_new_password_caps,
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.017),
+                                  ),
+                                  TextSpan(
+                                      text: "\t*",
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              219, 35, 35, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.017)),
+                                ])),
+                                hintText: AppLocalizations.of(context)!
+                                    .confirm_new_password,
+                                hintStyle: TextStyle(
+                                    color: const Color.fromRGBO(
+                                        102, 102, 102, 0.3),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: height * 0.02),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: Color.fromRGBO(82, 165, 160, 1)),
+                                    borderRadius: BorderRadius.circular(15)),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15)),
+                              ),
+                              validator: (value) {
+                                if (newPassword.text != oldPassword.text) {
+                                  return AppLocalizations.of(context)!
+                                      .mis_match_password;
+                                } else if (value!.isEmpty) {
+                                  return "Confirm new password is required";
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(82, 165, 160, 1),
+                          minimumSize: Size(width * 0.77, height * 0.06),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: height * 0.025, right: height * 0.025),
-                        child: TextFormField(
-                          controller: newPassword,
-                          keyboardType: TextInputType.text,
-                          onChanged: (val) {
-                            formKey.currentState!.validate();
-                          },
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            label: RichText(
-                                text: TextSpan(children: [
-                              TextSpan(
-                                text: AppLocalizations.of(context)!
-                                    .confirm_new_password_caps,
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: height * 0.017),
-                              ),
-                              TextSpan(
-                                  text: "\t*",
-                                  style: TextStyle(
-                                      color:
-                                          const Color.fromRGBO(219, 35, 35, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: height * 0.017)),
-                            ])),
-                            hintText: AppLocalizations.of(context)!
-                                .confirm_new_password,
-                            hintStyle: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: height * 0.02),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Color.fromRGBO(82, 165, 160, 1)),
-                                borderRadius: BorderRadius.circular(15)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15)),
-                          ),
-                          validator: (value) {
-                            if (newPassword.text != oldPassword.text) {
-                              return AppLocalizations.of(context)!
-                                  .mis_match_password;
-                            } else if (value!.isEmpty) {
-                              return "Confirm new password is required";
-                            } else {
-                              return null;
+                        onPressed: () async {
+                          bool valid = formKey.currentState!.validate();
+                          if (valid) {
+                            StaticResponse res =
+                                await QnaService.updatePasswordOtp(
+                                    widget.email, widget.otp, newPassword.text);
+                            //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
+                            if (res.code == 200) {
+                              showAlertDialog(context);
+                            } else if (res.code == 400) {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: 'Incorrect OTP',
+                                    content:
+                                        'Your Password has not been changed',
+                                    button: AppLocalizations.of(context)!.retry,
+                                  ),
+                                ),
+                              );
                             }
-                          },
+                          }
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.submit,
+                          style: TextStyle(
+                              fontSize: height * 0.024,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      minimumSize: Size(width * 0.77, height * 0.06),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
-                      ),
-                    ),
-                    onPressed: () async {
-                      bool valid = formKey.currentState!.validate();
-                      if (valid) {
-                        StaticResponse res = await QnaService.updatePasswordOtp(
-                            widget.email, widget.otp, newPassword.text);
-                        //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
-                        if (res.code == 200) {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                                type: PageTransitionType.fade,
-                                child: showAlertDialog(context)),
-                          );
-                        }
-                        else if(res.code == 400) {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: CustomDialog(
-                                title: 'Incorrect OTP',
-                                content: 'Your Password has not been changed',
-                                button: AppLocalizations.of(context)!.retry,
-                              ),
-                            ),
-                          );
-                        }
-                      }
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.submit,
-                      style: TextStyle(
-                          fontSize: height * 0.024,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-          ),
-        ]));
+            ])));
   }
 
   showAlertDialog(BuildContext context) {

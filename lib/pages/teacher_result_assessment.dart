@@ -42,7 +42,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -378,6 +379,6 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
               )
             ]),
           ),
-        ));
+        )));
   }
 }

@@ -30,9 +30,9 @@ class CustomCard1 extends StatelessWidget {
       height: height * 0.1825,
       decoration: BoxDecoration(
           border: Border.all(
-            color: Color.fromRGBO(233, 233, 233, 1),
+            color: const Color.fromRGBO(233, 233, 233, 1),
           ),
-          borderRadius: BorderRadius.all(Radius.circular(20))),
+          borderRadius: const BorderRadius.all(Radius.circular(20))),
       child: Column(
         children: [
           ListTile(
@@ -42,7 +42,7 @@ class CustomCard1 extends StatelessWidget {
                 Text(
                   'Subject - $subject',
                   style: TextStyle(
-                      color: Color.fromRGBO(28, 78, 80, 1),
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       fontSize: height * 0.0187,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700),
@@ -50,7 +50,7 @@ class CustomCard1 extends StatelessWidget {
                 Text(
                   subTitle,
                   style: TextStyle(
-                      color: Color.fromRGBO(102, 102, 102, 1),
+                      color: const Color.fromRGBO(102, 102, 102, 1),
                       fontSize: height * 0.015,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
@@ -69,7 +69,7 @@ class CustomCard1 extends StatelessWidget {
                 Text(
                   date,
                   style: TextStyle(
-                      color: Color.fromRGBO(102, 102, 102, 0.7),
+                      color: const Color.fromRGBO(102, 102, 102, 0.7),
                       fontSize: height * 0.0125,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
@@ -79,7 +79,7 @@ class CustomCard1 extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
-            child: Divider(),
+            child: const Divider(),
           ),
           Padding(
             padding:
@@ -89,7 +89,7 @@ class CustomCard1 extends StatelessWidget {
               child: Text(
                 'Title - $title',
                 style: TextStyle(
-                    color: Color.fromRGBO(82, 165, 160, 1),
+                    color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),
@@ -104,7 +104,7 @@ class CustomCard1 extends StatelessWidget {
               child: Text(
                 'Sub Topic $subTopic',
                 style: TextStyle(
-                    color: Color.fromRGBO(82, 165, 160, 1),
+                    color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),
@@ -118,7 +118,7 @@ class CustomCard1 extends StatelessWidget {
               child: Text(
                 'Class $std',
                 style: TextStyle(
-                    color: Color.fromRGBO(102, 102, 102, 1),
+                    color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: height * 0.0175,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w500),

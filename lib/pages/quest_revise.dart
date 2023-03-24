@@ -33,7 +33,7 @@
 //     double localWidth = MediaQuery.of(context).size.width;
 //     double localHeight = MediaQuery.of(context).size.height;
 //     questionPaperModel= QnaService.getQuestion(assessmentId: values.data!.assessment!.assessmentCode);
-//     return Scaffold(
+//     return WillPopScope( onWillPop: () async => false, child:Scaffold(
 //         resizeToAvoidBottomInset: true,
 //         backgroundColor: Colors.white,
 //         body: SingleChildScrollView(

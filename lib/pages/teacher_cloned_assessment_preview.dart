@@ -16,6 +16,7 @@ import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'teacher_prepare_qnBank.dart';
+
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
     Key? key,
@@ -31,12 +32,13 @@ class TeacherClonedAssessmentPreview extends StatefulWidget {
 class TeacherClonedAssessmentPreviewState
     extends State<TeacherClonedAssessmentPreview> {
   bool additionalDetails = true;
-  GetAssessmentModel assessment =GetAssessmentModel();
-  CreateAssessmentModel.CreateAssessmentModel finalAssessment=CreateAssessmentModel.CreateAssessmentModel(questions: []);
-  List<Questions.Question> quesList=[];
+  GetAssessmentModel assessment = GetAssessmentModel();
+  CreateAssessmentModel.CreateAssessmentModel finalAssessment =
+      CreateAssessmentModel.CreateAssessmentModel(questions: []);
+  List<Questions.Question> quesList = [];
 
-  int mark=0;
-  int totalMarks =0;
+  int mark = 0;
+  int totalMarks = 0;
 
   showAdditionalDetails() {
     setState(() {
@@ -44,19 +46,20 @@ class TeacherClonedAssessmentPreviewState
     });
   }
 
-
   @override
   void initState() {
-    print("Yeah page loading");
-    assessment=Provider.of<EditAssessmentProvider>(context, listen: false).getAssessment;
-    finalAssessment=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-    quesList=Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
-    finalAssessment.removeQuestions=[];
-    for(int i=quesList.length;i< finalAssessment.questions!.length;i++){
+    assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
+        .getAssessment;
+    finalAssessment =
+        Provider.of<CreateAssessmentProvider>(context, listen: false)
+            .getAssessment;
+    quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+        .getAllQuestion;
+    finalAssessment.removeQuestions = [];
+    for (int i = quesList.length; i < finalAssessment.questions!.length; i++) {
       //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
-      mark=mark + finalAssessment.questions![i].questionMarks!;
+      mark = mark + finalAssessment.questions![i].questionMarks!;
     }
-    print(finalAssessment.toString());
     super.initState();
   }
 
@@ -67,248 +70,263 @@ class TeacherClonedAssessmentPreviewState
     TextEditingController teacherQuestionBankSearchController =
         TextEditingController();
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.chevron_left,
-            size: 40.0,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        toolbarHeight: height * 0.100,
-        centerTitle: true,
-        title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(
-            "CLONED",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: Colors.white,
+          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 40.0,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            toolbarHeight: height * 0.100,
+            centerTitle: true,
+            title: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "CLONED",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    "ASSESSMENTS",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ]),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      end: Alignment.bottomCenter,
+                      begin: Alignment.topCenter,
+                      colors: [
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
             ),
           ),
-          Text(
-            "ASSESSMENTS",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ]),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  end: Alignment.bottomCenter,
-                  begin: Alignment.topCenter,
-                  colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
-        ),
-      ),
-      body: Padding(
-          padding: EdgeInsets.only(
-              top: height * 0.023, left: height * 0.023, right: height * 0.023),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          body: Padding(
+              padding: EdgeInsets.only(
+                  top: height * 0.023,
+                  left: height * 0.023,
+                  right: height * 0.023),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Total Questions: ',
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                            fontWeight: FontWeight.w400),
+                      Row(
+                        children: [
+                          Text(
+                            'Total Questions: ',
+                            style: TextStyle(
+                                fontSize: height * 0.017,
+                                fontFamily: "Inter",
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            '${assessment.questions!.length}',
+                            style: TextStyle(
+                                fontSize: height * 0.017,
+                                fontFamily: "Inter",
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
                       ),
-                      Text(
-                        '${assessment.questions!.length}',
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Total Marks: ',
+                            style: TextStyle(
+                                fontSize: height * 0.017,
+                                fontFamily: "Inter",
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            '$totalMarks',
+                            style: TextStyle(
+                                fontSize: height * 0.017,
+                                fontFamily: "Inter",
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'Total Marks: ',
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(0, 0, 0, 1),
-                            fontWeight: FontWeight.w400),
-                      ),
-                      Text(
-                        '$totalMarks',
-                        style: TextStyle(
-                            fontSize: height * 0.017,
-                            fontFamily: "Inter",
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
                   SizedBox(
-                    height: height * 0.6,
-                    width: width * 0.9,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          for (int i =0;i< quesList.length;i++ )
-                          QuestionWidget(height: height,index: i,assessment: assessment, setLocale: widget.setLocale,question: quesList[i]),
-                        ],
+                    height: height * 0.02,
+                  ),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      SizedBox(
+                        height: height * 0.6,
+                        width: width * 0.9,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (int i = 0; i < quesList.length; i++)
+                                QuestionWidget(
+                                    height: height,
+                                    index: i,
+                                    assessment: assessment,
+                                    setLocale: widget.setLocale,
+                                    question: quesList[i]),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                          top: height * 0.5,
+                          left: width * 0.78,
+                          child: FloatingActionButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: TeacherAssessmentLooqQuestionBank(
+                                    setLocale: widget.setLocale,
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Icon(Icons.add),
+                            backgroundColor: Color.fromRGBO(82, 165, 160, 1),
+                          ))
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.03,
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: width * 0.888,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          side: const BorderSide(
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          ),
+                          backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 1),
+                          minimumSize: const Size(280, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
+                          ),
+                        ),
+                        //shape: StadiumBorder(),
+                        onPressed: () async {
+                          finalAssessment.assessmentStatus = 'inprogress';
+                          CreateAssessmentModel.AssessmentSettings
+                              assessmentSettings =
+                              CreateAssessmentModel.AssessmentSettings();
+                          finalAssessment.assessmentSettings =
+                              assessmentSettings;
+                          ResponseEntity statusCode =
+                              await QnaService.createAssessmentTeacherService(
+                                  finalAssessment);
+                          if (statusCode.code == 200) {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: TeacherAssessmentLanding(
+                                    setLocale: widget.setLocale),
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(
+                          'Save List',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                   ),
-                  Positioned(
-                      top: height * 0.5,
-                      left: width * 0.78,
-                      child: FloatingActionButton(
+                  SizedBox(
+                    height: height * 0.01,
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: width * 0.888,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            )),
+                        //shape: StadiumBorder(),
                         onPressed: () {
                           Navigator.push(
                             context,
                             PageTransition(
                               type: PageTransitionType.rightToLeft,
-                              child: TeacherAssessmentLooqQuestionBank(
-                                  setLocale: widget.setLocale,),
+                              child: TeacherAssessmentSettingPublish(
+                                  setLocale: widget.setLocale),
                             ),
                           );
-                        },
-                        child: Icon(Icons.add),
-                        backgroundColor: Color.fromRGBO(82, 165, 160, 1),
-                      ))
-                ],
-              ),
-              SizedBox(
-                height: height * 0.03,
-              ),
-              Center(
-                child: SizedBox(
-                  width: width * 0.888,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Color.fromRGBO(82, 165, 160, 1),
-                      ),
-                      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                      minimumSize: const Size(280, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
-                      ),
-                    ),
-                    //shape: StadiumBorder(),
-                    onPressed: () async {
-                      print("Hi THere");
-                      finalAssessment.assessmentStatus='inprogress';
-                      CreateAssessmentModel.AssessmentSettings assessmentSettings=CreateAssessmentModel.AssessmentSettings();
-                      finalAssessment.assessmentSettings=assessmentSettings;
-                      print(finalAssessment.toString());
-                      ResponseEntity statusCode = await QnaService.createAssessmentTeacherService(finalAssessment);
-                      if(statusCode.code==200){
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherAssessmentLanding(
-                                setLocale: widget.setLocale),
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(
-
-                      'Save List',
-                      style: TextStyle(
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.01,
-              ),
-              Center(
-                child: SizedBox(
-                  width: width * 0.888,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: const Size(280, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
-                        ),
-                        side: const BorderSide(
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        )),
-                    //shape: StadiumBorder(),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: TeacherAssessmentSettingPublish(
-                              setLocale: widget.setLocale),
-                        ),
-                      );
 
 //TeacherPublishedAssessment
-                    },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                          fontWeight: FontWeight.w600),
+                        },
+                        child: Text(
+                          'Submit',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ],
-          )),
-    );
+                ],
+              )),
+        ));
   }
 }
 
 class QuestionWidget extends StatefulWidget {
-  QuestionWidget({
-    Key? key,
-    required this.height,
-    required this.index,
-    required this.assessment,
-    required this.question,
-    required this.setLocale
-  }) : super(key: key);
+  QuestionWidget(
+      {Key? key,
+      required this.height,
+      required this.index,
+      required this.assessment,
+      required this.question,
+      required this.setLocale})
+      : super(key: key);
 
   final double height;
   final int index;
@@ -321,7 +339,6 @@ class QuestionWidget extends StatefulWidget {
 }
 
 class _QuestionWidgetState extends State<QuestionWidget> {
-
   showAlertDialog(BuildContext context, double height) {
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
@@ -364,14 +381,15 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       onPressed: () {
         Navigator.of(context).pop();
         //widget.assessment.questions!.removeAt(widget.index);
-        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).deleteQuestionList(widget.index);
-        Provider.of<CreateAssessmentProvider>(context, listen: false).removeLooqQuestionInAssess(widget.question!.questionId);
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+            .deleteQuestionList(widget.index);
+        Provider.of<CreateAssessmentProvider>(context, listen: false)
+            .removeLooqQuestionInAssess(widget.question!.questionId);
         Navigator.push(
           context,
           PageTransition(
             type: PageTransitionType.rightToLeft,
-            child: TeacherClonedAssessmentPreview(
-                setLocale: widget.setLocale),
+            child: TeacherClonedAssessmentPreview(setLocale: widget.setLocale),
           ),
         );
       },
@@ -465,8 +483,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ],
             ),
             GestureDetector(
-              onTap: (){
-                showAlertDialog(context,widget.height);
+              onTap: () {
+                showAlertDialog(context, widget.height);
               },
               child: Row(
                 children: [

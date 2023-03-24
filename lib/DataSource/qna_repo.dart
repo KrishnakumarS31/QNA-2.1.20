@@ -16,30 +16,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart';
 import 'dart:developer';
 import 'http_url.dart';
+
 class QnaRepo {
-
-
-  static logInUser(String email, String password,String? role) async {
+  static logInUser(String email, String password, String? role) async {
     LoginModel loginModel = LoginModel();
 
-    SharedPreferences loginData=await SharedPreferences.getInstance();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST', Uri.parse(loginInUserUrl));
-    request.body = json.encode({"email": email, "password": password, "role": role});
+    var request = http.Request('POST', Uri.parse(loginInUserUrl));
+    request.body =
+        json.encode({"email": email, "password": password, "role": role});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     String temp = await response.stream.bytesToString();
-
 
     if (response.statusCode == 200) {
       print(temp);
       loginModel = loginModelFromJson(temp);
       //print(temp);
       loginData.setString('token', loginModel.data.accessToken);
-    }
-    else {
+    } else {
       loginModel = loginModelFromJson(temp);
       print(response.reasonPhrase);
     }
@@ -49,8 +46,7 @@ class QnaRepo {
   static registerUserDetails(StudentRegistrationModel student) async {
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {'Content-Type': 'application/json'};
-    var request =
-        http.Request('POST', Uri.parse('$usersDomain'));
+    var request = http.Request('POST', Uri.parse('$usersDomain'));
     request.body = studentRegistrationModelToJson(student);
     request.headers.addAll(headers);
 
@@ -67,24 +63,21 @@ class QnaRepo {
   }
 
   static Future<UserDataModel> getUserData(int? userId) async {
-    SharedPreferences loginData=await SharedPreferences.getInstance();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
     UserDataModel userData = UserDataModel();
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
-    var request = http.Request(
-        'GET', Uri.parse('$usersDomain/$userId'));
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request('GET', Uri.parse('$usersDomain/$userId'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       userData = userDataModelFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
       getUserData(userId);
     }
     return userData;
@@ -94,8 +87,7 @@ class QnaRepo {
     StaticResponse responses =
         StaticResponse(code: 0, message: 'Incorrect Email');
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST', Uri.parse(sendOtpUrl));
+    var request = http.Request('POST', Uri.parse(sendOtpUrl));
     request.body = json.encode({"email": email});
     request.headers.addAll(headers);
 
@@ -112,11 +104,9 @@ class QnaRepo {
   }
 
   static Future<StaticResponse> verifyOtp(String email, String otp) async {
-    StaticResponse responses =
-        StaticResponse();
+    StaticResponse responses = StaticResponse();
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'POST', Uri.parse(verifyOtpUrl));
+    var request = http.Request('POST', Uri.parse(verifyOtpUrl));
     request.body = json.encode({"email": email, "otp": otp});
     request.headers.addAll(headers);
 
@@ -133,11 +123,11 @@ class QnaRepo {
     return responses;
   }
 
-  static Future<StaticResponse> updatePasswordOtp(String email, String otp, String password) async {
+  static Future<StaticResponse> updatePasswordOtp(
+      String email, String otp, String password) async {
     StaticResponse responses = StaticResponse();
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request(
-        'PUT', Uri.parse(sendOtpUrl));
+    var request = http.Request('PUT', Uri.parse(sendOtpUrl));
     request.body =
         json.encode({"email": email, "otp": otp, "password": password});
     request.headers.addAll(headers);
@@ -148,27 +138,25 @@ class QnaRepo {
     if (response.statusCode != null) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
-    }
-    else {
+    } else {
       print("Inside Else");
       print(response.reasonPhrase);
     }
     return responses;
   }
 
-  static Future<ResponseEntity> updatePassword(String oldPassword, String newPassword, int userId) async {
+  static Future<ResponseEntity> updatePassword(
+      String oldPassword, String newPassword, int userId) async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity responses =
-    ResponseEntity(code: 0, message: 'Incorrect OTP');
+        ResponseEntity(code: 0, message: 'Incorrect OTP');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
     var request = http.Request('PUT', Uri.parse('$updatePasswordUrl/$userId'));
-    request.body = json.encode({
-      "old_password": oldPassword,
-      "new_password": newPassword
-    });
+    request.body =
+        json.encode({"old_password": oldPassword, "new_password": newPassword});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -176,29 +164,30 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = responseEntityFromJson(temp);
-    }else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      updatePassword(oldPassword,newPassword,userId);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      updatePassword(oldPassword, newPassword, userId);
+    } else {
       print(response.reasonPhrase);
     }
 
     return responses;
   }
 
-  static postAssessmentRepo(PostAssessmentModel? assessment,QuestionPaperModel? questionPaper) async {
+  static postAssessmentRepo(PostAssessmentModel? assessment,
+      QuestionPaperModel? questionPaper) async {
     String? token;
-    SharedPreferences loginData=await SharedPreferences.getInstance();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
 
-   if(questionPaper!.data!.accessTokenDetails!.accessToken==null){
-     token=loginData.getString('token');
-   }else{
-     assessment!.userId=questionPaper.data!.accessTokenDetails!.userId!;
-     token=questionPaper!.data!.accessTokenDetails!.accessToken!;
-   }
+    if (questionPaper!.data!.accessTokenDetails!.accessToken == null) {
+      token = loginData.getString('token');
+    } else {
+      assessment!.userId = questionPaper.data!.accessTokenDetails!.userId!;
+      token = questionPaper!.data!.accessTokenDetails!.accessToken!;
+    }
     assessment?.userId = loginData.getInt('userId');
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
@@ -219,14 +208,13 @@ class QnaRepo {
       String temp = await response.stream.bytesToString();
       print(temp);
       loginModel = loginModelFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      postAssessmentRepo(assessment,questionPaper);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      postAssessmentRepo(assessment, questionPaper);
+    } else {
       String temp = await response.stream.bytesToString();
       print(temp);
       loginModel = loginModelFromJson(temp);
@@ -235,7 +223,8 @@ class QnaRepo {
     return loginModel;
   }
 
-  static Future<ResponseEntity> createQuestionTeacher(CreateQuestionModel question) async {
+  static Future<ResponseEntity> createQuestionTeacher(
+      CreateQuestionModel question) async {
     print(question.questions![0].subject);
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
@@ -253,20 +242,20 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
       createQuestionTeacher(question);
-    }
-    else {
+    } else {
       print(response.reasonPhrase);
     }
     return loginModel;
   }
 
-  static Future<ResponseEntity> createAssessmentTeacher(CreateAssessmentModel question) async {
+  static Future<ResponseEntity> createAssessmentTeacher(
+      CreateAssessmentModel question) async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
@@ -283,29 +272,26 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
       createAssessmentTeacher(question);
-    }
-    else {
+    } else {
       print("\n\n\n\n\nassessment submit ah agala");
       print(response.reasonPhrase);
     }
     return loginModel;
   }
 
-  static Future<QuestionPaperModel> getQuestionPaperGuest(String assessmentId,String name) async {
+  static Future<QuestionPaperModel> getQuestionPaperGuest(
+      String assessmentId, String name) async {
     QuestionPaperModel questionPaperModel;
-    var headers = {
-      'Content-Type': 'application/json'
-    };
-    var request = http.Request('POST', Uri.parse('$assessmentDomain/guest?code=$assessmentId'));
-    request.body = json.encode({
-      "first_name": name
-    });
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request(
+        'POST', Uri.parse('$assessmentDomain/guest?code=$assessmentId'));
+    request.body = json.encode({"first_name": name});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
 
@@ -314,13 +300,15 @@ class QnaRepo {
     return questionPaperModel;
   }
 
-  static Future<ResponseEntity> getAllAssessment(int pageLimit,int pageNumber) async {
-    ResponseEntity allAssessment=ResponseEntity();
-    SharedPreferences loginData=await SharedPreferences.getInstance();
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
-    var request = http.Request('GET', Uri.parse('$assessmentDomain/all/${loginData.getInt('userId')}/?page_limit=$pageLimit&page_number=$pageNumber'));
+  static Future<ResponseEntity> getAllAssessment(
+      int pageLimit, int pageNumber) async {
+    ResponseEntity allAssessment = ResponseEntity();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            '$assessmentDomain/all/${loginData.getInt('userId')}/?page_limit=$pageLimit&page_number=$pageNumber'));
 
     request.headers.addAll(headers);
 
@@ -329,26 +317,27 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();
       allAssessment = responseEntityFromJson(value);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      getAllAssessment(pageLimit,pageNumber);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      getAllAssessment(pageLimit, pageNumber);
+    } else {
       print(response.reasonPhrase);
     }
     return allAssessment;
   }
 
-  static Future<ResponseEntity> getAllQuestion(int pageLimit,int pageNumber) async {
-    ResponseEntity responseEntity=ResponseEntity();
-    SharedPreferences loginData=await SharedPreferences.getInstance();
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
-    var request = http.Request('GET', Uri.parse('$allQuestionUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
+  static Future<ResponseEntity> getAllQuestion(
+      int pageLimit, int pageNumber) async {
+    ResponseEntity responseEntity = ResponseEntity();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            '$allQuestionUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -357,14 +346,13 @@ class QnaRepo {
       String value = await response.stream.bytesToString();
       print("-----------------");
       responseEntity = responseEntityFromJson(value);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      getAllQuestion(pageLimit,pageNumber);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      getAllQuestion(pageLimit, pageNumber);
+    } else {
       print(response.reasonPhrase);
     }
     return responseEntity;
@@ -377,106 +365,115 @@ class QnaRepo {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('DELETE', Uri.parse('$questionUrl/$questionId?user_id=${loginData.getInt('userId')}'));
+    var request = http.Request(
+        'DELETE',
+        Uri.parse(
+            '$questionUrl/$questionId?user_id=${loginData.getInt('userId')}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = loginModelFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
       deleteQuestion(questionId);
-    }
-    else {
+    } else {
       print(response.reasonPhrase);
     }
     return loginModel;
   }
 
-  static Future<ResponseEntity> editQuestionTeacher(EditQuestionModel question,int questionId) async {
+  static Future<ResponseEntity> editQuestionTeacher(
+      EditQuestionModel question, int questionId) async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('PUT', Uri.parse('$questionUrl/$questionId?user_id=${loginData.getInt('userId')}'));
+    var request = http.Request(
+        'PUT',
+        Uri.parse(
+            '$questionUrl/$questionId?user_id=${loginData.getInt('userId')}'));
     request.body = editQuestionModelToJson(question);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      editQuestionTeacher(question,questionId);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      editQuestionTeacher(question, questionId);
+    } else {
       print(response.reasonPhrase);
     }
     return loginModel;
   }
 
-  static Future<ResponseEntity> editAssessmentTeacher(CreateAssessmentModel assessment,int assessmentId) async {
+  static Future<ResponseEntity> editAssessmentTeacher(
+      CreateAssessmentModel assessment, int assessmentId) async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
-    var request = http.Request('PUT', Uri.parse('$assessmentDomain/$assessmentId?user_id=${loginData.getInt('userId')}'));
+    var request = http.Request(
+        'PUT',
+        Uri.parse(
+            '$assessmentDomain/$assessmentId?user_id=${loginData.getInt('userId')}'));
     request.body = createAssessmentModelToJson(assessment);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      editAssessmentTeacher(assessment,assessmentId);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      editAssessmentTeacher(assessment, assessmentId);
+    } else {
       print(response.reasonPhrase);
     }
     return loginModel;
   }
 
-  static Future<ResponseEntity> getResult(int? userId,int pageLimit,int pageNumber) async {
-    SharedPreferences loginData=await SharedPreferences.getInstance();
+  static Future<ResponseEntity> getResult(
+      int? userId, int pageLimit, int pageNumber) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity resultData = ResponseEntity(code: 0, message: 'message');
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
-        'GET', Uri.parse('$resultsUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
+        'GET',
+        Uri.parse(
+            '$resultsUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
     //${loginData.getInt('userId')}
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       resultData = responseEntityFromJson(temp);
-    }
-    else if(response.statusCode == 401){
-    }
+    } else if (response.statusCode == 401) {}
     return resultData;
   }
 
-  static Future<ResponseEntity> getSearchAssessment(int pageLimit,int pageNumber,String searchVal) async {
-    ResponseEntity allAssessment=ResponseEntity();
-    SharedPreferences loginData=await SharedPreferences.getInstance();
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
-    var request = http.Request('GET', Uri.parse('$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+  static Future<ResponseEntity> getSearchAssessment(
+      int pageLimit, int pageNumber, String searchVal) async {
+    ResponseEntity allAssessment = ResponseEntity();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            '$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -485,25 +482,27 @@ class QnaRepo {
       String value = await response.stream.bytesToString();
       print(value);
       allAssessment = responseEntityFromJson(value);
-    }else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      getSearchAssessment(pageLimit,pageNumber,searchVal);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      getSearchAssessment(pageLimit, pageNumber, searchVal);
+    } else {
       print(response.reasonPhrase);
     }
     return allAssessment;
   }
 
-  static Future<ResponseEntity> getSearchQuestion(int pageLimit,int pageNumber,String searchVal) async {
-    ResponseEntity allAssessment=ResponseEntity();
-    SharedPreferences loginData=await SharedPreferences.getInstance();
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
-    var request = http.Request('GET', Uri.parse('https://dev.qnatest.com/api/v1/assessment/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+  static Future<ResponseEntity> getSearchQuestion(
+      int pageLimit, int pageNumber, String searchVal) async {
+    ResponseEntity allAssessment = ResponseEntity();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://dev.qnatest.com/api/v1/assessment/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -511,16 +510,15 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();
       allAssessment = responseEntityFromJson(value);
-    }else if(response.statusCode == 401){
-      String? email=loginData.getString('email');
-      String? pass=loginData.getString('password');
-      LoginModel loginModel=await logInUser(email!, pass!,loginData.getString('role'));
-      getSearchQuestion(pageLimit,pageNumber,searchVal);
-    }
-    else {
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+          await logInUser(email!, pass!, loginData.getString('role'));
+      getSearchQuestion(pageLimit, pageNumber, searchVal);
+    } else {
       print(response.reasonPhrase);
     }
     return allAssessment;
   }
-
 }

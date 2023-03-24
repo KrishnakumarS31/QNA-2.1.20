@@ -174,7 +174,7 @@
 //     selected=Provider.of<Questions>(context, listen: false).totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0];
 //     ansController.text=Provider.of<Questions>(context, listen: false).totalQuestion['${context.watch<QuestionNumProvider>().questionNum}'][0].toString();
 //     // });
-//     return Scaffold(
+//     return WillPopScope( onWillPop: () async => false, child:Scaffold(
 //         resizeToAvoidBottomInset: true,
 //         backgroundColor: Colors.white,
 //         appBar: AppBar(

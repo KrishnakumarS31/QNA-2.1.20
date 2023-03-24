@@ -95,7 +95,6 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
     super.initState();
     _count = 0;
     _values = [];
-    addField();
     demoQuestionModel.choices?.add(choice);
     setData();
   }
@@ -111,7 +110,8 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -195,7 +195,7 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
                         ),
                         MyRadioOption<String>(
                           icon: Icons.library_books_sharp,
-                          value: AppLocalizations.of(context)!.descriptive,
+                          value: "Descripitive",
                           //'Descriptive',
                           groupValue: _groupValue,
                           onChanged: _valueChangedHandler(),
@@ -720,21 +720,14 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
                                       }
                                       //temp.add(demoQuestionModel.choices![i]);
                                     }
-                                    demoQuestionModel.subject =
-                                        subjectController.text;
-                                    demoQuestionModel.topic =
-                                        topicController.text;
-                                    demoQuestionModel.subTopic =
-                                        subtopicController.text;
-                                    demoQuestionModel.datumClass =
-                                        classRoomController.text;
-                                    demoQuestionModel.question =
-                                        questionController.text;
-                                    demoQuestionModel.questionType = 'MCQ';
-                                    demoQuestionModel.choices =
-                                        selectedTemp;
-                                    demoQuestionModel.advisorText =
-                                        adviceController.text;
+                                    demoQuestionModel.subject = subjectController.text;
+                                    demoQuestionModel.topic = topicController.text;
+                                    demoQuestionModel.subTopic = subtopicController.text;
+                                    demoQuestionModel.datumClass = classRoomController.text;
+                                    demoQuestionModel.question = questionController.text;
+                                    demoQuestionModel.questionType = _groupValue;
+                                    demoQuestionModel.choices = selectedTemp;
+                                    demoQuestionModel.advisorText = adviceController.text;
                                     demoQuestionModel.advisorUrl = urlController.text;
                                     demoQuestionModel.choices = temp;
                                     //demoQuestionModel.questionId = ques!.length;
@@ -748,6 +741,10 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
                                     finalQuestion.subTopic=subtopicController.text;
                                     finalQuestion.datumClass=classRoomController.text;
                                     finalQuestion.choices=tempChoiceList;
+                                    finalQuestion.questionType=_groupValue;
+                                    if(_groupValue=='Descripitive'){
+                                      finalQuestion.choices=[];
+                                    }
                                     showQuestionPreview(context);
                                   },
                                   child: Text(
@@ -762,7 +759,7 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
                   ],
                 ),
               ]),
-            )));
+            ))));
   }
 
   changeIcon(IconData pramIcon) {

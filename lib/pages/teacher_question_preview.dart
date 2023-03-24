@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/EntityModel/create_question_model.dart';
-import 'package:qna_test/Pages/teacher_selection_page.dart';
-
 import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,7 +43,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
         // appBar: AppBar(
@@ -335,7 +333,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                   ],
                 )),
           ),
-        ));
+        )));
   }
 
 }

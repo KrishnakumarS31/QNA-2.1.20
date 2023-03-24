@@ -96,7 +96,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     super.initState();
     _count = 0;
     _values = [];
-    addField();
     demoQuestionModel.choices?.add(choice);
     setData();
   }
@@ -112,7 +111,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -725,13 +725,11 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     demoQuestionModel.topic = topicController.text;
                                     demoQuestionModel.subTopic = subtopicController.text;
                                     demoQuestionModel.datumClass = classRoomController.text;
-                                    demoQuestionModel.question =
-                                        questionController.text;
+                                    demoQuestionModel.question = questionController.text;
                                     demoQuestionModel.questionType = _groupValue;
                                     demoQuestionModel.choices =
                                         selectedTemp;
-                                    demoQuestionModel.advisorText =
-                                        adviceController.text;
+                                    demoQuestionModel.advisorText = adviceController.text;
                                     demoQuestionModel.advisorUrl = urlController.text;
                                     demoQuestionModel.choices = temp;
                                     //demoQuestionModel.questionId = ques!.length;
@@ -763,7 +761,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                   ],
                 ),
               ]),
-            )));
+            ))));
   }
 
   changeIcon(IconData pramIcon) {

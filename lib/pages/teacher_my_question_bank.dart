@@ -36,7 +36,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
         appBar: AppBar(
@@ -143,7 +144,6 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                 ),
                 onPressed: () async {
                   if (widget.assessment != null) {
-                    print("create Aseessment page");
                     Navigator.push(
                       context,
                       PageTransition(
@@ -153,7 +153,6 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       ),
                     );
                   } else {
-                    print("create question page");
                     //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
                     Navigator.push(
                       context,
@@ -176,7 +175,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
               ),
             ],
           ),
-        ));
+        )));
   }
 }
 
@@ -201,12 +200,17 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    for (int i = 0; i < question.choices!.length; i++) {
-      if(question.choices![i].rightChoice!) {
-        answer = '$answer ${question.choices![i].choiceText}';
-      }
-      //question.choices[question.correctChoice[i]];
+    if(question.choices==null){
+      question.choices=[];
     }
+    else{
+      for (int i = 0; i < question.choices!.length; i++) {
+        if(question.choices![i].rightChoice!) {
+          answer = '$answer ${question.choices![i].choiceText}';
+        }
+      }
+    }
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -276,7 +280,7 @@ class QuestionPreview extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    question.questionType!,
+                    '${question.questionType}',
                     style: TextStyle(
                         fontSize: height * 0.02,
                         fontFamily: "Inter",

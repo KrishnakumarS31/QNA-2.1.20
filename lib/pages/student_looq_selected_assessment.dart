@@ -3,7 +3,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/question_paper_model.dart';
-import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 
 class StudentLooqSelectedAssessment extends StatefulWidget {
@@ -38,7 +37,8 @@ class StudentLooqSelectedAssessmentState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -479,7 +479,7 @@ class StudentLooqSelectedAssessmentState
               ),
             ],
           )),
-    );
+    ));
   }
 }
 

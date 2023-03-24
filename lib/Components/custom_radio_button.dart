@@ -11,7 +11,8 @@ class CustomRadioButton<T> extends StatelessWidget {
   final BuildContext context;
 
   const CustomRadioButton(
-      {required this.value,
+      {super.key,
+      required this.value,
       required this.groupValue,
       required this.label,
       required this.text,

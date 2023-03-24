@@ -46,7 +46,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
     double height = MediaQuery.of(context).size.height;
     print("DFVfdv");
   //  print(widget.result.assessmentResults![0].attemptDuration);
-    return Scaffold(
+    return WillPopScope( onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -152,7 +152,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                               'Internal Assessment ID: ${widget.result.assessmentCode!}',
                           subTopic: widget.result.subTopic!,
                           std: widget.result.studentClass!,
-                          date: "${widget.result.assessmentResults![0].attemptStartDate!}" ?? "",
+                          date: "${widget.result.assessmentResults![0].attemptStartDate!}",
                           status: const Color.fromRGBO(255, 157, 77, 1),
                         )
                       : Container(
@@ -775,6 +775,6 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
               )
             ]),
           ),
-        ));
+        )));
   }
 }

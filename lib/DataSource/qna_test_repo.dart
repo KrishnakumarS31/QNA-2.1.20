@@ -31,11 +31,9 @@ class QnaTestRepo {
   }
 
   static Future<QuestionPaperModel> getQuestionPaper(assessmentId) async {
-    SharedPreferences loginData=await SharedPreferences.getInstance();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
     QuestionPaperModel questionPaperModel;
-    var headers = {
-      'Authorization': 'Bearer ${loginData.getString('token')}'
-    };
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
         'GET',
         Uri.parse(
@@ -44,11 +42,11 @@ class QnaTestRepo {
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();
     questionPaperModel = questionPaperModelFromJson(value);
-    if(response.statusCode == 401){
-    String? email=loginData.getString('email');
-    String? pass=loginData.getString('password');
-    LoginModel loginModel=await logInUser(email!, pass!);
-    getQuestionPaper(assessmentId);
+    if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel = await logInUser(email!, pass!);
+      getQuestionPaper(assessmentId);
     }
 
     return questionPaperModel;
@@ -58,15 +56,4 @@ class QnaTestRepo {
     // }
     //return questionPaperModel;
   }
-
-
-
-
-
-
-
-
-
-
-
 }

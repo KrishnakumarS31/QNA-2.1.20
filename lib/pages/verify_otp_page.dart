@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_forgot_password.dart';
 
+import '../EntityModel/static_response.dart';
+import '../Services/qna_service.dart';
+
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({
     Key? key,
@@ -24,10 +27,11 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   Duration myDuration = const Duration(minutes: 5);
   @override
   void initState() {
+    super.initState();
     error = false;
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
-    super.initState();
+
   }
 
   void setCountDown() {
@@ -50,7 +54,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
 
-    return Scaffold(
+    return WillPopScope( onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -196,7 +200,20 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                   fontSize: 14),
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () async {
+                                  StaticResponse response =
+                                  StaticResponse(code: 0, message: 'Incorrect Email');
+                                  response = await QnaService.sendOtp(widget.email);
+                                  if (response.code == 200) {
+                                    showResendDialog(context);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   PageTransition(
+                                    //       type: PageTransitionType.rightToLeft,
+                                    //       child: showAlertDialog(context)),
+                                    // );
+                                  }
+                                },
                                 child: const Text("   Resend OTP",
                                     style: TextStyle(
                                         color: Color.fromRGBO(82, 165, 160, 1),
@@ -258,7 +275,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
           SizedBox(
             height: height * 0.01,
           ),
-        ]));
+        ])));
   }
 
   showAlertDialog(BuildContext context, String? msg) {
@@ -316,6 +333,69 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             );
           },
         )
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showResendDialog(BuildContext context) {
+    // set up the button
+    double height = MediaQuery.of(context).size.height;
+    Widget okButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+      ),
+      child: Text(
+        "OK",
+        style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          Icon(
+            Icons.check_circle,
+            size: height * 0.04,
+            color: const Color.fromRGBO(66, 194, 0, 1),
+          ),
+          SizedBox(
+            width: height * 0.002,
+          ),
+          Text(
+            "OTP Sent!",
+            style: TextStyle(
+                color: const Color.fromRGBO(51, 51, 51, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: height * 0.02),
+          ),
+        ],
+      ),
+      content: Text(
+        "If this email ID is registered with us you will receive OTP",
+        style: TextStyle(
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      actions: [
+        okButton
       ],
     );
 

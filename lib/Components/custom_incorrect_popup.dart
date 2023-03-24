@@ -31,58 +31,56 @@ class _CustomDialogState extends State<CustomDialog> {
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
-            boxShadow: <BoxShadow>[
+            boxShadow: const <BoxShadow>[
               BoxShadow(
                 color: Colors.black12,
                 blurRadius: 3.0,
-                offset: new Offset(0.0, 3.0),
+                offset: Offset(0.0, 3.0),
               ),
             ],
           ),
-          margin: EdgeInsets.all(5.0),
+          margin: const EdgeInsets.all(5.0),
           height: height * 0.1625,
           width: width * 0.88,
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: height * 0.03,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: height * 0.03,
+              ),
+              Text(
+                widget.title,
+                style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                    const TextStyle(
+                        color: Color.fromRGBO(51, 51, 51, 1),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15)),
+              ),
+              Text(
+                widget.content,
+                style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                    const TextStyle(
+                        color: Color.fromRGBO(51, 51, 51, 1),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15)),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  widget.button,
+                  style: TextStyle(
+                      color: const Color.fromRGBO(48, 145, 139, 1),
+                      fontSize: height * 0.02,
+                      fontWeight: FontWeight.w500),
+                  // style: GoogleFonts.poppins(
+                  //     fontSize: localHeight * 0.02),
                 ),
-                Text(
-                  widget.title,
-                  style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                      const TextStyle(
-                          color: Color.fromRGBO(51, 51, 51, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15)),
-                ),
-                Text(
-                  widget.content,
-                  style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                      const TextStyle(
-                          color: Color.fromRGBO(51, 51, 51, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15)),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    widget.button,
-                    style: TextStyle(
-                        color: Color.fromRGBO(48, 145, 139, 1),
-                        fontSize: height * 0.02,
-                        fontWeight: FontWeight.w500),
-                    // style: GoogleFonts.poppins(
-                    //     fontSize: localHeight * 0.02),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
         Positioned(

@@ -36,8 +36,6 @@ class _WelcomePageState extends State<WelcomePage> {
     //   print("Inside If");
     //   return false;
     // }
-    print("AAAAAAA");
-    print(newUser==false && loginData?.getString('role') == 'teacher');
     if(newUser==false && loginData?.getString('role') == 'teacher')
       {
       print("Inside IFF");
@@ -88,7 +86,7 @@ class _WelcomePageState extends State<WelcomePage> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return Scaffold(
+          return WillPopScope( onWillPop: () async => false, child:Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
                 systemOverlayStyle: const SystemUiOverlayStyle(
@@ -342,11 +340,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                       ),
                     ],
-                  )));
+                  ))));
         }
 
         else {
-          return Scaffold(
+          return WillPopScope( onWillPop: () async => false, child:Scaffold(
               extendBodyBehindAppBar: true,
               appBar: AppBar(
                 systemOverlayStyle: const SystemUiOverlayStyle(
@@ -589,7 +587,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                       ),
                     ],
-                  )));
+                  ))));
         }
       },
     );

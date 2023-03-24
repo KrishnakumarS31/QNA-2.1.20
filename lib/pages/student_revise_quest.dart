@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
@@ -63,7 +62,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
               body: SingleChildScrollView(
@@ -419,10 +419,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           ),
                           SizedBox(height: localHeight * 0.030),
                         ])
-                  ])));
+                  ]))));
         }
         else {
-          return Scaffold(
+          return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
               body: SingleChildScrollView(
@@ -659,7 +660,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           ),
                           SizedBox(height: localHeight * 0.030),
                         ])
-                  ])));
+                  ]))));
         }
       },
     );
@@ -753,11 +754,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   int difference = d2.difference(d1).inMinutes;
                   assessment.attemptDuration=difference;
 
-                  int timeTaken = d2.difference(d1).inSeconds;
+                  //int timeTaken = d2.difference(d1).inSeconds;
 
                   var endTimeTaken = (d2.difference(d1).toString());
 
-                  print(endTimeTaken.matchAsPrefix("0:33:40.045976"));
                   for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
                     List<int> selectedAnsId=[];
                     AssessmentResult quesResult=AssessmentResult();
@@ -767,38 +767,61 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     quesResult.marks=0;
                     List<dynamic> correctAns=[];
                     //changes are made
-                    for(int i=0;i<values.data!.questions![j-1].choices!.length;i++){
-                      if(values.data!.questions![j-1].choices![i].rightChoice!){
-                        correctAns.add(values.data!.questions![j-1].choices![i].choiceText);
+                    if(values.data!.questions![j-1].questionType=="Descripitive"){
+                      quesResult.marks=0;
+                      quesResult.descriptiveText=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString();
+                    }
+                    else if(values.data!.questions![j-1].questionType=="Survey"){
+                      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+                      selectedAns.sort();
+                      List<int> key=[];
+                      List<String> value=[];
+                      for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
+                      {
+                        key.add(values.data!.questions![j-1].choices![s].choiceId!);
+                        value.add(values.data!.questions![j-1].choices![s].choiceText!);
                       }
+                      Map<int, String> map = Map.fromIterables(key, value);
+                      for(int f=0;f<selectedAns.length;f++){
+                        selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+                      }
+                      quesResult.selectedQuestionChoice=selectedAnsId;
+                      print(quesResult.selectedQuestionChoice);
+                      quesResult.marks=0;
                     }
-                    correctAns.sort();
-                    List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-                    selectedAns.sort();
+                    else{
+                      for(int i=0;i<values.data!.questions![j-1].choices!.length;i++){
+                        if(values.data!.questions![j-1].choices![i].rightChoice!){
+                          correctAns.add(values.data!.questions![j-1].choices![i].choiceText);
+                        }
+                      }
+                      correctAns.sort();
+                      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+                      selectedAns.sort();
 
-                    List<int> key=[];
-                    List<String> value=[];
-                    for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
-                    {
-                      key.add(values.data!.questions![j-1].choices![s].choiceId!);
-                      value.add(values.data!.questions![j-1].choices![s].choiceText!);
-                    }
-                    Map<int, String> map = Map.fromIterables(key, value);
-                    for(int f=0;f<selectedAns.length;f++){
-                      selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
-                    }
-                    quesResult.selectedQuestionChoice=selectedAnsId;
+                      List<int> key=[];
+                      List<String> value=[];
+                      for(int s=0;s<values.data!.questions![j-1].choices!.length;s++)
+                      {
+                        key.add(values.data!.questions![j-1].choices![s].choiceId!);
+                        value.add(values.data!.questions![j-1].choices![s].choiceText!);
+                      }
+                      Map<int, String> map = Map.fromIterables(key, value);
+                      for(int f=0;f<selectedAns.length;f++){
+                        selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+                      }
+                      quesResult.selectedQuestionChoice=selectedAnsId;
 
-                    if(listEquals(correctAns, selectedAns)){
-                      quesResult.marks=values.data!.questions![j-1].questionMarks;
-                      totalMark=totalMark+values.data!.questions![j-1].questionMarks!;
-                      ansCorrect++;
+                      if(listEquals(correctAns, selectedAns)){
+                        quesResult.marks=values.data!.questions![j-1].questionMarks;
+                        totalMark=totalMark+values.data!.questions![j-1].questionMarks!;
+                        ansCorrect++;
+                      }
                     }
                     assessment.assessmentResults.add(quesResult);
                   }
                   assessment.attemptScore=totalMark;
                   int percent=((ansCorrect/values.data!.questions!.length) * 100).round();
-                  print("percent =${values.data!.assessmentScoreMessage?[0].assessmentPercent}");
                   // if(percent<=40){
                   //   assessment.assessmentScoreId=values.data!.assessmentScoreMessage![2].assessmentScoreId;
                   //   message=values.data!.assessmentScoreMessage![2].assessmentScoreStatus!;

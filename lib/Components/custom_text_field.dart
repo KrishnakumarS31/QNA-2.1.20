@@ -48,8 +48,8 @@ class CustomTextField extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 16),
                       hintText: hintValue,
-                      prefixIcon:
-                          Icon(icon, color: Color.fromRGBO(82, 165, 160, 1)),
+                      prefixIcon: Icon(icon,
+                          color: const Color.fromRGBO(82, 165, 160, 1)),
                     ))),
           ],
         ),

@@ -4,7 +4,6 @@ import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../EntityModel/user_data_model.dart';
-import '../Pages/teacher_login.dart';
 import '../Pages/welcome_page.dart';
 import '../Services/qna_service.dart';
 import '../pages/cookie_policy.dart';
@@ -26,8 +25,8 @@ class EndDrawerMenuTeacher extends StatefulWidget {
 
 class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
   String name = '';
-  String email='';
-  int userId=0;
+  String email = '';
+  int userId = 0;
 
   @override
   void initState() {
@@ -37,10 +36,10 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
 
   getData() async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
-    setState((){
-      name=loginData.getString("firstName")!;
-      email=loginData.getString("email")!;
-      userId=loginData.getInt("userId")!;
+    setState(() {
+      name = loginData.getString("firstName")!;
+      email = loginData.getString("email")!;
+      userId = loginData.getInt("userId")!;
     });
   }
 
@@ -149,12 +148,15 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     trailing: const Icon(Icons.navigate_next,
                         color: Color.fromRGBO(153, 153, 153, 1)),
                     onTap: () async {
-                      UserDataModel userDataModel =await QnaService.getUserDataService(userId);
+                      UserDataModel userDataModel =
+                          await QnaService.getUserDataService(userId);
                       Navigator.push(
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: TeacherUserProfile(userDataModel: userDataModel,),
+                          child: TeacherUserProfile(
+                            userDataModel: userDataModel,
+                          ),
                         ),
                       );
                     }),
@@ -401,7 +403,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 fontWeight: FontWeight.w700),
                           ),
                         ]),
-                        content: const Text("Are you sure you want to logout ??"),
+                        content:
+                            const Text("Are you sure you want to logout ??"),
                         actions: <Widget>[
                           SizedBox(width: width * 0.020),
                           ElevatedButton(

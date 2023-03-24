@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
@@ -43,7 +42,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
     super.initState();
     getData();
     Future.delayed(const Duration(seconds: 3), () { //asynchronous delay
-      if (this.mounted) { //checks if widget is still active and not disposed
+      if (mounted) { //checks if widget is still active and not disposed
         setState(() { //tells the widget builder to rebuild again because ui has updated
           _visible=false; //update the variable declare this under your class so its accessible for both your widget build and initState which is located under widget build{}
         });
@@ -61,9 +60,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
         mark=mark+widget.questionList[i].questionMarks!;
       }
       startDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentStartdate==null?0:assessmentVal.assessmentStartdate!);
-      endDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentStartdate==null?0:assessmentVal.assessmentEnddate!);
-      print(startDate);
-      print(endDate);
+      endDate = DateTime.fromMicrosecondsSinceEpoch(assessmentVal.assessmentEnddate==null?0:assessmentVal.assessmentEnddate!);
     });
 
   }
@@ -75,7 +72,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -293,7 +291,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("${widget.assessmentCode}",
+                    Text(widget.assessmentCode,
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -315,7 +313,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                           fontWeight: FontWeight.w600,
                         ),),
                     ),
-                    Text("ABC903857928",
+                    Text("${assessmentVal.assessmentId}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -633,7 +631,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                             ),
                           ]),
                     ),
-                    Text("No",
+                    Text(assessmentVal.assessmentSettings?.notAvailable==null?"No":
+                    assessmentVal.assessmentSettings!.notAvailable! ? "Yes":"No",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -673,7 +672,8 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                             ),
                           ]),
                     ),
-                    Text("No",
+                    Text(assessmentVal.assessmentSettings?.avalabilityForPractice==null?"No":
+                    assessmentVal.assessmentSettings!.avalabilityForPractice! ? "Yes":"No",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.0175,
@@ -710,13 +710,13 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
                   ),
                 ),
                 SizedBox(height: height*0.01,),
-                widget.questionList.length!=0?
+                widget.questionList.isNotEmpty?
                 SizedBox(
                   height: height * 0.4,
                   child: ListView.builder(
                       padding: EdgeInsets.zero,
                       itemCount: widget.questionList.length,
-                      itemBuilder: (context,index)=>QuestionWidget(height: height,question: widget.questionList![index],)),
+                      itemBuilder: (context,index)=>QuestionWidget(height: height,question: widget.questionList[index],)),
                 ):const SizedBox(height: 0,),
                 SizedBox(height: height*0.02,),
                 Row(
@@ -843,7 +843,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
             )
         ),
       ),
-    );
+    ));
   }
 
 }

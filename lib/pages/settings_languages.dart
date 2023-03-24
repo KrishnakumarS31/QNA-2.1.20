@@ -3,7 +3,6 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
-import '../EntityModel/user_data_model.dart';
 
 class SettingsLanguages extends StatefulWidget {
   const SettingsLanguages({Key? key, required this.setLocale})
@@ -92,7 +91,8 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -259,6 +259,6 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
               ),
             ],
           ),
-        ));
+        )));
   }
 }

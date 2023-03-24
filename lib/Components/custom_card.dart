@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../EntityModel/get_result_model.dart';
+
 class CustomCard extends StatefulWidget {
   const CustomCard({
     Key? key,
@@ -33,24 +34,22 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-
   @override
   void initState() {
     super.initState();
     print("dfhtrh");
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    var d = DateTime.fromMicrosecondsSinceEpoch(widget.result!.assessmentStartDate!);
+    var d = DateTime.fromMicrosecondsSinceEpoch(
+        widget.result!.assessmentStartDate!);
     print("fdvdfbb ");
     var startDate = "${d.day}/${d.month}/${d.year}";
     return Container(
       height: widget.height * 0.1825,
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(28, 78, 80, 0.08),
+          color: const Color.fromRGBO(28, 78, 80, 0.08),
           border: Border.all(
             color: const Color.fromRGBO(233, 233, 233, 1),
           ),
@@ -75,7 +74,8 @@ class _CustomCardState extends State<CustomCard> {
                   color: widget.status,
                   size: widget.width * 0.05,
                 ),
-                Text(startDate,
+                Text(
+                  startDate,
                   style: TextStyle(
                       color: const Color.fromRGBO(102, 102, 102, 0.7),
                       fontSize: widget.height * 0.0125,
@@ -86,12 +86,13 @@ class _CustomCardState extends State<CustomCard> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: widget.width * 0.02, left: widget.width * 0.02),
+            padding: EdgeInsets.only(
+                right: widget.width * 0.02, left: widget.width * 0.02),
             child: const Divider(),
           ),
           Padding(
-            padding:
-                EdgeInsets.only(left: widget.width * 0.03, bottom: widget.height * 0.005),
+            padding: EdgeInsets.only(
+                left: widget.width * 0.03, bottom: widget.height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -105,8 +106,8 @@ class _CustomCardState extends State<CustomCard> {
             ),
           ),
           Padding(
-            padding:
-                EdgeInsets.only(left: widget.width * 0.03, bottom: widget.height * 0.005),
+            padding: EdgeInsets.only(
+                left: widget.width * 0.03, bottom: widget.height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(

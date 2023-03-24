@@ -91,7 +91,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
@@ -336,7 +337,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
               ],
             )),
       ),
-    );
+    ));
   }
 }
 

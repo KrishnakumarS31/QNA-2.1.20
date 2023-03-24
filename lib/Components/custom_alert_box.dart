@@ -33,7 +33,7 @@ class CustomAlertDialog {
                     //     bottom: localHeight * 0.02,
                     //     right: localWidth * 0.025,
                     //     left: localWidth * 0.025),
-                    margin: EdgeInsets.only(top: 26),
+                    margin: const EdgeInsets.only(top: 26),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         shape: BoxShape.rectangle,
@@ -79,7 +79,7 @@ class CustomAlertDialog {
                                 ? Column(
                                     children: [
                                       Text(
-                                        bodyText ?? "",
+                                        bodyText,
                                         // style: GoogleFonts.poppins(
                                         //     fontSize: localHeight * 0.018),
                                       ),
@@ -93,40 +93,34 @@ class CustomAlertDialog {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             if (buttonText1 != null)
-                              Container(
-                                // height: localHeight * 0.04,
-                                child: TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop(DialogAction.Ok);
-                                  },
-                                  child: Text(
-                                    buttonText1,
-                                    style: const TextStyle(
-                                        color: Color.fromRGBO(48, 145, 139, 1)),
-                                    // style: GoogleFonts.poppins(
-                                    //     fontSize: localHeight * 0.02),
-                                  ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop(DialogAction.Ok);
+                                },
+                                child: Text(
+                                  buttonText1,
+                                  style: const TextStyle(
+                                      color: Color.fromRGBO(48, 145, 139, 1)),
+                                  // style: GoogleFonts.poppins(
+                                  //     fontSize: localHeight * 0.02),
                                 ),
                               ),
                             SizedBox(
                               width: localWidth * 0.04,
                             ),
                             if (buttonText2 != null)
-                              Container(
-                                // height: localHeight*0.04,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.grey[200],
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .pop(DialogAction.CANCEL);
-                                  },
-                                  child: Text(
-                                    buttonText2,
-                                    // style: GoogleFonts.poppins(
-                                    //     fontSize: localHeight * 0.02),
-                                  ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.grey[200],
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pop(DialogAction.CANCEL);
+                                },
+                                child: Text(
+                                  buttonText2,
+                                  // style: GoogleFonts.poppins(
+                                  //     fontSize: localHeight * 0.02),
                                 ),
                               ),
                           ],
@@ -149,7 +143,7 @@ class CustomAlertDialog {
                           width: localWidth * 0.10,
                           child: Icon(
                             imagePath,
-                            color: Color.fromRGBO(255, 255, 255, 1),
+                            color: const Color.fromRGBO(255, 255, 255, 1),
                           ),
                         ),
                       ))

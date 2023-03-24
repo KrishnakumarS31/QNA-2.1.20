@@ -2,14 +2,10 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
 import 'package:qna_test/Pages/settings_languages.dart';
-import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
 

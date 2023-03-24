@@ -31,7 +31,8 @@ class TeacherForgotPasswordEmailState
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -129,7 +130,7 @@ class TeacherForgotPasswordEmailState
                       ),
                       validator: (value) {
                         if (value!.isEmpty ||
-                            !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
                                 .hasMatch(value)) {
                           return AppLocalizations.of(context)!
                               .enter_valid_email;
@@ -197,7 +198,7 @@ class TeacherForgotPasswordEmailState
               ],
             ),
           ),
-        ]));
+        ])));
   }
 
   showAlertDialog(double height) {

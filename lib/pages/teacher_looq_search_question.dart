@@ -20,53 +20,56 @@ class TeacherLooqQuestionBank extends StatefulWidget {
 
 class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
   bool agree = false;
-  List<Question> question=[];
-  List<Question> allQuestion =[];
-  bool loading=true;
-  ScrollController scrollController =ScrollController();
-  int pageLimit =1;
-  String searchValue='';
-  TextEditingController teacherQuestionBankSearchController = TextEditingController();
+  List<Question> question = [];
+  List<Question> allQuestion = [];
+  bool loading = true;
+  ScrollController scrollController = ScrollController();
+  int pageLimit = 1;
+  String searchValue = '';
+  TextEditingController teacherQuestionBankSearchController =
+      TextEditingController();
 
   @override
   void initState() {
     super.initState();
   }
 
-  getData(String searchVal)async{
+  getData(String searchVal) async {
     showDialog(
         context: context,
         builder: (context) {
           return const Center(
               child: CircularProgressIndicator(
-                color:
-                Color.fromRGBO(48, 145, 139, 1),
-              ));
+            color: Color.fromRGBO(48, 145, 139, 1),
+          ));
         });
-    pageLimit=1;
-    ResponseEntity response =await QnaService.getSearchQuestion(100,pageLimit,searchVal);
-    allQuestion=List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    pageLimit = 1;
+    ResponseEntity response =
+        await QnaService.getSearchQuestion(100, pageLimit, searchVal);
+    allQuestion =
+        List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     Navigator.of(context).pop();
     setState(() {
-      searchValue=searchVal;
+      searchValue = searchVal;
       question.addAll(allQuestion);
       loading = false;
       pageLimit++;
     });
   }
 
-  loadMore(String searchValue)async{
+  loadMore(String searchValue) async {
     showDialog(
         context: context,
         builder: (context) {
           return const Center(
               child: CircularProgressIndicator(
-                color:
-                Color.fromRGBO(48, 145, 139, 1),
-              ));
+            color: Color.fromRGBO(48, 145, 139, 1),
+          ));
         });
-    ResponseEntity response =await QnaService.getSearchQuestion(1,pageLimit,searchValue);
-    allQuestion=List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    ResponseEntity response =
+        await QnaService.getSearchQuestion(1, pageLimit, searchValue);
+    allQuestion =
+        List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     Navigator.of(context).pop();
     setState(() {
       question.addAll(allQuestion);
@@ -80,223 +83,226 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: height * 0.100,
-        centerTitle: true,
-        title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(
-            "LOOQ",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
+    return WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: Colors.white,
+          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            toolbarHeight: height * 0.100,
+            centerTitle: true,
+            title: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "LOOQ",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    "SEARCH QUESTIONS",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ]),
+            flexibleSpace: Container(
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      end: Alignment.bottomCenter,
+                      begin: Alignment.topCenter,
+                      colors: [
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
             ),
           ),
-          Text(
-            "SEARCH QUESTIONS",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-        ]),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  end: Alignment.bottomCenter,
-                  begin: Alignment.topCenter,
-                  colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-            padding: EdgeInsets.only(
-                top: height * 0.023,
-                left: height * 0.023,
-                right: height * 0.023),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+          body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+                padding: EdgeInsets.only(
+                    top: height * 0.023,
+                    left: height * 0.023,
+                    right: height * 0.023),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Checkbox(
-                      activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                      fillColor:
-                          MaterialStateProperty.resolveWith<Color>((states) {
-                        if (states.contains(MaterialState.selected)) {
-                          return const Color.fromRGBO(82, 165, 160, 1);
-                        }
-                        return const Color.fromRGBO(82, 165, 160, 1);
-                      }),
-                      value: agree,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Checkbox(
+                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                          fillColor: MaterialStateProperty.resolveWith<Color>(
+                              (states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return const Color.fromRGBO(82, 165, 160, 1);
+                            }
+                            return const Color.fromRGBO(82, 165, 160, 1);
+                          }),
+                          value: agree,
+                          onChanged: (val) {
+                            setState(() {
+                              agree = val!;
+                              if (agree) {}
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          width: width * 0.01,
+                        ),
+                        Text(
+                          'Only My Questions',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: height * 0.015),
+                        )
+                      ],
+                    ),
+                    SizedBox(height: height * 0.02),
+                    TextField(
+                      controller: teacherQuestionBankSearchController,
+                      keyboardType: TextInputType.text,
+                      decoration: InputDecoration(
+                        floatingLabelBehavior: FloatingLabelBehavior.always,
+                        hintStyle: TextStyle(
+                            color: const Color.fromRGBO(102, 102, 102, 0.3),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                            fontSize: height * 0.016),
+                        hintText: "Maths, 10th, 2022, CBSE, Science",
+                        suffixIcon: Column(children: [
+                          Container(
+                              height: height * 0.073,
+                              width: width * 0.13,
+                              decoration: const BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              ),
+                              child: IconButton(
+                                iconSize: height * 0.04,
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                onPressed: () {
+                                  setState(() {
+                                    question = [];
+                                  });
+                                  getData(
+                                      teacherQuestionBankSearchController.text);
+                                },
+                                icon: const Icon(Icons.search),
+                              )),
+                        ]),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(82, 165, 160, 1)),
+                            borderRadius: BorderRadius.circular(15)),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                      enabled: true,
                       onChanged: (val) {
                         setState(() {
-                          agree = val!;
-                          if (agree) {}
+                          question = [];
                         });
                       },
+                      onSubmitted: (value) {
+                        setState(() {
+                          question = [];
+                        });
+                        getData(value);
+                      },
                     ),
-                    SizedBox(
-                      width: width * 0.01,
-                    ),
-                    Text(
-                      'Only My Questions',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: height * 0.015),
-                    )
-                  ],
-                ),
-                SizedBox(height: height * 0.02),
-                TextField(
-
-                  controller: teacherQuestionBankSearchController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    floatingLabelBehavior: FloatingLabelBehavior.always,
-                    hintStyle: TextStyle(
-                        color: const Color.fromRGBO(102, 102, 102, 0.3),
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
-                        fontSize: height * 0.016),
-                    hintText: "Maths, 10th, 2022, CBSE, Science",
-                    suffixIcon: Column(children: [
-                      Container(
-                          height: height * 0.073,
-                          width: width * 0.13,
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                          ),
-                          child: IconButton(
-                            iconSize: height * 0.04,
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            onPressed: () {
-                              setState(() {
-                                question=[];
-                              });
-                              getData(teacherQuestionBankSearchController.text);
-                            },
-                            icon: const Icon(Icons.search),
-                          )),
-                    ]),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: Color.fromRGBO(82, 165, 160, 1)),
-                        borderRadius: BorderRadius.circular(15)),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15)),
-                  ),
-                  enabled: true,
-                  onChanged: (val){
-                    setState(() {
-                      question=[];
-                    });
-                  },
-                  onSubmitted: (value) {
-                    setState(() {
-                      question=[];
-                    });
-                    getData(value);
-
-                  },
-                ),
-                SizedBox(height: height * 0.04),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Tap to Review/Edit/Delete",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(153, 153, 153, 1),
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    SizedBox(height: height * 0.04),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "My Questions",
+                          "Tap to Review/Edit/Delete",
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                            color: const Color.fromRGBO(0, 0, 0, 1),
+                            color: const Color.fromRGBO(153, 153, 153, 1),
                             fontSize: height * 0.015,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        SizedBox(
-                          width: width * 0.02,
+                        Row(
+                          children: [
+                            Text(
+                              "My Questions",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(0, 0, 0, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              width: width * 0.02,
+                            ),
+                            const Icon(
+                              Icons.circle_rounded,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            )
+                          ],
                         ),
-                        const Icon(
-                          Icons.circle_rounded,
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        )
                       ],
                     ),
-                  ],
-                ),
-                SizedBox(height: height * 0.02),
-                for (Question i in question)
-                  GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherLooqClonePreview(
-                                question: i, setLocale: widget.setLocale),
+                    SizedBox(height: height * 0.02),
+                    for (Question i in question)
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: TeacherLooqClonePreview(
+                                    question: i, setLocale: widget.setLocale),
+                              ),
+                            );
+                          },
+                          child: QuestionPreview(
+                            height: height,
+                            width: width,
+                            question: i,
+                          )),
+                    Align(
+                      alignment: Alignment.center,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(82, 165, 160, 1),
+                          minimumSize: const Size(280, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
                           ),
-                        );
-                      },
-                      child: QuestionPreview(
-                        height: height,
-                        width: width,
-                        question: i,
-                      )),
-                Align(
-                  alignment: Alignment.center,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      minimumSize: const Size(280, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          'Back to Questions',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Back to Questions',
-                      style: TextStyle(
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ),
-              ],
-            )),
-      ),
-    );
+                  ],
+                )),
+          ),
+        ));
   }
 }
 
@@ -365,7 +371,7 @@ class QuestionPreview extends StatelessWidget {
           height: height * 0.01,
         ),
         Padding(
-          padding:  EdgeInsets.only(left: width * 0.03),
+          padding: EdgeInsets.only(left: width * 0.03),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -382,7 +388,7 @@ class QuestionPreview extends StatelessWidget {
           height: height * 0.01,
         ),
         Padding(
-          padding:  EdgeInsets.only(left: width * 0.03),
+          padding: EdgeInsets.only(left: width * 0.03),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(

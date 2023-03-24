@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
-import 'package:qna_test/EntityModel/login_entity.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
@@ -94,7 +93,6 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         ResponseEntity statusCode = await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
-          print(statusCode.message);
           Navigator.push(
             context,
             PageTransition(
@@ -150,7 +148,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
         resizeToAvoidBottomInset: true,
         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
         appBar: AppBar(
@@ -386,7 +385,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
               ),
             ],
           ),
-        ));
+        )));
   }
 }
 
@@ -408,7 +407,6 @@ class QuestionPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String answer = '';
     List<String> temp = [];
     for (int i = 0; i < question.choices!.length; i++) {
       if(question.choices![i].rightChoice!){

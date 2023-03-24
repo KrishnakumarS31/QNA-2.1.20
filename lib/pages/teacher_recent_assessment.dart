@@ -35,7 +35,6 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   showQuestionDetails() {
     setState(() {
       questionShirnk=!questionShirnk;
-      print(questionShirnk);
     });
   }
 
@@ -47,7 +46,6 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
     for(int i=0;i< finalAssessment.questions!.length;i++){
       mark=mark + finalAssessment.questions![i].questionMarks!;
     }
-    print(finalAssessment.toString());
     super.initState();
   }
 
@@ -55,7 +53,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return WillPopScope(
+        onWillPop: () async => false, child:Scaffold(
       extendBodyBehindAppBar: true,
       endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
       appBar: AppBar(
@@ -941,7 +940,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
               ],
             )),
       ),
-    );
+    ));
   }
 }
 

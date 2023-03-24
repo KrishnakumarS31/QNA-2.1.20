@@ -33,9 +33,7 @@ class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
         color:
             isSelected ? const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
       ),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Icon(widget.icon,
             size: 14,
             color: isSelected

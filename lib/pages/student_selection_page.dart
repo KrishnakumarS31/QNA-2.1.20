@@ -15,6 +15,7 @@ import '../EntityModel/user_data_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Services/qna_service.dart';
+
 class StudentSelectionPage extends StatefulWidget {
   const StudentSelectionPage({super.key, required this.setLocale});
   final void Function(Locale locale) setLocale;
@@ -32,22 +33,22 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
 
   SharedPreferences? loginData;
   late bool newUser;
-  Future<bool> check_if_alread_loggedin()async{
-    loginData=await SharedPreferences.getInstance();
-    newUser=(loginData?.getBool('login')??true);
-    print("Role");
-    print(loginData?.getString('role'));
-    print(newUser==false && loginData?.getString('role') == 'student');
-    if(newUser==false && loginData?.getString('role') == 'student'){
+  Future<bool> checkIfAlreadyLoggedIn() async {
+    loginData = await SharedPreferences.getInstance();
+    newUser = (loginData?.getBool('login') ?? true);
+    if (newUser == false && loginData?.getString('role') == 'student') {
       showDialog(
           context: context,
           builder: (context) {
             return const Center(
                 child: CircularProgressIndicator(
-                  color: Color.fromRGBO(48, 145, 139, 1),
-                ));
+              color: Color.fromRGBO(48, 145, 139, 1),
+            ));
           });
-      LoginModel loginResponse = await QnaService.logInUser(loginData!.getString('email')!, loginData!.getString('password')!,loginData!.getString('role')!);
+      LoginModel loginResponse = await QnaService.logInUser(
+          loginData!.getString('email')!,
+          loginData!.getString('password')!,
+          loginData!.getString('role')!);
       if (loginResponse.code == 200) {
         loginData?.setBool('login', false);
         loginData?.setString('email', loginData!.getString('email')!);
@@ -56,7 +57,8 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
         loginData?.setInt('userId', loginResponse.data.userId);
       }
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-      userDataModel = await QnaService.getUserDataService(loginData?.getInt('userId'));
+      userDataModel =
+          await QnaService.getUserDataService(loginData?.getInt('userId'));
       Navigator.push(
         context,
         PageTransition(
@@ -64,8 +66,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
           child: StudentAssessment(
               regNumber: loginData?.getString('email'),
               setLocale: widget.setLocale,
-              usedData: userDataModel
-          ),
+              usedData: userDataModel),
         ),
       );
       return true;
@@ -85,379 +86,395 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                ),
-                elevation: 0,
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child:
-                        WelcomePage(setLocale: widget.setLocale),
-                      ),
-                    );
-                   // Navigator.of(context).pop();
-                  },
-                ),
-                backgroundColor: Colors.transparent,
-              ),
-              endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
-              backgroundColor: Colors.white,
-              body: Column(children: [
-                Container(
-                  height: height * 0.43,
-                  width: width,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1)
-                      ],
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  extendBodyBehindAppBar: true,
+                  appBar: AppBar(
+                    systemOverlayStyle: const SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
                     ),
-                    borderRadius: BorderRadius.vertical(
-                        bottom: Radius.elliptical(width, height * 0.40)),
+                    elevation: 0,
+                    leading: IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: WelcomePage(setLocale: widget.setLocale),
+                          ),
+                        );
+                        // Navigator.of(context).pop();
+                      },
+                    ),
+                    backgroundColor: Colors.transparent,
                   ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: height * 0.05),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          width: width * 0.30,
-                          height: height * 0.30,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              //fit: BoxFit.fill,
-                              image: AssetImage('assets/images/qna_logo.png'),
+                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  backgroundColor: Colors.white,
+                  body: Column(children: [
+                    Container(
+                      height: height * 0.43,
+                      width: width,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(0, 106, 100, 1),
+                            Color.fromRGBO(82, 165, 160, 1)
+                          ],
+                        ),
+                        borderRadius: BorderRadius.vertical(
+                            bottom: Radius.elliptical(width, height * 0.40)),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(height: height * 0.05),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              width: width * 0.30,
+                              height: height * 0.30,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  //fit: BoxFit.fill,
+                                  image:
+                                      AssetImage('assets/images/qna_logo.png'),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
+                          SizedBox(height: height * 0.01),
+                        ],
                       ),
-                      SizedBox(height: height * 0.01),
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: height * 0.03),
-                    Text(
-                      AppLocalizations.of(context)!.studentCaps,
-                      style: TextStyle(
-                          fontSize: height * 0.04,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w800,
-                          color: const Color.fromRGBO(28, 78, 80, 1)),
                     ),
-                    SizedBox(
-                      height: height * 0.030,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: width * 0.3,right: width * 0.3),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                        CustomRadioButton<String>(
-                          value: '1',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: '1',
-                          text: AppLocalizations.of(context)!.guest,
-                          height: height,
-                          width: width,
-                          context: context,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: height * 0.03),
+                        Text(
+                          AppLocalizations.of(context)!.studentCaps,
+                          style: TextStyle(
+                              fontSize: height * 0.04,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w800,
+                              color: const Color.fromRGBO(28, 78, 80, 1)),
                         ),
-                        CustomRadioButton<String>(
-                          value: '2',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: '2',
-                          text: AppLocalizations.of(context)!.member,
-                          height: height,
-                          width: width,
-                          context: context,
+                        SizedBox(
+                          height: height * 0.030,
                         ),
-                      ]),
-                    ),
-                    SizedBox(
-                      height: height * 0.05,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: Size(width * 0.4, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: width * 0.3, right: width * 0.3),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomRadioButton<String>(
+                                  value: '1',
+                                  groupValue: _groupValue,
+                                  onChanged: _valueChangedHandler(),
+                                  label: '1',
+                                  text: AppLocalizations.of(context)!.guest,
+                                  height: height,
+                                  width: width,
+                                  context: context,
+                                ),
+                                CustomRadioButton<String>(
+                                  value: '2',
+                                  groupValue: _groupValue,
+                                  onChanged: _valueChangedHandler(),
+                                  label: '2',
+                                  text: AppLocalizations.of(context)!.member,
+                                  height: height,
+                                  width: width,
+                                  context: context,
+                                ),
+                              ]),
                         ),
-                      ),
-                      onPressed: () async {
-                        if (_groupValue == '2') {
-                            bool status =await check_if_alread_loggedin();
-                            if(status==false){
+                        SizedBox(
+                          height: height * 0.05,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: Size(width * 0.4, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                          ),
+                          onPressed: () async {
+                            if (_groupValue == '2') {
+                              bool status = await checkIfAlreadyLoggedIn();
+                              if (status == false) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        StudentMemberLoginPage(
+                                            setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }
+                            } else {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                  builder: (context) => StudentMemberLoginPage(
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: StudentGuestLogin(
                                       setLocale: widget.setLocale),
                                 ),
                               );
-                          }
-                        } else {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: StudentGuestLogin(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.login,
-                        style: TextStyle(
-                            fontSize: height * 0.03,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w800),
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.09,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: SettingsLanguages(setLocale: widget.setLocale),
+                            }
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.login,
+                            style: TextStyle(
+                                fontSize: height * 0.03,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w800),
                           ),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            icon: const Icon(
-                              Icons.g_translate_sharp,
-                              color: Color.fromRGBO(141, 167, 167, 1),
-                            ),
-                            onPressed: () {},
-                          ),
-                          Text(AppLocalizations.of(context)!.select_language,
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: height * 0.02))),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ]));
-        }
-        else {
-          return Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                ),
-                elevation: 0,
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                      Navigator.push(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child:
-                          WelcomePage(setLocale: widget.setLocale),
                         ),
-                      );
-                  },
-                ),
-                backgroundColor: Colors.transparent,
-              ),
-              endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
-              backgroundColor: Colors.white,
-              body: Column(children: [
-                Container(
-                  height: height * 0.43,
-                  width: width,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1)
+                        SizedBox(
+                          height: height * 0.09,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: SettingsLanguages(
+                                    setLocale: widget.setLocale),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.g_translate_sharp,
+                                  color: Color.fromRGBO(141, 167, 167, 1),
+                                ),
+                                onPressed: () {},
+                              ),
+                              Text(
+                                  AppLocalizations.of(context)!.select_language,
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .bodyLarge
+                                      ?.merge(TextStyle(
+                                          color: const Color.fromRGBO(
+                                              48, 145, 139, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: height * 0.02))),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    borderRadius: BorderRadius.vertical(
-                        bottom: Radius.elliptical(width, height * 0.40)),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(height: height * 0.15),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                          width: width * 0.50,
-                          height: height * 0.20,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage('assets/images/qna_logo.png'),
-                            ),
-                          ),
-                        ),
+                  ])));
+        } else {
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  extendBodyBehindAppBar: true,
+                  appBar: AppBar(
+                    systemOverlayStyle: const SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
+                    ),
+                    elevation: 0,
+                    leading: IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        size: 30,
+                        color: Colors.white,
                       ),
-                      SizedBox(height: height * 0.01),
-                    ],
-                  ),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: height * 0.03),
-                    Text(
-                      AppLocalizations.of(context)!.studentCaps,
-                      style: TextStyle(
-                          fontSize: height * 0.04,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w800,
-                          color: const Color.fromRGBO(28, 78, 80, 1)),
-                    ),
-                    SizedBox(
-                      height: height * 0.030,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50),
-                      child: Column(children: [
-                        CustomRadioButton<String>(
-                          value: '1',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: '1',
-                          text: AppLocalizations.of(context)!.guest,
-                          height: height,
-                          width: width,
-                          context: context,
-                        ),
-                        CustomRadioButton<String>(
-                          value: '2',
-                          groupValue: _groupValue,
-                          onChanged: _valueChangedHandler(),
-                          label: '2',
-                          text: AppLocalizations.of(context)!.member,
-                          height: height,
-                          width: width,
-                          context: context,
-                        ),
-                      ]),
-                    ),
-                    SizedBox(
-                      height: height * 0.05,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                        minimumSize: const Size(280, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(39),
-                        ),
-                      ),
-                      onPressed: () async{
-                        if (_groupValue == '2') {
-                          bool status =await check_if_alread_loggedin();
-                        if(status==false){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => StudentMemberLoginPage(
-                                  setLocale: widget.setLocale),
-                            ),
-                          );
-                        }
-                        } else {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: StudentGuestLogin(setLocale: widget.setLocale),
-                            ),
-                          );
-                        }
-                      },
-                      child: Text(
-                        AppLocalizations.of(context)!.login,
-                        style: TextStyle(
-                            fontSize: height * 0.03,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w800),
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.09,
-                    ),
-                    GestureDetector(
-                      onTap: () {
+                      onPressed: () {
                         Navigator.push(
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: SettingsLanguages(setLocale: widget.setLocale),
+                            child: WelcomePage(setLocale: widget.setLocale),
                           ),
                         );
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+                    backgroundColor: Colors.transparent,
+                  ),
+                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  backgroundColor: Colors.white,
+                  body: Column(children: [
+                    Container(
+                      height: height * 0.43,
+                      width: width,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color.fromRGBO(0, 106, 100, 1),
+                            Color.fromRGBO(82, 165, 160, 1)
+                          ],
+                        ),
+                        borderRadius: BorderRadius.vertical(
+                            bottom: Radius.elliptical(width, height * 0.40)),
+                      ),
+                      child: Column(
                         children: [
-                          IconButton(
-                            icon: const Icon(
-                              Icons.g_translate_sharp,
-                              color: Color.fromRGBO(141, 167, 167, 1),
+                          SizedBox(height: height * 0.15),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              width: width * 0.50,
+                              height: height * 0.20,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:
+                                      AssetImage('assets/images/qna_logo.png'),
+                                ),
+                              ),
                             ),
-                            onPressed: () {},
                           ),
-                          Text(AppLocalizations.of(context)!.select_language,
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(48, 145, 139, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: height * 0.02))),
+                          SizedBox(height: height * 0.01),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ]));
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: height * 0.03),
+                        Text(
+                          AppLocalizations.of(context)!.studentCaps,
+                          style: TextStyle(
+                              fontSize: height * 0.04,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w800,
+                              color: const Color.fromRGBO(28, 78, 80, 1)),
+                        ),
+                        SizedBox(
+                          height: height * 0.030,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50),
+                          child: Column(children: [
+                            CustomRadioButton<String>(
+                              value: '1',
+                              groupValue: _groupValue,
+                              onChanged: _valueChangedHandler(),
+                              label: '1',
+                              text: AppLocalizations.of(context)!.guest,
+                              height: height,
+                              width: width,
+                              context: context,
+                            ),
+                            CustomRadioButton<String>(
+                              value: '2',
+                              groupValue: _groupValue,
+                              onChanged: _valueChangedHandler(),
+                              label: '2',
+                              text: AppLocalizations.of(context)!.member,
+                              height: height,
+                              width: width,
+                              context: context,
+                            ),
+                          ]),
+                        ),
+                        SizedBox(
+                          height: height * 0.05,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                          ),
+                          onPressed: () async {
+                            if (_groupValue == '2') {
+                              bool status = await checkIfAlreadyLoggedIn();
+                              if (status == false) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        StudentMemberLoginPage(
+                                            setLocale: widget.setLocale),
+                                  ),
+                                );
+                              }
+                            } else {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: StudentGuestLogin(
+                                      setLocale: widget.setLocale),
+                                ),
+                              );
+                            }
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.login,
+                            style: TextStyle(
+                                fontSize: height * 0.03,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w800),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.09,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: SettingsLanguages(
+                                    setLocale: widget.setLocale),
+                              ),
+                            );
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.g_translate_sharp,
+                                  color: Color.fromRGBO(141, 167, 167, 1),
+                                ),
+                                onPressed: () {},
+                              ),
+                              Text(
+                                  AppLocalizations.of(context)!.select_language,
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .bodyLarge
+                                      ?.merge(TextStyle(
+                                          color: const Color.fromRGBO(
+                                              48, 145, 139, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: height * 0.02))),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ])));
         }
       },
     );

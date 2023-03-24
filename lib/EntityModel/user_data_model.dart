@@ -1,15 +1,14 @@
-
-
 import 'dart:convert';
 
-UserDataModel userDataModelFromJson(String str) => UserDataModel.fromJson(json.decode(str));
+UserDataModel userDataModelFromJson(String str) =>
+    UserDataModel.fromJson(json.decode(str));
 
 String userDataModelToJson(UserDataModel data) => json.encode(data.toJson());
 
 class UserDataModel {
   UserDataModel({
- this.code,
- this.message,
+    this.code,
+    this.message,
     this.data,
   });
 
@@ -18,16 +17,16 @@ class UserDataModel {
   Data? data;
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) => UserDataModel(
-    code: json["code"],
-    message: json["message"],
-    data: Data.fromJson(json["data"]),
-  );
+        code: json["code"],
+        message: json["message"],
+        data: Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "code": code,
-    "message": message,
-    "data": data?.toJson(),
-  };
+        "code": code,
+        "message": message,
+        "data": data?.toJson(),
+      };
 }
 
 class Data {
@@ -68,40 +67,40 @@ class Data {
   bool emailVerified;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    firstName: json["first_name"],
-    lastName: json["last_name"],
-    dob: json["dob"],
-    gender: json["gender"],
-    countryNationality: json["country_nationality"],
-    countryResident: json["country_resident"],
-    email: json["email"],
-    rollNumber: json["roll_number"],
-    organisationName: json["organisation_name"],
-    role: List<dynamic>.from(json["role"].map((x) => x)),
-    password: json["password"],
-    createdBy: json["created_by"],
-    updatedBy: json["updated_by"],
-    isActive: json["is_active"],
-    emailVerified: json["email_verified"],
-  );
+        id: json["id"],
+        firstName: json["first_name"],
+        lastName: json["last_name"],
+        dob: json["dob"],
+        gender: json["gender"],
+        countryNationality: json["country_nationality"],
+        countryResident: json["country_resident"],
+        email: json["email"],
+        rollNumber: json["roll_number"],
+        organisationName: json["organisation_name"],
+        role: List<dynamic>.from(json["role"].map((x) => x)),
+        password: json["password"],
+        createdBy: json["created_by"],
+        updatedBy: json["updated_by"],
+        isActive: json["is_active"],
+        emailVerified: json["email_verified"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "first_name": firstName,
-    "last_name": lastName,
-    "dob": dob,
-    "gender": gender,
-    "country_nationality": countryNationality,
-    "country_resident": countryResident,
-    "email": email,
-    "roll_number": rollNumber,
-    "organisation_name": organisationName,
-    "role": role==null?[]:List<dynamic>.from(role!.map((x) => x)),
-    "password": password,
-    "created_by": createdBy,
-    "updated_by": updatedBy,
-    "is_active": isActive,
-    "email_verified": emailVerified,
-  };
+        "id": id,
+        "first_name": firstName,
+        "last_name": lastName,
+        "dob": dob,
+        "gender": gender,
+        "country_nationality": countryNationality,
+        "country_resident": countryResident,
+        "email": email,
+        "roll_number": rollNumber,
+        "organisation_name": organisationName,
+        "role": role == null ? [] : List<dynamic>.from(role!.map((x) => x)),
+        "password": password,
+        "created_by": createdBy,
+        "updated_by": updatedBy,
+        "is_active": isActive,
+        "email_verified": emailVerified,
+      };
 }
