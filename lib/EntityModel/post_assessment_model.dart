@@ -67,7 +67,7 @@ class PostAssessmentModel {
 
   @override
   String toString() {
-    return 'PostAssessmentModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, userId: $userId, statusId: $statusId, attemptStartdate: $attemptStartdate, attemptEnddate: $attemptEnddate, attemptDuration: $attemptDuration, attemptScore: $attemptScore, assessmentScoreId: $assessmentScoreId, assessmentResults: $assessmentResults}';
+    return 'PostAssessmentModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, userId: $userId, statusId: $statusId, attemptStartdate: $attemptStartdate, attemptEnddate: $attemptEnddate,\n attemptDuration: $attemptDuration, attemptScore: $attemptScore, assessmentScoreId: $assessmentScoreId,\n assessmentResults: $assessmentResults}';
   }
 }
 
@@ -112,6 +112,6 @@ class AssessmentResult {
 
   @override
   String toString() {
-    return 'AssessmentResult{questionId: $questionId, statusId: $statusId, questionTypeId: $questionTypeId, marks: $marks, selectedQuestionChoice: $selectedQuestionChoice, descriptiveText: $descriptiveText}';
+    return 'AssessmentResult{questionId: $questionId, statusId: $statusId, questionTypeId: $questionTypeId, marks: $marks,\n selectedQuestionChoice: $selectedQuestionChoice,\n descriptiveText: $descriptiveText}';
   }
 }

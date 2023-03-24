@@ -30,6 +30,10 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
     error = false;
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
   }
 
   void setCountDown() {
@@ -202,6 +206,7 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                           ],
                         ),
                       ),
+<<<<<<< HEAD
                       Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -244,6 +249,40 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
+=======
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          print("Inside OTP");
+                          //print()
+                          otp = otpController.text;
+                          StaticResponse res =
+                              await QnaService.verifyOtp(widget.email, otp);
+                          print("RESPONSE CODE");
+                          print(res.code);
+                          if (res.code == 200) {
+                         showAlertDialog(context);
+                          } else {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: 'Incorrect Otp',
+                                  content: 'Entered OTP does not match',
+                                  button: AppLocalizations.of(context)!.retry,
+                                ),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                      child: Text(
+                        'Validate',
+                        style: TextStyle(
+                            fontSize: height * 0.024,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600),
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                       ),
                     ],
                   ),

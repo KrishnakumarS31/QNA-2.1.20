@@ -33,6 +33,10 @@ class TeacherRegistrationOtpPageState
     error = false;
     countdownTimer =
         Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
   }
 
   void setCountDown() {
@@ -205,6 +209,7 @@ class TeacherRegistrationOtpPageState
                           ],
                         ),
                       ),
+<<<<<<< HEAD
                       Center(
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -247,6 +252,38 @@ class TeacherRegistrationOtpPageState
                                 fontWeight: FontWeight.w600),
                           ),
                         ),
+=======
+                      onPressed: () async {
+                        if (formKey.currentState!.validate()) {
+                          otp = otpController.text;
+                          StaticResponse res =
+                              await QnaService.verifyOtp(widget.email, otp);
+                          int statusCode = 200;
+                          //QnaService.verifyOtp(widget.email,otp);
+                          if (res.code == 200) {
+                            showAlertDialog(context);
+                          } else {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: 'Incorrect Otp',
+                                  content: 'Entered OTP does not match',
+                                  button: AppLocalizations.of(context)!.retry,
+                                ),
+                              ),
+                            );
+                          }
+                        }
+                      },
+                      child: Text(
+                        'Validate',
+                        style: TextStyle(
+                            fontSize: height * 0.024,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600),
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                       ),
                     ],
                   ),

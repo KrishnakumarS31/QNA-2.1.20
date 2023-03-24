@@ -352,9 +352,15 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
+<<<<<<< HEAD
     if (question.choices == null) {
       question.choices = [];
     } else {
+=======
+    if(question.choices==null){
+      question.choices=[];
+    }else{
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
       for (int i = 0; i < question.choices!.length; i++) {
         answer = '$answer ${question.choices![i].choiceText}';
       }

@@ -252,10 +252,16 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     getData();
   }
 
+<<<<<<< HEAD
   getData() async {
     ResponseEntity response = await QnaService.getAllAssessment(5, pageLimit);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
+=======
+  getData()async{
+    ResponseEntity response =await QnaService.getAllAssessment(10,pageLimit);
+    allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
     setState(() {
       assessments.addAll(allAssessment);
       loading = false;
@@ -465,6 +471,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+<<<<<<< HEAD
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -475,6 +482,62 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         color: const Color.fromRGBO(153, 153, 153, 1),
                         fontSize: height * 0.015,
                         fontFamily: "Inter",
+=======
+
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Checkbox(
+                    //       activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                    //       fillColor: MaterialStateProperty.resolveWith<Color>(
+                    //           (states) {
+                    //         if (states.contains(MaterialState.selected)) {
+                    //           return const Color.fromRGBO(82, 165, 160, 1);
+                    //         }
+                    //         return const Color.fromRGBO(82, 165, 160, 1);
+                    //       }),
+                    //       value: agree,
+                    //       onChanged: (val) {
+                    //         setState(() {
+                    //           agree = val!;
+                    //           if (agree) {}
+                    //         });
+                    //       },
+                    //     ),
+                    //     Text(
+                    //       AppLocalizations.of(context)!.only_my_assessments,
+                    //       //"Only My Assessments",
+                    //       style: TextStyle(
+                    //         color: const Color.fromRGBO(0, 0, 0, 1),
+                    //         fontSize: height * 0.015,
+                    //         fontFamily: "Inter",
+                    //         fontWeight: FontWeight.w400,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
+                  ],
+                ),
+                Text(
+                  AppLocalizations.of(context)!.lib_of_assessments,
+                  //"Library of Assessments",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(153, 153, 153, 1),
+                    fontSize: height * 0.015,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(height: height * 0.02),
+                TextField(
+                  controller: teacherQuestionBankSearchController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintStyle: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                        fontFamily: 'Inter',
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -974,6 +1037,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 SizedBox(
                                                   height: height * 0.02,
                                                 ),
+<<<<<<< HEAD
                                                 ElevatedButton(
                                                   style:
                                                       ElevatedButton.styleFrom(
@@ -1033,6 +1097,31 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                               PageTransitionType
                                                                   .rightToLeft,
                                                           child: TeacherCreateAssessment(
+=======
+                                              ),
+                                              onPressed: () async {
+                                                bool valid = formKey
+                                                    .currentState!
+                                                    .validate();
+                                                if (valid) {
+                                                  SharedPreferences loginData=await SharedPreferences.getInstance();
+                                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+                                                  Provider.of<CreateAssessmentProvider>(context, listen: false).resetAssessment();
+                                                  assessment.topic=topicController.text ?? '';
+                                                  assessment.subTopic=subTopicController.text ?? '';
+                                                  assessment.subject=subjectController.text;
+                                                  assessment.createAssessmentModelClass=classController.text;
+                                                  assessment.questions=[];
+                                                  assessment.userId=loginData?.getInt('userId');
+                                                  Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType
+                                                          .rightToLeft,
+                                                      child:
+                                                          TeacherCreateAssessment(
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                                                               setLocale: widget
                                                                   .setLocale),
                                                         ),

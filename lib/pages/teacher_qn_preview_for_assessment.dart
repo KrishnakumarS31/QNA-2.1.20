@@ -258,6 +258,7 @@ class TeacherQnPreviewAssessmentState
                         SizedBox(
                           height: height * 0.03,
                         ),
+<<<<<<< HEAD
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
@@ -265,6 +266,21 @@ class TeacherQnPreviewAssessmentState
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
+=======
+                      ),
+                      //shape: StadiumBorder(),
+                      onPressed: () {
+                        Provider.of<QuestionPrepareProvider>(context, listen: false).addQuestion(widget.finalQuestion!);
+                        print("Yeah its here");
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherAddMyQuestionBankForAssessment(
+                              assessment: widget.assessment,
+                              setLocale: widget.setLocale,
+                              assessmentStatus: widget.assessmentStatus,
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                             ),
                           ),
                           //shape: StadiumBorder(),

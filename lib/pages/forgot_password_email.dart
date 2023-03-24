@@ -175,7 +175,35 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                               fontWeight: FontWeight.w600),
                         ),
                       ),
+<<<<<<< HEAD
                     ],
+=======
+                    ),
+                    onPressed: () async {
+                      bool valid = formKey.currentState!.validate();
+                      if (valid) {
+                        StaticResponse response =
+                            StaticResponse(code: 0, message: 'Incorrect Email');
+                        response = await QnaService.sendOtp(_controller.text);
+                        if (response.code == 200) {
+                          showAlertDialog(context);
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //       type: PageTransitionType.rightToLeft,
+                          //       child: showAlertDialog(context)),
+                          // );
+                        }
+                      }
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.send_otp,
+                      style: TextStyle(
+                          fontSize: height * 0.024,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w600),
+                    ),
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                   ),
                 ),
               ),
@@ -267,7 +295,13 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
             fontWeight: FontWeight.w500,
             fontSize: height * 0.018),
       ),
+<<<<<<< HEAD
       actions: [okButton],
+=======
+      actions: [
+              okButton
+      ],
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
     );
 
     // show the dialog
@@ -278,4 +312,6 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
       },
     );
   }
+
+
 }

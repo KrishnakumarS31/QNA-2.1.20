@@ -26,9 +26,9 @@ class _WelcomePageState extends State<WelcomePage> {
   bool teacherClick = false;
   bool memberStudentClick = false;
 
-  Future<bool> checkIfAlreadyLoggedIn(bool teacherClick)async{
-    loginData=await SharedPreferences.getInstance();
-    newUser=(loginData?.getBool('login') ??true);
+  Future<bool> checkIfAlreadyLoggedIn(bool teacherClick) async {
+    loginData = await SharedPreferences.getInstance();
+    newUser = (loginData?.getBool('login') ?? true);
     // print("role");
     // print(loginData?.getString('role'));
     // print(newUser == false && loginData?.getString('role') == 'teacher');
@@ -36,18 +36,20 @@ class _WelcomePageState extends State<WelcomePage> {
     //   print("Inside If");
     //   return false;
     // }
-    if(newUser==false && loginData?.getString('role') == 'teacher')
-      {
+    if (newUser == false && loginData?.getString('role') == 'teacher') {
       print("Inside IFF");
       showDialog(
           context: context,
           builder: (context) {
             return const Center(
                 child: CircularProgressIndicator(
-                  color: Color.fromRGBO(48, 145, 139, 1),
-                ));
+              color: Color.fromRGBO(48, 145, 139, 1),
+            ));
           });
-      LoginModel loginResponse = await QnaService.logInUser(loginData!.getString('email')!, loginData!.getString('password')!,loginData!.getString('role')!);
+      LoginModel loginResponse = await QnaService.logInUser(
+          loginData!.getString('email')!,
+          loginData!.getString('password')!,
+          loginData!.getString('role')!);
       if (loginResponse.code == 200) {
         loginData?.setBool('login', false);
         loginData?.setString('email', loginData!.getString('email')!);
@@ -56,14 +58,16 @@ class _WelcomePageState extends State<WelcomePage> {
         loginData?.setInt('userId', loginResponse.data.userId);
       }
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-      userDataModel = await QnaService.getUserDataService(loginData?.getInt('userId'));
+      userDataModel =
+          await QnaService.getUserDataService(loginData?.getInt('userId'));
       Navigator.push(
         context,
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: TeacherSelectionPage(
             setLocale: widget.setLocale,
-            userId: loginData?.getInt('userId'), userData: userDataModel,
+            userId: loginData?.getInt('userId'),
+            userData: userDataModel,
           ),
         ),
       );
@@ -76,8 +80,8 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
@@ -86,508 +90,662 @@ class _WelcomePageState extends State<WelcomePage> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
-          return WillPopScope( onWillPop: () async => false, child:Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                ),
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                automaticallyImplyLeading: false,
-              ),
-              endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
-              body: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                        SizedBox(
-                            height: localHeight,
-                            width: localWidth,
-                            child: Column(
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  extendBodyBehindAppBar: true,
+                  appBar: AppBar(
+                    systemOverlayStyle: const SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
+                    ),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    automaticallyImplyLeading: false,
+                  ),
+                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  body: SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Center(
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height / 2.5,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(iconAsset),
-                                      ),
-                                    ),
-                                  ),
-                                ),
                                 SizedBox(
-                                  height: localHeight * 0.06,
-                                ),
-                                Text(AppLocalizations.of(context)!.welcome,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: localHeight * 0.050)),
-                                SizedBox(
-                                  height: localHeight * 0.03,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          left: localWidth / 15, right: localWidth / 15),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              left: localWidth / 15,
-                                              right: localWidth / 15),
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .learner_applicant,
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: localHeight * 0.024)),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: localHeight * 0.02,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              left: localWidth / 15,
-                                              right: localWidth / 15),
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                const Color.fromRGBO(82, 165, 160, 1),
-                                                minimumSize: const Size(280, 48),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(39),
-                                                ),
+                                    height: localHeight,
+                                    width: localWidth,
+                                    child: Column(
+                                      children: [
+                                        Center(
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                2.5,
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.fill,
+                                                image: AssetImage(iconAsset),
                                               ),
-                                              child: Text(
-                                                  AppLocalizations.of(context)!.student,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: localHeight * 0.044,
-                                                      color: Colors.white)),
-                                              onPressed: () async {
-                                                Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType.rightToLeft,
-                                                    child: StudentSelectionPage(
-                                                        setLocale: widget.setLocale),
-                                                  ),
-                                                );
-                                              },
                                             ),
                                           ),
-                                        )
-                                      ]),
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          left: localWidth / 15, right: localWidth / 15),
-                                      child: Column(children: [
-                                        Container(
-                                          padding: EdgeInsets.only(
-                                              left: localWidth / 15,
-                                              right: localWidth / 15),
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                                AppLocalizations.of(context)!
-                                                    .instructor_examiner,
-                                                style: Theme.of(context)
-                                                    .primaryTextTheme
-                                                    .bodyLarge
-                                                    ?.merge(TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: localHeight * 0.024))),
-                                          ),
                                         ),
                                         SizedBox(
-                                          height: localHeight * 0.02,
-                                        ),
-                                        Container(
-                                            padding: EdgeInsets.only(
-                                                left: localWidth / 15,
-                                                right: localWidth / 15),
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: ElevatedButton(
-                                                style: ElevatedButton.styleFrom(
-                                                  backgroundColor: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                  minimumSize: const Size(280, 48),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(39),
-                                                  ),
-                                                ),
-                                                child: Text(
-                                                    AppLocalizations.of(context)!.teacher,
-                                                    style: TextStyle(
-                                                        fontFamily: 'Inter',
-                                                        fontSize: localHeight * 0.044,
-                                                        color: Colors.white)),
-                                                onPressed: () async {
-                                                  teacherClick == true;
-                                                  bool status =await checkIfAlreadyLoggedIn(teacherClick);
-                                                  print("Status");
-                                                  print(status);
-                                                  if(status==false){
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                        builder: (context) => TeacherLogin(
-                                                            setLocale: widget.setLocale),
-                                                      ),
-                                                    );
-                                                  }
-
-                                                },
-                                              ),
-                                            )),
-                                      ]),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: localHeight * 0.07,
-                                ),
-
-                                SizedBox(
-                                  height: localHeight * 0.05,
-                                ),
-                                MaterialButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: SettingsLanguages(
-                                              setLocale: widget.setLocale),
-                                        ),
-                                      );
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        IconButton(
-                                          icon: const Icon(
-                                            Icons.translate,
-                                            color: Color.fromRGBO(141, 167, 167, 1),
-                                          ),
-                                          onPressed: () {},
+                                          height: localHeight * 0.06,
                                         ),
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .select_language,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  48, 145, 139, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: localHeight * 0.026),
-                                        )
-                                      ],
-                                    )),
-                              ],
-                            ))
-                      ]),
-                      Positioned(
-                        left: localWidth * 0.04,
-                        top: localHeight * 0.055,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.1,
-                          height: MediaQuery.of(context).size.height * 0.04,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              //fit: BoxFit.fitWidth,
-                              image: AssetImage('assets/images/itne_logo.png'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left: localWidth * 0.25,
-                        top: localHeight * 0.15,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 0.2,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              //fit: BoxFit.fill,
-                              image: AssetImage('assets/images/qna_logo.png'),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ))));
-        }
-
-        else {
-          return WillPopScope( onWillPop: () async => false, child:Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: Colors.transparent,
-                ),
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                automaticallyImplyLeading: false,
-              ),
-              endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
-              body: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                        SizedBox(
-                            height: localHeight,
-                            width: localWidth,
-                            child: Column(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height / 2.5,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: AssetImage(iconAsset),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: localHeight * 0.06,
-                                ),
-                                Text(AppLocalizations.of(context)!.welcome,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: localHeight * 0.030)),
-                                SizedBox(
-                                  height: localHeight * 0.03,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: localWidth / 15, right: localWidth / 15),
-                                  child: Column(children: [
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          left: localWidth / 15,
-                                          right: localWidth / 15),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
                                             AppLocalizations.of(context)!
-                                                .learner_applicant,
+                                                .welcome,
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
+                                                    28, 78, 80, 1),
                                                 fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.014)),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: localHeight * 0.02,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          left: localWidth / 15,
-                                          right: localWidth / 15),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                            const Color.fromRGBO(82, 165, 160, 1),
-                                            minimumSize: const Size(280, 48),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(39),
-                                            ),
-                                          ),
-                                          child: Text(
-                                              AppLocalizations.of(context)!.student,
-                                              style: TextStyle(
-                                                  fontFamily: 'Inter',
-                                                  fontSize: localHeight * 0.024,
-                                                  color: Colors.white)),
-                                          onPressed: () async {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType.rightToLeft,
-                                                child: StudentSelectionPage(
-                                                    setLocale: widget.setLocale),
-                                              ),
-                                            );
-                                          },
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: localHeight * 0.050)),
+                                        SizedBox(
+                                          height: localHeight * 0.03,
                                         ),
-                                      ),
-                                    )
-                                  ]),
-                                ),
-                                SizedBox(
-                                  height: localHeight * 0.07,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(
-                                      left: localWidth / 15, right: localWidth / 15),
-                                  child: Column(children: [
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          left: localWidth / 15,
-                                          right: localWidth / 15),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                            AppLocalizations.of(context)!
-                                                .instructor_examiner,
-                                            style: Theme.of(context)
-                                                .primaryTextTheme
-                                                .bodyLarge
-                                                ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.014))),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: localHeight * 0.02,
-                                    ),
-                                    Container(
-                                        padding: EdgeInsets.only(
-                                            left: localWidth / 15,
-                                            right: localWidth / 15),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              minimumSize: const Size(280, 48),
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                BorderRadius.circular(39),
-                                              ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: localWidth / 15,
+                                                  right: localWidth / 15),
+                                              child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                          left: localWidth / 15,
+                                                          right:
+                                                              localWidth / 15),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .learner_applicant,
+                                                            style: TextStyle(
+                                                                color: const Color
+                                                                        .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    1),
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize:
+                                                                    localHeight *
+                                                                        0.024)),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          localHeight * 0.02,
+                                                    ),
+                                                    Container(
+                                                      padding: EdgeInsets.only(
+                                                          left: localWidth / 15,
+                                                          right:
+                                                              localWidth / 15),
+                                                      child: Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            backgroundColor:
+                                                                const Color
+                                                                        .fromRGBO(
+                                                                    82,
+                                                                    165,
+                                                                    160,
+                                                                    1),
+                                                            minimumSize:
+                                                                const Size(
+                                                                    280, 48),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          39),
+                                                            ),
+                                                          ),
+                                                          child: Text(
+                                                              AppLocalizations.of(
+                                                                      context)!
+                                                                  .student,
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  fontSize:
+                                                                      localHeight *
+                                                                          0.044,
+                                                                  color: Colors
+                                                                      .white)),
+                                                          onPressed: () async {
+                                                            Navigator.push(
+                                                              context,
+                                                              PageTransition(
+                                                                type: PageTransitionType
+                                                                    .rightToLeft,
+                                                                child: StudentSelectionPage(
+                                                                    setLocale:
+                                                                        widget
+                                                                            .setLocale),
+                                                              ),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ),
+                                                    )
+                                                  ]),
                                             ),
-                                            child: Text(
-                                                AppLocalizations.of(context)!.teacher,
-                                                style: TextStyle(
-                                                    fontFamily: 'Inter',
-                                                    fontSize: localHeight * 0.024,
-                                                    color: Colors.white)),
-                                            onPressed: () async {
-                                              teacherClick == true;
-                                              bool status =await checkIfAlreadyLoggedIn(teacherClick);
-                                              if(status==false){
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) => TeacherLogin(
-                                                        setLocale: widget.setLocale),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: localWidth / 15,
+                                                  right: localWidth / 15),
+                                              child: Column(children: [
+                                                Container(
+                                                  padding: EdgeInsets.only(
+                                                      left: localWidth / 15,
+                                                      right: localWidth / 15),
+                                                  child: Align(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Text(
+                                                        AppLocalizations
+                                                                .of(context)!
+                                                            .instructor_examiner,
+                                                        style: Theme.of(context)
+                                                            .primaryTextTheme
+                                                            .bodyLarge
+                                                            ?.merge(TextStyle(
+                                                                color: const Color
+                                                                        .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    1),
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontSize:
+                                                                    localHeight *
+                                                                        0.024))),
                                                   ),
-                                                );
-                                              }
-                                            },
-                                          ),
-                                        )),
-                                  ]),
-                                ),
-                                SizedBox(
-                                  height: localHeight * 0.05,
-                                ),
-                                MaterialButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: SettingsLanguages(
-                                              setLocale: widget.setLocale),
+                                                ),
+                                                SizedBox(
+                                                  height: localHeight * 0.02,
+                                                ),
+                                                Container(
+                                                    padding: EdgeInsets.only(
+                                                        left: localWidth / 15,
+                                                        right: localWidth / 15),
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                              const Color
+                                                                      .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1),
+                                                          minimumSize:
+                                                              const Size(
+                                                                  280, 48),
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        39),
+                                                          ),
+                                                        ),
+                                                        child: Text(
+                                                            AppLocalizations.of(
+                                                                    context)!
+                                                                .teacher,
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    'Inter',
+                                                                fontSize:
+                                                                    localHeight *
+                                                                        0.044,
+                                                                color: Colors
+                                                                    .white)),
+                                                        onPressed: () async {
+                                                          teacherClick == true;
+                                                          bool status =
+                                                              await checkIfAlreadyLoggedIn(
+                                                                  teacherClick);
+                                                          print("Status");
+                                                          print(status);
+                                                          if (status == false) {
+                                                            Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder: (context) =>
+                                                                    TeacherLogin(
+                                                                        setLocale:
+                                                                            widget.setLocale),
+                                                              ),
+                                                            );
+                                                          }
+                                                        },
+                                                      ),
+                                                    )),
+                                              ]),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                        SizedBox(
+                                          height: localHeight * 0.07,
+                                        ),
+                                        SizedBox(
+                                          height: localHeight * 0.05,
+                                        ),
+                                        MaterialButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType
+                                                      .rightToLeft,
+                                                  child: SettingsLanguages(
+                                                      setLocale:
+                                                          widget.setLocale),
+                                                ),
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                IconButton(
+                                                  icon: const Icon(
+                                                    Icons.translate,
+                                                    color: Color.fromRGBO(
+                                                        141, 167, 167, 1),
+                                                  ),
+                                                  onPressed: () {},
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .select_language,
+                                                  style: TextStyle(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          localHeight * 0.026),
+                                                )
+                                              ],
+                                            )),
+                                      ],
+                                    ))
+                              ]),
+                          Positioned(
+                            left: localWidth * 0.04,
+                            top: localHeight * 0.055,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.1,
+                              height: MediaQuery.of(context).size.height * 0.04,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  //fit: BoxFit.fitWidth,
+                                  image:
+                                      AssetImage('assets/images/itne_logo.png'),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: localWidth * 0.25,
+                            top: localHeight * 0.15,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.2,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  //fit: BoxFit.fill,
+                                  image:
+                                      AssetImage('assets/images/qna_logo.png'),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ))));
+        } else {
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  extendBodyBehindAppBar: true,
+                  appBar: AppBar(
+                    systemOverlayStyle: const SystemUiOverlayStyle(
+                      statusBarColor: Colors.transparent,
+                    ),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    automaticallyImplyLeading: false,
+                  ),
+                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  body: SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                    height: localHeight,
+                                    width: localWidth,
+                                    child: Column(
                                       children: [
-                                        IconButton(
-                                          icon: const Icon(
-                                            Icons.translate,
-                                            color: Color.fromRGBO(141, 167, 167, 1),
+                                        Center(
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height /
+                                                2.5,
+                                            decoration: const BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.fill,
+                                                image: AssetImage(iconAsset),
+                                              ),
+                                            ),
                                           ),
-                                          onPressed: () {},
+                                        ),
+                                        SizedBox(
+                                          height: localHeight * 0.06,
                                         ),
                                         Text(
-                                          AppLocalizations.of(context)!
-                                              .select_language,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  48, 145, 139, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: localHeight * 0.016),
-                                        )
+                                            AppLocalizations.of(context)!
+                                                .welcome,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    28, 78, 80, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: localHeight * 0.030)),
+                                        SizedBox(
+                                          height: localHeight * 0.03,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: localWidth / 15,
+                                              right: localWidth / 15),
+                                          child: Column(children: [
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: localWidth / 15,
+                                                  right: localWidth / 15),
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                    AppLocalizations.of(
+                                                            context)!
+                                                        .learner_applicant,
+                                                    style: TextStyle(
+                                                        color: const Color
+                                                                .fromRGBO(
+                                                            102, 102, 102, 1),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: localHeight *
+                                                            0.014)),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: localHeight * 0.02,
+                                            ),
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: localWidth / 15,
+                                                  right: localWidth / 15),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        const Color.fromRGBO(
+                                                            82, 165, 160, 1),
+                                                    minimumSize:
+                                                        const Size(280, 48),
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              39),
+                                                    ),
+                                                  ),
+                                                  child: Text(
+                                                      AppLocalizations.of(
+                                                              context)!
+                                                          .student,
+                                                      style: TextStyle(
+                                                          fontFamily: 'Inter',
+                                                          fontSize:
+                                                              localHeight *
+                                                                  0.024,
+                                                          color: Colors.white)),
+                                                  onPressed: () async {
+                                                    Navigator.push(
+                                                      context,
+                                                      PageTransition(
+                                                        type: PageTransitionType
+                                                            .rightToLeft,
+                                                        child:
+                                                            StudentSelectionPage(
+                                                                setLocale: widget
+                                                                    .setLocale),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            )
+                                          ]),
+                                        ),
+                                        SizedBox(
+                                          height: localHeight * 0.07,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: localWidth / 15,
+                                              right: localWidth / 15),
+                                          child: Column(children: [
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  left: localWidth / 15,
+                                                  right: localWidth / 15),
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                    AppLocalizations
+                                                            .of(context)!
+                                                        .instructor_examiner,
+                                                    style: Theme.of(context)
+                                                        .primaryTextTheme
+                                                        .bodyLarge
+                                                        ?.merge(TextStyle(
+                                                            color: const Color
+                                                                    .fromRGBO(
+                                                                102,
+                                                                102,
+                                                                102,
+                                                                1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize:
+                                                                localHeight *
+                                                                    0.014))),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: localHeight * 0.02,
+                                            ),
+                                            Container(
+                                                padding: EdgeInsets.only(
+                                                    left: localWidth / 15,
+                                                    right: localWidth / 15),
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                          const Color.fromRGBO(
+                                                              82, 165, 160, 1),
+                                                      minimumSize:
+                                                          const Size(280, 48),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(39),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                        AppLocalizations.of(
+                                                                context)!
+                                                            .teacher,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontSize:
+                                                                localHeight *
+                                                                    0.024,
+                                                            color:
+                                                                Colors.white)),
+                                                    onPressed: () async {
+                                                      teacherClick == true;
+                                                      bool status =
+                                                          await checkIfAlreadyLoggedIn(
+                                                              teacherClick);
+                                                      if (status == false) {
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                TeacherLogin(
+                                                                    setLocale:
+                                                                        widget
+                                                                            .setLocale),
+                                                          ),
+                                                        );
+                                                      }
+                                                    },
+                                                  ),
+                                                )),
+                                          ]),
+                                        ),
+                                        SizedBox(
+                                          height: localHeight * 0.05,
+                                        ),
+                                        MaterialButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                PageTransition(
+                                                  type: PageTransitionType
+                                                      .rightToLeft,
+                                                  child: SettingsLanguages(
+                                                      setLocale:
+                                                          widget.setLocale),
+                                                ),
+                                              );
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                IconButton(
+                                                  icon: const Icon(
+                                                    Icons.translate,
+                                                    color: Color.fromRGBO(
+                                                        141, 167, 167, 1),
+                                                  ),
+                                                  onPressed: () {},
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .select_language,
+                                                  style: TextStyle(
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          localHeight * 0.016),
+                                                )
+                                              ],
+                                            )),
                                       ],
-                                    )),
-                              ],
-                            ))
-                      ]),
-                      Positioned(
-                        left: localWidth * 0.04,
-                        top: localHeight * 0.055,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          height: MediaQuery.of(context).size.height * 0.04,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage('assets/images/itne_logo.png'),
+                                    ))
+                              ]),
+                          Positioned(
+                            left: localWidth * 0.04,
+                            top: localHeight * 0.055,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              height: MediaQuery.of(context).size.height * 0.04,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:
+                                      AssetImage('assets/images/itne_logo.png'),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        left: localWidth * 0.25,
-                        top: localHeight * 0.15,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          height: MediaQuery.of(context).size.height * 0.135,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage('assets/images/qna_logo.png'),
+                          Positioned(
+                            left: localWidth * 0.25,
+                            top: localHeight * 0.15,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.135,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:
+                                      AssetImage('assets/images/qna_logo.png'),
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
-                  ))));
+                        ],
+                      ))));
         }
       },
     );

@@ -38,8 +38,12 @@ class TeacherAssessmentQuestionBankState
   }
 
   getData() async {
+<<<<<<< HEAD
     ResponseEntity responseEntity =
         await QnaService.getQuestionBankService(500, 1);
+=======
+    ResponseEntity responseEntity=await QnaService.getQuestionBankService(500,1);
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
     setState(() {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
@@ -312,6 +316,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           value: valuefirst,
           onChanged: (bool? value) {
             setState(() {
+<<<<<<< HEAD
               if (value!) {
                 widget.question.questionMark = 10;
                 Provider.of<QuestionPrepareProviderFinal>(context,
@@ -325,6 +330,16 @@ class _QuestionPreviewState extends State<QuestionPreview> {
                     .removeQuestion(widget.question.questionId);
                 Provider.of<CreateAssessmentProvider>(context, listen: false)
                     .removeQuestion(widget.question.questionId);
+=======
+              if(value!){
+                widget.question.questionMark=10;
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(widget.question!);
+                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(widget.question.questionId, 10);
+              }
+              else{
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(widget.question.questionId);
+                Provider.of<CreateAssessmentProvider>(context, listen: false).removeQuestion(widget.question.questionId);
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
               }
               valuefirst = value;
             });

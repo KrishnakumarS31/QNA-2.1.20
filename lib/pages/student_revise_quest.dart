@@ -818,6 +818,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         ansCorrect++;
                       }
                     }
+
                     assessment.assessmentResults.add(quesResult);
                   }
                   assessment.attemptScore=totalMark;
@@ -840,7 +841,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   final DateFormat timeFormatter = DateFormat('hh:mm a');
                   final String formatted = formatter.format(now);
                   final String time=timeFormatter.format(now);
-
+print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+print(assessment.toString());
                   showDialog(
                       context: context,
                       builder: (context) {

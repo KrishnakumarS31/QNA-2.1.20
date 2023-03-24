@@ -145,9 +145,13 @@ class TeacherAddMyQuestionBankForAssessmentState
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
     finalQuesList.addAll(
         Provider.of<QuestionPrepareProvider>(context, listen: false)
             .getAllQuestion);
+=======
+    finalQuesList.addAll(Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion);
+>>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
   }
 
   @override

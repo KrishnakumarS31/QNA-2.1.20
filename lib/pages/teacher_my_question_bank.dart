@@ -9,6 +9,7 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank(
       {Key? key, this.assessment, required this.setLocale})
@@ -37,157 +38,161 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return WillPopScope(
-        onWillPop: () async => false, child:Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          toolbarHeight: height * 0.100,
-          centerTitle: true,
-          title: Text(
-            AppLocalizations.of(context)!.my_qn_bank_caps,
-            //"MY QUESTION BANK",
-            style: TextStyle(
-              color: const Color.fromRGBO(255, 255, 255, 1),
-              fontSize: height * 0.0225,
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w400,
-            ),
-          ),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: [
+        onWillPop: () async => false,
+        child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              toolbarHeight: height * 0.100,
+              centerTitle: true,
+              title: Text(
+                AppLocalizations.of(context)!.my_qn_bank_caps,
+                //"MY QUESTION BANK",
+                style: TextStyle(
+                  color: const Color.fromRGBO(255, 255, 255, 1),
+                  fontSize: height * 0.0225,
+                  fontFamily: "Inter",
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomCenter,
+                        begin: Alignment.topCenter,
+                        colors: [
                       Color.fromRGBO(0, 106, 100, 1),
                       Color.fromRGBO(82, 165, 160, 1),
                     ])),
-          ),
-        ),
-        body: Container(
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                padding:
-                EdgeInsets.only(left: width * 0.055, right: width * 0.055),
-                height: height * 0.7,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ),
+            ),
+            body: Container(
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(
+                        left: width * 0.055, right: width * 0.055),
+                    height: height * 0.7,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            AppLocalizations.of(context)!.tap_to_review,
-                            //'Tap to Review/Edit/Delete',
-                            style: TextStyle(
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontWeight: FontWeight.w600),
+                          SizedBox(
+                            height: height * 0.03,
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.my_qns_small,
-                                // 'My Questions',
+                                AppLocalizations.of(context)!.tap_to_review,
+                                //'Tap to Review/Edit/Delete',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
-                                    color: const Color.fromRGBO(0, 0, 0, 1),
-                                    fontWeight: FontWeight.w400),
+                                    color:
+                                        const Color.fromRGBO(153, 153, 153, 1),
+                                    fontWeight: FontWeight.w600),
                               ),
-                              SizedBox(
-                                width: width * 0.02,
-                              ),
-                              const Icon(
-                                Icons.circle,
-                                color: Color.fromRGBO(82, 165, 160, 1),
+                              Row(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!.my_qns_small,
+                                    // 'My Questions',
+                                    style: TextStyle(
+                                        fontSize: height * 0.015,
+                                        fontFamily: "Inter",
+                                        color: const Color.fromRGBO(0, 0, 0, 1),
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.02,
+                                  ),
+                                  const Icon(
+                                    Icons.circle,
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                  )
+                                ],
                               )
                             ],
-                          )
+                          ),
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          for (int i = 0; i < quesList.length; i++)
+                            QuestionPreview(
+                                height: height,
+                                width: width,
+                                question: quesList[i],
+                                index: i,
+                                assessment: widget.assessment,
+                                setLocale: widget.setLocale),
                         ],
                       ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                      for (int i = 0; i < quesList.length; i++)
-                        QuestionPreview(
-                            height: height,
-                            width: width,
-                            question: quesList[i],
-                            index: i,
-                            assessment: widget.assessment,
-                            setLocale: widget.setLocale),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-              SizedBox(
-                height: height * 0.05,
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                  minimumSize: const Size(280, 48),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(39),
+                  SizedBox(
+                    height: height * 0.05,
                   ),
-                ),
-                onPressed: () async {
-                  if (widget.assessment != null) {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: TeacherCreateAssessment(
-                            setLocale: widget.setLocale),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                      minimumSize: const Size(280, 48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(39),
                       ),
-                    );
-                  } else {
-                    //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: TeacherQuestionBank(setLocale: widget.setLocale,),
-                      ),
-                    );
-                  }
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.back_to_qns,
-                  //'Back to Questions',
-                  style: TextStyle(
-                      fontSize: height * 0.025,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontWeight: FontWeight.w600),
-                ),
+                    ),
+                    onPressed: () async {
+                      if (widget.assessment != null) {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherCreateAssessment(
+                                setLocale: widget.setLocale),
+                          ),
+                        );
+                      } else {
+                        //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: TeacherQuestionBank(
+                              setLocale: widget.setLocale,
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.back_to_qns,
+                      //'Back to Questions',
+                      style: TextStyle(
+                          fontSize: height * 0.025,
+                          fontFamily: "Inter",
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        )));
+            )));
   }
 }
 
 class QuestionPreview extends StatelessWidget {
   const QuestionPreview(
       {Key? key,
-        required this.height,
-        required this.width,
-        required this.question,
-        required this.index,
-        this.assessment,
-        required this.setLocale})
+      required this.height,
+      required this.width,
+      required this.question,
+      required this.index,
+      this.assessment,
+      required this.setLocale})
       : super(key: key);
 
   final double height;
@@ -200,12 +205,11 @@ class QuestionPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String answer = '';
-    if(question.choices==null){
-      question.choices=[];
-    }
-    else{
+    if (question.choices == null) {
+      question.choices = [];
+    } else {
       for (int i = 0; i < question.choices!.length; i++) {
-        if(question.choices![i].rightChoice!) {
+        if (question.choices![i].rightChoice!) {
           answer = '$answer ${question.choices![i].choiceText}';
         }
       }
@@ -238,7 +242,8 @@ class QuestionPreview extends StatelessWidget {
                   width: width * 0.9,
                   color: const Color.fromRGBO(82, 165, 160, 1),
                   child: Padding(
-                    padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
+                    padding: EdgeInsets.only(
+                        right: width * 0.02, left: width * 0.02),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
