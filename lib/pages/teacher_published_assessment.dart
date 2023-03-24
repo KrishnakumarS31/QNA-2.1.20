@@ -4,18 +4,9 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../Entity/question_paper_model.dart';
-import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
-import '../Services/qna_service.dart';
-import 'about_us.dart';
-import 'cookie_policy.dart';
-import 'help_page.dart';
-import 'settings_languages.dart';
-import 'package:qna_test/Pages/privacy_policy_hamburger.dart';
-import 'package:qna_test/Pages/terms_of_services.dart';
-import 'package:qna_test/pages/reset_password_teacher.dart';
+import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 
 
 class TeacherPublishedAssessment extends StatefulWidget {
@@ -61,9 +52,7 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
 
   }
   getData() async {
-    print("inside getData");
     //QuestionPaperModel.QuestionPaperModel value = await QnaService.getQuestion(assessmentId: widget.assessmentCode);
-    print("after getData");
     setState(() {
       //values=value;
       assessmentVal=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
@@ -86,7 +75,6 @@ class TeacherPublishedAssessmentState extends State<TeacherPublishedAssessment> 
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,

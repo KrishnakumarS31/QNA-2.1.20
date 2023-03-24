@@ -291,11 +291,14 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
             fontSize: 15),
       ),
       actions: [
-        TextButton(
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+            ),
           child: const Text(
             "Ok",
             style: TextStyle(
-                color: Color.fromRGBO(48, 145, 139, 1),
+                color: Colors.white,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
                 fontSize: 15),

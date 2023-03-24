@@ -334,6 +334,38 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ),
                     ),
 
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Checkbox(
+                    //       activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                    //       fillColor: MaterialStateProperty.resolveWith<Color>(
+                    //           (states) {
+                    //         if (states.contains(MaterialState.selected)) {
+                    //           return const Color.fromRGBO(82, 165, 160, 1);
+                    //         }
+                    //         return const Color.fromRGBO(82, 165, 160, 1);
+                    //       }),
+                    //       value: agree,
+                    //       onChanged: (val) {
+                    //         setState(() {
+                    //           agree = val!;
+                    //           if (agree) {}
+                    //         });
+                    //       },
+                    //     ),
+                    //     Text(
+                    //       AppLocalizations.of(context)!.only_my_assessments,
+                    //       //"Only My Assessments",
+                    //       style: TextStyle(
+                    //         color: const Color.fromRGBO(0, 0, 0, 1),
+                    //         fontSize: height * 0.015,
+                    //         fontFamily: "Inter",
+                    //         fontWeight: FontWeight.w400,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
                 Text(

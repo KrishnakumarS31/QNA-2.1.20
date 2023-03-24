@@ -741,7 +741,7 @@ class TeacherPrepareQuesForAssessmentState extends State<TeacherPrepareQuesForAs
                                     finalQuestion.datumClass=classRoomController.text;
                                     finalQuestion.choices=tempChoiceList;
                                     finalQuestion.questionType=_groupValue;
-                                    if(_groupValue=='Descriptive'){
+                                    if(_groupValue=='Descripitive'){
                                       finalQuestion.choices=[];
                                     }
                                     showQuestionPreview(context);
