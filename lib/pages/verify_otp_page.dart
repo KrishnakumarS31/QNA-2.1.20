@@ -2,9 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_forgot_password.dart';
-import '../EntityModel/static_response.dart';
-import '../EntityModel/user_data_model.dart';
-import '../Services/qna_service.dart';
 
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({

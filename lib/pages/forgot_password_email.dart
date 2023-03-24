@@ -235,17 +235,20 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
             fontSize: height * 0.018),
       ),
       actions: [
-        TextButton(
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+          ),
           child: Text(
             "Enter OTP",
             style: TextStyle(
-                color: const Color.fromRGBO(48, 145, 139, 1),
+                color: Colors.white,
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
                 fontSize: height * 0.018),
           ),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,

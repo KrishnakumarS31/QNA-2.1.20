@@ -125,22 +125,22 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Icon(
-                      Icons.mail_outline_outlined,
-                      color: Color.fromRGBO(82, 165, 160, 1),
-                    ),
-                    SizedBox(
-                      width: width * 0.06,
-                    ),
-                    const Icon(
-                      Icons.print_outlined,
-                      color: Color.fromRGBO(82, 165, 160, 1),
-                    )
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     const Icon(
+                //       Icons.mail_outline_outlined,
+                //       color: Color.fromRGBO(82, 165, 160, 1),
+                //     ),
+                //     SizedBox(
+                //       width: width * 0.06,
+                //     ),
+                //     const Icon(
+                //       Icons.print_outlined,
+                //       color: Color.fromRGBO(82, 165, 160, 1),
+                //     )
+                //   ],
+                // ),
                 SizedBox(
                   height: height * 0.03,
                 ),

@@ -1,8 +1,7 @@
 const domainName = "https://dev.qnatest.com";
-//const domainName = "";
 const usersDomain = "$domainName/api/v1/users";
-
 const assessmentDomain = "$domainName/api/v1/assessment";
+
 
 const loginInUserUrl ='$usersDomain/login';
 const sendOtpUrl ='$usersDomain/forgot-password';
