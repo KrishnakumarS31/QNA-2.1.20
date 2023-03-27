@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
+import 'package:qna_test/pages/teacher_login.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 
@@ -11,11 +12,13 @@ class StudentForgotPassword extends StatefulWidget {
       {Key? key,
       required this.email,
       required this.otp,
+        required this.isFromStudent,
       required this.setLocale})
       : super(key: key);
 
   final String email;
   final String otp;
+  final bool isFromStudent;
   final void Function(Locale locale) setLocale;
 
   @override
@@ -306,13 +309,22 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                 fontSize: height * 0.018),
           ),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: StudentMemberLoginPage(setLocale: widget.setLocale),
-              ),
-            );
+           if(widget.isFromStudent == true) {
+             Navigator.pushReplacement(
+               context,
+               PageTransition(
+                 type: PageTransitionType.rightToLeft,
+                 child: StudentMemberLoginPage(setLocale: widget.setLocale),
+               ),
+             );
+           }
+           Navigator.pushReplacement(
+             context,
+             PageTransition(
+               type: PageTransitionType.rightToLeft,
+               child: TeacherLogin(setLocale: widget.setLocale),
+             ),
+           );
             //Navigator.of(context).pop();
           },
         )

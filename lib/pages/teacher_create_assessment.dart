@@ -969,9 +969,9 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 .toString()
                                 .substring(
                                     18, statusCode.data.toString().length - 1);
-                            QuestionPaperModel.QuestionPaperModel value =
-                                await QnaService.getQuestion(
-                                    assessmentId: assessmentCode);
+                            // QuestionPaperModel.QuestionPaperModel value =
+                            //     await QnaService.getQuestion(
+                            //         assessmentId: assessmentCode);
                             Navigator.of(context).pop();
                             if (statusCode.code == 200) {
                               Navigator.push(
@@ -981,7 +981,6 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                   child: TeacherPublishedAssessment(
                                     setLocale: widget.setLocale,
                                     assessmentCode: assessmentCode,
-                                    questionList: value.data!.questions!,
                                   ),
                                 ),
                               );

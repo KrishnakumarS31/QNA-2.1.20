@@ -29,6 +29,10 @@ class QnaService {
     return await QnaRepo.verifyOtp(email, otp);
   }
 
+  static Future<StaticResponse> validateOtp(String email, String otp) async {
+    return await QnaRepo.validateOtp(email, otp);
+  }
+
   static Future<StaticResponse> updatePasswordOtp(
       String email, String otp, String password) async {
     return await QnaRepo.updatePasswordOtp(email, otp, password);
@@ -47,6 +51,12 @@ class QnaService {
   static Future<QuestionPaperModel> getQuestion(
       {required String assessmentId}) async {
     return await QnaTestRepo.getQuestionPaper(assessmentId);
+  }
+
+  static Future<QuestionPaperModel> getQuestionsForPublishedAssessmentsPage(
+      {required String assessmentId}) async {
+    return await QnaTestRepo.getQuestionPaperForPublishedAssessmentsPage(
+        assessmentId);
   }
 
   static Future<LoginModel> postAssessmentService(

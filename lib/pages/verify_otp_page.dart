@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/student_forgot_password.dart';
 
+import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({
     Key? key,
     required this.setLocale,
+    required this.isFromStudent,
     required this.email,
   }) : super(key: key);
   final String email;
+  final bool isFromStudent;
   final void Function(Locale locale) setLocale;
   @override
   VerifyOtpPageState createState() => VerifyOtpPageState();
@@ -245,25 +249,39 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               otp = otpController.text;
-                              // StaticResponse res =
-                              //     await QnaService.verifyOtp(widget.email, otp);
-                              // if (res.code == 200) {
-                              //   Navigator.push(
-                              //     context,
-                              //     PageTransition(
-                              //         type: PageTransitionType.fade,
-                              //         child: showAlertDialog(context, res.message)),
-                              //   );
-                              // }
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: StudentForgotPassword(
-                                        email: widget.email,
-                                        otp: otp,
-                                        setLocale: widget.setLocale)),
-                              );
+                              StaticResponse res =
+                                  await QnaService.validateOtp(widget.email, otp);
+                              print(res.code);
+                              if (res.code == 200) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.fade,
+                                      child: showAlertDialog(context, res.message)),
+                                );
+                              }
+                              else if(res.code != 200 && res.code != null && res.message != null)
+                                {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType
+                                          .rightToLeft,
+                                      child: CustomDialog(
+                                        title:
+                                       "Error",
+                                        //'Wrong password',
+                                        content: res.message,
+                                        //'please enter the correct password',
+                                        button:
+                                        AppLocalizations.of(
+                                            context)!
+                                            .retry,
+                                      ),
+                                    ),
+                                  );
+                                }
+
                             }
                           },
                           child: Text(
@@ -321,7 +339,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       actions: [
         TextButton(
           child: const Text(
-            "Login",
+            "OK",
             style: TextStyle(
                 color: Color.fromRGBO(48, 145, 139, 1),
                 fontFamily: 'Inter',
@@ -335,6 +353,74 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                   type: PageTransitionType.fade,
                   child: StudentForgotPassword(
                       email: widget.email,
+                      otp: otp,
+                      setLocale: widget.setLocale, isFromStudent: widget.isFromStudent)),
+            );
+          },
+        )
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  showErorDialog(BuildContext context, String? msg) {
+    // set up the button
+    double height = MediaQuery.of(context).size.height;
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          Icon(
+            Icons.check_circle,
+            size: height * 0.04,
+            color: const Color.fromRGBO(66, 194, 0, 1),
+          ),
+          SizedBox(
+            width: height * 0.002,
+          ),
+          const Text(
+            "Success!",
+            style: TextStyle(
+                color: Color.fromRGBO(51, 51, 51, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 20),
+          ),
+        ],
+      ),
+      content: Text(
+        msg!,
+        style: const TextStyle(
+            color: Color.fromRGBO(51, 51, 51, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: 15),
+      ),
+      actions: [
+        TextButton(
+          child: const Text(
+            "OK",
+            style: TextStyle(
+                color: Color.fromRGBO(48, 145, 139, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: 15),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.fade,
+                  child: StudentForgotPassword(
+                      email: widget.email,
+                      isFromStudent: widget.isFromStudent,
                       otp: otp,
                       setLocale: widget.setLocale)),
             );

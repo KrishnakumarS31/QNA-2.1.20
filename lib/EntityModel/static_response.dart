@@ -12,11 +12,11 @@ String staticResponseToJson(StaticResponse data) => json.encode(data.toJson());
 class StaticResponse {
   StaticResponse({
     this.code,
-    this.message,
+    required this.message,
   });
 
   int? code;
-  String? message;
+  String message;
 
   factory StaticResponse.fromJson(Map<String, dynamic> json) => StaticResponse(
         code: json["code"],

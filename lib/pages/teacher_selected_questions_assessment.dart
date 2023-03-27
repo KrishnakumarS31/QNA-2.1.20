@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Entity/Teacher/question_entity_for_assessment_settings_published.dart';
 import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
@@ -8,19 +9,21 @@ import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Entity/Teacher/response_entity.dart';
+//import '../Entity/Teacher/result_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
+import '../Providers/questions_for_assessment_settings_published.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
-  const TeacherSelectedQuestionAssessment({
-    Key? key,
-    required this.setLocale,
-  }) : super(key: key);
+  const TeacherSelectedQuestionAssessment(
+      {Key? key, required this.setLocale, this.questions})
+      : super(key: key);
   final void Function(Locale locale) setLocale;
+  final List<Question.Question>? questions;
 
   @override
   TeacherSelectedQuestionAssessmentState createState() =>
@@ -86,6 +89,7 @@ class TeacherSelectedQuestionAssessmentState
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
+        //Provider.of<QuestionsForAssessmentSettingsPublishedProvider>(context, listen: false).addQuestion(widget.questions! as QuestionEntityForAssessmentSettingsPublished);
         Navigator.push(
           context,
           PageTransition(
@@ -140,6 +144,8 @@ class TeacherSelectedQuestionAssessmentState
   void initState() {
     super.initState();
     getData();
+    print("Init State");
+    print(widget!.questions);
     subjectController.text = assessment.subject!;
     classController.text = assessment.createAssessmentModelClass!;
     topicController.text = assessment.topic!;
@@ -889,15 +895,15 @@ class TeacherSelectedQuestionAssessmentState
                                         const Color.fromRGBO(102, 102, 102, 1),
                                     fontWeight: FontWeight.w400),
                               ),
-                              Text(
-                                '${assessment.assessmentStartdate}',
-                                style: TextStyle(
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
-                                    fontWeight: FontWeight.w400),
-                              ),
+                              // Text(
+                              //   '${assessment.assessmentStartdate}',
+                              //   style: TextStyle(
+                              //       fontSize: height * 0.015,
+                              //       fontFamily: "Inter",
+                              //       color:
+                              //           const Color.fromRGBO(102, 102, 102, 1),
+                              //       fontWeight: FontWeight.w400),
+                              // ),
                             ],
                           )
                         ],

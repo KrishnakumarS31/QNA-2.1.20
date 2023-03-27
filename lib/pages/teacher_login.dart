@@ -302,6 +302,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
                                     child: ForgotPasswordEmail(
+                                        isFromStudent: false,
                                         setLocale: widget.setLocale),
                                   ),
                                 );

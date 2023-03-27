@@ -56,4 +56,33 @@ class QnaTestRepo {
     // }
     //return questionPaperModel;
   }
+
+  static Future<QuestionPaperModel> getQuestionPaperForPublishedAssessmentsPage(
+      assessmentId) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    QuestionPaperModel questionPaperModel;
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    String value = await response.stream.bytesToString();
+    questionPaperModel = questionPaperModelFromJson(value);
+    print(response.statusCode);
+    if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel = await logInUser(email!, pass!);
+      getQuestionPaper(assessmentId);
+    }
+
+    return questionPaperModel;
+    //}
+    // else {
+    //   print(response.reasonPhrase);
+    // }
+    //return questionPaperModel;
+  }
 }

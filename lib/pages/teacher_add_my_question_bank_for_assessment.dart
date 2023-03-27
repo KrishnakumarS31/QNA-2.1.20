@@ -148,7 +148,9 @@ class TeacherAddMyQuestionBankForAssessmentState
     finalQuesList.addAll(
         Provider.of<QuestionPrepareProvider>(context, listen: false)
             .getAllQuestion);
-    finalQuesList.addAll(Provider.of<QuestionPrepareProvider>(context, listen: false).getAllQuestion);
+    finalQuesList.addAll(
+        Provider.of<QuestionPrepareProvider>(context, listen: false)
+            .getAllQuestion);
   }
 
   @override

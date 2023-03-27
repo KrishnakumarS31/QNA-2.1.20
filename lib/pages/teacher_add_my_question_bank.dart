@@ -19,7 +19,6 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
     this.assessment,
     required this.setLocale,
     this.assessmentStatus,
-
   }) : super(key: key);
 
   final bool? assessment;
@@ -82,15 +81,17 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             builder: (context) {
               return const Center(
                   child: CircularProgressIndicator(
-                    color: Color.fromRGBO(48, 145, 139, 1),
-                  ));
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
             });
 
-        create_question_model.CreateQuestionModel createQuestionModel=create_question_model.CreateQuestionModel();
-        createQuestionModel.questions=finalQuesList;
-        SharedPreferences loginData=await SharedPreferences.getInstance();
-        createQuestionModel.authorId=loginData.getInt('userId');
-        ResponseEntity statusCode = await QnaService.createQuestionTeacherService(createQuestionModel);
+        create_question_model.CreateQuestionModel createQuestionModel =
+            create_question_model.CreateQuestionModel();
+        createQuestionModel.questions = finalQuesList;
+        SharedPreferences loginData = await SharedPreferences.getInstance();
+        createQuestionModel.authorId = loginData.getInt('userId');
+        ResponseEntity statusCode =
+            await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
           print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -143,7 +144,10 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   @override
   void initState() {
     super.initState();
-    finalQuesList.addAll(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion);
+    finalQuesList.addAll(
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+            .getAllQuestion);
+    print("Init getAllQuestions");
   }
 
   @override
@@ -151,255 +155,261 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return WillPopScope(
-        onWillPop: () async => false, child:Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 40.0,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-          toolbarHeight: height * 0.100,
-          centerTitle: true,
-          title: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.add,
-                  //'ADD',
-                  style: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: height * 0.0175,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w700,
-                  ),
+        onWillPop: () async => false,
+        child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  size: 40.0,
+                  color: Colors.white,
                 ),
-                Text(
-                  AppLocalizations.of(context)!.add_my_qn,
-                  //"MY QUESTION",
-                  style: TextStyle(
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    fontSize: height * 0.0225,
-                    fontFamily: "Inter",
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ]),
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    end: Alignment.bottomCenter,
-                    begin: Alignment.topCenter,
-                    colors: [
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              toolbarHeight: height * 0.100,
+              centerTitle: true,
+              title: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.add,
+                      //'ADD',
+                      style: TextStyle(
+                        color: const Color.fromRGBO(255, 255, 255, 1),
+                        fontSize: height * 0.0175,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.add_my_qn,
+                      //"MY QUESTION",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(255, 255, 255, 1),
+                        fontSize: height * 0.0225,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ]),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomCenter,
+                        begin: Alignment.topCenter,
+                        colors: [
                       Color.fromRGBO(0, 106, 100, 1),
                       Color.fromRGBO(82, 165, 160, 1),
                     ])),
-          ),
-        ),
-        body: Container(
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    top: height * 0.0375,
-                    left: width * 0.055,
-                    right: width * 0.055),
-                child: Container(
-                  height: height * 0.1412,
-                  decoration: BoxDecoration(
-                      color: const Color.fromRGBO(82, 165, 160, 0.08),
-                      border: Border.all(
-                        color: const Color.fromRGBO(28, 78, 80, 0.08),
-                      ),
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(20))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: width * 0.02, right: width * 0.02),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              finalQuesList[0].subject!,
-                              style: TextStyle(
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            Text(
-                             todayDate(),
-                              style: TextStyle(
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: width * 0.02, right: width * 0.02),
-                        child: const Divider(),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: width * 0.02),
-                        child: Row(
-                          children: [
-                            Text(
-                              finalQuesList[0].topic!,
-                              style: TextStyle(
-                                  fontSize: height * 0.0175,
-                                  fontFamily: "Inter",
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            SizedBox(
-                              width: width * 0.01,
-                            ),
-                            Text(
-                              '|',
-                              style: TextStyle(
-                                  fontSize: height * 0.0175,
-                                  fontFamily: "Inter",
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            SizedBox(
-                              width: width * 0.01,
-                            ),
-                            Text(
-                              finalQuesList[0].subTopic!,
-                              style: TextStyle(
-                                  fontSize: height * 0.0175,
-                                  fontFamily: "Inter",
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontWeight: FontWeight.w700),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: width * 0.02),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            finalQuesList[0].datumClass!,
-                            style: TextStyle(
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ),
-              SizedBox(
-                height: height * 0.02,
-              ),
-              Stack(
-                clipBehavior: Clip.none,
+            ),
+            body: Container(
+              color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Container(
+                  Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.055, right: width * 0.055),
-                    height: height * 0.55,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
+                        top: height * 0.0375,
+                        left: width * 0.055,
+                        right: width * 0.055),
+                    child: Container(
+                      height: height * 0.1412,
+                      decoration: BoxDecoration(
+                          color: const Color.fromRGBO(82, 165, 160, 0.08),
+                          border: Border.all(
+                            color: const Color.fromRGBO(28, 78, 80, 0.08),
+                          ),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20))),
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          // ListView.builder(
-                          //   itemCount: quesList.length,
-                          //     itemBuilder: (context, index){
-                          //     return
-                          //     }),
-                          for(int i =0;i<finalQuesList.length;i++)
-                            QuestionPreview(
-                                height: height,
-                                width: width,
-                                question: finalQuesList[i],
-                                quesNum: i,
-                                setLocale: widget.setLocale),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: width * 0.02, right: width * 0.02),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  finalQuesList[0].subject!,
+                                  style: TextStyle(
+                                      fontSize: height * 0.02,
+                                      fontFamily: "Inter",
+                                      color:
+                                          const Color.fromRGBO(28, 78, 80, 1),
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Text(
+                                  todayDate(),
+                                  style: TextStyle(
+                                      fontSize: height * 0.015,
+                                      fontFamily: "Inter",
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: width * 0.02, right: width * 0.02),
+                            child: const Divider(),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: width * 0.02),
+                            child: Row(
+                              children: [
+                                Text(
+                                  finalQuesList[0].topic!,
+                                  style: TextStyle(
+                                      fontSize: height * 0.0175,
+                                      fontFamily: "Inter",
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                Text(
+                                  '|',
+                                  style: TextStyle(
+                                      fontSize: height * 0.0175,
+                                      fontFamily: "Inter",
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                Text(
+                                  finalQuesList[0].subTopic!,
+                                  style: TextStyle(
+                                      fontSize: height * 0.0175,
+                                      fontFamily: "Inter",
+                                      color:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: width * 0.02),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                finalQuesList[0].datumClass!,
+                                style: TextStyle(
+                                    fontSize: height * 0.015,
+                                    fontFamily: "Inter",
+                                    color:
+                                        const Color.fromRGBO(102, 102, 102, 1),
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   ),
-                  Positioned(
-                      top: height * 0.52,
-                      left: width * 0.8,
-                      child: FloatingActionButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TeacherPrepareQnBank(
-                                  assessment: false,
-                                  setLocale: widget.setLocale),
-                            ),
-                          );
-                        },
-                        backgroundColor: const Color.fromRGBO(28, 78, 80, 1),
-                        child: const Icon(Icons.add),
-                      ))
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: width * 0.055, right: width * 0.055),
+                        height: height * 0.55,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              // ListView.builder(
+                              //   itemCount: quesList.length,
+                              //     itemBuilder: (context, index){
+                              //     return
+                              //     }),
+                              for (int i = 0; i < finalQuesList.length; i++)
+                                QuestionPreview(
+                                    height: height,
+                                    width: width,
+                                    question: finalQuesList[i],
+                                    quesNum: i,
+                                    setLocale: widget.setLocale),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                          top: height * 0.52,
+                          left: width * 0.8,
+                          child: FloatingActionButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: TeacherPrepareQnBank(
+                                      assessment: false,
+                                      setLocale: widget.setLocale),
+                                ),
+                              );
+                            },
+                            backgroundColor:
+                                const Color.fromRGBO(28, 78, 80, 1),
+                            child: const Icon(Icons.add),
+                          ))
+                    ],
+                  ),
+                  SizedBox(height: height * 0.02),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                      minimumSize: const Size(280, 48),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(39),
+                      ),
+                    ),
+                    //shape: StadiumBorder(),
+                    onPressed: () {
+                      showAlertDialog(context, height);
+                    },
+                    child: Text(
+                      AppLocalizations.of(context)!.submit,
+                      //'Submit',
+                      style: TextStyle(
+                          fontSize: height * 0.025,
+                          fontFamily: "Inter",
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
                 ],
               ),
-              SizedBox(
-                height: height * 0.02
-              ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                  minimumSize: const Size(280, 48),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(39),
-                  ),
-                ),
-                //shape: StadiumBorder(),
-                onPressed: () {
-                  showAlertDialog(context, height);
-                },
-                child: Text(
-                  AppLocalizations.of(context)!.submit,
-                  //'Submit',
-                  style: TextStyle(
-                      fontSize: height * 0.025,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ],
-          ),
-        )));
+            )));
   }
 }
 
 class QuestionPreview extends StatelessWidget {
-  const QuestionPreview({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.question,
-    required this.quesNum,
-    required this.setLocale
-  }) : super(key: key);
+  const QuestionPreview(
+      {Key? key,
+      required this.height,
+      required this.width,
+      required this.question,
+      required this.quesNum,
+      required this.setLocale})
+      : super(key: key);
 
   final double height;
   final int quesNum;
@@ -411,7 +421,7 @@ class QuestionPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     List<String> temp = [];
     for (int i = 0; i < question.choices!.length; i++) {
-      if(question.choices![i].rightChoice!){
+      if (question.choices![i].rightChoice!) {
         temp.add(question.choices![i].choiceText!);
       }
     }
@@ -442,8 +452,8 @@ class QuestionPreview extends StatelessWidget {
                           type: PageTransitionType.rightToLeft,
                           child: TeacherQuesDelete(
                               setLocale: setLocale,
-                                quesNum: quesNum,
-                            finalQuestion: question),
+                              quesNum: quesNum,
+                              finalQuestion: question),
                         ),
                       );
                     },

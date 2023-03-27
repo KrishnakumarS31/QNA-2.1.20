@@ -326,6 +326,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 type: PageTransitionType
                                                     .rightToLeft,
                                                 child: ForgotPasswordEmail(
+                                                  isFromStudent: true,
                                                     setLocale:
                                                         widget.setLocale),
                                               ),
@@ -506,13 +507,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       regNumber,
                                                       passWord,
                                                       'student');
-                                              UserDataModel userDataModel =
-                                                  await QnaService
-                                                      .getUserDataService(
-                                                          loginResponse
-                                                              .data!.userId);
+
                                               Navigator.of(context).pop();
                                               if (loginResponse.code == 200) {
+                                                UserDataModel userDataModel =
+                                                    await QnaService
+                                                        .getUserDataService(
+                                                            loginResponse
+                                                                .data!.userId);
                                                 Navigator.push(
                                                   context,
                                                   PageTransition(
@@ -861,6 +863,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 type: PageTransitionType
                                                     .rightToLeft,
                                                 child: ForgotPasswordEmail(
+                                                    isFromStudent: true,
                                                     setLocale:
                                                         widget.setLocale),
                                               ),
@@ -1104,7 +1107,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                           .clear();
                                                     });
                                                   }
-                                                } else if (loginResponse.code ==
+                                                }
+                                                else if (loginResponse.code ==
                                                     400) {
                                                   Navigator.push(
                                                     context,

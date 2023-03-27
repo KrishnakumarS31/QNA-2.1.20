@@ -5,18 +5,19 @@ import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
-import '../Entity/question_paper_model.dart' as QuestionPaperModel;
+//import '../Entity/question_paper_model.dart' as QuestionPaperModel;
+import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 
 class TeacherPublishedAssessment extends StatefulWidget {
   TeacherPublishedAssessment(
       {Key? key,
       required this.setLocale,
       required this.assessmentCode,
-      required this.questionList})
+      this.questionList})
       : super(key: key);
   String assessmentCode;
   final void Function(Locale locale) setLocale;
-  List<QuestionPaperModel.Question> questionList;
+  List<QuestionModel.Question>? questionList;
 
   @override
   TeacherPublishedAssessmentState createState() =>
@@ -65,7 +66,7 @@ class TeacherPublishedAssessmentState
               .getAssessment;
       questionTotal = widget.questionList!.length;
       for (int i = 0; i < widget.questionList!.length; i++) {
-        mark = mark + widget.questionList[i].questionMarks!;
+        mark = mark + widget.questionList![i]!.questionMark!;
       }
       startDate = DateTime.fromMicrosecondsSinceEpoch(
           assessmentVal.assessmentStartdate == null
@@ -381,7 +382,7 @@ class TeacherPublishedAssessmentState
                           ),
                         ),
                         Text(
-                          "${assessmentVal.assessmentId}",
+                          assessmentVal.assessmentId != null ? "${assessmentVal.assessmentId}" :  "-",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -922,15 +923,15 @@ class TeacherPublishedAssessmentState
                     SizedBox(
                       height: height * 0.01,
                     ),
-                    widget.questionList.isNotEmpty
+                    widget.questionList!.isNotEmpty
                         ? SizedBox(
                             height: height * 0.4,
                             child: ListView.builder(
                                 padding: EdgeInsets.zero,
-                                itemCount: widget.questionList.length,
+                                itemCount: widget.questionList!.length,
                                 itemBuilder: (context, index) => QuestionWidget(
                                       height: height,
-                                      question: widget.questionList[index],
+                                      question: widget.questionList![index],
                                     )),
                           )
                         : const SizedBox(
@@ -1088,7 +1089,7 @@ class QuestionWidget extends StatefulWidget {
       : super(key: key);
 
   final double height;
-  final QuestionPaperModel.Question question;
+  final QuestionModel.Question question;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -1162,7 +1163,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   ),
                 ),
                 Text(
-                  "${widget.question.questionMarks}",
+                  "${widget.question.questionMark}",
                   style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: widget.height * 0.015,

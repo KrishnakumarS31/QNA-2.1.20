@@ -32,7 +32,8 @@ class QnaRepo {
     if (response.statusCode == 200) {
       loginModel = loginModelFromJson(temp);
       loginData.setString('token', loginModel.data.accessToken);
-    } else {
+    }
+    else {
       loginModel = loginModelFromJson(temp);
     }
     return loginModel;
@@ -90,13 +91,12 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
-    } else {
-    }
+    } else {}
     return responses;
   }
 
   static Future<StaticResponse> verifyOtp(String email, String otp) async {
-    StaticResponse responses = StaticResponse();
+    StaticResponse responses = StaticResponse(message: '');
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('POST', Uri.parse(verifyOtpUrl));
     request.body = json.encode({"email": email, "otp": otp});
@@ -106,6 +106,21 @@ class QnaRepo {
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
+    } else {}
+    return responses;
+  }
+
+  static Future<StaticResponse> validateOtp(String email, String otp) async {
+    StaticResponse responses = StaticResponse(message: '');
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse(validateOtpUrl));
+    request.body = json.encode({"email": email, "otp": otp});
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode != null) {
+      String temp = await response.stream.bytesToString();
+      responses = staticResponseFromJson(temp);
     } else {
     }
     return responses;
@@ -113,7 +128,7 @@ class QnaRepo {
 
   static Future<StaticResponse> updatePasswordOtp(
       String email, String otp, String password) async {
-    StaticResponse responses = StaticResponse();
+    StaticResponse responses = StaticResponse(message: '');
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('PUT', Uri.parse(sendOtpUrl));
     request.body =
@@ -124,8 +139,7 @@ class QnaRepo {
     if (response.statusCode != null) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
-    } else {
-    }
+    } else {}
     return responses;
   }
 
@@ -154,8 +168,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       updatePassword(oldPassword, newPassword, userId);
-    } else {
-    }
+    } else {}
 
     return responses;
   }
@@ -221,8 +234,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       createQuestionTeacher(question);
-    } else {
-    }
+    } else {}
     return loginModel;
   }
 
@@ -249,8 +261,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       createAssessmentTeacher(question);
-    } else {
-    }
+    } else {}
     return loginModel;
   }
 
@@ -292,8 +303,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       getAllAssessment(pageLimit, pageNumber);
-    } else {
-    }
+    } else {}
     return allAssessment;
   }
 
@@ -319,8 +329,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       getAllQuestion(pageLimit, pageNumber);
-    } else {
-    }
+    } else {}
     return responseEntity;
   }
 
@@ -346,8 +355,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       deleteQuestion(questionId);
-    } else {
-    }
+    } else {}
     return loginModel;
   }
 
@@ -375,8 +383,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       editQuestionTeacher(question, questionId);
-    } else {
-    }
+    } else {}
     return loginModel;
   }
 
@@ -404,8 +411,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       editAssessmentTeacher(assessment, assessmentId);
-    } else {
-    }
+    } else {}
     return loginModel;
   }
 
@@ -450,8 +456,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       getSearchAssessment(pageLimit, pageNumber, searchVal);
-    } else {
-    }
+    } else {}
     return allAssessment;
   }
 
@@ -477,8 +482,7 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       getSearchQuestion(pageLimit, pageNumber, searchVal);
-    } else {
-    }
+    } else {}
     return allAssessment;
   }
 }

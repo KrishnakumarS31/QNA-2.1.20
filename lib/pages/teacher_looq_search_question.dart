@@ -48,6 +48,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         await QnaService.getSearchQuestion(100, pageLimit, searchVal);
     allQuestion =
         List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    print("Inside Get Data");
+    print(allQuestion);
     Navigator.of(context).pop();
     setState(() {
       searchValue = searchVal;

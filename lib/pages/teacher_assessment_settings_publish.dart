@@ -6,16 +6,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Entity/Teacher/question_entity_for_assessment_settings_published.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 
+import '../Entity/Teacher/question_entity.dart';
+import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../Entity/question_paper_model.dart' as QuestionPaperModel;
+import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({Key? key, required this.setLocale})
@@ -53,8 +58,7 @@ class TeacherAssessmentSettingPublishState
   TextEditingController instituteTestIdcontroller = TextEditingController();
   TextEditingController timePermitHoursController = TextEditingController();
   TextEditingController timePermitMinutesController = TextEditingController();
-  List<Question> quesList = [];
-  Question ques = Question();
+  List<QuestionModel.Question> questionListForNxtPage = [];
   TextEditingController timeinput = TextEditingController();
   int totalQues = 0;
   int totalMark = 0;
@@ -64,12 +68,19 @@ class TeacherAssessmentSettingPublishState
   DateTime endTime = DateTime.now();
   int hours = 0;
   int minutes = 0;
+
   @override
   void initState() {
     super.initState();
+    questionListForNxtPage =
+        Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+            .getAllQuestion;
+    print(questionListForNxtPage);
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
+    print("Mynaru vetti katti");
+    print(assessment.questions!.length);
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
@@ -266,7 +277,7 @@ class TeacherAssessmentSettingPublishState
                                         fontFamily: "Inter"),
                                   ),
                                   TextSpan(
-                                    text: "\t ${assessment.totalQuestions}",
+                                    text: "\t ${assessment.questions!.length}",
                                     style: TextStyle(
                                         fontSize: height * 0.018,
                                         fontWeight: FontWeight.w500,
@@ -2134,6 +2145,7 @@ class TeacherAssessmentSettingPublishState
                                               value =
                                               await QnaService.getQuestion(
                                                   assessmentId: assessmentCode);
+                                          //zprint(value.data.questions);
                                           // print(assessmentCode);
                                           // print(value.data!.questions!.length);
                                           if (statusCode.code == 200) {
@@ -2143,14 +2155,12 @@ class TeacherAssessmentSettingPublishState
                                               PageTransition(
                                                 type: PageTransitionType
                                                     .rightToLeft,
-                                                child:
-                                                    TeacherPublishedAssessment(
-                                                        setLocale:
-                                                            widget.setLocale,
-                                                        assessmentCode:
-                                                            assessmentCode,
-                                                        questionList: value
-                                                            .data!.questions!),
+                                                child: TeacherPublishedAssessment(
+                                                    setLocale: widget.setLocale,
+                                                    assessmentCode:
+                                                        assessmentCode,
+                                                    questionList:
+                                                        questionListForNxtPage),
                                               ),
                                             );
                                           }
