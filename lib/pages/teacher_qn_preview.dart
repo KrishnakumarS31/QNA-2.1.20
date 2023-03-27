@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'teacher_add_my_question_bank.dart';
-import 'teacher_prepare_preview_qnBank.dart';
-import '../EntityModel/create_question_model.dart' as create_question_model;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherPreparePreview extends StatefulWidget {
@@ -123,7 +121,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                               left: width * 0.03, top: height * 0.02),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text('${widget.finalQuestion!.questionType}',
+                            child: Text('${widget.finalQuestion.questionType}',
                                 style: TextStyle(
                                     color:
                                         const Color.fromRGBO(82, 165, 160, 1),
@@ -267,7 +265,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                           onPressed: () {
                             Provider.of<QuestionPrepareProviderFinal>(context,
                                     listen: false)
-                                .addQuestion(widget.finalQuestion!);
+                                .addQuestion(widget.finalQuestion);
                             Navigator.push(
                               context,
                               PageTransition(

@@ -5,12 +5,15 @@ import 'package:qna_test/Pages/forgot_password_email.dart';
 import 'package:qna_test/Pages/teacher_registration_page.dart';
 import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/pages/teacher_forgot_password.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'teacher_forgot_password_email.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key, required this.setLocale});

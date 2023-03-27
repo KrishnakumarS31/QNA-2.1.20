@@ -58,7 +58,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
       mark = mark + assessment.questions![i].questionMark!;
     }
     setState(() {
-      mark = mark;
+      mark = finalAssessment.totalScore == null
+      ? 0
+     : finalAssessment.totalScore!;
       startDate = DateTime.fromMicrosecondsSinceEpoch(
           finalAssessment.assessmentStartdate == null
               ? 0
@@ -360,7 +362,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          "${finalAssessment.assessmentId}",
+                          "${assessment.assessmentCode}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -392,9 +394,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          finalAssessment.assessmentDuration == null
+                          assessment.assessmentDuration == null
                               ? "00 Minutes"
-                              : "${finalAssessment.assessmentDuration} Minutes",
+                              : "${assessment.assessmentDuration} Minutes",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -716,11 +718,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    finalAssessment.assessmentSettings
-                                                ?.showAdvisorName ==
-                                            null
+                                    assessment.assessmentSettings!.showAdvisorName == false
                                         ? "No"
-                                        : finalAssessment.assessmentSettings!
+                                        : assessment.assessmentSettings!
                                                 .showAdvisorName!
                                             ? "Yes"
                                             : "No",
@@ -753,11 +753,10 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    finalAssessment.assessmentSettings
-                                                ?.showAdvisorEmail ==
-                                            null
+                                    assessment.assessmentSettings
+                                                ?.showAdvisorEmail == false
                                         ? "No"
-                                        : finalAssessment.assessmentSettings!
+                                        : assessment.assessmentSettings!
                                                 .showAdvisorEmail!
                                             ? "Yes"
                                             : "No",
@@ -805,14 +804,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         ]),
                                   ),
                                   Text(
-                                    finalAssessment.assessmentSettings
-                                                ?.notAvailable ==
-                                            null
+                                    assessment.assessmentSettings?.notAvailable == false
                                         ? "No"
-                                        : finalAssessment.assessmentSettings!
-                                                .notAvailable!
-                                            ? "Yes"
-                                            : "No",
+                                        : "Yes",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),

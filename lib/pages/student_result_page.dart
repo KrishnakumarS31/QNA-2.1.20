@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Components/end_drawer_menu_student.dart';
 import 'package:qna_test/Pages/student_Advisor.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Pages/student_selection_page.dart';
+import '../Components/end_drawer_menu_pre_login.dart';
 import '../Entity/question_paper_model.dart';
 
 class StudentResultPage extends StatefulWidget {
@@ -146,6 +148,25 @@ class StudentResultPageState extends State<StudentResultPage> {
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
+                    endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                    appBar:PreferredSize(
+                      preferredSize: const Size.fromHeight(40.0),
+                      child:AppBar(
+                        automaticallyImplyLeading: false,
+                        elevation: 0,
+                        //backgroundColor: Colors.transparent,
+                        flexibleSpace:  Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromRGBO(0, 106, 100, 1),
+                                Color.fromRGBO(82, 165, 160, 1),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     body: Stack(
                       children: [
                         Column(
@@ -388,7 +409,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                           ],
                         ),
                         Positioned(
-                          top: localHeight * 0.15,
+                          top: localHeight * 0.1,
                           left: localHeight * 0.50,
                           child: SizedBox(
                             height: localHeight * 0.60,
@@ -624,6 +645,25 @@ class StudentResultPageState extends State<StudentResultPage> {
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
+                    endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                    appBar:PreferredSize(
+                      preferredSize: const Size.fromHeight(40.0),
+                      child:AppBar(
+                      automaticallyImplyLeading: false,
+                      elevation: 0,
+                      //backgroundColor: Colors.transparent,
+                      flexibleSpace:  Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(0, 106, 100, 1),
+                              Color.fromRGBO(82, 165, 160, 1),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    ),
                     body: Stack(
                       children: [
                         Column(
@@ -645,7 +685,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 ),
                                 child: Column(
                                   children: [
-                                    SizedBox(height: localHeight * 0.07),
+                                    SizedBox(height: localHeight * 0.02),
                                     Align(
                                       alignment: Alignment.topCenter,
                                       child: Container(
@@ -654,9 +694,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           width: localWidth * 0.30,
                                           child: Column(
                                             children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .result_card,
+                                              Text("dvfv",
+                                                // AppLocalizations.of(context)!
+                                                //     .result_card,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         255, 255, 255, 1),
@@ -684,7 +724,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: localHeight * 0.015),
+                            SizedBox(height: localHeight * 0.01),
                             Expanded(
                                 child: Column(
                               children: [
@@ -697,7 +737,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: localHeight * 0.018)),
-                                SizedBox(height: localHeight * 0.020),
+                                SizedBox(height: localHeight * 0.010),
                                 ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromRGBO(
@@ -866,7 +906,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                           ],
                         ),
                         Positioned(
-                          top: localHeight * 0.17,
+                          top: localHeight * 0.1,
                           left: localHeight * 0.010,
                           right: localHeight * 0.010,
                           child: SizedBox(

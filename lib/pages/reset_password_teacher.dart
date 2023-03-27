@@ -23,7 +23,6 @@ class ResetPasswordState extends State<ResetPassword> {
 
   @override
   void initState() {
-    //QnaService.sendOtp('ggg');
     super.initState();
   }
 
@@ -272,9 +271,7 @@ class ResetPasswordState extends State<ResetPassword> {
   }
 
   showAlertDialog(BuildContext context) {
-    // set up the button
     double height = MediaQuery.of(context).size.height;
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [

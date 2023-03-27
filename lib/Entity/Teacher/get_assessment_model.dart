@@ -94,11 +94,13 @@ class AssessmentSettings {
     this.showSolvedAnswerSheetInAdvisor,
     this.showAdvisorName,
     this.showAdvisorEmail,
+    this.notAvailable
   });
 
   bool? showSolvedAnswerSheetInAdvisor;
   bool? showAdvisorName;
   bool? showAdvisorEmail;
+  bool? notAvailable;
 
   factory AssessmentSettings.fromJson(Map<String, dynamic> json) =>
       AssessmentSettings(
@@ -106,11 +108,14 @@ class AssessmentSettings {
             json["show_solved_answer_sheet_in_advisor"],
         showAdvisorName: json["show_advisor_name"],
         showAdvisorEmail: json["show_advisor_email"],
+        notAvailable: json["notAvailable"],
+
       );
 
   Map<String, dynamic> toJson() => {
         "show_solved_answer_sheet_in_advisor": showSolvedAnswerSheetInAdvisor,
         "show_advisor_name": showAdvisorName,
         "show_advisor_email": showAdvisorEmail,
+        "notAvailable":notAvailable
       };
 }
