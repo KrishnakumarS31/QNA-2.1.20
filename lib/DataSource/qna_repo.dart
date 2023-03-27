@@ -13,7 +13,6 @@ import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../EntityModel/user_data_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../Entity/Teacher/question_entity.dart';
 import 'dart:developer';
 import 'http_url.dart';
 
@@ -30,16 +29,11 @@ class QnaRepo {
 
     http.StreamedResponse response = await request.send();
     String temp = await response.stream.bytesToString();
-<<<<<<< HEAD
-
-=======
->>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
     if (response.statusCode == 200) {
       loginModel = loginModelFromJson(temp);
       loginData.setString('token', loginModel.data.accessToken);
     } else {
       loginModel = loginModelFromJson(temp);
-      print(response.reasonPhrase);
     }
     return loginModel;
   }
@@ -47,7 +41,7 @@ class QnaRepo {
   static registerUserDetails(StudentRegistrationModel student) async {
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {'Content-Type': 'application/json'};
-    var request = http.Request('POST', Uri.parse('$usersDomain'));
+    var request = http.Request('POST', Uri.parse(usersDomain));
     request.body = studentRegistrationModelToJson(student);
     request.headers.addAll(headers);
 
@@ -93,13 +87,10 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-    print("RESPONSE");
-    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
     } else {
-      print(response.reasonPhrase);
     }
     return responses;
   }
@@ -112,14 +103,10 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-    print("rES cODE");
-    print(response.statusCode);
     if (response.statusCode == 200) {
-      print("Inside 2000");
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
     } else {
-      print(response.reasonPhrase);
     }
     return responses;
   }
@@ -134,14 +121,10 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-    print("Ab toh Hosh Na kabbar hai");
-    print(response.statusCode);
     if (response.statusCode != null) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
     } else {
-      print("Inside Else");
-      print(response.reasonPhrase);
     }
     return responses;
   }
@@ -172,7 +155,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       updatePassword(oldPassword, newPassword, userId);
     } else {
-      print(response.reasonPhrase);
     }
 
     return responses;
@@ -187,7 +169,7 @@ class QnaRepo {
       token = loginData.getString('token');
     } else {
       assessment!.userId = questionPaper.data!.accessTokenDetails!.userId!;
-      token = questionPaper!.data!.accessTokenDetails!.accessToken!;
+      token = questionPaper.data!.accessTokenDetails!.accessToken!;
     }
     assessment?.userId = loginData.getInt('userId');
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
@@ -197,17 +179,12 @@ class QnaRepo {
     };
     var request = http.Request('POST', Uri.parse(resultUrl));
     request.body = postAssessmentModelToJson(assessment!);
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    print("Final");
     log(request.body);
 
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("Response Code");
-    //debugPrint(assessment.toString());
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
-      print(temp);
       loginModel = loginModelFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
@@ -217,7 +194,6 @@ class QnaRepo {
       postAssessmentRepo(assessment, questionPaper);
     } else {
       String temp = await response.stream.bytesToString();
-      print(temp);
       loginModel = loginModelFromJson(temp);
       return loginModel;
     }
@@ -226,7 +202,6 @@ class QnaRepo {
 
   static Future<ResponseEntity> createQuestionTeacher(
       CreateQuestionModel question) async {
-    print(question.questions![0].subject);
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
@@ -237,9 +212,6 @@ class QnaRepo {
     request.body = createQuestionModelToJson(question);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    print("RESPONSE CODE :");
-    print(request.body);
-    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       loginModel = responseEntityFromJson(temp);
@@ -250,7 +222,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       createQuestionTeacher(question);
     } else {
-      print(response.reasonPhrase);
     }
     return loginModel;
   }
@@ -265,7 +236,6 @@ class QnaRepo {
     };
     var request = http.Request('POST', Uri.parse(assessmentDomain));
     request.body = createAssessmentModelToJson(question);
-    print("=========================================");
     debugPrint(request.body);
     log(request.body);
     request.headers.addAll(headers);
@@ -280,8 +250,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       createAssessmentTeacher(question);
     } else {
-      print("\n\n\n\n\nassessment submit ah agala");
-      print(response.reasonPhrase);
     }
     return loginModel;
   }
@@ -325,7 +293,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       getAllAssessment(pageLimit, pageNumber);
     } else {
-      print(response.reasonPhrase);
     }
     return allAssessment;
   }
@@ -345,7 +312,6 @@ class QnaRepo {
 
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();
-      print("-----------------");
       responseEntity = responseEntityFromJson(value);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
@@ -354,7 +320,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       getAllQuestion(pageLimit, pageNumber);
     } else {
-      print(response.reasonPhrase);
     }
     return responseEntity;
   }
@@ -382,7 +347,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       deleteQuestion(questionId);
     } else {
-      print(response.reasonPhrase);
     }
     return loginModel;
   }
@@ -412,7 +376,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       editQuestionTeacher(question, questionId);
     } else {
-      print(response.reasonPhrase);
     }
     return loginModel;
   }
@@ -442,7 +405,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       editAssessmentTeacher(assessment, assessmentId);
     } else {
-      print(response.reasonPhrase);
     }
     return loginModel;
   }
@@ -481,7 +443,6 @@ class QnaRepo {
 
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();
-      print(value);
       allAssessment = responseEntityFromJson(value);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
@@ -490,7 +451,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       getSearchAssessment(pageLimit, pageNumber, searchVal);
     } else {
-      print(response.reasonPhrase);
     }
     return allAssessment;
   }
@@ -518,7 +478,6 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       getSearchQuestion(pageLimit, pageNumber, searchVal);
     } else {
-      print(response.reasonPhrase);
     }
     return allAssessment;
   }

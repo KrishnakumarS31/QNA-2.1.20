@@ -4,26 +4,21 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
-import '../Providers/question_prepare_provider_final.dart';
-import 'teacher_add_my_question_bank.dart';
-import 'teacher_prepare_preview_qnBank.dart';
-import '../EntityModel/create_question_model.dart' as create_question_model;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherQnPreviewAssessment extends StatefulWidget {
-  TeacherQnPreviewAssessment(
-      {super.key,
-      this.assessment,
-      required this.setLocale,
-      required this.finalQuestion,
-      this.assessmentStatus});
+  TeacherQnPreviewAssessment({
+    this.assessment,
+    required this.setLocale,
+    required this.finalQuestion,
+    this.assessmentStatus
+  });
   Question finalQuestion;
   bool? assessment;
   final void Function(Locale locale) setLocale;
   final String? assessmentStatus;
   @override
-  TeacherQnPreviewAssessmentState createState() =>
-      TeacherQnPreviewAssessmentState();
+  TeacherQnPreviewAssessmentState createState() => TeacherQnPreviewAssessmentState();
 }
 
 class TeacherQnPreviewAssessmentState
@@ -47,231 +42,172 @@ class TeacherQnPreviewAssessmentState
     double height = MediaQuery.of(context).size.height;
     return WillPopScope(
         onWillPop: () async => false,
-        child: Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            // appBar: AppBar(
-            //   actions: [
-            //     Padding(
-            //       padding: const EdgeInsets.only(right: 10),
-            //       child: IconButton(
-            //         icon: const Icon(
-            //           Icons.menu,
-            //           size: 40.0,
-            //           color: Colors.white,
-            //         ),
-            //         onPressed: () {
-            //           Navigator.of(context).pop();
-            //         },
-            //       ),
-            //     ),
-            //   ],
-            //   leading: IconButton(
-            //     icon: const Icon(
-            //       Icons.chevron_left,
-            //       size: 40.0,
-            //       color: Colors.white,
-            //     ),
-            //     onPressed: () {
-            //       Navigator.of(context).pop();
-            //     },
-            //   ),
-            //   toolbarHeight: height * 0.100,
-            //   centerTitle: true,
-            //   title: Column(
-            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //       children: [
-            //         Text(
-            //           "PREPARE QUESTION",
-            //           style: TextStyle(
-            //             color: const Color.fromRGBO(255, 255, 255, 1),
-            //             fontSize: height * 0.0225,
-            //             fontFamily: "Inter",
-            //             fontWeight: FontWeight.w400,
-            //           ),
-            //         ),
-            //       ]),
-            //   flexibleSpace: Container(
-            //     decoration: const BoxDecoration(
-            //         gradient: LinearGradient(
-            //             end: Alignment.bottomCenter,
-            //             begin: Alignment.topCenter,
-            //             colors: [
-            //               Color.fromRGBO(0, 106, 100, 1),
-            //               Color.fromRGBO(82, 165, 160, 1),
-            //             ])),
-            //   ),
-            // ),
-            body: Center(
-              child: SizedBox(
-                height: height * 0.81,
-                width: width * 0.888,
-                child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    elevation: 12,
-                    color: const Color.fromRGBO(255, 255, 255, 1),
-                    margin: EdgeInsets.only(
-                        left: width * 0.030,
-                        right: width * 0.030,
-                        bottom: height * 0.015,
-                        top: height * 0.025),
-                    //padding: const EdgeInsets.all(40),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        //ChooseWidget(question: question, selected: selected, height: height, width: width),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.03, top: height * 0.02),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text('${widget.finalQuestion.questionType}',
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: height * 0.02)),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.03, top: height * 0.02),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text('${widget.finalQuestion.question}',
-                                style: TextStyle(
-                                    color: const Color.fromRGBO(51, 51, 51, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.015)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.03,
-                        ),
-                        SizedBox(
-                          height: height * 0.25,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: ChooseWidget(
-                              selected: selected,
-                              height: height,
-                              width: width,
-                              finalQuestion: widget.finalQuestion,
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.03,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: width * 0.03),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                                AppLocalizations.of(context)!.sub_topic_hint,
-                                //"Advisor",
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: height * 0.02)),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.03, right: width * 0.03),
-                          child: TextFormField(
-                            controller: adviceController,
-                            enabled: false,
-                            decoration: InputDecoration(
-                                border: const UnderlineInputBorder(),
-                                labelText:
-                                    AppLocalizations.of(context)!.suggest_study,
-                                // 'Suggest what to study if answered incorrectly ',
-                                labelStyle: TextStyle(
-                                    color: const Color.fromRGBO(0, 0, 0, 0.25),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.015)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.03,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.03, right: width * 0.03),
-                          child: TextFormField(
-                            controller: urlController,
-                            enabled: false,
-                            decoration: InputDecoration(
-                                border: const UnderlineInputBorder(),
-                                labelText:
-                                    AppLocalizations.of(context)!.url_reference,
-                                //'URL - Any reference (Optional)',
-                                labelStyle: TextStyle(
-                                    color: const Color.fromRGBO(0, 0, 0, 0.25),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.015)),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.03,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
-                            minimumSize: const Size(280, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(39),
-                            ),
-                          ),
-                          onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: PreparePreviewQnBank(
-                            //       question: widget.question,
-                            //       setLocale: widget.setLocale,
-                            //       finalQuestion: widget.finalQuestion,),
-                            //   ),
-                            // );
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.edit_button,
-                            //'Edit',
+    child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+        body: Center(
+          child: SizedBox(
+            height: height * 0.81,
+            width: width * 0.888,
+            child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                elevation: 12,
+                color: const Color.fromRGBO(255, 255, 255, 1),
+                margin: EdgeInsets.only(
+                    left: width * 0.030,
+                    right: width * 0.030,
+                    bottom: height * 0.015,
+                    top: height * 0.025),
+                //padding: const EdgeInsets.all(40),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    //ChooseWidget(question: question, selected: selected, height: height, width: width),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: width * 0.03, top: height * 0.02),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('${widget.finalQuestion.questionType}',
                             style: TextStyle(
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
                                 color: const Color.fromRGBO(82, 165, 160, 1),
-                                fontWeight: FontWeight.w600),
-                          ),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w700,
+                                fontSize: height * 0.02)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: width * 0.03, top: height * 0.02),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text('${widget.finalQuestion.question}',
+                            style: TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.015)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    SizedBox(
+                      height: height * 0.25,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: ChooseWidget(
+                          selected: selected,
+                          height: height,
+                          width: width,
+                          finalQuestion: widget.finalQuestion,
                         ),
-                        SizedBox(
-                          height: height * 0.03,
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: width * 0.03),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                            AppLocalizations.of(context)!.sub_topic_hint,
+                            //"Advisor",
+                            style: TextStyle(
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w700,
+                                fontSize: height * 0.02)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: width * 0.03, right: width * 0.03),
+                      child: TextFormField(
+                        controller: adviceController,
+                        enabled: false,
+                        decoration: InputDecoration(
+                            border: const UnderlineInputBorder(),
+                            labelText:
+                            AppLocalizations.of(context)!.suggest_study,
+                            // 'Suggest what to study if answered incorrectly ',
+                            labelStyle: TextStyle(
+                                color: const Color.fromRGBO(0, 0, 0, 0.25),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.015)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: width * 0.03, right: width * 0.03),
+                      child: TextFormField(
+                        controller: urlController,
+                        enabled: false,
+                        decoration: InputDecoration(
+                            border: const UnderlineInputBorder(),
+                            labelText: AppLocalizations.of(context)!.url_reference,
+                            //'URL - Any reference (Optional)',
+                            labelStyle: TextStyle(
+                                color: const Color.fromRGBO(0, 0, 0, 0.25),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.015)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                        minimumSize: const Size(280, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(39),
                         ),
-<<<<<<< HEAD
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
-                            minimumSize: const Size(280, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(39),
-=======
+                      ),
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: PreparePreviewQnBank(
+                        //       question: widget.question,
+                        //       setLocale: widget.setLocale,
+                        //       finalQuestion: widget.finalQuestion,),
+                        //   ),
+                        // );
+                      },
+                      child: Text(
+                        AppLocalizations.of(context)!.edit_button,
+                        //'Edit',
+                        style: TextStyle(
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                        minimumSize: const Size(280, 48),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(39),
+                        ),
                       ),
                       //shape: StadiumBorder(),
                       onPressed: () {
-                        Provider.of<QuestionPrepareProvider>(context, listen: false).addQuestion(widget.finalQuestion!);
-                        print("Yeah its here");
+                        Provider.of<QuestionPrepareProvider>(context, listen: false).addQuestion(widget.finalQuestion);
                         Navigator.push(
                           context,
                           PageTransition(
@@ -280,41 +216,24 @@ class TeacherQnPreviewAssessmentState
                               assessment: widget.assessment,
                               setLocale: widget.setLocale,
                               assessmentStatus: widget.assessmentStatus,
->>>>>>> 4c32e916df3504bd18672b98f2d532b6f0c0aa31
                             ),
                           ),
-                          //shape: StadiumBorder(),
-                          onPressed: () {
-                            Provider.of<QuestionPrepareProvider>(context,
-                                    listen: false)
-                                .addQuestion(widget.finalQuestion!);
-                            print("Yeah its here");
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAddMyQuestionBankForAssessment(
-                                  assessment: widget.assessment,
-                                  setLocale: widget.setLocale,
-                                  assessmentStatus: widget.assessmentStatus,
-                                ),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.finalize,
-                            //'Finalize',
-                            style: TextStyle(
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ],
-                    )),
-              ),
-            )));
+                        );
+                      },
+                      child: Text(
+                        AppLocalizations.of(context)!.finalize,
+                        //'Finalize',
+                        style: TextStyle(
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        )));
   }
 
   changeIcon(IconData pramIcon) {
@@ -338,6 +257,7 @@ class ChooseWidget extends StatefulWidget {
     required this.selected,
     this.finalQuestion,
   }) : super(key: key);
+
 
   final List<dynamic> selected;
   final double height;
@@ -393,10 +313,9 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         Text(
                           widget.finalQuestion!.choices![j].choiceText!,
                           style: TextStyle(
-                            color:
-                                (widget.finalQuestion!.choices![j].rightChoice!)
-                                    ? const Color.fromRGBO(255, 255, 255, 1)
-                                    : const Color.fromRGBO(102, 102, 102, 1),
+                            color: (widget.finalQuestion!.choices![j].rightChoice!)
+                                ? const Color.fromRGBO(255, 255, 255, 1)
+                                : const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: widget.height * 0.0162,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w700,
