@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ResetPasswordStudent extends StatefulWidget {
   const ResetPasswordStudent({Key? key, required this.userId})
@@ -268,19 +270,18 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                         ),
                         onPressed: () async {
                           bool valid = formKey.currentState!.validate();
-                          if (valid && newPassword.text == reNewPassword.text) {
-                            ResponseEntity response =
+                          if (valid || newPassword.text == reNewPassword.text) {
+                            SharedPreferences loginData =
+                                await SharedPreferences.getInstance();
+                            ResponseEntity statusCode =
                                 await QnaService.updatePassword(
                                     oldPassword.text,
                                     newPassword.text,
-                                    widget.userId);
-                            if (response.code == 200) {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                    type: PageTransitionType.fade,
-                                    child: showAlertDialog(context)),
-                              );
+                                    loginData.getInt('userId')!);
+                            print(statusCode.code);
+                            print(statusCode.message);
+                            if (statusCode.code == 200) {
+                              showAlertDialog(context);
                             } else {
                               Navigator.push(
                                 context,
@@ -315,6 +316,28 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   showAlertDialog(BuildContext context) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
+    Widget okButton = TextButton(
+      child: Text(
+        "OK",
+        style: TextStyle(
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      onPressed: () async {
+        SharedPreferences preferences =
+        await SharedPreferences.getInstance();
+        await preferences.clear();
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              child: StudentMemberLoginPage(setLocale: (Locale locale) {  },
+              )),
+        );
+      },
+    );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -346,19 +369,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
             fontSize: height * 0.018),
       ),
       actions: [
-        TextButton(
-          child: Text(
-            "OK",
-            style: TextStyle(
-                color: const Color.fromRGBO(48, 145, 139, 1),
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: height * 0.018),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        )
+                okButton
       ],
     );
 

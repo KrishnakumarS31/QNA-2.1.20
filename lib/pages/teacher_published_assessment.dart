@@ -97,7 +97,13 @@ class TeacherPublishedAssessmentState
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.push(
+                  context,
+                  PageTransition(
+                    type: PageTransitionType.leftToRight,
+                    child: TeacherAssessmentLanding(setLocale: widget.setLocale),
+                  ),
+                );
               },
             ),
             toolbarHeight: height * 0.100,
@@ -115,7 +121,7 @@ class TeacherPublishedAssessmentState
                     ),
                   ),
                   Text(
-                    "ASSESSMENTS",
+                    "ASSESSMENT",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,

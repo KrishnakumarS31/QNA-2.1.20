@@ -253,12 +253,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                   await QnaService.validateOtp(widget.email, otp);
                               print(res.code);
                               if (res.code == 200) {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: showAlertDialog(context, res.message)),
-                                );
+                               showAlertDialog(context,res.message);
                               }
                               else if(res.code != 200 && res.code != null && res.message != null)
                                 {
@@ -307,6 +302,27 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     // set up the button
     double height = MediaQuery.of(context).size.height;
     // set up the AlertDialog
+    Widget okButton =   TextButton(
+      child: const Text(
+        "OK",
+        style: TextStyle(
+            color: Color.fromRGBO(48, 145, 139, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: 15),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              child: StudentForgotPassword(
+                  email: widget.email,
+                  otp: otp,
+                  setLocale: widget.setLocale, isFromStudent: widget.isFromStudent)),
+        );
+      },
+    );
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -337,27 +353,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontSize: 15),
       ),
       actions: [
-        TextButton(
-          child: const Text(
-            "OK",
-            style: TextStyle(
-                color: Color.fromRGBO(48, 145, 139, 1),
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: 15),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                  type: PageTransitionType.fade,
-                  child: StudentForgotPassword(
-                      email: widget.email,
-                      otp: otp,
-                      setLocale: widget.setLocale, isFromStudent: widget.isFromStudent)),
-            );
-          },
-        )
+              okButton
       ],
     );
 
@@ -373,6 +369,28 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   showErorDialog(BuildContext context, String? msg) {
     // set up the button
     double height = MediaQuery.of(context).size.height;
+    Widget okButton = ElevatedButton(
+      child: const Text(
+        "OK",
+        style: TextStyle(
+            color: Color.fromRGBO(48, 145, 139, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: 15),
+      ),
+      onPressed: () {
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              child: StudentForgotPassword(
+                  email: widget.email,
+                  isFromStudent: widget.isFromStudent,
+                  otp: otp,
+                  setLocale: widget.setLocale)),
+        );
+      },
+    );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
@@ -404,28 +422,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontSize: 15),
       ),
       actions: [
-        TextButton(
-          child: const Text(
-            "OK",
-            style: TextStyle(
-                color: Color.fromRGBO(48, 145, 139, 1),
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: 15),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                  type: PageTransitionType.fade,
-                  child: StudentForgotPassword(
-                      email: widget.email,
-                      isFromStudent: widget.isFromStudent,
-                      otp: otp,
-                      setLocale: widget.setLocale)),
-            );
-          },
-        )
+              okButton
       ],
     );
 

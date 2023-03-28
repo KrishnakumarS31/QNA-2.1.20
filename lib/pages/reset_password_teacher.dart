@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Pages/teacher_login.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
@@ -272,6 +273,29 @@ class ResetPasswordState extends State<ResetPassword> {
 
   showAlertDialog(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    Widget okButton =  TextButton(
+      child: Text(
+        "OK",
+        style: TextStyle(
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      onPressed: () async {
+        SharedPreferences preferences =
+        await SharedPreferences.getInstance();
+        await preferences.clear();
+        Navigator.push(
+          context,
+          PageTransition(
+              type: PageTransitionType.fade,
+              child: TeacherLogin(setLocale: (Locale locale) {  },
+              )),
+        );
+
+      },
+    );
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -302,19 +326,7 @@ class ResetPasswordState extends State<ResetPassword> {
             fontSize: height * 0.018),
       ),
       actions: [
-        TextButton(
-          child: Text(
-            "OK",
-            style: TextStyle(
-                color: const Color.fromRGBO(48, 145, 139, 1),
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
-                fontSize: height * 0.018),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        )
+              okButton
       ],
     );
 
