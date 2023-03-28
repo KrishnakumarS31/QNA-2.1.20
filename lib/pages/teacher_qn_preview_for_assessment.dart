@@ -177,16 +177,7 @@ class TeacherQnPreviewAssessmentState
                             ),
                           ),
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: PreparePreviewQnBank(
-                            //       question: widget.question,
-                            //       setLocale: widget.setLocale,
-                            //       finalQuestion: widget.finalQuestion,),
-                            //   ),
-                            // );
+                            Navigator.of(context).pop();
                           },
                           child: Text(
                             AppLocalizations.of(context)!.edit_button,

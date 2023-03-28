@@ -64,7 +64,7 @@ class TeacherPublishedAssessmentState
       assessmentVal =
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .getAssessment;
-      questionTotal = widget.questionList!.length;
+      questionTotal = widget.questionList==null?0:widget.questionList!.length;
       for (int i = 0; i < widget.questionList!.length; i++) {
         mark = mark + widget.questionList![i]!.questionMark!;
       }
@@ -923,7 +923,11 @@ class TeacherPublishedAssessmentState
                     SizedBox(
                       height: height * 0.01,
                     ),
-                    widget.questionList!.isNotEmpty
+              widget.questionList==null
+              ? const SizedBox(
+                  height: 0,
+                )
+                    : widget.questionList!.isNotEmpty
                         ? SizedBox(
                             height: height * 0.4,
                             child: ListView.builder(

@@ -228,6 +228,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             ),
                           ),
                           onPressed: () {
+                            Navigator.of(context).pop();
                             // Navigator.push(
                             //   context,
                             //   PageTransition(

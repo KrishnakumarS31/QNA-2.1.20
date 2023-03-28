@@ -40,7 +40,7 @@ class TeacherAssessmentLooqQuestionBankState
 
   getData() async {
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(100, 1);
+        await QnaService.getQuestionBankService(1000, 1);
     setState(() {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));

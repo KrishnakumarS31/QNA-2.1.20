@@ -96,6 +96,7 @@ class TeacherAddMyQuestionBankForAssessmentState
             await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
+          Provider.of<QuestionPrepareProvider>(context, listen: false).reSetQuestionList();
           Navigator.push(
             context,
             PageTransition(
@@ -145,9 +146,9 @@ class TeacherAddMyQuestionBankForAssessmentState
   @override
   void initState() {
     super.initState();
-    finalQuesList.addAll(
-        Provider.of<QuestionPrepareProvider>(context, listen: false)
-            .getAllQuestion);
+    // finalQuesList.addAll(
+    //     Provider.of<QuestionPrepareProvider>(context, listen: false)
+    //         .getAllQuestion);
     finalQuesList.addAll(
         Provider.of<QuestionPrepareProvider>(context, listen: false)
             .getAllQuestion);

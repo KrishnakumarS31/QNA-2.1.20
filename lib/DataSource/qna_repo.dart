@@ -161,6 +161,7 @@ class QnaRepo {
 
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
+      print(temp);
       responses = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
