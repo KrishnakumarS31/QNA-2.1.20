@@ -207,7 +207,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: TeacherLooqQuestionBank(
-                                          setLocale: widget.setLocale),
+                                          setLocale: widget.setLocale,
+                                        search: teacherQuestionBankSearchController.text,
+                                      ),
                                     ),
                                   ).then((value) => teacherQuestionBankSearchController.clear());
                                 },

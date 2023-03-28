@@ -30,16 +30,17 @@ class TeacherAssessmentQuestionBankState
       TextEditingController();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question> questions = [];
+  int pageNumber = 1;
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getData('');
   }
 
-  getData() async {
+  getData(String search) async {
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(500, 1,'');
+        await QnaService.getQuestionBankService(1000, 1,search);
     setState(() {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
@@ -151,13 +152,8 @@ class TeacherAssessmentQuestionBankState
                         iconSize: height * 0.04,
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child:  TeacherAssessmentSearched(),
-                          //   ),
-                          // );
+                          questions=[];
+                          getData(teacherQuestionBankSearchController.text);
                         },
                         icon: const Icon(Icons.search),
                       )),

@@ -8,11 +8,13 @@ import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
 
 class TeacherLooqQuestionBank extends StatefulWidget {
-  const TeacherLooqQuestionBank({
+  TeacherLooqQuestionBank({
     Key? key,
     required this.setLocale,
+    required this.search,
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
+  String search;
 
   @override
   TeacherLooqQuestionBankState createState() => TeacherLooqQuestionBankState();
@@ -31,6 +33,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
 
   @override
   void initState() {
+    teacherQuestionBankSearchController.text=widget.search;
     super.initState();
   }
 
@@ -138,36 +141,6 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Checkbox(
-                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                          fillColor: MaterialStateProperty.resolveWith<Color>(
-                              (states) {
-                            if (states.contains(MaterialState.selected)) {
-                              return const Color.fromRGBO(82, 165, 160, 1);
-                            }
-                            return const Color.fromRGBO(82, 165, 160, 1);
-                          }),
-                          value: agree,
-                          onChanged: (val) {
-                            setState(() {
-                              agree = val!;
-                              if (agree) {}
-                            });
-                          },
-                        ),
-                        SizedBox(
-                          width: width * 0.01,
-                        ),
-                        Text(
-                          'Only My Questions',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(fontSize: height * 0.015),
-                        )
-                      ],
-                    ),
                     SizedBox(height: height * 0.02),
                     TextField(
                       controller: teacherQuestionBankSearchController,

@@ -80,17 +80,19 @@ class TeacherAssessmentSettingPublishState
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
     print("Mynaru vetti katti");
-    print(assessment.questions!.length);
+
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
-    for (int i = 0; i < assessment.addQuestion!.length; i++) {
+    int addQuesLen=assessment.addQuestion==null?0:assessment.addQuestion!.length;
+    for (int i = 0; i < addQuesLen; i++) {
       totalMark = totalMark + assessment.addQuestion![i].questionMark!;
     }
     totalQues = assessment.questions!.length;
-    totalQues = assessment.addQuestion!.length;
+    totalQues = assessment.addQuestion==null?0:assessment.addQuestion!.length;
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
+    print("Evan Varan");
   }
 
   final MaskTextInputFormatter timeMaskFormatter =
@@ -2124,10 +2126,12 @@ class TeacherAssessmentSettingPublishState
                                                 .editAssessmentTeacherService(
                                                     assessment,
                                                     assessment.assessmentId!);
+                                            print(statusCode.data);
                                           } else {
                                             statusCode = await QnaService
                                                 .createAssessmentTeacherService(
                                                     assessment);
+                                            print(statusCode.data);
                                           }
                                           Navigator.of(context).pop();
 
