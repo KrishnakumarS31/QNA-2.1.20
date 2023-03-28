@@ -310,7 +310,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
           ),
           onPressed: () {
            if(widget.isFromStudent == true) {
-             Navigator.pushReplacement(
+             Navigator.push(
                context,
                PageTransition(
                  type: PageTransitionType.rightToLeft,
@@ -318,13 +318,15 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                ),
              );
            }
-           Navigator.pushReplacement(
-             context,
-             PageTransition(
-               type: PageTransitionType.rightToLeft,
-               child: TeacherLogin(setLocale: widget.setLocale),
-             ),
-           );
+           else if(widget.isFromStudent == false) {
+             Navigator.push(
+               context,
+               PageTransition(
+                 type: PageTransitionType.rightToLeft,
+                 child: TeacherLogin(setLocale: widget.setLocale),
+               ),
+             );
+           }
             //Navigator.of(context).pop();
           },
         )

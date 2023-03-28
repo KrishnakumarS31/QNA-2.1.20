@@ -44,8 +44,22 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print("DFVfdv");
-    //  print(widget.result.assessmentResults![0].attemptDuration);
+    DateTime Odate = DateTime.fromMillisecondsSinceEpoch(widget.result.assessmentStartDate!);
+    String openingDate = "${Odate.day}/${Odate.month}/${Odate.year}";
+    DateTime Edate = DateTime.fromMillisecondsSinceEpoch(widget.result.assessmentEndDate!);
+    String closingDate = "${Edate.day}/${Edate.month}/${Edate.year}";
+    DateTime OTime = DateTime.fromMillisecondsSinceEpoch(widget.result.assessmentStartDate!);
+    String openingTime = "${OTime.hour}:${OTime.month}";
+    DateTime ETime = DateTime.fromMillisecondsSinceEpoch(widget.result.assessmentEndDate!);
+    String closingTime = "${ETime.hour}:${ETime.month}";
+    DateTime DTime = DateTime.fromMillisecondsSinceEpoch(widget.result.assessmentDuration!);
+    String duration = "${DTime.hour}:${DTime.month}";
+    DateTime testDate = DateTime.fromMillisecondsSinceEpoch(widget.result.assessmentResults![0].attemptStartDate!);
+    String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
+
+
+    print(openingDate);
+    print ("IST");
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -155,8 +169,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       'Internal Assessment ID: ${widget.result.assessmentCode!}',
                                   subTopic: widget.result.subTopic!,
                                   std: widget.result.studentClass!,
-                                  date:
-                                      "${widget.result.assessmentResults![0].attemptStartDate!}",
+                                  date: widget.result.assessmentResults![0].attemptStartDate!,
                                   status: const Color.fromRGBO(255, 157, 77, 1),
                                 )
                               : Container(
@@ -462,7 +475,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                'Test max. Time permitted:',
+                                                'Test max. Time permitted: ',
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -472,7 +485,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                         FontWeight.w400),
                                               ),
                                               Text(
-                                                "${widget.result.assessmentDuration!}",
+                                                "$duration hrs",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -504,7 +517,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                         FontWeight.w400),
                                               ),
                                               Text(
-                                                ' ${widget.result.assessmentStartDate!},${widget.result.assessmentDuration!}',
+                                                ' $openingDate, $openingTime IST',
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -536,7 +549,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                         FontWeight.w400),
                                               ),
                                               Text(
-                                                "${widget.result.assessmentEndDate},${widget.result.assessmentDuration!}",
+                                                "$closingDate, $closingTime IST",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -807,13 +820,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     testCode: widget.result.assessmentCode!,
                                     percent: 95,
                                     securedMark: widget.result
-                                        .assessmentResults![0].attemptScore!,
+                                        .assessmentResults![index].attemptScore!,
                                     totalMark: widget.result.totalScore!,
                                     timeTaken: widget.result
-                                        .assessmentResults![0].attemptDuration!,
+                                        .assessmentResults![index].attemptDuration,
                                     startedTime: widget
                                         .result
-                                        .assessmentResults![0]
+                                        .assessmentResults![index]
                                         .attemptStartDate!),
                               ),
                               SizedBox(

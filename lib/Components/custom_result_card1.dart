@@ -69,7 +69,7 @@ class Result_card1 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "${startedTime!}",
+                      startedTime.toString(),
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -77,7 +77,8 @@ class Result_card1 extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      "${startedTime!}",
+                        startedTime.toString().substring(0, startedTime.toString().length - 13),
+                      //"${startedTime!}",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

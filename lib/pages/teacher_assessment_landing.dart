@@ -313,113 +313,113 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Text(
-                //       AppLocalizations.of(context)!.search,
-                //       //"Search",
-                //       style: TextStyle(
-                //         color: const Color.fromRGBO(82, 165, 160, 1),
-                //         fontSize: height * 0.02,
-                //         fontFamily: "Inter",
-                //         fontWeight: FontWeight.w700,
-                //       ),
-                //     ),
-                //
-                //     // Row(
-                //     //   mainAxisAlignment: MainAxisAlignment.end,
-                //     //   children: [
-                //     //     Checkbox(
-                //     //       activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                //     //       fillColor: MaterialStateProperty.resolveWith<Color>(
-                //     //           (states) {
-                //     //         if (states.contains(MaterialState.selected)) {
-                //     //           return const Color.fromRGBO(82, 165, 160, 1);
-                //     //         }
-                //     //         return const Color.fromRGBO(82, 165, 160, 1);
-                //     //       }),
-                //     //       value: agree,
-                //     //       onChanged: (val) {
-                //     //         setState(() {
-                //     //           agree = val!;
-                //     //           if (agree) {}
-                //     //         });
-                //     //       },
-                //     //     ),
-                //     //     Text(
-                //     //       AppLocalizations.of(context)!.only_my_assessments,
-                //     //       //"Only My Assessments",
-                //     //       style: TextStyle(
-                //     //         color: const Color.fromRGBO(0, 0, 0, 1),
-                //     //         fontSize: height * 0.015,
-                //     //         fontFamily: "Inter",
-                //     //         fontWeight: FontWeight.w400,
-                //     //       ),
-                //     //     ),
-                //     //   ],
-                //     // )
-                //   ],
-                // ),
-                // Text(
-                //   AppLocalizations.of(context)!.lib_of_assessments,
-                //   //"Library of Assessments",
-                //   style: TextStyle(
-                //     color: const Color.fromRGBO(153, 153, 153, 1),
-                //     fontSize: height * 0.015,
-                //     fontFamily: "Inter",
-                //     fontWeight: FontWeight.w400,
-                //   ),
-                // ),
-                // SizedBox(height: height * 0.02),
-                // TextField(
-                //   controller: teacherQuestionBankSearchController,
-                //   keyboardType: TextInputType.text,
-                //   decoration: InputDecoration(
-                //     floatingLabelBehavior: FloatingLabelBehavior.always,
-                //     hintStyle: TextStyle(
-                //         color: const Color.fromRGBO(102, 102, 102, 0.3),
-                //         fontFamily: 'Inter',
-                //         fontWeight: FontWeight.w400,
-                //         fontSize: height * 0.016),
-                //     hintText:
-                //     AppLocalizations.of(context)!.sub_hint_text,
-                //     //"Maths, 10th, 2022, CBSE, Science",
-                //     suffixIcon: Column(children: [
-                //       Container(
-                //           height: height * 0.073,
-                //           width: width * 0.13,
-                //           decoration: const BoxDecoration(
-                //             borderRadius:
-                //                 BorderRadius.all(Radius.circular(8.0)),
-                //             color: Color.fromRGBO(82, 165, 160, 1),
-                //           ),
-                //           child: IconButton(
-                //             iconSize: height * 0.04,
-                //             color: const Color.fromRGBO(255, 255, 255, 1),
-                //             onPressed: () {
-                //               Navigator.push(
-                //                 context,
-                //                 PageTransition(
-                //                   type: PageTransitionType.rightToLeft,
-                //                   child: TeacherAssessmentSearched(
-                //                       setLocale: widget.setLocale),
-                //                 ),
-                //               );
-                //             },
-                //             icon: const Icon(Icons.search),
-                //           )),
-                //     ]),
-                //     focusedBorder: OutlineInputBorder(
-                //         borderSide: const BorderSide(
-                //             color: Color.fromRGBO(82, 165, 160, 1)),
-                //         borderRadius: BorderRadius.circular(15)),
-                //     border: OutlineInputBorder(
-                //         borderRadius: BorderRadius.circular(15)),
-                //   ),
-                //   enabled: true,
-                //   onChanged: (value) {},
-                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.search,
+                      //"Search",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(82, 165, 160, 1),
+                        fontSize: height * 0.02,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     Checkbox(
+                    //       activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                    //       fillColor: MaterialStateProperty.resolveWith<Color>(
+                    //           (states) {
+                    //         if (states.contains(MaterialState.selected)) {
+                    //           return const Color.fromRGBO(82, 165, 160, 1);
+                    //         }
+                    //         return const Color.fromRGBO(82, 165, 160, 1);
+                    //       }),
+                    //       value: agree,
+                    //       onChanged: (val) {
+                    //         setState(() {
+                    //           agree = val!;
+                    //           if (agree) {}
+                    //         });
+                    //       },
+                    //     ),
+                    //     Text(
+                    //       AppLocalizations.of(context)!.only_my_assessments,
+                    //       //"Only My Assessments",
+                    //       style: TextStyle(
+                    //         color: const Color.fromRGBO(0, 0, 0, 1),
+                    //         fontSize: height * 0.015,
+                    //         fontFamily: "Inter",
+                    //         fontWeight: FontWeight.w400,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // )
+                  ],
+                ),
+                Text(
+                  AppLocalizations.of(context)!.lib_of_assessments,
+                  //"Library of Assessments",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(153, 153, 153, 1),
+                    fontSize: height * 0.015,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(height: height * 0.02),
+                TextField(
+                  controller: teacherQuestionBankSearchController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    hintStyle: TextStyle(
+                        color: const Color.fromRGBO(102, 102, 102, 0.3),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                        fontSize: height * 0.016),
+                    hintText:
+                    AppLocalizations.of(context)!.sub_hint_text,
+                    //"Maths, 10th, 2022, CBSE, Science",
+                    suffixIcon: Column(children: [
+                      Container(
+                          height: height * 0.073,
+                          width: width * 0.13,
+                          decoration: const BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(8.0)),
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          ),
+                          child: IconButton(
+                            iconSize: height * 0.04,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: TeacherAssessmentSearched(
+                                      setLocale: widget.setLocale),
+                                ),
+                              );
+                            },
+                            icon: const Icon(Icons.search),
+                          )),
+                    ]),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: Color.fromRGBO(82, 165, 160, 1)),
+                        borderRadius: BorderRadius.circular(15)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15)),
+                  ),
+                  enabled: true,
+                  onChanged: (value) {},
+                ),
                 SizedBox(height: height * 0.04),
                 RichText(
                     textAlign: TextAlign.center,

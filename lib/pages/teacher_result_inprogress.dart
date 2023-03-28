@@ -152,8 +152,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                       'Internal Assessment ID: ${widget.result.assessmentCode!}',
                                   subTopic: widget.result.subTopic!,
                                   std: widget.result.studentClass!,
-                                  date:
-                                      "${widget.result.assessmentResults![0].attemptStartDate!}",
+                                  date: widget.result.assessmentResults![0].attemptStartDate!,
                                   status: const Color.fromRGBO(255, 157, 77, 1),
                                 )
                               : Container(

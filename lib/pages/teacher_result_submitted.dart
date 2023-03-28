@@ -154,9 +154,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       'Internal Assessment ID: ${widget.result.assessmentCode!}',
                                   subTopic: widget.result.subTopic!,
                                   std: widget.result.studentClass!,
-                                  date:
-                                      "${widget.result.assessmentResults![0].attemptStartDate!}" ??
-                                          "",
+                                  date: widget.result.assessmentResults![0].attemptStartDate!,
                                   status: const Color.fromRGBO(255, 157, 77, 1),
                                 )
                               : Container(
@@ -803,13 +801,13 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     testCode: widget.result.assessmentCode!,
                                     percent: 95,
                                     securedMark: widget.result
-                                        .assessmentResults![0].attemptScore!,
+                                        .assessmentResults![index].attemptScore!,
                                     totalMark: widget.result.totalScore!,
                                     timeTaken: widget.result
-                                        .assessmentResults![0].attemptDuration!,
+                                        .assessmentResults![index].attemptDuration!,
                                     startedTime: widget
                                         .result
-                                        .assessmentResults![0]
+                                        .assessmentResults![index]
                                         .attemptStartDate!),
                               ),
                               SizedBox(

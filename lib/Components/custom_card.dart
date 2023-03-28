@@ -58,7 +58,7 @@ class _CustomCardState extends State<CustomCard> {
         children: [
           ListTile(
             title: Text(
-              'Subject - ${widget.result.assessmentCode}',
+              'Subject - ${widget.result.subject}',
               style: TextStyle(
                   color: const Color.fromRGBO(28, 78, 80, 1),
                   fontSize: widget.height * 0.0187,

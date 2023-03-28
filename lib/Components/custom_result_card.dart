@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Result_card extends StatelessWidget {
-  const Result_card({
+   Result_card({
     Key? key,
     required this.height,
     required this.width,
@@ -25,8 +25,16 @@ class Result_card extends StatelessWidget {
   final int? timeTaken;
   final int? startedTime;
 
+
   @override
   Widget build(BuildContext context) {
+
+    DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(startedTime!);
+    String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+    String time = "${tsdate.hour}:${tsdate.minute}";
+    print(datetime);
+    print(timeTaken);
+    print ("${time} IST");
     return Padding(
       padding: EdgeInsets.only(bottom: height * 0.015),
       child: Container(
@@ -81,7 +89,7 @@ class Result_card extends StatelessWidget {
                       height: height * 0.023,
                     ),
                     Text(
-                      "$startedTime",
+                      datetime,
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -89,7 +97,7 @@ class Result_card extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      "$startedTime",
+                      "$time IST",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
