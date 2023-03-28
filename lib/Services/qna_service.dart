@@ -86,8 +86,8 @@ class QnaService {
   }
 
   static Future<ResponseEntity> getQuestionBankService(
-      int pageLimit, int pageNumber) async {
-    return await QnaRepo.getAllQuestion(pageLimit, pageNumber);
+      int pageLimit, int pageNumber,String search) async {
+    return await QnaRepo.getAllQuestion(pageLimit, pageNumber,search);
   }
 
   static Future<LoginModel> deleteQuestion(int questionId) async {

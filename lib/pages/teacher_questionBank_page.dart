@@ -20,29 +20,33 @@ class TeacherQuestionBank extends StatefulWidget {
 }
 
 class TeacherQuestionBankState extends State<TeacherQuestionBank> {
-  bool agree = false;
+  bool agree = true;
   int pageNumber = 1;
   List<Question> questionList = [];
+  String searchVal='';
+  TextEditingController teacherQuestionBankSearchController = TextEditingController();
   @override
   void initState() {
     super.initState();
-    getData();
+    getData('');
   }
 
-  getData() async {
+  getData(String search) async {
+    print("entering inside the getData");
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(5, pageNumber);
+        await QnaService.getQuestionBankService(5, pageNumber,search);
     List<Question> questions = List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     setState(() {
       questionList.addAll(questions);
       pageNumber++;
+      searchVal=search;
     });
   }
 
   getQuestionData() async {
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(5, pageNumber);
+        await QnaService.getQuestionBankService(5, pageNumber,searchVal);
     List<Question> questions = List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     setState(() {
@@ -55,8 +59,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController =
-        TextEditingController();
+
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -140,7 +143,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               onChanged: (val) {
                                 setState(() {
                                   agree = val!;
-                                  if (agree) {}
+                                  if (!agree) {
+                                    setState(() {
+                                      pageNumber=1;
+                                      questionList=[];
+                                    });
+                                  }
+                                  else{
+                                    getData('');
+                                  }
                                 });
                               },
                             ),
@@ -187,6 +198,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 iconSize: height * 0.04,
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                                 onPressed: () {
+                                  questionList=[];
+                                  pageNumber=1;
+                                  agree ? getData(teacherQuestionBankSearchController.text)
+                                  :
                                   Navigator.push(
                                     context,
                                     PageTransition(
@@ -194,7 +209,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       child: TeacherLooqQuestionBank(
                                           setLocale: widget.setLocale),
                                     ),
-                                  );
+                                  ).then((value) => teacherQuestionBankSearchController.clear());
                                 },
                                 icon: const Icon(Icons.search),
                               )),

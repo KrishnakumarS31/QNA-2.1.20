@@ -36,7 +36,7 @@ class Question {
         topic: json["topic"] ?? '',
         subTopic: json["sub_topic"] ?? '',
         datumClass: json["class"] ?? '',
-        choices:
+        choices:json["choices"]==null?[]:
             List<Choice>.from(json["choices"].map((x) => Choice.fromJson(x))),
         questionMark: json["question_marks"] ?? 0,
       );

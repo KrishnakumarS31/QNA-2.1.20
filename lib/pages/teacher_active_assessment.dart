@@ -334,7 +334,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          "${assessment.assessmentId!}",
+                          "${assessment.assessmentCode!}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -362,7 +362,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          "${assessment.assessmentCode}",
+                          "-----------",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -461,7 +461,17 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                             ),
                           ),
                         ),
-                        Text(
+                        finalAssessment.assessmentEnddate == null
+                            ? Text(
+                          "----------------------",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )
+                            : Text(
                           "${endDate.toString().substring(0, endDate.toString().length - 13)}      ${endDate.toString().substring(11, endDate.toString().length - 7)}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),

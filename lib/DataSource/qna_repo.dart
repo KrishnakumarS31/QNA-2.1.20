@@ -309,14 +309,14 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> getAllQuestion(
-      int pageLimit, int pageNumber) async {
+      int pageLimit, int pageNumber,String search) async {
     ResponseEntity responseEntity = ResponseEntity();
     SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
         'GET',
         Uri.parse(
-            '$allQuestionUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber'));
+            '$allQuestionUrl/${loginData.getInt('userId')}?page_limit=$pageLimit&page_number=$pageNumber&search=$search'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -329,7 +329,7 @@ class QnaRepo {
       String? pass = loginData.getString('password');
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
-      getAllQuestion(pageLimit, pageNumber);
+      getAllQuestion(pageLimit, pageNumber,search);
     } else {}
     return responseEntity;
   }
