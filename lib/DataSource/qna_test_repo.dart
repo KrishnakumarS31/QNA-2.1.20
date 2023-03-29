@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/login_entity.dart';
+import 'http_url.dart';
 
 class QnaTestRepo {
   //Map<String,String> headers = {'Content-Type':'application/json','authorization':'Bearer 9764048494'};
@@ -37,7 +38,7 @@ class QnaTestRepo {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
+            '$assessmentDomain?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();
@@ -65,7 +66,7 @@ class QnaTestRepo {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://dev.qnatest.com/api/v1/assessment?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
+            '$assessmentDomain?code=$assessmentId&user_id=${loginData.getInt('userId')}'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();

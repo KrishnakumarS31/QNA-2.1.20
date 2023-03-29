@@ -35,8 +35,11 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     print("entering inside the getData");
     ResponseEntity responseEntity =
         await QnaService.getQuestionBankService(5, pageNumber,search);
-    List<Question> questions = List<Question>.from(
-        responseEntity.data.map((x) => Question.fromJson(x)));
+    List<Question> questions =[];
+    if(responseEntity.code==200){
+      questions = List<Question>.from(
+          responseEntity.data.map((x) => Question.fromJson(x)));
+    }
     setState(() {
       questionList.addAll(questions);
       pageNumber++;

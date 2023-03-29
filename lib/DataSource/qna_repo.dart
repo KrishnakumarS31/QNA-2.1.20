@@ -282,14 +282,14 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> getAllAssessment(
-      int pageLimit, int pageNumber) async {
+      int pageLimit, int pageNumber,String search) async {
     ResponseEntity allAssessment = ResponseEntity();
     SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
     var request = http.Request(
         'GET',
         Uri.parse(
-            '$assessmentDomain/all/${loginData.getInt('userId')}/?page_limit=$pageLimit&page_number=$pageNumber'));
+            '$assessmentDomain/all/${loginData.getInt('userId')}/?page_limit=$pageLimit&page_number=$pageNumber&search=$search'));
 
     request.headers.addAll(headers);
 
@@ -303,7 +303,7 @@ class QnaRepo {
       String? pass = loginData.getString('password');
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
-      getAllAssessment(pageLimit, pageNumber);
+      getAllAssessment(pageLimit, pageNumber,search);
     } else {}
     return allAssessment;
   }
@@ -469,7 +469,7 @@ class QnaRepo {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://dev.qnatest.com/api/v1/assessment/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+            '$assessmentDomain/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

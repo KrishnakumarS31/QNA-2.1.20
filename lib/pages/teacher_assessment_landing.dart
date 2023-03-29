@@ -30,7 +30,7 @@ class TeacherAssessmentLanding extends StatefulWidget {
 }
 
 class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
-  bool agree = false;
+  bool agree = true;
   TextEditingController subjectController = TextEditingController();
   TextEditingController classController = TextEditingController();
   TextEditingController topicController = TextEditingController();
@@ -43,6 +43,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   bool loading=true;
   ScrollController scrollController =ScrollController();
   int pageLimit =1;
+  String searchVal='';
 
 
 
@@ -240,16 +241,25 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pop();
     });
-    getData();
+    getData('');
+  }
+  getQuestionData() async {
+    ResponseEntity response =await QnaService.getAllAssessment(10,pageLimit,searchVal);
+    allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    setState(() {
+      assessments.addAll(allAssessment);
+      pageLimit++;
+    });
   }
 
-  getData()async{
-    ResponseEntity response =await QnaService.getAllAssessment(10,pageLimit);
+  getData(String search)async{
+    ResponseEntity response =await QnaService.getAllAssessment(10,pageLimit,search);
     allAssessment=List<GetAssessmentModel>.from(response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
       assessments.addAll(allAssessment);
       loading = false;
       pageLimit++;
+      searchVal=search;
     });
   }
 
@@ -327,38 +337,46 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ),
                     ),
 
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     Checkbox(
-                    //       activeColor: const Color.fromRGBO(82, 165, 160, 1),
-                    //       fillColor: MaterialStateProperty.resolveWith<Color>(
-                    //           (states) {
-                    //         if (states.contains(MaterialState.selected)) {
-                    //           return const Color.fromRGBO(82, 165, 160, 1);
-                    //         }
-                    //         return const Color.fromRGBO(82, 165, 160, 1);
-                    //       }),
-                    //       value: agree,
-                    //       onChanged: (val) {
-                    //         setState(() {
-                    //           agree = val!;
-                    //           if (agree) {}
-                    //         });
-                    //       },
-                    //     ),
-                    //     Text(
-                    //       AppLocalizations.of(context)!.only_my_assessments,
-                    //       //"Only My Assessments",
-                    //       style: TextStyle(
-                    //         color: const Color.fromRGBO(0, 0, 0, 1),
-                    //         fontSize: height * 0.015,
-                    //         fontFamily: "Inter",
-                    //         fontWeight: FontWeight.w400,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // )
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Checkbox(
+                          activeColor: const Color.fromRGBO(82, 165, 160, 1),
+                          fillColor: MaterialStateProperty.resolveWith<Color>(
+                              (states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return const Color.fromRGBO(82, 165, 160, 1);
+                            }
+                            return const Color.fromRGBO(82, 165, 160, 1);
+                          }),
+                          value: agree,
+                          onChanged: (val) {
+                            setState(() {
+                              agree = val!;
+                              if (!agree) {
+                                setState(() {
+                                  pageLimit=1;
+                                  assessments=[];
+                                });
+                              }
+                              else{
+                                getData('');
+                              }
+                            });
+                          },
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.only_my_assessments,
+                          //"Only My Assessments",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(0, 0, 0, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
                 Text(
@@ -398,12 +416,17 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             iconSize: height * 0.04,
                             color: const Color.fromRGBO(255, 255, 255, 1),
                             onPressed: () {
+                              assessments=[];
+                              pageLimit=1;
+                              agree ? getData(teacherQuestionBankSearchController.text)
+                                  :
                               Navigator.push(
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: TeacherAssessmentSearched(
-                                      setLocale: widget.setLocale),
+                                      setLocale: widget.setLocale,
+                                  search: teacherQuestionBankSearchController.text,),
                                 ),
                               );
                             },
@@ -504,7 +527,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     )),
                     GestureDetector(
                       onTap: (){
-                        getData();
+                        getQuestionData();
                       },
                       child: Text(
                         AppLocalizations.of(context)!.view_more,

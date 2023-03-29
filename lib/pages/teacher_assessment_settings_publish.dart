@@ -1595,7 +1595,7 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Allow guest students",
+                                                    "Allow guest students for test",
                                                     style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -1785,7 +1785,7 @@ class TeacherAssessmentSettingPublishState
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Show assessment Inactive",
+                                                          "Make assessment inactive",
                                                           style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(
@@ -1844,7 +1844,7 @@ class TeacherAssessmentSettingPublishState
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Allow  Public access ",
+                                                          "Allow public access for practice",
                                                           style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(
@@ -1931,30 +1931,17 @@ class TeacherAssessmentSettingPublishState
                                           AssessmentSettings
                                               assessmentSettings =
                                               AssessmentSettings();
-                                          assessmentSettings.notAvailable =
-                                              activeStatus;
-                                          assessmentSettings.notAvailable =
-                                              publicAccessStatus;
-                                          assessmentSettings.showAdvisorEmail =
-                                              showEmailStatus;
-                                          assessmentSettings.showAdvisorName =
-                                              showNameStatus;
-                                          assessmentSettings
-                                                  .showSolvedAnswerSheetInAdvisor =
-                                              showAnsAfterTest;
-                                          assessmentSettings
-                                                  .showSolvedAnswerSheetDuringPractice =
-                                              showAnsDuringPractice;
-                                          assessmentSettings.allowGuestStudent =
-                                              allowedGuestStatus;
-                                          assessmentSettings
-                                              .avalabilityForPractice = false;
-                                          assessmentSettings
-                                                  .allowedNumberOfTestRetries =
-                                              retriesController.text == ''
-                                                  ? 0
-                                                  : int.parse(
-                                                      retriesController.text);
+                                          assessmentSettings.allowedNumberOfTestRetries = retriesController.text == '' ? 0 : int.parse(retriesController.text);
+                                          assessmentSettings.avalabilityForPractice = false;
+                                          assessmentSettings.notAvailable = publicAccessStatus;
+
+                                          assessmentSettings.notAvailable = activeStatus;
+
+                                          assessmentSettings.showAdvisorEmail = showEmailStatus;
+                                          assessmentSettings.showAdvisorName = showNameStatus;
+                                          assessmentSettings.showSolvedAnswerSheetInAdvisor = showAnsAfterTest;
+                                          assessmentSettings.showSolvedAnswerSheetDuringPractice = showAnsDuringPractice;
+                                          assessmentSettings.allowGuestStudent = allowedGuestStatus;
                                           assessment.assessmentSettings =
                                               assessmentSettings;
                                           startDate = DateTime(

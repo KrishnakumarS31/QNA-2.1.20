@@ -98,6 +98,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
+    print("##########################");
+    print(_groupValue);
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     subtopicController.text = widget.question.subTopic!;
@@ -316,7 +318,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           ),
                           MyRadioOption<String>(
                             icon: Icons.library_books_sharp,
-                            value: 'Descriptive',
+                            value: 'Descripitive',
                             groupValue: _groupValue,
                             onChanged: _valueChangedHandler(),
                             label: 'Descriptive',

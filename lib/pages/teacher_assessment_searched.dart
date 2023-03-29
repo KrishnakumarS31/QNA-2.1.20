@@ -17,11 +17,13 @@ import '../Entity/Teacher/question_entity.dart' as Questions;
 import '../Services/qna_service.dart';
 
 class TeacherAssessmentSearched extends StatefulWidget {
-  const TeacherAssessmentSearched({
+  TeacherAssessmentSearched({
     Key? key,
     required this.setLocale,
+    required this.search
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
+  String search;
 
   @override
   TeacherAssessmentSearchedState createState() =>
@@ -41,7 +43,22 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
 
   @override
   void initState() {
+    teacherQuestionBankSearchController.text=widget.search;
+    initialData();
     super.initState();
+  }
+
+  initialData() async {
+    ResponseEntity response =
+    await QnaService.getSearchAssessment(1, pageLimit, widget.search);
+    allAssessment = List<GetAssessmentModel>.from(
+        response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    setState(() {
+      searchValue = widget.search;
+      assessments.addAll(allAssessment);
+      loading = false;
+      pageLimit++;
+    });
   }
 
   getData(String searchVal) async {
@@ -77,7 +94,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
           ));
         });
     ResponseEntity response =
-        await QnaService.getSearchAssessment(1, pageLimit, searchValue);
+        await QnaService.getSearchAssessment(5, pageLimit, searchValue);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     Navigator.of(context).pop();
@@ -177,40 +194,40 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Checkbox(
-                              activeColor:
-                                  const Color.fromRGBO(82, 165, 160, 1),
-                              fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                      (states) {
-                                if (states.contains(MaterialState.selected)) {
-                                  return const Color.fromRGBO(
-                                      82, 165, 160, 1); // Disabled color
-                                }
-                                return const Color.fromRGBO(
-                                    82, 165, 160, 1); // Regular color
-                              }),
-                              value: agree,
-                              onChanged: (val) {
-                                setState(() {
-                                  agree = val!;
-                                  if (agree) {}
-                                });
-                              },
-                            ),
-                            SizedBox(
-                              width: width * 0.01,
-                            ),
-                            Text(
-                              'Only My Assessments',
-                              textAlign: TextAlign.left,
-                              style: TextStyle(fontSize: height * 0.015),
-                            )
-                          ],
-                        )
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     Checkbox(
+                        //       activeColor:
+                        //           const Color.fromRGBO(82, 165, 160, 1),
+                        //       fillColor:
+                        //           MaterialStateProperty.resolveWith<Color>(
+                        //               (states) {
+                        //         if (states.contains(MaterialState.selected)) {
+                        //           return const Color.fromRGBO(
+                        //               82, 165, 160, 1); // Disabled color
+                        //         }
+                        //         return const Color.fromRGBO(
+                        //             82, 165, 160, 1); // Regular color
+                        //       }),
+                        //       value: agree,
+                        //       onChanged: (val) {
+                        //         setState(() {
+                        //           agree = val!;
+                        //           if (agree) {}
+                        //         });
+                        //       },
+                        //     ),
+                        //     SizedBox(
+                        //       width: width * 0.01,
+                        //     ),
+                        //     Text(
+                        //       'Only My Assessments',
+                        //       textAlign: TextAlign.left,
+                        //       style: TextStyle(fontSize: height * 0.015),
+                        //     )
+                        //   ],
+                        // )
                       ],
                     ),
                     SizedBox(height: height * 0.02),
@@ -544,7 +561,7 @@ class CardInfo extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      " ${assessment.assessmentId}",
+                      " ${assessment.assessmentCode}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.015,
@@ -574,7 +591,7 @@ class CardInfo extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " ABC903857928",
+                          " ----------",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.015,

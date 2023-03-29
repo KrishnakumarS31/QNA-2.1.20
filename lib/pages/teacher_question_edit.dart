@@ -5,6 +5,8 @@ import 'package:qna_test/pages/teacher_question_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../EntityModel/login_entity.dart';
+import '../Services/qna_service.dart';
 
 class QuestionEdit extends StatefulWidget {
   const QuestionEdit({
@@ -93,6 +95,8 @@ class QuestionEditState extends State<QuestionEdit> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
+    print("############################");
+    print(_groupValue);
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     subtopicController.text = widget.question.subTopic!;
@@ -175,10 +179,14 @@ class QuestionEditState extends State<QuestionEdit> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        int count = 0;
-        Navigator.popUntil(context, (route) {
-          return count++ == 2;
-        });
+        LoginModel statusCode =
+        await QnaService.deleteQuestion(widget.question.questionId!);
+        if(statusCode.code==200){
+          int count = 0;
+          Navigator.popUntil(context, (route) {
+            return count++ == 3;
+          });
+        }
       },
     );
     // set up the AlertDialog
@@ -304,7 +312,7 @@ class QuestionEditState extends State<QuestionEdit> {
                           ),
                           MyRadioOption<String>(
                             icon: Icons.library_books_sharp,
-                            value: 'Descriptive',
+                            value: 'Descripitive',
                             groupValue: _groupValue,
                             onChanged: _valueChangedHandler(),
                             label: 'Descriptive',

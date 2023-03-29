@@ -91,12 +91,18 @@ class GetAssessmentModel {
 
 class AssessmentSettings {
   AssessmentSettings({
+    this.allowedNumberOfTestRetries,
+    this.avalabilityForPractice,
+    this.allowGuestStudent,
     this.showSolvedAnswerSheetInAdvisor,
     this.showAdvisorName,
     this.showAdvisorEmail,
-    this.notAvailable
+    this.notAvailable,
   });
 
+  int? allowedNumberOfTestRetries;
+  bool? avalabilityForPractice;
+  bool? allowGuestStudent;
   bool? showSolvedAnswerSheetInAdvisor;
   bool? showAdvisorName;
   bool? showAdvisorEmail;
@@ -104,18 +110,22 @@ class AssessmentSettings {
 
   factory AssessmentSettings.fromJson(Map<String, dynamic> json) =>
       AssessmentSettings(
-        showSolvedAnswerSheetInAdvisor:
-            json["show_solved_answer_sheet_in_advisor"],
+        allowedNumberOfTestRetries: json["allowed_number_of_test_retries"],
+        avalabilityForPractice: json["avalability_for_practice"],
+        allowGuestStudent: json["allow_guest_student"],
+        showSolvedAnswerSheetInAdvisor: json["show_solved_answer_sheet_in_advisor"],
         showAdvisorName: json["show_advisor_name"],
         showAdvisorEmail: json["show_advisor_email"],
-        notAvailable: json["notAvailable"],
-
+        notAvailable: json["not_available"],
       );
 
   Map<String, dynamic> toJson() => {
-        "show_solved_answer_sheet_in_advisor": showSolvedAnswerSheetInAdvisor,
-        "show_advisor_name": showAdvisorName,
-        "show_advisor_email": showAdvisorEmail,
-        "notAvailable":notAvailable
+    "allowed_number_of_test_retries": allowedNumberOfTestRetries,
+    "avalability_for_practice": avalabilityForPractice,
+    "allow_guest_student": allowGuestStudent,
+    "show_solved_answer_sheet_in_advisor": showSolvedAnswerSheetInAdvisor,
+    "show_advisor_name": showAdvisorName,
+    "show_advisor_email": showAdvisorEmail,
+    "not_available": notAvailable,
       };
 }
