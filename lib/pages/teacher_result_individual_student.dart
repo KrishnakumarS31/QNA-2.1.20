@@ -398,6 +398,7 @@ class TeacherResultIndividualStudentState
 class NumberList {
   String number;
   int index;
+
   NumberList({required this.number, required this.index});
 }
 

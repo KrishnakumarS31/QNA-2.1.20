@@ -14,6 +14,7 @@ class TeacherRecentAssessment extends StatefulWidget {
       : super(key: key);
   final void Function(Locale locale) setLocale;
   CreateAssessmentModel finalAssessment;
+
   @override
   TeacherRecentAssessmentState createState() => TeacherRecentAssessmentState();
 }
@@ -24,6 +25,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   GetAssessmentModel assessment = GetAssessmentModel();
   CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
   int mark = 0;
+
   showAdditionalDetails() {
     setState(() {
       additionalDetails = !additionalDetails;
@@ -1012,6 +1014,7 @@ class QuestionWidget extends StatefulWidget {
 class _QuestionWidgetState extends State<QuestionWidget> {
   String ans = '';
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
+
   @override
   void initState() {
     assessment = widget.assessment;

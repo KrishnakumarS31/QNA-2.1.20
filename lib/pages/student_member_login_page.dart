@@ -16,6 +16,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class StudentMemberLoginPage extends StatefulWidget {
   const StudentMemberLoginPage({super.key, required this.setLocale});
+
   final void Function(Locale locale) setLocale;
 
   @override
@@ -34,6 +35,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   late SharedPreferences loginData;
   late bool newUser;
   final PrefService _prefService = PrefService();
+
   @override
   void initState() {
     super.initState();
@@ -70,12 +72,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
       });
     }
   }
-
-  // getData() async {
-  //   AppUser? user = await AppUserRepo().getUserDetail();
-  //   print("Storage");
-  //   print(user?.id);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -326,7 +322,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 type: PageTransitionType
                                                     .rightToLeft,
                                                 child: ForgotPasswordEmail(
-                                                  isFromStudent: true,
+                                                    isFromStudent: true,
                                                     setLocale:
                                                         widget.setLocale),
                                               ),
@@ -1107,8 +1103,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                           .clear();
                                                     });
                                                   }
-                                                }
-                                                else if (loginResponse.code ==
+                                                } else if (loginResponse.code ==
                                                     400) {
                                                   Navigator.push(
                                                     context,

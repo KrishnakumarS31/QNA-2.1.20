@@ -14,6 +14,7 @@ class TeacherLooqClonePreview extends StatefulWidget {
 
   final Question question;
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherLooqClonePreviewState createState() => TeacherLooqClonePreviewState();
 }
@@ -347,22 +348,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
       children: [
         for (int j = 0; j < widget.question.choices!.length; j++)
           GestureDetector(
-            onTap: () {
-              // setState(() {
-              // print("dsfsdf");
-              // print(widget.selected);
-              // if(widget.selected.contains(j)){
-              //   widget.selected.remove(j);
-              //   print("remove");
-              //   print(widget.selected);
-              // }
-              // else{
-              //   widget.selected.add(j);
-              //   print("add");
-              //   print(widget.selected);
-              // }
-              // });
-            },
+            onTap: () {},
             child: Padding(
               padding: EdgeInsets.only(bottom: widget.height * 0.013),
               child: Container(

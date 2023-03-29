@@ -273,7 +273,7 @@ class ResetPasswordState extends State<ResetPassword> {
 
   showAlertDialog(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    Widget okButton =  TextButton(
+    Widget okButton = TextButton(
       child: Text(
         "OK",
         style: TextStyle(
@@ -283,17 +283,16 @@ class ResetPasswordState extends State<ResetPassword> {
             fontSize: height * 0.018),
       ),
       onPressed: () async {
-        SharedPreferences preferences =
-        await SharedPreferences.getInstance();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
         Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.fade,
-              child: TeacherLogin(setLocale: (Locale locale) {  },
+              child: TeacherLogin(
+                setLocale: (Locale locale) {},
               )),
         );
-
       },
     );
     AlertDialog alert = AlertDialog(
@@ -325,9 +324,7 @@ class ResetPasswordState extends State<ResetPassword> {
             fontWeight: FontWeight.w500,
             fontSize: height * 0.018),
       ),
-      actions: [
-              okButton
-      ],
+      actions: [okButton],
     );
 
     // show the dialog

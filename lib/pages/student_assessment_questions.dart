@@ -1907,7 +1907,6 @@ class ChooseWidget extends StatelessWidget {
                             1]
                     .choices![j - 1]
                     .choiceText);
-                //print(question.data!.questions[Provider.of<QuestionNumProvider>(context, listen: false).questionNum-1].choices[j-1].choiceText);
                 context.read<Questions>().selectOption(
                     Provider.of<QuestionNumProvider>(context, listen: false)
                         .questionNum,

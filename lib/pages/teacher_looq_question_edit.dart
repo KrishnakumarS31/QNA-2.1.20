@@ -19,6 +19,7 @@ class LooqQuestionEdit extends StatefulWidget {
 
   final Question question;
   final void Function(Locale locale) setLocale;
+
   @override
   LooqQuestionEditState createState() => LooqQuestionEditState();
 }
@@ -36,6 +37,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   TextEditingController questionController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
@@ -98,8 +100,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
-    print("##########################");
-    print(_groupValue);
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     subtopicController.text = widget.question.subTopic!;

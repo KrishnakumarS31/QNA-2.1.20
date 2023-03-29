@@ -10,6 +10,7 @@ class CustomDialog extends StatefulWidget {
   final String title;
   final String content;
   final String button;
+
   @override
   State<CustomDialog> createState() => _CustomDialogState();
 }

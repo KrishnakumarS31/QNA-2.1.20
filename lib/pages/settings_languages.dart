@@ -29,6 +29,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
   String selected = 'Hello (English)';
   Color selectedColor = const Color.fromRGBO(82, 165, 160, 1);
   Color notSelectedColor = const Color.fromRGBO(51, 51, 51, 1);
+
   @override
   void initState() {
     super.initState();

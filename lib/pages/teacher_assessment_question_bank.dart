@@ -40,7 +40,7 @@ class TeacherAssessmentQuestionBankState
 
   getData(String search) async {
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(1000, 1,search);
+        await QnaService.getQuestionBankService(1000, 1, search);
     setState(() {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
@@ -152,7 +152,7 @@ class TeacherAssessmentQuestionBankState
                         iconSize: height * 0.04,
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         onPressed: () {
-                          questions=[];
+                          questions = [];
                           getData(teacherQuestionBankSearchController.text);
                         },
                         icon: const Icon(Icons.search),
@@ -292,6 +292,7 @@ class QuestionPreview extends StatefulWidget {
 
 class _QuestionPreviewState extends State<QuestionPreview> {
   bool? valuefirst = false;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -304,15 +305,19 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           onChanged: (bool? value) {
             setState(() {
               if (value!) {
-                widget.question.questionType=="MCQ"?
-                widget.question.questionMark = 10:widget.question.questionMark=0;
+                widget.question.questionType == "MCQ"
+                    ? widget.question.questionMark = 10
+                    : widget.question.questionMark = 0;
                 Provider.of<QuestionPrepareProviderFinal>(context,
                         listen: false)
                     .addQuestion(widget.question!);
-                widget.question.questionType=="MCQ"?
-                Provider.of<CreateAssessmentProvider>(context, listen: false)
-                    .addQuestion(widget.question.questionId, 10):Provider.of<CreateAssessmentProvider>(context, listen: false)
-                    .addQuestion(widget.question.questionId, 0);
+                widget.question.questionType == "MCQ"
+                    ? Provider.of<CreateAssessmentProvider>(context,
+                            listen: false)
+                        .addQuestion(widget.question.questionId, 10)
+                    : Provider.of<CreateAssessmentProvider>(context,
+                            listen: false)
+                        .addQuestion(widget.question.questionId, 0);
               } else {
                 Provider.of<QuestionPrepareProviderFinal>(context,
                         listen: false)

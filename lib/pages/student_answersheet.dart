@@ -6,31 +6,43 @@ import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
 
 class StudentMemAnswerSheet extends StatefulWidget {
-  const StudentMemAnswerSheet({Key? key, required this.questions, required this.assessmentId})
+  const StudentMemAnswerSheet(
+      {Key? key, required this.questions, required this.assessmentId})
       : super(key: key);
   final QuestionPaperModel questions;
   final String assessmentId;
+
   @override
   StudentMemAnswerSheetState createState() => StudentMemAnswerSheetState();
 }
 
 class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
   late QuestionPaperModel values;
-  List<List<String>> options=[];
+  List<List<String>> options = [];
 
   @override
   void initState() {
     super.initState();
     values = widget.questions;
-    for(int j=1;j<=Provider.of<Questions>(context, listen: false).totalQuestion.length;j++){
-      List<dynamic> selectedAns=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
-      List<String> selectedAnswers =[];
-      for(int t=0;t<selectedAns.length;t++){
-        if(widget.questions.data!.questions![j-1].questionType=='MCQ'){
-        }
-        else{
-          String temp='';
-          temp=Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0].toString().length-1);
+    for (int j = 1; j <= Provider
+        .of<Questions>(context, listen: false)
+        .totalQuestion
+        .length; j++) {
+      List<dynamic> selectedAns = Provider
+          .of<Questions>(context, listen: false)
+          .totalQuestion['$j'][0];
+      List<String> selectedAnswers = [];
+      for (int t = 0; t < selectedAns.length; t++) {
+        if (widget.questions.data!.questions![j - 1].questionType == 'MCQ') {}
+        else {
+          String temp = '';
+          temp = Provider
+              .of<Questions>(context, listen: false)
+              .totalQuestion['$j'][0].toString().substring(1, Provider
+              .of<Questions>(context, listen: false)
+              .totalQuestion['$j'][0]
+              .toString()
+              .length - 1);
           selectedAnswers.add(temp);
         }
       }
@@ -40,14 +52,20 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
 
   @override
   Widget build(BuildContext context) {
-    double localWidth = MediaQuery.of(context).size.width;
-    double localHeight = MediaQuery.of(context).size.height;
+    double localWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double localHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
           return WillPopScope(
-        onWillPop: () async => false, child:Scaffold(
+              onWillPop: () async => false, child: Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   icon: const Icon(
@@ -72,7 +90,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                     ),
                   ),
                   Text(
-                   widget.assessmentId,
+                    widget.assessmentId,
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: localHeight * 0.026,
@@ -131,42 +149,56 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(children: [
-                          for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
+                          for (int index = 1; index <= context
+                              .watch<Questions>()
+                              .totalQuestion
+                              .length; index = index + 2)
                             Container(
-                              width: localWidth * 0.4,
+                                width: localWidth * 0.4,
                                 margin: const EdgeInsets.all(5),
                                 padding: const EdgeInsets.all(5),
                                 child: ListTile(
                                     title: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
                                         children: [
                                           Row(children: [
                                             Text(
-                                                "Q${values.data!.questions![index-1].questionId}",
+                                                "Q${values.data!
+                                                    .questions![index - 1]
+                                                    .questionId}",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: localHeight * 0.022)),
-                                            SizedBox(width: localHeight * 0.020),
+                                                    fontSize: localHeight *
+                                                        0.022)),
+                                            SizedBox(
+                                                width: localHeight * 0.020),
                                             Text(
-                                              "(${values.data!.questions![index-1].questionMarks}${AppLocalizations.of(context)!.marks})",
+                                              "(${values.data!
+                                                  .questions![index - 1]
+                                                  .questionMarks}${AppLocalizations
+                                                  .of(context)!.marks})",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       179, 179, 179, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: localHeight * 0.022),
+                                                  fontSize: localHeight *
+                                                      0.022),
                                             )
                                           ]),
                                           SizedBox(height: localHeight * 0.010),
                                           Text(
-                                            values.data!.questions![index-1].question!,
+                                            values.data!.questions![index - 1]
+                                                .question!,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color:
-                                                const Color.fromRGBO(51, 51, 51, 1),
+                                                const Color.fromRGBO(
+                                                    51, 51, 51, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: localHeight * 0.023),
@@ -177,12 +209,30 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                       Align(
                                         alignment: Alignment.topLeft,
                                         child: Text(
-                                            Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                            Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][1] ==
+                                                const Color(0xffdb2323)
                                                 ? "Not Answered"
-                                                : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
+                                                : Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][0]
+                                                .toString()
+                                                .substring(1, Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][0]
+                                                .toString()
+                                                .length - 1),
                                             //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                             style:
-                                            Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                            Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][1] ==
+                                                const Color(0xffdb2323)
                                                 ?
                                             TextStyle(
                                                 color: const Color.fromRGBO(
@@ -200,28 +250,41 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                       ),
                                       SizedBox(height: localHeight * 0.015),
                                       Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
                                           children: [
                                             RichText(
                                                 text: TextSpan(children: [
                                                   TextSpan(
                                                       text:
-                                                      "${AppLocalizations.of(context)!.study_chapter} ${values.data!.questions![index-1].questionId} \t",
+                                                      "${AppLocalizations.of(
+                                                          context)!
+                                                          .study_chapter} ${values
+                                                          .data!
+                                                          .questions![index - 1]
+                                                          .questionId} \t",
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(
+                                                          color: const Color
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: localHeight * 0.025)),
+                                                          fontWeight: FontWeight
+                                                              .w600,
+                                                          fontSize: localHeight *
+                                                              0.025)),
                                                   TextSpan(
                                                       text: values.data!
-                                                          .questions![index-1].advisorText,
+                                                          .questions![index - 1]
+                                                          .advisorText,
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(
+                                                          color: const Color
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: localHeight * 0.025)),
+                                                          fontWeight: FontWeight
+                                                              .w400,
+                                                          fontSize: localHeight *
+                                                              0.025)),
                                                 ])),
                                             const Divider(
                                               thickness: 2,
@@ -230,45 +293,59 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                     ])))
                         ]),
                         Column(children: [
-                          for (int index = 2; index <= context.watch<Questions>().totalQuestion.length; index=index+2)
+                          for (int index = 2; index <= context
+                              .watch<Questions>()
+                              .totalQuestion
+                              .length; index = index + 2)
                             Container(
                                 width: localWidth * 0.4,
-                              //decoration: BoxDecoration(border: Border.all()),
+                                //decoration: BoxDecoration(border: Border.all()),
                                 margin: const EdgeInsets.all(5),
                                 padding: const EdgeInsets.all(5),
                                 //color: const Color.fromRGBO(255, 255, 255, 1),
                                 child: ListTile(
                                     title: Column(
                                       //mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
                                         children: [
                                           Row(children: [
                                             Text(
-                                                "Q${values.data!.questions![index-1].questionId}",
+                                                "Q${values.data!
+                                                    .questions![index - 1]
+                                                    .questionId}",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w700,
-                                                    fontSize: localHeight * 0.022)),
-                                            SizedBox(width: localHeight * 0.020),
+                                                    fontSize: localHeight *
+                                                        0.022)),
+                                            SizedBox(
+                                                width: localHeight * 0.020),
                                             Text(
-                                              "(${values.data!.questions![index-1].questionMarks}${AppLocalizations.of(context)!.marks})",
+                                              "(${values.data!
+                                                  .questions![index - 1]
+                                                  .questionMarks}${AppLocalizations
+                                                  .of(context)!.marks})",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       179, 179, 179, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: localHeight * 0.022),
+                                                  fontSize: localHeight *
+                                                      0.022),
                                             )
                                           ]),
                                           SizedBox(height: localHeight * 0.010),
                                           Text(
-                                            values.data!.questions![index-1].question!,
+                                            values.data!.questions![index - 1]
+                                                .question!,
                                             textAlign: TextAlign.start,
                                             style: TextStyle(
                                                 color:
-                                                const Color.fromRGBO(51, 51, 51, 1),
+                                                const Color.fromRGBO(
+                                                    51, 51, 51, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: localHeight * 0.023),
@@ -279,12 +356,30 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                       Align(
                                         alignment: Alignment.topLeft,
                                         child: Text(
-                                            Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                            Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][1] ==
+                                                const Color(0xffdb2323)
                                                 ? "Not Answered"
-                                                : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
+                                                : Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][0]
+                                                .toString()
+                                                .substring(1, Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][0]
+                                                .toString()
+                                                .length - 1),
                                             //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                             style:
-                                            Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                            Provider
+                                                .of<Questions>(
+                                                context, listen: false)
+                                                .totalQuestion['$index'][1] ==
+                                                const Color(0xffdb2323)
                                                 ?
                                             TextStyle(
                                                 color: const Color.fromRGBO(
@@ -302,28 +397,41 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                       ),
                                       SizedBox(height: localHeight * 0.015),
                                       Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
                                           children: [
                                             RichText(
                                                 text: TextSpan(children: [
                                                   TextSpan(
                                                       text:
-                                                      "${AppLocalizations.of(context)!.study_chapter} ${values.data!.questions![index-1].questionId} \t",
+                                                      "${AppLocalizations.of(
+                                                          context)!
+                                                          .study_chapter} ${values
+                                                          .data!
+                                                          .questions![index - 1]
+                                                          .questionId} \t",
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(
+                                                          color: const Color
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: localHeight * 0.025)),
+                                                          fontWeight: FontWeight
+                                                              .w600,
+                                                          fontSize: localHeight *
+                                                              0.025)),
                                                   TextSpan(
                                                       text: values.data!
-                                                          .questions![index-1].advisorText,
+                                                          .questions![index - 1]
+                                                          .advisorText,
                                                       style: TextStyle(
-                                                          color: const Color.fromRGBO(
+                                                          color: const Color
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: localHeight * 0.025)),
+                                                          fontWeight: FontWeight
+                                                              .w400,
+                                                          fontSize: localHeight *
+                                                              0.025)),
                                                 ])),
                                             const Divider(
                                               thickness: 2,
@@ -337,7 +445,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                   ]))));
         } else {
           return WillPopScope(
-        onWillPop: () async => false, child:Scaffold(
+              onWillPop: () async => false, child: Scaffold(
               appBar: AppBar(
                 leading: IconButton(
                   icon: const Icon(
@@ -392,7 +500,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
-                                left: localWidth * 0.35, top: localWidth * 0.056),
+                                left: localWidth * 0.35,
+                                top: localWidth * 0.056),
                             child: Text(
                               AppLocalizations.of(context)!.answer_sheet,
                               style: TextStyle(
@@ -418,7 +527,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                       ),
                       SizedBox(height: localHeight * 0.020),
                       Column(children: [
-                        for (int index = 1; index <= context.watch<Questions>().totalQuestion.length; index++)
+                        for (int index = 1; index <= context
+                            .watch<Questions>()
+                            .totalQuestion
+                            .length; index++)
                           Container(
                             //decoration: BoxDecoration(border: Border.all()),
                               margin: const EdgeInsets.all(5),
@@ -427,20 +539,27 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                               child: ListTile(
                                   title: Column(
                                     //mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment
+                                          .start,
                                       children: [
                                         Row(children: [
                                           Text(
-                                              "Q${values.data!.questions![index-1].questionId}",
+                                              "Q${values.data!
+                                                  .questions![index - 1]
+                                                  .questionId}",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight * 0.012)),
+                                                  fontSize: localHeight *
+                                                      0.012)),
                                           SizedBox(width: localHeight * 0.020),
                                           Text(
-                                            "(${values.data!.questions![index-1].questionMarks}${AppLocalizations.of(context)!.marks})",
+                                            "(${values.data!.questions![index -
+                                                1]
+                                                .questionMarks}${AppLocalizations
+                                                .of(context)!.marks})",
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     179, 179, 179, 1),
@@ -451,11 +570,13 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                         ]),
                                         SizedBox(height: localHeight * 0.010),
                                         Text(
-                                          values.data!.questions![index-1].question!,
+                                          values.data!.questions![index - 1]
+                                              .question!,
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
                                               color:
-                                              const Color.fromRGBO(51, 51, 51, 1),
+                                              const Color.fromRGBO(
+                                                  51, 51, 51, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
                                               fontSize: localHeight * 0.013),
@@ -466,12 +587,30 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                     Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
-                                          Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                          Provider
+                                              .of<Questions>(
+                                              context, listen: false)
+                                              .totalQuestion['$index'][1] ==
+                                              const Color(0xffdb2323)
                                               ? "Not Answered"
-                                              : Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().substring(1,Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0].toString().length-1),
+                                              : Provider
+                                              .of<Questions>(
+                                              context, listen: false)
+                                              .totalQuestion['$index'][0]
+                                              .toString()
+                                              .substring(1, Provider
+                                              .of<Questions>(
+                                              context, listen: false)
+                                              .totalQuestion['$index'][0]
+                                              .toString()
+                                              .length - 1),
                                           //options[index-1].toString().substring(1,options[index-1].toString().length-1),
                                           style:
-                                          Provider.of<Questions>(context, listen: false).totalQuestion['$index'][1] == const Color(0xffdb2323)
+                                          Provider
+                                              .of<Questions>(
+                                              context, listen: false)
+                                              .totalQuestion['$index'][1] ==
+                                              const Color(0xffdb2323)
                                               ?
                                           TextStyle(
                                               color: const Color.fromRGBO(
@@ -489,28 +628,41 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                     ),
                                     SizedBox(height: localHeight * 0.015),
                                     Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
                                         children: [
                                           RichText(
                                               text: TextSpan(children: [
                                                 TextSpan(
                                                     text:
-                                                    "${AppLocalizations.of(context)!.study_chapter} ${values.data!.questions![index-1].questionId} \t",
+                                                    "${AppLocalizations.of(
+                                                        context)!
+                                                        .study_chapter} ${values
+                                                        .data!
+                                                        .questions![index - 1]
+                                                        .questionId} \t",
                                                     style: TextStyle(
-                                                        color: const Color.fromRGBO(
+                                                        color: const Color
+                                                            .fromRGBO(
                                                             51, 51, 51, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w600,
-                                                        fontSize: localHeight * 0.015)),
+                                                        fontWeight: FontWeight
+                                                            .w600,
+                                                        fontSize: localHeight *
+                                                            0.015)),
                                                 TextSpan(
                                                     text: values.data!
-                                                        .questions![index-1].advisorText,
+                                                        .questions![index - 1]
+                                                        .advisorText,
                                                     style: TextStyle(
-                                                        color: const Color.fromRGBO(
+                                                        color: const Color
+                                                            .fromRGBO(
                                                             51, 51, 51, 1),
                                                         fontFamily: 'Inter',
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: localHeight * 0.015)),
+                                                        fontWeight: FontWeight
+                                                            .w400,
+                                                        fontSize: localHeight *
+                                                            0.015)),
                                               ])),
                                           const Divider(
                                             thickness: 2,

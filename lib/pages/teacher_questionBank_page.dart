@@ -15,6 +15,7 @@ class TeacherQuestionBank extends StatefulWidget {
   }) : super(key: key);
 
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherQuestionBankState createState() => TeacherQuestionBankState();
 }
@@ -23,8 +24,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   bool agree = true;
   int pageNumber = 1;
   List<Question> questionList = [];
-  String searchVal='';
-  TextEditingController teacherQuestionBankSearchController = TextEditingController();
+  String searchVal = '';
+  TextEditingController teacherQuestionBankSearchController =
+      TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -32,24 +35,23 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   }
 
   getData(String search) async {
-    print("entering inside the getData");
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(5, pageNumber,search);
-    List<Question> questions =[];
-    if(responseEntity.code==200){
+        await QnaService.getQuestionBankService(5, pageNumber, search);
+    List<Question> questions = [];
+    if (responseEntity.code == 200) {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
     }
     setState(() {
       questionList.addAll(questions);
       pageNumber++;
-      searchVal=search;
+      searchVal = search;
     });
   }
 
   getQuestionData() async {
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(5, pageNumber,searchVal);
+        await QnaService.getQuestionBankService(5, pageNumber, searchVal);
     List<Question> questions = List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     setState(() {
@@ -148,11 +150,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   agree = val!;
                                   if (!agree) {
                                     setState(() {
-                                      pageNumber=1;
-                                      questionList=[];
+                                      pageNumber = 1;
+                                      questionList = [];
                                     });
-                                  }
-                                  else{
+                                  } else {
                                     getData('');
                                   }
                                 });
@@ -201,20 +202,27 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 iconSize: height * 0.04,
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                                 onPressed: () {
-                                  questionList=[];
-                                  pageNumber=1;
-                                  agree ? getData(teacherQuestionBankSearchController.text)
-                                  :
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: TeacherLooqQuestionBank(
-                                          setLocale: widget.setLocale,
-                                        search: teacherQuestionBankSearchController.text,
-                                      ),
-                                    ),
-                                  ).then((value) => teacherQuestionBankSearchController.clear());
+                                  questionList = [];
+                                  pageNumber = 1;
+                                  agree
+                                      ? getData(
+                                          teacherQuestionBankSearchController
+                                              .text)
+                                      : Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type:
+                                                PageTransitionType.rightToLeft,
+                                            child: TeacherLooqQuestionBank(
+                                              setLocale: widget.setLocale,
+                                              search:
+                                                  teacherQuestionBankSearchController
+                                                      .text,
+                                            ),
+                                          ),
+                                        ).then((value) =>
+                                          teacherQuestionBankSearchController
+                                              .clear());
                                 },
                                 icon: const Icon(Icons.search),
                               )),

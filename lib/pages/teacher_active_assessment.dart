@@ -28,6 +28,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   var endDate;
   CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
   int mark = 0;
+
   showAdditionalDetails() {
     setState(() {
       additionalDetails = !additionalDetails;
@@ -58,9 +59,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
       mark = mark + assessment.questions![i].questionMark!;
     }
     setState(() {
-      mark = finalAssessment.totalScore == null
-      ? 0
-     : finalAssessment.totalScore!;
+      mark =
+          finalAssessment.totalScore == null ? 0 : finalAssessment.totalScore!;
       startDate = DateTime.fromMicrosecondsSinceEpoch(
           finalAssessment.assessmentStartdate == null
               ? 0
@@ -141,22 +141,6 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                     SizedBox(
                       height: height * 0.01,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     const Icon(
-                    //       Icons.mail_outline_outlined,
-                    //       color: Color.fromRGBO(82, 165, 160, 1),
-                    //     ),
-                    //     SizedBox(
-                    //       width: width * 0.06,
-                    //     ),
-                    //     const Icon(
-                    //       Icons.print_outlined,
-                    //       color: Color.fromRGBO(82, 165, 160, 1),
-                    //     )
-                    //   ],
-                    // ),
                     SizedBox(
                       height: height * 0.03,
                     ),
@@ -463,23 +447,23 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         ),
                         finalAssessment.assessmentEnddate == null
                             ? Text(
-                          "----------------------",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )
+                                "----------------------",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )
                             : Text(
-                          "${endDate.toString().substring(0, endDate.toString().length - 13)}      ${endDate.toString().substring(11, endDate.toString().length - 7)}",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                                "${endDate.toString().substring(0, endDate.toString().length - 13)}      ${endDate.toString().substring(11, endDate.toString().length - 7)}",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
                       ],
                     ),
                     SizedBox(
@@ -728,7 +712,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    assessment.assessmentSettings!.showAdvisorName == false
+                                    assessment.assessmentSettings!
+                                                .showAdvisorName ==
+                                            false
                                         ? "No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorName!
@@ -764,7 +750,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   ),
                                   Text(
                                     assessment.assessmentSettings
-                                                ?.showAdvisorEmail == false
+                                                ?.showAdvisorEmail ==
+                                            false
                                         ? "No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorEmail!
@@ -814,7 +801,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         ]),
                                   ),
                                   Text(
-                                    assessment.assessmentSettings?.notAvailable == false
+                                    assessment.assessmentSettings
+                                                ?.notAvailable ==
+                                            false
                                         ? "No"
                                         : "Yes",
                                     style: TextStyle(

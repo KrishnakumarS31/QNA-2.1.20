@@ -5,6 +5,7 @@ import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
+
 //import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 
@@ -34,6 +35,7 @@ class TeacherPublishedAssessmentState
   var endDate;
   CreateAssessmentModel assessmentVal =
       CreateAssessmentModel(questions: [], removeQuestions: []);
+
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;
@@ -64,7 +66,8 @@ class TeacherPublishedAssessmentState
       assessmentVal =
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .getAssessment;
-      questionTotal = widget.questionList==null?0:widget.questionList!.length;
+      questionTotal =
+          widget.questionList == null ? 0 : widget.questionList!.length;
       for (int i = 0; i < widget.questionList!.length; i++) {
         mark = mark + widget.questionList![i]!.questionMark!;
       }
@@ -101,7 +104,8 @@ class TeacherPublishedAssessmentState
                   context,
                   PageTransition(
                     type: PageTransitionType.leftToRight,
-                    child: TeacherAssessmentLanding(setLocale: widget.setLocale),
+                    child:
+                        TeacherAssessmentLanding(setLocale: widget.setLocale),
                   ),
                 );
               },
@@ -388,7 +392,9 @@ class TeacherPublishedAssessmentState
                           ),
                         ),
                         Text(
-                          assessmentVal.assessmentId != null ? "${assessmentVal.assessmentId}" :  "-",
+                          assessmentVal.assessmentId != null
+                              ? "${assessmentVal.assessmentId}"
+                              : "-",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -929,24 +935,25 @@ class TeacherPublishedAssessmentState
                     SizedBox(
                       height: height * 0.01,
                     ),
-              widget.questionList==null
-              ? const SizedBox(
-                  height: 0,
-                )
-                    : widget.questionList!.isNotEmpty
-                        ? SizedBox(
-                            height: height * 0.4,
-                            child: ListView.builder(
-                                padding: EdgeInsets.zero,
-                                itemCount: widget.questionList!.length,
-                                itemBuilder: (context, index) => QuestionWidget(
-                                      height: height,
-                                      question: widget.questionList![index],
-                                    )),
-                          )
-                        : const SizedBox(
+                    widget.questionList == null
+                        ? const SizedBox(
                             height: 0,
-                          ),
+                          )
+                        : widget.questionList!.isNotEmpty
+                            ? SizedBox(
+                                height: height * 0.4,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    itemCount: widget.questionList!.length,
+                                    itemBuilder: (context, index) =>
+                                        QuestionWidget(
+                                          height: height,
+                                          question: widget.questionList![index],
+                                        )),
+                              )
+                            : const SizedBox(
+                                height: 0,
+                              ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -1107,6 +1114,7 @@ class QuestionWidget extends StatefulWidget {
 
 class _QuestionWidgetState extends State<QuestionWidget> {
   String correctAns = '';
+
   @override
   void initState() {
     for (int i = 0; i < widget.question.choices!.length; i++) {

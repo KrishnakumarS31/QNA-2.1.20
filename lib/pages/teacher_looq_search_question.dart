@@ -33,7 +33,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
 
   @override
   void initState() {
-    teacherQuestionBankSearchController.text=widget.search;
+    teacherQuestionBankSearchController.text = widget.search;
     initialData();
     super.initState();
   }
@@ -42,7 +42,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
     ResponseEntity response =
         await QnaService.getSearchQuestion(100, pageLimit, widget.search);
     allQuestion =
-    List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+        List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     setState(() {
       searchValue = widget.search;
       question.addAll(allQuestion);
@@ -63,16 +63,12 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
     pageLimit = 1;
     ResponseEntity response =
         await QnaService.getSearchQuestion(100, pageLimit, searchVal);
-    if(response.data==null){
-      allQuestion=[];
-    }
-    else{
+    if (response.data == null) {
+      allQuestion = [];
+    } else {
       allQuestion =
-      List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+          List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     }
-
-    print("Inside Get Data");
-    print(allQuestion);
     Navigator.of(context).pop();
     setState(() {
       searchValue = searchVal;

@@ -35,6 +35,7 @@ class LoginModel {
 
 class Data {
   Data({this.accessToken, this.userId, this.firstName, this.lastName});
+
   String? firstName;
   String? lastName;
   String? accessToken;

@@ -10,6 +10,7 @@ class TeacherVerifyOtpPage extends StatefulWidget {
       : super(key: key);
   final void Function(Locale locale) setLocale;
   final String email;
+
   @override
   TeacherVerifyOtpPageState createState() => TeacherVerifyOtpPageState();
 }
@@ -21,6 +22,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
   bool error = false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
+
   @override
   void initState() {
     error = false;
@@ -43,8 +45,14 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
@@ -82,9 +90,9 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                         end: Alignment.bottomRight,
                         begin: Alignment.topLeft,
                         colors: [
-                      Color.fromRGBO(82, 165, 160, 1),
-                      Color.fromRGBO(0, 106, 100, 1),
-                    ])),
+                          Color.fromRGBO(82, 165, 160, 1),
+                          Color.fromRGBO(0, 106, 100, 1),
+                        ])),
               ),
             ),
             body: Column(children: [
@@ -106,24 +114,24 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                               alignment: Alignment.topLeft,
                               child: RichText(
                                   text: TextSpan(children: [
-                                TextSpan(
-                                  text: "CHECK YOUR EMAIL FOR OTP",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          102, 102, 102, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: height * 0.017),
-                                ),
-                                TextSpan(
-                                    text: "\t*",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            219, 35, 35, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017)),
-                              ])),
+                                    TextSpan(
+                                      text: "CHECK YOUR EMAIL FOR OTP",
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.017),
+                                    ),
+                                    TextSpan(
+                                        text: "\t*",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017)),
+                                  ])),
                             ),
                             SizedBox(
                               height: height * 0.0001,
@@ -139,7 +147,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                   decoration: const InputDecoration(
                                     helperStyle: TextStyle(
                                         color:
-                                            Color.fromRGBO(102, 102, 102, 0.3),
+                                        Color.fromRGBO(102, 102, 102, 0.3),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16),
@@ -204,7 +212,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                     child: const Text("   Resend OTP",
                                         style: TextStyle(
                                             color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14)))
@@ -217,7 +225,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -268,7 +276,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
 
   showAlertDialog(BuildContext context) {
     // set up the button
-    double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(

@@ -17,11 +17,9 @@ import '../Entity/Teacher/question_entity.dart' as Questions;
 import '../Services/qna_service.dart';
 
 class TeacherAssessmentSearched extends StatefulWidget {
-  TeacherAssessmentSearched({
-    Key? key,
-    required this.setLocale,
-    required this.search
-  }) : super(key: key);
+  TeacherAssessmentSearched(
+      {Key? key, required this.setLocale, required this.search})
+      : super(key: key);
   final void Function(Locale locale) setLocale;
   String search;
 
@@ -43,14 +41,14 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
 
   @override
   void initState() {
-    teacherQuestionBankSearchController.text=widget.search;
+    teacherQuestionBankSearchController.text = widget.search;
     initialData();
     super.initState();
   }
 
   initialData() async {
     ResponseEntity response =
-    await QnaService.getSearchAssessment(1, pageLimit, widget.search);
+        await QnaService.getSearchAssessment(1, pageLimit, widget.search);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {

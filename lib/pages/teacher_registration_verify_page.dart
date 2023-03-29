@@ -27,6 +27,7 @@ class TeacherRegistrationOtpPageState
   bool error = false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
+
   @override
   void initState() {
     super.initState();

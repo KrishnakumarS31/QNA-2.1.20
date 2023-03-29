@@ -28,6 +28,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
   GetAssessmentModel assessment = GetAssessmentModel();
   CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
   int mark = 0;
+
   showAdditionalDetails() {
     setState(() {
       additionalDetails = !additionalDetails;
@@ -46,7 +47,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
     super.initState();
   }
 
-  getData(){
+  getData() {
     assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
         .getAssessment;
     finalAssessment =
@@ -57,9 +58,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
       mark = mark + finalAssessment.questions![i].questionMarks!;
     }
     setState(() {
-      mark = finalAssessment.totalScore == null
-          ? 0
-          : finalAssessment.totalScore!;
+      mark =
+          finalAssessment.totalScore == null ? 0 : finalAssessment.totalScore!;
       startDate = DateTime.fromMicrosecondsSinceEpoch(
           finalAssessment.assessmentStartdate == null
               ? 0
@@ -420,23 +420,23 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         ),
                         finalAssessment.assessmentStartdate == null
                             ? Text(
-                          "----------------------",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )
+                                "----------------------",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )
                             : Text(
-                          "${startDate.toString().substring(0, startDate.toString().length - 13)}      ${startDate.toString().substring(11, startDate.toString().length - 7)}",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                                "${startDate.toString().substring(0, startDate.toString().length - 13)}      ${startDate.toString().substring(11, startDate.toString().length - 7)}",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
                       ],
                     ),
                     SizedBox(
@@ -458,23 +458,23 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         ),
                         finalAssessment.assessmentEnddate == null
                             ? Text(
-                          "----------------------",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        )
+                                "----------------------",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              )
                             : Text(
-                          "${endDate.toString().substring(0, endDate.toString().length - 13)}      ${endDate.toString().substring(11, endDate.toString().length - 7)}",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
+                                "${endDate.toString().substring(0, endDate.toString().length - 13)}      ${endDate.toString().substring(11, endDate.toString().length - 7)}",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
                       ],
                     ),
                     SizedBox(
@@ -650,13 +650,13 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   ),
                                   Text(
                                     finalAssessment.assessmentSettings
-                                        ?.allowGuestStudent ==
-                                        null
+                                                ?.allowGuestStudent ==
+                                            null
                                         ? "Not Allowed"
                                         : finalAssessment.assessmentSettings!
-                                        .allowGuestStudent!
-                                        ? "Allowed"
-                                        : "Not Allowed",
+                                                .allowGuestStudent!
+                                            ? "Allowed"
+                                            : "Not Allowed",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -687,13 +687,13 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   ),
                                   Text(
                                     finalAssessment.assessmentSettings
-                                        ?.showSolvedAnswerSheetInAdvisor ==
-                                        null
+                                                ?.showSolvedAnswerSheetInAdvisor ==
+                                            null
                                         ? "Not Viewable"
                                         : finalAssessment.assessmentSettings!
-                                        .showSolvedAnswerSheetInAdvisor!
-                                        ? "Viewable"
-                                        : "Not Viewable",
+                                                .showSolvedAnswerSheetInAdvisor!
+                                            ? "Viewable"
+                                            : "Not Viewable",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -723,12 +723,14 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     ),
                                   ),
                                   Text(
-                                      assessment.assessmentSettings!.showAdvisorName == false
-                                          ? "No"
-                                          : assessment.assessmentSettings!
-                                          .showAdvisorName!
-                                          ? "Yes"
-                                          : "No",
+                                    assessment.assessmentSettings!
+                                                .showAdvisorName ==
+                                            false
+                                        ? "No"
+                                        : assessment.assessmentSettings!
+                                                .showAdvisorName!
+                                            ? "Yes"
+                                            : "No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -759,12 +761,13 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   ),
                                   Text(
                                     assessment.assessmentSettings
-                                        ?.showAdvisorEmail == false
+                                                ?.showAdvisorEmail ==
+                                            false
                                         ? "No"
                                         : assessment.assessmentSettings!
-                                        .showAdvisorEmail!
-                                        ? "Yes"
-                                        : "No",
+                                                .showAdvisorEmail!
+                                            ? "Yes"
+                                            : "No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -783,9 +786,11 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                        assessment.assessmentSettings?.notAvailable == false
-                                            ? "No"
-                                            : "Yes",
+                                      assessment.assessmentSettings
+                                                  ?.notAvailable ==
+                                              false
+                                          ? "No"
+                                          : "Yes",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),

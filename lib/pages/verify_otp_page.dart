@@ -18,6 +18,7 @@ class VerifyOtpPage extends StatefulWidget {
   final String email;
   final bool isFromStudent;
   final void Function(Locale locale) setLocale;
+
   @override
   VerifyOtpPageState createState() => VerifyOtpPageState();
 }
@@ -29,6 +30,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   bool error = false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
+
   @override
   void initState() {
     super.initState();
@@ -249,34 +251,28 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
                               otp = otpController.text;
-                              StaticResponse res =
-                                  await QnaService.validateOtp(widget.email, otp);
-                              print(res.code);
+                              StaticResponse res = await QnaService.validateOtp(
+                                  widget.email, otp);
                               if (res.code == 200) {
-                               showAlertDialog(context,res.message);
-                              }
-                              else if(res.code != 200 && res.code != null && res.message != null)
-                                {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType
-                                          .rightToLeft,
-                                      child: CustomDialog(
-                                        title:
-                                       "Error",
-                                        //'Wrong password',
-                                        content: res.message,
-                                        //'please enter the correct password',
-                                        button:
-                                        AppLocalizations.of(
-                                            context)!
-                                            .retry,
-                                      ),
+                                showAlertDialog(context, res.message);
+                              } else if (res.code != 200 &&
+                                  res.code != null &&
+                                  res.message != null) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: CustomDialog(
+                                      title: "Error",
+                                      //'Wrong password',
+                                      content: res.message,
+                                      //'please enter the correct password',
+                                      button:
+                                          AppLocalizations.of(context)!.retry,
                                     ),
-                                  );
-                                }
-
+                                  ),
+                                );
+                              }
                             }
                           },
                           child: Text(
@@ -302,7 +298,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     // set up the button
     double height = MediaQuery.of(context).size.height;
     // set up the AlertDialog
-    Widget okButton =   TextButton(
+    Widget okButton = TextButton(
       child: const Text(
         "OK",
         style: TextStyle(
@@ -319,7 +315,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
               child: StudentForgotPassword(
                   email: widget.email,
                   otp: otp,
-                  setLocale: widget.setLocale, isFromStudent: widget.isFromStudent)),
+                  setLocale: widget.setLocale,
+                  isFromStudent: widget.isFromStudent)),
         );
       },
     );
@@ -352,9 +349,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontWeight: FontWeight.w500,
             fontSize: 15),
       ),
-      actions: [
-              okButton
-      ],
+      actions: [okButton],
     );
 
     // show the dialog
@@ -421,9 +416,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontWeight: FontWeight.w500,
             fontSize: 15),
       ),
-      actions: [
-              okButton
-      ],
+      actions: [okButton],
     );
 
     // show the dialog

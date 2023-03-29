@@ -14,6 +14,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
   DateTime date = DateTime.now();
   final DateFormat formatter = DateFormat('dd/MM/yyyy');
   late String formatted = '';
+
 //= formatter.format(pickedDate!);
 
   @override
@@ -21,8 +22,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
     super.initState();
     date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
     formatted = formatter.format(date);
-    print("Init ROLE");
-    print(widget.userDataModel.data?.role);
   }
 
   @override

@@ -6,21 +6,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Entity/Teacher/question_entity_for_assessment_settings_published.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
-
-import '../Entity/Teacher/question_entity.dart';
-import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../EntityModel/login_entity.dart';
-import '../EntityModel/user_data_model.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 import '../Entity/Teacher/question_entity.dart' as QuestionModel;
+import '../DataSource/http_url.dart';
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({Key? key, required this.setLocale})
@@ -75,24 +70,23 @@ class TeacherAssessmentSettingPublishState
     questionListForNxtPage =
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
-    print(questionListForNxtPage);
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
-    print("Mynaru vetti katti");
 
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
-    int addQuesLen=assessment.addQuestion==null?0:assessment.addQuestion!.length;
+    int addQuesLen =
+        assessment.addQuestion == null ? 0 : assessment.addQuestion!.length;
     for (int i = 0; i < addQuesLen; i++) {
       totalMark = totalMark + assessment.addQuestion![i].questionMark!;
     }
     totalQues = assessment.questions!.length;
-    totalQues = assessment.addQuestion==null?0:assessment.addQuestion!.length;
+    totalQues =
+        assessment.addQuestion == null ? 0 : assessment.addQuestion!.length;
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
-    print("Evan Varan");
   }
 
   final MaskTextInputFormatter timeMaskFormatter =
@@ -771,7 +765,8 @@ class TeacherAssessmentSettingPublishState
                                                               .datetime,
                                                       enabled: true,
                                                       controller:
-                                                          startTimeController, //editing controller of this TextField
+                                                          startTimeController,
+                                                      //editing controller of this TextField
                                                       onTap: () async {
                                                         TimeOfDay? pickedTime =
                                                             await showTimePicker(
@@ -794,16 +789,11 @@ class TeacherAssessmentSettingPublishState
                                                                       .toString());
                                                           startTime =
                                                               parsedTime;
-                                                          //converting to DateTime so that we can further format on different pattern.
-                                                          // print(parsedTime); //output 1970-01-01 22:53:00.000
-                                                          // print(parsedTime); //output 1970-01-01 22:53:00.000
                                                           String formattedTime =
                                                               DateFormat(
                                                                       'HH:mm')
                                                                   .format(
                                                                       parsedTime);
-                                                          //print(formattedTime); //output 14:59:00
-                                                          //DateFormat() is from intl package, you can format the time on any pattern you need.
                                                           setState(() {
                                                             startTimeController
                                                                     .text =
@@ -813,71 +803,6 @@ class TeacherAssessmentSettingPublishState
                                                         } else {}
                                                       },
                                                     )
-                                                    // GestureDetector(
-                                                    //       onTap: () async {
-                                                    //         TimeOfDay? pickedTime =  await showTimePicker(
-                                                    //           initialTime: TimeOfDay.now(),
-                                                    //           context: context,
-                                                    //         );
-                                                    //
-                                                    //         if(pickedTime != null ){
-                                                    //           print(pickedTime.format(context));   //output 10:51 PM
-                                                    //           DateTime parsedTime = DateFormat.jm().parse(pickedTime.format(context).toString());
-                                                    //           //converting to DateTime so that we can further format on different pattern.
-                                                    //           print(parsedTime); //output 1970-01-01 22:53:00.000
-                                                    //           String formattedTime = DateFormat('HH:mm:ss').format(parsedTime);
-                                                    //           print(formattedTime); //output 14:59:00
-                                                    //           //DateFormat() is from intl package, you can format the time on any pattern you need.
-                                                    //
-                                                    //           setState(() {
-                                                    //             timeinput.text = formattedTime; //set the value of text field.
-                                                    //           });
-                                                    //         }else{
-                                                    //           print("Time is not selected");
-                                                    //         }
-                                                    //       },
-                                                    //
-                                                    //       // {
-                                                    //       //   TimeOfDay? selectedTime = TimeOfDay.now();
-                                                    //       //   final TimeOfDay? timeOfDay = await showTimePicker(
-                                                    //       //       context: context,
-                                                    //       //       initialTime: selectedTime,
-                                                    //       //       initialEntryMode: TimePickerEntryMode.input);
-                                                    //       //  //setState(() {
-                                                    //       //    // print(selectedTime);
-                                                    //       //     selectedTime = timeOfDay;
-                                                    //       //   //});
-                                                    //       //   // _selectTime(context);
-                                                    //       // },
-                                                    //       child: AbsorbPointer(
-                                                    //         child:
-                                                    //         TextFormField(
-                                                    //           decoration: InputDecoration(
-                                                    //               hintText: "00:00 AM",
-                                                    //               hintStyle: TextStyle(
-                                                    //                   color: const Color
-                                                    //                           .fromRGBO(
-                                                    //                       102,
-                                                    //                       102,
-                                                    //                       102,
-                                                    //                       0.3),
-                                                    //                   fontFamily:
-                                                    //                       'Inter',
-                                                    //                   fontWeight:
-                                                    //                       FontWeight
-                                                    //                           .w400,
-                                                    //                   fontSize: height *
-                                                    //                       0.020)),
-                                                    //           controller:
-                                                    //               startTimeController,
-                                                    //           keyboardType:
-                                                    //               TextInputType
-                                                    //                   .datetime,
-                                                    //           enabled: true,
-                                                    //           onChanged: (value) {},
-                                                    //         ),
-                                                    //       ),
-                                                    //     ),
                                                   ],
                                                 ),
                                               )
@@ -1047,7 +972,8 @@ class TeacherAssessmentSettingPublishState
                                                                   .datetime,
                                                           enabled: true,
                                                           controller:
-                                                              endTimeController, //editing controller of this TextField
+                                                              endTimeController,
+                                                          //editing controller of this TextField
                                                           onTap: () async {
                                                             TimeOfDay?
                                                                 pickedTime =
@@ -1060,7 +986,6 @@ class TeacherAssessmentSettingPublishState
 
                                                             if (pickedTime !=
                                                                 null) {
-                                                              //print(pickedTime.format(context));   //output 10:51 PM
                                                               DateTime parsedTime = DateFormat
                                                                       .jm()
                                                                   .parse(pickedTime
@@ -1069,16 +994,12 @@ class TeacherAssessmentSettingPublishState
                                                                       .toString());
                                                               endTime =
                                                                   parsedTime;
-                                                              //converting to DateTime so that we can further format on different pattern.
-                                                              // print(parsedTime); //output 1970-01-01 22:53:00.000
                                                               String
                                                                   formattedTime =
                                                                   DateFormat(
                                                                           'HH:mm')
                                                                       .format(
                                                                           parsedTime);
-                                                              //print(formattedTime); //output 14:59:00
-                                                              //DateFormat() is from intl package, you can format the time on any pattern you need.
                                                               setState(() {
                                                                 endTimeController
                                                                         .text =
@@ -1619,8 +1540,6 @@ class TeacherAssessmentSettingPublishState
                                                     borderRadius: 30.0,
                                                     onToggle: (val) {
                                                       setState(() {
-                                                        // print("Value of val");
-                                                        // print(val);
                                                         allowedGuestStatus =
                                                             val;
                                                       });
@@ -1833,65 +1752,88 @@ class TeacherAssessmentSettingPublishState
                                                   ),
                                                 ]),
                                             SizedBox(height: height * 0.01),
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Allow public access for practice",
-                                                          style: TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                51, 51, 51, 1),
-                                                            fontSize:
-                                                                height * 0.015,
-                                                            fontFamily: "Inter",
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "Available to public for practice",
-                                                          style: TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                153,
-                                                                153,
-                                                                153,
-                                                                0.8),
-                                                            fontSize:
-                                                                height * 0.015,
-                                                            fontFamily: "Inter",
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                          ),
+                                            domainName ==
+                                                    "https://dev.qnatest.com"
+                                                ? const SizedBox()
+                                                : Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                        Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Allow public access for practice",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: const Color
+                                                                          .fromRGBO(
+                                                                      51,
+                                                                      51,
+                                                                      51,
+                                                                      1),
+                                                                  fontSize:
+                                                                      height *
+                                                                          0.015,
+                                                                  fontFamily:
+                                                                      "Inter",
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                ),
+                                                              ),
+                                                              Text(
+                                                                "Available to public for practice",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: const Color
+                                                                          .fromRGBO(
+                                                                      153,
+                                                                      153,
+                                                                      153,
+                                                                      0.8),
+                                                                  fontSize:
+                                                                      height *
+                                                                          0.015,
+                                                                  fontFamily:
+                                                                      "Inter",
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                ),
+                                                              ),
+                                                            ]),
+                                                        FlutterSwitch(
+                                                          activeColor:
+                                                              const Color
+                                                                      .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1),
+                                                          inactiveColor:
+                                                              const Color
+                                                                      .fromRGBO(
+                                                                  217,
+                                                                  217,
+                                                                  217,
+                                                                  1),
+                                                          width: 65.0,
+                                                          height: 35.0,
+                                                          value:
+                                                              publicAccessStatus,
+                                                          borderRadius: 30.0,
+                                                          onToggle: (val) {
+                                                            setState(() {
+                                                              publicAccessStatus =
+                                                                  val;
+                                                            });
+                                                          },
                                                         ),
                                                       ]),
-                                                  FlutterSwitch(
-                                                    activeColor:
-                                                        const Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                    inactiveColor:
-                                                        const Color.fromRGBO(
-                                                            217, 217, 217, 1),
-                                                    width: 65.0,
-                                                    height: 35.0,
-                                                    value: publicAccessStatus,
-                                                    borderRadius: 30.0,
-                                                    onToggle: (val) {
-                                                      setState(() {
-                                                        publicAccessStatus =
-                                                            val;
-                                                      });
-                                                    },
-                                                  ),
-                                                ]),
                                             SizedBox(height: height * 0.05),
                                           ],
                                         ),
@@ -1931,17 +1873,32 @@ class TeacherAssessmentSettingPublishState
                                           AssessmentSettings
                                               assessmentSettings =
                                               AssessmentSettings();
-                                          assessmentSettings.allowedNumberOfTestRetries = retriesController.text == '' ? 0 : int.parse(retriesController.text);
-                                          assessmentSettings.avalabilityForPractice = false;
-                                          assessmentSettings.notAvailable = publicAccessStatus;
+                                          assessmentSettings
+                                                  .allowedNumberOfTestRetries =
+                                              retriesController.text == ''
+                                                  ? 0
+                                                  : int.parse(
+                                                      retriesController.text);
+                                          assessmentSettings
+                                              .avalabilityForPractice = false;
+                                          assessmentSettings.notAvailable =
+                                              publicAccessStatus;
 
-                                          assessmentSettings.notAvailable = activeStatus;
+                                          assessmentSettings.notAvailable =
+                                              activeStatus;
 
-                                          assessmentSettings.showAdvisorEmail = showEmailStatus;
-                                          assessmentSettings.showAdvisorName = showNameStatus;
-                                          assessmentSettings.showSolvedAnswerSheetInAdvisor = showAnsAfterTest;
-                                          assessmentSettings.showSolvedAnswerSheetDuringPractice = showAnsDuringPractice;
-                                          assessmentSettings.allowGuestStudent = allowedGuestStatus;
+                                          assessmentSettings.showAdvisorEmail =
+                                              showEmailStatus;
+                                          assessmentSettings.showAdvisorName =
+                                              showNameStatus;
+                                          assessmentSettings
+                                                  .showSolvedAnswerSheetInAdvisor =
+                                              showAnsAfterTest;
+                                          assessmentSettings
+                                                  .showSolvedAnswerSheetDuringPractice =
+                                              showAnsDuringPractice;
+                                          assessmentSettings.allowGuestStudent =
+                                              allowedGuestStatus;
                                           assessment.assessmentSettings =
                                               assessmentSettings;
                                           startDate = DateTime(
@@ -2060,21 +2017,6 @@ class TeacherAssessmentSettingPublishState
                                                       retriesController.text);
                                           assessment.assessmentSettings =
                                               assessmentSettings;
-
-                                          // String tod='11:11';
-                                          // TimeOfDay stringToTimeOfDay(String tod) {
-                                          //   final format = DateFormat.Hm(); //"6:00 AM"
-                                          //   return TimeOfDay.fromDateTime(format.parse(tod));
-                                          // }
-                                          // TimeOfDay a =stringToTimeOfDay(tod);
-                                          // print(a.toString().substring(10,a.toString().length-1));
-                                          // DateTime time = DateTime(1,1,1,a.hour,a.minute);
-                                          // DateTime tempdate =DateTime(1,1,1);
-                                          // print(time.toString());
-                                          // print(tempdate.toString());
-                                          // int timeEpoch = time.millisecondsSinceEpoch;
-                                          // int tempDateEpoch = tempdate.millisecondsSinceEpoch;
-                                          // print(timeEpoch-tempDateEpoch);
                                           startDate = DateTime(
                                               startDate.year,
                                               startDate.month,
@@ -2093,9 +2035,6 @@ class TeacherAssessmentSettingPublishState
                                               endDate.microsecondsSinceEpoch;
                                           assessment.assessmentDuration =
                                               (hours * 60) + minutes;
-
-                                          // print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                                          // debugPrint(assessment.toString());
                                           showDialog(
                                               context: context,
                                               builder: (context) {
@@ -2113,16 +2052,12 @@ class TeacherAssessmentSettingPublishState
                                                 .editAssessmentTeacherService(
                                                     assessment,
                                                     assessment.assessmentId!);
-                                            print(statusCode.data);
                                           } else {
                                             statusCode = await QnaService
                                                 .createAssessmentTeacherService(
                                                     assessment);
-                                            print(statusCode.data);
                                           }
                                           Navigator.of(context).pop();
-
-                                          // print(statusCode.code);
                                           String assessmentCode = statusCode
                                               .data
                                               .toString()
@@ -2136,11 +2071,7 @@ class TeacherAssessmentSettingPublishState
                                               value =
                                               await QnaService.getQuestion(
                                                   assessmentId: assessmentCode);
-                                          //zprint(value.data.questions);
-                                          // print(assessmentCode);
-                                          // print(value.data!.questions!.length);
                                           if (statusCode.code == 200) {
-                                            // print("inside 200 block");
                                             Navigator.push(
                                               context,
                                               PageTransition(
@@ -2188,7 +2119,6 @@ class TeacherAssessmentSettingPublishState
         initialTime: selectedTime,
         initialEntryMode: TimePickerEntryMode.input);
     setState(() {
-      // print(selectedTime);
       selectedTime = timeOfDay;
     });
   }

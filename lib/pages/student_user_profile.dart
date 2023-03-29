@@ -16,6 +16,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
   DateTime date = DateTime.now();
   final DateFormat formatter = DateFormat('dd/MM/yyyy');
   late String formatted = '';
+
 //= formatter.format(pickedDate!);
 
   @override
@@ -27,8 +28,14 @@ class StudentUserProfileState extends State<StudentUserProfile> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -43,9 +50,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           end: Alignment.topCenter,
                           begin: Alignment.bottomCenter,
                           colors: [
-                        Color.fromRGBO(82, 165, 160, 1),
-                        Color.fromRGBO(0, 106, 100, 1),
-                      ])),
+                            Color.fromRGBO(82, 165, 160, 1),
+                            Color.fromRGBO(0, 106, 100, 1),
+                          ])),
                   child: Column(
                     children: [
                       SizedBox(
@@ -137,7 +144,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                 ),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: width * 0.035, right: width * 0.02),
+                  EdgeInsets.only(left: width * 0.035, right: width * 0.02),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -327,7 +334,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  const Color.fromRGBO(82, 165, 160, 1),
+                              const Color.fromRGBO(82, 165, 160, 1),
                               minimumSize: const Size(280, 48),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(39),

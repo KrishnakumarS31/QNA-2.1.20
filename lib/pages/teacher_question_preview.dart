@@ -17,6 +17,7 @@ class TeacherQuestionPreview extends StatefulWidget {
   final Question question;
   final EditQuestionModel editQuestionModel;
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherQuestionPreviewState createState() => TeacherQuestionPreviewState();
 }
@@ -33,7 +34,6 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
     super.initState();
     adviceController.text = widget.question!.advisorText!;
     urlController.text = widget.question!.advisorUrl!;
-    print(widget.editQuestionModel.toString());
   }
 
   @override
@@ -330,7 +330,6 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                 await QnaService.editQuestionTeacherService(
                                     widget.editQuestionModel,
                                     widget.question.questionId);
-                            print("status code = ${statusCode.data}");
                             int count = 0;
                             Navigator.popUntil(context, (route) {
                               return count++ == 3;

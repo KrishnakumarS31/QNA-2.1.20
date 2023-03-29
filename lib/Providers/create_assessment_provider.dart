@@ -22,7 +22,6 @@ class CreateAssessmentProvider extends ChangeNotifier {
   void addQuestion(int questionId, int mark) {
     Question question = Question(questionId: questionId, questionMarks: mark);
     _assessment.questions?.add(question);
-    print(_assessment.toString());
     notifyListeners();
   }
 
@@ -34,22 +33,17 @@ class CreateAssessmentProvider extends ChangeNotifier {
     int index = quesIds.indexOf(questionId);
     _assessment.questions!.removeAt(index);
     _assessment.removeQuestions!.add(questionId);
-    print(_assessment.toString());
     notifyListeners();
   }
 
   void addRemoveQuesList(int questionId) {
-    // List<int> quesInt = [];
-    // quesInt
     _assessment.removeQuestions?.add(questionId);
-    print(_assessment.toString());
     notifyListeners();
   }
 
   void addLooqQuestion(int questionId, int mark) {
     Question question = Question(questionId: questionId, questionMarks: mark);
     _assessment.questions?.add(question);
-    print(_assessment.toString());
     notifyListeners();
   }
 
@@ -61,7 +55,6 @@ class CreateAssessmentProvider extends ChangeNotifier {
     int index = quesIds.indexOf(questionId);
     _assessment.questions!.removeAt(index);
     _assessment.removeQuestions!.add(questionId);
-    print(_assessment.toString());
     notifyListeners();
   }
 
@@ -83,7 +76,6 @@ class CreateAssessmentProvider extends ChangeNotifier {
       _assessment.questions!.removeAt(index);
       _assessment.removeQuestions!.add(questionId);
     }
-    print(_assessment.toString());
     notifyListeners();
   }
 

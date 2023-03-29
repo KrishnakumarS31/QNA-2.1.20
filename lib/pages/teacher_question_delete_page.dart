@@ -20,6 +20,7 @@ class TeacherQuesDelete extends StatefulWidget {
   final int quesNum;
   final Question finalQuestion;
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherQuesDeleteState createState() => TeacherQuesDeleteState();
 }
@@ -37,6 +38,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   TextEditingController questionController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }

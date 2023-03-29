@@ -11,7 +11,6 @@ class ForgotPasswordEmail extends StatefulWidget {
     Key? key,
     required this.setLocale,
     required this.isFromStudent,
-
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
   final bool isFromStudent;
@@ -162,28 +161,22 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                 await QnaService.sendOtp(_controller.text);
                             if (response.code == 200) {
                               showAlertDialog(context);
-                            }
-                            else if(response.code != null && response.code != 200)
-                              {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType
-                                        .rightToLeft,
-                                    child: CustomDialog(
-                                      title:
-                                      "Error",
-                                      //'Wrong password',
-                                      content: response.message,
-                                      //'please enter the correct password',
-                                      button:
-                                      AppLocalizations.of(
-                                          context)!
-                                          .retry,
-                                    ),
+                            } else if (response.code != null &&
+                                response.code != 200) {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Error",
+                                    //'Wrong password',
+                                    content: response.message,
+                                    //'please enter the correct password',
+                                    button: AppLocalizations.of(context)!.retry,
                                   ),
-                                );
-                              }
+                                ),
+                              );
+                            }
                           }
                         },
                         child: Text(
@@ -251,7 +244,9 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
           PageTransition(
             type: PageTransitionType.rightToLeft,
             child: VerifyOtpPage(
-                email: _controller.text,isFromStudent: widget.isFromStudent,setLocale: widget.setLocale),
+                email: _controller.text,
+                isFromStudent: widget.isFromStudent,
+                setLocale: widget.setLocale),
           ),
         );
       },

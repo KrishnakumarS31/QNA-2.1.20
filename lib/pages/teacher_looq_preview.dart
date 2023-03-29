@@ -20,6 +20,7 @@ class TeacherLooqPreview extends StatefulWidget {
   final Question question;
   final EditQuestionModel editQuestionModel;
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherLooqPreviewState createState() => TeacherLooqPreviewState();
 }
@@ -40,8 +41,14 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -130,14 +137,16 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                                       widget.question!.subject!,
                                       style: TextStyle(
                                         color:
-                                            const Color.fromRGBO(28, 78, 80, 1),
+                                        const Color.fromRGBO(28, 78, 80, 1),
                                         fontSize: height * 0.0175,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
-                                      '  |  ${widget.question!.topic}  -  ${widget.question!.subTopic}',
+                                      '  |  ${widget.question!
+                                          .topic}  -  ${widget.question!
+                                          .subTopic}',
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -167,25 +176,25 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                           child: Row(children: <Widget>[
                             const Expanded(
                                 child: Divider(
-                              color: Color.fromRGBO(233, 233, 233, 1),
-                              thickness: 2,
-                            )),
+                                  color: Color.fromRGBO(233, 233, 233, 1),
+                                  thickness: 2,
+                                )),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(right: 10, left: 10),
+                              const EdgeInsets.only(right: 10, left: 10),
                               child: Text(widget.question!.questionType!,
                                   style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w700,
                                       fontSize: height * 0.02)),
                             ),
                             const Expanded(
                                 child: Divider(
-                              color: Color.fromRGBO(233, 233, 233, 1),
-                              thickness: 2,
-                            )),
+                                  color: Color.fromRGBO(233, 233, 233, 1),
+                                  thickness: 2,
+                                )),
                           ]),
                         ),
                         Padding(
@@ -224,7 +233,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             child: Text("Advisor",
                                 style: TextStyle(
                                     color:
-                                        const Color.fromRGBO(82, 165, 160, 1),
+                                    const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     fontSize: height * 0.02)),
@@ -239,7 +248,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
                                 labelText:
-                                    'Suggest what to study if answered incorrectly ',
+                                'Suggest what to study if answered incorrectly ',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -272,7 +281,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
+                            const Color.fromRGBO(255, 255, 255, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -297,7 +306,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -322,15 +331,15 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             question.choices = widget.question.choices;
 
                             CreateQuestionModel createQuestion =
-                                CreateQuestionModel(questions: []);
+                            CreateQuestionModel(questions: []);
                             createQuestion.questions?.add(question);
                             SharedPreferences loginData =
-                                await SharedPreferences.getInstance();
+                            await SharedPreferences.getInstance();
                             createQuestion.authorId =
                                 loginData.getInt('userId');
                             ResponseEntity statusCode =
-                                await QnaService.createQuestionTeacherService(
-                                    createQuestion);
+                            await QnaService.createQuestionTeacherService(
+                                createQuestion);
                             int count = 0;
                             Navigator.popUntil(context, (route) {
                               return count++ == 3;
@@ -392,7 +401,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
                   border:
-                      Border.all(color: const Color.fromRGBO(209, 209, 209, 1)),
+                  Border.all(color: const Color.fromRGBO(209, 209, 209, 1)),
                   color: (widget.question.choices![j].rightChoice!)
                       ? const Color.fromRGBO(82, 165, 160, 1)
                       : const Color.fromRGBO(255, 255, 255, 1),

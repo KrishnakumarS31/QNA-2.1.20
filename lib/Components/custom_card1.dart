@@ -29,8 +29,6 @@ class CustomCard1 extends StatelessWidget {
     DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(date);
     String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
     String time = "${tsdate.hour}:${tsdate.minute}";
-    print(datetime);
-    print ("${time} IST");
 
     return Container(
       height: height * 0.1825,

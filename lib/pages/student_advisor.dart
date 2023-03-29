@@ -34,9 +34,12 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
 
   getData() {
     for (int j = 1;
-        j <=
-            Provider.of<Questions>(context, listen: false).totalQuestion.length;
-        j++) {
+    j <=
+        Provider
+            .of<Questions>(context, listen: false)
+            .totalQuestion
+            .length;
+    j++) {
       List<dynamic> correctAns = [];
       for (int i = 0; i < values.data!.questions![j - 1].choices!.length; i++) {
         if (values.data!.questions![j - 1].choices![i].rightChoice!) {
@@ -45,10 +48,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
       }
       correctAns.sort();
       List<dynamic> selectedAns =
-          Provider.of<Questions>(context, listen: false).totalQuestion['$j'][0];
+      Provider
+          .of<Questions>(context, listen: false)
+          .totalQuestion['$j'][0];
       selectedAns.sort();
-      if (listEquals(correctAns, selectedAns)) {
-      } else {
+      if (listEquals(correctAns, selectedAns)) {} else {
         inCorrectAns.add(j);
       }
     }
@@ -56,8 +60,14 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
 
   @override
   Widget build(BuildContext context) {
-    double localWidth = MediaQuery.of(context).size.width;
-    double localHeight = MediaQuery.of(context).size.height;
+    double localWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double localHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -104,9 +114,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               end: Alignment.bottomCenter,
                               begin: Alignment.topCenter,
                               colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ])),
+                                Color.fromRGBO(0, 106, 100, 1),
+                                Color.fromRGBO(82, 165, 160, 1),
+                              ])),
                     ),
                   ),
                   resizeToAvoidBottomInset: true,
@@ -134,572 +144,625 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   for (int index = 1;
-                                      index <
-                                          context
-                                              .watch<QuestionNumProvider>()
-                                              .questionNum;
-                                      index = index + 2)
+                                  index <
+                                      context
+                                          .watch<QuestionNumProvider>()
+                                          .questionNum;
+                                  index = index + 2)
                                     SizedBox(
                                         width: localWidth * 0.4,
                                         child: inCorrectAns.contains(index)
                                             ? ListTile(
-                                                title: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Row(children: [
-                                                        SizedBox(
-                                                            height:
-                                                                localHeight *
-                                                                    0.050),
-                                                        Text(
-                                                            "Q${values.data!.questions![index - 1].questionId}",
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                        .fromRGBO(82,
-                                                                    165, 160, 1),
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.022)),
-                                                        SizedBox(
-                                                            width: localHeight *
-                                                                0.020),
-                                                        Text(
-                                                          "(${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  179,
-                                                                  179,
-                                                                  179,
-                                                                  1),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize:
-                                                                  localHeight *
-                                                                      0.022),
-                                                        ),
-                                                        SizedBox(
-                                                            width: localHeight *
-                                                                0.030),
-                                                        Provider.of<Questions>(
-                                                                            context,
-                                                                            listen:
-                                                                                false)
-                                                                        .totalQuestion["$index"][
-                                                                    2] ==
-                                                                true
-                                                            ? Stack(
-                                                                children: [
-                                                                  Icon(
-                                                                      Icons
-                                                                          .mode_comment_outlined,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          255,
-                                                                          153,
-                                                                          0,
-                                                                          1),
-                                                                      size: localHeight *
-                                                                          0.025),
-                                                                  Positioned(
-                                                                      left: MediaQuery.of(context)
-                                                                              .copyWith()
-                                                                              .size
-                                                                              .width *
-                                                                          0.008,
-                                                                      top: MediaQuery.of(context)
-                                                                              .copyWith()
-                                                                              .size
-                                                                              .height *
-                                                                          0.004,
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .question_mark,
-                                                                        color: const Color.fromRGBO(
-                                                                            255,
-                                                                            153,
-                                                                            0,
-                                                                            1),
-                                                                        size: MediaQuery.of(context).copyWith().size.height *
-                                                                            0.016,
-                                                                      ))
-                                                                ],
-                                                              )
-                                                            : Text(
-                                                                AppLocalizations.of(
-                                                                        context)!
-                                                                    .not_answered,
-                                                                //"Not answered",
-                                                                style: TextStyle(
-                                                                    color: const Color
-                                                                            .fromRGBO(
-                                                                        238,
-                                                                        71,
-                                                                        0,
-                                                                        1),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontSize:
-                                                                        localHeight *
-                                                                            0.024)),
-                                                      ]),
-                                                      SizedBox(
-                                                          height: localHeight *
-                                                              0.010),
-                                                      Text(
-                                                        values
-                                                            .data!
-                                                            .questions![
-                                                                index - 1]
-                                                            .question!,
-                                                        textAlign:
-                                                            TextAlign.start,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                51, 51, 51, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                localHeight *
-                                                                    0.023),
-                                                      ),
-                                                      SizedBox(
-                                                          height: localHeight *
-                                                              0.015),
-                                                    ]),
-                                                subtitle: Column(children: [
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .advisor,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                82,
-                                                                165,
-                                                                160,
-                                                                1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize:
-                                                                localHeight *
-                                                                    0.024)),
-                                                  ),
+                                          title: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment
+                                                  .start,
+                                              children: [
+                                                Row(children: [
                                                   SizedBox(
                                                       height:
-                                                          localHeight * 0.015),
-                                                  Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        RichText(
-                                                            text: TextSpan(
-                                                                children: [
-                                                              TextSpan(
-                                                                  text:
-                                                                      "${AppLocalizations.of(context)!.study_chapter} ${values.data!.subTopic!}\t",
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          51,
-                                                                          51,
-                                                                          51,
-                                                                          1),
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontSize:
-                                                                          localHeight *
-                                                                              0.025)),
-                                                              TextSpan(
-                                                                  text: values
-                                                                      .data!
-                                                                      .questions![
-                                                                          index]
-                                                                      .advisorText,
-                                                                  style: TextStyle(
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          51,
-                                                                          51,
-                                                                          51,
-                                                                          1),
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
-                                                                      fontSize:
-                                                                          localHeight *
-                                                                              0.025)),
-                                                            ])),
-                                                        const SizedBox(
-                                                            height: 10),
-                                                        Row(
+                                                      localHeight *
+                                                          0.050),
+                                                  Text(
+                                                      "Q${values.data!
+                                                          .questions![index - 1]
+                                                          .questionId}",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(82,
+                                                              165, 160, 1),
+                                                          fontFamily:
+                                                          'Inter',
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w700,
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.022)),
+                                                  SizedBox(
+                                                      width: localHeight *
+                                                          0.020),
+                                                  Text(
+                                                    "(${values.data!
+                                                        .questions![index - 1]
+                                                        .questionMarks} ${AppLocalizations
+                                                        .of(context)!.marks})",
+                                                    style: TextStyle(
+                                                        color: const Color
+                                                            .fromRGBO(
+                                                            179,
+                                                            179,
+                                                            179,
+                                                            1),
+                                                        fontFamily:
+                                                        'Inter',
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w500,
+                                                        fontSize:
+                                                        localHeight *
+                                                            0.022),
+                                                  ),
+                                                  SizedBox(
+                                                      width: localHeight *
+                                                          0.030),
+                                                  Provider
+                                                      .of<Questions>(
+                                                      context,
+                                                      listen:
+                                                      false)
+                                                      .totalQuestion["$index"][
+                                                  2] ==
+                                                      true
+                                                      ? Stack(
+                                                    children: [
+                                                      Icon(
+                                                          Icons
+                                                              .mode_comment_outlined,
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              255,
+                                                              153,
+                                                              0,
+                                                              1),
+                                                          size: localHeight *
+                                                              0.025),
+                                                      Positioned(
+                                                          left: MediaQuery
+                                                              .of(context)
+                                                              .copyWith()
+                                                              .size
+                                                              .width *
+                                                              0.008,
+                                                          top: MediaQuery
+                                                              .of(context)
+                                                              .copyWith()
+                                                              .size
+                                                              .height *
+                                                              0.004,
+                                                          child:
+                                                          Icon(
+                                                            Icons
+                                                                .question_mark,
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                255,
+                                                                153,
+                                                                0,
+                                                                1),
+                                                            size: MediaQuery
+                                                                .of(context)
+                                                                .copyWith()
+                                                                .size
+                                                                .height *
+                                                                0.016,
+                                                          ))
+                                                    ],
+                                                  )
+                                                      : Text(
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .not_answered,
+                                                      //"Not answered",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              238,
+                                                              71,
+                                                              0,
+                                                              1),
+                                                          fontFamily:
+                                                          'Inter',
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w600,
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.024)),
+                                                ]),
+                                                SizedBox(
+                                                    height: localHeight *
+                                                        0.010),
+                                                Text(
+                                                  values
+                                                      .data!
+                                                      .questions![
+                                                  index - 1]
+                                                      .question!,
+                                                  textAlign:
+                                                  TextAlign.start,
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          51, 51, 51, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight:
+                                                      FontWeight.w400,
+                                                      fontSize:
+                                                      localHeight *
+                                                          0.023),
+                                                ),
+                                                SizedBox(
+                                                    height: localHeight *
+                                                        0.015),
+                                              ]),
+                                          subtitle: Column(children: [
+                                            Align(
+                                              alignment:
+                                              Alignment.topLeft,
+                                              child: Text(
+                                                  AppLocalizations.of(
+                                                      context)!
+                                                      .advisor,
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          82,
+                                                          165,
+                                                          160,
+                                                          1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize:
+                                                      localHeight *
+                                                          0.024)),
+                                            ),
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.015),
+                                            Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  RichText(
+                                                      text: TextSpan(
                                                           children: [
-                                                            Text("URL:",
+                                                            TextSpan(
+                                                                text:
+                                                                "${AppLocalizations
+                                                                    .of(
+                                                                    context)!
+                                                                    .study_chapter} ${values
+                                                                    .data!
+                                                                    .subTopic!}\t",
                                                                 style: TextStyle(
                                                                     color: const Color
-                                                                            .fromRGBO(
+                                                                        .fromRGBO(
                                                                         51,
                                                                         51,
                                                                         51,
                                                                         1),
                                                                     fontFamily:
-                                                                        'Inter',
+                                                                    'Inter',
                                                                     fontWeight:
-                                                                        FontWeight
-                                                                            .w400,
+                                                                    FontWeight
+                                                                        .w600,
                                                                     fontSize:
-                                                                        localHeight *
-                                                                            0.025)),
-                                                            const SizedBox(
-                                                                width: 5),
-                                                            TextButton(
-                                                              //onPressed: _launchURLBrowser,
-                                                              onPressed: () {},
-                                                              child: Text(
-                                                                  values
-                                                                      .data!
-                                                                      .questions![
-                                                                          index -
-                                                                              1]
-                                                                      .advisorUrl!,
-                                                                  style: TextStyle(
-                                                                      fontFamily:
-                                                                          'Inter',
-                                                                      fontSize:
-                                                                          localHeight *
-                                                                              0.025,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          58,
-                                                                          137,
-                                                                          210,
-                                                                          1),
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w400)),
-                                                            )
-                                                          ],
-                                                        ),
-                                                        const Divider(
-                                                          thickness: 2,
-                                                        ),
-                                                      ])
-                                                ]),
-                                              )
-                                            : const SizedBox(height: 0)
-                                        //: null
+                                                                    localHeight *
+                                                                        0.025)),
+                                                            TextSpan(
+                                                                text: values
+                                                                    .data!
+                                                                    .questions![
+                                                                index]
+                                                                    .advisorText,
+                                                                style: TextStyle(
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        51,
+                                                                        51,
+                                                                        51,
+                                                                        1),
+                                                                    fontFamily:
+                                                                    'Inter',
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.025)),
+                                                          ])),
+                                                  const SizedBox(
+                                                      height: 10),
+                                                  Row(
+                                                    children: [
+                                                      Text("URL:",
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51,
+                                                                  51,
+                                                                  51,
+                                                                  1),
+                                                              fontFamily:
+                                                              'Inter',
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.025)),
+                                                      const SizedBox(
+                                                          width: 5),
+                                                      TextButton(
+                                                        //onPressed: _launchURLBrowser,
+                                                        onPressed: () {},
+                                                        child: Text(
+                                                            values
+                                                                .data!
+                                                                .questions![
+                                                            index -
+                                                                1]
+                                                                .advisorUrl!,
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontSize:
+                                                                localHeight *
+                                                                    0.025,
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    58,
+                                                                    137,
+                                                                    210,
+                                                                    1),
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400)),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ])
+                                          ]),
                                         )
+                                            : const SizedBox(height: 0)
+                                      //: null
+                                    )
                                 ]),
                             Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   for (int index = 2;
-                                      index <
-                                          context
-                                              .watch<QuestionNumProvider>()
-                                              .questionNum;
-                                      index = index + 2)
+                                  index <
+                                      context
+                                          .watch<QuestionNumProvider>()
+                                          .questionNum;
+                                  index = index + 2)
                                     SizedBox(
                                         width: localWidth * 0.4,
                                         child:
-                                            Provider.of<Questions>(context,
-                                                                listen: false)
-                                                            .totalQuestion[
-                                                        '$index'][1] !=
-                                                    const Color(0xff52a5a0)
-                                                ? ListTile(
-                                                    title: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Row(children: [
-                                                            SizedBox(
-                                                                height:
-                                                                    localHeight *
-                                                                        0.050),
-                                                            Text(
-                                                                "Q${values.data!.questions![index - 1].questionId}",
+                                        Provider
+                                            .of<Questions>(context,
+                                            listen: false)
+                                            .totalQuestion[
+                                        '$index'][1] !=
+                                            const Color(0xff52a5a0)
+                                            ? ListTile(
+                                          title: Column(
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment
+                                                  .start,
+                                              children: [
+                                                Row(children: [
+                                                  SizedBox(
+                                                      height:
+                                                      localHeight *
+                                                          0.050),
+                                                  Text(
+                                                      "Q${values.data!
+                                                          .questions![index - 1]
+                                                          .questionId}",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              82,
+                                                              165,
+                                                              160,
+                                                              1),
+                                                          fontFamily:
+                                                          'Inter',
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w700,
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.022)),
+                                                  SizedBox(
+                                                      width:
+                                                      localHeight *
+                                                          0.020),
+                                                  Text(
+                                                    "(${values.data!
+                                                        .questions![index - 1]
+                                                        .questionMarks} ${AppLocalizations
+                                                        .of(context)!.marks})",
+                                                    style: TextStyle(
+                                                        color:
+                                                        const Color
+                                                            .fromRGBO(
+                                                            179,
+                                                            179,
+                                                            179,
+                                                            1),
+                                                        fontFamily:
+                                                        'Inter',
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w500,
+                                                        fontSize:
+                                                        localHeight *
+                                                            0.022),
+                                                  ),
+                                                  SizedBox(
+                                                      width:
+                                                      localHeight *
+                                                          0.030),
+                                                  Provider
+                                                      .of<Questions>(
+                                                      context, listen: false)
+                                                      .totalQuestion[
+                                                  "$index"][
+                                                  2] ==
+                                                      true
+                                                      ? Stack(
+                                                    children: [
+                                                      Icon(
+                                                          Icons
+                                                              .mode_comment_outlined,
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              255,
+                                                              153,
+                                                              0,
+                                                              1),
+                                                          size: localHeight *
+                                                              0.025),
+                                                      Positioned(
+                                                          left: MediaQuery
+                                                              .of(context)
+                                                              .copyWith()
+                                                              .size
+                                                              .width *
+                                                              0.008,
+                                                          top: MediaQuery
+                                                              .of(context)
+                                                              .copyWith()
+                                                              .size
+                                                              .height *
+                                                              0.004,
+                                                          child:
+                                                          Icon(
+                                                            Icons.question_mark,
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                255,
+                                                                153,
+                                                                0,
+                                                                1),
+                                                            size:
+                                                            MediaQuery
+                                                                .of(context)
+                                                                .copyWith()
+                                                                .size
+                                                                .height * 0.016,
+                                                          ))
+                                                    ],
+                                                  )
+                                                      : Text(
+                                                      AppLocalizations
+                                                          .of(
+                                                          context)!
+                                                          .not_answered,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              238,
+                                                              71,
+                                                              0,
+                                                              1),
+                                                          fontFamily:
+                                                          'Inter',
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w600,
+                                                          fontSize:
+                                                          localHeight * 0.024)),
+                                                ]),
+                                                SizedBox(
+                                                    height:
+                                                    localHeight *
+                                                        0.010),
+                                                Text(
+                                                  values
+                                                      .data!
+                                                      .questions![
+                                                  index - 1]
+                                                      .question!,
+                                                  textAlign:
+                                                  TextAlign.start,
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          51,
+                                                          51,
+                                                          51,
+                                                          1),
+                                                      fontFamily:
+                                                      'Inter',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w400,
+                                                      fontSize:
+                                                      localHeight *
+                                                          0.023),
+                                                ),
+                                                SizedBox(
+                                                    height:
+                                                    localHeight *
+                                                        0.015),
+                                              ]),
+                                          subtitle: Column(children: [
+                                            Align(
+                                              alignment:
+                                              Alignment.topLeft,
+                                              child: Text(
+                                                  AppLocalizations.of(
+                                                      context)!
+                                                      .advisor,
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          82,
+                                                          165,
+                                                          160,
+                                                          1),
+                                                      fontFamily:
+                                                      'Inter',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w600,
+                                                      fontSize:
+                                                      localHeight *
+                                                          0.024)),
+                                            ),
+                                            SizedBox(
+                                                height: localHeight *
+                                                    0.015),
+                                            Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  RichText(
+                                                      text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                                text:
+                                                                "${AppLocalizations
+                                                                    .of(
+                                                                    context)!
+                                                                    .study_chapter} ${values
+                                                                    .data!
+                                                                    .subTopic}\t",
                                                                 style: TextStyle(
                                                                     color: const Color
-                                                                            .fromRGBO(
-                                                                        82,
-                                                                        165,
-                                                                        160,
+                                                                        .fromRGBO(
+                                                                        51,
+                                                                        51,
+                                                                        51,
                                                                         1),
                                                                     fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
+                                                                    'Inter',
+                                                                    fontWeight: FontWeight
+                                                                        .w600,
                                                                     fontSize:
-                                                                        localHeight *
-                                                                            0.022)),
-                                                            SizedBox(
-                                                                width:
                                                                     localHeight *
-                                                                        0.020),
-                                                            Text(
-                                                              "(${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
-                                                              style: TextStyle(
-                                                                  color:
-                                                                      const Color
-                                                                              .fromRGBO(
-                                                                          179,
-                                                                          179,
-                                                                          179,
-                                                                          1),
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      localHeight *
-                                                                          0.022),
-                                                            ),
-                                                            SizedBox(
-                                                                width:
+                                                                        0.025)),
+                                                            TextSpan(
+                                                                text: values
+                                                                    .data!
+                                                                    .questions![
+                                                                index]
+                                                                    .advisorText,
+                                                                style: TextStyle(
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        51,
+                                                                        51,
+                                                                        51,
+                                                                        1),
+                                                                    fontFamily:
+                                                                    'Inter',
+                                                                    fontWeight: FontWeight
+                                                                        .w400,
+                                                                    fontSize:
                                                                     localHeight *
-                                                                        0.030),
-                                                            Provider.of<Questions>(context, listen: false).totalQuestion[
-                                                                            "$index"][
-                                                                        2] ==
-                                                                    true
-                                                                ? Stack(
-                                                                    children: [
-                                                                      Icon(
-                                                                          Icons
-                                                                              .mode_comment_outlined,
-                                                                          color: const Color.fromRGBO(
-                                                                              255,
-                                                                              153,
-                                                                              0,
-                                                                              1),
-                                                                          size: localHeight *
-                                                                              0.025),
-                                                                      Positioned(
-                                                                          left: MediaQuery.of(context).copyWith().size.width *
-                                                                              0.008,
-                                                                          top: MediaQuery.of(context).copyWith().size.height *
-                                                                              0.004,
-                                                                          child:
-                                                                              Icon(
-                                                                            Icons.question_mark,
-                                                                            color: const Color.fromRGBO(
-                                                                                255,
-                                                                                153,
-                                                                                0,
-                                                                                1),
-                                                                            size:
-                                                                                MediaQuery.of(context).copyWith().size.height * 0.016,
-                                                                          ))
-                                                                    ],
-                                                                  )
-                                                                : Text(
-                                                                    AppLocalizations
-                                                                            .of(
-                                                                                context)!
-                                                                        .not_answered,
-                                                                    style: TextStyle(
-                                                                        color: const Color
-                                                                                .fromRGBO(
-                                                                            238,
-                                                                            71,
-                                                                            0,
-                                                                            1),
-                                                                        fontFamily:
-                                                                            'Inter',
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w600,
-                                                                        fontSize:
-                                                                            localHeight * 0.024)),
-                                                          ]),
-                                                          SizedBox(
-                                                              height:
-                                                                  localHeight *
-                                                                      0.010),
-                                                          Text(
+                                                                        0.025)),
+                                                          ])),
+                                                  const SizedBox(
+                                                      height: 10),
+                                                  Row(
+                                                    children: [
+                                                      Text("URL:",
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  51,
+                                                                  51,
+                                                                  51,
+                                                                  1),
+                                                              fontFamily:
+                                                              'Inter',
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400,
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.025)),
+                                                      const SizedBox(
+                                                          width: 5),
+                                                      TextButton(
+                                                        //onPressed: _launchURLBrowser,
+                                                        onPressed:
+                                                            () {},
+                                                        child: Text(
                                                             values
                                                                 .data!
-                                                                .questions![
-                                                                    index - 1]
-                                                                .question!,
-                                                            textAlign:
-                                                                TextAlign.start,
+                                                                .questions![index -
+                                                                1]
+                                                                .advisorUrl!,
                                                             style: TextStyle(
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontSize: localHeight *
+                                                                    0.025,
                                                                 color: const Color
-                                                                        .fromRGBO(
-                                                                    51,
-                                                                    51,
-                                                                    51,
+                                                                    .fromRGBO(
+                                                                    58,
+                                                                    137,
+                                                                    210,
                                                                     1),
-                                                                fontFamily:
-                                                                    'Inter',
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .w400,
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.023),
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                                  localHeight *
-                                                                      0.015),
-                                                        ]),
-                                                    subtitle: Column(children: [
-                                                      Align(
-                                                        alignment:
-                                                            Alignment.topLeft,
-                                                        child: Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .advisor,
-                                                            style: TextStyle(
-                                                                color:
-                                                                    const Color
-                                                                            .fromRGBO(
-                                                                        82,
-                                                                        165,
-                                                                        160,
-                                                                        1),
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.024)),
-                                                      ),
-                                                      SizedBox(
-                                                          height: localHeight *
-                                                              0.015),
-                                                      Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            RichText(
-                                                                text: TextSpan(
-                                                                    children: [
-                                                                  TextSpan(
-                                                                      text:
-                                                                          "${AppLocalizations.of(context)!.study_chapter} ${values.data!.subTopic}\t",
-                                                                      style: TextStyle(
-                                                                          color: const Color.fromRGBO(
-                                                                              51,
-                                                                              51,
-                                                                              51,
-                                                                              1),
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          fontWeight: FontWeight
-                                                                              .w600,
-                                                                          fontSize:
-                                                                              localHeight * 0.025)),
-                                                                  TextSpan(
-                                                                      text: values
-                                                                          .data!
-                                                                          .questions![
-                                                                              index]
-                                                                          .advisorText,
-                                                                      style: TextStyle(
-                                                                          color: const Color.fromRGBO(
-                                                                              51,
-                                                                              51,
-                                                                              51,
-                                                                              1),
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          fontWeight: FontWeight
-                                                                              .w400,
-                                                                          fontSize:
-                                                                              localHeight * 0.025)),
-                                                                ])),
-                                                            const SizedBox(
-                                                                height: 10),
-                                                            Row(
-                                                              children: [
-                                                                Text("URL:",
-                                                                    style: TextStyle(
-                                                                        color: const Color.fromRGBO(
-                                                                            51,
-                                                                            51,
-                                                                            51,
-                                                                            1),
-                                                                        fontFamily:
-                                                                            'Inter',
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w400,
-                                                                        fontSize:
-                                                                            localHeight *
-                                                                                0.025)),
-                                                                const SizedBox(
-                                                                    width: 5),
-                                                                TextButton(
-                                                                  //onPressed: _launchURLBrowser,
-                                                                  onPressed:
-                                                                      () {},
-                                                                  child: Text(
-                                                                      values
-                                                                          .data!
-                                                                          .questions![index -
-                                                                              1]
-                                                                          .advisorUrl!,
-                                                                      style: TextStyle(
-                                                                          fontFamily:
-                                                                              'Inter',
-                                                                          fontSize: localHeight *
-                                                                              0.025,
-                                                                          color: const Color.fromRGBO(
-                                                                              58,
-                                                                              137,
-                                                                              210,
-                                                                              1),
-                                                                          fontWeight:
-                                                                              FontWeight.w400)),
-                                                                )
-                                                              ],
-                                                            ),
-                                                            const Divider(
-                                                              thickness: 2,
-                                                            ),
-                                                          ])
-                                                    ]),
-                                                  )
-                                                : const SizedBox(height: 0)
-                                        //: null
+                                                                FontWeight
+                                                                    .w400)),
+                                                      )
+                                                    ],
+                                                  ),
+                                                  const Divider(
+                                                    thickness: 2,
+                                                  ),
+                                                ])
+                                          ]),
                                         )
+                                            : const SizedBox(height: 0)
+                                      //: null
+                                    )
                                 ]),
                           ],
                         ),
@@ -716,13 +779,27 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 color: const Color.fromRGBO(48, 145, 139, 1),
                               ),
                               onPressed: () {
-                                Navigator.push(
+                                values.data!.assessmentType != "test"
+                                    ? Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeft,
+                                        child: StudentMemAnswerSheet(
+                                            questions: values,
+                                            assessmentId:
+                                            widget.assessmentId)))
+                                    : Navigator.push(
                                   context,
                                   PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: StudentMemAnswerSheet(
-                                        questions: values,
-                                        assessmentId: widget.assessmentId),
+                                    type:
+                                    PageTransitionType.rightToLeft,
+                                    child: const CustomDialog(
+                                      title: 'Alert',
+                                      content:
+                                      'Answersheet are shown only in Practice mode',
+                                      button: "OK",
+                                    ),
                                   ),
                                 );
                               },
@@ -739,27 +816,27 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 onPressed: () {
                                   values.data!.assessmentType != "test"
                                       ? Navigator.push(
-                                          context,
-                                          PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              child: StudentMemAnswerSheet(
-                                                  questions: values,
-                                                  assessmentId:
-                                                      widget.assessmentId)))
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType
+                                              .rightToLeft,
+                                          child: StudentMemAnswerSheet(
+                                              questions: values,
+                                              assessmentId:
+                                              widget.assessmentId)))
                                       : Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: const CustomDialog(
-                                              title: 'Alert',
-                                              content:
-                                                  'Answersheet are shown only in Practice mode',
-                                              button: "OK",
-                                            ),
-                                          ),
-                                        );
+                                    context,
+                                    PageTransition(
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: const CustomDialog(
+                                        title: 'Alert',
+                                        content:
+                                        'Answersheet are shown only in Practice mode',
+                                        button: "OK",
+                                      ),
+                                    ),
+                                  );
                                 }),
                             const SizedBox(width: 150),
                             IconButton(
@@ -769,13 +846,27 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 color: const Color.fromRGBO(48, 145, 139, 1),
                               ),
                               onPressed: () {
-                                Navigator.push(
+                                values.data!.assessmentType != "test"
+                                    ? Navigator.push(
+                                    context,
+                                    PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeft,
+                                        child: StudentMemAnswerSheet(
+                                            questions: values,
+                                            assessmentId:
+                                            widget.assessmentId)))
+                                    : Navigator.push(
                                   context,
                                   PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: StudentMemAnswerSheet(
-                                        questions: values,
-                                        assessmentId: widget.assessmentId),
+                                    type:
+                                    PageTransitionType.rightToLeft,
+                                    child: const CustomDialog(
+                                      title: 'Alert',
+                                      content:
+                                      'Answersheet are shown only in Practice mode',
+                                      button: "OK",
+                                    ),
                                   ),
                                 );
                               },
@@ -894,9 +985,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               end: Alignment.bottomCenter,
                               begin: Alignment.topCenter,
                               colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ])),
+                                Color.fromRGBO(0, 106, 100, 1),
+                                Color.fromRGBO(82, 165, 160, 1),
+                              ])),
                     ),
                   ),
                   resizeToAvoidBottomInset: true,
@@ -916,7 +1007,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       .incorrectly_answered,
                                   style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       fontSize: localHeight * 0.02),
@@ -927,255 +1018,265 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           SizedBox(height: localHeight * 0.020),
                           Column(children: [
                             for (int index = 1;
-                                index <=
-                                    context
-                                        .watch<Questions>()
-                                        .totalQuestion
-                                        .length;
-                                index++)
+                            index <=
+                                context
+                                    .watch<Questions>()
+                                    .totalQuestion
+                                    .length;
+                            index++)
                               Container(
                                   child: inCorrectAns.contains(index)
                                       ? ListTile(
-                                          title: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Row(children: [
-                                                  SizedBox(
-                                                      height:
-                                                          localHeight * 0.050),
-                                                  Text("Q$index",
-                                                      style: TextStyle(
-                                                          color: const Color
-                                                                  .fromRGBO(
-                                                              82, 165, 160, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize:
-                                                              localHeight *
-                                                                  0.012)),
-                                                  SizedBox(
-                                                      width:
-                                                          localHeight * 0.020),
-                                                  Text(
-                                                    "(${values.data!.questions![index - 1].questionMarks} ${AppLocalizations.of(context)!.marks})",
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                                .fromRGBO(
-                                                            179, 179, 179, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: localHeight *
-                                                            0.012),
-                                                  ),
-                                                  SizedBox(
-                                                      width:
-                                                          localHeight * 0.030),
-                                                  Provider.of<Questions>(context,
-                                                                      listen: false)
-                                                                  .totalQuestion[
-                                                              "$index"][2] ==
-                                                          true
-                                                      ? Stack(
-                                                          children: [
-                                                            Icon(
-                                                                Icons
-                                                                    .mode_comment_outlined,
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    255,
-                                                                    153,
-                                                                    0,
-                                                                    1),
-                                                                size:
-                                                                    localHeight *
-                                                                        0.025),
-                                                            Positioned(
-                                                                left: MediaQuery.of(
-                                                                            context)
-                                                                        .copyWith()
-                                                                        .size
-                                                                        .width *
-                                                                    0.008,
-                                                                top: MediaQuery.of(
-                                                                            context)
-                                                                        .copyWith()
-                                                                        .size
-                                                                        .height *
-                                                                    0.004,
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .question_mark,
-                                                                  color: const Color
-                                                                          .fromRGBO(
-                                                                      255,
-                                                                      153,
-                                                                      0,
-                                                                      1),
-                                                                  size: MediaQuery.of(
-                                                                              context)
-                                                                          .copyWith()
-                                                                          .size
-                                                                          .height *
-                                                                      0.016,
-                                                                ))
-                                                          ],
-                                                        )
-                                                      : Text(
-                                                          AppLocalizations.of(context)!
-                                                              .not_answered,
-                                                          //"Not answered",
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  238,
-                                                                  71,
-                                                                  0,
-                                                                  1),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize:
-                                                                  localHeight *
-                                                                      0.014)),
-                                                ]),
-                                                SizedBox(
-                                                    height:
-                                                        localHeight * 0.010),
-                                                Text(
-                                                  values
-                                                      .data!
-                                                      .questions![index - 1]
-                                                      .question!,
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              51, 51, 51, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize:
-                                                          localHeight * 0.013),
-                                                ),
-                                                SizedBox(
-                                                    height:
-                                                        localHeight * 0.015),
-                                              ]),
-                                          subtitle: Column(children: [
-                                            Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .advisor,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize:
-                                                          localHeight * 0.014)),
+                                    title: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Row(children: [
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.050),
+                                            Text("Q$index",
+                                                style: TextStyle(
+                                                    color: const Color
+                                                        .fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight:
+                                                    FontWeight.w700,
+                                                    fontSize:
+                                                    localHeight *
+                                                        0.012)),
+                                            SizedBox(
+                                                width:
+                                                localHeight * 0.020),
+                                            Text(
+                                              "(${values.data!
+                                                  .questions![index - 1]
+                                                  .questionMarks} ${AppLocalizations
+                                                  .of(context)!.marks})",
+                                              style: TextStyle(
+                                                  color: const Color
+                                                      .fromRGBO(
+                                                      179, 179, 179, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight:
+                                                  FontWeight.w500,
+                                                  fontSize: localHeight *
+                                                      0.012),
                                             ),
                                             SizedBox(
-                                                height: localHeight * 0.015),
-                                            Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  RichText(
-                                                      text: TextSpan(children: [
-                                                    TextSpan(
-                                                        text:
-                                                            "${AppLocalizations.of(context)!.study_chapter} ${values.data!.subTopic}\t",
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                51, 51, 51, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize:
-                                                                localHeight *
-                                                                    0.015)),
-                                                    TextSpan(
-                                                        text: values
-                                                            .data!
-                                                            .questions![
-                                                                index - 1]
-                                                            .advisorText,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                51, 51, 51, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                localHeight *
-                                                                    0.015)),
-                                                  ])),
-                                                  const SizedBox(height: 10),
-                                                  Row(
-                                                    children: [
-                                                      Text("URL:",
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                      .fromRGBO(
-                                                                  51,
-                                                                  51,
-                                                                  51,
-                                                                  1),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                              fontSize:
-                                                                  localHeight *
-                                                                      0.015)),
-                                                      const SizedBox(width: 5),
-                                                      TextButton(
-                                                        //onPressed: _launchURLBrowser,
-                                                        onPressed: () {},
-                                                        child: Text(
-                                                            values
-                                                                .data!
-                                                                .questions![
-                                                                    index - 1]
-                                                                .advisorUrl!,
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.015,
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    58,
-                                                                    137,
-                                                                    210,
-                                                                    1),
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400)),
-                                                      )
-                                                    ],
-                                                  ),
-                                                  const Divider(
-                                                    thickness: 2,
-                                                  ),
-                                                ])
+                                                width:
+                                                localHeight * 0.030),
+                                            Provider
+                                                .of<Questions>(context,
+                                                listen: false)
+                                                .totalQuestion[
+                                            "$index"][2] ==
+                                                true
+                                                ? Stack(
+                                              children: [
+                                                Icon(
+                                                    Icons
+                                                        .mode_comment_outlined,
+                                                    color: const Color
+                                                        .fromRGBO(
+                                                        255,
+                                                        153,
+                                                        0,
+                                                        1),
+                                                    size:
+                                                    localHeight *
+                                                        0.025),
+                                                Positioned(
+                                                    left: MediaQuery
+                                                        .of(
+                                                        context)
+                                                        .copyWith()
+                                                        .size
+                                                        .width *
+                                                        0.008,
+                                                    top: MediaQuery
+                                                        .of(
+                                                        context)
+                                                        .copyWith()
+                                                        .size
+                                                        .height *
+                                                        0.004,
+                                                    child: Icon(
+                                                      Icons
+                                                          .question_mark,
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          255,
+                                                          153,
+                                                          0,
+                                                          1),
+                                                      size: MediaQuery
+                                                          .of(
+                                                          context)
+                                                          .copyWith()
+                                                          .size
+                                                          .height *
+                                                          0.016,
+                                                    ))
+                                              ],
+                                            )
+                                                : Text(
+                                                AppLocalizations.of(context)!
+                                                    .not_answered,
+                                                //"Not answered",
+                                                style: TextStyle(
+                                                    color: const Color
+                                                        .fromRGBO(
+                                                        238,
+                                                        71,
+                                                        0,
+                                                        1),
+                                                    fontFamily:
+                                                    'Inter',
+                                                    fontWeight:
+                                                    FontWeight
+                                                        .w600,
+                                                    fontSize:
+                                                    localHeight *
+                                                        0.014)),
                                           ]),
-                                        )
-                                      : const SizedBox(height: 0)
-                                  //: null
+                                          SizedBox(
+                                              height:
+                                              localHeight * 0.010),
+                                          Text(
+                                            values
+                                                .data!
+                                                .questions![index - 1]
+                                                .question!,
+                                            textAlign: TextAlign.start,
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    51, 51, 51, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight:
+                                                FontWeight.w400,
+                                                fontSize:
+                                                localHeight * 0.013),
+                                          ),
+                                          SizedBox(
+                                              height:
+                                              localHeight * 0.015),
+                                        ]),
+                                    subtitle: Column(children: [
+                                      Align(
+                                        alignment: Alignment.topLeft,
+                                        child: Text(
+                                            AppLocalizations.of(context)!
+                                                .advisor,
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight:
+                                                FontWeight.w600,
+                                                fontSize:
+                                                localHeight * 0.014)),
+                                      ),
+                                      SizedBox(
+                                          height: localHeight * 0.015),
+                                      Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            RichText(
+                                                text: TextSpan(children: [
+                                                  TextSpan(
+                                                      text:
+                                                      "${AppLocalizations.of(
+                                                          context)!
+                                                          .study_chapter} ${values
+                                                          .data!.subTopic}\t",
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              51, 51, 51, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                          FontWeight.w600,
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.015)),
+                                                  TextSpan(
+                                                      text: values
+                                                          .data!
+                                                          .questions![
+                                                      index - 1]
+                                                          .advisorText,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              51, 51, 51, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.015)),
+                                                ])),
+                                            const SizedBox(height: 10),
+                                            Row(
+                                              children: [
+                                                Text("URL:",
+                                                    style: TextStyle(
+                                                        color: const Color
+                                                            .fromRGBO(
+                                                            51,
+                                                            51,
+                                                            51,
+                                                            1),
+                                                        fontFamily:
+                                                        'Inter',
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w400,
+                                                        fontSize:
+                                                        localHeight *
+                                                            0.015)),
+                                                const SizedBox(width: 5),
+                                                TextButton(
+                                                  //onPressed: _launchURLBrowser,
+                                                  onPressed: () {},
+                                                  child: Text(
+                                                      values
+                                                          .data!
+                                                          .questions![
+                                                      index - 1]
+                                                          .advisorUrl!,
+                                                      style: TextStyle(
+                                                          fontFamily:
+                                                          'Inter',
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.015,
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              58,
+                                                              137,
+                                                              210,
+                                                              1),
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w400)),
+                                                )
+                                              ],
+                                            ),
+                                            const Divider(
+                                              thickness: 2,
+                                            ),
+                                          ])
+                                    ]),
                                   )
+                                      : const SizedBox(height: 0)
+                                //: null
+                              )
                           ]),
                           const SizedBox(height: 25),
                           const Divider(
@@ -1190,13 +1291,27 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   color: const Color.fromRGBO(48, 145, 139, 1),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
+                                  values.data!.assessmentType != "test"
+                                      ? Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType
+                                              .rightToLeft,
+                                          child: StudentMemAnswerSheet(
+                                              questions: values,
+                                              assessmentId:
+                                              widget.assessmentId)))
+                                      : Navigator.push(
                                     context,
                                     PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: StudentMemAnswerSheet(
-                                          questions: values,
-                                          assessmentId: widget.assessmentId),
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: const CustomDialog(
+                                        title: 'Alert',
+                                        content:
+                                        'Answersheet are shown only in Practice mode',
+                                        button: "OK",
+                                      ),
                                     ),
                                   );
                                 },
@@ -1214,27 +1329,27 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   onPressed: () {
                                     values.data!.assessmentType != "test"
                                         ? Navigator.push(
-                                            context,
-                                            PageTransition(
-                                                type: PageTransitionType
-                                                    .rightToLeft,
-                                                child: StudentMemAnswerSheet(
-                                                    questions: values,
-                                                    assessmentId:
-                                                        widget.assessmentId)))
+                                        context,
+                                        PageTransition(
+                                            type: PageTransitionType
+                                                .rightToLeft,
+                                            child: StudentMemAnswerSheet(
+                                                questions: values,
+                                                assessmentId:
+                                                widget.assessmentId)))
                                         : Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              child: const CustomDialog(
-                                                title: 'Alert',
-                                                content:
-                                                    'Answersheet are shown only in Practice mode',
-                                                button: "OK",
-                                              ),
-                                            ),
-                                          );
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeft,
+                                        child: const CustomDialog(
+                                          title: 'Alert',
+                                          content:
+                                          'Answersheet are shown only in Practice mode',
+                                          button: "OK",
+                                        ),
+                                      ),
+                                    );
                                   }),
                               const SizedBox(width: 150),
                               IconButton(
@@ -1244,13 +1359,27 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   color: const Color.fromRGBO(48, 145, 139, 1),
                                 ),
                                 onPressed: () {
-                                  Navigator.push(
+                                  values.data!.assessmentType != "test"
+                                      ? Navigator.push(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType
+                                              .rightToLeft,
+                                          child: StudentMemAnswerSheet(
+                                              questions: values,
+                                              assessmentId:
+                                              widget.assessmentId)))
+                                      : Navigator.push(
                                     context,
                                     PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: StudentMemAnswerSheet(
-                                          questions: values,
-                                          assessmentId: widget.assessmentId),
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: const CustomDialog(
+                                        title: 'Alert',
+                                        content:
+                                        'Answersheet are shown only in Practice mode',
+                                        button: "OK",
+                                      ),
                                     ),
                                   );
                                 },
@@ -1284,7 +1413,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       left: localHeight * 0.12),
                                   child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           AppLocalizations.of(context)!
@@ -1305,37 +1434,37 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   text: ' “ ',
                                                   style: TextStyle(
                                                       color:
-                                                          const Color.fromRGBO(
-                                                              255, 255, 255, 1),
+                                                      const Color.fromRGBO(
+                                                          255, 255, 255, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight:
-                                                          FontWeight.w800,
+                                                      FontWeight.w800,
                                                       fontSize:
-                                                          localHeight * 0.030)),
+                                                      localHeight * 0.030)),
                                               TextSpan(
                                                   text: AppLocalizations.of(
-                                                          context)!
+                                                      context)!
                                                       .retry_msg,
                                                   style: TextStyle(
                                                       color:
-                                                          const Color.fromRGBO(
-                                                              255, 255, 255, 1),
+                                                      const Color.fromRGBO(
+                                                          255, 255, 255, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight:
-                                                          FontWeight.w400,
+                                                      FontWeight.w400,
                                                       fontSize:
-                                                          localHeight * 0.015)),
+                                                      localHeight * 0.015)),
                                               TextSpan(
                                                   text: ' ” ',
                                                   style: TextStyle(
                                                       color:
-                                                          const Color.fromRGBO(
-                                                              255, 255, 255, 1),
+                                                      const Color.fromRGBO(
+                                                          255, 255, 255, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight:
-                                                          FontWeight.w800,
+                                                      FontWeight.w800,
                                                       fontSize:
-                                                          localHeight * 0.030)),
+                                                      localHeight * 0.030)),
                                             ])),
                                       ]),
                                 )
@@ -1350,24 +1479,24 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
     );
   }
 
-  // _launchURLBrowser() async {
-  //   const url = 'https://flutterdevs.com/';
-  //   if (await canLaunch(url)) {
-  //     await launch(url, forceSafariVC: true, forceWebView: true);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
+// _launchURLBrowser() async {
+//   const url = 'https://flutterdevs.com/';
+//   if (await canLaunch(url)) {
+//     await launch(url, forceSafariVC: true, forceWebView: true);
+//   } else {
+//     throw 'Could not launch $url';
+//   }
+// }
 }
 
 class Question {
   String qnNumber, question, answer, mark, chapterNo, remarks, notesUrl;
-  Question(
-      {required this.qnNumber,
-      required this.question,
-      required this.answer,
-      required this.chapterNo,
-      required this.remarks,
-      required this.notesUrl,
-      required this.mark});
+
+  Question({required this.qnNumber,
+    required this.question,
+    required this.answer,
+    required this.chapterNo,
+    required this.remarks,
+    required this.notesUrl,
+    required this.mark});
 }

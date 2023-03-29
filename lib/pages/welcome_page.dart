@@ -16,6 +16,7 @@ import "package:shared_preferences/shared_preferences.dart";
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key, required this.setLocale}) : super(key: key);
   final void Function(Locale locale) setLocale;
+
   @override
   State<WelcomePage> createState() => _WelcomePageState();
 }
@@ -29,15 +30,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Future<bool> checkIfAlreadyLoggedIn(bool teacherClick) async {
     loginData = await SharedPreferences.getInstance();
     newUser = (loginData?.getBool('login') ?? true);
-    // print("role");
-    // print(loginData?.getString('role'));
-    // print(newUser == false && loginData?.getString('role') == 'teacher');
-    // if(newUser==false && loginData?.getString('role') != 'teacher') {
-    //   print("Inside If");
-    //   return false;
-    // }
     if (newUser == false && loginData?.getString('role') == 'teacher') {
-      print("Inside IFF");
       showDialog(
           context: context,
           builder: (context) {
@@ -336,8 +329,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                                           bool status =
                                                               await checkIfAlreadyLoggedIn(
                                                                   teacherClick);
-                                                          print("Status");
-                                                          print(status);
                                                           if (status == false) {
                                                             Navigator.push(
                                                               context,

@@ -22,6 +22,7 @@ class SplashScreenState extends State<SplashScreen> {
   late StreamSubscription subscription;
   var isDeviceConnected = false;
   bool isAlertSet = false;
+
   @override
   void initState() {
     super.initState();

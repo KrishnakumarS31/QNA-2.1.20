@@ -12,6 +12,7 @@ class StudentRegisVerifyOtpPage extends StatefulWidget {
       : super(key: key);
 
   final String email;
+
   @override
   StudentRegisVerifyOtpPageState createState() =>
       StudentRegisVerifyOtpPageState();
@@ -24,6 +25,7 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
   bool error = false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
+
   @override
   void initState() {
     super.initState();

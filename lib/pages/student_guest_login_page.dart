@@ -8,6 +8,7 @@ import '../Components/end_drawer_menu_pre_login.dart';
 
 class StudentGuestLogin extends StatefulWidget {
   const StudentGuestLogin({super.key, required this.setLocale});
+
   final void Function(Locale locale) setLocale;
 
   @override
@@ -23,6 +24,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
   TextEditingController rollNumController = TextEditingController();
   bool agree = false;
   String name = '';
+
   @override
   void initState() {
     super.initState();

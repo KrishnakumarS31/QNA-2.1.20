@@ -26,6 +26,7 @@ class TeacherAddMyQuestionBankForAssessment extends StatefulWidget {
   final bool? assessment;
   final String? assessmentStatus;
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherAddMyQuestionBankForAssessmentState createState() =>
       TeacherAddMyQuestionBankForAssessmentState();
@@ -96,7 +97,8 @@ class TeacherAddMyQuestionBankForAssessmentState
             await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
-          Provider.of<QuestionPrepareProvider>(context, listen: false).reSetQuestionList();
+          Provider.of<QuestionPrepareProvider>(context, listen: false)
+              .reSetQuestionList();
           Navigator.push(
             context,
             PageTransition(

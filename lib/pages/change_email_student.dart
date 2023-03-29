@@ -30,8 +30,14 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
 
     return WillPopScope(
         onWillPop: () async => false,
@@ -68,9 +74,9 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             resizeToAvoidBottomInset: false,
@@ -126,7 +132,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 labelText: "NEW EMAIL ID",
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
@@ -168,7 +174,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 labelText: "CONFIRM NEW EMAIL ID",
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
@@ -239,7 +245,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                   Text("Password will remain unchanged.",
                                       style: TextStyle(
                                           color:
-                                              Color.fromRGBO(153, 153, 153, 1),
+                                          Color.fromRGBO(153, 153, 153, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: 14)),
@@ -250,7 +256,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
+                          const Color.fromRGBO(82, 165, 160, 1),
                           minimumSize: Size(width * 0.77, height * 0.06),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(39),
@@ -260,8 +266,8 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                           bool valid = formKey.currentState!.validate();
                           if (valid || newEmail.text == reNewEmail.text) {
                             ResponseEntity response =
-                                await QnaService.updatePassword(oldEmail.text,
-                                    newEmail.text, widget.userId);
+                            await QnaService.updatePassword(oldEmail.text,
+                                newEmail.text, widget.userId);
                             if (response.code == 200) {
                               Navigator.push(
                                 context,
@@ -301,7 +307,10 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
 
   showAlertDialog(BuildContext context) {
     // set up the button
-    double height = MediaQuery.of(context).size.height;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(

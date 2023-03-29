@@ -7,16 +7,17 @@ import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/teacher_forgot_password.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../DataSource/http_url.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'teacher_forgot_password_email.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key, required this.setLocale});
+
   final void Function(Locale locale) setLocale;
 
   @override
@@ -109,7 +110,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: height * 0.3,
+                      height: height * 0.35,
                       width: width,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
@@ -127,15 +128,31 @@ class TeacherLoginState extends State<TeacherLogin> {
                         children: [
                           SizedBox(height: height * 0.09),
                           Align(
-                            alignment: Alignment.topCenter,
+                            alignment: Alignment.center,
                             child: Container(
-                              padding: const EdgeInsets.all(0.0),
-                              height: height * 0.16,
-                              width: width * 0.30,
-                              child: Image.asset(
-                                  "assets/images/question_mark_logo.png"),
-                            ),
+                                padding: const EdgeInsets.all(0.0),
+                                height: height * 0.2,
+                                width: width * 0.45,
+                                child:
+                                    Image.asset("assets/images/qna_logo.png")),
+                            // Container(
+                            //   padding: const EdgeInsets.all(0.0),
+                            //   height: height * 0.2,
+                            //   width: width * 0.45,
+                            //   child: Image.asset(
+                            //       "assets/images/qna_logo.png"),
+                            // ),
                           ),
+                          // Align(
+                          //   alignment: Alignment.topCenter,
+                          //   child: Container(
+                          //     padding: const EdgeInsets.all(0.0),
+                          //     height: height * 0.16,
+                          //     width: width * 0.30,
+                          //     child: Image.asset(
+                          //         "assets/images/question_mark_logo.png"),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -297,7 +314,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     )),
                               ],
                             ),
-                            SizedBox(height: height * 0.025),
+                            SizedBox(height: height * 0.02),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -326,7 +343,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: height * 0.02),
+                            SizedBox(height: height * 0.01),
                           ],
                         ),
                       ),
@@ -551,29 +568,38 @@ class TeacherLoginState extends State<TeacherLogin> {
                             fontWeight: FontWeight.w800),
                       ),
                     ),
-                    SizedBox(height: height * 0.03),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: const TeacherRegistrationPage(),
+                    SizedBox(height: height * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(width: width * 0.3),
+                        IconButton(
+                          icon: Icon(
+                            Icons.edit_note_sharp,
+                            color: const Color.fromRGBO(141, 167, 167, 1),
+                            size: height * 0.034,
                           ),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              Icons.edit_note_sharp,
-                              color: const Color.fromRGBO(141, 167, 167, 1),
-                              size: height * 0.034,
-                            ),
-                            onPressed: () {},
-                          ),
-                          Text(AppLocalizations.of(context)!.register,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: const TeacherRegistrationPage(),
+                              ),
+                            );
+                          },
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: const TeacherRegistrationPage(),
+                              ),
+                            );
+                          },
+                          child: Text(AppLocalizations.of(context)!.register,
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .bodyLarge
@@ -583,8 +609,23 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       fontSize: height * 0.0225))),
-                        ],
-                      ),
+                        ),
+                        SizedBox(width: width * 0.15),
+                        domainName == "https://dev.qnatest.com"
+                            ? Container(
+                                padding: const EdgeInsets.all(0.0),
+                                height: height * 0.08,
+                                width: width * 0.2,
+                                child:
+                                    Image.asset("assets/images/SSSH-black.png"),
+                              )
+                            : Container(
+                                padding: const EdgeInsets.all(0.0),
+                                height: height * 0.08,
+                                width: width * 0.2,
+                                child: Image.asset("assets/images/SSSUHE.png"),
+                              ),
+                      ],
                     ),
                   ]),
             )));

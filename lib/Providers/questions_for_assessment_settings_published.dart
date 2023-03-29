@@ -20,14 +20,12 @@ class QuestionsForAssessmentSettingsPublishedProvider extends ChangeNotifier {
 
   void deleteQuestionList(int id) {
     _questionList.removeAt(id);
-    print("deleted");
     notifyListeners();
   }
 
   void updateQuestionList(
       int id, QuestionEntityForAssessmentSettingsPublished demoQuestionModel) {
     _questionList[id] = demoQuestionModel;
-    print("updated");
     notifyListeners();
   }
 

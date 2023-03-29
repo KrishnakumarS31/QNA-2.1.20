@@ -32,8 +32,7 @@ class QnaRepo {
     if (response.statusCode == 200) {
       loginModel = loginModelFromJson(temp);
       loginData.setString('token', loginModel.data.accessToken);
-    }
-    else {
+    } else {
       loginModel = loginModelFromJson(temp);
     }
     return loginModel;
@@ -121,8 +120,7 @@ class QnaRepo {
     if (response.statusCode != null) {
       String temp = await response.stream.bytesToString();
       responses = staticResponseFromJson(temp);
-    } else {
-    }
+    } else {}
     return responses;
   }
 
@@ -161,7 +159,6 @@ class QnaRepo {
 
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
-      print(temp);
       responses = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
@@ -282,7 +279,7 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> getAllAssessment(
-      int pageLimit, int pageNumber,String search) async {
+      int pageLimit, int pageNumber, String search) async {
     ResponseEntity allAssessment = ResponseEntity();
     SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
@@ -303,13 +300,13 @@ class QnaRepo {
       String? pass = loginData.getString('password');
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
-      getAllAssessment(pageLimit, pageNumber,search);
+      getAllAssessment(pageLimit, pageNumber, search);
     } else {}
     return allAssessment;
   }
 
   static Future<ResponseEntity> getAllQuestion(
-      int pageLimit, int pageNumber,String search) async {
+      int pageLimit, int pageNumber, String search) async {
     ResponseEntity responseEntity = ResponseEntity();
     SharedPreferences loginData = await SharedPreferences.getInstance();
     var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
@@ -329,7 +326,7 @@ class QnaRepo {
       String? pass = loginData.getString('password');
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
-      getAllQuestion(pageLimit, pageNumber,search);
+      getAllQuestion(pageLimit, pageNumber, search);
     } else {}
     return responseEntity;
   }

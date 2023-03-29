@@ -10,6 +10,7 @@ class TeacherForgotPassword extends StatefulWidget {
 
   final String email;
   final String otp;
+
   @override
   TeacherForgotPasswordState createState() => TeacherForgotPasswordState();
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 GetResultModel getResultModelFromJson(String str) =>
     GetResultModel.fromJson(json.decode(str));
+
 String getResultModelToJson(GetResultModel data) => json.encode(data.toJson());
 
 class GetResultModel {

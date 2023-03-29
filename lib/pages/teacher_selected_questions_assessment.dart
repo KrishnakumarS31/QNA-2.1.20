@@ -9,6 +9,7 @@ import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Entity/Teacher/response_entity.dart';
+
 //import '../Entity/Teacher/result_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
@@ -43,6 +44,7 @@ class TeacherSelectedQuestionAssessmentState
   TextEditingController topicController = TextEditingController();
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;
@@ -144,8 +146,6 @@ class TeacherSelectedQuestionAssessmentState
   void initState() {
     super.initState();
     getData();
-    print("Init State");
-    print(widget!.questions);
     subjectController.text = assessment.subject!;
     classController.text = assessment.createAssessmentModelClass!;
     topicController.text = assessment.topic!;

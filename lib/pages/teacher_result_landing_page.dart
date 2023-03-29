@@ -31,8 +31,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   @override
   void initState() {
     super.initState();
-    print("allResults.length");
-    print(allResults.length);
     Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
@@ -200,8 +198,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
       results.addAll(allResults);
       loading = false;
       pageLimit++;
-      print(results.length);
-      print('results.length');
     });
   }
 
@@ -379,68 +375,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      // Row(children: <Widget>[
-                      //   const Expanded(
-                      //       child: Divider(
-                      //     color: Color.fromRGBO(233, 233, 233, 1),
-                      //     thickness: 2,
-                      //   )),
-                      //   Padding(
-                      //     padding: const EdgeInsets.only(right: 10, left: 10),
-                      //     child: Text(
-                      //       'NOV 2022',
-                      //       style: TextStyle(
-                      //           fontSize: height * 0.0187,
-                      //           fontFamily: "Inter",
-                      //           fontWeight: FontWeight.w700),
-                      //     ),
-                      //   ),
-                      //   const Expanded(
-                      //       child: Divider(
-                      //     color: Color.fromRGBO(233, 233, 233, 1),
-                      //     thickness: 2,
-                      //   )),
-                      // ]),
-                      // SizedBox(
-                      //   height: height * 0.01,
-                      // ),
-                      // SizedBox(
-                      //   height: height * 0.02,
-                      // ),
-                      // Align(
-                      //   alignment: Alignment.centerRight,
-                      //   child: GestureDetector(
-                      //     onTap: () {
-                      //       getData();
-                      //     },
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.end,
-                      //       children: [
-                      //         Text(
-                      //           'View More',
-                      //           style: TextStyle(
-                      //               color: const Color.fromRGBO(28, 78, 80, 1),
-                      //               fontSize: height * 0.0187,
-                      //               fontFamily: "Inter",
-                      //               fontWeight: FontWeight.w600),
-                      //         ),
-                      //         IconButton(
-                      //           icon: Icon(
-                      //             Icons.chevron_right,
-                      //             color: const Color.fromRGBO(141, 167, 167, 1),
-                      //             size: height * 0.034,
-                      //           ),
-                      //           onPressed: () {
-                      //             print('wefewf');
-                      //           },
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-                      // SizedBox(
-                      //   height: height * 0.02,
-                      // ),
                       SizedBox(
                         height: height * 0.03,
                       ),

@@ -12,7 +12,7 @@ class StudentForgotPassword extends StatefulWidget {
       {Key? key,
       required this.email,
       required this.otp,
-        required this.isFromStudent,
+      required this.isFromStudent,
       required this.setLocale})
       : super(key: key);
 
@@ -309,24 +309,23 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                 fontSize: height * 0.018),
           ),
           onPressed: () {
-           if(widget.isFromStudent == true) {
-             Navigator.push(
-               context,
-               PageTransition(
-                 type: PageTransitionType.rightToLeft,
-                 child: StudentMemberLoginPage(setLocale: widget.setLocale),
-               ),
-             );
-           }
-           else if(widget.isFromStudent == false) {
-             Navigator.push(
-               context,
-               PageTransition(
-                 type: PageTransitionType.rightToLeft,
-                 child: TeacherLogin(setLocale: widget.setLocale),
-               ),
-             );
-           }
+            if (widget.isFromStudent == true) {
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: StudentMemberLoginPage(setLocale: widget.setLocale),
+                ),
+              );
+            } else if (widget.isFromStudent == false) {
+              Navigator.push(
+                context,
+                PageTransition(
+                  type: PageTransitionType.rightToLeft,
+                  child: TeacherLogin(setLocale: widget.setLocale),
+                ),
+              );
+            }
             //Navigator.of(context).pop();
           },
         )

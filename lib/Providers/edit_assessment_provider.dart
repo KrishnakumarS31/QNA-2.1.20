@@ -14,7 +14,6 @@ class EditAssessmentProvider extends ChangeNotifier {
 
   void addQuestion(Question question) {
     _assessment.questions?.add(question);
-    print(_assessment.toString());
     notifyListeners();
   }
 
@@ -25,7 +24,6 @@ class EditAssessmentProvider extends ChangeNotifier {
     }
     int index = quesIds.indexOf(questionId);
     _assessment.questions!.removeAt(index);
-    print(_assessment);
     notifyListeners();
   }
 }

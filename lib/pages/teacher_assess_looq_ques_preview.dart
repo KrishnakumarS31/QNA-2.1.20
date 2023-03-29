@@ -10,10 +10,12 @@ class TeacherAssessLooqQuesPreview extends StatefulWidget {
       required this.setLocale,
       required this.finalQuestion,
       this.assessmentStatus});
+
   Question finalQuestion;
   bool? assessment;
   final void Function(Locale locale) setLocale;
   final String? assessmentStatus;
+
   @override
   TeacherAssessLooqQuesPreviewState createState() =>
       TeacherAssessLooqQuesPreviewState();
@@ -331,22 +333,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
       children: [
         for (int j = 0; j < widget.finalQuestion!.choices!.length; j++)
           GestureDetector(
-            onTap: () {
-              // setState(() {
-              // print("dsfsdf");
-              // print(widget.selected);
-              // if(widget.selected.contains(j)){
-              //   widget.selected.remove(j);
-              //   print("remove");
-              //   print(widget.selected);
-              // }
-              // else{
-              //   widget.selected.add(j);
-              //   print("add");
-              //   print(widget.selected);
-              // }
-              // });
-            },
+            onTap: () {},
             child: Padding(
               padding: EdgeInsets.only(bottom: widget.height * 0.013),
               child: Container(

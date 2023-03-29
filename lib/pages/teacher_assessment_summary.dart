@@ -23,6 +23,7 @@ class TeacherAssessmentSummary extends StatefulWidget {
     required this.setLocale,
   }) : super(key: key);
   final void Function(Locale locale) setLocale;
+
   @override
   TeacherAssessmentSummaryState createState() =>
       TeacherAssessmentSummaryState();
@@ -35,6 +36,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
   int totalQues = 0;
   int totalMark = 0;
+
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;

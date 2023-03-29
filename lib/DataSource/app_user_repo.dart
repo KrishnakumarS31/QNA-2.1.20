@@ -17,7 +17,6 @@ class AppUserRepo {
     List<Map<String, dynamic>> result = await db.query(dbConnection.appUser);
     await db.close();
     return List.generate(result.length, (i) {
-      //print(AppUser.fromMap(result[i]));
       return AppUser.fromMap(result[i]);
     });
   }
@@ -51,8 +50,6 @@ class AppUserRepo {
   }
 
   Future<int> updateLocale(AppUser user) async {
-    //print(user);
-    //print("just");
     final Database db = await dbConnection.createDatabase();
     return await db.rawUpdate(
         'UPDATE app_user SET locale = "${user.locale}" WHERE id = "${user.id}"');

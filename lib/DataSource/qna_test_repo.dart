@@ -24,10 +24,7 @@ class QnaTestRepo {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
-    } else {
-      print(response.reasonPhrase);
-    }
+    } else {}
     return response.statusCode;
   }
 
@@ -51,11 +48,6 @@ class QnaTestRepo {
     }
 
     return questionPaperModel;
-    //}
-    // else {
-    //   print(response.reasonPhrase);
-    // }
-    //return questionPaperModel;
   }
 
   static Future<QuestionPaperModel> getQuestionPaperForPublishedAssessmentsPage(
@@ -71,7 +63,6 @@ class QnaTestRepo {
     http.StreamedResponse response = await request.send();
     String value = await response.stream.bytesToString();
     questionPaperModel = questionPaperModelFromJson(value);
-    print(response.statusCode);
     if (response.statusCode == 401) {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
@@ -80,10 +71,5 @@ class QnaTestRepo {
     }
 
     return questionPaperModel;
-    //}
-    // else {
-    //   print(response.reasonPhrase);
-    // }
-    //return questionPaperModel;
   }
 }

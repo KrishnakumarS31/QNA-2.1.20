@@ -1,5 +1,5 @@
-//const domainName = "https://dev.qnatest.com";
-const domainName = "https://sssuhe.qnatest.com";
+const domainName = "https://dev.qnatest.com";
+//const domainName = "https://sssuhe.qnatest.com";
 const usersDomain = "$domainName/api/v1/users";
 const assessmentDomain = "$domainName/api/v1/assessment";
 
@@ -13,4 +13,3 @@ const questionUrl = '$assessmentDomain/questions';
 const allQuestionUrl = '$assessmentDomain/questions/all';
 const assessmentLooqUrl = '$assessmentDomain/assessments-looq';
 const resultsUrl = '$assessmentDomain/results';
-

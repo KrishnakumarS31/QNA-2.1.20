@@ -18,7 +18,9 @@ import '../Services/qna_service.dart';
 
 class StudentSelectionPage extends StatefulWidget {
   const StudentSelectionPage({super.key, required this.setLocale});
+
   final void Function(Locale locale) setLocale;
+
   @override
   StudentSelectionPageState createState() => StudentSelectionPageState();
 }
@@ -27,12 +29,14 @@ enum SingingCharacter { guest, member }
 
 class StudentSelectionPageState extends State<StudentSelectionPage> {
   String? _groupValue = '1';
+
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
 
   SharedPreferences? loginData;
   late bool newUser;
+
   Future<bool> checkIfAlreadyLoggedIn() async {
     loginData = await SharedPreferences.getInstance();
     newUser = (loginData?.getBool('login') ?? true);

@@ -267,7 +267,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         assessmentId: assessmentID.text);
                                     Navigator.of(context).pop();
                                     if (values.code == 200) {
-                                      //print(userDataModel.data!.firstName);
                                       if (assessmentID.text.length >= 8) {
                                         Navigator.push(
                                           context,
@@ -677,5 +676,3 @@ class StudentAssessmentState extends State<StudentAssessment> {
     );
   }
 }
-
-// ElevatedButton(onPressed: (){print("Button");}, child: Text("Button")),

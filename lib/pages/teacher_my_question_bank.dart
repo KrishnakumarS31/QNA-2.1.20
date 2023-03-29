@@ -157,7 +157,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                         );
                       } else {
                         Provider.of<QuestionPrepareProviderFinal>(context,
-                            listen: false).reSetQuestionList();
+                                listen: false)
+                            .reSetQuestionList();
                         //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
                         Navigator.push(
                           context,

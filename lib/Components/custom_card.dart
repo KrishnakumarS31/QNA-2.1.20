@@ -37,14 +37,12 @@ class _CustomCardState extends State<CustomCard> {
   @override
   void initState() {
     super.initState();
-    print("dfhtrh");
   }
 
   @override
   Widget build(BuildContext context) {
     var d = DateTime.fromMicrosecondsSinceEpoch(
         widget.result!.assessmentStartDate!);
-    print("fdvdfbb ");
     var startDate = "${d.day}/${d.month}/${d.year}";
     return Container(
       height: widget.height * 0.1825,

@@ -278,8 +278,6 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     oldPassword.text,
                                     newPassword.text,
                                     loginData.getInt('userId')!);
-                            print(statusCode.code);
-                            print(statusCode.message);
                             if (statusCode.code == 200) {
                               showAlertDialog(context);
                             } else {
@@ -326,14 +324,14 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
             fontSize: height * 0.018),
       ),
       onPressed: () async {
-        SharedPreferences preferences =
-        await SharedPreferences.getInstance();
+        SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
         Navigator.push(
           context,
           PageTransition(
               type: PageTransitionType.fade,
-              child: StudentMemberLoginPage(setLocale: (Locale locale) {  },
+              child: StudentMemberLoginPage(
+                setLocale: (Locale locale) {},
               )),
         );
       },
@@ -368,9 +366,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
             fontWeight: FontWeight.w500,
             fontSize: height * 0.018),
       ),
-      actions: [
-                okButton
-      ],
+      actions: [okButton],
     );
 
     // show the dialog

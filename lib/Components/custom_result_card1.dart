@@ -24,6 +24,7 @@ class Result_card1 extends StatelessWidget {
   final int totalMark;
   final int? timeTaken;
   final int? startedTime;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,7 +78,9 @@ class Result_card1 extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                        startedTime.toString().substring(0, startedTime.toString().length - 13),
+                      startedTime
+                          .toString()
+                          .substring(0, startedTime.toString().length - 13),
                       //"${startedTime!}",
                       style: TextStyle(
                           fontSize: height * 0.013,

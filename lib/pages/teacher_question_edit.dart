@@ -17,6 +17,7 @@ class QuestionEdit extends StatefulWidget {
 
   final Question question;
   final void Function(Locale locale) setLocale;
+
   @override
   QuestionEditState createState() => QuestionEditState();
 }
@@ -33,6 +34,7 @@ class QuestionEditState extends State<QuestionEdit> {
   TextEditingController questionController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+
   ValueChanged<String?> _valueChangedHandler() {
     return (value) => setState(() => _groupValue = value!);
   }
@@ -95,8 +97,6 @@ class QuestionEditState extends State<QuestionEdit> {
   void initState() {
     super.initState();
     _groupValue = widget.question.questionType;
-    print("############################");
-    print(_groupValue);
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
     subtopicController.text = widget.question.subTopic!;
@@ -180,8 +180,8 @@ class QuestionEditState extends State<QuestionEdit> {
       ),
       onPressed: () async {
         LoginModel statusCode =
-        await QnaService.deleteQuestion(widget.question.questionId!);
-        if(statusCode.code==200){
+            await QnaService.deleteQuestion(widget.question.questionId!);
+        if (statusCode.code == 200) {
           int count = 0;
           Navigator.popUntil(context, (route) {
             return count++ == 3;
