@@ -16,7 +16,8 @@ import 'package:qna_test/Pages/welcome_page.dart';
 
 import 'Providers/question_prepare_provider_final.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MultiProvider(
       providers: [
@@ -44,13 +45,14 @@ void main() {
         ),
 
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
 
+
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -62,8 +64,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
-
     super.initState();
   }
 
@@ -72,6 +72,7 @@ class _MyAppState extends State<MyApp> {
       _locale = locale;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +84,16 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         ),
-        home:
-            // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
-            //     ?
-            WelcomePage(setLocale: setLocale)
-        //  :
-        // SplashScreen(setLocale: setLocale)
-        );
+        initialRoute: WelcomePage.id,
+       routes: {
+        WelcomePage.id: (context) => WelcomePage(setLocale: setLocale),},
+
+      //  home:
+        // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS
+        //     ?
+       // WelcomePage(setLocale: setLocale)
+      //  :
+      // SplashScreen(setLocale: setLocale)
+    );
   }
 }
