@@ -353,7 +353,10 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       deleteQuestion(questionId);
-    } else {}
+    } else {
+      String temp = await response.stream.bytesToString();
+      loginModel = loginModelFromJson(temp);
+    }
     return loginModel;
   }
 

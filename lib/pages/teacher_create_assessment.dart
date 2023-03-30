@@ -6,7 +6,8 @@ import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
-import 'package:qna_test/pages/teacher_published_assessment.dart';
+import 'package:qna_test/pages/teacher_published_assessment.dart' as TeacherPublishedAss;
+import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
@@ -48,6 +49,11 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData(){
+    setState(() {
     assessmentVal =
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .getAssessment;
@@ -56,6 +62,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
     topicController.text = assessmentVal.topic!;
     subTopicController.text = assessmentVal.subTopic!;
     newQuestions= Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+    });
   }
 
   @override
@@ -742,6 +749,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                         .w600),
                                                           ),
                                                         ),
+
                                                       ],
                                                     ),
                                                   ),
@@ -911,7 +919,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                       ListView.builder(
                           padding: EdgeInsets.zero,
                           itemCount: newQuestions.length,
-                          itemBuilder: (context, index) => QuestionWidget(
+                          itemBuilder: (context, index) => TeacherPublishedAss.QuestionWidget(
                             height: height,
                             question: newQuestions[index],
                           )),
@@ -945,6 +953,43 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           },
                           child: Text(
                             'Create New Question',
+                            style: TextStyle(
+                                fontSize: height * 0.025,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: height * 0.01),
+                    Center(
+                      child: SizedBox(
+                        width: width * 0.888,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            backgroundColor:
+                            const Color.fromRGBO(255, 255, 255, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: TeacherSelectedQuestionAssessment(
+                                    questions: newQuestions, setLocale: widget.setLocale),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'Continue',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -996,7 +1041,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: TeacherPublishedAssessment(
+                                  child: TeacherPublishedAss.TeacherPublishedAssessment(
                                     setLocale: widget.setLocale,
                                     assessmentCode: assessmentCode,
                                   ),
@@ -1015,6 +1060,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                         ),
                       ),
                     ),
+
                   ],
                 )),
           ),

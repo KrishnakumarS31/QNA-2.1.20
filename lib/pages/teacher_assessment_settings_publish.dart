@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Entity/Teacher/response_entity.dart';
@@ -82,7 +83,7 @@ class TeacherAssessmentSettingPublishState
     for (int i = 0; i < addQuesLen; i++) {
       totalMark = totalMark + assessment.addQuestion![i].questionMark!;
     }
-    totalQues = assessment.questions!.length;
+    totalQues = questionListForNxtPage.length;
     totalQues =
         assessment.addQuestion == null ? 0 : assessment.addQuestion!.length;
     assessment.totalQuestions = totalQues;
@@ -124,6 +125,11 @@ class TeacherAssessmentSettingPublishState
                 color: Colors.white,
               ),
               onPressed: () {
+                // Navigator.of(context).pushAndRemoveUntil(
+                //     MaterialPageRoute(
+                //         builder: (context) => TeacherAssessmentLanding(
+                //             setLocale: widget.setLocale)),
+                //         (route) => route.isFirst);
                 Navigator.of(context).pop();
               },
             ),
@@ -273,7 +279,7 @@ class TeacherAssessmentSettingPublishState
                                         fontFamily: "Inter"),
                                   ),
                                   TextSpan(
-                                    text: "\t ${assessment.questions!.length}",
+                                    text: "\t ${questionListForNxtPage.length}",
                                     style: TextStyle(
                                         fontSize: height * 0.018,
                                         fontWeight: FontWeight.w500,
@@ -1931,17 +1937,23 @@ class TeacherAssessmentSettingPublishState
                                                 .createAssessmentTeacherService(
                                                     assessment);
                                           }
+                                          Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
                                           if (statusCode.code == 200) {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .rightToLeft,
-                                                child: TeacherAssessmentLanding(
-                                                    setLocale:
-                                                        widget.setLocale),
-                                              ),
-                                            );
+                                            Navigator.of(context).pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) => TeacherAssessmentLanding(
+                                                        setLocale: widget.setLocale)),
+                                                    (route) => route.isFirst);
+                                            // Navigator.push(
+                                            //   context,
+                                            //   PageTransition(
+                                            //     type: PageTransitionType
+                                            //         .rightToLeft,
+                                            //     child: TeacherAssessmentLanding(
+                                            //         setLocale:
+                                            //             widget.setLocale),
+                                            //   ),
+                                            // );
                                           }
                                         },
                                         child: Text(
@@ -2071,7 +2083,10 @@ class TeacherAssessmentSettingPublishState
                                               value =
                                               await QnaService.getQuestion(
                                                   assessmentId: assessmentCode);
-                                          if (statusCode.code == 200) {
+
+                                          Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
+
+                                    if (statusCode.code == 200) {
                                             Navigator.push(
                                               context,
                                               PageTransition(

@@ -1071,14 +1071,12 @@ class TeacherPublishedAssessmentState
                               )),
                           //shape: StadiumBorder(),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAssessmentLanding(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => TeacherAssessmentLanding(
+                                        setLocale: widget.setLocale)),
+                                    (route) => route.isFirst);
                           },
                           child: Text(
                             'Back to My Assessment',

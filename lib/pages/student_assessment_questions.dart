@@ -28,7 +28,7 @@ class StudQuestion extends StatefulWidget {
 class StudQuestionState extends State<StudQuestion> {
   late QuestionPaperModel values;
   Timer? countdownTimer;
-  Duration myDuration = const Duration(hours: 1);
+  Duration myDuration = const Duration();
   List<dynamic> selected = [];
   TextEditingController ansController = TextEditingController();
   Color notSureColor1 = const Color.fromRGBO(255, 255, 255, 1);
@@ -41,9 +41,13 @@ class StudQuestionState extends State<StudQuestion> {
   late Map tempQuesAns = {};
   List<int> tilecount = [1];
   Color colorCode = const Color.fromRGBO(179, 179, 179, 1);
+  setTimr(){
+    myDuration = Duration(minutes: widget.ques.data!.assessmentDuration!);
+  }
 
   @override
   void initState() {
+    setTimr();
     Future.delayed(const Duration(seconds: 0)).then((_) {
       if (MediaQuery.of(context).copyWith().size.width > 700) {
         showModalBottomSheet(
@@ -639,7 +643,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             ),
                                             Text(
                                               AppLocalizations.of(context)!
-                                                  .practice_qn_page,
+                                                  .marks_qn,
                                               //" Marks",
                                               style: Theme.of(context)
                                                   .primaryTextTheme
@@ -1134,7 +1138,8 @@ class StudQuestionState extends State<StudQuestion> {
                           )
                         ]),
                   )));
-        } else {
+        }
+        else {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(

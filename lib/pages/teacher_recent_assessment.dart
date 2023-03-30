@@ -291,7 +291,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           ),
                         ),
                         Text(
-                          "${assessment.assessmentId}",
+                          "${assessment.assessmentCode}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -325,7 +325,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           ),
                         ),
                         Text(
-                          "ABC903857928",
+                          "----------",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -357,12 +357,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           ),
                         ),
                         Text(
-                          "00 Minutes",
+                          assessment.assessmentDuration == null
+                              ? "00 Minutes"
+                              : "${assessment.assessmentDuration} Minutes",
                           style: TextStyle(
-                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ],
@@ -609,7 +611,13 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "Allowed",
+                                    assessment.assessmentSettings?.allowGuestStudent ==
+                                        null
+                                        ? "Not Allowed"
+                                        : assessment
+                                        .assessmentSettings!.allowGuestStudent!
+                                        ? "Allowed"
+                                        : "Not Allowed",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -639,7 +647,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "Viewable",
+                                    assessment.assessmentSettings
+                                        ?.showSolvedAnswerSheetInAdvisor ==
+                                        null
+                                        ? "Not Viewable"
+                                        : assessment.assessmentSettings!
+                                        .showSolvedAnswerSheetInAdvisor!
+                                        ? "Viewable"
+                                        : "Not Viewable",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -669,7 +684,13 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "Subash",
+                                    assessment.assessmentSettings?.showAdvisorName ==
+                                        null
+                                        ? "No"
+                                        : assessment
+                                        .assessmentSettings!.showAdvisorName!
+                                        ? "Yes"
+                                        : "No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -699,7 +720,13 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "No",
+                                    assessment.assessmentSettings?.showAdvisorEmail ==
+                                        null
+                                        ? "No"
+                                        : assessment
+                                        .assessmentSettings!.showAdvisorEmail!
+                                        ? "Yes"
+                                        : "No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -729,7 +756,11 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "No",
+                                    assessment.assessmentSettings?.notAvailable == null
+                                        ? "No"
+                                        : assessment.assessmentSettings!.notAvailable!
+                                        ? "Yes"
+                                        : "No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),

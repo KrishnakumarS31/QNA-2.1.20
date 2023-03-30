@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
+import 'package:qna_test/Providers/new_question_provider.dart';
+import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -10,16 +12,18 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/question_prepare_provider_final.dart';
 
 class TeacherQuesDelete extends StatefulWidget {
-  const TeacherQuesDelete({
+  TeacherQuesDelete({
     Key? key,
     required this.quesNum,
     required this.finalQuestion,
     required this.setLocale,
+    this.assessment
   }) : super(key: key);
 
   final int quesNum;
   final Question finalQuestion;
   final void Function(Locale locale) setLocale;
+  bool? assessment;
 
   @override
   TeacherQuesDeleteState createState() => TeacherQuesDeleteState();
@@ -108,15 +112,31 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-            .deleteQuestionList(widget.quesNum!);
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
-          ),
-        );
+        if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
+          Provider.of<NewQuestionProvider>(context, listen: false)
+              .deleteQuestionList(widget.quesNum!);
+          Provider.of<QuestionPrepareProvider>(context, listen: false)
+              .deleteQuestionList(widget.quesNum!);
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: TeacherAddMyQuestionBankForAssessment(setLocale: widget.setLocale,assessment: widget.assessment,),
+            ),
+          );
+        }
+        else{
+          Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+              .deleteQuestionList(widget.quesNum!);
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
+            ),
+          );
+        }
+
       },
     );
     // set up the AlertDialog

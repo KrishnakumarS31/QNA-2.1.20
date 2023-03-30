@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/choice_entity.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
+import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import 'package:qna_test/pages/teacher_question_preview.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -41,7 +44,7 @@ class QuestionEditState extends State<QuestionEdit> {
 
   List<int> tempChoiceId = [];
   EditQuestionModel editQuestion =
-      EditQuestionModel(editChoices: [], addChoices: [], removeChoices: []);
+  EditQuestionModel(editChoices: [], addChoices: [], removeChoices: []);
 
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
@@ -180,12 +183,29 @@ class QuestionEditState extends State<QuestionEdit> {
       ),
       onPressed: () async {
         LoginModel statusCode =
-            await QnaService.deleteQuestion(widget.question.questionId!);
+        await QnaService.deleteQuestion(widget.question.questionId!);
         if (statusCode.code == 200) {
-          int count = 0;
-          Navigator.popUntil(context, (route) {
-            return count++ == 3;
-          });
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                  builder: (context) => TeacherQuestionBank(
+                      setLocale: widget.setLocale)),
+                  (route) => route.isFirst);
+        }
+        else{
+          Navigator.push(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: CustomDialog(
+                title: "OOPS!",
+                content:
+                statusCode.message!,
+                //'please enter the correct password',
+                button: "Ok",
+              ),
+            ),
+          );
+          //Navigator.of(context).pop();
         }
       },
     );
@@ -271,9 +291,9 @@ class QuestionEditState extends State<QuestionEdit> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -289,7 +309,7 @@ class QuestionEditState extends State<QuestionEdit> {
                       margin: const EdgeInsets.only(left: 15),
                       decoration: BoxDecoration(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(10.0)),
+                        const BorderRadius.all(Radius.circular(10.0)),
                         border: Border.all(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                         ),
@@ -407,7 +427,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                   icon: Icon(
                                     showIcon,
                                     color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                     size: height * 0.03,
                                   ),
                                   onPressed: () {
@@ -432,7 +452,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: "SUBJECT",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -451,10 +471,10 @@ class QuestionEditState extends State<QuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -469,7 +489,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: "TOPIC",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -488,10 +508,10 @@ class QuestionEditState extends State<QuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -506,7 +526,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: 'SUB TOPIC',
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -525,10 +545,10 @@ class QuestionEditState extends State<QuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -543,7 +563,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: "CLASS",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -562,10 +582,10 @@ class QuestionEditState extends State<QuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                               ])),
                           SizedBox(height: height * 0.010),
@@ -603,7 +623,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                 fontSize: height * 0.018),
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               labelStyle: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: 'Inter',
@@ -611,7 +631,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                   fontSize: height * 0.015),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.02),
@@ -695,7 +715,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
+                                        FloatingLabelBehavior.always,
                                         hintStyle: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.3),
@@ -705,7 +725,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                         hintText: "Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(5)),
+                                            BorderRadius.circular(5)),
                                       ),
                                       onChanged: (val) {
                                         EditChoice editChoice = EditChoice();
@@ -720,9 +740,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                             editQuestion.addChoices
                                                 ?.removeAt(index);
                                             addChoice.rightChoice =
-                                                radioList[i];
+                                            radioList[i];
                                             addChoice.questionId =
-                                                tempChoiceId[i];
+                                            tempChoiceId[i];
                                             addChoice.choiceText = val;
                                             editQuestion.addChoices
                                                 ?.add(addChoice);
@@ -734,18 +754,18 @@ class QuestionEditState extends State<QuestionEdit> {
                                               editQuestion.editChoices
                                                   ?.removeAt(index);
                                               editChoice.rightChoice =
-                                                  radioList[i];
+                                              radioList[i];
                                               editChoice.choiceId =
-                                                  tempChoiceId[i];
+                                              tempChoiceId[i];
                                               editChoice.choiceText = val;
                                               editQuestion.editChoices
                                                   ?.add(editChoice);
                                             } else {
                                               editChoiceId.add(tempChoiceId[i]);
                                               editChoice.rightChoice =
-                                                  radioList[i];
+                                              radioList[i];
                                               editChoice.choiceId =
-                                                  tempChoiceId[i];
+                                              tempChoiceId[i];
                                               editChoice.choiceText = val;
                                               editQuestion.editChoices
                                                   ?.add(editChoice);
@@ -785,7 +805,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                         } else {
                                           editChoiceId.add(tempChoiceId[i]);
                                           editChoice.rightChoice =
-                                              !radioList[i];
+                                          !radioList[i];
                                           editChoice.choiceId = tempChoiceId[i];
                                           editChoice.choiceText =
                                               chooses[i].text;
@@ -799,9 +819,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                       radioList[i]
                                           ? Icons.radio_button_checked_outlined
                                           : Icons
-                                              .radio_button_unchecked_outlined,
+                                          .radio_button_unchecked_outlined,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -881,7 +901,7 @@ class QuestionEditState extends State<QuestionEdit> {
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.02),
                         hintText:
-                            "Suggest what to study if answered incorrectly",
+                        "Suggest what to study if answered incorrectly",
                       ),
                       onChanged: (val) {
                         setState(() {
@@ -924,48 +944,41 @@ class QuestionEditState extends State<QuestionEdit> {
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             maximumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    foregroundColor:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                  ),
-                                  onPressed: () {
-                                    //List<String> temp=[];
-                                    // for(int i=0;i< _values.length;i++){
-                                    //   temp.add(_values[i]['value']);
-                                    // }
-                                    setState(() {
-                                      widget.question.subject =
-                                          subjectController.text;
-                                      widget.question.topic =
-                                          topicController.text;
-                                      widget.question.subTopic =
-                                          subtopicController.text;
-                                      widget.question.datumClass =
-                                          classRoomController.text;
-                                      widget.question.question =
-                                          questionController.text;
-                                      widget.question.choices = selected;
-                                      widget.question.advisorText =
-                                          adviceController.text;
-                                      widget.question.advisorUrl =
-                                          urlController.text;
-                                    });
-                                    showQuestionPreview(context);
-                                  },
-                                  child: const Text("Preview"),
-                                ),
-                              ]),
-                          onPressed: () {}),
+                          child: Text(
+                            "Preview",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              widget.question.subject =
+                                  subjectController.text;
+                              widget.question.topic =
+                                  topicController.text;
+                              widget.question.subTopic =
+                                  subtopicController.text;
+                              widget.question.datumClass =
+                                  classRoomController.text;
+                              widget.question.question =
+                                  questionController.text;
+                              widget.question.choices = selected;
+                              widget.question.advisorText =
+                                  adviceController.text;
+                              widget.question.advisorUrl =
+                                  urlController.text;
+                            });
+                            showQuestionPreview(context);
+                          }),
                     ),
                   ]),
                 ))));

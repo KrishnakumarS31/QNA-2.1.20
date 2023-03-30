@@ -526,14 +526,11 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               await QnaService.editAssessmentTeacherService(
                                   assessment, assessment.assessmentId!);
                           if (statusCode.code == 200) {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAssessmentLanding(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => TeacherAssessmentLanding(
+                                        setLocale: widget.setLocale)),
+                                    (route) => route.isFirst);
                           }
 
                           // Navigator.push(

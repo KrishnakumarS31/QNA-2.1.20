@@ -250,14 +250,11 @@ class TeacherClonedAssessmentPreviewState
                               await QnaService.createAssessmentTeacherService(
                                   finalAssessment);
                           if (statusCode.code == 200) {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAssessmentLanding(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => TeacherAssessmentLanding(
+                                        setLocale: widget.setLocale)),
+                                    (route) => route.isFirst);
                           }
                         },
                         child: Text(

@@ -206,15 +206,11 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherAssessmentLanding(
-                              setLocale: widget.setLocale,
-                            ),
-                          ),
-                        );
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => TeacherAssessmentLanding(
+                                    setLocale: widget.setLocale)),
+                                (route) => route.isFirst);
                       },
                       child: Text(
                         AppLocalizations.of(context)!.assessment_button,

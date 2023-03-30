@@ -93,7 +93,6 @@ class TeacherAddMyQuestionBankForAssessmentState
         // if (statusCode.code == 200) {
         //   Provider.of<QuestionPrepareProvider>(context, listen: false)
         //       .reSetQuestionList();
-        print("************************************");
         CreateAssessmentModel.CreateAssessmentModel assessmentVal =
         Provider.of<CreateAssessmentProvider>(
             context,
@@ -115,7 +114,6 @@ class TeacherAddMyQuestionBankForAssessmentState
             false)
             .updateAssessment(
             assessmentVal);
-        print("************************************");
 
           Navigator.push(
             context,
@@ -367,6 +365,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                               for (int i = 0; i < finalQuesList.length; i++)
                                 QuestionPreview(
                                     height: height,
+                                    assessment: widget.assessment,
                                     width: width,
                                     question: finalQuesList[i],
                                     quesNum: i,
@@ -440,12 +439,13 @@ class TeacherAddMyQuestionBankForAssessmentState
 }
 
 class QuestionPreview extends StatelessWidget {
-  const QuestionPreview(
+   QuestionPreview(
       {Key? key,
       required this.height,
       required this.width,
       required this.question,
       required this.quesNum,
+        this.assessment,
       required this.setLocale})
       : super(key: key);
 
@@ -454,6 +454,7 @@ class QuestionPreview extends StatelessWidget {
   final double width;
   final dynamic question;
   final void Function(Locale locale) setLocale;
+  bool? assessment;
 
   @override
   Widget build(BuildContext context) {
@@ -491,7 +492,8 @@ class QuestionPreview extends StatelessWidget {
                           child: TeacherQuesDelete(
                               setLocale: setLocale,
                               quesNum: quesNum,
-                              finalQuestion: question),
+                              finalQuestion: question,
+                          assessment: assessment,),
                         ),
                       );
                     },

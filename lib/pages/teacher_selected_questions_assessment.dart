@@ -159,8 +159,7 @@ class TeacherSelectedQuestionAssessmentState
               .getAllQuestion);
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
           .getAssessment;
-      totalQues = assessment.questions!.length;
-      print(questionList.length);
+      totalQues = questionList.length;
       for (int i = 0; i < questionList.length; i++) {
         totalMark = totalMark + questionList[i].questionMark!;
       }
@@ -1041,14 +1040,11 @@ class TeacherSelectedQuestionAssessmentState
                                 await QnaService.createAssessmentTeacherService(
                                     assessment);
                           }
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TeacherAssessmentLanding(
-                                  setLocale: widget.setLocale),
-                            ),
-                          );
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) => TeacherAssessmentLanding(
+                                      setLocale: widget.setLocale)),
+                                  (route) => route.isFirst);
                         },
                         child: Text(
                           'Save Assessment',
