@@ -11,11 +11,12 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 
 class TeacherAssessmentQuestionBank extends StatefulWidget {
-  const TeacherAssessmentQuestionBank(
-      {Key? key, this.assessment, required this.setLocale})
+  TeacherAssessmentQuestionBank(
+      {Key? key, this.assessment, required this.setLocale,this.searchText})
       : super(key: key);
 
   final bool? assessment;
+  String? searchText;
   final void Function(Locale locale) setLocale;
 
   @override
@@ -35,7 +36,8 @@ class TeacherAssessmentQuestionBankState
   @override
   void initState() {
     super.initState();
-    getData('');
+    widget.searchText==null?teacherQuestionBankSearchController.text='':teacherQuestionBankSearchController.text=widget.searchText!;
+    getData(widget.searchText==null?'':widget.searchText!);
   }
 
   getData(String search) async {

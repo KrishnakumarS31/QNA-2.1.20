@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Components/today_date.dart';
 import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
+import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
@@ -11,10 +12,11 @@ import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../EntityModel/login_entity.dart';
 import '../Providers/create_assessment_provider.dart';
+import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import '../Entity/Teacher/question_entity.dart' as QuestionEntity;
 import '../Services/qna_service.dart';
 import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 
@@ -39,6 +41,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   TextEditingController topicController = TextEditingController();
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  List<QuestionEntity.Question> newQuestions =[];
+
 
   //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion;
   @override
@@ -51,6 +55,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
     classController.text = assessmentVal.createAssessmentModelClass!;
     topicController.text = assessmentVal.topic!;
     subTopicController.text = assessmentVal.subTopic!;
+    newQuestions= Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
   }
 
   @override
@@ -861,7 +866,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: TeacherAssessmentQuestionBank(
-                                          setLocale: widget.setLocale),
+                                          setLocale: widget.setLocale,
+                                      searchText: TeacherCreateAssessmentSearchController.text,),
                                     ),
                                   );
                                 },
@@ -879,25 +885,36 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                       onChanged: (value) {},
                     ),
                     SizedBox(height: height * 0.08),
-                    Column(
-                      children: [
-                        Center(
-                          child: Image.asset(
-                              "assets/images/create_assessment.png"),
-                        ),
-                        SizedBox(height: height * 0.03),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            "Search from my question bank",
-                            style: TextStyle(
-                                fontSize: height * 0.015,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontFamily: "Inter"),
+                    SizedBox(
+                        height: height * 0.25,
+                      child: newQuestions.isEmpty?
+                      Column(
+                        children: [
+                          Center(
+                            child: Image.asset(
+                                "assets/images/create_assessment.png"),
                           ),
-                        ),
-                      ],
+                          SizedBox(height: height * 0.03),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Search from my question bank",
+                              style: TextStyle(
+                                  fontSize: height * 0.015,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color.fromRGBO(153, 153, 153, 1),
+                                  fontFamily: "Inter"),
+                            ),
+                          ),
+                        ],
+                      ):
+                      ListView.builder(
+                          padding: EdgeInsets.zero,
+                          itemCount: newQuestions.length,
+                          itemBuilder: (context, index) => QuestionWidget(
+                            height: height,
+                            question: newQuestions[index],
+                          )),
                     ),
                     SizedBox(height: height * 0.08),
                     Center(
@@ -1144,6 +1161,119 @@ class CardInfo extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class QuestionPreview extends StatefulWidget {
+  const QuestionPreview({
+    Key? key,
+    required this.height,
+    required this.width,
+    required this.question,
+  }) : super(key: key);
+
+  final double height;
+  final double width;
+  final QuestionEntity.Question question;
+
+  @override
+  State<QuestionPreview> createState() => _QuestionPreviewState();
+}
+
+class _QuestionPreviewState extends State<QuestionPreview> {
+  bool? valuefirst = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: widget.width * 0.75,
+                color: const Color.fromRGBO(82, 165, 160, 0.1),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      right: widget.width * 0.02, left: widget.width * 0.02),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            widget.question.subject!,
+                            style: TextStyle(
+                                fontSize: widget.height * 0.017,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            "  |  ${widget.question.topic} - ${widget.question.subTopic}",
+                            style: TextStyle(
+                                fontSize: widget.height * 0.015,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        widget.question.datumClass!,
+                        style: TextStyle(
+                            fontSize: widget.height * 0.015,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: widget.height * 0.01,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.question.questionType!,
+                  style: TextStyle(
+                      fontSize: widget.height * 0.0175,
+                      fontFamily: "Inter",
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              SizedBox(
+                height: widget.height * 0.01,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  children: [
+                    Text(
+                      widget.question.question!,
+                      style: TextStyle(
+                          fontSize: widget.height * 0.0175,
+                          fontFamily: "Inter",
+                          color: const Color.fromRGBO(51, 51, 51, 1),
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: widget.height * 0.01,
+              ),
+              const Divider()
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

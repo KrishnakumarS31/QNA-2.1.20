@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
+import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_assessment_searched.dart';
 import 'package:qna_test/pages/teacher_active_assessment.dart';
 import 'package:qna_test/pages/teacher_inactive_assessment.dart';
@@ -1023,6 +1024,10 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           loginData =
                                                           await SharedPreferences
                                                               .getInstance();
+                                                      Provider.of<NewQuestionProvider>(
+                                                          context,
+                                                          listen: false)
+                                                          .reSetQuestionList();
                                                       Provider.of<QuestionPrepareProviderFinal>(
                                                               context,
                                                               listen: false)

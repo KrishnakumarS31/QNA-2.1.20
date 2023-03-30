@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'Providers/LanguageChangeProvider.dart';
 import 'Providers/create_assessment_provider.dart';
 import 'Providers/edit_assessment_provider.dart';
+import 'Providers/new_question_provider.dart';
 import 'Providers/question_prepare_provider.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 
@@ -37,7 +38,11 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (_) => EditAssessmentProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (_) => NewQuestionProvider(),
+        ),
+
       ],
       child: MyApp(),
     ),

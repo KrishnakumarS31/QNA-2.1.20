@@ -83,4 +83,14 @@ class CreateAssessmentProvider extends ChangeNotifier {
     _assessment.questions![quesIndex].questionMarks = mark;
     notifyListeners();
   }
+
+  void removeQuestionInAddQuestion(int questionId) {
+    List<int> quesIds = [];
+    for (int i = 0; i < _assessment.addQuestion!.length; i++) {
+      quesIds.add(_assessment.addQuestion![i].questionId!);
+    }
+    int index = quesIds.indexOf(questionId);
+    _assessment.addQuestion!.removeAt(index);
+    notifyListeners();
+  }
 }

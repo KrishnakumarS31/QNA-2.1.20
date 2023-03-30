@@ -380,7 +380,9 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                 backgroundColor:
                                     const Color.fromRGBO(28, 78, 80, 1),
                                 child: const Icon(Icons.add),
-                              )))
+                              )
+                          )
+                      )
                     ],
                   ),
                   SizedBox(height: height * 0.02),

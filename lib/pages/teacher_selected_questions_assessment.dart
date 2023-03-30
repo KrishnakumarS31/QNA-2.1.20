@@ -160,8 +160,9 @@ class TeacherSelectedQuestionAssessmentState
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
           .getAssessment;
       totalQues = assessment.questions!.length;
+      print(questionList.length);
       for (int i = 0; i < questionList.length; i++) {
-        totalMark = totalMark + assessment.questions![i].questionMarks!;
+        totalMark = totalMark + questionList[i].questionMark!;
       }
     });
   }
@@ -973,7 +974,7 @@ class TeacherSelectedQuestionAssessmentState
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               for (int i = 0;
-                                  i < assessment.questions!.length;
+                                  i < questionList.length;
                                   i++)
                                 QuestionWidget(
                                   height: height,
@@ -1161,8 +1162,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       onPressed: () {
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .removeQuestion(widget.question.questionId);
-        Provider.of<CreateAssessmentProvider>(context, listen: false)
-            .removeQuestion(widget.question.questionId);
+        if(widget.question.questionId<1){
+          Provider.of<CreateAssessmentProvider>(context, listen: false)
+              .removeQuestionInAddQuestion(widget.question.questionId);
+        }
+        else{
+          Provider.of<CreateAssessmentProvider>(context, listen: false)
+              .removeQuestion(widget.question.questionId);
+        }
         Navigator.of(context).pop();
         setState(() {});
         Navigator.push(
@@ -1354,7 +1361,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        '${widget.assessment.questions![widget.index].questionMarks}',
+                        '${widget.question.questionMark}',
                         style: TextStyle(
                             fontSize: widget.height * 0.017,
                             fontFamily: "Inter",

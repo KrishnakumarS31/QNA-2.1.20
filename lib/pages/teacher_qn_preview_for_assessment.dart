@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
@@ -205,6 +206,9 @@ class TeacherQnPreviewAssessmentState
                           ),
                           //shape: StadiumBorder(),
                           onPressed: () {
+                            Provider.of<NewQuestionProvider>(context,
+                                listen: false)
+                                .addQuestion(widget.finalQuestion);
                             Provider.of<QuestionPrepareProvider>(context,
                                     listen: false)
                                 .addQuestion(widget.finalQuestion);

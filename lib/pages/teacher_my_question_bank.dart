@@ -33,6 +33,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
         .getAllQuestion;
   }
 
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -160,15 +161,20 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                 listen: false)
                             .reSetQuestionList();
                         //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherQuestionBank(
-                              setLocale: widget.setLocale,
-                            ),
-                          ),
-                        );
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => TeacherQuestionBank(
+                                    setLocale: widget.setLocale)),
+                                (route) => route.isFirst);
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: TeacherQuestionBank(
+                        //       setLocale: widget.setLocale,
+                        //     ),
+                        //   ),
+                        // );
                       }
                     },
                     child: Text(

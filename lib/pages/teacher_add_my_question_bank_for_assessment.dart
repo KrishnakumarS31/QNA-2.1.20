@@ -4,10 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Components/today_date.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:qna_test/Pages/teacher_create_assessment.dart';
+import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_question_delete_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
+import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
@@ -79,26 +82,41 @@ class TeacherAddMyQuestionBankForAssessmentState
             fontWeight: FontWeight.w500),
       ),
       onPressed: () async {
-        // showDialog(
-        //     context: context,
-        //     builder: (context) {
-        //       return const Center(
-        //           child: CircularProgressIndicator(
-        //             color: Color.fromRGBO(48, 145, 139, 1),
-        //           ));
-        //     });
+        // create_question_model.CreateQuestionModel createQuestionModel =
+        //     create_question_model.CreateQuestionModel();
+        //createQuestionModel.questions = finalQuesList;
+        // SharedPreferences loginData = await SharedPreferences.getInstance();
+        // createQuestionModel.authorId = loginData.getInt('userId');
+        // ResponseEntity statusCode =
+        //     await QnaService.createQuestionTeacherService(createQuestionModel);
+        // Navigator.of(context).pop();
+        // if (statusCode.code == 200) {
+        //   Provider.of<QuestionPrepareProvider>(context, listen: false)
+        //       .reSetQuestionList();
+        print("************************************");
+        CreateAssessmentModel.CreateAssessmentModel assessmentVal =
+        Provider.of<CreateAssessmentProvider>(
+            context,
+            listen:
+            false).getAssessment;
+        assessmentVal.addQuestion?.addAll(finalQuesList);
+        for(int i =0;i<finalQuesList.length;i++){
+          finalQuesList[i].questionId=i-100;
+          Provider.of<QuestionPrepareProviderFinal>(
+              context,
+              listen:
+              false)
+              .addQuestion(
+              finalQuesList[i]);
+        }
+        Provider.of<CreateAssessmentProvider>(
+            context,
+            listen:
+            false)
+            .updateAssessment(
+            assessmentVal);
+        print("************************************");
 
-        create_question_model.CreateQuestionModel createQuestionModel =
-            create_question_model.CreateQuestionModel();
-        createQuestionModel.questions = finalQuesList;
-        SharedPreferences loginData = await SharedPreferences.getInstance();
-        createQuestionModel.authorId = loginData.getInt('userId');
-        ResponseEntity statusCode =
-            await QnaService.createQuestionTeacherService(createQuestionModel);
-        Navigator.of(context).pop();
-        if (statusCode.code == 200) {
-          Provider.of<QuestionPrepareProvider>(context, listen: false)
-              .reSetQuestionList();
           Navigator.push(
             context,
             PageTransition(
@@ -108,7 +126,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                   setLocale: widget.setLocale),
             ),
           );
-        }
+        // }
       },
     );
     // set up the AlertDialog
@@ -152,7 +170,7 @@ class TeacherAddMyQuestionBankForAssessmentState
     //     Provider.of<QuestionPrepareProvider>(context, listen: false)
     //         .getAllQuestion);
     finalQuesList.addAll(
-        Provider.of<QuestionPrepareProvider>(context, listen: false)
+        Provider.of<NewQuestionProvider>(context, listen: false)
             .getAllQuestion);
   }
 
@@ -360,8 +378,8 @@ class TeacherAddMyQuestionBankForAssessmentState
                       Positioned(
                           top: height * 0.52,
                           left: width * 0.8,
-                          child: FloatingActionButton(
-                            onPressed: () {
+                          child: GestureDetector(
+                            onTap: (){
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -372,10 +390,24 @@ class TeacherAddMyQuestionBankForAssessmentState
                                 ),
                               );
                             },
-                            backgroundColor:
-                                const Color.fromRGBO(28, 78, 80, 1),
-                            child: const Icon(Icons.add),
-                          ))
+                            child: FloatingActionButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType.rightToLeft,
+                                    child: TeacherPrepareQuesForAssessment(
+                                        assessment: widget.assessment,
+                                        setLocale: widget.setLocale),
+                                  ),
+                                );
+                              },
+                              backgroundColor:
+                                  const Color.fromRGBO(28, 78, 80, 1),
+                              child:  Icon(Icons.add),
+                            ),
+                          )
+                      )
                     ],
                   ),
                   SizedBox(height: height * 0.02),
