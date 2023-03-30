@@ -14,6 +14,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import "package:shared_preferences/shared_preferences.dart";
 
 class WelcomePage extends StatefulWidget {
+  static const String id = 'welcome_page';
   const WelcomePage({Key? key, required this.setLocale}) : super(key: key);
   final void Function(Locale locale) setLocale;
 

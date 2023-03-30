@@ -76,28 +76,28 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                             alignment: Alignment.topCenter,
                             child: Container(
                               padding: const EdgeInsets.all(0.0),
-                              height: height * 0.16,
-                              width: width * 0.30,
+                              height: height * 0.28,
+                              width: width * 0.33,
                               child: Image.asset(
-                                  "assets/images/question_mark_logo.png"),
+                                  "assets/images/qna_logo.png"),
                             ),
                           ),
-                          Text(
-                            'QNA',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: height * 0.055,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w800),
-                          ),
-                          Text(
-                            'TEST',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w800),
-                          ),
+                          // Text(
+                          //   'QNA',
+                          //   style: TextStyle(
+                          //       color: Colors.white,
+                          //       fontSize: height * 0.055,
+                          //       fontFamily: "Inter",
+                          //       fontWeight: FontWeight.w800),
+                          // ),
+                          // Text(
+                          //   'TEST',
+                          //   style: TextStyle(
+                          //       color: Colors.white,
+                          //       fontSize: height * 0.025,
+                          //       fontFamily: "Inter",
+                          //       fontWeight: FontWeight.w800),
+                          // ),
                         ],
                       ),
                     ),

@@ -52,11 +52,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
           builder: (context) {
             return const Center(
                 child: CircularProgressIndicator(
-              color: Color.fromRGBO(48, 145, 139, 1),
-            ));
+                  color: Color.fromRGBO(48, 145, 139, 1),
+                ));
           });
       UserDataModel userDataModel =
-          await QnaService.getUserDataService(loginData.getInt('userId'));
+      await QnaService.getUserDataService(loginData.getInt('userId'));
       Navigator.push(
         context,
         PageTransition(
@@ -160,26 +160,26 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         alignment: Alignment.topLeft,
                                         child: RichText(
                                             text: TextSpan(children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .regId_emailId,
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.017),
-                                          ),
-                                          TextSpan(
-                                              text: "\t*",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      219, 35, 35, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize:
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!
+                                                    .regId_emailId,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.017),
+                                              ),
+                                              TextSpan(
+                                                  text: "\t*",
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          219, 35, 35, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
                                                       localHeight * 0.017)),
-                                        ])),
+                                            ])),
                                       ),
                                       SizedBox(
                                         height: localHeight * 0.0001,
@@ -196,10 +196,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
-                                                      localHeight * 0.016),
+                                                  localHeight * 0.016),
                                               hintText:
-                                                  AppLocalizations.of(context)!
-                                                      .hint_regId,
+                                              AppLocalizations.of(context)!
+                                                  .hint_regId,
                                               prefixIcon: const Icon(
                                                   Icons.contacts_outlined,
                                                   color: Color.fromRGBO(
@@ -213,7 +213,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
                                                       .hasMatch(value)) {
                                                 return AppLocalizations.of(
-                                                        context)!
+                                                    context)!
                                                     .error_regID;
                                               } else {
                                                 return null;
@@ -232,26 +232,26 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         alignment: Alignment.topLeft,
                                         child: RichText(
                                             text: TextSpan(children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .password_caps,
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.017),
-                                          ),
-                                          TextSpan(
-                                              text: " *",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      219, 35, 35, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize:
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!
+                                                    .password_caps,
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        102, 102, 102, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.017),
+                                              ),
+                                              TextSpan(
+                                                  text: " *",
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          219, 35, 35, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
                                                       localHeight * 0.017)),
-                                        ])),
+                                            ])),
                                       ),
                                       SizedBox(
                                         height: localHeight * 0.0001,
@@ -273,8 +273,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: localWidth * 0.016),
                                               hintText:
-                                                  AppLocalizations.of(context)!
-                                                      .your_password,
+                                              AppLocalizations.of(context)!
+                                                  .your_password,
                                               suffixIcon: IconButton(
                                                   icon: Icon(
                                                     _isObscure
@@ -297,7 +297,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               if (value!.isEmpty ||
                                                   value.length < 8) {
                                                 return AppLocalizations.of(
-                                                        context)!
+                                                    context)!
                                                     .enter_pass_min;
                                                 //"Enter password Min 8 Characters";
                                               } else {
@@ -324,7 +324,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 child: ForgotPasswordEmail(
                                                     isFromStudent: true,
                                                     setLocale:
-                                                        widget.setLocale),
+                                                    widget.setLocale),
                                               ),
                                             );
                                           },
@@ -337,124 +337,122 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
-                                                      localHeight * 0.014)),
+                                                  localHeight * 0.014)),
                                         ),
                                       ],
                                     )),
                                 SizedBox(height: localHeight * 0.03),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: RichText(
-                                      text: TextSpan(children: [
-                                    TextSpan(
-                                      text:
-                                          AppLocalizations.of(context)!.certify,
-                                      //"CERTIFY",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.017),
-                                    ),
-                                    // TextSpan(
-                                    //     text: "\t*",
-                                    //     style: TextStyle(
-                                    //         color: const Color.fromRGBO(219, 35, 35, 1),
-                                    //         fontFamily: 'Inter',
-                                    //         fontWeight: FontWeight.w600,
-                                    //         fontSize: localHeight * 0.017)),
-                                  ])),
+                                Row(
+                                    children: [
+                                      SizedBox(width: localHeight * 0.55),
+                                      RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text:
+                                              AppLocalizations.of(context)!.certify,
+                                              //"CERTIFY",
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: localHeight * 0.017),
+                                            ),
+                                            TextSpan(
+                                                text: "\t*",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(219, 35, 35, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.017)),
+                                          ])),
+                                    ]
                                 ),
                                 SizedBox(height: localHeight * 0.02),
                                 Row(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Transform.scale(
-                                      alignment: Alignment.topLeft,
-                                      scale: 1.5,
-                                      child: Checkbox(
-                                        activeColor: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fillColor: MaterialStateProperty
-                                            .resolveWith<Color>((states) {
-                                          if (states.contains(
-                                              MaterialState.selected)) {
-                                            return const Color.fromRGBO(
-                                                82, 165, 160, 1);
-                                          }
+                                    SizedBox(width: localHeight * 0.5),
+                                    Checkbox(
+                                      activeColor: const Color.fromRGBO(
+                                          82, 165, 160, 1),
+                                      fillColor: MaterialStateProperty
+                                          .resolveWith<Color>((states) {
+                                        if (states.contains(
+                                            MaterialState.selected)) {
                                           return const Color.fromRGBO(
                                               82, 165, 160, 1);
-                                        }),
-                                        value: agree,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            agree = val!;
-                                            if (agree) {}
-                                          });
-                                        },
-                                      ),
+                                        }
+                                        return const Color.fromRGBO(
+                                            82, 165, 160, 1);
+                                      }),
+                                      value: agree,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          agree = val!;
+                                          if (agree) {}
+                                        });
+                                      },
                                     ),
-                                    SizedBox(width: localWidth * 0.05),
+                                    SizedBox(width: localWidth * 0.03),
                                     RichText(
                                         text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .agree_msg,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.025,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .privacy_Policy,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.025,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .agree_msg,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                color: const Color.fromRGBO(
+                                                    51, 51, 51, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .privacy_Policy,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                decoration:
                                                 TextDecoration.underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!.and,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.025,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!.and,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                decoration:
                                                 TextDecoration.underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text:
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text:
                                             AppLocalizations.of(context)!.terms,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.025,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                decoration:
                                                 TextDecoration.underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .services,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.025,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                    ])),
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .services,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                color: const Color.fromRGBO(
+                                                    51, 51, 51, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                        ])),
                                   ],
                                 ),
                                 SizedBox(height: localHeight * 0.02),
@@ -470,7 +468,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           minimumSize: const Size(280, 48),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(39),
+                                            BorderRadius.circular(39),
                                           ),
                                         ),
                                         child: Text(
@@ -493,24 +491,24 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   builder: (context) {
                                                     return const Center(
                                                         child:
-                                                            CircularProgressIndicator(
-                                                      color: Color.fromRGBO(
-                                                          48, 145, 139, 1),
-                                                    ));
+                                                        CircularProgressIndicator(
+                                                          color: Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                        ));
                                                   });
                                               LoginModel loginResponse =
-                                                  await QnaService.logInUser(
-                                                      regNumber,
-                                                      passWord,
-                                                      'student');
+                                              await QnaService.logInUser(
+                                                  regNumber,
+                                                  passWord,
+                                                  'student');
 
                                               Navigator.of(context).pop();
                                               if (loginResponse.code == 200) {
                                                 UserDataModel userDataModel =
-                                                    await QnaService
-                                                        .getUserDataService(
-                                                            loginResponse
-                                                                .data!.userId);
+                                                await QnaService
+                                                    .getUserDataService(
+                                                    loginResponse
+                                                        .data!.userId);
                                                 Navigator.push(
                                                   context,
                                                   PageTransition(
@@ -519,9 +517,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     child: StudentAssessment(
                                                         regNumber: regNumber,
                                                         setLocale:
-                                                            widget.setLocale,
+                                                        widget.setLocale,
                                                         usedData:
-                                                            userDataModel),
+                                                        userDataModel),
                                                   ),
                                                 ).then((value) {
                                                   regNumberController.clear();
@@ -535,18 +533,18 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         .rightToLeft,
                                                     child: CustomDialog(
                                                       title:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .wrong_password,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .wrong_password,
                                                       //'Wrong password',
                                                       content: AppLocalizations
-                                                              .of(context)!
+                                                          .of(context)!
                                                           .pls_enter_cr_pass,
                                                       //'please enter the correct password',
                                                       button:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .retry,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .retry,
                                                     ),
                                                   ),
                                                 );
@@ -560,14 +558,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     .rightToLeft,
                                                 child: CustomDialog(
                                                     title: AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .agree_privacy_terms,
                                                     content:
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .error,
+                                                    AppLocalizations.of(
+                                                        context)!
+                                                        .error,
                                                     button: AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .retry),
                                               ),
                                             );
@@ -586,13 +584,13 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const StudentRegistrationPage(),
+                                          const StudentRegistrationPage(),
                                         ),
                                       );
                                     },
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         IconButton(
                                           icon: const Icon(
@@ -700,25 +698,25 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       alignment: Alignment.topLeft,
                                       child: RichText(
                                           text: TextSpan(children: [
-                                        TextSpan(
-                                          text: AppLocalizations.of(context)!
-                                              .regId_emailId,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.017),
-                                        ),
-                                        TextSpan(
-                                            text: "\t*",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    219, 35, 35, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.017)),
-                                      ])),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .regId_emailId,
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: localHeight * 0.017),
+                                            ),
+                                            TextSpan(
+                                                text: "\t*",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        219, 35, 35, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.017)),
+                                          ])),
                                     ),
                                     SizedBox(
                                       height: localHeight * 0.0001,
@@ -743,8 +741,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: localHeight * 0.016),
                                             hintText:
-                                                AppLocalizations.of(context)!
-                                                    .hint_regId,
+                                            AppLocalizations.of(context)!
+                                                .hint_regId,
                                             prefixIcon: const Icon(
                                                 Icons.contacts_outlined,
                                                 color: Color.fromRGBO(
@@ -755,7 +753,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
                                                     .hasMatch(value)) {
                                               return AppLocalizations.of(
-                                                      context)!
+                                                  context)!
                                                   .error_regID;
                                             } else {
                                               return null;
@@ -771,25 +769,25 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       alignment: Alignment.topLeft,
                                       child: RichText(
                                           text: TextSpan(children: [
-                                        TextSpan(
-                                          text: AppLocalizations.of(context)!
-                                              .password_caps,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.017),
-                                        ),
-                                        TextSpan(
-                                            text: " *",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    219, 35, 35, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.017)),
-                                      ])),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .password_caps,
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: localHeight * 0.017),
+                                            ),
+                                            TextSpan(
+                                                text: " *",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        219, 35, 35, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.017)),
+                                          ])),
                                     ),
                                     SizedBox(
                                       height: localHeight * 0.0001,
@@ -811,8 +809,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: localWidth * 0.016),
                                             hintText:
-                                                AppLocalizations.of(context)!
-                                                    .your_password,
+                                            AppLocalizations.of(context)!
+                                                .your_password,
                                             suffixIcon: IconButton(
                                                 icon: Icon(
                                                   _isObscure
@@ -835,7 +833,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             if (value!.isEmpty ||
                                                 value.length < 8) {
                                               return AppLocalizations.of(
-                                                      context)!
+                                                  context)!
                                                   .enter_pass_min;
                                               //"Enter password Min 8 Characters";
                                             } else {
@@ -861,7 +859,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 child: ForgotPasswordEmail(
                                                     isFromStudent: true,
                                                     setLocale:
-                                                        widget.setLocale),
+                                                    widget.setLocale),
                                               ),
                                             );
                                           },
@@ -874,7 +872,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
-                                                      localHeight * 0.014)),
+                                                  localHeight * 0.014)),
                                         ),
                                       ],
                                     )),
@@ -883,116 +881,113 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   alignment: Alignment.topLeft,
                                   child: RichText(
                                       text: TextSpan(children: [
-                                    TextSpan(
-                                      text:
+                                        TextSpan(
+                                          text:
                                           AppLocalizations.of(context)!.certify,
-                                      //"CERTIFY",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.017),
-                                    ),
-                                    TextSpan(
-                                        text: "\t*",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.017)),
-                                  ])),
+                                          //"CERTIFY",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.017),
+                                        ),
+                                        TextSpan(
+                                            text: "\t*",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    219, 35, 35, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: localHeight * 0.017)),
+                                      ])),
                                 ),
                                 SizedBox(height: localHeight * 0.02),
                                 Row(
                                   //mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Transform.scale(
-                                      // alignment: Alignment.bottomCenter,
-                                      scale: 1.5,
-                                      child: Checkbox(
-                                        activeColor: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fillColor: MaterialStateProperty
-                                            .resolveWith<Color>((states) {
-                                          if (states.contains(
-                                              MaterialState.selected)) {
-                                            return const Color.fromRGBO(
-                                                82, 165, 160, 1);
-                                          }
+                                    SizedBox(width: localHeight * 0.02),
+                                    Checkbox(
+                                      activeColor: const Color.fromRGBO(
+                                          82, 165, 160, 1),
+                                      fillColor: MaterialStateProperty
+                                          .resolveWith<Color>((states) {
+                                        if (states.contains(
+                                            MaterialState.selected)) {
                                           return const Color.fromRGBO(
                                               82, 165, 160, 1);
-                                        }),
-                                        value: agree,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            agree = val!;
-                                            if (agree) {}
-                                          });
-                                        },
-                                      ),
+                                        }
+                                        return const Color.fromRGBO(
+                                            82, 165, 160, 1);
+                                      }),
+                                      value: agree,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          agree = val!;
+                                          if (agree) {}
+                                        });
+                                      },
                                     ),
                                     SizedBox(width: localWidth * 0.05),
                                     RichText(
                                         text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .agree_msg,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.015,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .privacy_Policy,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.015,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .agree_msg,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                color: const Color.fromRGBO(
+                                                    51, 51, 51, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .privacy_Policy,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                decoration:
                                                 TextDecoration.underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!.and,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.015,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!.and,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                decoration:
                                                 TextDecoration.underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text:
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text:
                                             AppLocalizations.of(context)!.terms,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.015,
-                                            fontWeight: FontWeight.w400,
-                                            decoration:
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                decoration:
                                                 TextDecoration.underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .services,
-                                        style: TextStyle(
-                                            fontSize: localHeight * 0.015,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                    ])),
+                                                color: const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                          TextSpan(
+                                            text: AppLocalizations.of(context)!
+                                                .services,
+                                            style: TextStyle(
+                                                fontSize: localHeight * 0.025,
+                                                fontWeight: FontWeight.w400,
+                                                color: const Color.fromRGBO(
+                                                    51, 51, 51, 1),
+                                                fontFamily: "Inter"),
+                                          ),
+                                        ])),
                                   ],
                                 ),
                                 SizedBox(height: localHeight * 0.02),
@@ -1008,7 +1003,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           minimumSize: const Size(280, 48),
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(39),
+                                            BorderRadius.circular(39),
                                           ),
                                         ),
                                         child: Text(
@@ -1022,7 +1017,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           if (agree) {
                                             _prefService
                                                 .createCache(
-                                                    passWordController.text)
+                                                passWordController.text)
                                                 .whenComplete(() async {
                                               if (formKey.currentState!
                                                   .validate()) {
@@ -1035,16 +1030,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     builder: (context) {
                                                       return const Center(
                                                           child:
-                                                              CircularProgressIndicator(
-                                                        color: Color.fromRGBO(
-                                                            48, 145, 139, 1),
-                                                      ));
+                                                          CircularProgressIndicator(
+                                                            color: Color.fromRGBO(
+                                                                48, 145, 139, 1),
+                                                          ));
                                                     });
                                                 LoginModel loginResponse =
-                                                    await QnaService.logInUser(
-                                                        regNumber,
-                                                        passWord,
-                                                        'student');
+                                                await QnaService.logInUser(
+                                                    regNumber,
+                                                    passWord,
+                                                    'student');
                                                 Navigator.of(context).pop();
 
                                                 if (loginResponse.code == 200) {
@@ -1076,11 +1071,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       loginResponse
                                                           .data.userId);
                                                   UserDataModel userDataModel =
-                                                      await QnaService
-                                                          .getUserDataService(
-                                                              loginResponse
-                                                                  .data!
-                                                                  .userId);
+                                                  await QnaService
+                                                      .getUserDataService(
+                                                      loginResponse
+                                                          .data!
+                                                          .userId);
                                                   if (userDataModel.data!.role
                                                       .contains("student")) {
                                                     Navigator.push(
@@ -1090,11 +1085,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                             .rightToLeft,
                                                         child: StudentAssessment(
                                                             regNumber:
-                                                                regNumber,
+                                                            regNumber,
                                                             setLocale: widget
                                                                 .setLocale,
                                                             usedData:
-                                                                userDataModel),
+                                                            userDataModel),
                                                       ),
                                                     ).then((value) {
                                                       regNumberController
@@ -1114,12 +1109,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         title: "OOPS!",
                                                         //'Wrong password',
                                                         content:
-                                                            "Invalid Role,CheckYour Login Data",
+                                                        "Invalid Role,CheckYour Login Data",
                                                         //'please enter the correct password',
                                                         button:
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .retry,
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .retry,
                                                       ),
                                                     ),
                                                   );
@@ -1132,18 +1127,18 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                           .rightToLeft,
                                                       child: CustomDialog(
                                                         title:
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .wrong_password,
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .wrong_password,
                                                         //'Wrong password',
                                                         content: AppLocalizations
-                                                                .of(context)!
+                                                            .of(context)!
                                                             .pls_enter_cr_pass,
                                                         //'please enter the correct password',
                                                         button:
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .retry,
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .retry,
                                                       ),
                                                     ),
                                                   );
@@ -1158,14 +1153,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     .rightToLeft,
                                                 child: CustomDialog(
                                                     title: AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .agree_privacy_terms,
                                                     content:
-                                                        AppLocalizations.of(
-                                                                context)!
-                                                            .error,
+                                                    AppLocalizations.of(
+                                                        context)!
+                                                        .error,
                                                     button: AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .retry),
                                               ),
                                             );
@@ -1184,13 +1179,13 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
-                                              const StudentRegistrationPage(),
+                                          const StudentRegistrationPage(),
                                         ),
                                       );
                                     },
                                     child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         IconButton(
                                           icon: const Icon(

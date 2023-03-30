@@ -572,7 +572,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(width: width * 0.3),
+                        //SizedBox(width: width * 0.3),
                         IconButton(
                           icon: Icon(
                             Icons.edit_note_sharp,
@@ -610,21 +610,21 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       fontWeight: FontWeight.w500,
                                       fontSize: height * 0.0225))),
                         ),
-                        SizedBox(width: width * 0.15),
-                        domainName == "https://dev.qnatest.com"
-                            ? Container(
-                                padding: const EdgeInsets.all(0.0),
-                                height: height * 0.08,
-                                width: width * 0.2,
-                                child:
-                                    Image.asset("assets/images/SSSH-black.png"),
-                              )
-                            : Container(
-                                padding: const EdgeInsets.all(0.0),
-                                height: height * 0.08,
-                                width: width * 0.2,
-                                child: Image.asset("assets/images/SSSUHE.png"),
-                              ),
+                        //SizedBox(width: width * 0.15),
+                        // domainName == "https://dev.qnatest.com"
+                        //     ? Container(
+                        //         padding: const EdgeInsets.all(0.0),
+                        //         height: height * 0.08,
+                        //         width: width * 0.2,
+                        //         child:
+                        //             Image.asset("assets/images/SSSH-black.png"),
+                        //       )
+                        //     : Container(
+                        //         padding: const EdgeInsets.all(0.0),
+                        //         height: height * 0.08,
+                        //         width: width * 0.2,
+                        //         child: Image.asset("assets/images/SSSUHE.png"),
+                        //       ),
                       ],
                     ),
                   ]),

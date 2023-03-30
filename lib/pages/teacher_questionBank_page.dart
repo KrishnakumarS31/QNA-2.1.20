@@ -239,7 +239,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                     ),
                     SizedBox(height: height * 0.03),
                     Container(
-                      margin: EdgeInsets.only(left: height * 0.040),
+                      margin: EdgeInsets.only(left: height * 0.010),
                       child: RichText(
                           textAlign: TextAlign.left,
                           text: TextSpan(children: [

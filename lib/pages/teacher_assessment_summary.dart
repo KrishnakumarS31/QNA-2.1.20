@@ -419,7 +419,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            '20',
+                            '$totalQues',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -439,7 +439,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            '100',
+                            '$totalMark',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",

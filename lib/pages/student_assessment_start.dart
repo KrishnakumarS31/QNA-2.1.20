@@ -323,36 +323,36 @@ class StudentAssessmentState extends State<StudentAssessment> {
                         SizedBox(
                           height: localHeight * 0.02,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: StudentSearchLibrary(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.search,
-                                color: Color.fromRGBO(141, 167, 167, 1),
-                              ),
-                              Text(AppLocalizations.of(context)!.search_library,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(48, 145, 139, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: localHeight * 0.03,
-                        ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       PageTransition(
+                        //         type: PageTransitionType.rightToLeft,
+                        //         child: StudentSearchLibrary(
+                        //             setLocale: widget.setLocale),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       const Icon(
+                        //         Icons.search,
+                        //         color: Color.fromRGBO(141, 167, 167, 1),
+                        //       ),
+                        //       Text(AppLocalizations.of(context)!.search_library,
+                        //           style: const TextStyle(
+                        //               color: Color.fromRGBO(48, 145, 139, 1),
+                        //               fontFamily: 'Inter',
+                        //               fontWeight: FontWeight.w500,
+                        //               fontSize: 16)),
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: localHeight * 0.03,
+                        // ),
                       ]))));
         } else {
           return WillPopScope(
@@ -634,42 +634,42 @@ class StudentAssessmentState extends State<StudentAssessment> {
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: localHeight * 0.02,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: StudentSearchLibrary(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.search,
-                                  color: Color.fromRGBO(141, 167, 167, 1),
-                                ),
-                                onPressed: () {},
-                              ),
-                              Text(AppLocalizations.of(context)!.search_library,
-                                  style: const TextStyle(
-                                      color: Color.fromRGBO(48, 145, 139, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 16)),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: localHeight * 0.03,
-                        ),
+                        // SizedBox(
+                        //   height: localHeight * 0.02,
+                        // ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       PageTransition(
+                        //         type: PageTransitionType.rightToLeft,
+                        //         child: StudentSearchLibrary(
+                        //             setLocale: widget.setLocale),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       IconButton(
+                        //         icon: const Icon(
+                        //           Icons.search,
+                        //           color: Color.fromRGBO(141, 167, 167, 1),
+                        //         ),
+                        //         onPressed: () {},
+                        //       ),
+                        //       Text(AppLocalizations.of(context)!.search_library,
+                        //           style: const TextStyle(
+                        //               color: Color.fromRGBO(48, 145, 139, 1),
+                        //               fontFamily: 'Inter',
+                        //               fontWeight: FontWeight.w500,
+                        //               fontSize: 16)),
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   height: localHeight * 0.03,
+                        // ),
                       ]))));
         }
       },
