@@ -1176,10 +1176,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   assessment.attemptScore = totalMark;
                   int percent = ((ansCorrect / values.data!.questions!.length) *
                       100).round();
-                  // if(percent<=40){
-                  //   assessment.assessmentScoreId=values.data!.assessmentScoreMessage![2].assessmentScoreId;
-                  //   message=values.data!.assessmentScoreMessage![2].assessmentScoreStatus!;
-                  // }
                   if (percent == 100) {
                     assessment.assessmentScoreId =
                         values.data!.assessmentScoreMessage![0]

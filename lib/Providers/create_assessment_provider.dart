@@ -83,6 +83,10 @@ class CreateAssessmentProvider extends ChangeNotifier {
     _assessment.questions![quesIndex].questionMarks = mark;
     notifyListeners();
   }
+  void updateAddQuestionmark(int mark, int quesIndex) {
+    _assessment.addQuestion![quesIndex].questionMark = mark;
+    notifyListeners();
+  }
 
   void removeQuestionInAddQuestion(int questionId) {
     List<int> quesIds = [];

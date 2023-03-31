@@ -846,7 +846,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 SizedBox(height: localHeight * 0.02),
                                 Container(
                                     padding: EdgeInsets.only(
-                                        left: localHeight * 0.25),
+                                        left: localHeight * 0.24),
                                     child: Row(
                                       children: [
                                         GestureDetector(
@@ -904,10 +904,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 SizedBox(height: localHeight * 0.02),
                                 Row(
-                                  //mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
+                               //   mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(width: localHeight * 0.02),
+                                    //SizedBox(width: localHeight * 0.01),
                                     Checkbox(
                                       activeColor: const Color.fromRGBO(
                                           82, 165, 160, 1),
@@ -929,14 +929,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         });
                                       },
                                     ),
-                                    SizedBox(width: localWidth * 0.05),
+                                    //SizedBox(width: localWidth * 0.02),
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .agree_msg,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
                                                 color: const Color.fromRGBO(
                                                     51, 51, 51, 1),
@@ -946,7 +946,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             text: AppLocalizations.of(context)!
                                                 .privacy_Policy,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
                                                 decoration:
                                                 TextDecoration.underline,
@@ -957,7 +957,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!.and,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
                                                 decoration:
                                                 TextDecoration.underline,
@@ -969,7 +969,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             text:
                                             AppLocalizations.of(context)!.terms,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
                                                 decoration:
                                                 TextDecoration.underline,
@@ -981,7 +981,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             text: AppLocalizations.of(context)!
                                                 .services,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
                                                 color: const Color.fromRGBO(
                                                     51, 51, 51, 1),
@@ -1203,7 +1203,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     48, 145, 139, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.018)),
+                                                fontSize: localHeight * 0.024)),
                                       ],
                                     )),
                               ],

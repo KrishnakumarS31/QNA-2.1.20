@@ -239,7 +239,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             );
           });
     });
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pop();
     });
     getData('');
@@ -1151,10 +1151,11 @@ class CardInfo extends StatelessWidget {
               .updateAssessment(assessment);
           if (assessment.assessmentStatus == 'inprogress') {
             CreateAssessmentModel editAssessment =
-                CreateAssessmentModel(questions: [], removeQuestions: []);
+                CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);
             editAssessment.assessmentId = assessment.assessmentId;
             editAssessment.assessmentType = assessment.assessmentType;
             editAssessment.assessmentStatus = assessment.assessmentStatus;
+            editAssessment.assessmentCode=assessment.assessmentCode;
             editAssessment.subject = assessment.subject;
             editAssessment.createAssessmentModelClass =
                 assessment.getAssessmentModelClass;

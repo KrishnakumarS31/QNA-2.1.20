@@ -246,6 +246,7 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
+
                     Navigator.push(
                       context,
                       PageTransition(
@@ -307,19 +308,21 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           onChanged: (bool? value) {
             setState(() {
               if (value!) {
-                widget.question.questionType == "MCQ"
-                    ? widget.question.questionMark = 10
-                    : widget.question.questionMark = 0;
+                //widget.question.questionType == "MCQ"
+                    //?
+                //widget.question.questionMark = 10;
+                    widget.question.questionMark = 0;
                 Provider.of<QuestionPrepareProviderFinal>(context,
                         listen: false)
                     .addQuestion(widget.question!);
-                widget.question.questionType == "MCQ"
-                    ? Provider.of<CreateAssessmentProvider>(context,
-                            listen: false)
-                        .addQuestion(widget.question.questionId, 10)
-                    : Provider.of<CreateAssessmentProvider>(context,
-                            listen: false)
-                        .addQuestion(widget.question.questionId, 0);
+                //widget.question.questionType == "MCQ"
+                    //?
+                print("question id");
+                print(widget.question.questionId);
+                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(widget.question.questionId, 0);
+                    //: Provider.of<CreateAssessmentProvider>(context,
+                      //      listen: false)
+                        //.addQuestion(widget.question.questionId, 0);
               } else {
                 Provider.of<QuestionPrepareProviderFinal>(context,
                         listen: false)

@@ -472,7 +472,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                               48, 145, 139, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.02))),
+                                          fontSize: height * 0.023))),
                             ],
                           ),
                         ),

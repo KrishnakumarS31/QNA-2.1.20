@@ -401,10 +401,13 @@ class QnaRepo {
         Uri.parse(
             '$assessmentDomain/$assessmentId?user_id=${loginData.getInt('userId')}'));
     request.body = createAssessmentModelToJson(assessment);
+    debugPrint(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
+
       loginModel = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
@@ -412,7 +415,9 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       editAssessmentTeacher(assessment, assessmentId);
-    } else {}
+    } else {
+
+    }
     return loginModel;
   }
 
@@ -471,9 +476,7 @@ class QnaRepo {
         Uri.parse(
             '$assessmentDomain/questions-looq?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
       String value = await response.stream.bytesToString();
       allAssessment = responseEntityFromJson(value);
@@ -483,7 +486,8 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       getSearchQuestion(pageLimit, pageNumber, searchVal);
-    } else {}
+    } else {
+    }
     return allAssessment;
   }
 }

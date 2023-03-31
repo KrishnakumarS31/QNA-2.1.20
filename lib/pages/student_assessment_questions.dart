@@ -7,6 +7,7 @@ import '../Providers/question_num_provider.dart';
 import 'student_revise_quest.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:flutter/foundation.dart';
 
 class StudQuestion extends StatefulWidget {
   const StudQuestion(
@@ -49,7 +50,7 @@ class StudQuestionState extends State<StudQuestion> {
   void initState() {
     setTimr();
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if (MediaQuery.of(context).copyWith().size.width > 700) {
+      if ((MediaQuery.of(context).copyWith().size.width > 700) && (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS)) {
         showModalBottomSheet(
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(

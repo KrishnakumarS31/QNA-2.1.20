@@ -68,6 +68,7 @@ class TeacherAssessmentSettingPublishState
   @override
   void initState() {
     super.initState();
+
     questionListForNxtPage =
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
@@ -84,8 +85,8 @@ class TeacherAssessmentSettingPublishState
       totalMark = totalMark + assessment.addQuestion![i].questionMark!;
     }
     totalQues = questionListForNxtPage.length;
-    totalQues =
-        assessment.addQuestion == null ? 0 : assessment.addQuestion!.length;
+    totalQues = assessment.addQuestion == null ? 0 : assessment.addQuestion!.length;
+    totalQues =assessment.questions == null ?0: assessment.questions!.length;
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
   }
@@ -642,7 +643,7 @@ class TeacherAssessmentSettingPublishState
                                                           initialDate:
                                                               DateTime.now(),
                                                           firstDate:
-                                                              DateTime(2000),
+                                                          DateTime.now(),
                                                           lastDate:
                                                               DateTime(2100),
                                                           builder:
@@ -779,11 +780,8 @@ class TeacherAssessmentSettingPublishState
                                                                 initialTime:
                                                                     TimeOfDay
                                                                         .now(),
-                                                                context:
-                                                                    context,
-                                                                initialEntryMode:
-                                                                    TimePickerEntryMode
-                                                                        .dial);
+                                                                context: context,
+                                                                initialEntryMode: TimePickerEntryMode.dial);
 
                                                         if (pickedTime !=
                                                             null) {
@@ -843,7 +841,7 @@ class TeacherAssessmentSettingPublishState
                                                           initialDate:
                                                               DateTime.now(),
                                                           firstDate:
-                                                              DateTime(2000),
+                                                              startDate,
                                                           lastDate:
                                                               DateTime(2100),
                                                           builder:
@@ -1914,7 +1912,7 @@ class TeacherAssessmentSettingPublishState
                                               startTime.hour,
                                               startTime.minute);
                                           assessment.assessmentStartdate =
-                                              startDate.microsecondsSinceEpoch;
+                                              startDate.microsecondsSinceEpoch ;
                                           endDate = DateTime(
                                               endDate.year,
                                               endDate.month,
@@ -1993,27 +1991,15 @@ class TeacherAssessmentSettingPublishState
                                           if (val == 1) {
                                             assessment.assessmentType = 'test';
                                           } else {
-                                            assessment.assessmentType =
-                                                'practice';
+                                            assessment.assessmentType = 'practice';
                                           }
-                                          assessment.assessmentStatus =
-                                              'active';
-                                          //assessment.assessmentSettings?.allowedNumberOfTestRetries= int.parse(retriesController.text);
-                                          //assessment.assessmentSettings?.avalabilityForPractice=true;
-                                          AssessmentSettings
-                                              assessmentSettings =
-                                              AssessmentSettings();
-                                          assessmentSettings.notAvailable =
-                                              activeStatus;
-                                          assessmentSettings.notAvailable =
-                                              publicAccessStatus;
-                                          assessmentSettings.showAdvisorEmail =
-                                              showEmailStatus;
-                                          assessmentSettings.showAdvisorName =
-                                              showNameStatus;
-                                          assessmentSettings
-                                                  .showSolvedAnswerSheetInAdvisor =
-                                              showAnsAfterTest;
+                                          assessment.assessmentStatus = 'active';
+                                          AssessmentSettings assessmentSettings = AssessmentSettings();
+                                          assessmentSettings.notAvailable = activeStatus;
+                                          assessmentSettings.notAvailable = publicAccessStatus;
+                                          assessmentSettings.showAdvisorEmail = showEmailStatus;
+                                          assessmentSettings.showAdvisorName = showNameStatus;
+                                          assessmentSettings.showSolvedAnswerSheetInAdvisor = showAnsAfterTest;
                                           assessmentSettings
                                                   .showSolvedAnswerSheetDuringPractice =
                                               showAnsDuringPractice;
@@ -2045,6 +2031,7 @@ class TeacherAssessmentSettingPublishState
                                               endTime.minute);
                                           assessment.assessmentEnddate =
                                               endDate.microsecondsSinceEpoch;
+
                                           assessment.assessmentDuration =
                                               (hours * 60) + minutes;
                                           showDialog(
@@ -2059,30 +2046,32 @@ class TeacherAssessmentSettingPublishState
                                               });
                                           ResponseEntity statusCode =
                                               ResponseEntity();
+                                          String assessmentCode ='';
+
                                           if (assessment.assessmentId != null) {
                                             statusCode = await QnaService
                                                 .editAssessmentTeacherService(
                                                     assessment,
                                                     assessment.assessmentId!);
+                                            assessmentCode=assessment.assessmentCode!;
+
                                           } else {
                                             statusCode = await QnaService
                                                 .createAssessmentTeacherService(
                                                     assessment);
+                                            assessmentCode=statusCode
+                                                .data
+                                                .toString()
+                                                .substring(
+                                                18,
+                                                statusCode.data
+                                                    .toString()
+                                                    .length -
+                                                    1);
                                           }
                                           Navigator.of(context).pop();
-                                          String assessmentCode = statusCode
-                                              .data
-                                              .toString()
-                                              .substring(
-                                                  18,
-                                                  statusCode.data
-                                                          .toString()
-                                                          .length -
-                                                      1);
-                                          QuestionPaperModel.QuestionPaperModel
-                                              value =
-                                              await QnaService.getQuestion(
-                                                  assessmentId: assessmentCode);
+
+
 
                                           Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
 

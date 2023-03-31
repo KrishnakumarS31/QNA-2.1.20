@@ -318,10 +318,11 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           value: valuefirst,
           onChanged: (bool? value) {
             if (value!) {
+              widget.question.questionMark=0;
               Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
                   .addQuestion(widget.question);
               Provider.of<CreateAssessmentProvider>(context, listen: false)
-                  .addQuestion(widget.question.questionId, 10);
+                  .addQuestion(widget.question.questionId, 0);
             } else {
               Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
                   .removeQuestion(widget.question.questionId);

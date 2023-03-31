@@ -484,7 +484,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                     28, 78, 80, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
-                                                fontSize: localHeight * 0.030)),
+                                                fontSize: localHeight * 0.035)),
                                         SizedBox(
                                           height: localHeight * 0.03,
                                         ),
@@ -511,7 +511,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontSize: localHeight *
-                                                            0.014)),
+                                                            0.02)),
                                               ),
                                             ),
                                             SizedBox(
@@ -546,7 +546,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                           fontFamily: 'Inter',
                                                           fontSize:
                                                               localHeight *
-                                                                  0.024,
+                                                                  0.03,
                                                           color: Colors.white)),
                                                   onPressed: () async {
                                                     Navigator.push(
@@ -599,7 +599,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                 FontWeight.w600,
                                                             fontSize:
                                                                 localHeight *
-                                                                    0.014))),
+                                                                    0.02))),
                                               ),
                                             ),
                                             SizedBox(
@@ -634,7 +634,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                             fontFamily: 'Inter',
                                                             fontSize:
                                                                 localHeight *
-                                                                    0.024,
+                                                                    0.03,
                                                             color:
                                                                 Colors.white)),
                                                     onPressed: () async {
@@ -698,7 +698,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontSize:
-                                                          localHeight * 0.016),
+                                                          localHeight * 0.023),
                                                 )
                                               ],
                                             )),

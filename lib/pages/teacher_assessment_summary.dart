@@ -17,6 +17,9 @@ import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
     Key? key,
@@ -36,6 +39,11 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
   int totalQues = 0;
   int totalMark = 0;
+  TextEditingController subjectController = TextEditingController();
+  TextEditingController classController = TextEditingController();
+  TextEditingController topicController = TextEditingController();
+  TextEditingController subTopicController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   showAdditionalDetails() {
     setState(() {
@@ -231,6 +239,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
 
   getData() {
     setState(() {
+
       questionList =
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .getAllQuestion;
@@ -240,6 +249,10 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
       for (int i = 0; i < assessment.questions!.length; i++) {
         totalMark = totalMark + assessment.questions![i].questionMarks!;
       }
+      subjectController.text=assessment.subject!;
+      classController.text=assessment.createAssessmentModelClass!;
+      topicController.text=assessment.topic!;
+      subTopicController.text=assessment.subTopic!;
     });
   }
 
@@ -345,25 +358,616 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                   ),
                                 ],
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Edit',
-                                    style: TextStyle(
-                                        fontSize: height * 0.017,
-                                        fontFamily: "Inter",
-                                        color:
-                                            const Color.fromRGBO(28, 78, 80, 1),
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  SizedBox(
-                                    width: width * 0.01,
-                                  ),
-                                  const Icon(
-                                    Icons.edit_outlined,
-                                    color: Color.fromRGBO(28, 78, 80, 1),
-                                  )
-                                ],
+                              GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Dialog(
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(17))),
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.vertical,
+                                            child: Container(
+                                              height: height * 0.7,
+                                              width: width * 0.88,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.black38,
+                                                    width: 1),
+                                                borderRadius:
+                                                BorderRadius.circular(17),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: width * 0.02,
+                                                    right: width * 0.02,
+                                                    top: height * 0.02,
+                                                    bottom: height * 0.02),
+                                                child: Form(
+                                                  key: formKey,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .assessment_title,
+                                                          //'Assessment Title',
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                              height *
+                                                                  0.02,
+                                                              fontFamily:
+                                                              "Inter",
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1),
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w700),
+                                                        ),
+                                                      ),
+                                                      Align(
+                                                        alignment: Alignment
+                                                            .centerLeft,
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .sub_class_others,
+                                                          // 'Subject, Class and Other details',
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                              height *
+                                                                  0.015,
+                                                              fontFamily:
+                                                              "Inter",
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  153,
+                                                                  153,
+                                                                  153,
+                                                                  1),
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.05,
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                        Alignment.topLeft,
+                                                        child: TextFormField(
+                                                          controller:
+                                                          subjectController,
+                                                          keyboardType:
+                                                          TextInputType
+                                                              .text,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            label: SizedBox(
+                                                              width: width *
+                                                                  0.18,
+                                                              child: Row(
+                                                                children: [
+                                                                  Text(
+                                                                    AppLocalizations.of(
+                                                                        context)!
+                                                                        .sub_caps,
+                                                                    //'SUBJECT',
+                                                                    style: TextStyle(
+                                                                        fontSize: height *
+                                                                            0.015,
+                                                                        fontFamily:
+                                                                        "Inter",
+                                                                        color: const Color.fromRGBO(
+                                                                            51,
+                                                                            51,
+                                                                            51,
+                                                                            1),
+                                                                        fontWeight:
+                                                                        FontWeight.w600),
+                                                                  ),
+                                                                  Text(
+                                                                    '\t*',
+                                                                    style: TextStyle(
+                                                                        fontSize: height *
+                                                                            0.015,
+                                                                        fontFamily:
+                                                                        "Inter",
+                                                                        color: Colors
+                                                                            .red,
+                                                                        fontWeight:
+                                                                        FontWeight.w600),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            labelStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51,
+                                                                    51,
+                                                                    51,
+                                                                    1),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize:
+                                                                height *
+                                                                    0.015),
+                                                            hintStyle: TextStyle(
+                                                                color:
+                                                                const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                                fontSize:
+                                                                height *
+                                                                    0.02),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .sub_hint,
+                                                            //'Type Subject Here',
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color.fromRGBO(
+                                                                        82,
+                                                                        165,
+                                                                        160,
+                                                                        1)),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                          ),
+                                                          validator: (value) {
+                                                            if (value!
+                                                                .isEmpty) {
+                                                              return AppLocalizations.of(
+                                                                  context)!
+                                                                  .enter_subject;
+                                                              //'Enter Subject';
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          },
+                                                          onChanged: (value) {
+                                                            formKey
+                                                                .currentState!
+                                                                .validate();
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                        Alignment.topLeft,
+                                                        child: TextFormField(
+                                                          controller:
+                                                          classController,
+                                                          keyboardType:
+                                                          TextInputType
+                                                              .text,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            label: SizedBox(
+                                                              width: width *
+                                                                  0.15,
+                                                              child: Row(
+                                                                children: [
+                                                                  Text(
+                                                                    AppLocalizations.of(
+                                                                        context)!
+                                                                        .class_caps,
+                                                                    // 'CLASS',
+                                                                    style: TextStyle(
+                                                                        fontSize: height *
+                                                                            0.015,
+                                                                        fontFamily:
+                                                                        "Inter",
+                                                                        color: const Color.fromRGBO(
+                                                                            51,
+                                                                            51,
+                                                                            51,
+                                                                            1),
+                                                                        fontWeight:
+                                                                        FontWeight.w600),
+                                                                  ),
+                                                                  Text(
+                                                                    '\t*',
+                                                                    style: TextStyle(
+                                                                        fontSize: height *
+                                                                            0.015,
+                                                                        fontFamily:
+                                                                        "Inter",
+                                                                        color: Colors
+                                                                            .red,
+                                                                        fontWeight:
+                                                                        FontWeight.w600),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            labelStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51,
+                                                                    51,
+                                                                    51,
+                                                                    1),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize:
+                                                                height *
+                                                                    0.015),
+                                                            hintStyle: TextStyle(
+                                                                color:
+                                                                const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                                fontSize:
+                                                                height *
+                                                                    0.02),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .type_here,
+                                                            //'Type Here',
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color.fromRGBO(
+                                                                        82,
+                                                                        165,
+                                                                        160,
+                                                                        1)),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                          ),
+                                                          onChanged: (value) {
+                                                            formKey
+                                                                .currentState!
+                                                                .validate();
+                                                          },
+                                                          validator: (value) {
+                                                            if (value!
+                                                                .isEmpty) {
+                                                              return AppLocalizations.of(
+                                                                  context)!
+                                                                  .enter_class;
+                                                              //'Enter Class';
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          },
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                        Alignment.topLeft,
+                                                        child: TextFormField(
+                                                          controller:
+                                                          topicController,
+                                                          keyboardType:
+                                                          TextInputType
+                                                              .text,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            labelText: AppLocalizations
+                                                                .of(context)!
+                                                                .topic_optional,
+                                                            //'TOPIC (Optional)',
+                                                            labelStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51,
+                                                                    51,
+                                                                    51,
+                                                                    1),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize:
+                                                                height *
+                                                                    0.015),
+                                                            hintStyle: TextStyle(
+                                                                color:
+                                                                const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                                fontSize:
+                                                                height *
+                                                                    0.02),
+                                                            hintText:
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .topic_hint,
+                                                            //'Type Topic Here',
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color.fromRGBO(
+                                                                        82,
+                                                                        165,
+                                                                        160,
+                                                                        1)),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      Align(
+                                                        alignment:
+                                                        Alignment.topLeft,
+                                                        child: TextFormField(
+                                                          controller:
+                                                          subTopicController,
+                                                          keyboardType:
+                                                          TextInputType
+                                                              .text,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            floatingLabelBehavior:
+                                                            FloatingLabelBehavior
+                                                                .always,
+                                                            labelText: AppLocalizations
+                                                                .of(context)!
+                                                                .sub_topic_optional,
+                                                            // 'SUB TOPIC (Optional)',
+                                                            labelStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    51,
+                                                                    51,
+                                                                    51,
+                                                                    1),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w600,
+                                                                fontSize:
+                                                                height *
+                                                                    0.015),
+                                                            hintStyle: TextStyle(
+                                                                color:
+                                                                const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily:
+                                                                'Inter',
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                                fontSize:
+                                                                height *
+                                                                    0.02),
+                                                            hintText: AppLocalizations
+                                                                .of(context)!
+                                                                .sub_topic_hint,
+                                                            //'Type Sub Topic Here',
+                                                            focusedBorder: OutlineInputBorder(
+                                                                borderSide: const BorderSide(
+                                                                    color: Color.fromRGBO(
+                                                                        82,
+                                                                        165,
+                                                                        160,
+                                                                        1)),
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                            border: OutlineInputBorder(
+                                                                borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                    15)),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: height * 0.02,
+                                                      ),
+                                                      ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                          backgroundColor:
+                                                          const Color
+                                                              .fromRGBO(
+                                                              82,
+                                                              165,
+                                                              160,
+                                                              1),
+                                                          minimumSize:
+                                                          const Size(
+                                                              280, 48),
+                                                          shape:
+                                                          RoundedRectangleBorder(
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                39),
+                                                          ),
+                                                        ),
+                                                        onPressed: () async {
+                                                          bool valid = formKey
+                                                              .currentState!
+                                                              .validate();
+                                                          if (valid) {
+                                                            SharedPreferences
+                                                            loginData =
+                                                            await SharedPreferences
+                                                                .getInstance();
+                                                            Provider.of<QuestionPrepareProviderFinal>(
+                                                                context,
+                                                                listen:
+                                                                false)
+                                                                .reSetQuestionList();
+                                                            assessment
+                                                                .topic =
+                                                                topicController
+                                                                    .text;
+                                                            assessment
+                                                                .subTopic =
+                                                                subTopicController
+                                                                    .text;
+                                                            assessment
+                                                                .subject =
+                                                                subjectController
+                                                                    .text;
+                                                            assessment
+                                                                .createAssessmentModelClass =
+                                                                classController
+                                                                    .text;
+                                                            assessment
+                                                                .userId =
+                                                                loginData.getInt(
+                                                                    'userId');
+                                                            Provider.of<CreateAssessmentProvider>(
+                                                                context,
+                                                                listen:
+                                                                false)
+                                                                .updateAssessment(
+                                                                assessment);
+                                                            Navigator.of(context).pushAndRemoveUntil(
+                                                                MaterialPageRoute(
+                                                                    builder: (context) => TeacherAssessmentSummary(
+                                                                        setLocale: widget.setLocale)),
+                                                                    (route) => route.isFirst);
+                                                          }
+                                                        },
+                                                        child: Text(
+                                                          AppLocalizations.of(
+                                                              context)!
+                                                              .save_continue,
+                                                          //'Save & Continue',
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                              height *
+                                                                  0.025,
+                                                              fontFamily:
+                                                              "Inter",
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  255,
+                                                                  255,
+                                                                  255,
+                                                                  1),
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w600),
+                                                        ),
+                                                      ),
+
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      });
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Edit',
+                                      style: TextStyle(
+                                          fontSize: height * 0.017,
+                                          fontFamily: "Inter",
+                                          color:
+                                              const Color.fromRGBO(28, 78, 80, 1),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      width: width * 0.01,
+                                    ),
+                                    const Icon(
+                                      Icons.edit_outlined,
+                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),

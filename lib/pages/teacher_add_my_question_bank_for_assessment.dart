@@ -114,16 +114,20 @@ class TeacherAddMyQuestionBankForAssessmentState
             false)
             .updateAssessment(
             assessmentVal);
-
-          Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: TeacherCreateAssessment(
-                  //assessment: widget.assessment,
-                  setLocale: widget.setLocale),
-            ),
-          );
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (context) => TeacherCreateAssessment(
+                    setLocale: widget.setLocale)),
+                (route) => route.isFirst);
+          // Navigator.push(
+          //   context,
+          //   PageTransition(
+          //     type: PageTransitionType.rightToLeft,
+          //     child: TeacherCreateAssessment(
+          //         //assessment: widget.assessment,
+          //         setLocale: widget.setLocale),
+          //   ),
+          // );
         // }
       },
     );
@@ -189,7 +193,11 @@ class TeacherAddMyQuestionBankForAssessmentState
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => TeacherCreateAssessment(
+                              setLocale: widget.setLocale)),
+                          (route) => route.isFirst);
                 },
               ),
               toolbarHeight: height * 0.100,

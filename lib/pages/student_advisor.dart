@@ -164,9 +164,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       localHeight *
                                                           0.050),
                                                   Text(
-                                                      "Q${values.data!
-                                                          .questions![index - 1]
-                                                          .questionId}",
+                                                      "Q$index",
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(82,
@@ -261,8 +259,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   )
                                                       : Text(
                                                       AppLocalizations.of(
-                                                          context)!
-                                                          .not_answered,
+                                                          context)!.incorrectly_answered,
                                                       //"Not answered",
                                                       style: TextStyle(
                                                           color: const Color
@@ -1122,8 +1119,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               ],
                                             )
                                                 : Text(
-                                                AppLocalizations.of(context)!
-                                                    .not_answered,
+                                                AppLocalizations.of(context)!.incorrectly_answered,
                                                 //"Not answered",
                                                 style: TextStyle(
                                                     color: const Color

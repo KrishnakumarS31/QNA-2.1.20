@@ -739,9 +739,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           width: localWidth * 0.30,
                                           child: Column(
                                             children: [
-                                              Text("dvfv",
-                                                // AppLocalizations.of(context)!
-                                                //     .result_card,
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .result_card,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         255, 255, 255, 1),
