@@ -216,7 +216,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         size: width * 0.05,
                                       ),
                                       Text(
-                                        "${widget.result.assessmentStartDate}",
+                                        attemptSdate,
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.7),
@@ -831,7 +831,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                             .assessmentResults![index]
                                             .firstName!,
                                         testCode: widget.result.assessmentCode!,
-                                        percent: 95,
+                                        percent: widget.result.attemptPercentage ?? 0,
                                         securedMark: widget.result
                                             .assessmentResults![index]
                                             .attemptScore!,

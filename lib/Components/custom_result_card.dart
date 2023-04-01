@@ -19,7 +19,7 @@ class Result_card extends StatelessWidget {
 
   final String name;
   final String testCode;
-  final int percent;
+  final int? percent;
   final int securedMark;
   final int totalMark;
   final int? timeTaken;
@@ -105,7 +105,7 @@ class Result_card extends StatelessWidget {
               Container(
                 width: width * 0.233,
                 decoration: BoxDecoration(
-                    color: percent > 50
+                    color: percent! > 50
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 166, 0, 1),
                     borderRadius: const BorderRadius.only(

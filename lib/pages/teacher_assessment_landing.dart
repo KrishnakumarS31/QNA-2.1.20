@@ -456,7 +456,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       onChanged: (value) {},
                     ),
                     SizedBox(height: height * 0.04),
-                    RichText(
+                    Align(
+                      alignment: Alignment.center,
+                    child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(children: [
                           TextSpan(
@@ -479,7 +481,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                 color: const Color.fromRGBO(153, 153, 153, 1),
                                 fontFamily: "Inter"),
                           ),
-                        ])),
+                        ]))),
                     SizedBox(height: height * 0.02),
                     Text(
                       AppLocalizations.of(context)!.tests,

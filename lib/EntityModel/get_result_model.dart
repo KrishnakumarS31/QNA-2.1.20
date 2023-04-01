@@ -19,6 +19,7 @@ class GetResultModel {
       this.topic,
       this.subTopic,
       this.studentClass,
+      this.attemptPercentage,
       this.assessmentResults,
       this.androidUrl,
       this.url,
@@ -37,6 +38,7 @@ class GetResultModel {
   String? topic;
   String? subTopic;
   String? studentClass;
+  int? attemptPercentage;
   String? url;
   String? androidUrl;
   String? iosUrl;
@@ -59,6 +61,7 @@ class GetResultModel {
         androidUrl: json["android_app"],
         iosUrl: json["ios_app"],
         studentClass: json["class"],
+        attemptPercentage: json["attempt_percentage"],
         assessmentResults: json["assessment_results"] == null
             ? []
             : List<AssessmentResults>.from(json["assessment_results"]
@@ -78,6 +81,7 @@ class GetResultModel {
         "topic": topic,
         "sub_topic": subTopic,
         "class": studentClass,
+        "attempt_percentage":attemptPercentage,
         "url": url,
         "android_app": androidUrl,
         "ios_app": iosUrl,

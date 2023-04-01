@@ -19,7 +19,7 @@ class Result_card1 extends StatelessWidget {
 
   final String name;
   final String testCode;
-  final int percent;
+  final int? percent;
   final int securedMark;
   final int totalMark;
   final int? timeTaken;
@@ -27,6 +27,9 @@ class Result_card1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(startedTime!);
+    String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+    String time = "${tsdate.hour}:${tsdate.minute}";
     return Padding(
       padding: EdgeInsets.only(bottom: height * 0.015),
       child: Container(
@@ -70,7 +73,7 @@ class Result_card1 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      startedTime.toString(),
+                      datetime,
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -78,10 +81,7 @@ class Result_card1 extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      startedTime
-                          .toString()
-                          .substring(0, startedTime.toString().length - 13),
-                      //"${startedTime!}",
+                      "$time IST",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -94,7 +94,7 @@ class Result_card1 extends StatelessWidget {
               Container(
                 width: width * 0.233,
                 decoration: BoxDecoration(
-                    color: percent > 50
+                    color: percent! > 50
                         ? const Color.fromRGBO(82, 165, 160, 1)
                         : const Color.fromRGBO(255, 166, 0, 1),
                     borderRadius: const BorderRadius.only(

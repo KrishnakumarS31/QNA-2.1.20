@@ -42,7 +42,24 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
+    DateTime Odate = DateTime.fromMillisecondsSinceEpoch(
+        widget.result.assessmentStartDate!);
+    String openingDate = "${Odate.day}/${Odate.month}/${Odate.year}";
+    DateTime Edate = DateTime.fromMillisecondsSinceEpoch(
+        widget.result.assessmentEndDate!);
+    String closingDate = "${Edate.day}/${Edate.month}/${Edate.year}";
+    DateTime OTime = DateTime.fromMillisecondsSinceEpoch(
+        widget.result.assessmentStartDate!);
+    String openingTime = "${OTime.hour}:${OTime.month}";
+    DateTime ETime = DateTime.fromMillisecondsSinceEpoch(
+        widget.result.assessmentEndDate!);
+    String closingTime = "${ETime.hour}:${ETime.month}";
+    DateTime DTime = DateTime.fromMillisecondsSinceEpoch(
+        widget.result.assessmentDuration!);
+    String duration = "${DTime.hour}:${DTime.month}";
+    DateTime testDate = DateTime.fromMillisecondsSinceEpoch(
+        widget.result.assessmentResults![0].attemptStartDate!);
+    String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -110,7 +127,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              "UCE112233",
+                              widget.result.assessmentCode!,
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                 fontSize: height * 0.025,
@@ -190,7 +207,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                               size: width * 0.05,
                                             ),
                                             Text(
-                                              "${widget.result.assessmentStartDate}",
+                                              attemptSdate,
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.7),
@@ -457,24 +474,24 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                'Test max. Time permitted:',
+                                                'Test max. Time permitted: ',
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                    FontWeight.w400),
                                               ),
                                               Text(
-                                                "${widget.result.assessmentDuration!}",
+                                                "$duration hrs",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w600),
+                                                    FontWeight.w600),
                                               ),
                                             ],
                                           ),
@@ -496,17 +513,17 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                    FontWeight.w400),
                                               ),
                                               Text(
-                                                ' ${widget.result.assessmentStartDate!},${widget.result.assessmentDuration!}',
+                                                ' $openingDate, $openingTime IST',
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w600),
+                                                    FontWeight.w600),
                                               ),
                                             ],
                                           ),
@@ -528,21 +545,24 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w400),
+                                                    FontWeight.w400),
                                               ),
                                               Text(
-                                                ' ${widget.result.assessmentEndDate!},${widget.result.assessmentDuration!}',
+                                                "$closingDate, $closingTime IST",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
                                                     fontSize: height * 0.015,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w600),
+                                                    FontWeight.w600),
                                               ),
                                             ],
                                           ),
                                         ),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.02,
                                       ),
                                       SizedBox(
                                         height: height * 0.02,
@@ -557,19 +577,19 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                           child: Row(
                                             children: [
                                               Text(
-                                                'Guest',
+                                                'Guest\t\t',
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         28, 78, 80, 1),
                                                     fontSize: height * 0.0185,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w700),
+                                                    FontWeight.w700),
                                               ),
                                               Text(
                                                 widget.result
-                                                            .guestStudentAllowed ==
-                                                        true
+                                                    .guestStudentAllowed ==
+                                                    true
                                                     ? "Allowed"
                                                     : "Not Allowed",
                                                 style: TextStyle(
@@ -578,7 +598,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                                     fontSize: height * 0.0175,
                                                     fontFamily: "Inter",
                                                     fontWeight:
-                                                        FontWeight.w500),
+                                                    FontWeight.w500),
                                               ),
                                             ],
                                           ),
@@ -796,12 +816,12 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                     name: widget.result
                                         .assessmentResults![index].firstName!,
                                     testCode: widget.result.assessmentCode!,
-                                    percent: 95,
+                                    percent: widget.result.attemptPercentage ?? 0,
                                     securedMark: widget.result
-                                        .assessmentResults![0].attemptScore!,
+                                        .assessmentResults![index].attemptScore!,
                                     totalMark: widget.result.totalScore!,
                                     timeTaken: widget.result
-                                        .assessmentResults![0].attemptDuration!,
+                                        .assessmentResults![index].attemptDuration!,
                                     startedTime: widget
                                         .result
                                         .assessmentResults![0]

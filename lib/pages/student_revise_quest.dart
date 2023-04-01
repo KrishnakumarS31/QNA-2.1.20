@@ -1125,7 +1125,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         value.add(values.data!.questions![j - 1].choices![s]
                             .choiceText!);
                       }
-                      Map<int, String> map = Map.fromIterables(key, value);
                       for (int f = 0; f < selectedAns.length; f++) {
                         selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
                       }
@@ -1156,7 +1155,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         value.add(values.data!.questions![j - 1].choices![s]
                             .choiceText!);
                       }
-                      Map<int, String> map = Map.fromIterables(key, value);
                       for (int f = 0; f < selectedAns.length; f++) {
                         selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
                       }
@@ -1176,19 +1174,20 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   assessment.attemptScore = totalMark;
                   int percent = ((ansCorrect / values.data!.questions!.length) *
                       100).round();
+                  assessment.attemptPercentage = percent;
                   if (percent == 100) {
                     assessment.assessmentScoreId =
                         values.data!.assessmentScoreMessage![0]
                             .assessmentScoreId;
                     message = values.data!.assessmentScoreMessage![0]
-                        .assessmentScoreStatus!;
+                        .assessmentScoreStatus;
                   }
                   else {
                     assessment.assessmentScoreId =
                         values.data!.assessmentScoreMessage![1]
                             .assessmentScoreId;
                     message = values.data!.assessmentScoreMessage![1]
-                        .assessmentScoreStatus!;
+                        .assessmentScoreStatus;
                   }
                   final DateTime now = DateTime.now();
                   final DateFormat formatter = DateFormat('dd-MM-yyyy');

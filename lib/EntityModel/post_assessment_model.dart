@@ -20,6 +20,7 @@ class PostAssessmentModel {
     this.attemptEnddate,
     this.attemptDuration,
     this.attemptScore,
+    this.attemptPercentage,
     this.assessmentScoreId,
     required this.assessmentResults,
   });
@@ -32,6 +33,7 @@ class PostAssessmentModel {
   int? attemptEnddate;
   int? attemptDuration;
   int? attemptScore;
+  int? attemptPercentage;
   int? assessmentScoreId;
   List<AssessmentResult> assessmentResults;
 
@@ -45,6 +47,7 @@ class PostAssessmentModel {
         attemptEnddate: json["attempt_enddate"],
         attemptDuration: json["attempt_duration"],
         attemptScore: json["attempt_score"],
+        attemptPercentage :json["attempt_percentage"],
         assessmentScoreId: json["assessment_score_id"],
         assessmentResults: List<AssessmentResult>.from(
             json["assessment_results"]
@@ -60,6 +63,7 @@ class PostAssessmentModel {
         "attempt_enddate": attemptEnddate,
         "attempt_duration": attemptDuration,
         "attempt_score": attemptScore,
+        "attempt_percentage":attemptPercentage,
         "assessment_score_id": assessmentScoreId,
         "assessment_results":
             List<dynamic>.from(assessmentResults.map((x) => x.toJson())),
@@ -67,7 +71,7 @@ class PostAssessmentModel {
 
   @override
   String toString() {
-    return 'PostAssessmentModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, userId: $userId, statusId: $statusId, attemptStartdate: $attemptStartdate, attemptEnddate: $attemptEnddate,\n attemptDuration: $attemptDuration, attemptScore: $attemptScore, assessmentScoreId: $assessmentScoreId,\n assessmentResults: $assessmentResults}';
+    return 'PostAssessmentModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, userId: $userId, statusId: $statusId,attempt_percentage: $attemptPercentage, attemptStartdate: $attemptStartdate, attemptEnddate: $attemptEnddate,\n attemptDuration: $attemptDuration, attemptScore: $attemptScore, assessmentScoreId: $assessmentScoreId,\n assessmentResults: $assessmentResults}';
   }
 }
 

@@ -50,7 +50,7 @@ class StudQuestionState extends State<StudQuestion> {
   void initState() {
     setTimr();
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if ((MediaQuery.of(context).copyWith().size.width > 700) && (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS)) {
+      if ((MediaQuery.of(context).copyWith().size.width > 700) || (kIsWeb)|| (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS)) {
         showModalBottomSheet(
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(

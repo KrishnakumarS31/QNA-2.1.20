@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import '../Components/custom_radio_option.dart';
 import '../Components/custom_result_card1.dart';
 import '../EntityModel/get_result_model.dart';
 
@@ -184,7 +183,7 @@ class TeacherResultIndividualStudentState
                           width: width,
                           name: widget.result.assessmentResults![0].firstName!,
                           testCode: widget.result.assessmentCode!,
-                          percent: 95,
+                          percent: widget.result.attemptPercentage ?? 0,
                           securedMark:
                               widget.result.assessmentResults![0].attemptScore!,
                           totalMark: widget.result.totalScore!,
@@ -234,7 +233,13 @@ class TeacherResultIndividualStudentState
                       SizedBox(
                         height: height * 0.03,
                       ),
-                      Align(
+                      widget
+                          .result
+                          .assessmentResults![0]
+                          .questions![0]
+                          .questionType! ==
+                          "MCQ"
+                      ? Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "MCQ",
@@ -244,9 +249,15 @@ class TeacherResultIndividualStudentState
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600),
                         ),
-                      ),
-                      widget.result.assessmentResults != ""
-                          ? ListView.builder(
+                      )
+                      :const SizedBox(),
+                      widget
+                          .result
+                          .assessmentResults![0]
+                          .questions![0]
+                          .questionType! ==
+                          "MCQ"
+                      ? ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount:
@@ -266,12 +277,12 @@ class TeacherResultIndividualStudentState
                                             ques: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![index]
+                                                .questions![0]
                                                 .question!,
                                             ans: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![index]
+                                                .questions![0]
                                                 .descriptiveAnswers!,
                                           ),
                                         )
@@ -282,12 +293,18 @@ class TeacherResultIndividualStudentState
                                 ],
                               ),
                             )
-                          : const SizedBox(),
+                      : const SizedBox(),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(),
                       ),
-                      Align(
+                      widget
+                          .result
+                          .assessmentResults![0]
+                          .questions![0]
+                          .questionType! ==
+                          "SURVEY"
+                     ? Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'Survey',
@@ -297,9 +314,15 @@ class TeacherResultIndividualStudentState
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600),
                         ),
-                      ),
-                      widget.result.assessmentResults != ""
-                          ? ListView.builder(
+                      )
+                      : const SizedBox(),
+                      widget
+                          .result
+                          .assessmentResults![0]
+                          .questions![0]
+                          .questionType! ==
+                          "SURVEY"
+                   ? ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount:
@@ -319,28 +342,35 @@ class TeacherResultIndividualStudentState
                                             ques: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![index]
+                                                .questions![0]
                                                 .question!,
                                             ans: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![index]
+                                                .questions![0]
                                                 .descriptiveAnswers!,
                                           ),
                                         )
-                                      : const SizedBox(),
+                                  : const SizedBox(),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
                                 ],
                               ),
                             )
-                          : const SizedBox(),
+                      : const SizedBox(),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(),
                       ),
-                      Align(
+
+                      widget
+                          .result
+                          .assessmentResults![0]
+                          .questions![0]
+                          .questionType! ==
+                          "descriptive"
+                      ? Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           'DESCRIPTIVE',
@@ -350,9 +380,16 @@ class TeacherResultIndividualStudentState
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600),
                         ),
-                      ),
-                      widget.result.assessmentResults != ""
-                          ? ListView.builder(
+                      )
+                      : const SizedBox(),
+                      widget
+                          .result
+                          .assessmentResults![0]
+                          .questions![0]
+                          .questionType! ==
+                          "descriptive"
+                          ?
+                      ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount:
@@ -362,7 +399,7 @@ class TeacherResultIndividualStudentState
                                   widget
                                               .result
                                               .assessmentResults![0]
-                                              .questions![index]
+                                              .questions![0]
                                               .questionType! ==
                                           "descriptive"
                                       ? GestureDetector(
@@ -372,12 +409,12 @@ class TeacherResultIndividualStudentState
                                             ques: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![index]
+                                                .questions![0]
                                                 .question!,
                                             ans: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![index]
+                                                .questions![0]
                                                 .descriptiveAnswers!,
                                           ),
                                         )
@@ -388,7 +425,7 @@ class TeacherResultIndividualStudentState
                                 ],
                               ),
                             )
-                          : const SizedBox(),
+                      : const SizedBox(),
                     ]),
               ),
             )));
