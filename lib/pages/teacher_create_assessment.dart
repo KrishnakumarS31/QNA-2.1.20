@@ -24,9 +24,8 @@ import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 class TeacherCreateAssessment extends StatefulWidget {
   const TeacherCreateAssessment({
     Key? key,
-    required this.setLocale,
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherCreateAssessmentState createState() => TeacherCreateAssessmentState();
@@ -76,7 +75,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -722,11 +721,12 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                           false)
                                                                   .updateAssessment(
                                                                       assessmentVal);
-                                                              Navigator.of(context).pushAndRemoveUntil(
-                                                                  MaterialPageRoute(
-                                                                      builder: (context) => TeacherCreateAssessment(
-                                                                          setLocale: widget.setLocale)),
-                                                                      (route) => route.isFirst);
+                                                              Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
+                                                              // Navigator.of(context).pushAndRemoveUntil(
+                                                              //     MaterialPageRoute(
+                                                              //         builder: (context) => TeacherCreateAssessment(
+                                                              //             )),
+                                                              //         (route) => route.isFirst);
                                                             }
                                                           },
                                                           child: Text(
@@ -871,15 +871,19 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 iconSize: height * 0.04,
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: TeacherAssessmentQuestionBank(
-                                          setLocale: widget.setLocale,
-                                      searchText: TeacherCreateAssessmentSearchController.text,),
-                                    ),
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/teacherAssessmentQuestionBank',
+                                      arguments: [true,TeacherCreateAssessmentSearchController.text]
                                   );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   PageTransition(
+                                  //     type: PageTransitionType.rightToLeft,
+                                  //     child: TeacherAssessmentQuestionBank(
+                                  //     searchText: TeacherCreateAssessmentSearchController.text,),
+                                  //   ),
+                                  // );
                                 },
                                 icon: const Icon(Icons.search),
                               )),
@@ -943,15 +947,20 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherPrepareQuesForAssessment(
-                                    assessment: true,
-                                    setLocale: widget.setLocale),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/teacherPrepareQuesForAssessment',
+                                arguments: true
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherPrepareQuesForAssessment(
+                            //         assessment: true,
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Create New Question',
@@ -981,14 +990,19 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherSelectedQuestionAssessment(
-                                    questions: newQuestions, setLocale: widget.setLocale),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/teacherSelectedQuestionAssessment',
+                                arguments: newQuestions
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherSelectedQuestionAssessment(
+                            //         questions: newQuestions,),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Continue',
@@ -1039,16 +1053,20 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             //         assessmentId: assessmentCode);
                             Navigator.of(context).pop();
                             if (statusCode.code == 200) {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherPublishedAss.TeacherPublishedAssessment(
-                                    setLocale: widget.setLocale,
-                                    assessmentCode: assessmentCode,
-                                  ),
-                                ),
+                              Navigator.pushNamed(
+                                  context,
+                                  '/teacherPublishedAssessment',
+                                  arguments: [assessmentCode,null]
                               );
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: TeacherPublishedAss.TeacherPublishedAssessment(
+                              //       assessmentCode: assessmentCode,
+                              //     ),
+                              //   ),
+                              // );
                             }
                           },
                           child: Text(

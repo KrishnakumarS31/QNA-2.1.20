@@ -7,9 +7,8 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 
 class StudentGuestLogin extends StatefulWidget {
-  const StudentGuestLogin({super.key, required this.setLocale});
+  const StudentGuestLogin({super.key,});
 
-  final void Function(Locale locale) setLocale;
 
   @override
   StudentGuestLoginState createState() => StudentGuestLoginState();
@@ -67,7 +66,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: SingleChildScrollView(
                     physics: const ClampingScrollPhysics(),
@@ -494,15 +493,18 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {
                                   name = nameController.text;
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: StudGuestAssessment(
-                                          setLocale: widget.setLocale,
-                                          name: name),
-                                    ),
-                                  );
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/studGuestAssessment',
+                                      arguments: name);
+                                  // Navigator.push(
+                                  //   context,
+                                  //   PageTransition(
+                                  //     type: PageTransitionType.rightToLeft,
+                                  //     child: StudGuestAssessment(
+                                  //         name: name),
+                                  //   ),
+                                  // );
                                   nameController.clear();
                                   rollNumController.clear();
                                 }
@@ -555,7 +557,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: SingleChildScrollView(
                     physics: const ClampingScrollPhysics(),
@@ -883,15 +885,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {
                                   name = nameController.text;
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: StudGuestAssessment(
-                                          setLocale: widget.setLocale,
-                                          name: name),
-                                    ),
-                                  );
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/studGuestAssessment',
+                                      arguments: name);
                                   nameController.clear();
                                   rollNumController.clear();
                                 }

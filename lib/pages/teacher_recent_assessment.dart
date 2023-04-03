@@ -10,9 +10,8 @@ import '../Providers/edit_assessment_provider.dart';
 
 class TeacherRecentAssessment extends StatefulWidget {
   TeacherRecentAssessment(
-      {Key? key, required this.setLocale, required this.finalAssessment})
+      {Key? key, required this.finalAssessment})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
   CreateAssessmentModel finalAssessment;
 
   @override
@@ -58,7 +57,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
         onWillPop: () async => false,
         child: Scaffold(
           extendBodyBehindAppBar: true,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             elevation: 0,
             automaticallyImplyLeading: false,
@@ -994,14 +993,15 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               )),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAssessmentSummary(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/teacherAssessmentSummary');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherAssessmentSummary(
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Edit',

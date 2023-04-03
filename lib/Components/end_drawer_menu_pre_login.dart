@@ -9,9 +9,9 @@ import '../pages/about_us.dart';
 import '../pages/help_page.dart';
 
 class EndDrawerMenuPreLogin extends StatefulWidget {
-  const EndDrawerMenuPreLogin({Key? key, required this.setLocale})
+  const EndDrawerMenuPreLogin({Key? key})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   State<EndDrawerMenuPreLogin> createState() => _EndDrawerMenuPreLoginState();
@@ -55,7 +55,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: SettingsLanguages(setLocale: widget.setLocale),
+                          child: SettingsLanguages(),
                         ),
                       );
                     }),
@@ -82,7 +82,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
                           child: PrivacyPolicyHamburger(
-                              setLocale: widget.setLocale),
+                              ),
                         ),
                       );
                     }),
@@ -107,7 +107,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
                           child: TermsOfServiceHamburger(
-                              setLocale: widget.setLocale),
+                              ),
                         ),
                       );
                     }),
@@ -130,7 +130,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: CookiePolicy(setLocale: widget.setLocale),
+                          child: CookiePolicy(),
                         ),
                       );
                     }),
@@ -159,7 +159,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: AboutUs(setLocale: widget.setLocale),
+                          child: AboutUs(),
                         ),
                       );
                     }),
@@ -182,7 +182,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: HelpPageHamburger(setLocale: widget.setLocale),
+                          child: HelpPageHamburger(),
                         ),
                       );
                     }),

@@ -21,14 +21,12 @@ import 'package:intl/intl.dart';
 class TeacherAddMyQuestionBankForAssessment extends StatefulWidget {
   const TeacherAddMyQuestionBankForAssessment({
     Key? key,
-    this.assessment,
-    required this.setLocale,
-    this.assessmentStatus,
+    required this.assessment,
   }) : super(key: key);
 
-  final bool? assessment;
-  final String? assessmentStatus;
-  final void Function(Locale locale) setLocale;
+  final bool assessment;
+
+
 
   @override
   TeacherAddMyQuestionBankForAssessmentState createState() =>
@@ -114,11 +112,12 @@ class TeacherAddMyQuestionBankForAssessmentState
             false)
             .updateAssessment(
             assessmentVal);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (context) => TeacherCreateAssessment(
-                    setLocale: widget.setLocale)),
-                (route) => route.isFirst);
+        Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
+        // Navigator.of(context).pushAndRemoveUntil(
+        //     MaterialPageRoute(
+        //         builder: (context) => TeacherCreateAssessment(
+        //             )),
+        //         (route) => route.isFirst);
           // Navigator.push(
           //   context,
           //   PageTransition(
@@ -193,11 +192,12 @@ class TeacherAddMyQuestionBankForAssessmentState
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => TeacherCreateAssessment(
-                              setLocale: widget.setLocale)),
-                          (route) => route.isFirst);
+                  Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
+                  // Navigator.of(context).pushAndRemoveUntil(
+                  //     MaterialPageRoute(
+                  //         builder: (context) => TeacherCreateAssessment(
+                  //             )),
+                  //         (route) => route.isFirst);
                 },
               ),
               toolbarHeight: height * 0.100,
@@ -377,7 +377,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                     width: width,
                                     question: finalQuesList[i],
                                     quesNum: i,
-                                    setLocale: widget.setLocale),
+                                    ),
                             ],
                           ),
                         ),
@@ -387,27 +387,32 @@ class TeacherAddMyQuestionBankForAssessmentState
                           left: width * 0.8,
                           child: GestureDetector(
                             onTap: (){
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherPrepareQuesForAssessment(
-                                      assessment: widget.assessment,
-                                      setLocale: widget.setLocale),
-                                ),
-                              );
+
+                              Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: TeacherPrepareQuesForAssessment(
+                              //         assessment: widget.assessment,
+                              //         ),
+                              //   ),
+                              // );
                             },
                             child: FloatingActionButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: TeacherPrepareQuesForAssessment(
-                                        assessment: widget.assessment,
-                                        setLocale: widget.setLocale),
-                                  ),
-                                );
+                                Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: TeacherPrepareQuesForAssessment(
+                                //         assessment: widget.assessment,
+                                //         ),
+                                //   ),
+                                // );
                               },
                               backgroundColor:
                                   const Color.fromRGBO(28, 78, 80, 1),
@@ -453,16 +458,15 @@ class QuestionPreview extends StatelessWidget {
       required this.width,
       required this.question,
       required this.quesNum,
-        this.assessment,
-      required this.setLocale})
+        required this.assessment,
+      })
       : super(key: key);
 
   final double height;
   final int quesNum;
   final double width;
   final dynamic question;
-  final void Function(Locale locale) setLocale;
-  bool? assessment;
+  bool assessment;
 
   @override
   Widget build(BuildContext context) {
@@ -493,17 +497,25 @@ class QuestionPreview extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
+                      Navigator.pushNamed(
                         context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          child: TeacherQuesDelete(
-                              setLocale: setLocale,
-                              quesNum: quesNum,
-                              finalQuestion: question,
-                          assessment: assessment,),
-                        ),
-                      );
+                        '/teacherQuesDelete',
+                        arguments: [
+                          quesNum,
+                          question,
+                          assessment
+                        ],);
+
+                      // Navigator.push(
+                      //   context,
+                      //   PageTransition(
+                      //     type: PageTransitionType.rightToLeft,
+                      //     child: TeacherQuesDelete(
+                      //         quesNum: quesNum,
+                      //         finalQuestion: question,
+                      //     assessment: assessment,),
+                      //   ),
+                      // );
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

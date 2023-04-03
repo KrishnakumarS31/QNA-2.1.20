@@ -13,12 +13,12 @@ class TeacherQuestionPreviewDelete extends StatefulWidget {
       this.assessment,
       required this.question,
       required this.index,
-      required this.setLocale});
+     });
 
   final Question question;
   final int index;
   final bool? assessment;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherQuestionPreviewDeleteState createState() =>
@@ -229,16 +229,21 @@ class TeacherQuestionPreviewDeleteState
                           //shape: StadiumBorder(),
                           onPressed: () {
                             Question ques = Question();
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: PreparePreviewQnBank(
-                                    finalQuestion: widget.question,
-                                    question: ques,
-                                    setLocale: widget.setLocale),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/preparePreviewQnBank',
+                                arguments: [ques,widget.question,]
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: PreparePreviewQnBank(
+                            //         finalQuestion: widget.question,
+                            //         question: ques,
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Edit',
@@ -266,15 +271,20 @@ class TeacherQuestionPreviewDeleteState
                             Provider.of<QuestionPrepareProviderFinal>(context,
                                     listen: false)
                                 .deleteQuestionList(widget.index);
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherMyQuestionBank(
-                                    assessment: widget.assessment,
-                                    setLocale: widget.setLocale),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/teacherMyQuestionBank',
+                                arguments: widget.assessment,
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherMyQuestionBank(
+                            //         assessment: widget.assessment,
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Delete',

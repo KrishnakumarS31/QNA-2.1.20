@@ -11,9 +11,9 @@ import '../Providers/edit_assessment_provider.dart';
 
 class TeacherActiveAssessment extends StatefulWidget {
   const TeacherActiveAssessment(
-      {Key? key, required this.setLocale, required this.assessment})
+      {Key? key, required this.assessment})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   final GetAssessmentModel assessment;
 
   @override
@@ -81,7 +81,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -1098,14 +1098,15 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               )),
                           //shape: StadiumBorder(),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherClonedAssessment(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/teacherClonedAssessment');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherClonedAssessment(
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Clone',

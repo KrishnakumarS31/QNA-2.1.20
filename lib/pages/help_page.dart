@@ -5,9 +5,9 @@ import 'package:url_launcher/url_launcher.dart';
 class HelpPageHamburger extends StatefulWidget {
   const HelpPageHamburger({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   HelpPageHamburgerState createState() => HelpPageHamburgerState();

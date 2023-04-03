@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
+import '../Providers/LanguageChangeProvider.dart';
 
 class SettingsLanguages extends StatefulWidget {
-  const SettingsLanguages({Key? key, required this.setLocale})
+  const SettingsLanguages({Key? key,})
       : super(key: key);
 
-  final void Function(Locale locale) setLocale;
+
 
   @override
   SettingsLanguagesState createState() => SettingsLanguagesState();
@@ -38,15 +40,6 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
 
   getdata() async {
     AppUser? user = await AppUserRepo().getUserDetail();
-    // if(user==null){
-    //   setState(()  {
-    //     selected = 'Hello (English)';
-    //     widget.setLocale(const Locale.fromSubtags(
-    //         languageCode: 'en'));
-    //     user?.locale = 'en';
-    //   });
-    //   int i = await AppUserRepo().createUserDetail(AppUser(locale: 'en', id: 35));
-    // }
     if (user!.locale == 'ta') {
       setState(() {
         selected = 'வணக்கம் (Tamil)';
@@ -79,7 +72,8 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
       setState(() {
         selected = 'ਪੰਜਾਬੀ (Punjabi)';
       });
-    } else {
+    }
+    else {
       setState(() {
         selected = 'Hello (English)';
       });
@@ -162,58 +156,60 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                     selected = languages[j];
                                   });
                                   if (selected == 'வணக்கம் (Tamil)') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'ta'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'ta'));
                                     selectedLocale = 'ta';
                                   } else if (selected == 'नमस्ते (Hindi)') {
                                     AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'hi'));
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'hi'));
                                     selectedLocale = 'hi';
                                   } else if (selected == 'ಕನ್ನಡ (Kannada)') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'kn'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'kn'));
                                     selectedLocale = 'kn';
                                   } else if (selected == 'नमस्कार Marathi') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'mr'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'mr'));
                                     selectedLocale = 'mr';
                                   } else if (selected == 'Hola (Spanish)') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'es'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'es'));
                                     selectedLocale = 'es';
                                   } else if (selected == 'హలో (Telugu)') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'te'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'te'));
                                     selectedLocale = 'te';
                                   } else if (selected == 'ഹലോ (Malayalam)') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'ml'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'ml'));
                                     selectedLocale = 'ml';
                                   } else if (selected == 'ਪੰਜਾਬੀ (Punjabi)') {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'pa'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'pa'));
                                     selectedLocale = 'pa';
                                   } else {
-                                    AppUserRepo().deleteUserDetail();
-                                    widget.setLocale(const Locale.fromSubtags(
-                                        languageCode: 'en'));
+                                     AppUserRepo().deleteUserDetail();
+                                    // widget.setLocale(const Locale.fromSubtags(
+                                    //     languageCode: 'en'));
                                     selectedLocale = 'en';
                                   }
+                                  Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(selectedLocale);
                                   int i = await AppUserRepo().createUserDetail(
                                       AppUser(locale: selectedLocale, id: 35));
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) => WelcomePage(
-                                              setLocale: widget.setLocale)),
-                                      (route) => route.isFirst);
+                                  Navigator.pushNamedAndRemoveUntil(context, '/',(route) => route.isFirst);
+                                  // Navigator.of(context).pushAndRemoveUntil(
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => WelcomePage(
+                                  //             )),
+                                  //     (route) => route.isFirst);
                                 },
                                 child: Container(
                                     decoration: const BoxDecoration(

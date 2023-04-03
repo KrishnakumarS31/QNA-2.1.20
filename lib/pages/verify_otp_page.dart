@@ -11,13 +11,13 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({
     Key? key,
-    required this.setLocale,
+
     required this.isFromStudent,
     required this.email,
   }) : super(key: key);
   final String email;
   final bool isFromStudent;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   VerifyOtpPageState createState() => VerifyOtpPageState();
@@ -308,16 +308,21 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontSize: 15),
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-              type: PageTransitionType.fade,
-              child: StudentForgotPassword(
-                  email: widget.email,
-                  otp: otp,
-                  setLocale: widget.setLocale,
-                  isFromStudent: widget.isFromStudent)),
+        Navigator.pushNamed(
+            context,
+            '/studentForgotPassword',
+            arguments: [widget.email,otp,widget.isFromStudent]
         );
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //       type: PageTransitionType.fade,
+        //       child: StudentForgotPassword(
+        //           email: widget.email,
+        //           otp: otp,
+        //
+        //           isFromStudent: widget.isFromStudent)),
+        // );
       },
     );
     AlertDialog alert = AlertDialog(
@@ -374,16 +379,21 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontSize: 15),
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-              type: PageTransitionType.fade,
-              child: StudentForgotPassword(
-                  email: widget.email,
-                  isFromStudent: widget.isFromStudent,
-                  otp: otp,
-                  setLocale: widget.setLocale)),
+        Navigator.pushNamed(
+            context,
+            '/studentForgotPassword',
+            arguments: [widget.email,otp,widget.isFromStudent]
         );
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //       type: PageTransitionType.fade,
+        //       child: StudentForgotPassword(
+        //           email: widget.email,
+        //           isFromStudent: widget.isFromStudent,
+        //           otp: otp,
+        //           )),
+        // );
       },
     );
     // set up the AlertDialog

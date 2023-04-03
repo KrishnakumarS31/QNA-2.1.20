@@ -17,9 +17,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../Services/qna_service.dart';
 
 class StudentSelectionPage extends StatefulWidget {
-  const StudentSelectionPage({super.key, required this.setLocale});
+  const StudentSelectionPage({super.key,});
 
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentSelectionPageState createState() => StudentSelectionPageState();
@@ -63,16 +63,23 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
       userDataModel =
           await QnaService.getUserDataService(loginData?.getInt('userId'));
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: StudentAssessment(
-              regNumber: loginData?.getString('email'),
-              setLocale: widget.setLocale,
-              usedData: userDataModel),
-        ),
-      );
+      Navigator.pushNamed(
+          context,
+          '/studentAssessment',
+          arguments: [
+            loginData?.getString('email'),
+            userDataModel
+          ]);
+
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child: StudentAssessment(
+      //         regNumber: loginData?.getString('email'),
+      //         usedData: userDataModel),
+      //   ),
+      // );
       return true;
     }
     return false;
@@ -106,19 +113,20 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: WelcomePage(setLocale: widget.setLocale),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/');
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: WelcomePage(),
+                        //   ),
+                        // );
                         // Navigator.of(context).pop();
                       },
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: Column(children: [
                     Container(
@@ -217,24 +225,27 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                             if (_groupValue == '2') {
                               bool status = await checkIfAlreadyLoggedIn();
                               if (status == false) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        StudentMemberLoginPage(
-                                            setLocale: widget.setLocale),
-                                  ),
-                                );
+                                Navigator.pushNamed(context, '/studentMemberLoginPage');
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         StudentMemberLoginPage(
+                                //             ),
+                                //   ),
+                                // );
                               }
                             } else {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: StudentGuestLogin(
-                                      setLocale: widget.setLocale),
-                                ),
-                              );
+
+                              Navigator.pushNamed(context, '/studentGuestLogin');
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: StudentGuestLogin(
+                              //         ),
+                              //   ),
+                              // );
                             }
                           },
                           child: Text(
@@ -250,14 +261,15 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: SettingsLanguages(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/settingsLanguages');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: SettingsLanguages(
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -303,18 +315,19 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: WelcomePage(setLocale: widget.setLocale),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/');
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: WelcomePage(),
+                        //   ),
+                        // );
                       },
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: Column(children: [
                     Container(
@@ -410,24 +423,26 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                             if (_groupValue == '2') {
                               bool status = await checkIfAlreadyLoggedIn();
                               if (status == false) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        StudentMemberLoginPage(
-                                            setLocale: widget.setLocale),
-                                  ),
-                                );
+                                Navigator.pushNamed(context, '/studentMemberLoginPage');
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         StudentMemberLoginPage(
+                                //             ),
+                                //   ),
+                                // );
                               }
                             } else {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: StudentGuestLogin(
-                                      setLocale: widget.setLocale),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/studentGuestLogin');
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: StudentGuestLogin(
+                              //         ),
+                              //   ),
+                              // );
                             }
                           },
                           child: Text(
@@ -443,14 +458,15 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: SettingsLanguages(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/settingsLanguages');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: SettingsLanguages(
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

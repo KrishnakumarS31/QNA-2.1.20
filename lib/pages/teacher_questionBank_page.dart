@@ -11,10 +11,10 @@ import 'teacher_prepare_qnBank.dart';
 class TeacherQuestionBank extends StatefulWidget {
   const TeacherQuestionBank({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
 
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherQuestionBankState createState() => TeacherQuestionBankState();
@@ -107,7 +107,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                   ])),
             ),
           ),
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -208,21 +208,30 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       ? getData(
                                           teacherQuestionBankSearchController
                                               .text)
-                                      : Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: TeacherLooqQuestionBank(
-                                              setLocale: widget.setLocale,
-                                              search:
-                                                  teacherQuestionBankSearchController
-                                                      .text,
-                                            ),
-                                          ),
-                                        ).then((value) =>
-                                          teacherQuestionBankSearchController
-                                              .clear());
+
+                                      :
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/teacherLooqQuestionBank',
+                                      arguments: teacherQuestionBankSearchController
+                                          .text,
+                                  ).then((value) =>
+                                      teacherQuestionBankSearchController
+                                          .clear());
+                                  // Navigator.push(
+                                  //         context,
+                                  //         PageTransition(
+                                  //           type:
+                                  //               PageTransitionType.rightToLeft,
+                                  //           child: TeacherLooqQuestionBank(
+                                  //             search:
+                                  //                 teacherQuestionBankSearchController
+                                  //                     .text,
+                                  //           ),
+                                  //         ),
+                                  //       ).then((value) =>
+                                  //         teacherQuestionBankSearchController
+                                  //             .clear());
                                 },
                                 icon: const Icon(Icons.search),
                               )),
@@ -283,7 +292,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             height: height,
                             width: width,
                             question: i,
-                            setLocale: widget.setLocale),
+                            ),
                       SizedBox(height: height * 0.02),
                       GestureDetector(
                         onTap: () {
@@ -323,14 +332,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 )),
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherPrepareQnBank(
-                                      setLocale: widget.setLocale),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/teacherPrepareQnBank',arguments: [false,null]);
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: TeacherPrepareQnBank(
+                              //         ),
+                              //   ),
+                              // );
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -369,13 +379,13 @@ class QuestionPreview extends StatelessWidget {
     required this.height,
     required this.width,
     required this.question,
-    required this.setLocale,
+
   }) : super(key: key);
 
   final double height;
   final double width;
   final Question question;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   Widget build(BuildContext context) {
@@ -390,13 +400,18 @@ class QuestionPreview extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: QuestionEdit(question: question, setLocale: setLocale),
-          ),
+        Navigator.pushNamed(
+            context,
+            '/questionEdit',
+            arguments: question
         );
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: QuestionEdit(question: question,),
+        //   ),
+        // );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

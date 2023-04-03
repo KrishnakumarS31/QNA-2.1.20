@@ -1433,14 +1433,19 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                           LoginModel res =
                               await QnaService.postUserDetailsService(student);
                           if (res.code == 200) {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: StudentRegisVerifyOtpPage(
-                                    email: studentEmailController.text,
-                                  )),
-                            );
+
+                            Navigator.pushNamed(
+                                context,
+                                '/studentRegisVerifyOtpPage',
+                                arguments: studentEmailController.text,);
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //       type: PageTransitionType.fade,
+                            //       child: StudentRegisVerifyOtpPage(
+                            //         email: studentEmailController.text,
+                            //       )),
+                            // );
                           } else {
                             Navigator.push(
                               context,

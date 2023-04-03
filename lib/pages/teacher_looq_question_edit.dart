@@ -14,11 +14,9 @@ class LooqQuestionEdit extends StatefulWidget {
   const LooqQuestionEdit({
     Key? key,
     required this.question,
-    required this.setLocale,
   }) : super(key: key);
 
   final Question question;
-  final void Function(Locale locale) setLocale;
 
   @override
   LooqQuestionEditState createState() => LooqQuestionEditState();
@@ -134,7 +132,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         editQuestion.advisorText = widget.question.advisorText;
         return TeacherLooqPreview(
           question: widget.question,
-          setLocale: widget.setLocale,
           editQuestionModel: editQuestion,
         );
       },
@@ -184,15 +181,15 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
       onPressed: () async {
         LoginModel statusCode =
             await QnaService.deleteQuestion(widget.question.questionId!);
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: TeacherQuestionBank(
-              setLocale: widget.setLocale,
-            ),
-          ),
-        );
+        Navigator.pushNamed(context, '/teacherQuestionBank');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherQuestionBank(
+        //     ),
+        //   ),
+        // );
       },
     );
     // set up the AlertDialog
@@ -244,7 +241,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(

@@ -6,15 +6,12 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherAssessLooqQuesPreview extends StatefulWidget {
   TeacherAssessLooqQuesPreview(
-      {this.assessment,
-      required this.setLocale,
+      {required this.assessment,
       required this.finalQuestion,
-      this.assessmentStatus});
+      });
 
   Question finalQuestion;
-  bool? assessment;
-  final void Function(Locale locale) setLocale;
-  final String? assessmentStatus;
+  bool assessment;
 
   @override
   TeacherAssessLooqQuesPreviewState createState() =>

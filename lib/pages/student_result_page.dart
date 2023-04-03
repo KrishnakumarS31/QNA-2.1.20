@@ -17,7 +17,7 @@ class StudentResultPage extends StatefulWidget {
     required this.userName,
     required this.message,
     required this.endTime,
-    required this.setLocale})
+    })
       : super(key: key);
   final int totalMarks;
   final QuestionPaperModel questions;
@@ -27,7 +27,7 @@ class StudentResultPage extends StatefulWidget {
   final String assessmentCode;
   final String endTime;
   final String message;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentResultPageState createState() => StudentResultPageState();
@@ -138,14 +138,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           ));
                                     });
                                 Navigator.of(context).pop();
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: StudentSelectionPage(
-                                        setLocale: widget.setLocale),
-                                  ),
-                                );
+                                Navigator.pushNamed(context, '/studentSelectionPage');
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: StudentSelectionPage(
+                                //         ),
+                                //   ),
+                                // );
                               }),
                           SizedBox(width: localHeight * 0.030),
                         ],
@@ -157,7 +158,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                   onWillPop: () async => false,
                   child: Scaffold(
                     endDrawer: EndDrawerMenuPreLogin(
-                        setLocale: widget.setLocale),
+                        ),
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(40.0),
                       child: AppBar(
@@ -276,17 +277,23 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     82, 165, 160, 1),
                                                 fontWeight: FontWeight.w500)),
                                         onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              child: StudMemAdvisor(
-                                                  questions: values,
-                                                  assessmentId:
-                                                  widget.assessmentCode),
-                                            ),
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studMemAdvisor',
+                                              arguments: [values,widget.assessmentCode]
                                           );
+
+                                          // Navigator.push(
+                                          //   context,
+                                          //   PageTransition(
+                                          //     type: PageTransitionType
+                                          //         .rightToLeft,
+                                          //     child: StudMemAdvisor(
+                                          //         questions: values,
+                                          //         assessmentId:
+                                          //         widget.assessmentCode),
+                                          //   ),
+                                          // );
                                         }),
                                     SizedBox(height: localHeight * 0.010),
                                     ElevatedButton(
@@ -426,17 +433,16 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             });
                                                         Navigator.of(context)
                                                             .pop();
-                                                        Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type: PageTransitionType
-                                                                .rightToLeft,
-                                                            child: StudentSelectionPage(
-                                                                setLocale:
-                                                                widget
-                                                                    .setLocale),
-                                                          ),
-                                                        );
+                                                        Navigator.pushNamed(context, '/studentSelectionPage');
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   PageTransition(
+                                                        //     type: PageTransitionType
+                                                        //         .rightToLeft,
+                                                        //     child: StudentSelectionPage(
+                                                        //         ),
+                                                        //   ),
+                                                        // );
                                                       }),
                                                   SizedBox(width: localHeight *
                                                       0.030),
@@ -671,14 +677,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           ));
                                     });
                                 Navigator.of(context).pop();
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: StudentSelectionPage(
-                                        setLocale: widget.setLocale),
-                                  ),
-                                );
+                                Navigator.pushNamed(context, '/studentSelectionPage');
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: StudentSelectionPage(
+                                //         ),
+                                //   ),
+                                // );
                               }),
                           SizedBox(width: localHeight * 0.030),
                         ],
@@ -690,7 +697,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                   onWillPop: () async => false,
                   child: Scaffold(
                     endDrawer: EndDrawerMenuPreLogin(
-                        setLocale: widget.setLocale),
+                        ),
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(40.0),
                       child: AppBar(
@@ -809,17 +816,22 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     82, 165, 160, 1),
                                                 fontWeight: FontWeight.w500)),
                                         onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              child: StudMemAdvisor(
-                                                  questions: values,
-                                                  assessmentId:
-                                                  widget.assessmentCode),
-                                            ),
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studMemAdvisor',
+                                              arguments: [values,widget.assessmentCode]
                                           );
+                                          // Navigator.push(
+                                          //   context,
+                                          //   PageTransition(
+                                          //     type: PageTransitionType
+                                          //         .rightToLeft,
+                                          //     child: StudMemAdvisor(
+                                          //         questions: values,
+                                          //         assessmentId:
+                                          //         widget.assessmentCode),
+                                          //   ),
+                                          // );
                                         }),
                                     SizedBox(height: localHeight * 0.010),
                                     ElevatedButton(
@@ -959,17 +971,16 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                             });
                                                         Navigator.of(context)
                                                             .pop();
-                                                        Navigator.push(
-                                                          context,
-                                                          PageTransition(
-                                                            type: PageTransitionType
-                                                                .rightToLeft,
-                                                            child: StudentSelectionPage(
-                                                                setLocale:
-                                                                widget
-                                                                    .setLocale),
-                                                          ),
-                                                        );
+                                                        Navigator.pushNamed(context, '/studentSelectionPage');
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   PageTransition(
+                                                        //     type: PageTransitionType
+                                                        //         .rightToLeft,
+                                                        //     child: StudentSelectionPage(
+                                                        //         ),
+                                                        //   ),
+                                                        // );
                                                       }),
                                                   SizedBox(width: localHeight *
                                                       0.030),

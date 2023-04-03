@@ -13,11 +13,11 @@ import '../Services/qna_service.dart';
 
 class TeacherAssessmentLooqQuestionBank extends StatefulWidget {
   const TeacherAssessmentLooqQuestionBank(
-      {Key? key, this.assessment, required this.setLocale})
+      {Key? key, this.assessment, })
       : super(key: key);
 
   final bool? assessment;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherAssessmentLooqQuestionBankState createState() =>
@@ -78,7 +78,7 @@ class TeacherAssessmentLooqQuestionBankState
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -254,14 +254,15 @@ class TeacherAssessmentLooqQuestionBankState
                             color: Color.fromRGBO(82, 165, 160, 1),
                           )),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherClonedAssessmentPreview(
-                                setLocale: widget.setLocale),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview');
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: TeacherClonedAssessmentPreview(
+                        //         ),
+                        //   ),
+                        // );
                       },
                       child: Text(
                         'Add',

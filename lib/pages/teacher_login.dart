@@ -16,9 +16,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'teacher_forgot_password_email.dart';
 
 class TeacherLogin extends StatefulWidget {
-  const TeacherLogin({super.key, required this.setLocale});
+  const TeacherLogin({super.key,});
 
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherLoginState createState() => TeacherLoginState();
@@ -58,20 +58,26 @@ class TeacherLoginState extends State<TeacherLogin> {
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
       userDataModel =
           await QnaService.getUserDataService(loginData?.getInt('userId'));
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: TeacherSelectionPage(
-            setLocale: widget.setLocale,
-            userId: loginData?.getInt('userId'),
-            userData: userDataModel,
-          ),
-        ),
+      Navigator.pushNamed(
+          context,
+          '/teacherSelectionPage',
+          arguments: userDataModel
       ).then((value) {
         emailController.clear();
         passwordController.clear();
       });
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child: TeacherSelectionPage(
+      //       userData: userDataModel,
+      //     ),
+      //   ),
+      // ).then((value) {
+      //   emailController.clear();
+      //   passwordController.clear();
+      // });
     }
   }
 
@@ -102,7 +108,7 @@ class TeacherLoginState extends State<TeacherLogin> {
               ),
               backgroundColor: Colors.transparent,
             ),
-            endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuPreLogin(),
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
@@ -317,15 +323,20 @@ class TeacherLoginState extends State<TeacherLogin> {
                             SizedBox(height: height * 0.02),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: ForgotPasswordEmail(
-                                        isFromStudent: false,
-                                        setLocale: widget.setLocale),
-                                  ),
+                                Navigator.pushNamed(
+                                    context,
+                                    '/forgotPasswordEmail',
+                                    arguments: false
                                 );
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: ForgotPasswordEmail(
+                                //         isFromStudent: false,
+                                //         ),
+                                //   ),
+                                // );
                               },
                               child: Align(
                                 alignment: Alignment.centerRight,
@@ -501,20 +512,26 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       loginResponse.data.userId);
                               if (userDataModel.data!.role
                                   .contains("teacher")) {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: TeacherSelectionPage(
-                                      setLocale: widget.setLocale,
-                                      userId: loginResponse.data!.userId,
-                                      userData: userDataModel,
-                                    ),
-                                  ),
+                                Navigator.pushNamed(
+                                    context,
+                                    '/teacherSelectionPage',
+                                    arguments: userDataModel
                                 ).then((value) {
                                   emailController.clear();
                                   passwordController.clear();
                                 });
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //     type: PageTransitionType.rightToLeft,
+                                //     child: TeacherSelectionPage(
+                                //       userData: userDataModel,
+                                //     ),
+                                //   ),
+                                // ).then((value) {
+                                //   emailController.clear();
+                                //   passwordController.clear();
+                                // });
                               }
                             } else if (loginResponse.code == 400) {
                               Navigator.push(
@@ -580,24 +597,26 @@ class TeacherLoginState extends State<TeacherLogin> {
                             size: height * 0.034,
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: const TeacherRegistrationPage(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/teacherRegistrationPage');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: const TeacherRegistrationPage(),
+                            //   ),
+                            // );
                           },
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: const TeacherRegistrationPage(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/teacherRegistrationPage');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: const TeacherRegistrationPage(),
+                            //   ),
+                            // );
                           },
                           child: Text(AppLocalizations.of(context)!.register,
                               style: Theme.of(context)

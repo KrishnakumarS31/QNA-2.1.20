@@ -10,13 +10,11 @@ class TeacherPreparePreview extends StatefulWidget {
   TeacherPreparePreview(
       {super.key,
       this.assessment,
-      required this.setLocale,
       required this.finalQuestion,
       this.assessmentStatus});
 
   Question finalQuestion;
   bool? assessment;
-  final void Function(Locale locale) setLocale;
   final String? assessmentStatus;
 
   @override
@@ -269,17 +267,20 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                             Provider.of<QuestionPrepareProviderFinal>(context,
                                     listen: false)
                                 .addQuestion(widget.finalQuestion);
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAddMyQuestionBank(
-                                  assessment: widget.assessment,
-                                  setLocale: widget.setLocale,
-                                  assessmentStatus: widget.assessmentStatus,
-                                ),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/teacherAddMyQuestionBank',
+                                arguments: widget.assessment!,
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherAddMyQuestionBank(
+                            //       assessment: widget.assessment!,
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             AppLocalizations.of(context)!.finalize,

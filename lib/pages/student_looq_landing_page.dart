@@ -3,9 +3,9 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_looq_selected_assessment.dart';
 
 class StudentLooqLanding extends StatefulWidget {
-  const StudentLooqLanding({Key? key, required this.setLocale})
+  const StudentLooqLanding({Key? key,})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentLooqLandingState createState() => StudentLooqLandingState();
@@ -154,7 +154,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'In progress',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -162,7 +162,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'In progress',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -170,7 +170,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'Active',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -178,7 +178,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'In progress',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -186,7 +186,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'Inactive',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -194,7 +194,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'Active',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -202,7 +202,7 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
                         height: height,
                         width: width,
                         status: 'Inactive',
-                        setLocale: widget.setLocale),
+                        ),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -248,9 +248,9 @@ class CardInfo extends StatelessWidget {
       required this.height,
       required this.width,
       required this.status,
-      required this.setLocale})
+      })
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   final double height;
   final double width;
@@ -261,13 +261,14 @@ class CardInfo extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: StudentLooqSelectedAssessment(setLocale: setLocale),
-            ),
-          );
+          Navigator.pushNamed(context, '/studentLooqSelectedAssessment');
+          // Navigator.push(
+          //   context,
+          //   PageTransition(
+          //     type: PageTransitionType.rightToLeft,
+          //     child: StudentLooqSelectedAssessment(),
+          //   ),
+          // );
           // if (status == 'In progress')
           // {
           //   Navigator.push(

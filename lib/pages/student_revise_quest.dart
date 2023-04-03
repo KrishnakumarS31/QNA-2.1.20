@@ -14,14 +14,14 @@ import 'student_result_page.dart';
 
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
-    required this.questions, required this.userName, required this.assessmentID, required this.startTime, required this.setLocale, required this.assessmentid
+    required this.questions, required this.userName, required this.assessmentID, required this.startTime, required this.assessmentid
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
   final int startTime;
   final String assessmentID;
   final int assessmentid;
-  final void Function(Locale locale) setLocale;
+
 
 
   @override
@@ -1207,21 +1207,35 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       .postAssessmentService(assessment, values);
                   Navigator.of(context).pop();
                   if (loginResponse.code == 200) {
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: StudentResultPage(message: message,
-                          totalMarks: totalMark,
-                          date: formatted,
-                          time: time,
-                          questions: values,
-                          assessmentCode: widget.assessmentID,
-                          userName: widget.userName,
-                          setLocale: widget.setLocale,
-                          endTime: endTimeTaken,),
-                      ),
-                    );
+
+                    Navigator.pushNamed(
+                        context,
+                        '/teacherAddMyQuestionBank',
+                        arguments: [
+                          totalMark,
+                          formatted,
+                          time,
+                          values,
+                          widget.assessmentID,
+                          widget.userName,
+                          message,
+                          endTimeTaken
+                        ]);
+
+                    // Navigator.push(
+                    //   context,
+                    //   PageTransition(
+                    //     type: PageTransitionType.rightToLeft,
+                    //     child: StudentResultPage(message: message,
+                    //       totalMarks: totalMark,
+                    //       date: formatted,
+                    //       time: time,
+                    //       questions: values,
+                    //       assessmentCode: widget.assessmentID,
+                    //       userName: widget.userName,
+                    //       endTime: endTimeTaken,),
+                    //   ),
+                    // );
                   }
                   else {
                     Navigator.push(

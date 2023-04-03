@@ -14,12 +14,10 @@ class TeacherLooqPreview extends StatefulWidget {
     Key? key,
     required this.question,
     required this.editQuestionModel,
-    required this.setLocale,
   }) : super(key: key);
 
   final Question question;
   final EditQuestionModel editQuestionModel;
-  final void Function(Locale locale) setLocale;
 
   @override
   TeacherLooqPreviewState createState() => TeacherLooqPreviewState();

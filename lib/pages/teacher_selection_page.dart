@@ -9,18 +9,16 @@ import '../EntityModel/user_data_model.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'teacher_questionBank_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage(
       {Key? key,
       required this.userData,
-      required this.setLocale,
-      required this.userId})
+     })
       : super(key: key);
 
   final UserDataModel userData;
-  final void Function(Locale locale) setLocale;
-  final int? userId;
 
   @override
   TeacherSelectionPageState createState() => TeacherSelectionPageState();
@@ -28,12 +26,19 @@ class TeacherSelectionPage extends StatefulWidget {
 
 class TeacherSelectionPageState extends State<TeacherSelectionPage> {
   UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-
+  int userId=0;
   @override
   void initState() {
+    getData();
     super.initState();
   }
 
+  getData() async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    setState(() {
+      userId=loginData.getInt('userId')!;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -47,7 +52,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
               automaticallyImplyLeading: false,
               backgroundColor: Colors.transparent,
             ),
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
@@ -164,15 +169,16 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         Provider.of<QuestionPrepareProviderFinal>(context,
                                 listen: false)
                             .reSetQuestionList();
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherQuestionBank(
-                              setLocale: widget.setLocale,
-                            ),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/teacherQuestionBank');
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: TeacherQuestionBank(
+                        //
+                        //     ),
+                        //   ),
+                        // );
                       },
                       child: Text(
                         AppLocalizations.of(context)!.qn_button,
@@ -206,11 +212,12 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => TeacherAssessmentLanding(
-                                    setLocale: widget.setLocale)),
-                                (route) => route.isFirst);
+                        Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                        // Navigator.of(context).pushAndRemoveUntil(
+                        //     MaterialPageRoute(
+                        //         builder: (context) => TeacherAssessmentLanding(
+                        //             )),
+                        //         (route) => route.isFirst);
                       },
                       child: Text(
                         AppLocalizations.of(context)!.assessment_button,
@@ -249,7 +256,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
                             child: TeacherResultLanding(
-                                userId: widget.userId,
+                                userId: userId,
                                 advisorName: widget.userData.data!.firstName),
                           ),
                         );

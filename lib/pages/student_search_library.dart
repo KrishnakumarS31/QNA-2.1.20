@@ -5,9 +5,9 @@ import 'package:qna_test/pages/student_looq_landing_page.dart';
 import '../EntityModel/user_data_model.dart';
 
 class StudentSearchLibrary extends StatefulWidget {
-  const StudentSearchLibrary({Key? key, required this.setLocale})
+  const StudentSearchLibrary({Key? key,})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentSearchLibraryState createState() => StudentSearchLibraryState();
@@ -126,7 +126,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: StudentLooqLanding(
-                                          setLocale: widget.setLocale),
+                                          ),
                                     ),
                                   );
                                 },

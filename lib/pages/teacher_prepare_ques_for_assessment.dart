@@ -15,14 +15,14 @@ Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 class TeacherPrepareQuesForAssessment extends StatefulWidget {
   const TeacherPrepareQuesForAssessment(
       {Key? key,
-      this.assessment,
-      required this.setLocale,
-      this.assessmentStatus})
+      required this.assessment,
+
+      })
       : super(key: key);
 
-  final bool? assessment;
-  final String? assessmentStatus;
-  final void Function(Locale locale) setLocale;
+  final bool assessment;
+
+
 
   @override
   TeacherPrepareQuesForAssessmentState createState() =>
@@ -78,15 +78,10 @@ class TeacherPrepareQuesForAssessmentState
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        String status = '';
-        if (widget.assessmentStatus != null) {
-          status = widget.assessmentStatus!;
-        }
         return TeacherQnPreviewAssessment(
             assessment: widget.assessment,
-            setLocale: widget.setLocale,
             finalQuestion: finalQuestion,
-            assessmentStatus: status);
+            );
       },
     );
   }
@@ -116,7 +111,7 @@ class TeacherPrepareQuesForAssessmentState
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(

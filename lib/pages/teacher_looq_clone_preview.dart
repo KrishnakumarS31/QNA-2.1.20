@@ -9,11 +9,9 @@ class TeacherLooqClonePreview extends StatefulWidget {
   const TeacherLooqClonePreview({
     Key? key,
     required this.question,
-    required this.setLocale,
   }) : super(key: key);
 
   final Question question;
-  final void Function(Locale locale) setLocale;
 
   @override
   TeacherLooqClonePreviewState createState() => TeacherLooqClonePreviewState();
@@ -42,7 +40,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -254,15 +252,20 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: LooqQuestionEdit(
-                                    question: widget.question,
-                                    setLocale: widget.setLocale),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/looqQuestionEdit',
+                                arguments: widget.question,
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: LooqQuestionEdit(
+                            //         question: widget.question,
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Clone',

@@ -9,10 +9,10 @@ import '../Services/qna_service.dart';
 class ForgotPasswordEmail extends StatefulWidget {
   const ForgotPasswordEmail({
     Key? key,
-    required this.setLocale,
+
     required this.isFromStudent,
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   final bool isFromStudent;
 
   @override
@@ -239,16 +239,19 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
             fontSize: height * 0.018),
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: VerifyOtpPage(
-                email: _controller.text,
-                isFromStudent: widget.isFromStudent,
-                setLocale: widget.setLocale),
-          ),
-        );
+
+        Navigator.pushNamed(context, '/verifyOtpPage',arguments: [widget.isFromStudent,_controller.text]);
+
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: VerifyOtpPage(
+        //         email: _controller.text,
+        //         isFromStudent: widget.isFromStudent,
+        //         ),
+        //   ),
+        // );
       },
     );
     AlertDialog alert = AlertDialog(

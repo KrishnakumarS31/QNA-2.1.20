@@ -22,9 +22,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherAssessmentLandingState createState() =>
@@ -281,7 +281,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -428,19 +428,23 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                       ? getData(
                                           teacherQuestionBankSearchController
                                               .text)
-                                      : Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: TeacherAssessmentSearched(
-                                              setLocale: widget.setLocale,
-                                              search:
-                                                  teacherQuestionBankSearchController
-                                                      .text,
-                                            ),
-                                          ),
-                                        );
+                                      :
+
+                                  Navigator.pushNamed(context, '/teacherAssessmentSearched',arguments: teacherQuestionBankSearchController
+                                      .text,);
+
+                                  // Navigator.push(
+                                  //         context,
+                                  //         PageTransition(
+                                  //           type:
+                                  //               PageTransitionType.rightToLeft,
+                                  //           child: TeacherAssessmentSearched(
+                                  //             search:
+                                  //                 teacherQuestionBankSearchController
+                                  //                     .text,
+                                  //           ),
+                                  //         ),
+                                  //       );
                                 },
                                 icon: const Icon(Icons.search),
                               )),
@@ -519,7 +523,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               height: height,
                               width: width,
                               status: 'Active',
-                              setLocale: widget.setLocale,
+
                               assessment: assessments[index],
                             ),
                             SizedBox(
@@ -1058,17 +1062,17 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                               listen: false)
                                                           .updateAssessment(
                                                               assessment);
-                                                      Navigator.push(
-                                                        context,
-                                                        PageTransition(
-                                                          type:
-                                                              PageTransitionType
-                                                                  .rightToLeft,
-                                                          child: TeacherCreateAssessment(
-                                                              setLocale: widget
-                                                                  .setLocale),
-                                                        ),
-                                                      );
+                                                      Navigator.pushNamed(context, '/teacherCreateAssessment');
+                                                      // Navigator.push(
+                                                      //   context,
+                                                      //   PageTransition(
+                                                      //     type:
+                                                      //         PageTransitionType
+                                                      //             .rightToLeft,
+                                                      //     child: TeacherCreateAssessment(
+                                                      //         ),
+                                                      //   ),
+                                                      // );
                                                     }
                                                   },
                                                   child: Text(
@@ -1126,22 +1130,37 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   }
 }
 
-class CardInfo extends StatelessWidget {
+class CardInfo extends StatefulWidget {
   const CardInfo(
       {Key? key,
       required this.height,
       required this.width,
       required this.status,
-      required this.setLocale,
+
       required this.assessment})
       : super(key: key);
 
   final double height;
   final double width;
   final String status;
-  final void Function(Locale locale) setLocale;
+
   final GetAssessmentModel assessment;
 
+  @override
+  State<CardInfo> createState() => _CardInfoState();
+}
+
+class _CardInfoState extends State<CardInfo> {
+  String datetime='';
+  @override
+  void initState() {
+    // TODO: implement initState
+    int temp=widget.assessment.assessmentStartdate! * 1000;
+    DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(temp);
+    print(tsdate.toString());
+    datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -1150,119 +1169,125 @@ class CardInfo extends StatelessWidget {
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .reSetQuestionList();
           Provider.of<EditAssessmentProvider>(context, listen: false)
-              .updateAssessment(assessment);
-          if (assessment.assessmentStatus == 'inprogress') {
+              .updateAssessment(widget.assessment);
+          if (widget.assessment.assessmentStatus == 'inprogress') {
             CreateAssessmentModel editAssessment =
                 CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);
-            editAssessment.assessmentId = assessment.assessmentId;
-            editAssessment.assessmentType = assessment.assessmentType;
-            editAssessment.assessmentStatus = assessment.assessmentStatus;
-            editAssessment.assessmentCode=assessment.assessmentCode;
-            editAssessment.subject = assessment.subject;
+            editAssessment.assessmentId = widget.assessment.assessmentId;
+            editAssessment.assessmentType = widget.assessment.assessmentType;
+            editAssessment.assessmentStatus = widget.assessment.assessmentStatus;
+            editAssessment.assessmentCode=widget.assessment.assessmentCode;
+            editAssessment.subject = widget.assessment.subject;
             editAssessment.createAssessmentModelClass =
-                assessment.getAssessmentModelClass;
-            assessment.topic == null
+                widget.assessment.getAssessmentModelClass;
+            widget.assessment.topic == null
                 ? 0
-                : editAssessment.topic = assessment.topic;
-            assessment.subTopic == null
+                : editAssessment.topic = widget.assessment.topic;
+            widget.assessment.subTopic == null
                 ? 0
-                : editAssessment.subTopic = assessment.subTopic;
-            assessment.totalScore == null
+                : editAssessment.subTopic = widget.assessment.subTopic;
+            widget.assessment.totalScore == null
                 ? 0
-                : editAssessment.totalScore = assessment.totalScore;
-            assessment.questions!.isEmpty
+                : editAssessment.totalScore = widget.assessment.totalScore;
+            widget.assessment.questions!.isEmpty
                 ? 0
-                : editAssessment.totalQuestions = assessment.questions!.length;
-            assessment.assessmentDuration == null
+                : editAssessment.totalQuestions = widget.assessment.questions!.length;
+            widget.assessment.assessmentDuration == null
                 ? ''
-                : editAssessment.totalScore = assessment.totalScore;
-            if (assessment.questions!.isEmpty) {
+                : editAssessment.totalScore = widget.assessment.totalScore;
+            if (widget.assessment.questions!.isEmpty) {
             } else {
-              for (int i = 0; i < assessment.questions!.length; i++) {
+              for (int i = 0; i < widget.assessment.questions!.length; i++) {
                 Question question = Question();
-                question.questionMarks = assessment.questions![i].questionMark;
-                question.questionId = assessment.questions![i].questionId;
+                question.questionMarks = widget.assessment.questions![i].questionMark;
+                question.questionId = widget.assessment.questions![i].questionId;
                 editAssessment.questions?.add(question);
                 Provider.of<QuestionPrepareProviderFinal>(context,
                         listen: false)
-                    .addQuestion(assessment.questions![i]);
+                    .addQuestion(widget.assessment.questions![i]);
               }
             }
 
             Provider.of<CreateAssessmentProvider>(context, listen: false)
                 .updateAssessment(editAssessment);
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherRecentAssessment(
-                  setLocale: setLocale,
-                  finalAssessment: editAssessment,
-                ),
-              ),
-            );
-          } else if (assessment.assessmentStatus == 'active') {
+            Navigator.pushNamed(context, '/teacherRecentAssessment',
+                arguments: editAssessment);
+
+
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherRecentAssessment(
+            //       finalAssessment: editAssessment,
+            //     ),
+            //   ),
+            // );
+          } else if (widget.assessment.assessmentStatus == 'active') {
             SharedPreferences loginData = await SharedPreferences.getInstance();
             CreateAssessmentModel editAssessment = CreateAssessmentModel(
                 questions: [], removeQuestions: [], addQuestion: []);
             editAssessment.userId = loginData.getInt('userId');
-            editAssessment.subject = assessment.subject;
+            editAssessment.subject = widget.assessment.subject;
             editAssessment.assessmentType =
-                assessment.assessmentType ?? 'Not Mentioned';
+                widget.assessment.assessmentType ?? 'Not Mentioned';
             editAssessment.createAssessmentModelClass =
-                assessment.getAssessmentModelClass;
-            assessment.topic == null
+                widget.assessment.getAssessmentModelClass;
+            widget.assessment.topic == null
                 ? 0
-                : editAssessment.topic = assessment.topic;
-            assessment.subTopic == null
+                : editAssessment.topic = widget.assessment.topic;
+            widget.assessment.subTopic == null
                 ? 0
-                : editAssessment.subTopic = assessment.subTopic;
-            assessment.totalScore == null
+                : editAssessment.subTopic = widget.assessment.subTopic;
+            widget.assessment.totalScore == null
                 ? 0
-                : editAssessment.totalScore = assessment.totalScore;
-            assessment.questions!.isEmpty
+                : editAssessment.totalScore = widget.assessment.totalScore;
+            widget.assessment.questions!.isEmpty
                 ? 0
-                : editAssessment.totalQuestions = assessment.questions!.length;
-            assessment.assessmentDuration == null
+                : editAssessment.totalQuestions = widget.assessment.questions!.length;
+            widget.assessment.assessmentDuration == null
                 ? ''
-                : editAssessment.totalScore = assessment.totalScore;
-            if (assessment.questions!.isEmpty) {
+                : editAssessment.totalScore = widget.assessment.totalScore;
+            if (widget.assessment.questions!.isEmpty) {
             } else {
-              for (int i = 0; i < assessment.questions!.length; i++) {
+              for (int i = 0; i < widget.assessment.questions!.length; i++) {
                 Questions.Question question = Questions.Question();
-                question = assessment.questions![i];
+                question = widget.assessment.questions![i];
                 editAssessment.addQuestion?.add(question);
                 Provider.of<QuestionPrepareProviderFinal>(context,
                         listen: false)
-                    .addQuestion(assessment.questions![i]);
+                    .addQuestion(widget.assessment.questions![i]);
               }
             }
 
             Provider.of<CreateAssessmentProvider>(context, listen: false)
                 .updateAssessment(editAssessment);
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherActiveAssessment(
-                  setLocale: setLocale,
-                  assessment: assessment,
-                ),
-              ),
-            );
+            Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: widget.assessment);
+
+
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherActiveAssessment(
+            //       assessment: assessment,
+            //     ),
+            //   ),
+            // );
           } else {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherInactiveAssessment(setLocale: setLocale),
-              ),
-            );
+            Navigator.pushNamed(context, '/teacherInactiveAssessment');
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherInactiveAssessment(),
+            //   ),
+            // );
           }
         },
         child: Container(
-          height: height * 0.1087,
-          width: width * 0.888,
+          height: widget.height * 0.1087,
+          width: widget.width * 0.888,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8.0)),
             border: Border.all(
@@ -1276,26 +1301,26 @@ class CardInfo extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Text(
-                          assessment.subject!,
+                          widget.assessment.subject!,
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.0175,
+                            fontSize: widget.height * 0.0175,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
-                          " | ${assessment.getAssessmentModelClass}",
+                          " | ${widget.assessment.getAssessmentModelClass}",
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.0175,
+                            fontSize: widget.height * 0.0175,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w400,
                           ),
@@ -1304,9 +1329,9 @@ class CardInfo extends StatelessWidget {
                     ),
                     Icon(
                       Icons.circle_rounded,
-                      color: assessment.assessmentStatus == 'inprogress'
+                      color: widget.assessment.assessmentStatus == 'inprogress'
                           ? const Color.fromRGBO(255, 166, 0, 1)
-                          : assessment.assessmentStatus == 'active'
+                          : widget.assessment.assessmentStatus == 'active'
                               ? const Color.fromRGBO(60, 176, 0, 1)
                               : const Color.fromRGBO(136, 136, 136, 1),
                     )
@@ -1314,7 +1339,7 @@ class CardInfo extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: width * 0.02),
+                padding: EdgeInsets.only(left: widget.width * 0.02),
                 child: Row(
                   children: [
                     Text(
@@ -1322,16 +1347,16 @@ class CardInfo extends StatelessWidget {
                       //"Assessment ID: ",
                       style: TextStyle(
                         color: const Color.fromRGBO(102, 102, 102, 1),
-                        fontSize: height * 0.015,
+                        fontSize: widget.height * 0.015,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w400,
                       ),
                     ),
                     Text(
-                      " ${assessment.assessmentCode}",
+                      " ${widget.assessment.assessmentCode}",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.015,
+                        fontSize: widget.height * 0.015,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w500,
                       ),
@@ -1341,7 +1366,7 @@ class CardInfo extends StatelessWidget {
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -1352,7 +1377,7 @@ class CardInfo extends StatelessWidget {
                           // "Institute Test ID: ",
                           style: TextStyle(
                             color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: height * 0.015,
+                            fontSize: widget.height * 0.015,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w400,
                           ),
@@ -1361,7 +1386,7 @@ class CardInfo extends StatelessWidget {
                           "-------------",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.015,
+                            fontSize: widget.height * 0.015,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                           ),
@@ -1369,10 +1394,10 @@ class CardInfo extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "10/1/2023",
+                      datetime,
                       style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: height * 0.015,
+                        fontSize: widget.height * 0.015,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w400,
                       ),

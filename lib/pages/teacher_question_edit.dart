@@ -15,11 +15,11 @@ class QuestionEdit extends StatefulWidget {
   const QuestionEdit({
     Key? key,
     required this.question,
-    required this.setLocale,
+
   }) : super(key: key);
 
   final Question question;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   QuestionEditState createState() => QuestionEditState();
@@ -134,7 +134,6 @@ class QuestionEditState extends State<QuestionEdit> {
         editQuestion.advisorText = widget.question.advisorText;
         return TeacherQuestionPreview(
           question: widget.question,
-          setLocale: widget.setLocale,
           editQuestionModel: editQuestion,
         );
       },
@@ -185,11 +184,12 @@ class QuestionEditState extends State<QuestionEdit> {
         LoginModel statusCode =
         await QnaService.deleteQuestion(widget.question.questionId!);
         if (statusCode.code == 200) {
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (context) => TeacherQuestionBank(
-                      setLocale: widget.setLocale)),
-                  (route) => route.isFirst);
+          Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
+          // Navigator.of(context).pushAndRemoveUntil(
+          //     MaterialPageRoute(
+          //         builder: (context) => TeacherQuestionBank(
+          //             )),
+          //         (route) => route.isFirst);
         }
         else{
           Navigator.push(
@@ -258,7 +258,7 @@ class QuestionEditState extends State<QuestionEdit> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(

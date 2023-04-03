@@ -6,9 +6,8 @@ import 'package:qna_test/Pages/teacher_login.dart';
 
 class TeacherVerifyOtpPage extends StatefulWidget {
   const TeacherVerifyOtpPage(
-      {Key? key, required this.email, required this.setLocale})
+      {Key? key, required this.email,})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
   final String email;
 
   @override
@@ -243,15 +242,20 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                       child: showAlertDialog(context)),
                                 );
                               } else {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.fade,
-                                      child: TeacherForgotPassword(
-                                        email: widget.email,
-                                        otp: otp,
-                                      )),
+                                Navigator.pushNamed(
+                                    context,
+                                    '/teacherForgotPassword',
+                                    arguments: [widget.email,otp]
                                 );
+                                // Navigator.push(
+                                //   context,
+                                //   PageTransition(
+                                //       type: PageTransitionType.fade,
+                                //       child: TeacherForgotPassword(
+                                //         email: widget.email,
+                                //         otp: otp,
+                                //       )),
+                                // );
                               }
                             }
                           },
@@ -322,12 +326,13 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                 fontSize: 15),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => TeacherLogin(setLocale: widget.setLocale),
-              ),
-            );
+            Navigator.pushNamed(context, '/teacherLogin');
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => TeacherLogin(),
+            //   ),
+            // );
           },
         )
       ],

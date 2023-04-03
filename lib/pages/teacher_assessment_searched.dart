@@ -18,9 +18,9 @@ import '../Services/qna_service.dart';
 
 class TeacherAssessmentSearched extends StatefulWidget {
   TeacherAssessmentSearched(
-      {Key? key, required this.setLocale, required this.search})
+      {Key? key, required this.search})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   String search;
 
   @override
@@ -113,7 +113,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -314,7 +314,6 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                               height: height,
                               width: width,
                               status: 'Active',
-                              setLocale: widget.setLocale,
                               assessment: assessments[index],
                             ),
                             SizedBox(
@@ -366,14 +365,13 @@ class CardInfo extends StatelessWidget {
       required this.height,
       required this.width,
       required this.status,
-      required this.setLocale,
+
       required this.assessment})
       : super(key: key);
 
   final double height;
   final double width;
   final String status;
-  final void Function(Locale locale) setLocale;
   final GetAssessmentModel assessment;
 
   @override
@@ -422,16 +420,19 @@ class CardInfo extends StatelessWidget {
 
             Provider.of<CreateAssessmentProvider>(context, listen: false)
                 .updateAssessment(editAssessment);
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherRecentAssessment(
-                  setLocale: setLocale,
-                  finalAssessment: editAssessment,
-                ),
-              ),
-            );
+            Navigator.pushNamed(context,
+                '/teacherRecentAssessment',
+                arguments: editAssessment);
+
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherRecentAssessment(
+            //       finalAssessment: editAssessment,
+            //     ),
+            //   ),
+            // );
           } else if (assessment.assessmentStatus == 'active') {
             SharedPreferences loginData = await SharedPreferences.getInstance();
             CreateAssessmentModel editAssessment = CreateAssessmentModel(
@@ -471,24 +472,29 @@ class CardInfo extends StatelessWidget {
 
             Provider.of<CreateAssessmentProvider>(context, listen: false)
                 .updateAssessment(editAssessment);
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherActiveAssessment(
-                  setLocale: setLocale,
-                  assessment: assessment,
-                ),
-              ),
+            Navigator.pushNamed(
+                context,
+                '/teacherActiveAssessment',
+                arguments: assessment
             );
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherActiveAssessment(
+            //       assessment: assessment,
+            //     ),
+            //   ),
+            // );
           } else {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherInactiveAssessment(setLocale: setLocale),
-              ),
-            );
+            Navigator.pushNamed(context, '/teacherInactiveAssessment');
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherInactiveAssessment(),
+            //   ),
+            // );
           }
         },
         child: Container(

@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class CookiePolicy extends StatefulWidget {
   const CookiePolicy({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   CookiePolicyState createState() => CookiePolicyState();

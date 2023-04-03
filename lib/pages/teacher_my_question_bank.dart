@@ -12,11 +12,11 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank(
-      {Key? key, this.assessment, required this.setLocale})
+      {Key? key, this.assessment, })
       : super(key: key);
 
   final bool? assessment;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherMyQuestionBankState createState() => TeacherMyQuestionBankState();
@@ -130,7 +130,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                 question: quesList[i],
                                 index: i,
                                 assessment: widget.assessment,
-                                setLocale: widget.setLocale),
+                                ),
                         ],
                       ),
                     ),
@@ -148,24 +148,27 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                     ),
                     onPressed: () async {
                       if (widget.assessment != null) {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: TeacherCreateAssessment(
-                                setLocale: widget.setLocale),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/teacherCreateAssessment');
+                        // Navigator.push(
+                        //   context,
+                        //   PageTransition(
+                        //     type: PageTransitionType.rightToLeft,
+                        //     child: TeacherCreateAssessment(
+                        //         ),
+                        //   ),
+                        // );
                       } else {
                         Provider.of<QuestionPrepareProviderFinal>(context,
                                 listen: false)
                             .reSetQuestionList();
                         //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => TeacherQuestionBank(
-                                    setLocale: widget.setLocale)),
-                                (route) => route.isFirst);
+
+                        Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
+                        // Navigator.of(context).pushAndRemoveUntil(
+                        //     MaterialPageRoute(
+                        //         builder: (context) => TeacherQuestionBank(
+                        //             )),
+                        //         (route) => route.isFirst);
                         // Navigator.push(
                         //   context,
                         //   PageTransition(
@@ -201,7 +204,7 @@ class QuestionPreview extends StatelessWidget {
       required this.question,
       required this.index,
       this.assessment,
-      required this.setLocale})
+      })
       : super(key: key);
 
   final double height;
@@ -209,7 +212,6 @@ class QuestionPreview extends StatelessWidget {
   final Question question;
   final int index;
   final bool? assessment;
-  final void Function(Locale locale) setLocale;
 
   @override
   Widget build(BuildContext context) {
@@ -226,17 +228,26 @@ class QuestionPreview extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: TeacherQuestionPreviewDelete(
-                question: question,
-                index: index,
-                assessment: assessment,
-                setLocale: setLocale),
-          ),
+        Navigator.pushNamed(
+            context,
+            '/teacherQuestionPreviewDelete',
+            arguments: [
+              question,
+              index,
+              assessment
+            ]
         );
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherQuestionPreviewDelete(
+        //         question: question,
+        //         index: index,
+        //         assessment: assessment,
+        //         ),
+        //   ),
+        // );
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class AboutUs extends StatefulWidget {
   const AboutUs({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   AboutUsState createState() => AboutUsState();

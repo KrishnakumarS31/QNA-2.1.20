@@ -7,13 +7,15 @@ import 'package:qna_test/Pages/opening_page.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter/foundation.dart';
+import 'DataSource/app_user_repo.dart';
+import 'Entity/app_user.dart';
 import 'Providers/LanguageChangeProvider.dart';
 import 'Providers/create_assessment_provider.dart';
 import 'Providers/edit_assessment_provider.dart';
 import 'Providers/new_question_provider.dart';
 import 'Providers/question_prepare_provider.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
-
+import 'my_routers.dart';
 import 'Providers/question_prepare_provider_final.dart';
 
 Future main() async {
@@ -64,7 +66,19 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    getData();
     super.initState();
+  }
+
+  getData() async {
+    AppUser? user = await AppUserRepo().getUserDetail();
+    print("---------------------------------1");
+    if(user?.locale==null){
+    }
+    else{
+      Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(user!.locale);
+      //context.read<LanguageChangeProvider>().changeLocale(user!.locale);
+    }
   }
 
   void setLocale(Locale locale) {
@@ -77,16 +91,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        locale: _locale,
-        debugShowCheckedModeBanner: false,
+      locale: Locale(context.watch<LanguageChangeProvider>().currentLocale),
+      onGenerateRoute: MyRoutes.generateRoute,
+      debugShowCheckedModeBanner: false,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         ),
-        initialRoute: WelcomePage.id,
-       routes: {
-        WelcomePage.id: (context) => WelcomePage(setLocale: setLocale),},
+      initialRoute: '/',
+       //  initialRoute: WelcomePage.id,
+       // routes: {
+       //  WelcomePage.id: (context) => WelcomePage(setLocale: setLocale),},
 
       //  home:
         // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS

@@ -12,11 +12,11 @@ import '../EntityModel/student_registration_model.dart';
 import '../Services/qna_service.dart';
 
 class StudentRegistrationUpdatePage extends StatefulWidget {
-  const StudentRegistrationUpdatePage({Key? key, this.userData, this.isEdit})
+  const StudentRegistrationUpdatePage({Key? key, required this.userData, required this.isEdit})
       : super(key: key);
 
-  final StudentUserProfile? userData;
-  final bool? isEdit;
+  final StudentUserProfile userData;
+  final bool isEdit;
 
   @override
   StudentRegistrationUpdatePageState createState() =>
@@ -1474,14 +1474,16 @@ class StudentRegistrationUpdatePageState
                           LoginModel res =
                               await QnaService.postUserDetailsService(student);
                           if (res.code == 200) {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                  type: PageTransitionType.fade,
-                                  child: StudentRegisVerifyOtpPage(
-                                    email: studentEmailController.text,
-                                  )),
-                            );
+
+                            Navigator.pushNamed(context, '/studentRegisVerifyOtpPage',arguments: studentEmailController.text,);
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //       type: PageTransitionType.fade,
+                            //       child: StudentRegisVerifyOtpPage(
+                            //         email: studentEmailController.text,
+                            //       )),
+                            // );
                           } else {
                             Navigator.push(
                               context,

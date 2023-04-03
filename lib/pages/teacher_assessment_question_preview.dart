@@ -14,13 +14,13 @@ import '../Providers/question_prepare_provider_final.dart';
 class TeacherAssessmentQuestionPreview extends StatefulWidget {
   const TeacherAssessmentQuestionPreview(
       {Key? key,
-      required this.setLocale,
+
       required this.assessment,
       required this.question,
       required this.index,
       this.pageName})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   final CreateAssessmentModel assessment;
   final Question.Question question;
   final int index;
@@ -310,19 +310,21 @@ class TeacherAssessmentQuestionPreviewState
                                         index);
                                     if (widget.pageName ==
                                         'TeacherAssessmentSummary') {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: TeacherAssessmentSummary(
-                                              setLocale: widget.setLocale),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(context, '/teacherAssessmentSummary');
+                                      // Navigator.push(
+                                      //   context,
+                                      //   PageTransition(
+                                      //     type: PageTransitionType.rightToLeft,
+                                      //     child: TeacherAssessmentSummary(
+                                      //         ),
+                                      //   ),
+                                      // );
                                     } else {
+                                      //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) => TeacherSelectedQuestionAssessment(
-                                                  setLocale: widget.setLocale)),
+                                                  )),
                                               (route) => route.isFirst);
                                     }
                                   },

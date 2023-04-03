@@ -777,16 +777,19 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ),
                               onPressed: () {
                                 values.data!.assessmentType != "test"
-                                    ? Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType
-                                            .rightToLeft,
-                                        child: StudentMemAnswerSheet(
-                                            questions: values,
-                                            assessmentId:
-                                            widget.assessmentId)))
-                                    : Navigator.push(
+                                    ?
+                                Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+                                // Navigator.push(
+                                //     context,
+                                //     PageTransition(
+                                //         type: PageTransitionType
+                                //             .rightToLeft,
+                                //         child: StudentMemAnswerSheet(
+                                //             questions: values,
+                                //             assessmentId:
+                                //             widget.assessmentId)))
+                                    :
+                                Navigator.push(
                                   context,
                                   PageTransition(
                                     type:
@@ -812,15 +815,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         fontWeight: FontWeight.w500)),
                                 onPressed: () {
                                   values.data!.assessmentType != "test"
-                                      ? Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType
-                                              .rightToLeft,
-                                          child: StudentMemAnswerSheet(
-                                              questions: values,
-                                              assessmentId:
-                                              widget.assessmentId)))
+                                      ?
+                                  Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+
+                                  // Navigator.push(
+                                  //     context,
+                                  //     PageTransition(
+                                  //         type: PageTransitionType
+                                  //             .rightToLeft,
+                                  //         child: StudentMemAnswerSheet(
+                                  //             questions: values,
+                                  //             assessmentId:
+                                  //             widget.assessmentId)))
                                       : Navigator.push(
                                     context,
                                     PageTransition(
@@ -844,15 +850,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ),
                               onPressed: () {
                                 values.data!.assessmentType != "test"
-                                    ? Navigator.push(
-                                    context,
-                                    PageTransition(
-                                        type: PageTransitionType
-                                            .rightToLeft,
-                                        child: StudentMemAnswerSheet(
-                                            questions: values,
-                                            assessmentId:
-                                            widget.assessmentId)))
+                                    ?
+                                Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+
+                                // Navigator.push(
+                                //     context,
+                                //     PageTransition(
+                                //         type: PageTransitionType
+                                //             .rightToLeft,
+                                //         child: StudentMemAnswerSheet(
+                                //             questions: values,
+                                //             assessmentId:
+                                //             widget.assessmentId)))
                                     : Navigator.push(
                                   context,
                                   PageTransition(
@@ -1288,15 +1297,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 ),
                                 onPressed: () {
                                   values.data!.assessmentType != "test"
-                                      ? Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType
-                                              .rightToLeft,
-                                          child: StudentMemAnswerSheet(
-                                              questions: values,
-                                              assessmentId:
-                                              widget.assessmentId)))
+                                      ?
+                                  Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+
+                                  // Navigator.push(
+                                  //     context,
+                                  //     PageTransition(
+                                  //         type: PageTransitionType
+                                  //             .rightToLeft,
+                                  //         child: StudentMemAnswerSheet(
+                                  //             questions: values,
+                                  //             assessmentId:
+                                  //             widget.assessmentId)))
                                       : Navigator.push(
                                     context,
                                     PageTransition(
@@ -1324,15 +1336,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           fontWeight: FontWeight.w500)),
                                   onPressed: () {
                                     values.data!.assessmentType != "test"
-                                        ? Navigator.push(
-                                        context,
-                                        PageTransition(
-                                            type: PageTransitionType
-                                                .rightToLeft,
-                                            child: StudentMemAnswerSheet(
-                                                questions: values,
-                                                assessmentId:
-                                                widget.assessmentId)))
+                                        ?
+                                    Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+
+                                    // Navigator.push(
+                                    //     context,
+                                    //     PageTransition(
+                                    //         type: PageTransitionType
+                                    //             .rightToLeft,
+                                    //         child: StudentMemAnswerSheet(
+                                    //             questions: values,
+                                    //             assessmentId:
+                                    //             widget.assessmentId)))
                                         : Navigator.push(
                                       context,
                                       PageTransition(
@@ -1356,15 +1371,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 ),
                                 onPressed: () {
                                   values.data!.assessmentType != "test"
-                                      ? Navigator.push(
-                                      context,
-                                      PageTransition(
-                                          type: PageTransitionType
-                                              .rightToLeft,
-                                          child: StudentMemAnswerSheet(
-                                              questions: values,
-                                              assessmentId:
-                                              widget.assessmentId)))
+                                      ?
+                                  Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
+
+                                  // Navigator.push(
+                                  //     context,
+                                  //     PageTransition(
+                                  //         type: PageTransitionType
+                                  //             .rightToLeft,
+                                  //         child: StudentMemAnswerSheet(
+                                  //             questions: values,
+                                  //             assessmentId:
+                                  //             widget.assessmentId)))
                                       : Navigator.push(
                                     context,
                                     PageTransition(

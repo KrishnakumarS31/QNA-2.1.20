@@ -18,12 +18,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class EndDrawerMenuStudent extends StatefulWidget {
   EndDrawerMenuStudent(
       {Key? key,
-        required this.setLocale,
         this.userName,
         this.email,
         this.userId})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
   final String? userName;
   final String? email;
   int? userId;
@@ -395,7 +393,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: SettingsLanguages(setLocale: widget.setLocale),
+                                child: SettingsLanguages(),
                               ),
                             );
                           }),
@@ -422,7 +420,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: PrivacyPolicyHamburger(
-                                    setLocale: widget.setLocale),
+                                    ),
                               ),
                             );
                           }),
@@ -447,7 +445,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: TermsOfServiceHamburger(
-                                    setLocale: widget.setLocale),
+                                    ),
                               ),
                             );
                           }),
@@ -470,7 +468,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: CookiePolicy(setLocale: widget.setLocale),
+                                child: CookiePolicy(),
                               ),
                             );
                           }),
@@ -499,7 +497,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: AboutUs(setLocale: widget.setLocale),
+                                child: AboutUs(),
                               ),
                             );
                           }),
@@ -522,7 +520,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: HelpPageHamburger(setLocale: widget.setLocale),
+                                child: HelpPageHamburger(),
                               ),
                             );
                           }),
@@ -618,7 +616,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: WelcomePage(
-                                              setLocale: widget.setLocale),
+                                              ),
                                         ),
                                       );
                                     }),

@@ -14,10 +14,9 @@ class StudentAssessment extends StatefulWidget {
   StudentAssessment(
       {Key? key,
       required this.regNumber,
-      required this.setLocale,
       required this.usedData})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   final String? regNumber;
   UserDataModel? usedData;
 
@@ -74,7 +73,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: EndDrawerMenuStudent(
-                      setLocale: widget.setLocale,
+
                       userName: name,
                       email: email,
                       userId: widget.usedData!.data!.id),
@@ -268,19 +267,26 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     Navigator.of(context).pop();
                                     if (values.code == 200) {
                                       if (assessmentID.text.length >= 8) {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: StudQuestion(
-                                                assessmentId: assessmentID.text,
-                                                setLocale: widget.setLocale,
-                                                ques: values,
-                                                userName: widget
-                                                    .usedData!.data!.firstName),
-                                          ),
-                                        );
+                                        Navigator.pushNamed(
+                                            context,
+                                            '/studQuestion',
+                                            arguments: [
+                                              assessmentID.text,
+                                              values,
+                                              widget.usedData!.data!.firstName
+                                            ]);
+                                        // Navigator.push(
+                                        //   context,
+                                        //   PageTransition(
+                                        //     type:
+                                        //         PageTransitionType.rightToLeft,
+                                        //     child: StudQuestion(
+                                        //         assessmentId: assessmentID.text,
+                                        //         ques: values,
+                                        //         userName: widget
+                                        //             .usedData!.data!.firstName),
+                                        //   ),
+                                        // );
                                       }
                                     } else {
                                       Navigator.push(
@@ -374,7 +380,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: EndDrawerMenuStudent(
-                      setLocale: widget.setLocale,
+
                       userName: name,
                       email: email,
                       userId: widget.usedData!.data!.id),
@@ -569,18 +575,26 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     Navigator.of(context).pop();
                                     if (assessmentID.text.length >= 8) {
                                       if (values.code == 200) {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type:
-                                                PageTransitionType.rightToLeft,
-                                            child: StudQuestion(
-                                                assessmentId: assessmentID.text,
-                                                ques: values,
-                                                setLocale: widget.setLocale,
-                                                userName: name),
-                                          ),
-                                        );
+                                        Navigator.pushNamed(
+                                            context,
+                                            '/studQuestion',
+                                            arguments: [
+                                              assessmentID.text,
+                                              values,
+                                              widget.usedData!.data!.firstName
+                                            ]);
+                                        // Navigator.push(
+                                        //   context,
+                                        //   PageTransition(
+                                        //     type:
+                                        //         PageTransitionType.rightToLeft,
+                                        //     child: StudQuestion(
+                                        //         assessmentId: assessmentID.text,
+                                        //         ques: values,
+                                        //
+                                        //         userName: name),
+                                        //   ),
+                                        // );
                                       } else if (values.code == 400) {
                                         Navigator.push(
                                           context,

@@ -13,13 +13,13 @@ class StudentForgotPassword extends StatefulWidget {
       required this.email,
       required this.otp,
       required this.isFromStudent,
-      required this.setLocale})
+      })
       : super(key: key);
 
   final String email;
   final String otp;
   final bool isFromStudent;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentForgotPasswordState createState() => StudentForgotPasswordState();
@@ -310,21 +310,23 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
           ),
           onPressed: () {
             if (widget.isFromStudent == true) {
-              Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.rightToLeft,
-                  child: StudentMemberLoginPage(setLocale: widget.setLocale),
-                ),
-              );
+              Navigator.pushNamed(context, '/studentMemberLoginPage');
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.rightToLeft,
+              //     child: StudentMemberLoginPage(),
+              //   ),
+              // );
             } else if (widget.isFromStudent == false) {
-              Navigator.push(
-                context,
-                PageTransition(
-                  type: PageTransitionType.rightToLeft,
-                  child: TeacherLogin(setLocale: widget.setLocale),
-                ),
-              );
+              Navigator.pushNamed(context, '/teacherLogin');
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.rightToLeft,
+              //     child: TeacherLogin(),
+              //   ),
+              // );
             }
             //Navigator.of(context).pop();
           },

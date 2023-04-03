@@ -9,15 +9,12 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherQnPreviewAssessment extends StatefulWidget {
   TeacherQnPreviewAssessment(
-      {this.assessment,
-      required this.setLocale,
+      {required this.assessment,
       required this.finalQuestion,
-      this.assessmentStatus});
-
+      });
   Question finalQuestion;
-  bool? assessment;
-  final void Function(Locale locale) setLocale;
-  final String? assessmentStatus;
+  bool assessment;
+
 
   @override
   TeacherQnPreviewAssessmentState createState() =>
@@ -212,17 +209,20 @@ class TeacherQnPreviewAssessmentState
                             Provider.of<QuestionPrepareProvider>(context,
                                     listen: false)
                                 .addQuestion(widget.finalQuestion);
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherAddMyQuestionBankForAssessment(
-                                  assessment: widget.assessment,
-                                  setLocale: widget.setLocale,
-                                  assessmentStatus: widget.assessmentStatus,
-                                ),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/teacherAddMyQuestionBankForAssessment',
+                                arguments: widget.assessment,
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherAddMyQuestionBankForAssessment(
+                            //       assessment: widget.assessment,
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             AppLocalizations.of(context)!.finalize,

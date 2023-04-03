@@ -2,16 +2,18 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/settings_languages.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
+import '../Providers/LanguageChangeProvider.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key, required this.setLocale}) : super(key: key);
-  final void Function(Locale locale) setLocale;
+  const SplashScreen({Key? key,}) : super(key: key);
+
 
   @override
   SplashScreenState createState() => SplashScreenState();
@@ -30,24 +32,26 @@ class SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
       if (user != null) {
-        widget.setLocale(Locale.fromSubtags(languageCode: user.locale));
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child:
-                //StudentMemberLoginPage(setLocale: widget.setLocale)
-                WelcomePage(setLocale: widget.setLocale),
-          ),
-        );
+        Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(user!.locale);
+        Navigator.pushNamed(context, '/');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child:
+        //         //StudentMemberLoginPage(setLocale: widget.setLocale)
+        //         WelcomePage(),
+        //   ),
+        // );
       } else {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: SettingsLanguages(setLocale: widget.setLocale),
-          ),
-        );
+        Navigator.pushNamed(context, '/settingsLanguages');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: SettingsLanguages(),
+        //   ),
+        // );
       }
     });
   }

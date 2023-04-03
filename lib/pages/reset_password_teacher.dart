@@ -285,14 +285,15 @@ class ResetPasswordState extends State<ResetPassword> {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
-        Navigator.push(
-          context,
-          PageTransition(
-              type: PageTransitionType.fade,
-              child: TeacherLogin(
-                setLocale: (Locale locale) {},
-              )),
-        );
+        Navigator.pushNamed(context, '/teacherLogin');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //       type: PageTransitionType.fade,
+        //       child: TeacherLogin(
+        //
+        //       )),
+        // );
       },
     );
     AlertDialog alert = AlertDialog(

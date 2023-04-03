@@ -12,9 +12,9 @@ import '../Providers/edit_assessment_provider.dart';
 class TeacherClonedAssessment extends StatefulWidget {
   const TeacherClonedAssessment({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherClonedAssessmentState createState() => TeacherClonedAssessmentState();
@@ -80,7 +80,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -1046,14 +1046,15 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               )),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherClonedAssessmentPreview(
-                                    setLocale: widget.setLocale),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/teacherClonedAssessmentPreview');
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherClonedAssessmentPreview(
+                            //         ),
+                            //   ),
+                            // );
                           },
                           child: Text(
                             'Edit',

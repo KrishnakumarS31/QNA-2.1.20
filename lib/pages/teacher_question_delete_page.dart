@@ -16,14 +16,12 @@ class TeacherQuesDelete extends StatefulWidget {
     Key? key,
     required this.quesNum,
     required this.finalQuestion,
-    required this.setLocale,
-    this.assessment
+    required this.assessment
   }) : super(key: key);
 
   final int quesNum;
   final Question finalQuestion;
-  final void Function(Locale locale) setLocale;
-  bool? assessment;
+  bool assessment;
 
   @override
   TeacherQuesDeleteState createState() => TeacherQuesDeleteState();
@@ -117,24 +115,34 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
               .deleteQuestionList(widget.quesNum!);
           Provider.of<QuestionPrepareProvider>(context, listen: false)
               .deleteQuestionList(widget.quesNum!);
-          Navigator.push(
+          Navigator.pushNamed(
             context,
-            PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: TeacherAddMyQuestionBankForAssessment(setLocale: widget.setLocale,assessment: widget.assessment,),
-            ),
+            '/teacherAddMyQuestionBankForAssessment',
+            arguments: widget.assessment,
           );
+          // Navigator.push(
+          //   context,
+          //   PageTransition(
+          //     type: PageTransitionType.rightToLeft,
+          //     child: TeacherAddMyQuestionBankForAssessment(assessment: widget.assessment,),
+          //   ),
+          // );
         }
         else{
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .deleteQuestionList(widget.quesNum!);
-          Navigator.push(
-            context,
-            PageTransition(
-              type: PageTransitionType.rightToLeft,
-              child: TeacherAddMyQuestionBank(setLocale: widget.setLocale),
-            ),
+          Navigator.pushNamed(
+              context,
+              '/teacherAddMyQuestionBank',
+              arguments: false
           );
+          // Navigator.push(
+          //   context,
+          //   PageTransition(
+          //     type: PageTransitionType.rightToLeft,
+          //     child: TeacherAddMyQuestionBank(assessment: false,),
+          //   ),
+          // );
         }
 
       },
@@ -210,7 +218,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(

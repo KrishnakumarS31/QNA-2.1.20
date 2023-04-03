@@ -9,9 +9,9 @@ import '../Services/qna_service.dart';
 
 class StudGuestAssessment extends StatefulWidget {
   const StudGuestAssessment(
-      {Key? key, required this.name, required this.setLocale})
+      {Key? key, required this.name,})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   final String name;
 
   @override
@@ -53,7 +53,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     ),
                     backgroundColor: const Color.fromRGBO(0, 106, 100, 1),
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   resizeToAvoidBottomInset: true,
                   backgroundColor: Colors.white,
                   body: Column(children: [
@@ -235,19 +235,25 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       assessmentIdController.text, widget.name);
                                   Navigator.of(context).pop();
                                   if (values.code == 200) {
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: StudQuestion(
-                                          userName: widget.name,
-                                          setLocale: widget.setLocale,
-                                          assessmentId:
-                                              assessmentIdController.text,
-                                          ques: values,
-                                        ),
-                                      ),
-                                    );
+                                    Navigator.pushNamed(
+                                        context,
+                                        '/studQuestion',
+                                        arguments: [
+                                          assessmentIdController.text,
+                                          values,
+                                          widget.name,
+                                        ]);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   PageTransition(
+                                    //     type: PageTransitionType.rightToLeft,
+                                    //     child: StudQuestion(
+                                    //       userName: widget.name,
+                                    //       assessmentId: assessmentIdController.text,
+                                    //       ques: values,
+                                    //     ),
+                                    //   ),
+                                    // );
                                     assessmentIdController.clear();
                                   } else if (values.code == 400) {
                                     Navigator.push(
@@ -336,7 +342,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   resizeToAvoidBottomInset: false,
                   backgroundColor: Colors.white,
                   body: Column(children: [
@@ -501,19 +507,27 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         widget.name);
                                     Navigator.of(context).pop();
                                     if (values.code == 200) {
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: StudQuestion(
-                                            userName: widget.name,
-                                            setLocale: widget.setLocale,
-                                            assessmentId:
-                                                assessmentIdController.text,
-                                            ques: values,
-                                          ),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(
+                                          context,
+                                          '/studQuestion',
+                                          arguments: [
+                                            assessmentIdController.text,
+                                            values,
+                                            widget.name,
+                                          ]);
+                                      // Navigator.push(
+                                      //   context,
+                                      //   PageTransition(
+                                      //     type: PageTransitionType.rightToLeft,
+                                      //     child: StudQuestion(
+                                      //       userName: widget.name,
+                                      //
+                                      //       assessmentId:
+                                      //           assessmentIdController.text,
+                                      //       ques: values,
+                                      //     ),
+                                      //   ),
+                                      // );
                                       assessmentIdController.clear();
                                     } else {
                                       Navigator.push(

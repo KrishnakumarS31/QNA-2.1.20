@@ -7,9 +7,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherForgotPasswordEmail extends StatefulWidget {
   const TeacherForgotPasswordEmail({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherForgotPasswordEmailState createState() =>
@@ -252,14 +252,19 @@ class TeacherForgotPasswordEmailState
                 fontSize: height * 0.018),
           ),
           onPressed: () {
-            Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: TeacherVerifyOtpPage(
-                    email: _controller.text, setLocale: widget.setLocale),
-              ),
+            Navigator.pushNamed(
+                context,
+                '/teacherVerifyOtpPage',
+                arguments: _controller.text
             );
+            // Navigator.push(
+            //   context,
+            //   PageTransition(
+            //     type: PageTransitionType.rightToLeft,
+            //     child: TeacherVerifyOtpPage(
+            //         email: _controller.text,),
+            //   ),
+            // );
           },
         )
       ],

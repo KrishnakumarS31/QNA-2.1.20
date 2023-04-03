@@ -21,9 +21,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment(
-      {Key? key, required this.setLocale, this.questions})
+      {Key? key, this.questions})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   final List<Question.Question>? questions;
 
   @override
@@ -92,13 +92,14 @@ class TeacherSelectedQuestionAssessmentState
       ),
       onPressed: () {
         //Provider.of<QuestionsForAssessmentSettingsPublishedProvider>(context, listen: false).addQuestion(widget.questions! as QuestionEntityForAssessmentSettingsPublished);
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: TeacherAssessmentSettingPublish(setLocale: widget.setLocale),
-          ),
-        );
+        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherAssessmentSettingPublish(),
+        //   ),
+        // );
       },
     );
     // set up the AlertDialog
@@ -178,7 +179,7 @@ class TeacherSelectedQuestionAssessmentState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -983,7 +984,6 @@ class TeacherSelectedQuestionAssessmentState
                                   question: questionList[i],
                                   index: i,
                                   assessment: assessment,
-                                  setLocale: widget.setLocale,
                                 ),
                             ],
                           ),
@@ -994,14 +994,15 @@ class TeacherSelectedQuestionAssessmentState
                           left: width * 0.78,
                           child: FloatingActionButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherAssessmentQuestionBank(
-                                      setLocale: widget.setLocale),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,null]);
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: TeacherAssessmentQuestionBank(
+                              //         ),
+                              //   ),
+                              // );
                             },
                             backgroundColor:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -1043,11 +1044,12 @@ class TeacherSelectedQuestionAssessmentState
                                 await QnaService.createAssessmentTeacherService(
                                     assessment);
                           }
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (context) => TeacherAssessmentLanding(
-                                      setLocale: widget.setLocale)),
-                                  (route) => route.isFirst);
+                          Navigator.pushNamedAndRemoveUntil(context, '/TeacherAssessmentLanding',(route) => route.isFirst);
+                          // Navigator.of(context).pushAndRemoveUntil(
+                          //     MaterialPageRoute(
+                          //         builder: (context) => TeacherAssessmentLanding(
+                          //             )),
+                          //         (route) => route.isFirst);
                         },
                         child: Text(
                           'Save Assessment',
@@ -1104,14 +1106,14 @@ class QuestionWidget extends StatefulWidget {
       required this.question,
       required this.index,
       required this.assessment,
-      required this.setLocale})
+      })
       : super(key: key);
 
   final double height;
   final Question.Question question;
   final int index;
   final CreateAssessmentModel assessment;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -1171,15 +1173,15 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         }
         Navigator.of(context).pop();
         setState(() {});
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: TeacherSelectedQuestionAssessment(
-              setLocale: widget.setLocale,
-            ),
-          ),
-        );
+        Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherSelectedQuestionAssessment(
+        //     ),
+        //   ),
+        // );
       },
     );
     // set up the AlertDialog
@@ -1307,18 +1309,22 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      child: TeacherAssessmentQuestionPreview(
-                        setLocale: widget.setLocale,
-                        assessment: widget.assessment,
-                        question: widget.question,
-                        index: widget.index,
-                      ),
-                    ),
+                  Navigator.pushNamed(
+                      context,
+                      '/teacherAssessmentQuestionPreview',
+                      arguments: [widget.assessment,widget.question, widget.index,'']
                   );
+                  // Navigator.push(
+                  //   context,
+                  //   PageTransition(
+                  //     type: PageTransitionType.rightToLeft,
+                  //     child: TeacherAssessmentQuestionPreview(
+                  //       assessment: widget.assessment,
+                  //       question: widget.question,
+                  //       index: widget.index,
+                  //     ),
+                  //   ),
+                  // );
                 },
                 child: Align(
                   alignment: Alignment.topLeft,

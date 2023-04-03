@@ -19,9 +19,9 @@ import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 import '../DataSource/http_url.dart';
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
-  const TeacherAssessmentSettingPublish({Key? key, required this.setLocale})
+  const TeacherAssessmentSettingPublish({Key? key,})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherAssessmentSettingPublishState createState() =>
@@ -1937,11 +1937,12 @@ class TeacherAssessmentSettingPublishState
                                           }
                                           Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
                                           if (statusCode.code == 200) {
-                                            Navigator.of(context).pushAndRemoveUntil(
-                                                MaterialPageRoute(
-                                                    builder: (context) => TeacherAssessmentLanding(
-                                                        setLocale: widget.setLocale)),
-                                                    (route) => route.isFirst);
+                                            Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                                            // Navigator.of(context).pushAndRemoveUntil(
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) => TeacherAssessmentLanding(
+                                            //             )),
+                                            //         (route) => route.isFirst);
                                             // Navigator.push(
                                             //   context,
                                             //   PageTransition(
@@ -2076,19 +2077,23 @@ class TeacherAssessmentSettingPublishState
                                           Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
 
                                     if (statusCode.code == 200) {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .rightToLeft,
-                                                child: TeacherPublishedAssessment(
-                                                    setLocale: widget.setLocale,
-                                                    assessmentCode:
-                                                        assessmentCode,
-                                                    questionList:
-                                                        questionListForNxtPage),
-                                              ),
-                                            );
+                                      Navigator.pushNamed(
+                                          context,
+                                          '/teacherPublishedAssessment',
+                                          arguments: [assessmentCode,questionListForNxtPage]
+                                      );
+                                            // Navigator.push(
+                                            //   context,
+                                            //   PageTransition(
+                                            //     type: PageTransitionType
+                                            //         .rightToLeft,
+                                            //     child: TeacherPublishedAssessment(
+                                            //         assessmentCode:
+                                            //             assessmentCode,
+                                            //         questionList:
+                                            //             questionListForNxtPage),
+                                            //   ),
+                                            // );
                                           }
                                         },
                                         child: Text(

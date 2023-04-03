@@ -15,13 +15,12 @@ class TeacherPrepareQnBank extends StatefulWidget {
   const TeacherPrepareQnBank(
       {Key? key,
       this.assessment,
-      required this.setLocale,
       this.assessmentStatus})
       : super(key: key);
 
   final bool? assessment;
   final String? assessmentStatus;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherPrepareQnBankState createState() => TeacherPrepareQnBankState();
@@ -76,12 +75,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
       context: context,
       builder: (BuildContext context) {
         String status = '';
-        if (widget.assessmentStatus != null) {
-          status = widget.assessmentStatus!;
-        }
         return TeacherPreparePreview(
             assessment: widget.assessment,
-            setLocale: widget.setLocale,
             finalQuestion: finalQuestion,
             assessmentStatus: status);
       },
@@ -113,7 +108,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(

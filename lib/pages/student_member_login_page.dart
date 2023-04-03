@@ -15,9 +15,9 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 // import 'package:universal_html/html.dart';
 
 class StudentMemberLoginPage extends StatefulWidget {
-  const StudentMemberLoginPage({super.key, required this.setLocale});
+  const StudentMemberLoginPage({super.key, });
 
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentMemberLoginPageState createState() => StudentMemberLoginPageState();
@@ -57,16 +57,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
           });
       UserDataModel userDataModel =
       await QnaService.getUserDataService(loginData.getInt('userId'));
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: StudentAssessment(
-              regNumber: regNumber,
-              setLocale: widget.setLocale,
-              usedData: userDataModel),
-        ),
-      ).then((value) {
+      Navigator.pushNamed(context,
+          '/studentAssessment',
+          arguments: [regNumber,userDataModel])
+      .then((value) {
         regNumberController.clear();
         passWordController.clear();
       });
@@ -101,7 +95,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Column(children: [
@@ -316,17 +310,20 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .rightToLeft,
-                                                child: ForgotPasswordEmail(
-                                                    isFromStudent: true,
-                                                    setLocale:
-                                                    widget.setLocale),
-                                              ),
-                                            );
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/forgotPasswordEmail',
+                                                arguments: true);
+                                            // Navigator.push(
+                                            //   context,
+                                            //   PageTransition(
+                                            //     type: PageTransitionType
+                                            //         .rightToLeft,
+                                            //     child: ForgotPasswordEmail(
+                                            //         isFromStudent: true,
+                                            //         ),
+                                            //   ),
+                                            // );
                                           },
                                           child: Text(
                                               AppLocalizations.of(context)!
@@ -509,22 +506,27 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     .getUserDataService(
                                                     loginResponse
                                                         .data!.userId);
-                                                Navigator.push(
-                                                  context,
-                                                  PageTransition(
-                                                    type: PageTransitionType
-                                                        .rightToLeft,
-                                                    child: StudentAssessment(
-                                                        regNumber: regNumber,
-                                                        setLocale:
-                                                        widget.setLocale,
-                                                        usedData:
-                                                        userDataModel),
-                                                  ),
-                                                ).then((value) {
+                                                Navigator.pushNamed(context,
+                                                    '/studentAssessment',
+                                                    arguments: [regNumber,userDataModel])
+                                                    .then((value) {
                                                   regNumberController.clear();
                                                   passWordController.clear();
                                                 });
+                                                // Navigator.push(
+                                                //   context,
+                                                //   PageTransition(
+                                                //     type: PageTransitionType
+                                                //         .rightToLeft,
+                                                //     child: StudentAssessment(
+                                                //         regNumber: regNumber,
+                                                //         usedData:
+                                                //         userDataModel),
+                                                //   ),
+                                                // ).then((value) {
+                                                //   regNumberController.clear();
+                                                //   passWordController.clear();
+                                                // });
                                               } else {
                                                 Navigator.push(
                                                   context,
@@ -580,13 +582,15 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 MaterialButton(
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                          const StudentRegistrationPage(),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(context, '/studentRegistrationPage');
+
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //     const StudentRegistrationPage(),
+                                      //   ),
+                                      // );
                                     },
                                     child: Row(
                                       mainAxisAlignment:
@@ -641,7 +645,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Column(children: [
@@ -851,17 +855,22 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       children: [
                                         GestureDetector(
                                           onTap: () {
-                                            Navigator.push(
-                                              context,
-                                              PageTransition(
-                                                type: PageTransitionType
-                                                    .rightToLeft,
-                                                child: ForgotPasswordEmail(
-                                                    isFromStudent: true,
-                                                    setLocale:
-                                                    widget.setLocale),
-                                              ),
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/forgotPasswordEmail',
+                                                arguments: true
                                             );
+
+                                            // Navigator.push(
+                                            //   context,
+                                            //   PageTransition(
+                                            //     type: PageTransitionType
+                                            //         .rightToLeft,
+                                            //     child: ForgotPasswordEmail(
+                                            //         isFromStudent: true,
+                                            //         ),
+                                            //   ),
+                                            // );
                                           },
                                           child: Text(
                                               AppLocalizations.of(context)!
@@ -1078,25 +1087,30 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                           .userId);
                                                   if (userDataModel.data!.role
                                                       .contains("student")) {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .rightToLeft,
-                                                        child: StudentAssessment(
-                                                            regNumber:
-                                                            regNumber,
-                                                            setLocale: widget
-                                                                .setLocale,
-                                                            usedData:
-                                                            userDataModel),
-                                                      ),
-                                                    ).then((value) {
-                                                      regNumberController
-                                                          .clear();
-                                                      passWordController
-                                                          .clear();
+                                                    Navigator.pushNamed(context,
+                                                        '/studentAssessment',
+                                                        arguments: [regNumber,userDataModel])
+                                                        .then((value) {
+                                                      regNumberController.clear();
+                                                      passWordController.clear();
                                                     });
+                                                    // Navigator.push(
+                                                    //   context,
+                                                    //   PageTransition(
+                                                    //     type: PageTransitionType
+                                                    //         .rightToLeft,
+                                                    //     child: StudentAssessment(
+                                                    //         regNumber:
+                                                    //         regNumber,
+                                                    //         usedData:
+                                                    //         userDataModel),
+                                                    //   ),
+                                                    // ).then((value) {
+                                                    //   regNumberController
+                                                    //       .clear();
+                                                    //   passWordController
+                                                    //       .clear();
+                                                    // });
                                                   }
                                                 } else if (loginResponse.code ==
                                                     400) {
@@ -1175,13 +1189,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 MaterialButton(
                                     onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                          const StudentRegistrationPage(),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(context, '/studentRegistrationPage');
+                                      // Navigator.push(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) =>
+                                      //     const StudentRegistrationPage(),
+                                      //   ),
+                                      // );
                                     },
                                     child: Row(
                                       mainAxisAlignment:

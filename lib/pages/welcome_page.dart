@@ -15,8 +15,8 @@ import "package:shared_preferences/shared_preferences.dart";
 
 class WelcomePage extends StatefulWidget {
   static const String id = 'welcome_page';
-  const WelcomePage({Key? key, required this.setLocale}) : super(key: key);
-  final void Function(Locale locale) setLocale;
+  const WelcomePage({Key? key,}) : super(key: key);
+
 
   @override
   State<WelcomePage> createState() => _WelcomePageState();
@@ -54,17 +54,20 @@ class _WelcomePageState extends State<WelcomePage> {
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
       userDataModel =
           await QnaService.getUserDataService(loginData?.getInt('userId'));
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: TeacherSelectionPage(
-            setLocale: widget.setLocale,
-            userId: loginData?.getInt('userId'),
-            userData: userDataModel,
-          ),
-        ),
+      Navigator.pushNamed(
+          context,
+          '/teacherSelectionPage',
+          arguments: userDataModel
       );
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child: TeacherSelectionPage(
+      //       userData: userDataModel,
+      //     ),
+      //   ),
+      // );
       return true;
     }
 
@@ -96,7 +99,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     backgroundColor: Colors.transparent,
                     automaticallyImplyLeading: false,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Stack(
@@ -229,17 +232,19 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                   color: Colors
                                                                       .white)),
                                                           onPressed: () async {
-                                                            Navigator.push(
-                                                              context,
-                                                              PageTransition(
-                                                                type: PageTransitionType
-                                                                    .rightToLeft,
-                                                                child: StudentSelectionPage(
-                                                                    setLocale:
-                                                                        widget
-                                                                            .setLocale),
-                                                              ),
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                '/studentSelectionPage',
                                                             );
+                                                            // Navigator.push(
+                                                            //   context,
+                                                            //   PageTransition(
+                                                            //     type: PageTransitionType
+                                                            //         .rightToLeft,
+                                                            //     child: StudentSelectionPage(
+                                                            //         ),
+                                                            //   ),
+                                                            // );
                                                           },
                                                         ),
                                                       ),
@@ -331,15 +336,15 @@ class _WelcomePageState extends State<WelcomePage> {
                                                               await checkIfAlreadyLoggedIn(
                                                                   teacherClick);
                                                           if (status == false) {
-                                                            Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(
-                                                                builder: (context) =>
-                                                                    TeacherLogin(
-                                                                        setLocale:
-                                                                            widget.setLocale),
-                                                              ),
-                                                            );
+                                                            Navigator.pushNamed(context, '/teacherLoginPage');
+                                                            // Navigator.push(
+                                                            //   context,
+                                                            //   MaterialPageRoute(
+                                                            //     builder: (context) =>
+                                                            //         TeacherLogin(
+                                                            //             ),
+                                                            //   ),
+                                                            // );
                                                           }
                                                         },
                                                       ),
@@ -356,16 +361,16 @@ class _WelcomePageState extends State<WelcomePage> {
                                         ),
                                         MaterialButton(
                                             onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: SettingsLanguages(
-                                                      setLocale:
-                                                          widget.setLocale),
-                                                ),
-                                              );
+                                              Navigator.pushNamed(context, '/settingsLanguages');
+                                              // Navigator.push(
+                                              //   context,
+                                              //   PageTransition(
+                                              //     type: PageTransitionType
+                                              //         .rightToLeft,
+                                              //     child: SettingsLanguages(
+                                              //         ),
+                                              //   ),
+                                              // );
                                             },
                                             child: Row(
                                               mainAxisAlignment:
@@ -442,7 +447,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     backgroundColor: Colors.transparent,
                     automaticallyImplyLeading: false,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(setLocale: widget.setLocale),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Stack(
@@ -549,17 +554,17 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                   0.03,
                                                           color: Colors.white)),
                                                   onPressed: () async {
-                                                    Navigator.push(
-                                                      context,
-                                                      PageTransition(
-                                                        type: PageTransitionType
-                                                            .rightToLeft,
-                                                        child:
-                                                            StudentSelectionPage(
-                                                                setLocale: widget
-                                                                    .setLocale),
-                                                      ),
-                                                    );
+                                                    Navigator.pushNamed(context, '/studentSelectionPage');
+                                                    // Navigator.push(
+                                                    //   context,
+                                                    //   PageTransition(
+                                                    //     type: PageTransitionType
+                                                    //         .rightToLeft,
+                                                    //     child:
+                                                    //         StudentSelectionPage(
+                                                    //             ),
+                                                    //   ),
+                                                    // );
                                                   },
                                                 ),
                                               ),
@@ -643,16 +648,15 @@ class _WelcomePageState extends State<WelcomePage> {
                                                           await checkIfAlreadyLoggedIn(
                                                               teacherClick);
                                                       if (status == false) {
-                                                        Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                TeacherLogin(
-                                                                    setLocale:
-                                                                        widget
-                                                                            .setLocale),
-                                                          ),
-                                                        );
+                                                        Navigator.pushNamed(context, '/teacherLoginPage');
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   MaterialPageRoute(
+                                                        //     builder: (context) =>
+                                                        //         TeacherLogin(
+                                                        //             ),
+                                                        //   ),
+                                                        // );
                                                       }
                                                     },
                                                   ),
@@ -664,16 +668,16 @@ class _WelcomePageState extends State<WelcomePage> {
                                         ),
                                         MaterialButton(
                                             onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                PageTransition(
-                                                  type: PageTransitionType
-                                                      .rightToLeft,
-                                                  child: SettingsLanguages(
-                                                      setLocale:
-                                                          widget.setLocale),
-                                                ),
-                                              );
+                                              Navigator.pushNamed(context, '/settingsLanguages');
+                                              // Navigator.push(
+                                              //   context,
+                                              //   PageTransition(
+                                              //     type: PageTransitionType
+                                              //         .rightToLeft,
+                                              //     child: SettingsLanguages(
+                                              //         ),
+                                              //   ),
+                                              // );
                                             },
                                             child: Row(
                                               mainAxisAlignment:

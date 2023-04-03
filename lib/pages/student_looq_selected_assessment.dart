@@ -6,9 +6,9 @@ import '../Entity/question_paper_model.dart';
 import '../Services/qna_service.dart';
 
 class StudentLooqSelectedAssessment extends StatefulWidget {
-  const StudentLooqSelectedAssessment({Key? key, required this.setLocale})
+  const StudentLooqSelectedAssessment({Key? key,})
       : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudentLooqSelectedAssessmentState createState() =>
@@ -40,7 +40,7 @@ class StudentLooqSelectedAssessmentState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -452,18 +452,25 @@ class StudentLooqSelectedAssessmentState
                                   assessmentId: '98765432');
 
                               Navigator.of(context).pop();
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: StudQuestion(
-                                    setLocale: widget.setLocale,
-                                    userName: "firstName",
-                                    assessmentId: '98765432',
-                                    ques: values,
-                                  ),
-                                ),
-                              );
+                              Navigator.pushNamed(
+                                  context,
+                                  '/studQuestion',
+                                  arguments: [
+                                    '98765432',
+                                    values,
+                                    "firstName",
+                                  ]);
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: StudQuestion(
+                              //       userName: "firstName",
+                              //       assessmentId: '98765432',
+                              //       ques: values,
+                              //     ),
+                              //   ),
+                              // );
                             },
                             child: Text(
                               'Attempt Assessment',

@@ -21,6 +21,8 @@ class GetAssessmentModel {
     this.assessmentCode,
     this.totalScore,
     this.assessmentDuration,
+    this.assessmentStartdate,
+    this.assessmentEnddate,
     this.assessmentStatus,
     this.subject,
     this.topic,
@@ -36,6 +38,8 @@ class GetAssessmentModel {
   String? assessmentCode;
   int? totalScore;
   int? assessmentDuration;
+  int? assessmentStartdate;
+  int? assessmentEnddate;
   String? assessmentStatus;
   String? subject;
   String? topic;
@@ -52,6 +56,8 @@ class GetAssessmentModel {
         assessmentCode: json["assessment_code"],
         totalScore: json["total_score"],
         assessmentDuration: json["assessment_duration"],
+        assessmentStartdate: json["assessment_startdate"],
+        assessmentEnddate: json["assessment_enddate"],
         assessmentStatus: json["assessment_status"],
         subject: json["subject"],
         topic: json["topic"],
@@ -70,6 +76,8 @@ class GetAssessmentModel {
         "assessment_code": assessmentCode,
         "total_score": totalScore,
         "assessment_duration": assessmentDuration,
+    "assessment_startdate": assessmentStartdate,
+    "assessment_enddate": assessmentEnddate,
         "assessment_status": assessmentStatus,
         "subject": subject,
         "topic": topic,

@@ -20,9 +20,9 @@ import 'teacher_prepare_qnBank.dart';
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherClonedAssessmentPreviewState createState() =>
@@ -75,7 +75,7 @@ class TeacherClonedAssessmentPreviewState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -194,7 +194,7 @@ class TeacherClonedAssessmentPreviewState
                                     height: height,
                                     index: i,
                                     assessment: assessment,
-                                    setLocale: widget.setLocale,
+
                                     question: quesList[i]),
                             ],
                           ),
@@ -205,15 +205,16 @@ class TeacherClonedAssessmentPreviewState
                           left: width * 0.78,
                           child: FloatingActionButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherAssessmentLooqQuestionBank(
-                                    setLocale: widget.setLocale,
-                                  ),
-                                ),
-                              );
+                              Navigator.pushNamed(context, '/teacherAssessmentLooqQuestionBank',arguments: false);
+                              // Navigator.push(
+                              //   context,
+                              //   PageTransition(
+                              //     type: PageTransitionType.rightToLeft,
+                              //     child: TeacherAssessmentLooqQuestionBank(
+                              //
+                              //     ),
+                              //   ),
+                              // );
                             },
                             child: Icon(Icons.add),
                             backgroundColor: Color.fromRGBO(82, 165, 160, 1),
@@ -250,11 +251,12 @@ class TeacherClonedAssessmentPreviewState
                               await QnaService.createAssessmentTeacherService(
                                   finalAssessment);
                           if (statusCode.code == 200) {
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => TeacherAssessmentLanding(
-                                        setLocale: widget.setLocale)),
-                                    (route) => route.isFirst);
+                            Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                            // Navigator.of(context).pushAndRemoveUntil(
+                            //     MaterialPageRoute(
+                            //         builder: (context) => TeacherAssessmentLanding(
+                            //             )),
+                            //         (route) => route.isFirst);
                           }
                         },
                         child: Text(
@@ -287,14 +289,15 @@ class TeacherClonedAssessmentPreviewState
                             )),
                         //shape: StadiumBorder(),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TeacherAssessmentSettingPublish(
-                                  setLocale: widget.setLocale),
-                            ),
-                          );
+                          Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherAssessmentSettingPublish(
+                          //        ),
+                          //   ),
+                          // );
 
 //TeacherPublishedAssessment
                         },
@@ -322,14 +325,14 @@ class QuestionWidget extends StatefulWidget {
       required this.index,
       required this.assessment,
       required this.question,
-      required this.setLocale})
+      })
       : super(key: key);
 
   final double height;
   final int index;
   GetAssessmentModel assessment;
   Questions.Question question;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -382,13 +385,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             .deleteQuestionList(widget.index);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeLooqQuestionInAssess(widget.question!.questionId);
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: TeacherClonedAssessmentPreview(setLocale: widget.setLocale),
-          ),
-        );
+        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherClonedAssessmentPreview(),
+        //   ),
+        // );
       },
     );
     AlertDialog alert = AlertDialog(
@@ -505,15 +509,20 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         SizedBox(
           height: widget.height * 0.01,
         ),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            '${widget.question.question}',
-            style: TextStyle(
-                fontSize: widget.height * 0.015,
-                fontFamily: "Inter",
-                color: Color.fromRGBO(51, 51, 51, 1),
-                fontWeight: FontWeight.w400),
+        GestureDetector(
+          onTap: (){
+
+          },
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              '${widget.question.question}',
+              style: TextStyle(
+                  fontSize: widget.height * 0.015,
+                  fontFamily: "Inter",
+                  color: Color.fromRGBO(51, 51, 51, 1),
+                  fontWeight: FontWeight.w400),
+            ),
           ),
         ),
         SizedBox(

@@ -4,9 +4,9 @@ import 'package:url_launcher/url_launcher.dart';
 class TermsOfServiceHamburger extends StatefulWidget {
   const TermsOfServiceHamburger({
     Key? key,
-    required this.setLocale,
+
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TermsOfServiceHamburgerState createState() => TermsOfServiceHamburgerState();

@@ -9,12 +9,10 @@ class PreparePreviewQnBank extends StatefulWidget {
   PreparePreviewQnBank(
       {Key? key,
       required this.question,
-      required this.setLocale,
       this.finalQuestion})
       : super(key: key);
 
   final Question question;
-  final void Function(Locale locale) setLocale;
   Question? finalQuestion;
 
   @override

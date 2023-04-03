@@ -12,12 +12,10 @@ import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 class TeacherPublishedAssessment extends StatefulWidget {
   TeacherPublishedAssessment(
       {Key? key,
-      required this.setLocale,
       required this.assessmentCode,
       this.questionList})
       : super(key: key);
   String assessmentCode;
-  final void Function(Locale locale) setLocale;
   List<QuestionModel.Question>? questionList;
 
   @override
@@ -91,7 +89,7 @@ class TeacherPublishedAssessmentState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -100,14 +98,15 @@ class TeacherPublishedAssessmentState
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    type: PageTransitionType.leftToRight,
-                    child:
-                        TeacherAssessmentLanding(setLocale: widget.setLocale),
-                  ),
-                );
+                Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                // Navigator.push(
+                //   context,
+                //   PageTransition(
+                //     type: PageTransitionType.leftToRight,
+                //     child:
+                //         TeacherAssessmentLanding(),
+                //   ),
+                // );
               },
             ),
             toolbarHeight: height * 0.100,
@@ -1071,12 +1070,12 @@ class TeacherPublishedAssessmentState
                               )),
                           //shape: StadiumBorder(),
                           onPressed: () {
-
-                            Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => TeacherAssessmentLanding(
-                                        setLocale: widget.setLocale)),
-                                    (route) => route.isFirst);
+                            Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                            // Navigator.of(context).pushAndRemoveUntil(
+                            //     MaterialPageRoute(
+                            //         builder: (context) => TeacherAssessmentLanding(
+                            //             )),
+                            //         (route) => route.isFirst);
                           },
                           child: Text(
                             'Back to My Assessment',

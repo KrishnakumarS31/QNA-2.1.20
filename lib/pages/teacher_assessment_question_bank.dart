@@ -12,12 +12,12 @@ import '../Services/qna_service.dart';
 
 class TeacherAssessmentQuestionBank extends StatefulWidget {
   TeacherAssessmentQuestionBank(
-      {Key? key, this.assessment, required this.setLocale,this.searchText})
+      {Key? key, this.assessment,this.searchText})
       : super(key: key);
 
   final bool? assessment;
   String? searchText;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   TeacherAssessmentQuestionBankState createState() =>
@@ -78,7 +78,7 @@ class TeacherAssessmentQuestionBankState
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+      endDrawer: EndDrawerMenuTeacher(),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
@@ -246,15 +246,16 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
+                    Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: questions);
 
-                    Navigator.push(
-                      context,
-                      PageTransition(
-                        type: PageTransitionType.rightToLeft,
-                        child: TeacherSelectedQuestionAssessment(
-                            questions: questions, setLocale: widget.setLocale),
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   PageTransition(
+                    //     type: PageTransitionType.rightToLeft,
+                    //     child: TeacherSelectedQuestionAssessment(
+                    //         questions: questions,),
+                    //   ),
+                    // );
                   },
                   child: Text(
                     'Add',

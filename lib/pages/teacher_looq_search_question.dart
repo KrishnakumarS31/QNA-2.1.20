@@ -10,10 +10,9 @@ import '../Services/qna_service.dart';
 class TeacherLooqQuestionBank extends StatefulWidget {
   TeacherLooqQuestionBank({
     Key? key,
-    required this.setLocale,
     required this.search,
   }) : super(key: key);
-  final void Function(Locale locale) setLocale;
+
   String search;
 
   @override
@@ -109,7 +108,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(setLocale: widget.setLocale),
+          endDrawer: EndDrawerMenuTeacher(),
           appBar: AppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: height * 0.100,
@@ -252,14 +251,19 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                     for (Question i in question)
                       GestureDetector(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: TeacherLooqClonePreview(
-                                    question: i, setLocale: widget.setLocale),
-                              ),
+                            Navigator.pushNamed(
+                                context,
+                                '/teacherLooqClonePreview',
+                                arguments: i
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   PageTransition(
+                            //     type: PageTransitionType.rightToLeft,
+                            //     child: TeacherLooqClonePreview(
+                            //         question: i),
+                            //   ),
+                            // );
                           },
                           child: QuestionPreview(
                             height: height,

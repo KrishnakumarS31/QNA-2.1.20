@@ -28,25 +28,10 @@ class AppUserRepo {
     }
     return null;
   }
-
-  Future<int?> getUserDetailsCount() async {
-    final Database db = await dbConnection.createDatabase();
-    int? i = Sqflite.firstIntValue(
-        await db.rawQuery('SELECT COUNT(*) FROM ${dbConnection.appUser}'));
-    await db.close();
-    return i;
-  }
-
   deleteUserDetail() async {
     final Database db = await dbConnection.createDatabase();
     await db.delete(dbConnection.appUser);
     await db.close();
-  }
-
-  Future<int> updateMobileNumber(AppUser user) async {
-    final Database db = await dbConnection.createDatabase();
-    return await db.update(dbConnection.appUser, user.toMap(),
-        where: "id = ?", whereArgs: [user.id]);
   }
 
   Future<int> updateLocale(AppUser user) async {

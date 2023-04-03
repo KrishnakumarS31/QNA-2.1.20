@@ -15,12 +15,12 @@ class StudQuestion extends StatefulWidget {
       required this.assessmentId,
       required this.ques,
       required this.userName,
-      required this.setLocale})
+      })
       : super(key: key);
   final String assessmentId;
   final QuestionPaperModel ques;
   final String userName;
-  final void Function(Locale locale) setLocale;
+
 
   @override
   StudQuestionState createState() => StudQuestionState();
@@ -1044,24 +1044,34 @@ class StudQuestionState extends State<StudQuestion> {
                                           size: height * 0.06,
                                         ),
                                         onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              child: StudentReviseQuest(
-                                                questions: values,
-                                                setLocale: widget.setLocale,
-                                                userName: widget.userName,
-                                                startTime:
-                                                    now.microsecondsSinceEpoch,
-                                                assessmentID:
-                                                    widget.assessmentId,
-                                                assessmentid:
-                                                    values.data!.assessmentId!,
-                                              ),
-                                            ),
-                                          );
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                              ]);
+                                          // Navigator.push(
+                                          //   context,
+                                          //   PageTransition(
+                                          //     type: PageTransitionType
+                                          //         .rightToLeft,
+                                          //     child: StudentReviseQuest(
+                                          //       questions: values,
+                                          //
+                                          //       userName: widget.userName,
+                                          //       startTime:
+                                          //           now.microsecondsSinceEpoch,
+                                          //       assessmentID:
+                                          //           widget.assessmentId,
+                                          //       assessmentid:
+                                          //           values.data!.assessmentId!,
+                                          //     ),
+                                          //   ),
+                                          // );
                                         },
                                       )
                                     : IconButton(
@@ -1744,23 +1754,33 @@ class StudQuestionState extends State<StudQuestion> {
                                                     219, 35, 35, 1),
                                                 false);
                                           }
-                                          Navigator.push(
-                                            context,
-                                            PageTransition(
-                                              type: PageTransitionType
-                                                  .rightToLeft,
-                                              child: StudentReviseQuest(
-                                                  questions: values,
-                                                  assessmentid: values
-                                                      .data!.assessmentId!,
-                                                  userName: widget.userName,
-                                                  startTime: now
-                                                      .microsecondsSinceEpoch,
-                                                  setLocale: widget.setLocale,
-                                                  assessmentID:
-                                                      widget.assessmentId),
-                                            ),
-                                          );
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/studentReviseQuest',
+                                              arguments: [
+                                                values,
+                                                widget.userName,
+                                                widget.assessmentId,
+                                                now.microsecondsSinceEpoch,
+                                                values.data!.assessmentId!,
+                                              ]);
+                                          // Navigator.push(
+                                          //   context,
+                                          //   PageTransition(
+                                          //     type: PageTransitionType
+                                          //         .rightToLeft,
+                                          //     child: StudentReviseQuest(
+                                          //         questions: values,
+                                          //         assessmentid: values
+                                          //             .data!.assessmentId!,
+                                          //         userName: widget.userName,
+                                          //         startTime: now
+                                          //             .microsecondsSinceEpoch,
+                                          //
+                                          //         assessmentID:
+                                          //             widget.assessmentId),
+                                          //   ),
+                                          // );
                                         },
                                       )
                                     : IconButton(
