@@ -592,7 +592,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                         //SizedBox(width: width * 0.3),
                         IconButton(
                           icon: Icon(
-                            Icons.edit_note_sharp,
+                            Icons.edit_calendar,
                             color: const Color.fromRGBO(141, 167, 167, 1),
                             size: height * 0.034,
                           ),

@@ -8,6 +8,7 @@ import 'package:qna_test/Pages/welcome_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../DataSource/app_user_repo.dart';
+import '../DataSource/http_url.dart';
 import '../Entity/app_user.dart';
 import '../Providers/LanguageChangeProvider.dart';
 
@@ -79,7 +80,19 @@ class SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Container(
+    return
+      domainName == "https://sssuhe.qnatest.com"
+      ?  Container(
+        width: width,
+        height: height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage("assets/images/sssuhe_splash.png"),
+          ),
+        ),
+      )
+      : Container(
       width: width,
       height: height,
       decoration: const BoxDecoration(

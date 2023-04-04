@@ -44,7 +44,6 @@ import 'package:qna_test/pages/teacher_question_edit.dart';
 import 'package:qna_test/pages/teacher_question_preview.dart';
 import 'package:qna_test/pages/teacher_question_preview_delete.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
-import 'package:qna_test/pages/teacher_result_landing_page.dart';
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import 'package:qna_test/pages/teacher_selection_page.dart';
 import 'package:qna_test/pages/teacher_user_profile.dart';
@@ -315,10 +314,10 @@ class MyRoutes{
         return SlideRightRoute(widget: TeacherAssessmentQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3],));
       }
 
-      // case '/teacherAssessmentLooqQuestionPreview':{
-      //   final arguments = settings.arguments as List<dynamic>;
-      //   return SlideRightRoute(widget: TeacherAssessmentLooqQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3],));
-      // }
+      case '/teacherAssessmentLooqQuestionPreview':{
+        final arguments = settings.arguments as List<dynamic>;
+        return SlideRightRoute(widget: TeacherAssessmentLooqQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3], quesId: arguments[4],));
+      }
 
       case '/teacherAssessmentSearched':{
         final assessment = settings.arguments as String;

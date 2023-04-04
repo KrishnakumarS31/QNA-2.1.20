@@ -1003,82 +1003,84 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         const Expanded(child: Divider()),
                       ],
                     ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Row(
-                      children: [
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              right: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "WEB",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: height * 0.08,
-                            width: width * 0.3,
-                            child: Center(
-                              child: Text(
-                                "Android App",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: const Color.fromRGBO(153, 153, 153, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "IOS App",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                    // WEB,Android App and IOS App
+
+                    // SizedBox(
+                    //   height: height * 0.02,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: height * 0.08,
+                    //       width: width * 0.28,
+                    //       decoration: const BoxDecoration(
+                    //         border: Border(
+                    //           right: BorderSide(
+                    //             width: 1,
+                    //             color: Color.fromRGBO(232, 232, 232, 1),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "WEB",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             color: const Color.fromRGBO(153, 153, 153, 1),
+                    //             fontSize: height * 0.015,
+                    //             fontFamily: "Inter",
+                    //             fontWeight: FontWeight.w400,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: SizedBox(
+                    //         height: height * 0.08,
+                    //         width: width * 0.3,
+                    //         child: Center(
+                    //           child: Text(
+                    //             "Android App",
+                    //             textAlign: TextAlign.center,
+                    //             style: TextStyle(
+                    //               decoration: TextDecoration.underline,
+                    //               color: const Color.fromRGBO(153, 153, 153, 1),
+                    //               fontSize: height * 0.015,
+                    //               fontFamily: "Inter",
+                    //               fontWeight: FontWeight.w400,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       height: height * 0.08,
+                    //       width: width * 0.28,
+                    //       decoration: const BoxDecoration(
+                    //         border: Border(
+                    //           left: BorderSide(
+                    //             width: 1,
+                    //             color: Color.fromRGBO(232, 232, 232, 1),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "IOS App",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             color: const Color.fromRGBO(153, 153, 153, 1),
+                    //             fontSize: height * 0.015,
+                    //             fontFamily: "Inter",
+                    //             fontWeight: FontWeight.w400,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
                     SizedBox(
                       height: height * 0.03,
                     ),

@@ -953,7 +953,7 @@ class QuestionEditState extends State<QuestionEdit> {
                           child: Text(
                             "Preview",
                             style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              color: const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w700,

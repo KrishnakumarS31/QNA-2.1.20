@@ -128,16 +128,26 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Text(
-                                          AppLocalizations.of(context)!.revise,
-                                          style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                255, 255, 255, 1),
-                                            fontSize: localHeight * 0.018,
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w700,
+                                        MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              context.read<QuestionNumProvider>()
+                                                  .skipQuestionNum(1);
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Text(
+                                              AppLocalizations.of(context)!.revise,
+                                              style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    255, 255, 255, 1),
+                                                fontSize: localHeight * 0.018,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                        )
                                       ]),
                                 ),
                                 Align(
@@ -694,17 +704,26 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             Navigator.of(context).pop();
                                           },
                                         ),
-                                        Text(
-                                          AppLocalizations.of(context)!.revise,
-                                          style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                255, 255, 255, 1),
-                                            fontSize: localHeight * 0.018,
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w700,
+                                        MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
+                                          onTap: () {
+                                            context.read<QuestionNumProvider>()
+                                                .skipQuestionNum(1);
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            AppLocalizations.of(context)!.revise,
+                                            style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontSize: localHeight * 0.018,
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w700,
+                                            ),
                                           ),
-                                        ),
-                                      ]),
+                                          ),
+                                        )]),
                                 ),
                                 Align(
                                   alignment: Alignment.topCenter,
@@ -1210,7 +1229,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
                     Navigator.pushNamed(
                         context,
-                        '/teacherAddMyQuestionBank',
+                        '/studentResultPage',
                         arguments: [
                           totalMark,
                           formatted,

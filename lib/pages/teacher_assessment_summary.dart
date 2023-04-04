@@ -879,11 +879,11 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                             loginData =
                                                             await SharedPreferences
                                                                 .getInstance();
-                                                            Provider.of<QuestionPrepareProviderFinal>(
-                                                                context,
-                                                                listen:
-                                                                false)
-                                                                .reSetQuestionList();
+                                                            // Provider.of<QuestionPrepareProviderFinal>(
+                                                            //     context,
+                                                            //     listen:
+                                                            //     false)
+                                                            //     .reSetQuestionList();
                                                             assessment
                                                                 .topic =
                                                                 topicController
@@ -910,12 +910,13 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                 false)
                                                                 .updateAssessment(
                                                                 assessment);
-                                                            Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentSummary',(route) => route.isFirst);
+                                                            //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentSummary',(route) => route.isFirst);
                                                             // Navigator.of(context).pushAndRemoveUntil(
                                                             //     MaterialPageRoute(
                                                             //         builder: (context) => TeacherAssessmentSummary(
                                                             //             )),
                                                             //         (route) => route.isFirst);
+                                                            Navigator.pop(context);
                                                           }
                                                         },
                                                         child: Text(
@@ -1089,7 +1090,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           left: width * 0.78,
                           child: FloatingActionButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank');
+                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,'']);
                               // Navigator.push(
                               //   context,
                               //   PageTransition(

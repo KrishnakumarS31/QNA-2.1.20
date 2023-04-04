@@ -32,6 +32,8 @@ class TeacherAssessmentLanding extends StatefulWidget {
 }
 
 class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
+  TextEditingController teacherQuestionBankSearchController =
+  TextEditingController();
   bool agree = true;
   TextEditingController subjectController = TextEditingController();
   TextEditingController classController = TextEditingController();
@@ -89,10 +91,11 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           icon: Icon(
                             Icons.close,
                             color: const Color.fromRGBO(82, 165, 160, 1),
-                            size: MediaQuery.of(context).copyWith().size.width *
-                                0.07,
+                            size: MediaQuery.of(context).copyWith().size.height * 0.05,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
                         ),
                       ),
                     ),
@@ -150,7 +153,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
-                              0.18,
+                              0.165,
                         ),
                         Icon(
                           Icons.circle,
@@ -239,9 +242,6 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             );
           });
     });
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).pop();
-    });
     getData('');
   }
 
@@ -259,7 +259,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   getData(String search) async {
     ResponseEntity response =
         await QnaService.getAllAssessment(10, pageLimit, search);
-    allAssessment = List<GetAssessmentModel>.from(
+    allAssessment = response.data==null?[]:List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
       assessments.addAll(allAssessment);
@@ -273,8 +273,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController =
-        TextEditingController();
+
 
     return WillPopScope(
         onWillPop: () async => false,
@@ -543,18 +542,22 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           padding: EdgeInsets.only(right: width * 0.05),
                           child: const Divider(),
                         )),
-                        GestureDetector(
-                          onTap: () {
-                            getQuestionData();
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.view_more,
-                            //"View More",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: height * 0.0175,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600,
+                        
+                        MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              getQuestionData();
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.view_more,
+                              //"View More",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
@@ -1155,257 +1158,271 @@ class _CardInfoState extends State<CardInfo> {
   @override
   void initState() {
     // TODO: implement initState
-    int temp=widget.assessment.assessmentStartdate! * 1000;
-    DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(temp);
-    print(tsdate.toString());
+    DateTime tsdate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
     datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: GestureDetector(
-        onTap: () async {
-          Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-              .reSetQuestionList();
-          Provider.of<EditAssessmentProvider>(context, listen: false)
-              .updateAssessment(widget.assessment);
-          if (widget.assessment.assessmentStatus == 'inprogress') {
-            CreateAssessmentModel editAssessment =
-                CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);
-            editAssessment.assessmentId = widget.assessment.assessmentId;
-            editAssessment.assessmentType = widget.assessment.assessmentType;
-            editAssessment.assessmentStatus = widget.assessment.assessmentStatus;
-            editAssessment.assessmentCode=widget.assessment.assessmentCode;
-            editAssessment.subject = widget.assessment.subject;
-            editAssessment.createAssessmentModelClass =
-                widget.assessment.getAssessmentModelClass;
-            widget.assessment.topic == null
-                ? 0
-                : editAssessment.topic = widget.assessment.topic;
-            widget.assessment.subTopic == null
-                ? 0
-                : editAssessment.subTopic = widget.assessment.subTopic;
-            widget.assessment.totalScore == null
-                ? 0
-                : editAssessment.totalScore = widget.assessment.totalScore;
-            widget.assessment.questions!.isEmpty
-                ? 0
-                : editAssessment.totalQuestions = widget.assessment.questions!.length;
-            widget.assessment.assessmentDuration == null
-                ? ''
-                : editAssessment.totalScore = widget.assessment.totalScore;
-            if (widget.assessment.questions!.isEmpty) {
-            } else {
-              for (int i = 0; i < widget.assessment.questions!.length; i++) {
-                Question question = Question();
-                question.questionMarks = widget.assessment.questions![i].questionMark;
-                question.questionId = widget.assessment.questions![i].questionId;
-                editAssessment.questions?.add(question);
-                Provider.of<QuestionPrepareProviderFinal>(context,
-                        listen: false)
-                    .addQuestion(widget.assessment.questions![i]);
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () async {
+            Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+                .reSetQuestionList();
+            Provider.of<EditAssessmentProvider>(context, listen: false)
+                .updateAssessment(widget.assessment);
+            if (widget.assessment.assessmentStatus == 'inprogress') {
+              CreateAssessmentModel editAssessment =
+                  CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);
+              editAssessment.assessmentId = widget.assessment.assessmentId;
+              editAssessment.assessmentType = widget.assessment.assessmentType;
+              editAssessment.assessmentStatus = widget.assessment.assessmentStatus;
+              editAssessment.assessmentCode=widget.assessment.assessmentCode;
+              editAssessment.subject = widget.assessment.subject;
+              editAssessment.createAssessmentModelClass =
+                  widget.assessment.getAssessmentModelClass;
+              widget.assessment.topic == null
+                  ? 0
+                  : editAssessment.topic = widget.assessment.topic;
+              widget.assessment.subTopic == null
+                  ? 0
+                  : editAssessment.subTopic = widget.assessment.subTopic;
+              widget.assessment.totalScore == null
+                  ? 0
+                  : editAssessment.totalScore = widget.assessment.totalScore;
+              widget.assessment.questions!.isEmpty
+                  ? 0
+                  : editAssessment.totalQuestions = widget.assessment.questions!.length;
+              widget.assessment.assessmentDuration == null
+                  ? ''
+                  : editAssessment.totalScore = widget.assessment.totalScore;
+              editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
+              if (widget.assessment.questions!.isEmpty) {
+              } else {
+                for (int i = 0; i < widget.assessment.questions!.length; i++) {
+                  Question question = Question();
+                  question.questionMarks = widget.assessment.questions![i].questionMark;
+                  question.questionId = widget.assessment.questions![i].questionId;
+                  editAssessment.questions?.add(question);
+                  Provider.of<QuestionPrepareProviderFinal>(context,
+                          listen: false)
+                      .addQuestion(widget.assessment.questions![i]);
+                }
               }
+
+              Provider.of<CreateAssessmentProvider>(context, listen: false)
+                  .updateAssessment(editAssessment);
+              Navigator.pushNamed(context, '/teacherRecentAssessment',
+                  arguments: editAssessment);
+
+
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.rightToLeft,
+              //     child: TeacherRecentAssessment(
+              //       finalAssessment: editAssessment,
+              //     ),
+              //   ),
+              // );
+            }
+            else if (widget.assessment.assessmentStatus == 'active') {
+              SharedPreferences loginData = await SharedPreferences.getInstance();
+              CreateAssessmentModel editAssessment = CreateAssessmentModel(
+                  questions: [], removeQuestions: [], addQuestion: []);
+              editAssessment.userId = loginData.getInt('userId');
+              editAssessment.subject = widget.assessment.subject;
+              editAssessment.assessmentType =
+                  widget.assessment.assessmentType ?? 'Not Mentioned';
+              editAssessment.createAssessmentModelClass =
+                  widget.assessment.getAssessmentModelClass;
+              widget.assessment.topic == null
+                  ? 0
+                  : editAssessment.topic = widget.assessment.topic;
+              widget.assessment.subTopic == null
+                  ? 0
+                  : editAssessment.subTopic = widget.assessment.subTopic;
+              widget.assessment.totalScore == null
+                  ? 0
+                  : editAssessment.totalScore = widget.assessment.totalScore;
+              widget.assessment.questions!.isEmpty
+                  ? 0
+                  : editAssessment.totalQuestions = widget.assessment.questions!.length;
+              widget.assessment.assessmentDuration == null
+                  ? ''
+                  : editAssessment.totalScore = widget.assessment.totalScore;
+              widget.assessment.assessmentStartdate == null
+                  ? 0
+                  : editAssessment.assessmentStartdate = widget.assessment.assessmentStartdate;
+              widget.assessment.assessmentEnddate == null
+                  ? ''
+                  : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
+              editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
+              if (widget.assessment.questions!.isEmpty) {
+              }
+              else {
+                for (int i = 0; i < widget.assessment.questions!.length; i++) {
+                  Questions.Question question = Questions.Question();
+                  question = widget.assessment.questions![i];
+                  editAssessment.addQuestion?.add(question);
+                  Provider.of<QuestionPrepareProviderFinal>(context,
+                          listen: false)
+                      .addQuestion(widget.assessment.questions![i]);
+                }
+              }
+
+              Provider.of<CreateAssessmentProvider>(context, listen: false)
+                  .updateAssessment(editAssessment);
+              Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: widget.assessment);
+
+
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.rightToLeft,
+              //     child: TeacherActiveAssessment(
+              //       assessment: assessment,
+              //     ),
+              //   ),
+              // );
             }
 
-            Provider.of<CreateAssessmentProvider>(context, listen: false)
-                .updateAssessment(editAssessment);
-            Navigator.pushNamed(context, '/teacherRecentAssessment',
-                arguments: editAssessment);
 
-
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherRecentAssessment(
-            //       finalAssessment: editAssessment,
-            //     ),
-            //   ),
-            // );
-          } else if (widget.assessment.assessmentStatus == 'active') {
-            SharedPreferences loginData = await SharedPreferences.getInstance();
-            CreateAssessmentModel editAssessment = CreateAssessmentModel(
-                questions: [], removeQuestions: [], addQuestion: []);
-            editAssessment.userId = loginData.getInt('userId');
-            editAssessment.subject = widget.assessment.subject;
-            editAssessment.assessmentType =
-                widget.assessment.assessmentType ?? 'Not Mentioned';
-            editAssessment.createAssessmentModelClass =
-                widget.assessment.getAssessmentModelClass;
-            widget.assessment.topic == null
-                ? 0
-                : editAssessment.topic = widget.assessment.topic;
-            widget.assessment.subTopic == null
-                ? 0
-                : editAssessment.subTopic = widget.assessment.subTopic;
-            widget.assessment.totalScore == null
-                ? 0
-                : editAssessment.totalScore = widget.assessment.totalScore;
-            widget.assessment.questions!.isEmpty
-                ? 0
-                : editAssessment.totalQuestions = widget.assessment.questions!.length;
-            widget.assessment.assessmentDuration == null
-                ? ''
-                : editAssessment.totalScore = widget.assessment.totalScore;
-            if (widget.assessment.questions!.isEmpty) {
-            } else {
-              for (int i = 0; i < widget.assessment.questions!.length; i++) {
-                Questions.Question question = Questions.Question();
-                question = widget.assessment.questions![i];
-                editAssessment.addQuestion?.add(question);
-                Provider.of<QuestionPrepareProviderFinal>(context,
-                        listen: false)
-                    .addQuestion(widget.assessment.questions![i]);
-              }
+            else {
+              Navigator.pushNamed(context, '/teacherInactiveAssessment');
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.rightToLeft,
+              //     child: TeacherInactiveAssessment(),
+              //   ),
+              // );
             }
-
-            Provider.of<CreateAssessmentProvider>(context, listen: false)
-                .updateAssessment(editAssessment);
-            Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: widget.assessment);
-
-
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherActiveAssessment(
-            //       assessment: assessment,
-            //     ),
-            //   ),
-            // );
-          } else {
-            Navigator.pushNamed(context, '/teacherInactiveAssessment');
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherInactiveAssessment(),
-            //   ),
-            // );
-          }
-        },
-        child: Container(
-          height: widget.height * 0.1087,
-          width: widget.width * 0.888,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-            border: Border.all(
-              color: const Color.fromRGBO(82, 165, 160, 0.15),
+          },
+          child: Container(
+            height: widget.height * 0.1087,
+            width: widget.width * 0.888,
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              border: Border.all(
+                color: const Color.fromRGBO(82, 165, 160, 0.15),
+              ),
+              color: const Color.fromRGBO(82, 165, 160, 0.1),
             ),
-            color: const Color.fromRGBO(82, 165, 160, 0.1),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          widget.assessment.subject!,
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: widget.height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            widget.assessment.subject!,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: widget.height * 0.0175,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        Text(
-                          " | ${widget.assessment.getAssessmentModelClass}",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: widget.height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
+                          Text(
+                            " | ${widget.assessment.getAssessmentModelClass}",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: widget.height * 0.0175,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.circle_rounded,
-                      color: widget.assessment.assessmentStatus == 'inprogress'
-                          ? const Color.fromRGBO(255, 166, 0, 1)
-                          : widget.assessment.assessmentStatus == 'active'
-                              ? const Color.fromRGBO(60, 176, 0, 1)
-                              : const Color.fromRGBO(136, 136, 136, 1),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: widget.width * 0.02),
-                child: Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.assessment_id_caps,
-                      //"Assessment ID: ",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(102, 102, 102, 1),
-                        fontSize: widget.height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
+                        ],
                       ),
-                    ),
-                    Text(
-                      " ${widget.assessment.assessmentCode}",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: widget.height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                      Icon(
+                        Icons.circle_rounded,
+                        color: widget.assessment.assessmentStatus == 'inprogress'
+                            ? const Color.fromRGBO(255, 166, 0, 1)
+                            : widget.assessment.assessmentStatus == 'active'
+                                ? const Color.fromRGBO(60, 176, 0, 1)
+                                : const Color.fromRGBO(136, 136, 136, 1),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.institute_test_id,
-                          // "Institute Test ID: ",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: widget.height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
+                Padding(
+                  padding: EdgeInsets.only(left: widget.width * 0.02),
+                  child: Row(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.assessment_id_caps,
+                        //"Assessment ID: ",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(102, 102, 102, 1),
+                          fontSize: widget.height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
                         ),
-                        Text(
-                          "-------------",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: widget.height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      datetime,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: widget.height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
                       ),
-                    ),
-                  ],
+                      Text(
+                        " ${widget.assessment.assessmentCode}",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          fontSize: widget.height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.institute_test_id,
+                            // "Institute Test ID: ",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: widget.height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            "-------------",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontSize: widget.height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        datetime,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontSize: widget.height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

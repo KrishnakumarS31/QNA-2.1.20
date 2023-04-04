@@ -330,9 +330,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                     widget.editQuestionModel,
                                     widget.question.questionId);
                             int count = 0;
-                            Navigator.popUntil(context, (route) {
-                              return count++ == 3;
-                            });
+                            Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
                           },
                           child: Text(
                             'Finalize',

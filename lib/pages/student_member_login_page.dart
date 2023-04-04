@@ -1,8 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Components/preference.dart';
 import 'package:qna_test/Services/qna_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../EntityModel/login_entity.dart';
@@ -35,6 +37,20 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   late SharedPreferences loginData;
   late bool newUser;
   final PrefService _prefService = PrefService();
+
+  Future<void> _launchUrlTerms() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _launchUrlPrivacy() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   void initState() {
@@ -407,6 +423,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .privacy_Policy,
+                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.025,
                                                 fontWeight: FontWeight.w400,
@@ -430,6 +447,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text:
                                             AppLocalizations.of(context)!.terms,
+                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlTerms,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.025,
                                                 fontWeight: FontWeight.w400,
@@ -598,7 +616,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       children: [
                                         IconButton(
                                           icon: const Icon(
-                                            Icons.edit_note_sharp,
+                                            Icons.edit_calendar,
                                             color: Color.fromRGBO(
                                                 141, 167, 167, 1),
                                           ),
@@ -954,6 +972,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .privacy_Policy,
+                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
@@ -977,6 +996,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text:
                                             AppLocalizations.of(context)!.terms,
+                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlTerms,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
@@ -1204,7 +1224,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       children: [
                                         IconButton(
                                           icon: const Icon(
-                                            Icons.edit_note_sharp,
+                                            Icons.edit_calendar,
                                             color: Color.fromRGBO(
                                                 141, 167, 167, 1),
                                           ),

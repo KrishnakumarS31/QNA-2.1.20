@@ -20,7 +20,7 @@ class TeacherRecentAssessment extends StatefulWidget {
 
 class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
   bool additionalDetails = true;
-  bool questionShirnk = true;
+  bool questionShirnk = false;
   GetAssessmentModel assessment = GetAssessmentModel();
   CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
   int mark = 0;

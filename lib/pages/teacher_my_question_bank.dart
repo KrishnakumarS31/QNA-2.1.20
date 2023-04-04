@@ -147,7 +147,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       ),
                     ),
                     onPressed: () async {
-                      if (widget.assessment != null) {
+                      if (widget.assessment != false) {
                         Navigator.pushNamed(context, '/teacherCreateAssessment');
                         // Navigator.push(
                         //   context,

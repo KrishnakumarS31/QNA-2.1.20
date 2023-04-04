@@ -8,6 +8,8 @@ import 'package:qna_test/Entity/Teacher/question_entity.dart';
 
 import 'dart:convert';
 
+import 'assessment_settings_model.dart';
+
 GetAssessmentModel getAssessmentModelFromJson(String str) =>
     GetAssessmentModel.fromJson(json.decode(str));
 
@@ -97,44 +99,4 @@ class GetAssessmentModel {
   }
 }
 
-class AssessmentSettings {
-  AssessmentSettings({
-    this.allowedNumberOfTestRetries,
-    this.avalabilityForPractice,
-    this.allowGuestStudent,
-    this.showSolvedAnswerSheetInAdvisor,
-    this.showAdvisorName,
-    this.showAdvisorEmail,
-    this.notAvailable,
-  });
 
-  int? allowedNumberOfTestRetries;
-  bool? avalabilityForPractice;
-  bool? allowGuestStudent;
-  bool? showSolvedAnswerSheetInAdvisor;
-  bool? showAdvisorName;
-  bool? showAdvisorEmail;
-  bool? notAvailable;
-
-  factory AssessmentSettings.fromJson(Map<String, dynamic> json) =>
-      AssessmentSettings(
-        allowedNumberOfTestRetries: json["allowed_number_of_test_retries"],
-        avalabilityForPractice: json["avalability_for_practice"],
-        allowGuestStudent: json["allow_guest_student"],
-        showSolvedAnswerSheetInAdvisor:
-            json["show_solved_answer_sheet_in_advisor"],
-        showAdvisorName: json["show_advisor_name"],
-        showAdvisorEmail: json["show_advisor_email"],
-        notAvailable: json["not_available"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "allowed_number_of_test_retries": allowedNumberOfTestRetries,
-        "avalability_for_practice": avalabilityForPractice,
-        "allow_guest_student": allowGuestStudent,
-        "show_solved_answer_sheet_in_advisor": showSolvedAnswerSheetInAdvisor,
-        "show_advisor_name": showAdvisorName,
-        "show_advisor_email": showAdvisorEmail,
-        "not_available": notAvailable,
-      };
-}

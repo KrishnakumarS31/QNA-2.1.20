@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:qna_test/Entity/Teacher/assessment_settings_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 
 class CreateAssessmentProvider extends ChangeNotifier {
@@ -14,8 +14,9 @@ class CreateAssessmentProvider extends ChangeNotifier {
   }
 
   void resetAssessment() {
+    AssessmentSettings settings=AssessmentSettings();
     _assessment = CreateAssessmentModel(
-        questions: [], removeQuestions: [], addQuestion: []);
+        questions: [], removeQuestions: [], addQuestion: [],assessmentSettings: settings);
     notifyListeners();
   }
 

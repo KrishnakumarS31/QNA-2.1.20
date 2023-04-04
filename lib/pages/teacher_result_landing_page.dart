@@ -182,9 +182,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
             );
           });
     });
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pop();
-    });
     getData();
   }
 

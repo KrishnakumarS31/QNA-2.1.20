@@ -30,6 +30,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   bool error = false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
+  bool enableResendButton = false;
 
   @override
   void initState() {
@@ -45,6 +46,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       final seconds = myDuration.inSeconds - reduceSecondsBy;
       if (seconds < 0) {
         countdownTimer!.cancel();
+        enableResendButton = true;
       } else {
         myDuration = Duration(seconds: seconds);
       }
@@ -211,7 +213,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                       fontSize: 14),
                                 ),
                                 TextButton(
-                                    onPressed: () async {
+                                    onPressed: enableResendButton ?
+                                        () async {
                                       StaticResponse response = StaticResponse(
                                           code: 0, message: 'Incorrect Email');
                                       response = await QnaService.sendOtp(
@@ -225,10 +228,12 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                         //       child: showAlertDialog(context)),
                                         // );
                                       }
-                                    },
-                                    child: const Text("   Resend OTP",
+                                    }
+                                    : null
+                                    ,
+                                    child: Text("   Resend OTP",
                                         style: TextStyle(
-                                            color:
+                                            color: enableResendButton == false ? Colors.grey :
                                                 Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
@@ -255,7 +260,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                   widget.email, otp);
                               if (res.code == 200) {
                                 showAlertDialog(context, res.message);
-                              } else if (res.code != 200 &&
+                              }
+                              else if (res.code != 200 &&
                                   res.code != null &&
                                   res.message != null) {
                                 Navigator.push(
@@ -454,7 +460,15 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             fontSize: height * 0.018),
       ),
       onPressed: () {
+        setState(() {
+          enableResendButton = false;
+          myDuration = Duration(minutes: 5);
+          countdownTimer =
+              Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+        });
         Navigator.pop(context);
+
+
       },
     );
     // set up the AlertDialog

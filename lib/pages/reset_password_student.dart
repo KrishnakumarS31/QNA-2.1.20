@@ -277,7 +277,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                 await QnaService.updatePassword(
                                     oldPassword.text,
                                     newPassword.text,
-                                    loginData.getInt('userId')!);
+                                   widget.userId);
                             if (statusCode.code == 200) {
                               showAlertDialog(context);
                             } else {

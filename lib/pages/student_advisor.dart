@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
@@ -403,33 +404,40 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                                   0.025)),
                                                       const SizedBox(
                                                           width: 5),
-                                                      TextButton(
-                                                        //onPressed: _launchURLBrowser,
-                                                        onPressed: () {},
-                                                        child: Text(
-                                                            values
-                                                                .data!
-                                                                .questions![
-                                                            index -
-                                                                1]
-                                                                .advisorUrl!,
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                'Inter',
-                                                                fontSize:
-                                                                localHeight *
-                                                                    0.025,
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    58,
-                                                                    137,
-                                                                    210,
-                                                                    1),
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w400)),
-                                                      )
-                                                    ],
+                                                      Flexible(
+                                                          child:
+                                                          TextButton(
+                                                            //onPressed: _launchURLBrowser,
+                                                            onPressed: () async {
+                                                              final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                              if (!await launchUrl(url)) {
+                                                                throw Exception('Could not launch $url');
+                                                              }
+                                                            },
+                                                            child: Text(
+                                                                values
+                                                                    .data!
+                                                                    .questions![
+                                                                index -
+                                                                    1]
+                                                                    .advisorUrl!,
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                    'Inter',
+                                                                    fontSize:
+                                                                    localHeight *
+                                                                        0.025,
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        58,
+                                                                        137,
+                                                                        210,
+                                                                        1),
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w400)),
+                                                          )
+                                                      ),],
                                                   ),
                                                   const Divider(
                                                     thickness: 2,
@@ -724,31 +732,35 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                                   0.025)),
                                                       const SizedBox(
                                                           width: 5),
-                                                      TextButton(
-                                                        //onPressed: _launchURLBrowser,
-                                                        onPressed:
-                                                            () {},
-                                                        child: Text(
-                                                            values
-                                                                .data!
-                                                                .questions![index -
-                                                                1]
-                                                                .advisorUrl!,
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                'Inter',
-                                                                fontSize: localHeight *
-                                                                    0.025,
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    58,
-                                                                    137,
-                                                                    210,
-                                                                    1),
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w400)),
-                                                      )
+                                                      Flexible(
+                                                          child:
+                                                          TextButton(
+                                                            //onPressed: _launchURLBrowser,
+                                                            onPressed: () async {
+                                                              final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                              if (!await launchUrl(url)) {
+                                                                throw Exception('Could not launch $url');
+                                                              }
+                                                            },
+                                                            child: Text(
+                                                                values
+                                                                    .data!
+                                                                    .questions![index -
+                                                                    1]
+                                                                    .advisorUrl!,
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                    'Inter',
+                                                                    fontSize: localHeight *
+                                                                        0.025,
+                                                                    color: const Color.fromRGBO(
+                                                                        58,
+                                                                        137,
+                                                                        210,
+                                                                        1),
+                                                                    fontWeight:
+                                                                    FontWeight.w400)),
+                                                          )),
                                                     ],
                                                   ),
                                                   const Divider(
@@ -1246,31 +1258,38 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         localHeight *
                                                             0.015)),
                                                 const SizedBox(width: 5),
-                                                TextButton(
-                                                  //onPressed: _launchURLBrowser,
-                                                  onPressed: () {},
-                                                  child: Text(
-                                                      values
-                                                          .data!
-                                                          .questions![
-                                                      index - 1]
-                                                          .advisorUrl!,
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          'Inter',
-                                                          fontSize:
-                                                          localHeight *
-                                                              0.015,
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              58,
-                                                              137,
-                                                              210,
-                                                              1),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w400)),
-                                                )
+                                                Flexible(
+                                                    child:
+                                                    TextButton(
+                                                      //onPressed: _launchURLBrowser,
+                                                      onPressed: () async {
+                                                        final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
+                                                        if (!await launchUrl(url)) {
+                                                          throw Exception('Could not launch $url');
+                                                        }
+                                                      },
+                                                      child: Text(
+                                                          values
+                                                              .data!
+                                                              .questions![
+                                                          index - 1]
+                                                              .advisorUrl!,
+                                                          style: TextStyle(
+                                                              fontFamily:
+                                                              'Inter',
+                                                              fontSize:
+                                                              localHeight *
+                                                                  0.015,
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  58,
+                                                                  137,
+                                                                  210,
+                                                                  1),
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400)),
+                                                    )),
                                               ],
                                             ),
                                             const Divider(

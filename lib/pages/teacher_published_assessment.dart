@@ -98,7 +98,7 @@ class TeacherPublishedAssessmentState
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                 // Navigator.push(
                 //   context,
                 //   PageTransition(

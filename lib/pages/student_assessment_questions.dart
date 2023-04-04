@@ -50,7 +50,7 @@ class StudQuestionState extends State<StudQuestion> {
   void initState() {
     setTimr();
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if ((MediaQuery.of(context).copyWith().size.width > 700) || (kIsWeb)|| (defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS)) {
+      if (MediaQuery.of(context).copyWith().size.width > 700){
         showModalBottomSheet(
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -493,15 +493,27 @@ class StudQuestionState extends State<StudQuestion> {
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
                     centerTitle: true,
-                    title: Text(
-                      widget.assessmentId,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.025,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    title: Column(
+                      children:[
+                        Text(
+                          widget.assessmentId,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          values.data!.subject!,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.025,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],),
                     flexibleSpace: Banner(
                       color: values.data!.assessmentType == 'test'
                           ? const Color.fromRGBO(188, 191, 8, 1)
@@ -538,7 +550,7 @@ class StudQuestionState extends State<StudQuestion> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "${AppLocalizations.of(context)!.qn_qn_page}${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
+                                "${AppLocalizations.of(context)!.qn_qn_page}\t\t${context.watch<QuestionNumProvider>().questionNum}/${values.data!.questions!.length}",
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodyLarge
@@ -1159,15 +1171,28 @@ class StudQuestionState extends State<StudQuestion> {
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
                     centerTitle: true,
-                    title: Text(
-                      widget.assessmentId,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.025,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                    title: Column(
+                      children:[
+                        Text(
+                          widget.assessmentId,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.023,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          values.data!.subject!,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.023,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        SizedBox(height: height * 0.010)
+                      ],),
                     flexibleSpace: Banner(
                       color: values.data!.assessmentType == 'test'
                           ? const Color.fromRGBO(188, 191, 8, 1)
@@ -1575,7 +1600,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         1
                                     ? IconButton(
                                         icon: Icon(
-                                          Icons.arrow_circle_left,
+                                          Icons.arrow_left,
                                           color: const Color.fromRGBO(
                                               209, 209, 209, 1),
                                           size: height * 0.06,
@@ -1584,7 +1609,7 @@ class StudQuestionState extends State<StudQuestion> {
                                       )
                                     : IconButton(
                                         icon: Icon(
-                                          Icons.arrow_circle_left,
+                                          Icons.arrow_left,
                                           color: context
                                                       .watch<
                                                           QuestionNumProvider>()
@@ -1712,7 +1737,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         values.data!.questions!.length
                                     ? IconButton(
                                         icon: Icon(
-                                          Icons.arrow_circle_right,
+                                            Icons.arrow_right,
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),
                                           size: height * 0.06,
@@ -1841,7 +1866,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           }
                                         },
                                         icon: Icon(
-                                          Icons.arrow_circle_right,
+                                            Icons.arrow_right,
                                           color: context
                                                       .watch<
                                                           QuestionNumProvider>()
@@ -2031,8 +2056,8 @@ class NotSureDisabled extends StatelessWidget {
         Icon(Icons.mode_comment_outlined,
             color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
-            left: width >= 700 ? width * 0.005 : width * 0.015,
-            top: width >= 700 ? height * 0.002 : height * 0.005,
+            left: width >= 700 ? width * 0.005 : width * 0.018,
+            top: width >= 700 ? height * 0.005 : height * 0.008,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 153, 0, 1),
@@ -2060,8 +2085,8 @@ class NotSureEnabled extends StatelessWidget {
         Icon(Icons.mode_comment_sharp,
             color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
-            left: width >= 700 ? width * 0.005 : width * 0.017,
-            top: width >= 700 ? height * 0.002 : height * 0.006,
+            left: width >= 700 ? width * 0.005 : width * 0.018,
+            top: width >= 700 ? height * 0.005 : height * 0.008,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 255, 255, 1),

@@ -343,7 +343,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: ResetPasswordStudent(
-                                  userId: userId,
+                                  userId: widget.userId!,
                                 ),
                               ),
                             );

@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart';
+import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
@@ -47,6 +48,8 @@ class TeacherAssessmentSettingPublishState
   final startTimeController = TextEditingController();
   final endDateController = TextEditingController();
   final endTimeController = TextEditingController();
+  TextEditingController numOfDaysAfterTestController = TextEditingController();
+
   bool _value = false;
   int val = -1;
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
@@ -1117,6 +1120,7 @@ class TeacherAssessmentSettingPublishState
                                               SizedBox(
                                                 width: width * 0.2,
                                                 child: TextField(
+                                                  controller: numOfDaysAfterTestController,
                                                   keyboardType:
                                                       TextInputType.number,
                                                   decoration: InputDecoration(
@@ -1874,37 +1878,17 @@ class TeacherAssessmentSettingPublishState
                                           }
                                           assessment.assessmentStatus =
                                               'inprogress';
-                                          AssessmentSettings
-                                              assessmentSettings =
-                                              AssessmentSettings();
-                                          assessmentSettings
-                                                  .allowedNumberOfTestRetries =
-                                              retriesController.text == ''
-                                                  ? 0
-                                                  : int.parse(
-                                                      retriesController.text);
-                                          assessmentSettings
-                                              .avalabilityForPractice = false;
-                                          assessmentSettings.notAvailable =
-                                              publicAccessStatus;
-
-                                          assessmentSettings.notAvailable =
-                                              activeStatus;
-
-                                          assessmentSettings.showAdvisorEmail =
-                                              showEmailStatus;
-                                          assessmentSettings.showAdvisorName =
-                                              showNameStatus;
-                                          assessmentSettings
-                                                  .showSolvedAnswerSheetInAdvisor =
-                                              showAnsAfterTest;
-                                          assessmentSettings
-                                                  .showSolvedAnswerSheetDuringPractice =
-                                              showAnsDuringPractice;
-                                          assessmentSettings.allowGuestStudent =
-                                              allowedGuestStatus;
-                                          assessment.assessmentSettings =
-                                              assessmentSettings;
+                                          AssessmentSettings assessmentSettings = AssessmentSettings();
+                                          assessmentSettings.allowedNumberOfTestRetries = retriesController.text == '' ? 0 : int.parse(retriesController.text);
+                                          assessmentSettings.numberOfDaysAfterTestAvailableForPractice = numOfDaysAfterTestController.text == '' ? 0 : int.parse(numOfDaysAfterTestController.text);
+                                          assessmentSettings.allowGuestStudent = allowedGuestStatus;
+                                          assessmentSettings.showSolvedAnswerSheetInAdvisor = showAnsAfterTest;
+                                          assessmentSettings.showAnswerSheetDuringPractice= showAnsDuringPractice;
+                                          assessmentSettings.showAdvisorName = showNameStatus;
+                                          assessmentSettings.showAdvisorEmail = showEmailStatus;
+                                          assessmentSettings.notAvailable=activeStatus;
+                                          assessmentSettings.avalabilityForPractice = publicAccessStatus;
+                                          assessment.assessmentSettings = assessmentSettings;
                                           startDate = DateTime(
                                               startDate.year,
                                               startDate.month,
@@ -1996,24 +1980,15 @@ class TeacherAssessmentSettingPublishState
                                           }
                                           assessment.assessmentStatus = 'active';
                                           AssessmentSettings assessmentSettings = AssessmentSettings();
-                                          assessmentSettings.notAvailable = activeStatus;
-                                          assessmentSettings.notAvailable = publicAccessStatus;
-                                          assessmentSettings.showAdvisorEmail = showEmailStatus;
-                                          assessmentSettings.showAdvisorName = showNameStatus;
+                                          assessmentSettings.allowedNumberOfTestRetries = retriesController.text == '' ? 0 : int.parse(retriesController.text);
+                                          assessmentSettings.numberOfDaysAfterTestAvailableForPractice = numOfDaysAfterTestController.text == '' ? 0 : int.parse(numOfDaysAfterTestController.text);
+                                          assessmentSettings.allowGuestStudent = allowedGuestStatus;
                                           assessmentSettings.showSolvedAnswerSheetInAdvisor = showAnsAfterTest;
-                                          assessmentSettings
-                                                  .showSolvedAnswerSheetDuringPractice =
-                                              showAnsDuringPractice;
-                                          assessmentSettings.allowGuestStudent =
-                                              allowedGuestStatus;
-                                          assessmentSettings
-                                              .avalabilityForPractice = true;
-                                          assessmentSettings
-                                                  .allowedNumberOfTestRetries =
-                                              retriesController.text == ''
-                                                  ? 0
-                                                  : int.parse(
-                                                      retriesController.text);
+                                          assessmentSettings.showAnswerSheetDuringPractice= showAnsDuringPractice;
+                                          assessmentSettings.showAdvisorName = showNameStatus;
+                                          assessmentSettings.showAdvisorEmail = showEmailStatus;
+                                          assessmentSettings.notAvailable=activeStatus;
+                                          assessmentSettings.avalabilityForPractice = publicAccessStatus;
                                           assessment.assessmentSettings =
                                               assessmentSettings;
                                           startDate = DateTime(
@@ -2071,9 +2046,6 @@ class TeacherAssessmentSettingPublishState
                                                     1);
                                           }
                                           Navigator.of(context).pop();
-
-
-
                                           Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
 
                                     if (statusCode.code == 200) {

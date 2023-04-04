@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_guest_assessment.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
@@ -23,6 +25,20 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
   TextEditingController rollNumController = TextEditingController();
   bool agree = false;
   String name = '';
+
+  Future<void> _launchUrlTerms() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _launchUrlPrivacy() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   void initState() {
@@ -339,6 +355,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .privacy_Policy,
+                                                recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
                                               style: TextStyle(
                                                   fontSize: height * 0.025,
                                                   fontWeight: FontWeight.w400,
@@ -362,6 +379,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text:
                                               AppLocalizations.of(context)!.terms,
+                                              recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlTerms,
                                               style: TextStyle(
                                                   fontSize: height * 0.025,
                                                   fontWeight: FontWeight.w400,
@@ -821,6 +839,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .privacy_Policy,
+                                              recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
                                               style: TextStyle(
                                                   fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,
@@ -845,6 +864,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .terms,
+                                              recognizer: TapGestureRecognizer()..onTap = () => _launchUrlTerms(),
                                               style: TextStyle(
                                                   fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,

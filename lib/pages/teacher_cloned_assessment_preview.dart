@@ -6,6 +6,7 @@ import 'package:qna_test/pages/teacher_assessment_looq_preapare_ques.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_ques_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_settings_publish.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Questions;
 
@@ -38,7 +39,7 @@ class TeacherClonedAssessmentPreviewState
   List<Questions.Question> quesList = [];
 
   int mark = 0;
-  int totalMarks = 0;
+  int totalQuestion = 0;
 
   showAdditionalDetails() {
     setState(() {
@@ -48,19 +49,28 @@ class TeacherClonedAssessmentPreviewState
 
   @override
   void initState() {
-    assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
-        .getAssessment;
-    finalAssessment =
-        Provider.of<CreateAssessmentProvider>(context, listen: false)
-            .getAssessment;
-    quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-        .getAllQuestion;
-    finalAssessment.removeQuestions = [];
-    for (int i = quesList.length; i < finalAssessment.questions!.length; i++) {
-      //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).addQuestion(assessment.questions![i]);
-      mark = mark + finalAssessment.questions![i].questionMarks!;
-    }
+    getData();
     super.initState();
+  }
+
+  getData(){
+
+    setState(() {
+      assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
+          .getAssessment;
+
+      finalAssessment =
+          Provider.of<CreateAssessmentProvider>(context, listen: false)
+              .getAssessment;
+
+      quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+          .getAllQuestion;
+
+      finalAssessment.removeQuestions = [];
+      for (int i = 0; i < quesList.length; i++) {
+        mark = mark + quesList[i].questionMark!;
+      }
+    });
   }
 
   @override
@@ -144,7 +154,7 @@ class TeacherClonedAssessmentPreviewState
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            '${assessment.questions!.length}',
+                            '${quesList.length}',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -164,7 +174,7 @@ class TeacherClonedAssessmentPreviewState
                                 fontWeight: FontWeight.w400),
                           ),
                           Text(
-                            '$totalMarks',
+                            '$mark',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -194,8 +204,8 @@ class TeacherClonedAssessmentPreviewState
                                     height: height,
                                     index: i,
                                     assessment: assessment,
-
-                                    question: quesList[i]),
+                                    question: quesList[i],
+                                finalAssessment: finalAssessment,),
                             ],
                           ),
                         ),
@@ -242,9 +252,7 @@ class TeacherClonedAssessmentPreviewState
                         //shape: StadiumBorder(),
                         onPressed: () async {
                           finalAssessment.assessmentStatus = 'inprogress';
-                          CreateAssessmentModel.AssessmentSettings
-                              assessmentSettings =
-                              CreateAssessmentModel.AssessmentSettings();
+                          AssessmentSettings assessmentSettings = AssessmentSettings();
                           finalAssessment.assessmentSettings =
                               assessmentSettings;
                           ResponseEntity statusCode =
@@ -325,6 +333,7 @@ class QuestionWidget extends StatefulWidget {
       required this.index,
       required this.assessment,
       required this.question,
+        required this.finalAssessment
       })
       : super(key: key);
 
@@ -332,6 +341,7 @@ class QuestionWidget extends StatefulWidget {
   final int index;
   GetAssessmentModel assessment;
   Questions.Question question;
+  CreateAssessmentModel.CreateAssessmentModel finalAssessment;
 
 
   @override
@@ -385,7 +395,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             .deleteQuestionList(widget.index);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeLooqQuestionInAssess(widget.question!.questionId);
-        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview');
+        Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',(route) => route.isFirst);
+
         // Navigator.push(
         //   context,
         //   PageTransition(
@@ -511,7 +522,11 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         ),
         GestureDetector(
           onTap: (){
-
+            Navigator.pushNamed(
+                context,
+                '/teacherAssessmentLooqQuestionPreview',
+                arguments: [widget.finalAssessment,widget.question, widget.index,'',widget.question.questionId]
+            );
           },
           child: Align(
             alignment: Alignment.topLeft,
