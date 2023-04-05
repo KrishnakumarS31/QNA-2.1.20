@@ -6,28 +6,12 @@ class CustomCard extends StatefulWidget {
     Key? key,
     required this.height,
     required this.width,
-    this.subject,
-    this.title,
     required this.result,
-    this.d1,
-    this.subTopic,
-    this.std,
-    this.date,
-    this.status,
-    this.index,
   }) : super(key: key);
 
   final double height;
   final double width;
   final GetResultModel result;
-  final String? subject;
-  final String? title;
-  final String? subTopic;
-  final String? std;
-  final int? date;
-  final Color? status;
-  final String? d1;
-  final int? index;
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -69,7 +53,7 @@ class _CustomCardState extends State<CustomCard> {
               children: [
                 Icon(
                   Icons.circle,
-                  color: widget.status,
+                  color: Colors.grey,
                   size: widget.width * 0.05,
                 ),
                 Text(
@@ -94,7 +78,7 @@ class _CustomCardState extends State<CustomCard> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Title - ${widget.title}',
+                'Title - ${widget.result.subject}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: widget.height * 0.0175,
@@ -109,7 +93,7 @@ class _CustomCardState extends State<CustomCard> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Subtopic ${widget.subTopic}',
+                'Subtopic ${widget.result.subTopic}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: widget.height * 0.0175,
@@ -123,7 +107,7 @@ class _CustomCardState extends State<CustomCard> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Class ${widget.std}',
+                'Class ${widget.result.studentClass}',
                 style: TextStyle(
                     color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: widget.height * 0.0175,

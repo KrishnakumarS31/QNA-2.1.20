@@ -99,11 +99,11 @@ class _MyAppState extends State<MyApp> {
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         ),
-        home:
-        defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS || kIsWeb
-            ? WelcomePage()
-            : SplashScreen()
-      //initialRoute: '/',
+        // home:
+        // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS || kIsWeb
+        //     ? WelcomePage()
+        //     : SplashScreen()
+      initialRoute: '/',
        //  initialRoute: WelcomePage.id,
        // routes: {
        //  WelcomePage.id: (context) => WelcomePage(setLocale: setLocale),},

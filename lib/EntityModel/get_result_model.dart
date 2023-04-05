@@ -46,32 +46,33 @@ class GetResultModel {
   List<AssessmentResults>? assessmentResults;
 
   factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
-        assessmentId: json["assessment_id"],
-        assessmentType: json["assessment_type"],
-        assessmentCode: json["assessment_code"],
-        totalScore: json["total_score"],
-        totalQuestions: json["total_questions"],
-        assessmentEndDate: json["assessment_enddate"],
-        assessmentStartDate: json["assessment_startdate"],
-        assessmentDuration: json["assessment_duration"],
-        subject: json["subject"],
-        topic: json["topic"],
-        subTopic: json["sub_topic"],
-        url: json["url"],
-        androidUrl: json["android_app"],
-        iosUrl: json["ios_app"],
-        studentClass: json["class"],
-        attemptPercentage: json["attempt_percentage"],
+        assessmentId: json["assessment_id"] ?? " ",
+        assessmentType: json["assessment_type"] ?? " " ,
+        assessmentCode: json["assessment_code"] ?? " ",
+        totalScore: json["total_score"] ?? " ",
+        totalQuestions: json["total_questions"] ?? " ",
+        assessmentEndDate: json["assessment_enddate"] ?? " ",
+        assessmentStartDate: json["assessment_startdate"] ?? " ",
+        assessmentDuration: json["assessment_duration"] ?? " ",
+        subject: json["subject"] ?? " ",
+        topic: json["topic"] ?? " ",
+        subTopic: json["sub_topic"] ?? " ",
+        // url: json["url"] ?? " ",
+        // androidUrl: json["android_app"] ?? " ",
+        // iosUrl: json["ios_app"] ?? " ",
+        studentClass: json["class"] ?? " ",
+        attemptPercentage: json["attempt_percentage"] ,
         assessmentResults: json["assessment_results"] == null
             ? []
             : List<AssessmentResults>.from(json["assessment_results"]
                 .map((x) => AssessmentResults.fromJson(x))),
-        guestStudentAllowed: json["guest_student_allowed"],
+        guestStudentAllowed: json["guest_student_allowed"] ?? " ",
       );
 
   Map<String, dynamic> toJson() => {
         "assessment_id": assessmentId,
         "assessment_type": assessmentType,
+        "assessment_code": assessmentCode,
         "total_score": totalScore,
         "total_questions": totalQuestions,
         "assessment_duration": assessmentDuration,
@@ -102,7 +103,7 @@ class AssessmentResults {
       this.attemptEndDate,
       this.attemptDuration,
       this.attemptScore,
-      this.questions});
+      this.questions, this.attemptPercent});
 
   int? userId;
   String? firstName;
@@ -114,6 +115,7 @@ class AssessmentResults {
   int? attemptEndDate;
   int? attemptDuration;
   int? attemptScore;
+  int? attemptPercent;
   List<Questions>? questions;
 
   //factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
@@ -125,10 +127,11 @@ class AssessmentResults {
         rollNumber: json["roll_number"],
         organizationName: json["organisation_name"],
         attemptId: json["attempt_id"],
-        attemptStartDate: json["attempt_startdate"],
-        attemptEndDate: json["attempt_enddate"],
-        attemptDuration: json["attempt_duration"],
-        attemptScore: json["attempt_score"],
+        attemptStartDate: json["attempt_startdate"] ?? 0,
+        attemptEndDate: json["attempt_enddate"] ?? 0,
+        attemptDuration: json["attempt_duration"] ?? 0,
+        attemptScore: json["attempt_score"] ?? 0,
+        attemptPercent: json["attempt_percentage"],
         questions: List<Questions>.from(
             json["questions"].map((x) => Questions.fromJson(x))),
       );
@@ -144,6 +147,7 @@ class AssessmentResults {
         "attempt_enddate": attemptEndDate,
         "attempt_duration": attemptDuration,
         "attempt_score": attemptScore,
+        "attempt_percentage": attemptPercent,
         "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
       };
 }

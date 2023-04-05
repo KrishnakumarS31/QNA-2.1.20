@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
 
+import '../EntityModel/get_result_model.dart';
+
 class CustomCard1 extends StatelessWidget {
   const CustomCard1({
     Key? key,
     required this.height,
     required this.width,
-    required this.subject,
-    required this.title,
-    required this.subTitle,
-    required this.subTopic,
-    required this.std,
-    required this.date,
-    required this.status,
+    required this.resultIndex,
   }) : super(key: key);
 
   final double height;
   final double width;
-  final String? subject;
-  final String title;
-  final String subTitle;
-  final String subTopic;
-  final String std;
-  final int date;
-  final Color status;
+  final GetResultModel resultIndex;
 
   @override
   Widget build(BuildContext context) {
-    DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(date);
-    String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
-    String time = "${tsdate.hour}:${tsdate.minute}";
+    // DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(date);
+    // String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+    // String time = "${tsdate.hour}:${tsdate.minute}";
 
     return Container(
       height: height * 0.1825,
@@ -44,7 +34,7 @@ class CustomCard1 extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Subject - $subject',
+                  'Subject - ${resultIndex.subject}',
                   style: TextStyle(
                       color: const Color.fromRGBO(28, 78, 80, 1),
                       fontSize: height * 0.0187,
@@ -52,7 +42,7 @@ class CustomCard1 extends StatelessWidget {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  subTitle,
+                  '${resultIndex.assessmentCode}',
                   style: TextStyle(
                       color: const Color.fromRGBO(102, 102, 102, 1),
                       fontSize: height * 0.015,
@@ -67,17 +57,17 @@ class CustomCard1 extends StatelessWidget {
               children: [
                 Icon(
                   Icons.circle,
-                  color: status,
+                  color:const Color.fromRGBO(255, 157, 77, 1),
                   size: width * 0.05,
                 ),
-                Text(
-                  datetime,
-                  style: TextStyle(
-                      color: const Color.fromRGBO(102, 102, 102, 0.7),
-                      fontSize: height * 0.0125,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400),
-                ),
+                // Text(
+                //   datetime,
+                //   style: TextStyle(
+                //       color: const Color.fromRGBO(102, 102, 102, 0.7),
+                //       fontSize: height * 0.0125,
+                //       fontFamily: "Inter",
+                //       fontWeight: FontWeight.w400),
+                // ),
               ],
             ),
           ),
@@ -91,7 +81,7 @@ class CustomCard1 extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Title - $title',
+                'Title - ${resultIndex.topic}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
@@ -106,7 +96,7 @@ class CustomCard1 extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Sub Topic $subTopic',
+                'Sub Topic ${resultIndex.subTopic}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: height * 0.0175,
@@ -120,7 +110,7 @@ class CustomCard1 extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Class $std',
+                'Class ${resultIndex.studentClass}',
                 style: TextStyle(
                     color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: height * 0.0175,

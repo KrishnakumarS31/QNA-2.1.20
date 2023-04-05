@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_result_inprogress.dart';
 import 'package:qna_test/Pages/teacher_result_submitted.dart';
 import 'package:qna_test/Pages/teacher_result_total.dart';
+import 'package:qna_test/pages/teacher_result_inprogress.dart';
 import '../Components/custom_card1.dart';
 import '../EntityModel/get_result_model.dart';
 
@@ -61,9 +61,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
     DateTime DTime = DateTime.fromMillisecondsSinceEpoch(
         widget.result.assessmentDuration!);
     String duration = "${DTime.hour}:${DTime.month}";
-    DateTime testDate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentResults![0].attemptStartDate!);
-    String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
+    // DateTime testDate = DateTime.fromMillisecondsSinceEpoch(
+    //     widget.result.assessmentResults![0].attemptStartDate!);
+    // String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
 
     return WillPopScope(
         onWillPop: () async => false,
@@ -162,16 +162,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                               ? CustomCard1(
                             height: height,
                             width: width,
-                            subject: widget.result.subject,
-                            title: widget.result.topic!,
-                            subTitle:
-                            'Internal Assessment ID: ${widget.result
-                                .assessmentCode!}',
-                            subTopic: widget.result.subTopic!,
-                            std: widget.result.studentClass!,
-                            date: widget.result.assessmentResults![0]
-                                .attemptStartDate!,
-                            status: const Color.fromRGBO(255, 157, 77, 1),
+                            resultIndex: widget.result,
                           )
                               : Container(
                             decoration: BoxDecoration(
@@ -206,15 +197,15 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                             255, 157, 77, 1),
                                         size: width * 0.05,
                                       ),
-                                      Text(
-                                        attemptSdate,
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                102, 102, 102, 0.7),
-                                            fontSize: height * 0.0125,
-                                            fontFamily: "Inter",
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                      // Text(
+                                      //   attemptSdate,
+                                      //   style: TextStyle(
+                                      //       color: const Color.fromRGBO(
+                                      //           102, 102, 102, 0.7),
+                                      //       fontSize: height * 0.0125,
+                                      //       fontFamily: "Inter",
+                                      //       fontWeight: FontWeight.w400),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -830,7 +821,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     height: height * 0.07,
                                     width: width * 0.277,
                                     child: Text(
-                                      "${widget.result.assessmentResults!.length}",
+                                      "${widget.result.totalScore}",
                                       style: TextStyle(
                                           fontSize: height * 0.0187,
                                           color: const Color.fromRGBO(
@@ -905,8 +896,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     ),
                                     height: height * 0.07,
                                     width: width * 0.277,
-                                    child: Text(
-                                      "${widget.result.assessmentResults!.length}",
+                                    child: Text(widget.result.assessmentResults!.length != null ? "${widget.result.assessmentResults!.length} ": "0",
                                       style: TextStyle(
                                           fontSize: height * 0.0187,
                                           color: const Color.fromRGBO(
@@ -944,7 +934,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                 context,
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: TeacherResultInprogress(
+                                  child: TeacherResultInProgress(
                                       result: widget.result,
                                       advisorName: widget.advisorName),
                                 ),
@@ -981,15 +971,15 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     ),
                                     height: height * 0.07,
                                     width: width * 0.277,
-                                    child: Text(
-                                      "${widget.result.assessmentResults!.length}",
-                                      style: TextStyle(
-                                          fontSize: height * 0.0187,
-                                          color: const Color.fromRGBO(
-                                              255, 255, 255, 1),
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                    // child: Text(
+                                    //   "${widget.result.assessmentResults!.length}",
+                                    //   style: TextStyle(
+                                    //       fontSize: height * 0.0187,
+                                    //       color: const Color.fromRGBO(
+                                    //           255, 255, 255, 1),
+                                    //       fontFamily: "Inter",
+                                    //       fontWeight: FontWeight.w700),
+                                    // ),
                                   ),
                                   SizedBox(
                                     height: height * 0.01,

@@ -178,58 +178,13 @@ class TeacherResultIndividualStudentState
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      Result_card1(
+                      ResultCardNew(
                           height: height,
                           width: width,
-                          name: widget.result.assessmentResults![0].firstName!,
-                          testCode: widget.result.assessmentCode!,
-                          percent: widget.result.attemptPercentage ?? 0,
-                          securedMark:
-                              widget.result.assessmentResults![0].attemptScore!,
-                          totalMark: widget.result.totalScore!,
-                          timeTaken: widget
-                              .result.assessmentResults![0].attemptDuration!,
-                          startedTime: widget
-                              .result.assessmentResults![0].attemptStartDate!),
+                          results: widget.result),
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      // Container(
-                      //   height: height * 0.06,
-                      //   margin: const EdgeInsets.only(left: 15, right: 6),
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                      //     border: Border.all(
-                      //       color: const Color.fromRGBO(82, 165, 160, 1),
-                      //     ),
-                      //   ),
-                      //   child: Row(
-                      //     children:
-                      //       [
-                      //         MyRadioOption<String>(
-                      //           icon: Icons.check_box_outlined,
-                      //           value: 'Correct\nAnswers',
-                      //           groupValue: _groupValue,
-                      //           onChanged: _valueChangedHandler(),
-                      //           label: 'Correct Answers',
-                      //         ),
-                      //       MyRadioOption<String>(
-                      //         icon: Icons.account_tree_outlined,
-                      //         value: 'Incorrect\nAnswers',
-                      //         groupValue: _groupValue,
-                      //         onChanged: _valueChangedHandler(),
-                      //         label: 'Incorrect Answers',
-                      //       ),
-                      //       MyRadioOption<String>(
-                      //         icon: Icons.library_books_sharp,
-                      //         value: 'All Answers',
-                      //         groupValue: _groupValue,
-                      //         onChanged: _valueChangedHandler(),
-                      //         label: 'All Answers',
-                      //       ),
-                      //   ],
-                      //   ),
-                      // ),
                       SizedBox(
                         height: height * 0.03,
                       ),
@@ -277,13 +232,11 @@ class TeacherResultIndividualStudentState
                                             ques: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![0]
-                                                .question!,
-                                            ans: widget
-                                                .result
-                                                .assessmentResults![0]
-                                                .questions![0]
-                                                .descriptiveAnswers!,
+                                                .questions!,
+                                            // ans: widget
+                                            //     .result
+                                            //     .assessmentResults![0]
+                                            //     .questions,
                                           ),
                                         )
                                       : const SizedBox(),
@@ -342,13 +295,12 @@ class TeacherResultIndividualStudentState
                                             ques: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![0]
-                                                .question!,
-                                            ans: widget
-                                                .result
-                                                .assessmentResults![0]
-                                                .questions![0]
-                                                .descriptiveAnswers!,
+                                                .questions!,
+                                            // ans: widget
+                                            //     .result
+                                            //     .assessmentResults![0]
+                                            //     .questions![0]
+                                            //     .descriptiveAnswers!,
                                           ),
                                         )
                                   : const SizedBox(),
@@ -409,13 +361,12 @@ class TeacherResultIndividualStudentState
                                             ques: widget
                                                 .result
                                                 .assessmentResults![0]
-                                                .questions![0]
-                                                .question!,
-                                            ans: widget
-                                                .result
-                                                .assessmentResults![0]
-                                                .questions![0]
-                                                .descriptiveAnswers!,
+                                                .questions!,
+                                            // ans: widget
+                                            //     .result
+                                            //     .assessmentResults![0]
+                                            //     .questions![0]
+                                            //     .descriptiveAnswers!,
                                           ),
                                         )
                                       : const SizedBox(),
@@ -440,19 +391,25 @@ class NumberList {
 }
 
 class QuesAndAns extends StatefulWidget {
-  QuesAndAns(
-      {Key? key, required this.height, required this.ques, required this.ans})
+  const QuesAndAns(
+      {Key? key, required this.height, required this.ques})
       : super(key: key);
 
   final double height;
-  final String ques;
-  String ans;
+  final List<Questions> ques;
 
   @override
   State<QuesAndAns> createState() => _QuesAndAnsState();
 }
 
 class _QuesAndAnsState extends State<QuesAndAns> {
+
+  @override
+  void initState()
+  {
+    print( widget.ques[0].selectedChoices![0]);
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -474,7 +431,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
               ),
               Expanded(
                 child: Text(
-                  widget.ques,
+                  widget.ques.length.toString(),
                   style: TextStyle(
                       fontSize: widget.height * 0.014,
                       color: const Color.fromRGBO(102, 102, 102, 1),
@@ -503,7 +460,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
               ),
               Expanded(
                 child: Text(
-                  widget.ans,
+                 widget.ques[0].selectedChoices![0],
                   style: TextStyle(
                       fontSize: widget.height * 0.014,
                       color: const Color.fromRGBO(102, 102, 102, 1),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
+import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
 import '../Components/custom_result_card.dart';
@@ -42,32 +43,14 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    double height = MediaQuery
-        .of(context)
-        .size
-        .height;
-    DateTime Odate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    String openingDate = "${Odate.day}/${Odate.month}/${Odate.year}";
-    DateTime Edate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    String closingDate = "${Edate.day}/${Edate.month}/${Edate.year}";
-    DateTime OTime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    String openingTime = "${OTime.hour}:${OTime.month}";
-    DateTime ETime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    String closingTime = "${ETime.hour}:${ETime.month}";
-    DateTime DTime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentDuration!);
-    String duration = "${DTime.hour}:${DTime.month}";
-    DateTime testDate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentResults![0].attemptStartDate!);
-    String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
+
+    int? assessmentStartDate = widget.result.assessmentStartDate;
+    int? assessmentEndDate = widget.result.assessmentEndDate;
+    int? assessmentDuration = widget.result.assessmentDuration;
+
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -171,16 +154,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                               ? CustomCard1(
                             height: height,
                             width: width,
-                            subject: widget.result.subject,
-                            title: widget.result.topic!,
-                            subTitle:
-                            'Internal Assessment ID: ${widget.result
-                                .assessmentCode!}',
-                            subTopic: widget.result.subTopic!,
-                            std: widget.result.studentClass!,
-                            date: widget.result.assessmentResults![0]
-                                .attemptStartDate!,
-                            status: const Color.fromRGBO(255, 157, 77, 1),
+                           resultIndex: widget.result,
                           )
                               : Container(
                             decoration: BoxDecoration(
@@ -216,7 +190,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         size: width * 0.05,
                                       ),
                                       Text(
-                                        attemptSdate,
+                                          (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.7),
@@ -495,7 +469,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          "$duration hrs",
+                                          assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -526,8 +500,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                               fontWeight:
                                               FontWeight.w400),
                                         ),
-                                        Text(
-                                          ' $openingDate, $openingTime IST',
+                                        Text( assessmentStartDate != null ? '${convertDate(assessmentStartDate)}, ${convertTime(assessmentStartDate)} IST': " ",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -559,7 +532,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          "$closingDate, $closingTime IST",
+                                          assessmentEndDate != null ? '${convertDate(assessmentEndDate)}, ${convertTime(assessmentEndDate)} + " IST"': " ",
+                                          //"$closingDate, $closingTime IST",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -637,22 +611,22 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         SizedBox(
                                           width: width * 0.21,
                                         ),
-                                        Container(
-                                          height: height * 0.037,
-                                          width: width * 0.52,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            widget.result.url!,
-                                            style: TextStyle(
-                                                color:
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight:
-                                                FontWeight.w500),
-                                          ),
-                                        ),
+                                        // Container(
+                                        //   height: height * 0.037,
+                                        //   width: width * 0.52,
+                                        //   alignment: Alignment.center,
+                                        //   child: Text(
+                                        //     widget.result.url!,
+                                        //     style: TextStyle(
+                                        //         color:
+                                        //         const Color.fromRGBO(
+                                        //             82, 165, 160, 1),
+                                        //         fontSize: height * 0.0175,
+                                        //         fontFamily: "Inter",
+                                        //         fontWeight:
+                                        //         FontWeight.w500),
+                                        //   ),
+                                        // ),
                                       ],
                                     ),
                                   ),
@@ -768,8 +742,15 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Total Participants List (${widget.result
-                              .assessmentResults!.length})',
+
+                          widget.result.assessmentResults?.length != null
+                          ?
+                          'Total Participants List ('
+                              '${widget.result
+                              .assessmentResults!.length})'
+                          :
+                              'Total Participants List(0)'
+                          ,
                           style: TextStyle(
                               fontSize: height * 0.0187,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -824,25 +805,10 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         ),
                                       );
                                     },
-                                    child: Result_card(
+                                    child: ResultCard(
                                         height: height,
                                         width: width,
-                                        name: widget.result
-                                            .assessmentResults![index]
-                                            .firstName!,
-                                        testCode: widget.result.assessmentCode!,
-                                        percent: widget.result.attemptPercentage ?? 0,
-                                        securedMark: widget.result
-                                            .assessmentResults![index]
-                                            .attemptScore!,
-                                        totalMark: widget.result.totalScore!,
-                                        timeTaken: widget.result
-                                            .assessmentResults![index]
-                                            .attemptDuration,
-                                        startedTime: widget
-                                            .result
-                                            .assessmentResults![index]
-                                            .attemptStartDate!),
+                                      results: widget.result),
                                   ),
                                   SizedBox(
                                     height: height * 0.02,

@@ -187,7 +187,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
 
   getData() async {
     ResponseEntity response =
-        await QnaService.getResultDataService(widget.userId, 1, pageLimit);
+        await QnaService.getResultDataService(widget.userId, 5, pageLimit);
     //widget.userId
     allResults = List<GetResultModel>.from(
         response.data.map((x) => GetResultModel.fromJson(x)));
@@ -288,44 +288,42 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       SizedBox(
                         height: height * 0.01,
                       ),
-                      ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount: results.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: TeacherResultAssessment(
-                                        result: results[index],
-                                        userId: widget.userId,
-                                        advisorName: widget.advisorName),
-                                  ),
-                                );
-                              },
-                              child: CustomCard(
-                                height: height,
-                                width: width,
-                                index: results.length,
-                                subject: results[index].subject,
-                                result: results[index],
-                                title: results[index].topic,
-                                date: results[index].assessmentStartDate,
-                                subTopic: results[index].subTopic,
-                                std: results[index].studentClass,
-                                status: const Color.fromRGBO(255, 157, 77, 1),
+                      SizedBox(
+                        height: height * 0.35,
+                        child:  ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: results.length,
+                          itemBuilder: (context, index) => Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: TeacherResultAssessment(
+                                          result: results[index],
+                                          userId: widget.userId,
+                                          advisorName: widget.advisorName),
+                                    ),
+                                  );
+                                },
+                                child: CustomCard(
+                                  height: height,
+                                  width: width,
+                                  //subject: results[index].subject,
+                                  result: results[index]
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                          ],
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
+
                       SizedBox(
                         height: height * 0.02,
                       ),

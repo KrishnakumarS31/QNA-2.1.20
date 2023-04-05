@@ -3,10 +3,11 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
 import '../Components/custom_card1.dart';
 import '../Components/custom_result_card.dart';
+import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 
-class TeacherResultInprogress extends StatefulWidget {
-  const TeacherResultInprogress({
+class TeacherResultInProgress extends StatefulWidget {
+  const TeacherResultInProgress({
     Key? key,
     required this.result,
     this.advisorName,
@@ -15,10 +16,10 @@ class TeacherResultInprogress extends StatefulWidget {
   final String? advisorName;
 
   @override
-  TeacherResultInprogressState createState() => TeacherResultInprogressState();
+  TeacherResultInProgressState createState() => TeacherResultInProgressState();
 }
 
-class TeacherResultInprogressState extends State<TeacherResultInprogress> {
+class TeacherResultInProgressState extends State<TeacherResultInProgress> {
   IconData showIcon = Icons.expand_circle_down_outlined;
 
   @override
@@ -42,24 +43,12 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    DateTime Odate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    String openingDate = "${Odate.day}/${Odate.month}/${Odate.year}";
-    DateTime Edate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    String closingDate = "${Edate.day}/${Edate.month}/${Edate.year}";
-    DateTime OTime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    String openingTime = "${OTime.hour}:${OTime.month}";
-    DateTime ETime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    String closingTime = "${ETime.hour}:${ETime.month}";
-    DateTime DTime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentDuration!);
-    String duration = "${DTime.hour}:${DTime.month}";
-    DateTime testDate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentResults![0].attemptStartDate!);
-    String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
+
+    int? assessmentStartDate = widget.result.assessmentStartDate;
+    int? assessmentEndDate = widget.result.assessmentEndDate;
+    int? assessmentDuration = widget.result.assessmentDuration;
+
+
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -163,15 +152,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                               ? CustomCard1(
                                   height: height,
                                   width: width,
-                                  subject: widget.result.subject,
-                                  title: widget.result.topic!,
-                                  subTitle:
-                                      'Internal Assessment ID: ${widget.result.assessmentCode!}',
-                                  subTopic: widget.result.subTopic!,
-                                  std: widget.result.studentClass!,
-                                  date: widget.result.assessmentResults![0]
-                                      .attemptStartDate!,
-                                  status: const Color.fromRGBO(255, 157, 77, 1),
+                                  resultIndex: widget.result,
                                 )
                               : Container(
                                   decoration: BoxDecoration(
@@ -207,7 +188,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                               size: width * 0.05,
                                             ),
                                             Text(
-                                              attemptSdate,
+                                              (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.7),
@@ -484,7 +465,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                                     FontWeight.w400),
                                               ),
                                               Text(
-                                                "$duration hrs",
+                                                assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -516,7 +497,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                                     FontWeight.w400),
                                               ),
                                               Text(
-                                                ' $openingDate, $openingTime IST',
+                                                assessmentStartDate != null ? '${convertDate(assessmentStartDate)}, ${convertTime(assessmentStartDate)}': " ",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -548,7 +529,7 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                                     FontWeight.w400),
                                               ),
                                               Text(
-                                                "$closingDate, $closingTime IST",
+                                                assessmentEndDate != null ? '${convertDate(assessmentEndDate)}, ${convertTime(assessmentEndDate)} IST': " ",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -757,7 +738,14 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Total Participants List (${widget.result.assessmentResults!.length})',
+                          widget.result.assessmentResults?.length != null
+                              ?
+                          'Total Participants List ('
+                              '${widget.result
+                              .assessmentResults!.length})'
+                              :
+                          'Total Participants List(0)',
+                          //'Total Participants List (${widget.result.assessmentResults!.length})',
                           style: TextStyle(
                               fontSize: height * 0.0187,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -810,22 +798,10 @@ class TeacherResultInprogressState extends State<TeacherResultInprogress> {
                                     ),
                                   );
                                 },
-                                child: Result_card(
+                                child: ResultCard(
                                     height: height,
                                     width: width,
-                                    name: widget.result
-                                        .assessmentResults![index].firstName!,
-                                    testCode: widget.result.assessmentCode!,
-                                    percent: widget.result.attemptPercentage ?? 0,
-                                    securedMark: widget.result
-                                        .assessmentResults![index].attemptScore!,
-                                    totalMark: widget.result.totalScore!,
-                                    timeTaken: widget.result
-                                        .assessmentResults![index].attemptDuration!,
-                                    startedTime: widget
-                                        .result
-                                        .assessmentResults![0]
-                                        .attemptStartDate!),
+                                    results: widget.result),
                               ),
                               SizedBox(
                                 height: height * 0.02,

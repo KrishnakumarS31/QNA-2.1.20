@@ -144,12 +144,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (int index = 1;
-                                  index <
-                                      context
-                                          .watch<QuestionNumProvider>()
-                                          .questionNum;
-                                  index = index + 2)
+                                  for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index = index + 2)
+
                                     SizedBox(
                                         width: localWidth * 0.4,
                                         child: inCorrectAns.contains(index)
@@ -448,6 +444,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             : const SizedBox(height: 0)
                                       //: null
                                     )
+
+
                                 ]),
                             Column(
                                 mainAxisAlignment: MainAxisAlignment.start,

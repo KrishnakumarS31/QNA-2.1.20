@@ -1,35 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:qna_test/Components/today_date.dart';
+import 'package:qna_test/EntityModel/get_result_model.dart';
 
-class Result_card1 extends StatelessWidget {
-  const Result_card1({
+class ResultCardNew extends StatelessWidget {
+  const ResultCardNew({
     Key? key,
     required this.height,
     required this.width,
-    required this.name,
-    required this.testCode,
-    required this.percent,
-    required this.securedMark,
-    required this.totalMark,
-    this.startedTime,
-    this.timeTaken,
+    required this.results
   }) : super(key: key);
 
   final double height;
   final double width;
 
-  final String name;
-  final String testCode;
-  final int? percent;
-  final int securedMark;
-  final int totalMark;
-  final int? timeTaken;
-  final int? startedTime;
+ final GetResultModel results;
 
   @override
   Widget build(BuildContext context) {
-    DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(startedTime!);
-    String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
-    String time = "${tsdate.hour}:${tsdate.minute}";
+    bool condition = results.assessmentResults != null && results.assessmentResults?.isEmpty == false;
+    String? name =condition ? results.assessmentResults![0].firstName : " ";
+    int? timeTaken = condition ? results.assessmentResults![0].attemptDuration : 0;
+    int? percent = condition ? results.assessmentResults![0].attemptPercent : 0;
+    int? securedMark = condition ? results.assessmentResults![0].attemptScore : 0;
+    int? totalMark = results.totalScore ?? 0;
+
     return Padding(
       padding: EdgeInsets.only(bottom: height * 0.015),
       child: Container(
@@ -49,7 +43,7 @@ class Result_card1 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      name,
+                    name ?? " ",
                       style: TextStyle(
                           fontSize: height * 0.0187,
                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -73,7 +67,7 @@ class Result_card1 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      datetime,
+                results.assessmentStartDate != null ? convertDate(results.assessmentStartDate) : " ",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -81,7 +75,7 @@ class Result_card1 extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      "$time IST",
+                      results.assessmentStartDate != null ? "${convertTime(results.assessmentStartDate)} IST" : "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
