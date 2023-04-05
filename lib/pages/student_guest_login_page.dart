@@ -355,7 +355,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .privacy_Policy,
-                                                recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
+                                                recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                               style: TextStyle(
                                                   fontSize: height * 0.025,
                                                   fontWeight: FontWeight.w400,
@@ -379,7 +379,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text:
                                               AppLocalizations.of(context)!.terms,
-                                              recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlTerms,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                               style: TextStyle(
                                                   fontSize: height * 0.025,
                                                   fontWeight: FontWeight.w400,
@@ -839,7 +839,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .privacy_Policy,
-                                              recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                               style: TextStyle(
                                                   fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,

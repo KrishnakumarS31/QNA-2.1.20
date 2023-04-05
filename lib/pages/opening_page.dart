@@ -13,8 +13,8 @@ import '../Entity/app_user.dart';
 import '../Providers/LanguageChangeProvider.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key,}) : super(key: key);
-
+  const SplashScreen({Key? key, required this.setLocale}) : super(key: key);
+  final void Function(Locale locale) setLocale;
 
   @override
   SplashScreenState createState() => SplashScreenState();
@@ -33,17 +33,16 @@ class SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
       if (user != null) {
-        Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(user!.locale);
-        Navigator.pushNamed(context, '/');
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child:
-        //         //StudentMemberLoginPage(setLocale: widget.setLocale)
-        //         WelcomePage(),
-        //   ),
-        // );
+        widget.setLocale(Locale.fromSubtags(languageCode: user.locale));
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child:
+            //StudentMemberLoginPage(setLocale: widget.setLocale)
+            WelcomePage(),
+          ),
+        );
       } else {
         Navigator.pushNamed(context, '/settingsLanguages');
         // Navigator.push(

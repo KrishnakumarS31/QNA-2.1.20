@@ -29,8 +29,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: defaultTargetPlatform == TargetPlatform.android
-            ? IconButton(
+        leading: IconButton(
                 icon: const Icon(
                   Icons.chevron_left,
                   size: 40.0,
@@ -39,8 +38,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-              )
-            : null,
+              ),
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title: Column(
@@ -109,7 +107,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                               fontSize: height * 0.018)),
                       TextSpan(
                           text: "Privacy Policy",
-                          recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrl,
+                          recognizer: TapGestureRecognizer()..onTap = _launchUrl,
                           style: TextStyle(
                               color: const Color.fromRGBO(0, 107, 232, 1),
                               fontFamily: 'Inter',

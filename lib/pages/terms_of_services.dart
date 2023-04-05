@@ -85,7 +85,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                       text: TextSpan(children: [
                         TextSpan(
                             text: "Terms of Service",
-                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrl,
+                            recognizer: TapGestureRecognizer()..onTap = _launchUrl,
                             style: TextStyle(
                                 color: const Color.fromRGBO(0, 107, 232, 1),
                                 fontFamily: 'Inter',

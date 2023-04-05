@@ -50,6 +50,8 @@ class Data {
     this.topic,
     this.subTopic,
     this.dataClass,
+    this.advisorName,
+    this.advisorEmail,
     this.assessmentScoreMessage,
     this.assessmentSettings,
     this.questions,
@@ -64,6 +66,8 @@ class Data {
   String? topic;
   String? subTopic;
   String? dataClass;
+  String? advisorName;
+  String? advisorEmail;
   List<AssessmentScoreMessage>? assessmentScoreMessage;
   AssessmentSettings? assessmentSettings;
   List<Question>? questions;
@@ -76,6 +80,8 @@ class Data {
         assessmentDuration: json["assessment_duration"],
         subject: json["subject"],
         topic: json["topic"],
+        advisorName: json["advisor_name"],
+        advisorEmail: json["advisor_email"],
         subTopic: json["sub_topic"],
         dataClass: json["class"],
         assessmentScoreMessage: List<AssessmentScoreMessage>.from(
@@ -98,6 +104,8 @@ class Data {
         "subject": subject,
         "topic": topic,
         "sub_topic": subTopic,
+        "advisor_email":advisorEmail,
+        "advisor_name": advisorName,
         "class": dataClass,
         "assessment_score_message":
             List<dynamic>.from(assessmentScoreMessage!.map((x) => x.toJson())),

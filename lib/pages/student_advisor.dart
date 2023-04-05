@@ -7,8 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-import 'student_answersheet.dart';
-// import 'package:url_launcher/url_launcher.dart';
 
 class StudMemAdvisor extends StatefulWidget {
   const StudMemAdvisor(
@@ -144,8 +142,12 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  for (int index = 1; index < context.watch<QuestionNumProvider>().questionNum; index = index + 2)
-
+                                  for (int index = 1;
+                                  index <
+                                      context
+                                          .watch<QuestionNumProvider>()
+                                          .questionNum;
+                                  index = index + 2)
                                     SizedBox(
                                         width: localWidth * 0.4,
                                         child: inCorrectAns.contains(index)
@@ -301,13 +303,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         0.015),
                                               ]),
                                           subtitle: Column(children: [
-                                            Align(
+                                            widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                            ? Align(
                                               alignment:
                                               Alignment.topLeft,
-                                              child: Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .advisor,
+                                              child: Text("${AppLocalizations.of(context)!.advisor} - ${widget.questions.data!.advisorName}" ,
                                                   style: TextStyle(
                                                       color: const Color
                                                           .fromRGBO(
@@ -321,7 +321,31 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       fontSize:
                                                       localHeight *
                                                           0.024)),
-                                            ),
+                                            )
+                                            : const SizedBox(),
+                                            SizedBox(
+                                                height:
+                                                localHeight * 0.015),
+                                            widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                                ? Align(
+                                              alignment:
+                                              Alignment.topLeft,
+                                              child: Text("Advisor Email - ${widget.questions.data!.advisorEmail}" ,
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          82,
+                                                          165,
+                                                          160,
+                                                          1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize:
+                                                      localHeight *
+                                                          0.024)),
+                                            )
+                                                : const SizedBox(),
                                             SizedBox(
                                                 height:
                                                 localHeight * 0.015),
@@ -444,8 +468,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             : const SizedBox(height: 0)
                                       //: null
                                     )
-
-
                                 ]),
                             Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -630,13 +652,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         0.015),
                                               ]),
                                           subtitle: Column(children: [
-                                            Align(
+                                            widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                                ? Align(
                                               alignment:
                                               Alignment.topLeft,
-                                              child: Text(
-                                                  AppLocalizations.of(
-                                                      context)!
-                                                      .advisor,
+                                              child: Text("${AppLocalizations.of(context)!.advisor} - ${widget.questions.data!.advisorName}" ,
                                                   style: TextStyle(
                                                       color:
                                                       const Color
@@ -653,7 +673,34 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       fontSize:
                                                       localHeight *
                                                           0.024)),
-                                            ),
+                                            )
+                                            : const SizedBox(),
+                                            SizedBox(
+                                                height: localHeight *
+                                                    0.015),
+                                            widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                                ? Align(
+                                              alignment:
+                                              Alignment.topLeft,
+                                              child: Text("Advisor Email - ${widget.questions.data!.advisorEmail}" ,
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          82,
+                                                          165,
+                                                          160,
+                                                          1),
+                                                      fontFamily:
+                                                      'Inter',
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w600,
+                                                      fontSize:
+                                                      localHeight *
+                                                          0.024)),
+                                            )
+                                                : const SizedBox(),
                                             SizedBox(
                                                 height: localHeight *
                                                     0.015),
@@ -1180,11 +1227,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               localHeight * 0.015),
                                         ]),
                                     subtitle: Column(children: [
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text(
-                                            AppLocalizations.of(context)!
-                                                .advisor,
+                                      widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                          ? Align(
+                                        alignment:
+                                        Alignment.topLeft,
+                                        child: Text("${AppLocalizations.of(context)!.advisor} - ${widget.questions.data!.advisorName}",
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -1194,7 +1241,26 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 FontWeight.w600,
                                                 fontSize:
                                                 localHeight * 0.014)),
-                                      ),
+                                      )
+                                      : const SizedBox(),
+                                      SizedBox(
+                                          height: localHeight * 0.015),
+                                      widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                          ? Align(
+                                        alignment:
+                                        Alignment.topLeft,
+                                        child: Text("Advisor Email - ${widget.questions.data!.advisorEmail}",
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight:
+                                                FontWeight.w600,
+                                                fontSize:
+                                                localHeight * 0.014)),
+                                      )
+                                          : const SizedBox(),
                                       SizedBox(
                                           height: localHeight * 0.015),
                                       Column(

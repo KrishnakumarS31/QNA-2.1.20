@@ -423,7 +423,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .privacy_Policy,
-                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
+                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.025,
                                                 fontWeight: FontWeight.w400,
@@ -447,7 +447,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text:
                                             AppLocalizations.of(context)!.terms,
-                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlTerms,
+                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.025,
                                                 fontWeight: FontWeight.w400,
@@ -972,7 +972,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .privacy_Policy,
-                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlPrivacy,
+                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
@@ -996,7 +996,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text:
                                             AppLocalizations.of(context)!.terms,
-                                            recognizer: TapGestureRecognizer()..onTap = () =>  _launchUrlTerms,
+                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                             style: TextStyle(
                                                 fontSize: localHeight * 0.018,
                                                 fontWeight: FontWeight.w400,
