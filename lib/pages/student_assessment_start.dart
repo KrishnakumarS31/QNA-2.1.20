@@ -258,15 +258,15 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         builder: (context) {
                                           return const Center(
                                               child: CircularProgressIndicator(
-                                            color:
+                                                color:
                                                 Color.fromRGBO(48, 145, 139, 1),
-                                          ));
+                                              ));
                                         });
                                     values = await QnaService.getQuestion(
                                         assessmentId: assessmentID.text);
                                     Navigator.of(context).pop();
-                                    if (values.code == 200) {
-                                      if (assessmentID.text.length >= 8) {
+                                    if (assessmentID.text.length >= 8) {
+                                      if (values.code == 200) {
                                         Navigator.pushNamed(
                                             context,
                                             '/studQuestion',
@@ -283,10 +283,25 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         //     child: StudQuestion(
                                         //         assessmentId: assessmentID.text,
                                         //         ques: values,
-                                        //         userName: widget
-                                        //             .usedData!.data!.firstName),
+                                        //
+                                        //         userName: name),
                                         //   ),
                                         // );
+                                      } else if (values.code == 400) {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type:
+                                            PageTransitionType.rightToLeft,
+                                            child: CustomDialog(
+                                              title: '${values.message}',
+                                              content: '',
+                                              button:
+                                              AppLocalizations.of(context)!
+                                                  .retry,
+                                            ),
+                                          ),
+                                        );
                                       }
                                     } else {
                                       Navigator.push(
@@ -294,12 +309,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: CustomDialog(
-                                            title: AppLocalizations.of(context)!
-                                                .invalid_assessment_iD,
+                                            title: '${values.message}',
                                             content: '',
                                             button:
-                                                AppLocalizations.of(context)!
-                                                    .retry,
+                                            AppLocalizations.of(context)!
+                                                .retry,
                                           ),
                                         ),
                                       );

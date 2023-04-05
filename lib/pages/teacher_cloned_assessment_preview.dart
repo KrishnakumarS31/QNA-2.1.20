@@ -47,6 +47,98 @@ class TeacherClonedAssessmentPreviewState
     });
   }
 
+  showAlertDialog(BuildContext context, double height) {
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        //Provider.of<QuestionsForAssessmentSettingsPublishedProvider>(context, listen: false).addQuestion(widget.questions! as QuestionEntityForAssessmentSettingsPublished);
+        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherAssessmentSettingPublish(),
+        //   ),
+        // );
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          Icon(
+            Icons.error,
+            color: const Color.fromRGBO(238, 71, 0, 1),
+            size: height * 0.05,
+          ),
+          Text(
+            'Marks not filled',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Do you want to still continue?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   void initState() {
     getData();
@@ -297,7 +389,21 @@ class TeacherClonedAssessmentPreviewState
                             )),
                         //shape: StadiumBorder(),
                         onPressed: () {
-                          Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                          bool markZero = true;
+                          for (int i = 0; i < quesList.length; i++) {
+                            if(quesList[i].questionMark != 0){
+                              markZero = false;
+                            }
+                            else{
+                              markZero = true;
+                            }
+                          }
+                          if(markZero){
+                            showAlertDialog(context, height);
+                          }else{
+                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                          }
+
                           // Navigator.push(
                           //   context,
                           //   PageTransition(

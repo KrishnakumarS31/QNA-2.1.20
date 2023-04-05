@@ -86,7 +86,7 @@ class TeacherAssessmentQuestionPreviewState
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
             body: Center(
               child: SizedBox(
-                height: height * 0.85,
+                height: height * 0.9,
                 width: width * 0.888,
                 child: Card(
                     elevation: 12,
@@ -271,36 +271,25 @@ class TeacherAssessmentQuestionPreviewState
                               height: height * 0.03,
                             ),
                             Center(
-                              child: SizedBox(
-                                width: width * 0.888,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                      minimumSize: const Size(280, 48),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(39),
-                                      ),
-                                      side: const BorderSide(
-                                        color: Color.fromRGBO(82, 165, 160, 1),
-                                      )),
-                                  //shape: StadiumBorder(),
-                                  onPressed: () {
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {
                                     print("Question id");
                                     print(widget.question.questionId);
                                     Provider.of<QuestionPrepareProviderFinal>(
-                                            context,
-                                            listen: false)
+                                        context,
+                                        listen: false)
                                         .updatemark(
-                                            int.parse(markController.text),
-                                            widget.index);
+                                        int.parse(markController.text),
+                                        widget.index);
                                     fieldName=='question'?
                                     Provider.of<CreateAssessmentProvider>(
-                                            context,
-                                            listen: false)
+                                        context,
+                                        listen: false)
                                         .updatemark(
-                                            int.parse(markController.text),
-                                            index)
+                                        int.parse(markController.text),
+                                        index)
                                         :
                                     Provider.of<CreateAssessmentProvider>(
                                         context,
@@ -324,18 +313,77 @@ class TeacherAssessmentQuestionPreviewState
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) => TeacherSelectedQuestionAssessment(
-                                                  )),
+                                              )),
                                               (route) => route.isFirst);
                                     }
                                   },
-                                  child: Text(
-                                    'Save',
-                                    style: TextStyle(
-                                        fontSize: height * 0.025,
-                                        fontFamily: "Inter",
-                                        color: const Color.fromRGBO(
-                                            255, 255, 255, 1),
-                                        fontWeight: FontWeight.w600),
+                                  child: SizedBox(
+                                    width: width * 0.888,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                          minimumSize: const Size(280, 48),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(39),
+                                          ),
+                                          side: const BorderSide(
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                          )),
+                                      //shape: StadiumBorder(),
+                                      onPressed: () {
+                                        print("Question id");
+                                        print(widget.question.questionId);
+                                        Provider.of<QuestionPrepareProviderFinal>(
+                                            context,
+                                            listen: false)
+                                            .updatemark(
+                                            int.parse(markController.text),
+                                            widget.index);
+                                        fieldName=='question'?
+                                        Provider.of<CreateAssessmentProvider>(
+                                            context,
+                                            listen: false)
+                                            .updatemark(
+                                            int.parse(markController.text),
+                                            index)
+                                            :
+                                        Provider.of<CreateAssessmentProvider>(
+                                            context,
+                                            listen: false)
+                                            .updateAddQuestionmark(
+                                            int.parse(markController.text),
+                                            index);
+                                        if (widget.pageName ==
+                                            'TeacherAssessmentSummary') {
+                                          Navigator.pushNamed(context, '/teacherAssessmentSummary');
+                                          // Navigator.push(
+                                          //   context,
+                                          //   PageTransition(
+                                          //     type: PageTransitionType.rightToLeft,
+                                          //     child: TeacherAssessmentSummary(
+                                          //         ),
+                                          //   ),
+                                          // );
+                                        } else {
+                                          //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
+                                          Navigator.of(context).pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                  builder: (context) => TeacherSelectedQuestionAssessment(
+                                                  )),
+                                                  (route) => route.isFirst);
+                                        }
+                                      },
+                                      child: Text(
+                                        'Save',
+                                        style: TextStyle(
+                                            fontSize: height * 0.025,
+                                            fontFamily: "Inter",
+                                            color: const Color.fromRGBO(
+                                                255, 255, 255, 1),
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),

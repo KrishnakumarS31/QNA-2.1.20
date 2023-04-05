@@ -206,7 +206,7 @@ class TeacherSelectedQuestionAssessmentState
                     ),
                   ),
                   Text(
-                    "FOR ASSESSMENTS",
+                    "FOR ASSESSMENT",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -1080,7 +1080,21 @@ class TeacherSelectedQuestionAssessmentState
                               color: Color.fromRGBO(82, 165, 160, 1),
                             )),
                         onPressed: () {
-                          showAlertDialog(context, height);
+                          bool markZero = true;
+                          for (int i = 0; i < questionList.length; i++) {
+                            if(questionList[i].questionMark != 0){
+                              markZero = false;
+                            }
+                            else{
+                              markZero = true;
+                            }
+                          }
+                          if(markZero){
+                            showAlertDialog(context, height);
+                          }else{
+                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                          }
+
                         },
                         child: Text(
                           'Continue',
@@ -1246,142 +1260,153 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Container(
-        color: const Color.fromRGBO(82, 165, 160, 0.08),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(
-                height: widget.height * 0.01,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () {
+            showAlertDialog(
+              context,
+              widget.height,
+            );
+          },
+          child: Container(
+            color: const Color.fromRGBO(82, 165, 160, 0.08),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
                 children: [
+                  SizedBox(
+                    height: widget.height * 0.01,
+                  ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Q${widget.index + 1}',
-                        style: TextStyle(
-                            fontSize: widget.height * 0.017,
-                            fontFamily: "Inter",
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontWeight: FontWeight.w700),
+                      Row(
+                        children: [
+                          Text(
+                            'Q${widget.index + 1}',
+                            style: TextStyle(
+                                fontSize: widget.height * 0.017,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w700),
+                          ),
+                          Text(
+                            '  ${widget.question.questionType}',
+                            style: TextStyle(
+                                fontSize: widget.height * 0.017,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
                       ),
-                      Text(
-                        '  ${widget.question.questionType}',
+                      GestureDetector(
+                        onTap: () {
+                          showAlertDialog(
+                            context,
+                            widget.height,
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.close,
+                              color: Color.fromRGBO(51, 51, 51, 1),
+                            ),
+                            Text(
+                              ' Remove',
+                              style: TextStyle(
+                                  fontSize: widget.height * 0.017,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: widget.height * 0.01,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context,
+                          '/teacherAssessmentQuestionPreview',
+                          arguments: [widget.assessment,widget.question, widget.index,'']
+                      );
+                      // Navigator.push(
+                      //   context,
+                      //   PageTransition(
+                      //     type: PageTransitionType.rightToLeft,
+                      //     child: TeacherAssessmentQuestionPreview(
+                      //       assessment: widget.assessment,
+                      //       question: widget.question,
+                      //       index: widget.index,
+                      //     ),
+                      //   ),
+                      // );
+                    },
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        '${widget.question.question}',
                         style: TextStyle(
-                            fontSize: widget.height * 0.017,
+                            fontSize: widget.height * 0.015,
                             fontFamily: "Inter",
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontWeight: FontWeight.w400),
                       ),
-                    ],
+                    ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      showAlertDialog(
-                        context,
-                        widget.height,
-                      );
-                    },
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.close,
-                          color: Color.fromRGBO(51, 51, 51, 1),
-                        ),
-                        Text(
-                          ' Remove',
+                  SizedBox(
+                    height: widget.height * 0.01,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          ans,
                           style: TextStyle(
                               fontSize: widget.height * 0.017,
                               fontFamily: "Inter",
-                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              color: const Color.fromRGBO(0, 0, 0, 1),
                               fontWeight: FontWeight.w400),
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: widget.height * 0.01,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                      context,
-                      '/teacherAssessmentQuestionPreview',
-                      arguments: [widget.assessment,widget.question, widget.index,'']
-                  );
-                  // Navigator.push(
-                  //   context,
-                  //   PageTransition(
-                  //     type: PageTransitionType.rightToLeft,
-                  //     child: TeacherAssessmentQuestionPreview(
-                  //       assessment: widget.assessment,
-                  //       question: widget.question,
-                  //       index: widget.index,
-                  //     ),
-                  //   ),
-                  // );
-                },
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    '${widget.question.question}',
-                    style: TextStyle(
-                        fontSize: widget.height * 0.015,
-                        fontFamily: "Inter",
-                        color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: widget.height * 0.01,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      ans,
-                      style: TextStyle(
-                          fontSize: widget.height * 0.017,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(0, 0, 0, 1),
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Marks: ',
-                        style: TextStyle(
-                            fontSize: widget.height * 0.017,
-                            fontFamily: "Inter",
-                            color: const Color.fromRGBO(0, 0, 0, 1),
-                            fontWeight: FontWeight.w400),
                       ),
-                      Text(
-                        '${widget.question.questionMark}',
-                        style: TextStyle(
-                            fontSize: widget.height * 0.017,
-                            fontFamily: "Inter",
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontWeight: FontWeight.w700),
+                      Row(
+                        children: [
+                          Text(
+                            'Marks: ',
+                            style: TextStyle(
+                                fontSize: widget.height * 0.017,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(0, 0, 0, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
+                          Text(
+                            '${widget.question.questionMark}',
+                            style: TextStyle(
+                                fontSize: widget.height * 0.017,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w700),
+                          ),
+                        ],
                       ),
                     ],
                   ),
+                  const Divider(),
+                  SizedBox(
+                    height: widget.height * 0.01,
+                  ),
                 ],
               ),
-              const Divider(),
-              SizedBox(
-                height: widget.height * 0.01,
-              ),
-            ],
+            ),
           ),
         ),
       ),

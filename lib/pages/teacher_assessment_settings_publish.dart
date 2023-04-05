@@ -419,26 +419,21 @@ class TeacherAssessmentSettingPublishState
                                                 ),
                                               ),
                                             ]),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: width * 0.01,
-                                                  right: width * 0.15),
-                                              child: Column(
-                                                children: [
-                                                  Text(
-                                                    "Practice",
-                                                    style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              28, 78, 80, 1),
-                                                      fontSize: height * 0.0175,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  "Practice",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color.fromRGBO(
+                                                            28, 78, 80, 1),
+                                                    fontSize: height * 0.0175,
+                                                    fontFamily: "Inter",
+                                                    fontWeight:
+                                                        FontWeight.w600,
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
                                             Row(children: [
                                               Text(
@@ -645,8 +640,7 @@ class TeacherAssessmentSettingPublishState
                                                           context: context,
                                                           initialDate:
                                                               DateTime.now(),
-                                                          firstDate:
-                                                          DateTime.now(),
+                                                          firstDate: startDate,
                                                           lastDate:
                                                               DateTime(2100),
                                                           builder:
@@ -844,7 +838,7 @@ class TeacherAssessmentSettingPublishState
                                                           initialDate:
                                                               DateTime.now(),
                                                           firstDate:
-                                                              startDate,
+                                                          DateTime.now(),
                                                           lastDate:
                                                               DateTime(2100),
                                                           builder:
