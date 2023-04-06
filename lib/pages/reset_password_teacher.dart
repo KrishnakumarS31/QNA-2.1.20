@@ -285,7 +285,7 @@ class ResetPasswordState extends State<ResetPassword> {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
-        Navigator.pushNamed(context, '/teacherLogin');
+        Navigator.pushNamed(context, '/teacherLoginPage');
         // Navigator.push(
         //   context,
         //   PageTransition(

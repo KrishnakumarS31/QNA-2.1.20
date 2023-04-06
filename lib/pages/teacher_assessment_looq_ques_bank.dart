@@ -319,11 +319,22 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           value: valuefirst,
           onChanged: (bool? value) {
             if (value!) {
+              if(widget.question.questionType=="MCQ"){
+                widget.question.questionMark=1;
+              }else{
+                widget.question.questionMark=0;
+              }
               widget.question.questionMark=0;
               Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
                   .addQuestion(widget.question);
-              Provider.of<CreateAssessmentProvider>(context, listen: false)
-                  .addQuestion(widget.question.questionId, 0);
+              if(widget.question.questionType=="MCQ"){
+                Provider.of<CreateAssessmentProvider>(context, listen: false)
+                    .addQuestion(widget.question.questionId, 1);
+              }else{
+                Provider.of<CreateAssessmentProvider>(context, listen: false)
+                    .addQuestion(widget.question.questionId, 0);
+              }
+
             } else {
               Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
                   .removeQuestion(widget.question.questionId);

@@ -98,7 +98,7 @@ class TeacherAddMyQuestionBankForAssessmentState
             false).getAssessment;
         assessmentVal.addQuestion?.addAll(finalQuesList);
         for(int i =0;i<finalQuesList.length;i++){
-          finalQuesList[i].questionId=i-100;
+          finalQuesList[i].questionId=assessmentVal.addQuestion!.length+i-100;
           Provider.of<QuestionPrepareProviderFinal>(
               context,
               listen:

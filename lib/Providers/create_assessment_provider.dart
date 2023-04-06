@@ -13,10 +13,18 @@ class CreateAssessmentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void clearQuestion() {
+    _assessment.questions?.clear();
+    notifyListeners();
+  }
+
   void resetAssessment() {
     AssessmentSettings settings=AssessmentSettings();
     _assessment = CreateAssessmentModel(
         questions: [], removeQuestions: [], addQuestion: [],assessmentSettings: settings);
+    _assessment.questions?.clear();
+    _assessment.addQuestion?.clear();
+    _assessment.removeQuestions?.clear();
     notifyListeners();
   }
 
@@ -42,22 +50,22 @@ class CreateAssessmentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addLooqQuestion(int questionId, int mark) {
-    Question question = Question(questionId: questionId, questionMarks: mark);
-    _assessment.questions?.add(question);
-    notifyListeners();
-  }
+  // void addLooqQuestion(int questionId, int mark) {
+  //   Question question = Question(questionId: questionId, questionMarks: mark);
+  //   _assessment.questions?.add(question);
+  //   notifyListeners();
+  // }
 
-  void removeLooqQuestion(int questionId) {
-    List<int> quesIds = [];
-    for (int i = 0; i < _assessment.questions!.length; i++) {
-      quesIds.add(_assessment.questions![i].questionId!);
-    }
-    int index = quesIds.indexOf(questionId);
-    _assessment.questions!.removeAt(index);
-    _assessment.removeQuestions!.add(questionId);
-    notifyListeners();
-  }
+  // void removeLooqQuestion(int questionId) {
+  //   List<int> quesIds = [];
+  //   for (int i = 0; i < _assessment.questions!.length; i++) {
+  //     quesIds.add(_assessment.questions![i].questionId!);
+  //   }
+  //   int index = quesIds.indexOf(questionId);
+  //   _assessment.questions!.removeAt(index);
+  //   _assessment.removeQuestions!.add(questionId);
+  //   notifyListeners();
+  // }
 
   void removeLooqQuestionInAssess(int questionId) {
     List<int> quesIds = [];

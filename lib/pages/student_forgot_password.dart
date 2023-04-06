@@ -319,7 +319,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
               //   ),
               // );
             } else if (widget.isFromStudent == false) {
-              Navigator.pushNamed(context, '/teacherLogin');
+              Navigator.pushNamed(context, '/teacherLoginPage');
               // Navigator.push(
               //   context,
               //   PageTransition(

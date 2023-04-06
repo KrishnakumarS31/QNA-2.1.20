@@ -793,11 +793,11 @@ class TeacherSelectedQuestionAssessmentState
                                                                 loginData =
                                                                 await SharedPreferences
                                                                     .getInstance();
-                                                            Provider.of<QuestionPrepareProviderFinal>(
-                                                                    context,
-                                                                    listen:
-                                                                        false)
-                                                                .reSetQuestionList();
+                                                            // Provider.of<QuestionPrepareProviderFinal>(
+                                                            //         context,
+                                                            //         listen:
+                                                            //             false)
+                                                            //     .reSetQuestionList();
                                                             assessment.topic =
                                                                 topicController
                                                                     .text;
@@ -1175,27 +1175,36 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
+        print("1");
+        print(widget.question.questionId);
+        print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+            .getAllQuestion.length);
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .removeQuestion(widget.question.questionId);
+        print("2");
         if(widget.question.questionId<1){
+          print("3");
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .removeQuestionInAddQuestion(widget.question.questionId);
+          print("4");
         }
         else{
+          print("5");
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .removeQuestion(widget.question.questionId);
+          print("6");
         }
         Navigator.of(context).pop();
         setState(() {});
-        Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment');
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherSelectedQuestionAssessment(
-        //     ),
-        //   ),
-        // );
+        List<Question.Question> quesListArg=Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+            .getAllQuestion;
+        //Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: quesListArg);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (context) => TeacherSelectedQuestionAssessment(
+                  questions: quesListArg,
+                    )),
+                (route) => route.isFirst);
       },
     );
     // set up the AlertDialog
@@ -1264,9 +1273,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            showAlertDialog(
-              context,
-              widget.height,
+            // showAlertDialog(
+            //   context,
+            //   widget.height,
+            // );
+            Navigator.pushNamed(
+                context,
+                '/teacherAssessmentQuestionPreview',
+                arguments: [widget.assessment,widget.question, widget.index,'']
             );
           },
           child: Container(

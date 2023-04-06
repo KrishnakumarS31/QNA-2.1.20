@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/demo_question_model.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/create_assessment_provider.dart';
+import '../Providers/new_question_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 
@@ -32,20 +34,38 @@ class TeacherAssessmentQuestionBankState
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question> questions = [];
   int pageNumber = 1;
+  List<int> quesIdList=[];
 
   @override
   void initState() {
-    super.initState();
+
+    Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
     widget.searchText==null?teacherQuestionBankSearchController.text='':teacherQuestionBankSearchController.text=widget.searchText!;
     getData(widget.searchText==null?'':widget.searchText!);
+    super.initState();
   }
 
   getData(String search) async {
-    ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(1000, 1, search);
+
+    ResponseEntity responseEntity = await QnaService.getQuestionBankService(5000, 1, search);
+
+    CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    questions = responseEntity.data==null?[]:List<Question>.from(
+        responseEntity.data.map((x) => Question.fromJson(x)));
+    List<int> tempQueIdList =[];
+    for(int i =0;i<questions.length;i++){
+      tempQueIdList.add(questions[i].questionId!);
+    }
+
+    for(int i =0;i<assess.questions!.length;i++){
+      int index = tempQueIdList.indexOf(assess.questions![i].questionId!);
+      Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(questions[index]);
+      quesIdList.add(assess.questions![i].questionId!);
+    }
+
     setState(() {
-      questions = List<Question>.from(
-          responseEntity.data.map((x) => Question.fromJson(x)));
+      quesIdList;
+      questions;
     });
   }
 
@@ -224,6 +244,7 @@ class TeacherAssessmentQuestionBankState
                         height: height,
                         width: width,
                         question: i,
+                        quesIdList: quesIdList,
                       ),
                   ],
                 ),
@@ -246,6 +267,25 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
+                    List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+                    CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+                    for(int i =0;i<assess.questions!.length;i++){
+                      Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
+                    }
+
+                    Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
+                    for(int i =0;i<quesList.length;i++){
+                      Provider.of<QuestionPrepareProviderFinal>(context,
+                          listen: false)
+                          .addQuestion(quesList[i]);
+                      if(quesList[i].questionType=="MCQ"){
+                        Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 1);
+                      }else{
+                        Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
+                      }
+
+                    }
+
                     Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: questions);
 
                     // Navigator.push(
@@ -284,11 +324,13 @@ class QuestionPreview extends StatefulWidget {
     required this.height,
     required this.width,
     required this.question,
+    required this.quesIdList
   }) : super(key: key);
 
   final double height;
   final double width;
   final Question question;
+  final List<int> quesIdList;
 
   @override
   State<QuestionPreview> createState() => _QuestionPreviewState();
@@ -296,6 +338,16 @@ class QuestionPreview extends StatefulWidget {
 
 class _QuestionPreviewState extends State<QuestionPreview> {
   bool? valuefirst = false;
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    if(widget.quesIdList.contains(widget.question.questionId!)){
+      valuefirst=true;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -308,28 +360,23 @@ class _QuestionPreviewState extends State<QuestionPreview> {
           value: valuefirst,
           onChanged: (bool? value) {
             setState(() {
+
               if (value!) {
-                //widget.question.questionType == "MCQ"
-                    //?
-                //widget.question.questionMark = 10;
-                    widget.question.questionMark = 0;
-                Provider.of<QuestionPrepareProviderFinal>(context,
-                        listen: false)
-                    .addQuestion(widget.question!);
-                //widget.question.questionType == "MCQ"
-                    //?
-                print("question id");
-                print(widget.question.questionId);
-                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(widget.question.questionId, 0);
-                    //: Provider.of<CreateAssessmentProvider>(context,
-                      //      listen: false)
-                        //.addQuestion(widget.question.questionId, 0);
+                widget.question.questionMark = 0;
+                Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(widget.question!);
               } else {
-                Provider.of<QuestionPrepareProviderFinal>(context,
-                        listen: false)
-                    .removeQuestion(widget.question.questionId);
-                Provider.of<CreateAssessmentProvider>(context, listen: false)
-                    .removeQuestion(widget.question.questionId);
+                print("fail 1");
+                Provider.of<NewQuestionProvider>(context, listen: false).removeQuestion(widget.question.questionId!);
+                print("fail 2");
+                // print(Provider.of<QuestionPrepareProviderFinal>(context,
+                //     listen: false)
+                //     .getAllQuestion.length);
+                // Provider.of<QuestionPrepareProviderFinal>(context,
+                //         listen: false)
+                //     .removeQuestion(widget.question.questionId);
+                // print("fail 3");
+                // Provider.of<CreateAssessmentProvider>(context, listen: false)
+                //     .removeQuestion(widget.question.questionId);
               }
               valuefirst = value;
             });

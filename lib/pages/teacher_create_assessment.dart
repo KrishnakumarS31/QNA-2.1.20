@@ -871,6 +871,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 iconSize: height * 0.04,
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                                 onPressed: () {
+                                  Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
                                   Navigator.pushNamed(
                                       context,
                                       '/teacherAssessmentQuestionBank',
@@ -924,10 +925,10 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                       ):
                       ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: newQuestions.length,
+                          itemCount: assessmentVal.addQuestion!.length,
                           itemBuilder: (context, index) => TeacherPublishedAss.QuestionWidget(
                             height: height,
-                            question: newQuestions[index],
+                            question: assessmentVal.addQuestion![index],
                           )),
                     ),
                     SizedBox(height: height * 0.08),
@@ -947,6 +948,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             ),
                           ),
                           onPressed: () {
+                            Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
                             Navigator.pushNamed(
                                 context,
                                 '/teacherPrepareQuesForAssessment',
@@ -1033,6 +1035,10 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           onPressed: () async {
                             assessmentVal.assessmentStatus = "inprogress";
                             assessmentVal.assessmentType = "practice";
+                            print("66666666666666666666666666666666666666666666666");
+
+                            // assessmentVal.assessmentStartdate =
+                            //     date1.microsecondsSinceEpoch ;
                             showDialog(
                                 context: context,
                                 builder: (context) {

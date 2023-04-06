@@ -326,7 +326,7 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                 fontSize: 15),
           ),
           onPressed: () {
-            Navigator.pushNamed(context, '/teacherLogin');
+            Navigator.pushNamed(context, '/teacherLoginPage');
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(

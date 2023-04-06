@@ -34,6 +34,7 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
       quesIds.add(_questionList[i].questionId!);
     }
     int index = quesIds.indexOf(questionId);
+    print("index at $index");
     _questionList.removeAt(index);
     notifyListeners();
   }

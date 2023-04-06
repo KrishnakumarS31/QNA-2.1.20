@@ -299,7 +299,7 @@ class TeacherAssessmentQuestionPreviewState
                                         index);
                                     if (widget.pageName ==
                                         'TeacherAssessmentSummary') {
-                                      Navigator.pushNamed(context, '/teacherAssessmentSummary');
+                                      Navigator.pushNamed(context, '/teacherAssessmentSummary').then((value) => markController.clear());
                                       // Navigator.push(
                                       //   context,
                                       //   PageTransition(
@@ -365,7 +365,8 @@ class TeacherAssessmentQuestionPreviewState
                                           //         ),
                                           //   ),
                                           // );
-                                        } else {
+                                        }
+                                        else {
                                           //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(

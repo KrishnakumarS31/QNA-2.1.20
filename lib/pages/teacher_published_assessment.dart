@@ -64,15 +64,36 @@ class TeacherPublishedAssessmentState
       assessmentVal =
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .getAssessment;
+      print("4444444444444444444444444444444444444444444444444444444444444444444444");
+      print(assessmentVal.assessmentStartdate);
       questionTotal =
           widget.questionList == null ? 0 : widget.questionList!.length;
-      for (int i = 0; i < widget.questionList!.length; i++) {
-        mark = mark + widget.questionList![i]!.questionMark!;
+      if(widget.questionList==null){
+
+      }else{
+        for (int i = 0; i < widget.questionList!.length; i++) {
+          mark = mark + widget.questionList![i]!.questionMark!;
+        }
       }
-      startDate = DateTime.fromMicrosecondsSinceEpoch(
-          assessmentVal.assessmentStartdate == null
-              ? 0
-              : assessmentVal.assessmentStartdate!);
+
+      if(assessmentVal.assessmentStartdate == null){
+        print("inside ifffffffffffffffffffffffffffffffffffff");
+        DateTime date1 = DateTime.now();
+        date1 = DateTime(
+            date1.year,
+            date1.month,
+            date1.day,
+            date1.hour,
+            date1.minute);
+        startDate=DateTime.fromMicrosecondsSinceEpoch(date1.microsecondsSinceEpoch);
+        //question.assessmentStartdate=;
+      }else{
+        print("inside elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        startDate = DateTime.fromMicrosecondsSinceEpoch(
+            assessmentVal.assessmentStartdate!);
+      }
+
+      print(startDate);
       endDate = DateTime.fromMicrosecondsSinceEpoch(
           assessmentVal.assessmentEnddate == null
               ? 0

@@ -580,6 +580,10 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             ),
                           ),
                           onPressed: () {
+                            Provider.of<CreateAssessmentProvider>(
+                                context,
+                                listen: false)
+                                .resetAssessment();
                             assessment = Provider.of<CreateAssessmentProvider>(
                                     context,
                                     listen: false)

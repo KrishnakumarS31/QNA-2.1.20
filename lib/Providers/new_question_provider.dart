@@ -27,4 +27,15 @@ class NewQuestionProvider extends ChangeNotifier {
     _questionList[id] = demoQuestionModel;
     notifyListeners();
   }
+
+  //used for creating assessment
+  void removeQuestion(int questionId) {
+    List<int> quesIds = [];
+    for (int i = 0; i < _questionList.length; i++) {
+      quesIds.add(_questionList[i].questionId!);
+    }
+    int index = quesIds.indexOf(questionId);
+    _questionList.removeAt(index);
+    notifyListeners();
+  }
 }

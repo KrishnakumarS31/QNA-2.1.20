@@ -238,6 +238,16 @@ class QnaRepo {
 
   static Future<ResponseEntity> createAssessmentTeacher(
       CreateAssessmentModel question) async {
+    if(question.assessmentStartdate==null){
+      DateTime date1 = DateTime.now();
+      date1 = DateTime(
+          date1.year,
+          date1.month,
+          date1.day,
+          date1.hour,
+          date1.minute);
+      question.assessmentStartdate=date1.microsecondsSinceEpoch;
+    }
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
