@@ -407,7 +407,6 @@ class _QuesAndAnsState extends State<QuesAndAns> {
   @override
   void initState()
   {
-    print( widget.ques[0].selectedChoices![0]);
     super.initState();
   }
   @override

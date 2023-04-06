@@ -61,7 +61,7 @@ class GetResultModel {
         // androidUrl: json["android_app"] ?? " ",
         // iosUrl: json["ios_app"] ?? " ",
         studentClass: json["class"] ?? " ",
-        attemptPercentage: json["attempt_percentage"] ,
+        attemptPercentage: json["attempt_percentage"] ?? 0,
         assessmentResults: json["assessment_results"] == null
             ? []
             : List<AssessmentResults>.from(json["assessment_results"]
@@ -83,9 +83,9 @@ class GetResultModel {
         "sub_topic": subTopic,
         "class": studentClass,
         "attempt_percentage":attemptPercentage,
-        "url": url,
-        "android_app": androidUrl,
-        "ios_app": iosUrl,
+        // "url": url,
+        // "android_app": androidUrl,
+        // "ios_app": iosUrl,
         "assessment_results": assessmentResults,
         "guest_student_allowed": guestStudentAllowed
       };
@@ -122,10 +122,10 @@ class AssessmentResults {
   factory AssessmentResults.fromJson(Map<String, dynamic> json) =>
       AssessmentResults(
         userId: json["user_id"],
-        firstName: json["first_name"],
-        lastName: json["last_name"],
-        rollNumber: json["roll_number"],
-        organizationName: json["organisation_name"],
+        firstName: json["first_name"] ?? "",
+        lastName: json["last_name"] ?? "",
+        rollNumber: json["roll_number"] ?? "",
+        organizationName: json["organisation_name"] ?? "",
         attemptId: json["attempt_id"],
         attemptStartDate: json["attempt_startdate"] ?? 0,
         attemptEndDate: json["attempt_enddate"] ?? 0,

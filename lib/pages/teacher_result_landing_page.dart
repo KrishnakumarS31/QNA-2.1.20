@@ -385,13 +385,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         //shape: StadiumBorder(),
                         onPressed: () {
                           getData();
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child: LooqQuestionEdit(question: widget.question,),
-                          //   ),
-                          // );
                         },
                         child: Text(
                           'Load More',

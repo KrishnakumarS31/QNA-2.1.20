@@ -547,6 +547,9 @@ class TeacherAssessmentSettingPublishState
                                                       const TextInputType
                                                               .numberWithOptions(
                                                           decimal: false),
+                                                  inputFormatters: <TextInputFormatter>[
+                                                    FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                                                  ], // O
                                                   decoration: InputDecoration(
                                                     hintText: "HH",
                                                     hintStyle: TextStyle(
@@ -593,6 +596,9 @@ class TeacherAssessmentSettingPublishState
                                                       const TextInputType
                                                               .numberWithOptions(
                                                           decimal: false),
+                                                  inputFormatters: <TextInputFormatter>[
+                                                    FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                                                  ], // O
                                                   decoration: InputDecoration(
                                                     hintText: "MM",
                                                     hintStyle: TextStyle(
@@ -1142,162 +1148,161 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "MCQ",
+                                                    "Only MCQ will be available for Practice",
                                                     style: TextStyle(
                                                       color:
-                                                          const Color.fromRGBO(
-                                                              153,
-                                                              153,
-                                                              153,
-                                                              0.8),
+                                                        const Color.fromRGBO(
+                                                        51, 51, 51, 1),
                                                       fontSize: height * 0.015,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
                                                     ),
                                                   ),
-                                                  Checkbox(
-                                                    activeColor:
-                                                        const Color.fromRGBO(
-                                                            153, 153, 153, 0.8),
-                                                    fillColor:
-                                                        MaterialStateProperty
-                                                            .resolveWith<Color>(
-                                                                (states) {
-                                                      if (states.contains(
-                                                          MaterialState
-                                                              .selected)) {
-                                                        return const Color
-                                                                .fromRGBO(
-                                                            82,
-                                                            165,
-                                                            160,
-                                                            1); // Disabled color
-                                                      }
-                                                      return const Color
-                                                              .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1); // Regular color
-                                                    }),
-                                                    value: mcqAgree,
-                                                    onChanged: (val) {
-                                                      setState(() {
-                                                        mcqAgree = val!;
-                                                        if (mcqAgree) {}
-                                                      });
-                                                    },
-                                                  ),
+                                                  SizedBox(height: height * 0.035),
+                                                  // Checkbox(
+                                                  //   activeColor:
+                                                  //       const Color.fromRGBO(
+                                                  //           153, 153, 153, 0.8),
+                                                  //   fillColor:
+                                                  //       MaterialStateProperty
+                                                  //           .resolveWith<Color>(
+                                                  //               (states) {
+                                                  //     if (states.contains(
+                                                  //         MaterialState
+                                                  //             .selected)) {
+                                                  //       return const Color
+                                                  //               .fromRGBO(
+                                                  //           82,
+                                                  //           165,
+                                                  //           160,
+                                                  //           1); // Disabled color
+                                                  //     }
+                                                  //     return const Color
+                                                  //             .fromRGBO(
+                                                  //         82,
+                                                  //         165,
+                                                  //         160,
+                                                  //         1); // Regular color
+                                                  //   }),
+                                                  //   value: mcqAgree,
+                                                  //   onChanged: (val) {
+                                                  //     setState(() {
+                                                  //       mcqAgree = val!;
+                                                  //       if (mcqAgree) {}
+                                                  //     });
+                                                  //   },
+                                                  // ),
                                                 ]),
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    "Survey",
-                                                    style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              153,
-                                                              153,
-                                                              153,
-                                                              0.8),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  Checkbox(
-                                                    activeColor:
-                                                        const Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                    fillColor:
-                                                        MaterialStateProperty
-                                                            .resolveWith<Color>(
-                                                                (states) {
-                                                      if (states.contains(
-                                                          MaterialState
-                                                              .selected)) {
-                                                        return const Color
-                                                                .fromRGBO(
-                                                            82,
-                                                            165,
-                                                            160,
-                                                            1); // Disabled color
-                                                      }
-                                                      return const Color
-                                                              .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1); // Regular color
-                                                    }),
-                                                    value: surveyAgree,
-                                                    onChanged: (val) {
-                                                      setState(() {
-                                                        surveyAgree = val!;
-                                                        if (surveyAgree) {}
-                                                      });
-                                                    },
-                                                  ),
-                                                ]),
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    "Descriptive",
-                                                    style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              153,
-                                                              153,
-                                                              153,
-                                                              0.8),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  Checkbox(
-                                                    activeColor:
-                                                        const Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                    fillColor:
-                                                        MaterialStateProperty
-                                                            .resolveWith<Color>(
-                                                                (states) {
-                                                      if (states.contains(
-                                                          MaterialState
-                                                              .selected)) {
-                                                        return const Color
-                                                                .fromRGBO(
-                                                            82,
-                                                            165,
-                                                            160,
-                                                            1); // Disabled color
-                                                      }
-                                                      return const Color
-                                                              .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1); // Regular color
-                                                    }),
-                                                    value: descriptiveAgree,
-                                                    onChanged: (val) {
-                                                      setState(() {
-                                                        descriptiveAgree = val!;
-                                                        if (descriptiveAgree) {}
-                                                      });
-                                                    },
-                                                  ),
-                                                ]),
+
+                                            // Row(
+                                            //     mainAxisAlignment:
+                                            //         MainAxisAlignment
+                                            //             .spaceBetween,
+                                            //     children: [
+                                            //       Text(
+                                            //         "Survey",
+                                            //         style: TextStyle(
+                                            //           color:
+                                            //               const Color.fromRGBO(
+                                            //                   153,
+                                            //                   153,
+                                            //                   153,
+                                            //                   0.8),
+                                            //           fontSize: height * 0.015,
+                                            //           fontFamily: "Inter",
+                                            //           fontWeight:
+                                            //               FontWeight.w700,
+                                            //         ),
+                                            //       ),
+                                            //       Checkbox(
+                                            //         activeColor:
+                                            //             const Color.fromRGBO(
+                                            //                 82, 165, 160, 1),
+                                            //         fillColor:
+                                            //             MaterialStateProperty
+                                            //                 .resolveWith<Color>(
+                                            //                     (states) {
+                                            //           if (states.contains(
+                                            //               MaterialState
+                                            //                   .selected)) {
+                                            //             return const Color
+                                            //                     .fromRGBO(
+                                            //                 82,
+                                            //                 165,
+                                            //                 160,
+                                            //                 1); // Disabled color
+                                            //           }
+                                            //           return const Color
+                                            //                   .fromRGBO(
+                                            //               82,
+                                            //               165,
+                                            //               160,
+                                            //               1); // Regular color
+                                            //         }),
+                                            //         value: surveyAgree,
+                                            //         onChanged: (val) {
+                                            //           setState(() {
+                                            //             surveyAgree = val!;
+                                            //             if (surveyAgree) {}
+                                            //           });
+                                            //         },
+                                            //       ),
+                                            //     ]),
+                                            // Row(
+                                            //     mainAxisAlignment:
+                                            //         MainAxisAlignment
+                                            //             .spaceBetween,
+                                            //     children: [
+                                            //       Text(
+                                            //         "Descriptive",
+                                            //         style: TextStyle(
+                                            //           color:
+                                            //               const Color.fromRGBO(
+                                            //                   153,
+                                            //                   153,
+                                            //                   153,
+                                            //                   0.8),
+                                            //           fontSize: height * 0.015,
+                                            //           fontFamily: "Inter",
+                                            //           fontWeight:
+                                            //               FontWeight.w700,
+                                            //         ),
+                                            //       ),
+                                            //       Checkbox(
+                                            //         activeColor:
+                                            //             const Color.fromRGBO(
+                                            //                 82, 165, 160, 1),
+                                            //         fillColor:
+                                            //             MaterialStateProperty
+                                            //                 .resolveWith<Color>(
+                                            //                     (states) {
+                                            //           if (states.contains(
+                                            //               MaterialState
+                                            //                   .selected)) {
+                                            //             return const Color
+                                            //                     .fromRGBO(
+                                            //                 82,
+                                            //                 165,
+                                            //                 160,
+                                            //                 1); // Disabled color
+                                            //           }
+                                            //           return const Color
+                                            //                   .fromRGBO(
+                                            //               82,
+                                            //               165,
+                                            //               160,
+                                            //               1); // Regular color
+                                            //         }),
+                                            //         value: descriptiveAgree,
+                                            //         onChanged: (val) {
+                                            //           setState(() {
+                                            //             descriptiveAgree = val!;
+                                            //             if (descriptiveAgree) {}
+                                            //           });
+                                            //         },
+                                            //       ),
+                                            //     ]),
                                           ],
                                         ),
                                       ],
@@ -1453,8 +1458,8 @@ class TeacherAssessmentSettingPublishState
                                                     "Number of Retries allowed",
                                                     style: TextStyle(
                                                       color:
-                                                          const Color.fromRGBO(
-                                                              28, 78, 80, 1),
+                                                      const Color.fromRGBO(
+                                                          51, 51, 51, 1),
                                                       fontSize: height * 0.0175,
                                                       fontFamily: "Inter",
                                                       fontWeight:

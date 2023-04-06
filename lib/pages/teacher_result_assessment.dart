@@ -4,6 +4,7 @@ import 'package:qna_test/Pages/teacher_result_submitted.dart';
 import 'package:qna_test/Pages/teacher_result_total.dart';
 import 'package:qna_test/pages/teacher_result_inprogress.dart';
 import '../Components/custom_card1.dart';
+import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 
 class TeacherResultAssessment extends StatefulWidget {
@@ -46,24 +47,10 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    DateTime Odate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    String openingDate = "${Odate.day}/${Odate.month}/${Odate.year}";
-    DateTime Edate = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    String closingDate = "${Edate.day}/${Edate.month}/${Edate.year}";
-    DateTime OTime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentStartDate!);
-    String openingTime = "${OTime.hour}:${OTime.month}";
-    DateTime ETime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentEndDate!);
-    String closingTime = "${ETime.hour}:${ETime.month}";
-    DateTime DTime = DateTime.fromMillisecondsSinceEpoch(
-        widget.result.assessmentDuration!);
-    String duration = "${DTime.hour}:${DTime.month}";
-    // DateTime testDate = DateTime.fromMillisecondsSinceEpoch(
-    //     widget.result.assessmentResults![0].attemptStartDate!);
-    // String attemptSdate = "${testDate.day}/${testDate.month}/${testDate.year}";
+
+    int? assessmentStartDate = widget.result.assessmentStartDate;
+    int? assessmentEndDate = widget.result.assessmentEndDate;
+    int? assessmentDuration = widget.result.assessmentDuration;
 
     return WillPopScope(
         onWillPop: () async => false,
@@ -197,15 +184,6 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                             255, 157, 77, 1),
                                         size: width * 0.05,
                                       ),
-                                      // Text(
-                                      //   attemptSdate,
-                                      //   style: TextStyle(
-                                      //       color: const Color.fromRGBO(
-                                      //           102, 102, 102, 0.7),
-                                      //       fontSize: height * 0.0125,
-                                      //       fontFamily: "Inter",
-                                      //       fontWeight: FontWeight.w400),
-                                      // ),
                                     ],
                                   ),
                                 ),
@@ -404,7 +382,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "${widget.result.totalScore!}",
+                                            "${widget.result.assessmentResults?.length}",
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -477,7 +455,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          "$duration hrs",
+                                          assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -509,7 +487,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          ' $openingDate, $openingTime IST',
+                                          assessmentStartDate != null ? '${convertDate(assessmentStartDate)}, ${convertTime(assessmentStartDate)} IST': " ",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -541,7 +519,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          "$closingDate, $closingTime IST",
+                                          assessmentEndDate != null ? '${convertDate(assessmentEndDate)}, ${convertTime(assessmentEndDate)} IST': " ",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -821,7 +799,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     height: height * 0.07,
                                     width: width * 0.277,
                                     child: Text(
-                                      "${widget.result.totalScore}",
+                                        widget.result.assessmentResults!.length != null && widget.result.assessmentResults?.isEmpty == false ? "${widget.result.assessmentResults!.length} ": "0",
                                       style: TextStyle(
                                           fontSize: height * 0.0187,
                                           color: const Color.fromRGBO(
@@ -896,7 +874,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     ),
                                     height: height * 0.07,
                                     width: width * 0.277,
-                                    child: Text(widget.result.assessmentResults!.length != null ? "${widget.result.assessmentResults!.length} ": "0",
+                                    child: Text(widget.result.assessmentResults!.length != null && widget.result.assessmentResults?.isEmpty == false ? "${widget.result.assessmentResults!.length} ": "0",
                                       style: TextStyle(
                                           fontSize: height * 0.0187,
                                           color: const Color.fromRGBO(
@@ -971,15 +949,15 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     ),
                                     height: height * 0.07,
                                     width: width * 0.277,
-                                    // child: Text(
-                                    //   "${widget.result.assessmentResults!.length}",
-                                    //   style: TextStyle(
-                                    //       fontSize: height * 0.0187,
-                                    //       color: const Color.fromRGBO(
-                                    //           255, 255, 255, 1),
-                                    //       fontFamily: "Inter",
-                                    //       fontWeight: FontWeight.w700),
-                                    // ),
+                                    child: Text(
+                                        "0",
+                                      style: TextStyle(
+                                          fontSize: height * 0.0187,
+                                          color: const Color.fromRGBO(
+                                              255, 255, 255, 1),
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w700),
+                                    ),
                                   ),
                                   SizedBox(
                                     height: height * 0.01,
