@@ -485,7 +485,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             SizedBox(
                               height: localHeight * 0.03,
                             ),
-                            GestureDetector(
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
                               onTap: () async {
                                 var pickedDate = await showDatePicker(
                                   context: context,
@@ -586,7 +588,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   enabled: true,
                                 ),
                               ),
-                            ),
+                            )),
                             SizedBox(
                               height: localHeight * 0.03,
                             ),

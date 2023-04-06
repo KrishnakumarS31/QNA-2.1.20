@@ -117,7 +117,9 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                 //SizedBox(height: height * 0.04),
                 Padding(
                     padding: EdgeInsets.only(left: height * 0.03),
-                    child: GestureDetector(
+                    child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
                       onTap: _launchUrl,
                       child: RichText(
                           text: TextSpan(children: [
@@ -142,7 +144,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                                 fontSize: height * 0.018)),
                       ])),
                     )),
-              ],
+                )],
             )),
       ),
     );

@@ -867,7 +867,9 @@ class _ChooseWidgetState extends State<ChooseWidget> {
     return Column(
       children: [
         for (int j = 0; j < widget.question.choices!.length; j++)
-          GestureDetector(
+          MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
             onTap: () {
               setState(() {
                 if (widget.selected!.contains(j)) {
@@ -931,7 +933,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                 ],
               ),
             ),
-          )
+          ))
       ],
     );
   }

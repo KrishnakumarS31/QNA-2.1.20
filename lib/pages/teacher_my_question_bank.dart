@@ -226,7 +226,9 @@ class QuestionPreview extends StatelessWidget {
       }
     }
 
-    return GestureDetector(
+    return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
       onTap: () {
         Navigator.pushNamed(
             context,
@@ -336,6 +338,6 @@ class QuestionPreview extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }

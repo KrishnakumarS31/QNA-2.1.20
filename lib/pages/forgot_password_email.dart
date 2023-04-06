@@ -194,7 +194,9 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
               SizedBox(
                 height: height * 0.06,
               ),
-              GestureDetector(
+              MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).pop();
                 },
@@ -220,7 +222,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   ],
                 ),
               ),
-            ])));
+              )])));
   }
 
   showAlertDialog(BuildContext context) {

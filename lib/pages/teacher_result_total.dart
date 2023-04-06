@@ -775,7 +775,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      GestureDetector(
+                      MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
@@ -794,7 +796,9 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                           itemBuilder: (context, index) =>
                               Column(
                                 children: [
-                                  GestureDetector(
+                                  MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                     onTap: () {
                                       Navigator.push(
                                         context,
@@ -809,14 +813,14 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         height: height,
                                         width: width,
                                       results: widget.result),
-                                  ),
+                                  )),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
                                 ],
                               ),
                         ),
-                      ),
+                      )),
                       SizedBox(
                         height: height * 0.03,
                       )

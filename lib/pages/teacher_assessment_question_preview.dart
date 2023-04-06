@@ -273,7 +273,9 @@ class TeacherAssessmentQuestionPreviewState
                             Center(
                               child: MouseRegion(
                                 cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
+                                child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
                                   onTap: () {
                                     print("Question id");
                                     print(widget.question.questionId);
@@ -386,7 +388,7 @@ class TeacherAssessmentQuestionPreviewState
                                       ),
                                     ),
                                   ),
-                                ),
+                                )),
                               ),
                             ),
                           ],

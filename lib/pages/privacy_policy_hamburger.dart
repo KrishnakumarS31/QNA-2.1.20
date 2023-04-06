@@ -94,7 +94,9 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                 SizedBox(height: height * 0.05),
                 Padding(
                   padding: EdgeInsets.only(left: height * 0.03),
-                  child: GestureDetector(
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
                     onTap: _launchUrl,
                     child: RichText(
                         text: TextSpan(children: [
@@ -115,7 +117,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                               fontWeight: FontWeight.w400,
                               fontSize: height * 0.018)),
                     ])),
-                  ),
+                  )),
                 ),
               ],
             )),

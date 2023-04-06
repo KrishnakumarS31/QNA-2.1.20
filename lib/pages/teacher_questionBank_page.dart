@@ -248,7 +248,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                     ),
                     SizedBox(height: height * 0.03),
                     Container(
-                      margin: EdgeInsets.only(left: height * 0.010),
+                      alignment: Alignment.center,
+                      //margin: EdgeInsets.only(left: height * 0.010),
                       child: RichText(
                           textAlign: TextAlign.left,
                           text: TextSpan(children: [
@@ -294,7 +295,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             question: i,
                             ),
                       SizedBox(height: height * 0.02),
-                      GestureDetector(
+                      MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
                         onTap: () {
                           getQuestionData();
                         },
@@ -315,7 +318,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 color: Color.fromRGBO(28, 78, 80, 1),
                               ),
                             ]),
-                      ),
+                      )),
                       SizedBox(height: height * 0.02),
                       Center(
                         child: SizedBox(
@@ -400,7 +403,9 @@ class QuestionPreview extends StatelessWidget {
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: GestureDetector(
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(
               context,
@@ -505,7 +510,7 @@ class QuestionPreview extends StatelessWidget {
             ),
           ),
         ),
-      ),
+      )),
     );
   }
 }

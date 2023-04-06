@@ -259,7 +259,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.09,
                         ),
-                        GestureDetector(
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, '/settingsLanguages');
                             // Navigator.push(
@@ -294,7 +296,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                           fontSize: height * 0.02))),
                             ],
                           ),
-                        ),
+                        )),
                       ],
                     ),
                   ])));
@@ -456,7 +458,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.09,
                         ),
-                        GestureDetector(
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, '/settingsLanguages');
                             // Navigator.push(
@@ -491,7 +495,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                           fontSize: height * 0.023))),
                             ],
                           ),
-                        ),
+                        )),
                       ],
                     ),
                   ])));

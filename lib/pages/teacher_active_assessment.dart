@@ -977,7 +977,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                     Row(
                       children: [
                         const Expanded(child: Divider()),
-                        GestureDetector(
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
                           onTap: () {
                             showQuestionDetails();
                           },
@@ -990,7 +992,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ),
+                        )),
                         IconButton(
                           onPressed: () {
                             showQuestionDetails();

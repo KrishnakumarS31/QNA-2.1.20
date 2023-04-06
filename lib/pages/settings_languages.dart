@@ -149,7 +149,9 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                         child: Column(
                           children: [
                             for (int j = 0; j < languages.length; j++)
-                              GestureDetector(
+                              MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
                                 onTap: () async {
                                   late String selectedLocale;
                                   setState(() {
@@ -248,7 +250,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                         ],
                                       ),
                                     )),
-                              ),
+                              )),
                           ],
                         )),
                   ),

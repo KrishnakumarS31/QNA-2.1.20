@@ -170,7 +170,9 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                     ),
                                   ],
                                 ),
-                                GestureDetector(
+                                MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
                                   onTap: () {
                                     showDialog(
                                         context: context,
@@ -781,7 +783,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                       )
                                     ],
                                   ),
-                                ),
+                                )),
                               ],
                             ),
                             Text(

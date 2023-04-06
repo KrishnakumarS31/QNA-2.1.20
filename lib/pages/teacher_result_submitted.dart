@@ -766,7 +766,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      GestureDetector(
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
@@ -783,7 +785,9 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           itemCount: widget.result.assessmentResults!.length,
                           itemBuilder: (context, index) => Column(
                             children: [
-                              GestureDetector(
+                              MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -799,14 +803,14 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     width: width,
                                  results: widget.result,
                                 ),
-                              ),
+                              )),
                               SizedBox(
                                 height: height * 0.02,
                               ),
                             ],
                           ),
                         ),
-                      ),
+                      )),
                       SizedBox(
                         height: height * 0.03,
                       )

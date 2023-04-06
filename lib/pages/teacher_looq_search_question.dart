@@ -249,7 +249,9 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                     ),
                     SizedBox(height: height * 0.02),
                     for (Question i in question)
-                      GestureDetector(
+                      MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(
                                 context,
@@ -269,7 +271,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                             height: height,
                             width: width,
                             question: i,
-                          )),
+                          ))),
                     Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(

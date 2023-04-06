@@ -326,7 +326,9 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                     SizedBox(
                       height: height * 0.02,
                     ),
-                    GestureDetector(
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
                       onTap: () {
                         loadMore(searchValue);
                       },
@@ -348,7 +350,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                           )
                         ],
                       ),
-                    ),
+                    )),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -377,7 +379,9 @@ class CardInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: GestureDetector(
+      child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
         onTap: () async {
           Provider.of<EditAssessmentProvider>(context, listen: false)
               .updateAssessment(assessment);
@@ -620,7 +624,7 @@ class CardInfo extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }

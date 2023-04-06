@@ -179,7 +179,7 @@ class TeacherSelectedQuestionAssessmentState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -272,7 +272,9 @@ class TeacherSelectedQuestionAssessmentState
                                   ),
                                 ],
                               ),
-                              GestureDetector(
+                              MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
                                 onTap: () {
                                   showDialog(
                                       context: context,
@@ -876,8 +878,7 @@ class TeacherSelectedQuestionAssessmentState
                                     )
                                   ],
                                 ),
-                              ),
-                            ],
+                              )), ],
                           ),
                           Text(
                             'Topic: ${assessment.topic}',
@@ -1028,7 +1029,6 @@ class TeacherSelectedQuestionAssessmentState
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        //shape: StadiumBorder(),
                         onPressed: () async {
                           ResponseEntity statusCode = ResponseEntity();
                           if (assessment.assessmentId != null) {
@@ -1271,7 +1271,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       padding: const EdgeInsets.all(8.0),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        child: GestureDetector(
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
           onTap: () {
             // showAlertDialog(
             //   context,
@@ -1315,7 +1317,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                           ),
                         ],
                       ),
-                      GestureDetector(
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
                         onTap: () {
                           showAlertDialog(
                             context,
@@ -1339,12 +1343,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                           ],
                         ),
                       )
-                    ],
+                      )],
                   ),
                   SizedBox(
                     height: widget.height * 0.01,
                   ),
-                  GestureDetector(
+                  MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(
                           context,
@@ -1374,7 +1380,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             fontWeight: FontWeight.w400),
                       ),
                     ),
-                  ),
+                  )),
                   SizedBox(
                     height: widget.height * 0.01,
                   ),
@@ -1424,6 +1430,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           ),
         ),
       ),
-    );
+    ));
   }
 }

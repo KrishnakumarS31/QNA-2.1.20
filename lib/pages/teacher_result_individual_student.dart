@@ -225,7 +225,9 @@ class TeacherResultIndividualStudentState
                                               .questions![index]
                                               .questionType! ==
                                           "MCQ"
-                                      ? GestureDetector(
+                                      ? MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                           onTap: () {},
                                           child: QuesAndAns(
                                             height: height,
@@ -238,7 +240,7 @@ class TeacherResultIndividualStudentState
                                             //     .assessmentResults![0]
                                             //     .questions,
                                           ),
-                                        )
+                                        ))
                                       : const SizedBox(),
                                   SizedBox(
                                     height: height * 0.02,
@@ -288,7 +290,9 @@ class TeacherResultIndividualStudentState
                                               .questions![index]
                                               .questionType! ==
                                           "SURVEY"
-                                      ? GestureDetector(
+                                      ? MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                           onTap: () {},
                                           child: QuesAndAns(
                                             height: height,
@@ -301,8 +305,8 @@ class TeacherResultIndividualStudentState
                                             //     .assessmentResults![0]
                                             //     .questions![0]
                                             //     .descriptiveAnswers!,
-                                          ),
-                                        )
+                                          )))
+
                                   : const SizedBox(),
                                   SizedBox(
                                     height: height * 0.02,
@@ -354,7 +358,9 @@ class TeacherResultIndividualStudentState
                                               .questions![0]
                                               .questionType! ==
                                           "descriptive"
-                                      ? GestureDetector(
+                                      ? MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                           onTap: () {},
                                           child: QuesAndAns(
                                             height: height,
@@ -368,7 +374,7 @@ class TeacherResultIndividualStudentState
                                             //     .questions![0]
                                             //     .descriptiveAnswers!,
                                           ),
-                                        )
+                                        ))
                                       : const SizedBox(),
                                   SizedBox(
                                     height: height * 0.02,

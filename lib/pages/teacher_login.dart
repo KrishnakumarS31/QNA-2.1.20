@@ -1,19 +1,15 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/forgot_password_email.dart';
-import 'package:qna_test/Pages/teacher_registration_page.dart';
-import 'package:qna_test/Pages/teacher_selection_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/teacher_forgot_password.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
-import '../DataSource/http_url.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'teacher_forgot_password_email.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key,});
@@ -36,6 +32,20 @@ class TeacherLoginState extends State<TeacherLogin> {
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   SharedPreferences? loginData;
   late bool newUser;
+
+  Future<void> _launchUrlTerms() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _launchUrlPrivacy() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   void initState() {
@@ -108,7 +118,7 @@ class TeacherLoginState extends State<TeacherLogin> {
               ),
               backgroundColor: Colors.transparent,
             ),
-            endDrawer: EndDrawerMenuPreLogin(),
+            endDrawer: const EndDrawerMenuPreLogin(),
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
@@ -321,7 +331,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                               ],
                             ),
                             SizedBox(height: height * 0.02),
-                            GestureDetector(
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
                               onTap: () {
                                 Navigator.pushNamed(
                                     context,
@@ -353,7 +365,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           fontSize: height * 0.017)),
                                 ),
                               ),
-                            ),
+                            )),
                             SizedBox(height: height * 0.01),
                           ],
                         ),
@@ -413,13 +425,13 @@ class TeacherLoginState extends State<TeacherLogin> {
                               },
                             ),
                           ),
-                          SizedBox(width: width * 0.05),
+                          SizedBox(width: width * 0.02),
                           RichText(
                               text: TextSpan(children: [
                             TextSpan(
                               text: AppLocalizations.of(context)!.agree_msg,
                               style: TextStyle(
-                                  fontSize: height * 0.017,
+                                  fontSize: height * 0.020,
                                   fontWeight: FontWeight.w400,
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: "Inter"),
@@ -427,8 +439,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                             TextSpan(
                               text:
                                   AppLocalizations.of(context)!.privacy_Policy,
+                              recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                               style: TextStyle(
-                                  fontSize: height * 0.017,
+                                  fontSize: height * 0.020,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.underline,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
@@ -437,7 +450,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                             TextSpan(
                               text: AppLocalizations.of(context)!.and,
                               style: TextStyle(
-                                  fontSize: height * 0.017,
+                                  fontSize: height * 0.020,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.underline,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
@@ -445,8 +458,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                             ),
                             TextSpan(
                               text: AppLocalizations.of(context)!.terms,
+                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                               style: TextStyle(
-                                  fontSize: height * 0.017,
+                                  fontSize: height * 0.020,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.underline,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
@@ -455,7 +469,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                             TextSpan(
                               text: AppLocalizations.of(context)!.services,
                               style: TextStyle(
-                                  fontSize: height * 0.017,
+                                  fontSize: height * 0.020,
                                   fontWeight: FontWeight.w400,
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: "Inter"),
@@ -607,7 +621,9 @@ class TeacherLoginState extends State<TeacherLogin> {
                             // );
                           },
                         ),
-                        GestureDetector(
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, '/teacherRegistrationPage');
                             // Navigator.push(
@@ -628,7 +644,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                       fontSize: height * 0.0225))),
-                        ),
+                        )),
                         //SizedBox(width: width * 0.15),
                         // domainName == "https://dev.qnatest.com"
                         //     ? Container(

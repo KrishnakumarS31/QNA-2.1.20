@@ -259,7 +259,9 @@ class CardInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: GestureDetector(
+      child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
         onTap: () {
           Navigator.pushNamed(context, '/studentLooqSelectedAssessment');
           // Navigator.push(
@@ -411,7 +413,7 @@ class CardInfo extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }

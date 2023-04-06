@@ -639,7 +639,9 @@ class TeacherAssessmentSettingPublishState
                                                             FontWeight.w600,
                                                       ),
                                                     ),
-                                                    GestureDetector(
+                                                    MouseRegion(
+                                                  cursor: SystemMouseCursors.click,
+                                                   child: GestureDetector(
                                                       onTap: () async {
                                                         var pickedDate =
                                                             await showDatePicker(
@@ -728,7 +730,7 @@ class TeacherAssessmentSettingPublishState
                                                           onChanged: (value) {},
                                                         ),
                                                       ),
-                                                    ),
+                                                    )),
                                                   ],
                                                 ),
                                               ),
@@ -836,7 +838,9 @@ class TeacherAssessmentSettingPublishState
                                                             FontWeight.w600,
                                                       ),
                                                     ),
-                                                    GestureDetector(
+                                                    MouseRegion(
+                                                    cursor: SystemMouseCursors.click,
+                                                    child: GestureDetector(
                                                       onTap: () async {
                                                         var pickedDate =
                                                             await showDatePicker(
@@ -926,7 +930,7 @@ class TeacherAssessmentSettingPublishState
                                                           onChanged: (value) {},
                                                         ),
                                                       ),
-                                                    ),
+                                                    )),
                                                   ],
                                                 ),
                                               ),
@@ -951,7 +955,9 @@ class TeacherAssessmentSettingPublishState
                                                             FontWeight.w600,
                                                       ),
                                                     ),
-                                                    GestureDetector(
+                                                    MouseRegion(
+                                                      cursor: SystemMouseCursors.click,
+                                                       child: GestureDetector(
                                                         onTap: () async {
                                                           _selectTime(context);
                                                         },
@@ -1041,7 +1047,7 @@ class TeacherAssessmentSettingPublishState
                                                         //   enabled: true,
                                                         //   onChanged: (value) {},
                                                         // ),
-                                                        ),
+                                                        )),
                                                   ],
                                                 ),
                                               )

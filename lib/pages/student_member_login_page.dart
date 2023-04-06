@@ -178,7 +178,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: localHeight * 0.017),
+                                                    fontSize: localHeight * 0.02),
                                               ),
                                               TextSpan(
                                                   text: "\t*",
@@ -188,7 +188,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
                                                       fontSize:
-                                                      localHeight * 0.017)),
+                                                      localHeight * 0.02)),
                                             ])),
                                       ),
                                       SizedBox(
@@ -206,13 +206,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
-                                                  localHeight * 0.016),
+                                                  localHeight * 0.02),
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .hint_regId,
-                                              prefixIcon: const Icon(
+                                              prefixIcon: Icon(
                                                   Icons.contacts_outlined,
-                                                  color: Color.fromRGBO(
+                                                  size: localHeight * 0.05,
+                                                  color: const Color.fromRGBO(
                                                       82, 165, 160, 1)),
                                             ),
                                             onChanged: (value) {
@@ -250,7 +251,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: localHeight * 0.017),
+                                                    fontSize: localHeight * 0.02),
                                               ),
                                               TextSpan(
                                                   text: " *",
@@ -260,7 +261,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
                                                       fontSize:
-                                                      localHeight * 0.017)),
+                                                      localHeight * 0.02)),
                                             ])),
                                       ),
                                       SizedBox(
@@ -281,7 +282,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       102, 102, 102, 0.3),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
-                                                  fontSize: localWidth * 0.016),
+                                                  fontSize: localWidth * 0.02),
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .your_password,
@@ -298,9 +299,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       _isObscure = !_isObscure;
                                                     });
                                                   }),
-                                              prefixIcon: const Icon(
+                                              prefixIcon: Icon(
                                                   Icons.lock_outline_rounded,
-                                                  color: Color.fromRGBO(
+                                                  size: localHeight * 0.05,
+                                                  color: const Color.fromRGBO(
                                                       82, 165, 160, 1)),
                                             ),
                                             validator: (value) {
@@ -324,7 +326,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
-                                        GestureDetector(
+                                        MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                           onTap: () {
                                             Navigator.pushNamed(
                                                 context,
@@ -350,14 +354,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
-                                                  localHeight * 0.014)),
-                                        ),
+                                                  localHeight * 0.017)),
+                                        )),
                                       ],
                                     )),
-                                SizedBox(height: localHeight * 0.03),
+                                SizedBox(height: localHeight * 0.02),
                                 Row(
                                     children: [
-                                      SizedBox(width: localHeight * 0.55),
+                                      SizedBox(width: localHeight * 0.5),
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
@@ -407,14 +411,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         });
                                       },
                                     ),
-                                    SizedBox(width: localWidth * 0.03),
+                                    SizedBox(width: localWidth * 0.02),
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
                                             text: AppLocalizations.of(context)!
                                                 .agree_msg,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.017,
                                                 fontWeight: FontWeight.w400,
                                                 color: const Color.fromRGBO(
                                                     51, 51, 51, 1),
@@ -425,7 +429,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 .privacy_Policy,
                                             recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.017,
                                                 fontWeight: FontWeight.w400,
                                                 decoration:
                                                 TextDecoration.underline,
@@ -436,7 +440,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           TextSpan(
                                             text: AppLocalizations.of(context)!.and,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.017,
                                                 fontWeight: FontWeight.w400,
                                                 decoration:
                                                 TextDecoration.underline,
@@ -449,7 +453,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             AppLocalizations.of(context)!.terms,
                                             recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.017,
                                                 fontWeight: FontWeight.w400,
                                                 decoration:
                                                 TextDecoration.underline,
@@ -461,7 +465,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             text: AppLocalizations.of(context)!
                                                 .services,
                                             style: TextStyle(
-                                                fontSize: localHeight * 0.025,
+                                                fontSize: localHeight * 0.017,
                                                 fontWeight: FontWeight.w400,
                                                 color: const Color.fromRGBO(
                                                     51, 51, 51, 1),
@@ -765,9 +769,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             hintText:
                                             AppLocalizations.of(context)!
                                                 .hint_regId,
-                                            prefixIcon: const Icon(
+                                            prefixIcon: Icon(
                                                 Icons.contacts_outlined,
-                                                color: Color.fromRGBO(
+                                                size: localHeight * 0.05,
+                                                color: const Color.fromRGBO(
                                                     82, 165, 160, 1)),
                                           ),
                                           validator: (value) {
@@ -846,9 +851,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     _isObscure = !_isObscure;
                                                   });
                                                 }),
-                                            prefixIcon: const Icon(
+                                            prefixIcon: Icon(
                                                 Icons.lock_outline_rounded,
-                                                color: Color.fromRGBO(
+                                                size: localHeight * 0.05,
+                                                color: const Color.fromRGBO(
                                                     82, 165, 160, 1)),
                                           ),
                                           validator: (value) {
@@ -866,43 +872,43 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   ],
                                 ),
                                 SizedBox(height: localHeight * 0.02),
-                                Container(
-                                    padding: EdgeInsets.only(
-                                        left: localHeight * 0.24),
-                                    child: Row(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context,
-                                                '/forgotPasswordEmail',
-                                                arguments: true
-                                            );
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context,
+                                            '/forgotPasswordEmail',
+                                            arguments: true
+                                        );
 
-                                            // Navigator.push(
-                                            //   context,
-                                            //   PageTransition(
-                                            //     type: PageTransitionType
-                                            //         .rightToLeft,
-                                            //     child: ForgotPasswordEmail(
-                                            //         isFromStudent: true,
-                                            //         ),
-                                            //   ),
-                                            // );
-                                          },
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .forgot_password,
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      48, 145, 139, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize:
-                                                  localHeight * 0.014)),
-                                        ),
-                                      ],
+                                        // Navigator.push(
+                                        //   context,
+                                        //   PageTransition(
+                                        //     type: PageTransitionType
+                                        //         .rightToLeft,
+                                        //     child: ForgotPasswordEmail(
+                                        //         isFromStudent: true,
+                                        //         ),
+                                        //   ),
+                                        // );
+                                      },
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .forgot_password,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  48, 145, 139, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize:
+                                              localHeight * 0.014)),
                                     )),
+                                  ],
+                                ),
                                 SizedBox(height: localHeight * 0.03),
                                 Align(
                                   alignment: Alignment.topLeft,

@@ -545,7 +545,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
+                          child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
                             onTap: () {
                               getQuestionData();
                             },
@@ -559,7 +561,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          ),
+                          )),
                         ),
                         const Icon(Icons.chevron_right)
                       ],
@@ -669,48 +671,47 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       floatingLabelBehavior:
                                                           FloatingLabelBehavior
                                                               .always,
-                                                      label: SizedBox(
-                                                        width: width * 0.18,
-                                                        child: Row(
-                                                          children: [
-                                                            Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .sub_caps,
-                                                              //'SUBJECT',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      height *
-                                                                          0.015,
-                                                                  fontFamily:
-                                                                      "Inter",
-                                                                  color: const Color
-                                                                          .fromRGBO(
-                                                                      51,
-                                                                      51,
-                                                                      51,
-                                                                      1),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600),
-                                                            ),
-                                                            Text(
-                                                              '\t*',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      height *
-                                                                          0.015,
-                                                                  fontFamily:
-                                                                      "Inter",
-                                                                  color: Colors
-                                                                      .red,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
+                                                      labelText: "${AppLocalizations.of(context)!.sub_caps} *",
+                                                      // label: SizedBox(
+                                                      //   width: width * 0.10,
+                                                      //   child: Row(
+                                                      //     children: [
+                                                      //       Text(
+                                                      //         AppLocalizations.of(context)!.sub_caps,
+                                                      //         //'SUBJECT',
+                                                      //         style: TextStyle(
+                                                      //             fontSize:
+                                                      //                 height *
+                                                      //                     0.015,
+                                                      //             fontFamily:
+                                                      //                 "Inter",
+                                                      //             color: const Color
+                                                      //                     .fromRGBO(
+                                                      //                 51,
+                                                      //                 51,
+                                                      //                 51,
+                                                      //                 1),
+                                                      //             fontWeight:
+                                                      //                 FontWeight
+                                                      //                     .w600),
+                                                      //       ),
+                                                      //       Text(
+                                                      //         '\t*',
+                                                      //         style: TextStyle(
+                                                      //             fontSize:
+                                                      //                 height *
+                                                      //                     0.015,
+                                                      //             fontFamily:
+                                                      //                 "Inter",
+                                                      //             color: Colors
+                                                      //                 .red,
+                                                      //             fontWeight:
+                                                      //                 FontWeight
+                                                      //                     .w600),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
                                                       labelStyle: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(
@@ -719,7 +720,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.015),
+                                                              height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(102,
@@ -783,48 +784,49 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       floatingLabelBehavior:
                                                           FloatingLabelBehavior
                                                               .always,
-                                                      label: SizedBox(
-                                                        width: width * 0.15,
-                                                        child: Row(
-                                                          children: [
-                                                            Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .class_caps,
-                                                              // 'CLASS',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      height *
-                                                                          0.015,
-                                                                  fontFamily:
-                                                                      "Inter",
-                                                                  color: const Color
-                                                                          .fromRGBO(
-                                                                      51,
-                                                                      51,
-                                                                      51,
-                                                                      1),
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600),
-                                                            ),
-                                                            Text(
-                                                              '\t*',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      height *
-                                                                          0.015,
-                                                                  fontFamily:
-                                                                      "Inter",
-                                                                  color: Colors
-                                                                      .red,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
+                                                      labelText: "${AppLocalizations.of(context)!.class_caps} *",
+                                                      // label: SizedBox(
+                                                      //   width: width * 0.15,
+                                                      //   child: Row(
+                                                      //     children: [
+                                                      //       Text(
+                                                      //         AppLocalizations.of(
+                                                      //                 context)!
+                                                      //             .class_caps,
+                                                      //         // 'CLASS',
+                                                      //         style: TextStyle(
+                                                      //             fontSize:
+                                                      //                 height *
+                                                      //                     0.015,
+                                                      //             fontFamily:
+                                                      //                 "Inter",
+                                                      //             color: const Color
+                                                      //                     .fromRGBO(
+                                                      //                 51,
+                                                      //                 51,
+                                                      //                 51,
+                                                      //                 1),
+                                                      //             fontWeight:
+                                                      //                 FontWeight
+                                                      //                     .w600),
+                                                      //       ),
+                                                      //       Text(
+                                                      //         '\t*',
+                                                      //         style: TextStyle(
+                                                      //             fontSize:
+                                                      //                 height *
+                                                      //                     0.015,
+                                                      //             fontFamily:
+                                                      //                 "Inter",
+                                                      //             color: Colors
+                                                      //                 .red,
+                                                      //             fontWeight:
+                                                      //                 FontWeight
+                                                      //                     .w600),
+                                                      //       ),
+                                                      //     ],
+                                                      //   ),
+                                                      // ),
                                                       labelStyle: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(
@@ -833,7 +835,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.015),
+                                                              height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(102,
@@ -910,7 +912,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.015),
+                                                              height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(102,
@@ -973,7 +975,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.015),
+                                                              height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
                                                                   .fromRGBO(102,
@@ -1171,7 +1173,9 @@ class _CardInfoState extends State<CardInfo> {
     return Center(
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        child: GestureDetector(
+        child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
           onTap: () async {
             Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
                 .reSetQuestionList();
@@ -1428,7 +1432,7 @@ class _CardInfoState extends State<CardInfo> {
               ],
             ),
           ),
-        ),
+            )),
       ),
     );
   }

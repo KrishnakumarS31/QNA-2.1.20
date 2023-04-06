@@ -754,7 +754,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          GestureDetector(
+                          MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -830,8 +832,10 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                 ],
                               ),
                             ),
-                          ),
-                          GestureDetector(
+                          )),
+                          MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -905,8 +909,10 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                 ],
                               ),
                             ),
-                          ),
-                          GestureDetector(
+                          )),
+                          MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                             onTap: () {
                               Navigator.push(
                                 context,
@@ -981,7 +987,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                 ],
                               ),
                             ),
-                          ),
+                          )),
                         ],
                       ),
                       SizedBox(

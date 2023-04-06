@@ -179,7 +179,9 @@ class TeacherForgotPasswordEmailState
               SizedBox(
                 height: height * 0.06,
               ),
-              GestureDetector(
+              MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
                 onTap: () {
                   Navigator.of(context).pop();
                 },
@@ -204,7 +206,7 @@ class TeacherForgotPasswordEmailState
                                 fontSize: 16))),
                   ],
                 ),
-              ),
+              )),
             ])));
   }
 

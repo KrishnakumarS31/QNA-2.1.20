@@ -926,7 +926,9 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                     Row(
                       children: [
                         const Expanded(child: Divider()),
-                        GestureDetector(
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
                           onTap: () {
                             showQuestionDetails();
                           },
@@ -939,7 +941,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ),
+                        )),
                         IconButton(
                           onPressed: () {
                             showQuestionDetails();

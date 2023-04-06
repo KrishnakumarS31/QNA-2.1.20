@@ -385,7 +385,9 @@ class TeacherAddMyQuestionBankForAssessmentState
                       Positioned(
                           top: height * 0.52,
                           left: width * 0.8,
-                          child: GestureDetector(
+                          child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
                             onTap: (){
 
                               Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
@@ -418,7 +420,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                   const Color.fromRGBO(28, 78, 80, 1),
                               child:  Icon(Icons.add),
                             ),
-                          )
+                          ))
                       )
                     ],
                   ),
@@ -495,7 +497,9 @@ class QuestionPreview extends StatelessWidget {
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontWeight: FontWeight.w600),
                   ),
-                  GestureDetector(
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(
                         context,
@@ -538,7 +542,7 @@ class QuestionPreview extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
+                  ))
                 ],
               ),
               SizedBox(

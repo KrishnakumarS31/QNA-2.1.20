@@ -130,6 +130,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         ),
                                         MouseRegion(
                                           cursor: SystemMouseCursors.click,
+                                          child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
                                           child: GestureDetector(
                                             onTap: () {
                                               context.read<QuestionNumProvider>()
@@ -146,7 +148,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                 fontWeight: FontWeight.w700,
                                               ),
                                             ),
-                                          ),
+                                          )),
                                         )
                                       ]),
                                 ),
@@ -226,7 +228,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         .watch<Questions>()
                                         .totalQuestion
                                         .length; index = index + 2)
-                                      GestureDetector(
+                                      MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                         onTap: () {},
                                         child: Container(
                                             width: localWidth * 0.4,
@@ -418,7 +422,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   ]),
                                             )
                                         ),
-                                      )
+                                      ))
                                   ]),
                               Column(
                                   children: [
@@ -426,7 +430,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         .watch<Questions>()
                                         .totalQuestion
                                         .length; index = index + 2)
-                                      GestureDetector(
+                                      MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                         onTap: () {},
                                         child: Container(
                                           //decoration: BoxDecoration(border: Border.all()),
@@ -618,7 +624,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   ]),
                                             )
                                         ),
-                                      )
+                                      ))
                                   ]),
                             ],
                           ),
@@ -706,6 +712,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         ),
                                         MouseRegion(
                                           cursor: SystemMouseCursors.click,
+                                          child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
                                           child: GestureDetector(
                                           onTap: () {
                                             context.read<QuestionNumProvider>()
@@ -723,7 +731,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                             ),
                                           ),
                                           ),
-                                        )]),
+                                        ))]),
                                 ),
                                 Align(
                                   alignment: Alignment.topCenter,
@@ -786,7 +794,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                     .watch<Questions>()
                                     .totalQuestion
                                     .length; index++)
-                                  GestureDetector(
+                                  MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                     onTap: () {},
                                     child: Container(
                                         margin: const EdgeInsets.all(5),
@@ -964,7 +974,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                               ]),
                                         )
                                     ),
-                                  )
+                                  ))
                               ]),
                           Column(
                             children: [

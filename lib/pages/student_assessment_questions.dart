@@ -808,7 +808,9 @@ class StudQuestionState extends State<StudQuestion> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          GestureDetector(
+                                          MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                             onTap: () {
                                               if (Provider.of<Questions>(
                                                                   context,
@@ -873,7 +875,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                     height: height,
                                                     width: width,
                                                   ),
-                                          ),
+                                          )),
                                           Text(
                                             AppLocalizations.of(context)!
                                                 .not_sure,
@@ -989,7 +991,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                 .watch<QuestionNumProvider>()
                                                 .questionNum
                                         ? const SizedBox()
-                                        : GestureDetector(
+                                        : MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                             onTap: () {
                                               context
                                                   .read<QuestionNumProvider>()
@@ -1042,7 +1046,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 ],
                                               ),
                                             ),
-                                          )
+                                          ))
                                     : const SizedBox(),
                                 context
                                             .watch<QuestionNumProvider>()
@@ -1495,7 +1499,9 @@ class StudQuestionState extends State<StudQuestion> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          GestureDetector(
+                                          MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                             onTap: () {
                                               if (Provider.of<Questions>(
                                                                   context,
@@ -1560,7 +1566,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                     height: height,
                                                     width: width,
                                                   ),
-                                          ),
+                                          )),
                                           Text(
                                             AppLocalizations.of(context)!
                                                 .not_sure,
@@ -1676,7 +1682,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                 .watch<QuestionNumProvider>()
                                                 .questionNum
                                         ? const SizedBox()
-                                        : GestureDetector(
+                                        : MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                                             onTap: () {
                                               context
                                                   .read<QuestionNumProvider>()
@@ -1729,7 +1737,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 ],
                                               ),
                                             ),
-                                          )
+                                          ))
                                     : const SizedBox(),
                                 context
                                             .watch<QuestionNumProvider>()
@@ -1916,7 +1924,9 @@ class ChooseWidget extends StatelessWidget {
                     .choices!
                     .length;
             j++)
-          GestureDetector(
+          MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
             onTap: () {
               if (selected.contains(question
                   .data!
@@ -2032,7 +2042,7 @@ class ChooseWidget extends StatelessWidget {
                         ),
                       ])),
             ),
-          )
+          ))
       ],
     );
   }

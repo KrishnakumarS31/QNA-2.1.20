@@ -359,7 +359,9 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                   ),
                                 ],
                               ),
-                              GestureDetector(
+                              MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
                                 onTap: () {
                                   showDialog(
                                       context: context,
@@ -971,7 +973,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                     )
                                   ],
                                 ),
-                              ),
+                              )),
                             ],
                           ),
                           Text(
@@ -1378,7 +1380,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       ),
                     ],
                   ),
-                  GestureDetector(
+                  MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
                     onTap: () {
                       showAlertDialog(
                         context,
@@ -1401,13 +1405,15 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         ),
                       ],
                     ),
-                  )
+                  ))
                 ],
               ),
               SizedBox(
                 height: widget.height * 0.01,
               ),
-              GestureDetector(
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
                 onTap: () {
                   showQuestionPreview(context);
                   // Navigator.push(
@@ -1434,7 +1440,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-              ),
+              )),
               SizedBox(
                 height: widget.height * 0.01,
               ),

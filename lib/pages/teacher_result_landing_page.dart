@@ -296,7 +296,9 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                           itemCount: results.length,
                           itemBuilder: (context, index) => Column(
                             children: [
-                              GestureDetector(
+                              MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
                                 onTap: () {
                                   Navigator.push(
                                     context,
@@ -315,7 +317,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                   //subject: results[index].subject,
                                   result: results[index]
                                 ),
-                              ),
+                              )),
                               SizedBox(
                                 height: height * 0.02,
                               ),
@@ -329,7 +331,9 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                        child: GestureDetector(
+                        child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: GestureDetector(
                           onTap: () {
                             getData();
                           },
@@ -365,7 +369,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               ),
                             ],
                           ),
-                        ),
+                        )),
                       ),
                       SizedBox(
                         height: height * 0.02,

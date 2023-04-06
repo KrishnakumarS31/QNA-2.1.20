@@ -196,7 +196,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   Icons.account_box_outlined,
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),
-                                                  size: height * 0.04,
+                                                  size: height * 0.05,
                                                 ),
                                               ),
                                               validator: (value) {
@@ -232,7 +232,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           102, 102, 102, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: height * 0.017),
+                                                      fontSize: height * 0.02),
                                                 ),
                                                 // TextSpan(
                                                 //     text: "\t*",
@@ -280,7 +280,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                         .assignment_ind_outlined,
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
-                                                    size: height * 0.03),
+                                                    size: height * 0.05),
                                               ),
                                             )),
                                       ],
@@ -289,7 +289,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   SizedBox(height: height * 0.03),
                                   Row(
                                       children: [
-                                        SizedBox(width: height * 0.35),
+                                        SizedBox(width: height * 0.4),
                                         RichText(
                                             text: TextSpan(children: [
                                               TextSpan(
@@ -309,7 +309,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                           219, 35, 35, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: height * 0.017)),
+                                                      fontSize: height * 0.02)),
                                             ])),
                                       ]
                                   ),
@@ -346,7 +346,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               text: AppLocalizations.of(context)!
                                                   .agree_msg,
                                               style: TextStyle(
-                                                  fontSize: height * 0.025,
+                                                  fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
@@ -357,7 +357,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   .privacy_Policy,
                                                 recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                               style: TextStyle(
-                                                  fontSize: height * 0.025,
+                                                  fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -368,7 +368,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!.and,
                                               style: TextStyle(
-                                                  fontSize: height * 0.025,
+                                                  fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -381,7 +381,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               AppLocalizations.of(context)!.terms,
                                               recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                               style: TextStyle(
-                                                  fontSize: height * 0.025,
+                                                  fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -393,7 +393,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               text: AppLocalizations.of(context)!
                                                   .services,
                                               style: TextStyle(
-                                                  fontSize: height * 0.025,
+                                                  fontSize: height * 0.017,
                                                   fontWeight: FontWeight.w400,
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
