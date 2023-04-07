@@ -452,7 +452,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                             SizedBox(
                               height: localHeight * 0.02,
                             ),
-                            Text(
+                          Align(
+                              alignment: Alignment.center,
+                              child: Text(
                               name,
                               style: Theme.of(context)
                                   .primaryTextTheme
@@ -463,7 +465,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: -0.02,
                                       fontSize: 24)),
-                            ),
+                            )),
                             SizedBox(
                               height: localHeight * 0.03,
                             ),

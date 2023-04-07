@@ -349,14 +349,18 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text(
+                              TextButton(
+                                  onPressed: () {
+                                    getData();
+                                  },
+                            child: Text(
                                 'View More',
                                 style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.0187,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w600),
-                              ),
+                              )),
                               IconButton(
                                 icon: Icon(
                                   Icons.chevron_right,
@@ -367,7 +371,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                   getData();
                                 },
                               ),
-                            ],
+                              ],
                           ),
                         )),
                       ),

@@ -26,7 +26,7 @@ class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     var d = DateTime.fromMicrosecondsSinceEpoch(
-        widget.result!.assessmentStartDate!);
+        widget.result.assessmentStartDate!);
     var startDate = "${d.day}/${d.month}/${d.year}";
     return Container(
       height: widget.height * 0.1825,
@@ -53,14 +53,14 @@ class _CustomCardState extends State<CustomCard> {
               children: [
                 Icon(
                   Icons.circle,
-                  color: Colors.grey,
-                  size: widget.width * 0.05,
+                  color: const Color.fromRGBO(66, 194, 0, 1),
+                  size: widget.height * 0.03,
                 ),
                 Text(
                   startDate,
                   style: TextStyle(
                       color: const Color.fromRGBO(102, 102, 102, 0.7),
-                      fontSize: widget.height * 0.0125,
+                      fontSize: widget.height * 0.02,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
                 ),

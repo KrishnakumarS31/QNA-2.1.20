@@ -36,6 +36,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   @override
   void initState() {
     super.initState();
+
+    // print(values.data!.totalScore);
+    // print("values.data!.totalScore");
     values = widget.questions;
     for (int j = 1; j <= Provider
         .of<Questions>(context, listen: false)
@@ -1097,6 +1100,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   String message = '';
                   int ansCorrect = 0;
                   int totalMark = 0;
+                  int? givenMark = 0;
                   assessment.assessmentId = widget.assessmentid;
                   assessment.assessmentCode = widget.assessmentID;
                   assessment.statusId = 2;
@@ -1195,12 +1199,14 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         totalMark = totalMark +
                             values.data!.questions![j - 1].questionMarks!;
                         ansCorrect++;
+                        givenMark = values.data!.totalScore;
                       }
                     }
 
                     assessment.assessmentResults.add(quesResult);
                   }
                   assessment.attemptScore = totalMark;
+                  values.data!.totalScore = givenMark;
                   int percent = ((ansCorrect / values.data!.questions!.length) *
                       100).round();
                   assessment.attemptPercentage = percent;
@@ -1236,7 +1242,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       .postAssessmentService(assessment, values);
                   Navigator.of(context).pop();
                   if (loginResponse.code == 200) {
-
                     Navigator.pushNamed(
                         context,
                         '/studentResultPage',
@@ -1248,7 +1253,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           widget.assessmentID,
                           widget.userName,
                           message,
-                          endTimeTaken
+                          endTimeTaken,
+                          givenMark
                         ]);
 
                     // Navigator.push(

@@ -251,7 +251,9 @@ class MyRoutes{
           assessmentCode: arguments[4],
           userName: arguments[5],
           message: arguments[6],
-          endTime: arguments[7],));
+          endTime: arguments[7],
+          givenMark: arguments[8],
+        ));
       }
 
       case '/studentReviseQuest':{

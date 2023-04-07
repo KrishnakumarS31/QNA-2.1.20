@@ -17,6 +17,8 @@ class StudentResultPage extends StatefulWidget {
     required this.userName,
     required this.message,
     required this.endTime,
+    required this.givenMark,
+
     })
       : super(key: key);
   final int totalMarks;
@@ -27,6 +29,7 @@ class StudentResultPage extends StatefulWidget {
   final String assessmentCode;
   final String endTime;
   final String message;
+  final int givenMark;
 
 
   @override
@@ -157,7 +160,7 @@ class StudentResultPageState extends State<StudentResultPage> {
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
-                    endDrawer: EndDrawerMenuPreLogin(
+                    endDrawer: const EndDrawerMenuPreLogin(
                         ),
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(40.0),
@@ -198,48 +201,43 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 ),
                                 child: Column(
                                   children: [
-                                    SizedBox(height: localHeight * 0.07),
+                                   // SizedBox(height: localHeight * 0.07),
                                     Align(
                                       alignment: Alignment.topCenter,
-                                      child: Container(
-                                          padding: const EdgeInsets.all(0.0),
-                                          height: localHeight * 0.20,
-                                          width: localWidth * 0.30,
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .result_card,
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        255, 255, 255, 1),
-                                                    fontFamily: 'Inter',
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize:
-                                                    localHeight * 0.024),
-                                              ),
-                                              SizedBox(
-                                                  height: localHeight * 0.01),
-                                              Text(widget.assessmentCode,
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          255, 255, 255, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w400,
-                                                      fontSize:
-                                                      localHeight * 0.016)),
-                                            ],
-                                          )),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!
+                                                .result_card,
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    255, 255, 255, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w700,
+                                                fontSize:
+                                                localHeight * 0.024),
+                                          ),
+                                          SizedBox(
+                                              height: localHeight * 0.01),
+                                          Text(widget.assessmentCode,
+                                              style: TextStyle(
+                                                  color:
+                                                  const Color.fromRGBO(
+                                                      255, 255, 255, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight:
+                                                  FontWeight.w400,
+                                                  fontSize:
+                                                  localHeight * 0.016)),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
                             SizedBox(height: localHeight * 0.015),
-                            Expanded(
-                                child: Column(
+                           Column(
                                   children: [
                                     SizedBox(height: localHeight * 0.2),
                                     Text(
@@ -251,7 +249,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: localHeight * 0.018)),
-                                    SizedBox(height: localHeight * 0.040),
+                                   // SizedBox(height: localHeight * 0.040),
                                     ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: const Color.fromRGBO(
@@ -452,12 +450,13 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       },
                                     ),
                                   ],
-                                )),
+                                ),
                           ],
                         ),
-                        Positioned(
-                          top: localHeight * 0.1,
-                          left: localHeight * 0.50,
+                        Align(
+                          alignment: Alignment.center,
+                          // top: localHeight * 0.1,
+                          // left: localHeight * 0.50,
                           child: SizedBox(
                             height: localHeight * 0.60,
                             width: localWidth * 0.6,
@@ -473,7 +472,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         fontWeight: FontWeight.w600,
                                         fontSize: localHeight * 0.024)),
                                 const SizedBox(height: 25.0),
-                                Text('${widget.totalMarks}',
+                                Text('${widget.totalMarks}/${widget.givenMark} ',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             255, 153, 0, 1),
@@ -696,7 +695,7 @@ class StudentResultPageState extends State<StudentResultPage> {
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
-                    endDrawer: EndDrawerMenuPreLogin(
+                    endDrawer: const EndDrawerMenuPreLogin(
                         ),
                     appBar: PreferredSize(
                       preferredSize: const Size.fromHeight(40.0),
@@ -1012,7 +1011,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         fontWeight: FontWeight.w600,
                                         fontSize: localHeight * 0.024)),
                                 const SizedBox(height: 25.0),
-                                Text('${widget.totalMarks}',
+                                Text('${widget.totalMarks}/${widget.givenMark}',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             255, 153, 0, 1),

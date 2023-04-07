@@ -3,19 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
-import 'package:qna_test/pages/teacher_assessment_landing.dart';
-import 'package:qna_test/pages/teacher_published_assessment.dart';
 import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
-import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 import '../DataSource/http_url.dart';
 
@@ -143,7 +139,7 @@ class TeacherAssessmentSettingPublishState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "ASSESSMENT SETTINGS",
+                    "ASSESSMENT SETTINGSs",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -193,7 +189,7 @@ class TeacherAssessmentSettingPublishState
                               "${assessment.subject}\t |\t ${assessment.createAssessmentModelClass}",
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.0175,
+                                fontSize: height * 0.025,
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -205,7 +201,7 @@ class TeacherAssessmentSettingPublishState
                                       .copyWith()
                                       .size
                                       .height *
-                                  0.02,
+                                  0.05,
                             ),
                           ],
                         ),
@@ -219,7 +215,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "Topic:",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w400,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -228,7 +224,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "\t${assessment.topic}",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w400,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -239,7 +235,7 @@ class TeacherAssessmentSettingPublishState
                               "\t\t\t|\t\t\t",
                               style: TextStyle(
                                 color: const Color.fromRGBO(209, 209, 209, 1),
-                                fontSize: height * 0.0175,
+                                fontSize: height * 0.02,
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w400,
                               ),
@@ -250,7 +246,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "Sub Topic:",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w400,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -259,7 +255,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "\t${assessment.subTopic}",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w400,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -276,7 +272,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "Total Questions:",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w500,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -285,7 +281,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "\t ${questionListForNxtPage.length}",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w500,
                                         color: const Color.fromRGBO(
                                             82, 165, 160, 1),
@@ -299,7 +295,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "Total Marks:",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w500,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -308,7 +304,7 @@ class TeacherAssessmentSettingPublishState
                                   TextSpan(
                                     text: "\t ${assessment.totalScore}",
                                     style: TextStyle(
-                                        fontSize: height * 0.018,
+                                        fontSize: height * 0.02,
                                         fontWeight: FontWeight.w500,
                                         color: const Color.fromRGBO(
                                             82, 165, 160, 1),
@@ -367,7 +363,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
-                                                fontSize: height * 0.025,
+                                                fontSize: height * 0.03,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -383,7 +379,7 @@ class TeacherAssessmentSettingPublishState
                                                   style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         28, 78, 80, 1),
-                                                    fontSize: height * 0.0175,
+                                                    fontSize: height * 0.025,
                                                     fontFamily: "Inter",
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -397,7 +393,7 @@ class TeacherAssessmentSettingPublishState
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       153, 153, 153, 1),
-                                                  fontSize: height * 0.015,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w700,
                                                 ),
@@ -427,7 +423,7 @@ class TeacherAssessmentSettingPublishState
                                                     color:
                                                         const Color.fromRGBO(
                                                             28, 78, 80, 1),
-                                                    fontSize: height * 0.0175,
+                                                    fontSize: height * 0.025,
                                                     fontFamily: "Inter",
                                                     fontWeight:
                                                         FontWeight.w600,
@@ -441,7 +437,7 @@ class TeacherAssessmentSettingPublishState
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       153, 153, 153, 1),
-                                                  fontSize: height * 0.015,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w700,
                                                 ),
@@ -491,7 +487,8 @@ class TeacherAssessmentSettingPublishState
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Column(
+                                        val == 1
+                                        ? Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -504,7 +501,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
-                                                fontSize: height * 0.025,
+                                                fontSize: height * 0.03,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -518,7 +515,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     153, 153, 153, 1),
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.025,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -532,7 +529,7 @@ class TeacherAssessmentSettingPublishState
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
-                                                  fontSize: height * 0.0175,
+                                                  fontSize: height * 0.025,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -577,7 +574,7 @@ class TeacherAssessmentSettingPublishState
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
-                                                  fontSize: height * 0.0175,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -633,7 +630,7 @@ class TeacherAssessmentSettingPublishState
                                                                 .fromRGBO(
                                                             28, 78, 80, 1),
                                                         fontSize:
-                                                            height * 0.0175,
+                                                            height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -749,7 +746,7 @@ class TeacherAssessmentSettingPublishState
                                                                 .fromRGBO(
                                                             28, 78, 80, 1),
                                                         fontSize:
-                                                            height * 0.0175,
+                                                            height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -832,7 +829,7 @@ class TeacherAssessmentSettingPublishState
                                                                 .fromRGBO(
                                                             28, 78, 80, 1),
                                                         fontSize:
-                                                            height * 0.0175,
+                                                            height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -949,7 +946,7 @@ class TeacherAssessmentSettingPublishState
                                                                 .fromRGBO(
                                                             28, 78, 80, 1),
                                                         fontSize:
-                                                            height * 0.0175,
+                                                            height * 0.02,
                                                         fontFamily: "Inter",
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -1053,7 +1050,8 @@ class TeacherAssessmentSettingPublishState
                                               )
                                             ]),
                                           ],
-                                        ),
+                                        )
+                                            : const SizedBox(),
                                       ],
                                     ),
                                   ),
@@ -1090,7 +1088,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
-                                                fontSize: height * 0.025,
+                                                fontSize: height * 0.03,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -1103,7 +1101,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     153, 153, 153, 1),
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.025,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -1117,7 +1115,7 @@ class TeacherAssessmentSettingPublishState
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
-                                                  fontSize: height * 0.0175,
+                                                  fontSize: height * 0.02,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -1147,7 +1145,7 @@ class TeacherAssessmentSettingPublishState
                                                 ),
                                               )
                                             ]),
-                                            SizedBox(height: height * 0.02),
+                                           // SizedBox(height: height * 0.02),
                                             Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -1158,8 +1156,8 @@ class TeacherAssessmentSettingPublishState
                                                     style: TextStyle(
                                                       color:
                                                         const Color.fromRGBO(
-                                                        51, 51, 51, 1),
-                                                      fontSize: height * 0.015,
+                                                            153, 153, 153, 1),
+                                                      fontSize: height * 0.02,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -1350,7 +1348,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
-                                                fontSize: height * 0.025,
+                                                fontSize: height * 0.03,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -1364,7 +1362,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     153, 153, 153, 1),
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.02,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -1378,7 +1376,7 @@ class TeacherAssessmentSettingPublishState
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
-                                                  fontSize: height * 0.0175,
+                                                  fontSize: height * 0.025,
                                                   fontFamily: "Inter",
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -1447,7 +1445,7 @@ class TeacherAssessmentSettingPublishState
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
-                                                fontSize: height * 0.025,
+                                                fontSize: height * 0.03,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -1466,7 +1464,7 @@ class TeacherAssessmentSettingPublishState
                                                       color:
                                                       const Color.fromRGBO(
                                                           51, 51, 51, 1),
-                                                      fontSize: height * 0.0175,
+                                                      fontSize: height * 0.025,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -1534,7 +1532,7 @@ class TeacherAssessmentSettingPublishState
                                                       color:
                                                           const Color.fromRGBO(
                                                               51, 51, 51, 1),
-                                                      fontSize: height * 0.015,
+                                                      fontSize: height * 0.025,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -1571,7 +1569,7 @@ class TeacherAssessmentSettingPublishState
                                                       color:
                                                           const Color.fromRGBO(
                                                               51, 51, 51, 1),
-                                                      fontSize: height * 0.015,
+                                                      fontSize: height * 0.025,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -1607,7 +1605,7 @@ class TeacherAssessmentSettingPublishState
                                                       color:
                                                           const Color.fromRGBO(
                                                               51, 51, 51, 1),
-                                                      fontSize: height * 0.015,
+                                                      fontSize: height * 0.025,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -1645,7 +1643,7 @@ class TeacherAssessmentSettingPublishState
                                                       color:
                                                           const Color.fromRGBO(
                                                               51, 51, 51, 1),
-                                                      fontSize: height * 0.015,
+                                                      fontSize: height * 0.025,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -1681,7 +1679,7 @@ class TeacherAssessmentSettingPublishState
                                                       color:
                                                           const Color.fromRGBO(
                                                               51, 51, 51, 1),
-                                                      fontSize: height * 0.015,
+                                                      fontSize: height * 0.025,
                                                       fontFamily: "Inter",
                                                       fontWeight:
                                                           FontWeight.w700,
@@ -1723,7 +1721,7 @@ class TeacherAssessmentSettingPublishState
                                                                     .fromRGBO(
                                                                 51, 51, 51, 1),
                                                             fontSize:
-                                                                height * 0.015,
+                                                                height * 0.025,
                                                             fontFamily: "Inter",
                                                             fontWeight:
                                                                 FontWeight.w700,
@@ -1739,7 +1737,7 @@ class TeacherAssessmentSettingPublishState
                                                                 153,
                                                                 0.8),
                                                             fontSize:
-                                                                height * 0.015,
+                                                                height * 0.02,
                                                             fontFamily: "Inter",
                                                             fontWeight:
                                                                 FontWeight.w700,
@@ -1790,7 +1788,7 @@ class TeacherAssessmentSettingPublishState
                                                                       1),
                                                                   fontSize:
                                                                       height *
-                                                                          0.015,
+                                                                          0.025,
                                                                   fontFamily:
                                                                       "Inter",
                                                                   fontWeight:
@@ -1810,7 +1808,7 @@ class TeacherAssessmentSettingPublishState
                                                                       0.8),
                                                                   fontSize:
                                                                       height *
-                                                                          0.015,
+                                                                          0.02,
                                                                   fontFamily:
                                                                       "Inter",
                                                                   fontWeight:

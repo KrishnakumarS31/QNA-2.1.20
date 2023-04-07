@@ -771,7 +771,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 .hint_regId,
                                             prefixIcon: Icon(
                                                 Icons.contacts_outlined,
-                                                size: localHeight * 0.05,
+                                                size: localHeight * 0.04,
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1)),
                                           ),
@@ -853,7 +853,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 }),
                                             prefixIcon: Icon(
                                                 Icons.lock_outline_rounded,
-                                                size: localHeight * 0.05,
+                                                size: localHeight * 0.04,
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1)),
                                           ),

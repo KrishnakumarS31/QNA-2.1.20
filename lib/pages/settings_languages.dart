@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/welcome_page.dart';
 import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
 import '../Providers/LanguageChangeProvider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsLanguages extends StatefulWidget {
   const SettingsLanguages({Key? key,})
@@ -17,6 +17,7 @@ class SettingsLanguages extends StatefulWidget {
 }
 
 class SettingsLanguagesState extends State<SettingsLanguages> {
+  late SharedPreferences loginData;
   List<String> languages = [
     'வணக்கம் (Tamil)',
     'Hello (English)',
@@ -39,36 +40,38 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
   }
 
   getdata() async {
-    AppUser? user = await AppUserRepo().getUserDetail();
-    if (user!.locale == 'ta') {
+    // AppUser? user = await AppUserRepo().getUserDetail();
+    // print(user!.locale);
+    loginData = await SharedPreferences.getInstance();
+    if (loginData.getString("locale") == 'ta') {
       setState(() {
         selected = 'வணக்கம் (Tamil)';
       });
-    } else if (user.locale == 'hi') {
+    } else if (loginData.getString("locale") == 'hi') {
       setState(() {
         selected = 'नमस्ते (Hindi)';
       });
-    } else if (user.locale == 'kn') {
+    } else if (loginData.getString("locale") == 'kn') {
       setState(() {
         selected = 'ಕನ್ನಡ (Kannada)';
       });
-    } else if (user.locale == 'mr') {
+    } else if (loginData.getString("locale") == 'mr') {
       setState(() {
         selected = 'नमस्कार Marathi';
       });
-    } else if (user.locale == 'es') {
+    } else if (loginData.getString("locale") == 'es') {
       setState(() {
         selected = 'Hola (Spanish)';
       });
-    } else if (user.locale == 'te') {
+    } else if (loginData.getString("locale") == 'te') {
       setState(() {
         selected = 'హలో (Telugu)';
       });
-    } else if (user.locale == 'ml') {
+    } else if (loginData.getString("locale") == 'ml') {
       setState(() {
         selected = 'ഹലോ (Malayalam)';
       });
-    } else if (user.locale == 'pa') {
+    } else if (loginData.getString("locale") == 'pa') {
       setState(() {
         selected = 'ਪੰਜਾਬੀ (Punjabi)';
       });
@@ -204,8 +207,10 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                     selectedLocale = 'en';
                                   }
                                   Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(selectedLocale);
-                                  int i = await AppUserRepo().createUserDetail(
-                                      AppUser(locale: selectedLocale, id: 35));
+                                  // int i = await AppUserRepo().createUserDetail(
+                                  //     AppUser(locale: selectedLocale, id: 35));
+                                 loginData.setString("locale", selectedLocale);
+
                                   Navigator.pushNamedAndRemoveUntil(context, '/',(route) => route.isFirst);
                                   // Navigator.of(context).pushAndRemoveUntil(
                                   //     MaterialPageRoute(
