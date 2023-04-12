@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/get_assessment_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_summary.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
@@ -115,7 +115,8 @@ class TeacherAssessmentLooqQuestionPreviewState
                                 Row(
                                   children: [
                                     Text(
-                                      'Question',
+                                      AppLocalizations.of(context)!.qn_qn_page,
+                                      //'Question',
                                       style: TextStyle(
                                           fontSize: height * 0.02,
                                           fontFamily: "Inter",
@@ -141,7 +142,8 @@ class TeacherAssessmentLooqQuestionPreviewState
                                 Row(
                                   children: [
                                     Text(
-                                      'Marks:',
+                                      "${AppLocalizations.of(context)!.marks_qn} : ",
+                                      // 'Marks:',
                                       style: TextStyle(
                                           fontSize: height * 0.02,
                                           fontFamily: "Inter",
@@ -202,7 +204,8 @@ class TeacherAssessmentLooqQuestionPreviewState
                               height: height * 0.02,
                             ),
                             Text(
-                              'Advisor',
+                              AppLocalizations.of(context)!.advisor,
+                              //'Advisor',
                               style: TextStyle(
                                   fontSize: height * 0.02,
                                   fontFamily: "Inter",
@@ -259,7 +262,8 @@ class TeacherAssessmentLooqQuestionPreviewState
                                     Navigator.of(context).pop();
                                   },
                                   child: Text(
-                                    'Back',
+                                    AppLocalizations.of(context)!.back,
+                                    //'Back',
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",
@@ -331,7 +335,8 @@ class TeacherAssessmentLooqQuestionPreviewState
                                     }
                                   },
                                   child: Text(
-                                    'Save',
+                                    AppLocalizations.of(context)!.save,
+                                    //'Save',
                                     style: TextStyle(
                                         fontSize: height * 0.025,
                                         fontFamily: "Inter",

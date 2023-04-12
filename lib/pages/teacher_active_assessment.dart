@@ -8,6 +8,7 @@ import '../Entity/Teacher/question_entity.dart' as Question;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherActiveAssessment extends StatefulWidget {
   const TeacherActiveAssessment(
@@ -99,7 +100,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "ACTIVE",
+                    AppLocalizations.of(context)!.active,
+                    //"ACTIVE",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -108,7 +110,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                     ),
                   ),
                   Text(
-                    "ASSESSMENTS",
+                    AppLocalizations.of(context)!.active,
+                    // "ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -252,7 +255,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         ),
                                       ),
                                       Text(
-                                        "Marks",
+                                          AppLocalizations.of(context)!
+                                              .marks,
+                                        //"Marks",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -282,7 +287,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         ),
                                       ),
                                       Text(
-                                        "Questions",
+                                        AppLocalizations.of(context)!.qn_button,
+                                        //"Questions",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -308,7 +314,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Assessment ID:",
+                            AppLocalizations.of(context)!.assessment_id_caps,
+                            //"Assessment ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -318,7 +325,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                         Text(
-                          "${assessment.assessmentCode!}",
+                          assessment.assessmentCode!,
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -336,7 +343,9 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Institute Test ID:",
+                            AppLocalizations.of(context)!
+                                .institute_test_id,
+                            //"Institute Test ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -368,7 +377,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Time Permitted:",
+                            AppLocalizations.of(context)!.time_permitted,
+                            //"Time Permitted:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -379,8 +389,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         ),
                         Text(
                           assessment.assessmentDuration == null
-                              ? "00 Minutes"
-                              : "${assessment.assessmentDuration} Minutes",
+                              ? "00 ${AppLocalizations.of(context)!.minutes}"
+                              : "${assessment.assessmentDuration} ${AppLocalizations.of(context)!.minutes}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -398,7 +408,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Start Date & Time:",
+                            AppLocalizations.of(context)!.start_date_time,
+                            //"Start Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -436,7 +447,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "End Date & Time:",
+                            AppLocalizations.of(context)!.end_date_time,
+                            //"End Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -489,7 +501,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Additional Details",
+                                    AppLocalizations.of(context)!.time_permitted,
+                                    //"Additional Details",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -530,7 +543,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Additional Details",
+                                    AppLocalizations.of(context)!.additional_details,
+                                    //"Additional Details",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -567,7 +581,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Category",
+                                      AppLocalizations.of(context)!.category,
+                                      //"Category",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -597,7 +612,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Number of Retries allowed",
+                                      AppLocalizations.of(context)!.no_of_retries_allowed,
+                                      //"Number of Retries allowed",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -608,7 +624,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "Allowed (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries ?? "0"} Times)",
+                                    //"Allowed "
+                                        "${AppLocalizations.of(context)!.allowed} (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries ?? "0"} Times)",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -627,7 +644,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Allow Guest students",
+                                      AppLocalizations.of(context)!.allow_guest_Students,
+                                      //"Allow Guest students",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -641,11 +659,14 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     finalAssessment.assessmentSettings
                                                 ?.allowGuestStudent ==
                                             null
-                                        ? "Not Allowed"
+                                        ? AppLocalizations.of(context)!.not_allowed
+                                    //"Not Allowed"
                                         : finalAssessment.assessmentSettings!
                                                 .allowGuestStudent!
-                                            ? "Allowed"
-                                            : "Not Allowed",
+                                            ? AppLocalizations.of(context)!.allowed
+                                    //"Allowed"
+                                            :  AppLocalizations.of(context)!.not_allowed,
+                                   // "Not Allowed",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -664,7 +685,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Show answer Sheet after test",
+                                        AppLocalizations.of(context)!.show_answersheet_after_test,
+                                      //"Show answer Sheet after test",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -678,11 +700,14 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     finalAssessment.assessmentSettings
                                                 ?.showSolvedAnswerSheetInAdvisor ==
                                             null
-                                        ? "Not Viewable"
+                                        ? AppLocalizations.of(context)!.not_viewable
+                                          //"Not Viewable"
                                         : finalAssessment.assessmentSettings!
                                                 .showSolvedAnswerSheetInAdvisor!
-                                            ? "Viewable"
-                                            : "Not Viewable",
+                                            ? AppLocalizations.of(context)!.viewable
+                                            //"Viewable"
+                                            : AppLocalizations.of(context)!.not_viewable,
+                                              // "Not Viewable",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -701,7 +726,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Show my name in Advisor",
+                                    AppLocalizations.of(context)!.show_my_advisor_name,
+                                    //"Show my name in Advisor",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -715,11 +741,14 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     assessment.assessmentSettings!
                                                 .showAdvisorName ==
                                             false
-                                        ? "No"
+                                        ? AppLocalizations.of(context)!.no
+                                      //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorName!
-                                            ? "Yes"
-                                            : "No",
+                                            ? AppLocalizations.of(context)!.yes
+                                              //"Yes"
+                                            :  AppLocalizations.of(context)!.no,
+                                              //"No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -738,7 +767,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Show my Email in Advisor",
+                                    AppLocalizations.of(context)!.show_my_email,
+                                    //"Show my Email in Advisor",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -752,11 +782,14 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     assessment.assessmentSettings
                                                 ?.showAdvisorEmail ==
                                             false
-                                        ? "No"
+                                        ? AppLocalizations.of(context)!.no
+                                          //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorEmail!
-                                            ? "Yes"
-                                            : "No",
+                                            ?  AppLocalizations.of(context)!.yes
+                                                //"Yes"
+                                            : AppLocalizations.of(context)!.no,
+                                              //"No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -779,7 +812,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Inactive",
+                                                AppLocalizations.of(context)!.in_active,
+                                               //"Inactive",
                                             style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -789,7 +823,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                             ),
                                           ),
                                           Text(
-                                            "Not available for student",
+                                            AppLocalizations.of(context)!.not_available_for_student,
+                                            //"Not available for student",
                                             style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   153, 153, 153, 0.8),
@@ -804,8 +839,10 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     assessment.assessmentSettings
                                                 ?.notAvailable ==
                                             false
-                                        ? "No"
-                                        : "Yes",
+                                        ? AppLocalizations.of(context)!.no
+                                          //"No"
+                                        : AppLocalizations.of(context)!.yes,
+                                          //"Yes",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -827,7 +864,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Allow  Public access ",
+                                        AppLocalizations.of(context)!.allow_public_access,
+                                        //"Allow  Public access ",
                                           style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 51, 51, 51, 1),
@@ -837,7 +875,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                           ),
                                         ),
                                         Text(
-                                          "Available to public for practice",
+                                          AppLocalizations.of(context)!.available_to_public,
+                                          //"Available to public for practice",
                                           style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 153, 153, 153, 0.8),
@@ -852,11 +891,14 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                   finalAssessment.assessmentSettings
                                               ?.avalabilityForPractice ==
                                           null
-                                      ? "No"
+                                      ? AppLocalizations.of(context)!.no
+                                          //"No"
                                       : finalAssessment.assessmentSettings!
                                               .avalabilityForPractice!
-                                          ? "Yes"
-                                          : "No",
+                                          ? AppLocalizations.of(context)!.yes
+                                                //"Yes"
+                                          : AppLocalizations.of(context)!.no,
+                                            //"No",
                                   style: TextStyle(
                                     color:
                                         const Color.fromRGBO(82, 165, 160, 1),
@@ -890,7 +932,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Questions",
+                                      AppLocalizations.of(context)!.qn_button,
+                                    //"Questions",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -931,7 +974,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Questions",
+                                     AppLocalizations.of(context)!.qn_button,
+                                    //"Questions",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -984,7 +1028,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                             showQuestionDetails();
                           },
                           child: Text(
-                            "  View All Questions  ",
+                              AppLocalizations.of(context)!.view_all_qns,
+                            //"  View All Questions  ",
                             style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
                               fontSize: height * 0.02,
@@ -1113,7 +1158,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                             // );
                           },
                           child: Text(
-                            'Clone',
+                              AppLocalizations.of(context)!.clone_qn,
+                              //'Clone',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -1211,7 +1257,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   Row(
                     children: [
                       Text(
-                        "Marks: ",
+                        "${AppLocalizations.of(context)!.marks} :",
+                        // "Marks: ",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: widget.height * 0.015,

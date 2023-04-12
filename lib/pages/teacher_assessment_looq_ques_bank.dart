@@ -10,6 +10,8 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
 
 class TeacherAssessmentLooqQuestionBank extends StatefulWidget {
   const TeacherAssessmentLooqQuestionBank(
@@ -96,7 +98,8 @@ class TeacherAssessmentLooqQuestionBankState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "SEARCH RESULTS",
+                    AppLocalizations.of(context)!.search_results_caps,
+                    //"SEARCH RESULTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -105,7 +108,8 @@ class TeacherAssessmentLooqQuestionBankState
                     ),
                   ),
                   Text(
-                    "MY QUESTION BANK",
+                    AppLocalizations.of(context)!.my_qn_bank,
+                    //"MY QUESTION BANK",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -142,7 +146,8 @@ class TeacherAssessmentLooqQuestionBankState
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w400,
                         fontSize: height * 0.016),
-                    hintText: "Maths, 10th, 2022, CBSE, Science",
+                    hintText: AppLocalizations.of(context)!.sub_hint_text,
+                    //"Maths, 10th, 2022, CBSE, Science",
                     suffixIcon: Column(children: [
                       Container(
                           height: height * 0.073,
@@ -184,7 +189,8 @@ class TeacherAssessmentLooqQuestionBankState
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Tap to Review/Edit/Delete",
+                      AppLocalizations.of(context)!.tap_to_review,
+                      //"Tap to Review/Edit/Delete",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: const Color.fromRGBO(153, 153, 153, 1),
@@ -196,7 +202,8 @@ class TeacherAssessmentLooqQuestionBankState
                     Row(
                       children: [
                         Text(
-                          "My Questions",
+                          AppLocalizations.of(context)!.my_qns_small,
+                          //"My Questions",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: const Color.fromRGBO(0, 0, 0, 1),
@@ -265,7 +272,8 @@ class TeacherAssessmentLooqQuestionBankState
                         // );
                       },
                       child: Text(
-                        'Add',
+                        AppLocalizations.of(context)!.add_small,
+                        //'Add',
                         style: TextStyle(
                             fontSize: height * 0.025,
                             fontFamily: "Inter",

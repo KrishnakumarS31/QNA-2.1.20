@@ -131,7 +131,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "ASSESSMENTS",
+                    AppLocalizations.of(context)!.assessment_caps,
+                   // "ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -140,7 +141,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                     ),
                   ),
                   Text(
-                    "SEARCH RESULTS",
+                    AppLocalizations.of(context)!.search_results_caps,
+                    //"SEARCH RESULTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -171,7 +173,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Search",
+                      AppLocalizations.of(context)!.search,
+                      //"Search",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.02,
@@ -184,7 +187,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Library of Assessments",
+                          AppLocalizations.of(context)!.lib_of_assessments,
+                          //"Library of Assessments",
                           style: TextStyle(
                             color: const Color.fromRGBO(153, 153, 153, 1),
                             fontSize: height * 0.015,
@@ -239,7 +243,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.016),
-                        hintText: "Maths, 10th, 2022, CBSE, Science",
+                        hintText:  AppLocalizations.of(context)!.sub_hint_text,
+                        //"Maths, 10th, 2022, CBSE, Science",
                         suffixIcon: Column(children: [
                           Container(
                               height: height * 0.073,
@@ -284,7 +289,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                     ),
                     SizedBox(height: height * 0.04),
                     Text(
-                      "Search Results",
+                      AppLocalizations.of(context)!.search_results_small,
+                      //"Search Results",
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
                         fontSize: height * 0.02,
@@ -293,7 +299,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                       ),
                     ),
                     Text(
-                      "Tap to See Details/Clone",
+                      AppLocalizations.of(context)!.tap_to_see,
+                      //"Tap to See Details/Clone",
                       style: TextStyle(
                         color: const Color.fromRGBO(153, 153, 153, 1),
                         fontSize: height * 0.015,
@@ -336,7 +343,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Load More",
+                            AppLocalizations.of(context)!.load_more,
+                            // "Load More",
                             style: TextStyle(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               fontSize: height * 0.0175,

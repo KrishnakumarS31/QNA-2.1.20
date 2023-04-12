@@ -14,6 +14,7 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../Entity/Teacher/question_entity.dart' as QuestionModel;
 import '../DataSource/http_url.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   const TeacherAssessmentSettingPublish({Key? key,})
@@ -139,7 +140,8 @@ class TeacherAssessmentSettingPublishState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "ASSESSMENT SETTINGSs",
+                    AppLocalizations.of(context)!.assessment_setting_caps,
+                    //"ASSESSMENT SETTINGS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -213,7 +215,8 @@ class TeacherAssessmentSettingPublishState
                                 textAlign: TextAlign.left,
                                 text: TextSpan(children: [
                                   TextSpan(
-                                    text: "Topic:",
+                                    text: AppLocalizations.of(context)!.topic_small,
+                                //"Topic:",
                                     style: TextStyle(
                                         fontSize: height * 0.02,
                                         fontWeight: FontWeight.w400,
@@ -244,7 +247,8 @@ class TeacherAssessmentSettingPublishState
                                 textAlign: TextAlign.left,
                                 text: TextSpan(children: [
                                   TextSpan(
-                                    text: "Sub Topic:",
+                                    text: AppLocalizations.of(context)!.sub_topic,
+                                //"Sub Topic:",
                                     style: TextStyle(
                                         fontSize: height * 0.02,
                                         fontWeight: FontWeight.w400,
@@ -270,7 +274,8 @@ class TeacherAssessmentSettingPublishState
                                 textAlign: TextAlign.left,
                                 text: TextSpan(children: [
                                   TextSpan(
-                                    text: "Total Questions:",
+                                    text: AppLocalizations.of(context)!.total_ques,
+                                //"Total Questions:",
                                     style: TextStyle(
                                         fontSize: height * 0.02,
                                         fontWeight: FontWeight.w500,
@@ -293,7 +298,8 @@ class TeacherAssessmentSettingPublishState
                                 textAlign: TextAlign.left,
                                 text: TextSpan(children: [
                                   TextSpan(
-                                    text: "Total Marks:",
+                                    text: AppLocalizations.of(context)!.total_marks,
+                                    //"Total Marks:",
                                     style: TextStyle(
                                         fontSize: height * 0.02,
                                         fontWeight: FontWeight.w500,
@@ -359,7 +365,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.015,
                                             ),
                                             Text(
-                                              "Category",
+                                              AppLocalizations.of(context)!.category,
+                                              //"Category",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -375,7 +382,8 @@ class TeacherAssessmentSettingPublishState
                                             Column(
                                               children: [
                                                 Text(
-                                                  "Test",
+                                                  AppLocalizations.of(context)!.test_qn_page,
+                                                  // "Test",
                                                   style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         28, 78, 80, 1),
@@ -389,7 +397,8 @@ class TeacherAssessmentSettingPublishState
                                             //),
                                             Row(children: [
                                               Text(
-                                                "Results visible only to teacher",
+                                                AppLocalizations.of(context)!.results_visible_teacher,
+                                                // "Results visible only to teacher",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       153, 153, 153, 1),
@@ -418,7 +427,8 @@ class TeacherAssessmentSettingPublishState
                                             Column(
                                               children: [
                                                 Text(
-                                                  "Practice",
+                                                  AppLocalizations.of(context)!.practice_qn_page,
+                                                  // "Practice",
                                                   style: TextStyle(
                                                     color:
                                                         const Color.fromRGBO(
@@ -433,7 +443,8 @@ class TeacherAssessmentSettingPublishState
                                             ),
                                             Row(children: [
                                               Text(
-                                                "No results provided to teacher",
+                                                AppLocalizations.of(context)!.results_visible_teacher,
+                                                // "No results provided to teacher",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       153, 153, 153, 1),
@@ -497,7 +508,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.015,
                                             ),
                                             Text(
-                                              "Test Schedule",
+                                                AppLocalizations.of(context)!.test_schedule,
+                                              //"Test Schedule",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -511,7 +523,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.002,
                                             ),
                                             Text(
-                                              "Leave blank if not required",
+                                              AppLocalizations.of(context)!.leave_blank,
+                                              // "Leave blank if not required",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     153, 153, 153, 1),
@@ -525,7 +538,8 @@ class TeacherAssessmentSettingPublishState
                                             ),
                                             Row(children: [
                                               Text(
-                                                "Duration",
+                                                AppLocalizations.of(context)!.duration,
+                                                //"Duration",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
@@ -624,7 +638,8 @@ class TeacherAssessmentSettingPublishState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      "Start Date",
+                                                      AppLocalizations.of(context)!.start_date,
+                                                      //"Start Date",
                                                       style: TextStyle(
                                                         color: const Color
                                                                 .fromRGBO(
@@ -740,7 +755,8 @@ class TeacherAssessmentSettingPublishState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      "Start Time",
+                                                      AppLocalizations.of(context)!.start_time,
+                                                      // "Start Time",
                                                       style: TextStyle(
                                                         color: const Color
                                                                 .fromRGBO(
@@ -823,7 +839,8 @@ class TeacherAssessmentSettingPublishState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      "End Date",
+                                                      AppLocalizations.of(context)!.end_date,
+                                                      // "End Date",
                                                       style: TextStyle(
                                                         color: const Color
                                                                 .fromRGBO(
@@ -940,7 +957,8 @@ class TeacherAssessmentSettingPublishState
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      "End Time",
+                                                      AppLocalizations.of(context)!.end_time,
+                                                      //"End Time",
                                                       style: TextStyle(
                                                         color: const Color
                                                                 .fromRGBO(
@@ -1084,7 +1102,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.015,
                                             ),
                                             Text(
-                                              "Available for Practice",
+                                              AppLocalizations.of(context)!.available_for_practice,
+                                              //"Available for Practice",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -1097,7 +1116,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.002,
                                             ),
                                             Text(
-                                              "For institution students only",
+                                              AppLocalizations.of(context)!.for_institute_students,
+                                              //"For institution students only",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     153, 153, 153, 1),
@@ -1111,7 +1131,8 @@ class TeacherAssessmentSettingPublishState
                                             ),
                                             Row(children: [
                                               Text(
-                                                "Number of days after test",
+                                                AppLocalizations.of(context)!.no_of_days_test,
+                                                //"Number of days after test",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
@@ -1152,7 +1173,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Only MCQ will be available for Practice",
+                                                    AppLocalizations.of(context)!.only_mcq_for_practice,
+                                                    //"Only MCQ will be available for Practice",
                                                     style: TextStyle(
                                                       color:
                                                         const Color.fromRGBO(
@@ -1344,7 +1366,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.015,
                                             ),
                                             Text(
-                                              "Institution / Organisation",
+                                              AppLocalizations.of(context)!.institute_organisation,
+                                              //"Institution / Organisation",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -1358,7 +1381,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.002,
                                             ),
                                             Text(
-                                              "Leave blank if not required",
+                                              AppLocalizations.of(context)!.leave_blank,
+                                              //"Leave blank if not required",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     153, 153, 153, 1),
@@ -1372,7 +1396,8 @@ class TeacherAssessmentSettingPublishState
                                             ),
                                             Row(children: [
                                               Text(
-                                                "Institute Test ID",
+                                                AppLocalizations.of(context)!.institute_test_id_small,
+                                                //"Institute Test ID",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       28, 78, 80, 1),
@@ -1441,7 +1466,8 @@ class TeacherAssessmentSettingPublishState
                                               height: height * 0.015,
                                             ),
                                             Text(
-                                              "Access Control",
+                                              AppLocalizations.of(context)!.access_control,
+                                              //"Access Control",
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1),
@@ -1459,7 +1485,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Number of Retries allowed",
+                                                    AppLocalizations.of(context)!.no_of_retries_allowed,
+                                                    //"Number of Retries allowed",
                                                     style: TextStyle(
                                                       color:
                                                       const Color.fromRGBO(
@@ -1527,7 +1554,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Allow guest students for test",
+                                                    AppLocalizations.of(context)!.allow_guest_test,
+                                                    //"Allow guest students for test",
                                                     style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -1564,7 +1592,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Show answer sheet after test",
+                                                    AppLocalizations.of(context)!.show_answersheet_after_test,
+                                                    //"Show answer sheet after test",
                                                     style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -1600,7 +1629,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Show answer sheet during Practice",
+                                                    AppLocalizations.of(context)!.show_answer_practice,
+                                                    //"Show answer sheet during Practice",
                                                     style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -1638,7 +1668,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Show my name in Advisor",
+                                                    AppLocalizations.of(context)!.show_my_advisor_name,
+                                                    //"Show my name in Advisor",
                                                     style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -1674,7 +1705,8 @@ class TeacherAssessmentSettingPublishState
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    "Show my Email in Advisor",
+                                                    AppLocalizations.of(context)!.show_my_email,
+                                                    //"Show my Email in Advisor",
                                                     style: TextStyle(
                                                       color:
                                                           const Color.fromRGBO(
@@ -1715,7 +1747,8 @@ class TeacherAssessmentSettingPublishState
                                                               .start,
                                                       children: [
                                                         Text(
-                                                          "Make assessment inactive",
+                                                          AppLocalizations.of(context)!.make_assessment_inactive,
+                                                          //"Make assessment inactive",
                                                           style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(
@@ -1728,7 +1761,8 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ),
                                                         Text(
-                                                          "Not available for student",
+                                                          AppLocalizations.of(context)!.not_available_for_student,
+                                                          //"Not available for student",
                                                           style: TextStyle(
                                                             color: const Color
                                                                     .fromRGBO(
@@ -1777,7 +1811,8 @@ class TeacherAssessmentSettingPublishState
                                                                     .start,
                                                             children: [
                                                               Text(
-                                                                "Allow public access for practice",
+                                                                AppLocalizations.of(context)!.allow_public_for_practice,
+                                                                //"Allow public access for practice",
                                                                 style:
                                                                     TextStyle(
                                                                   color: const Color
@@ -1797,7 +1832,8 @@ class TeacherAssessmentSettingPublishState
                                                                 ),
                                                               ),
                                                               Text(
-                                                                "Available to public for practice",
+                                                                AppLocalizations.of(context)!.available_to_public,
+                                                                //"Available to public for practice",
                                                                 style:
                                                                     TextStyle(
                                                                   color: const Color
@@ -1943,7 +1979,8 @@ class TeacherAssessmentSettingPublishState
                                           }
                                         },
                                         child: Text(
-                                          'Publish Later',
+                                          AppLocalizations.of(context)!.publish_later,
+                                          //'Publish Later',
                                           style: TextStyle(
                                               fontSize: height * 0.025,
                                               fontFamily: "Inter",
@@ -1974,7 +2011,6 @@ class TeacherAssessmentSettingPublishState
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1),
                                             )),
-                                        //shape: StadiumBorder(),
                                         onPressed: () async {
                                           if (val == 1) {
                                             assessment.assessmentType = 'test';
@@ -2072,7 +2108,8 @@ class TeacherAssessmentSettingPublishState
                                           }
                                         },
                                         child: Text(
-                                          'Publish Now',
+                                          AppLocalizations.of(context)!.publish_now,
+                                          //'Publish Now',
                                           style: TextStyle(
                                               fontSize: height * 0.025,
                                               fontFamily: "Inter",
