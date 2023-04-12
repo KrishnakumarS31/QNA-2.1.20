@@ -267,6 +267,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     Navigator.of(context).pop();
                                     if (assessmentID.text.length >= 8) {
                                       if (values.code == 200) {
+                                        print(values.toString());
                                         Navigator.pushNamed(
                                             context,
                                             '/studQuestion',

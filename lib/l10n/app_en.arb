@@ -277,6 +277,7 @@
   "make_assessment_inactive": "Make assessment inactive",
   "allow_public_for_practice": "Allow public access for practice",
   "publish_later": "Publish Later",
-  "publish_now": "Publish Now"
+  "publish_now": "Publish Now",
+  "advisor_contact": "Advisor Contact"
 
 }

@@ -163,7 +163,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       localHeight *
                                                           0.050),
                                                   Text(
-                                                      "Q$index",
+                                                      "Q $index",
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(82,
@@ -303,49 +303,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         0.015),
                                               ]),
                                           subtitle: Column(children: [
-                                            widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                            ? Align(
-                                              alignment:
-                                              Alignment.topLeft,
-                                              child: Text("${AppLocalizations.of(context)!.advisor} - ${widget.questions.data!.advisorName}" ,
-                                                  style: TextStyle(
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      fontSize:
-                                                      localHeight *
-                                                          0.024)),
-                                            )
-                                            : const SizedBox(),
-                                            SizedBox(
-                                                height:
-                                                localHeight * 0.015),
-                                            widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                                ? Align(
-                                              alignment:
-                                              Alignment.topLeft,
-                                              child: Text("Advisor Email - ${widget.questions.data!.advisorEmail}" ,
-                                                  style: TextStyle(
-                                                      color: const Color
-                                                          .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      fontSize:
-                                                      localHeight *
-                                                          0.024)),
-                                            )
-                                                : const SizedBox(),
                                             SizedBox(
                                                 height:
                                                 localHeight * 0.015),
@@ -499,9 +456,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       localHeight *
                                                           0.050),
                                                   Text(
-                                                      "Q${values.data!
-                                                          .questions![index - 1]
-                                                          .questionId}",
+                                                      "Q $index",
                                                       style: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(
@@ -652,55 +607,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                         0.015),
                                               ]),
                                           subtitle: Column(children: [
-                                            widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                                ? Align(
-                                              alignment:
-                                              Alignment.topLeft,
-                                              child: Text("${AppLocalizations.of(context)!.advisor} - ${widget.questions.data!.advisorName}" ,
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color
-                                                          .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1),
-                                                      fontFamily:
-                                                      'Inter',
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .w600,
-                                                      fontSize:
-                                                      localHeight *
-                                                          0.024)),
-                                            )
-                                            : const SizedBox(),
-                                            SizedBox(
-                                                height: localHeight *
-                                                    0.015),
-                                            widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                                ? Align(
-                                              alignment:
-                                              Alignment.topLeft,
-                                              child: Text("Advisor Email - ${widget.questions.data!.advisorEmail}" ,
-                                                  style: TextStyle(
-                                                      color:
-                                                      const Color
-                                                          .fromRGBO(
-                                                          82,
-                                                          165,
-                                                          160,
-                                                          1),
-                                                      fontFamily:
-                                                      'Inter',
-                                                      fontWeight:
-                                                      FontWeight
-                                                          .w600,
-                                                      fontSize:
-                                                      localHeight *
-                                                          0.024)),
-                                            )
-                                                : const SizedBox(),
                                             SizedBox(
                                                 height: localHeight *
                                                     0.015),
@@ -836,15 +742,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 values.data!.assessmentType != "test"
                                     ?
                                 Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-                                // Navigator.push(
-                                //     context,
-                                //     PageTransition(
-                                //         type: PageTransitionType
-                                //             .rightToLeft,
-                                //         child: StudentMemAnswerSheet(
-                                //             questions: values,
-                                //             assessmentId:
-                                //             widget.assessmentId)))
                                     :
                                 Navigator.push(
                                   context,
@@ -874,16 +771,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   values.data!.assessmentType != "test"
                                       ?
                                   Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-
-                                  // Navigator.push(
-                                  //     context,
-                                  //     PageTransition(
-                                  //         type: PageTransitionType
-                                  //             .rightToLeft,
-                                  //         child: StudentMemAnswerSheet(
-                                  //             questions: values,
-                                  //             assessmentId:
-                                  //             widget.assessmentId)))
                                       : Navigator.push(
                                     context,
                                     PageTransition(
@@ -909,16 +796,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 values.data!.assessmentType != "test"
                                     ?
                                 Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-
-                                // Navigator.push(
-                                //     context,
-                                //     PageTransition(
-                                //         type: PageTransitionType
-                                //             .rightToLeft,
-                                //         child: StudentMemAnswerSheet(
-                                //             questions: values,
-                                //             assessmentId:
-                                //             widget.assessmentId)))
                                     : Navigator.push(
                                   context,
                                   PageTransition(
@@ -939,6 +816,104 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                         const Divider(
                           thickness: 2,
                         ),
+                        widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                        ? Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(
+                                Icons.quick_contacts_dialer_rounded,
+                                size: localHeight * 0.02,
+                                color: const Color.fromRGBO(48, 145, 139, 1),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type:
+                                    PageTransitionType.rightToLeft,
+                                    child: CustomDialog(
+                                      title: AppLocalizations.of(context)!.advisor_contact,
+                                      content:
+                                      widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                      ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                      :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                      ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                      : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                      ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                      : "Not given",
+                                      button: "OK",
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            TextButton(
+                                child: Text(
+                                    AppLocalizations.of(context)!.advisor_contact,
+                                    style: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: localHeight * 0.03,
+                                        color: const Color.fromRGBO(
+                                            48, 145, 139, 1),
+                                        fontWeight: FontWeight.w500)),
+                                onPressed: () {
+                                   Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: CustomDialog(
+                                        title: AppLocalizations.of(context)!.advisor_contact,
+                                        content:
+                                        widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                            ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                            :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                            ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                            : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                            ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                            : "Not given",
+                                        button: "OK",
+                                      ),
+                                    ),
+                                  );
+                                }),
+                            const SizedBox(width: 130),
+                            IconButton(
+                              icon: Icon(
+                                Icons.chevron_right,
+                                size: localHeight * 0.025,
+                                color: const Color.fromRGBO(48, 145, 139, 1),
+                              ),
+                              onPressed: () {
+                                 Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type:
+                                    PageTransitionType.rightToLeft,
+                                    child: CustomDialog(
+                                      title: AppLocalizations.of(context)!.advisor_contact,
+                                      content:
+                                      widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                          ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                          :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                          ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                          : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                          ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                          : "Not given",
+                                      button: "OK",
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        )
+                        : const SizedBox(),
+                        widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                        ? const Divider(
+                          thickness: 2,
+                        )
+                            : const SizedBox(),
                         // SizedBox(height: localHeight * 0.070),
                         const SizedBox(height: 30.0),
                         Container(
@@ -1098,7 +1073,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             SizedBox(
                                                 height:
                                                 localHeight * 0.050),
-                                            Text("Q$index",
+                                            Text("Q $index",
                                                 style: TextStyle(
                                                     color: const Color
                                                         .fromRGBO(
@@ -1227,40 +1202,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               localHeight * 0.015),
                                         ]),
                                     subtitle: Column(children: [
-                                      widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                          ? Align(
-                                        alignment:
-                                        Alignment.topLeft,
-                                        child: Text("${AppLocalizations.of(context)!.advisor} - ${widget.questions.data!.advisorName}",
-                                            style: TextStyle(
-                                                color:
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight:
-                                                FontWeight.w600,
-                                                fontSize:
-                                                localHeight * 0.014)),
-                                      )
-                                      : const SizedBox(),
-                                      SizedBox(
-                                          height: localHeight * 0.015),
-                                      widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? Align(
-                                        alignment:
-                                        Alignment.topLeft,
-                                        child: Text("Advisor Email - ${widget.questions.data!.advisorEmail}",
-                                            style: TextStyle(
-                                                color:
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight:
-                                                FontWeight.w600,
-                                                fontSize:
-                                                localHeight * 0.014)),
-                                      )
-                                          : const SizedBox(),
                                       SizedBox(
                                           height: localHeight * 0.015),
                                       Column(
@@ -1382,16 +1323,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   values.data!.assessmentType != "test"
                                       ?
                                   Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-
-                                  // Navigator.push(
-                                  //     context,
-                                  //     PageTransition(
-                                  //         type: PageTransitionType
-                                  //             .rightToLeft,
-                                  //         child: StudentMemAnswerSheet(
-                                  //             questions: values,
-                                  //             assessmentId:
-                                  //             widget.assessmentId)))
                                       : Navigator.push(
                                     context,
                                     PageTransition(
@@ -1421,16 +1352,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     values.data!.assessmentType != "test"
                                         ?
                                     Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-
-                                    // Navigator.push(
-                                    //     context,
-                                    //     PageTransition(
-                                    //         type: PageTransitionType
-                                    //             .rightToLeft,
-                                    //         child: StudentMemAnswerSheet(
-                                    //             questions: values,
-                                    //             assessmentId:
-                                    //             widget.assessmentId)))
                                         : Navigator.push(
                                       context,
                                       PageTransition(
@@ -1456,16 +1377,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   values.data!.assessmentType != "test"
                                       ?
                                   Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-
-                                  // Navigator.push(
-                                  //     context,
-                                  //     PageTransition(
-                                  //         type: PageTransitionType
-                                  //             .rightToLeft,
-                                  //         child: StudentMemAnswerSheet(
-                                  //             questions: values,
-                                  //             assessmentId:
-                                  //             widget.assessmentId)))
                                       : Navigator.push(
                                     context,
                                     PageTransition(
@@ -1486,6 +1397,104 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           const Divider(
                             thickness: 2,
                           ),
+                          widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                          ? Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.quick_contacts_dialer_rounded,
+                                  size: localHeight * 0.02,
+                                  color: const Color.fromRGBO(48, 145, 139, 1),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: CustomDialog(
+                                        title: AppLocalizations.of(context)!.advisor_contact,
+                                        content:
+                                        widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                            ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                            :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                            ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                            : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                            ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                            : "Not given",
+                                        button: "OK",
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                              TextButton(
+                                  child: Text(
+                                      AppLocalizations.of(context)!.advisor_contact,
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: localHeight * 0.02,
+                                          color: const Color.fromRGBO(
+                                              48, 145, 139, 1),
+                                          fontWeight: FontWeight.w500)),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType
+                                            .rightToLeft,
+                                        child: CustomDialog(
+                                          title: AppLocalizations.of(context)!.advisor_contact,
+                                          content:
+                                          widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                              ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                              :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                              ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                              : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                              ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                              : "Not given",
+                                          button: "OK",
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                              const SizedBox(width: 140),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.chevron_right,
+                                  size: localHeight * 0.025,
+                                  color: const Color.fromRGBO(48, 145, 139, 1),
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type:
+                                      PageTransitionType.rightToLeft,
+                                      child: CustomDialog(
+                                        title: AppLocalizations.of(context)!.advisor_contact,
+                                        content:
+                                        widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                            ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                            :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                            ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                            : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                            ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                            : "Not given",
+                                        button: "OK",
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          )
+                          : const SizedBox(),
+                          widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                          ? const Divider(
+                            thickness: 2,
+                          )
+                          : const SizedBox(),
                           const SizedBox(height: 30.0),
                           Container(
                             height: localHeight * 0.20,

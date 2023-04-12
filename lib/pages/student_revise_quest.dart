@@ -14,13 +14,15 @@ import 'student_result_page.dart';
 
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
-    required this.questions, required this.userName, required this.assessmentID, required this.startTime, required this.assessmentid
+    required this.questions, required this.userName, required this.assessmentID,
+    required this.startTime, required this.assessmentid,required this.submit,
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
   final int startTime;
   final String assessmentID;
   final int assessmentid;
+  final bool submit;
 
 
 
@@ -32,6 +34,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   late QuestionPaperModel values;
   List<List<dynamic>> options = [];
   PostAssessmentModel assessment = PostAssessmentModel(assessmentResults: []);
+
+  getData(){
+    submit();
+  }
 
   @override
   void initState() {
@@ -66,6 +72,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         }
       }
       options.add(selectedAnswers);
+    }
+    if(widget.submit == true){
+      getData();
     }
   }
 
@@ -1293,6 +1302,188 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         );
       },
     );
+  }
+
+  Future<void> submit() async {
+    String message = '';
+    int ansCorrect = 0;
+    int totalMark = 0;
+    int? givenMark = 0;
+    assessment.assessmentId = widget.assessmentid;
+    assessment.assessmentCode = widget.assessmentID;
+    assessment.statusId = 2;
+    assessment.attemptStartdate = widget.startTime;
+    assessment.attemptEnddate = DateTime
+        .now()
+        .microsecondsSinceEpoch;
+    var d1 = DateTime.fromMicrosecondsSinceEpoch(
+        widget.startTime);
+    var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime
+        .now()
+        .microsecondsSinceEpoch);
+    int difference = d2
+        .difference(d1)
+        .inMinutes;
+    assessment.attemptDuration = difference;
+
+    //int timeTaken = d2.difference(d1).inSeconds;
+
+    var endTimeTaken = (d2.difference(d1).toString());
+
+    for (int j = 1; j <= Provider
+        .of<Questions>(context, listen: false)
+        .totalQuestion
+        .length; j++) {
+      List<int> selectedAnsId = [];
+      AssessmentResult quesResult = AssessmentResult();
+      quesResult.questionId =
+          values.data!.questions![j - 1].questionId;
+      quesResult.statusId = 6;
+      quesResult.questionTypeId =
+          values.data!.questions![j - 1].questionTypeId;
+      quesResult.marks = 0;
+      List<dynamic> correctAns = [];
+      //changes are made
+      if (values.data!.questions![j - 1].questionType ==
+          "Descripitive") {
+        quesResult.marks = 0;
+        quesResult.descriptiveText = Provider
+            .of<Questions>(context, listen: false)
+            .totalQuestion['$j'][0].toString();
+      }
+      else if (values.data!.questions![j - 1].questionType ==
+          "Survey") {
+        List<dynamic> selectedAns = Provider
+            .of<Questions>(context, listen: false)
+            .totalQuestion['$j'][0];
+        selectedAns.sort();
+        List<int> key = [];
+        List<String> value = [];
+        for (int s = 0; s <
+            values.data!.questions![j - 1].choices!.length; s++) {
+          key.add(values.data!.questions![j - 1].choices![s]
+              .choiceId!);
+          value.add(values.data!.questions![j - 1].choices![s]
+              .choiceText!);
+        }
+        for (int f = 0; f < selectedAns.length; f++) {
+          selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+        }
+        quesResult.selectedQuestionChoice = selectedAnsId;
+        quesResult.marks = 0;
+      }
+      else {
+        for (int i = 0; i <
+            values.data!.questions![j - 1].choices!.length; i++) {
+          if (values.data!.questions![j - 1].choices![i]
+              .rightChoice!) {
+            correctAns.add(values.data!.questions![j - 1]
+                .choices![i].choiceText);
+          }
+        }
+        correctAns.sort();
+        List<dynamic> selectedAns = Provider
+            .of<Questions>(context, listen: false)
+            .totalQuestion['$j'][0];
+        selectedAns.sort();
+
+        List<int> key = [];
+        List<String> value = [];
+        for (int s = 0; s <
+            values.data!.questions![j - 1].choices!.length; s++) {
+          key.add(values.data!.questions![j - 1].choices![s]
+              .choiceId!);
+          value.add(values.data!.questions![j - 1].choices![s]
+              .choiceText!);
+        }
+        for (int f = 0; f < selectedAns.length; f++) {
+          selectedAnsId.add(key[value.indexOf(selectedAns[f])]);
+        }
+        quesResult.selectedQuestionChoice = selectedAnsId;
+
+        if (listEquals(correctAns, selectedAns)) {
+          quesResult.marks =
+              values.data!.questions![j - 1].questionMarks;
+          totalMark = totalMark +
+              values.data!.questions![j - 1].questionMarks!;
+          ansCorrect++;
+          givenMark = values.data!.totalScore;
+        }
+      }
+
+      assessment.assessmentResults.add(quesResult);
+    }
+    assessment.attemptScore = totalMark;
+    values.data!.totalScore = givenMark;
+    int percent = ((ansCorrect / values.data!.questions!.length) *
+        100).round();
+    assessment.attemptPercentage = percent;
+    if (percent == 100) {
+      assessment.assessmentScoreId =
+          values.data!.assessmentScoreMessage![0]
+              .assessmentScoreId;
+      message = values.data!.assessmentScoreMessage![0]
+          .assessmentScoreStatus;
+    }
+    else {
+      assessment.assessmentScoreId =
+          values.data!.assessmentScoreMessage![1]
+              .assessmentScoreId;
+      message = values.data!.assessmentScoreMessage![1]
+          .assessmentScoreStatus;
+    }
+    final DateTime now = DateTime.now();
+    final DateFormat formatter = DateFormat('dd-MM-yyyy');
+    final DateFormat timeFormatter = DateFormat('hh:mm a');
+    final String formatted = formatter.format(now);
+    final String time = timeFormatter.format(now);
+    LoginModel loginResponse = await QnaService
+        .postAssessmentService(assessment, values);
+    if (loginResponse.code == 200) {
+      Navigator.pushNamed(
+          context,
+          '/studentResultPage',
+          arguments: [
+            totalMark,
+            formatted,
+            time,
+            values,
+            widget.assessmentID,
+            widget.userName,
+            message,
+            endTimeTaken,
+            givenMark
+          ]);
+
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child: StudentResultPage(message: message,
+      //       totalMarks: totalMark,
+      //       date: formatted,
+      //       time: time,
+      //       questions: values,
+      //       assessmentCode: widget.assessmentID,
+      //       userName: widget.userName,
+      //       endTime: endTimeTaken,),
+      //   ),
+      // );
+    }
+    else {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Answer not Submitted',
+            content: 'please enter the',
+            button: AppLocalizations.of(context)!
+                .retry,
+          ),
+        ),
+      );
+    }
   }
 }
 

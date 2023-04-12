@@ -250,7 +250,8 @@ class StudQuestionState extends State<StudQuestion> {
                 ),
               );
             });
-      } else {
+      }
+      else {
         showModalBottomSheet(
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -449,10 +450,47 @@ class StudQuestionState extends State<StudQuestion> {
     setState(() {
       final seconds = myDuration.inSeconds - reduceSecondsBy;
       if (seconds < 0) {
-        countdownTimer!.cancel();
-      } else {
+        int a =now.microsecondsSinceEpoch + myDuration.inMicroseconds;
+        int d2 = DateTime
+            .now()
+            .microsecondsSinceEpoch;
+        if(a<d2){
+          Navigator.pushNamed(
+              context,
+              '/studentReviseQuest',
+              arguments: [
+                values,
+                widget.userName,
+                widget.assessmentId,
+                now.microsecondsSinceEpoch,
+                values.data!.assessmentId!,
+                true
+              ]);
+          countdownTimer!.cancel();
+        }
+
+      }
+      else {
+        if(widget.ques.data!.assessmentEndDate! <
+        DateTime
+            .now()
+            .microsecondsSinceEpoch ){
+          countdownTimer!.cancel();
+          Navigator.pushNamed(
+              context,
+              '/studentReviseQuest',
+              arguments: [
+                values,
+                widget.userName,
+                widget.assessmentId,
+                now.microsecondsSinceEpoch,
+                values.data!.assessmentId!,
+                true
+              ]);
+        }
         myDuration = Duration(seconds: seconds);
       }
+
     });
   }
 
@@ -1069,6 +1107,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 widget.assessmentId,
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
+                                                false,
                                               ]);
                                           // Navigator.push(
                                           //   context,
@@ -1796,6 +1835,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 widget.assessmentId,
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
+                                                false
                                               ]);
                                           // Navigator.push(
                                           //   context,

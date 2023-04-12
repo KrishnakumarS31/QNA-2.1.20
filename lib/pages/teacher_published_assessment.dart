@@ -64,8 +64,6 @@ class TeacherPublishedAssessmentState
       assessmentVal =
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .getAssessment;
-      print("4444444444444444444444444444444444444444444444444444444444444444444444");
-      print(assessmentVal.assessmentStartdate);
       questionTotal =
           widget.questionList == null ? 0 : widget.questionList!.length;
       if(widget.questionList==null){
@@ -77,7 +75,6 @@ class TeacherPublishedAssessmentState
       }
 
       if(assessmentVal.assessmentStartdate == null){
-        print("inside ifffffffffffffffffffffffffffffffffffff");
         DateTime date1 = DateTime.now();
         date1 = DateTime(
             date1.year,
@@ -88,12 +85,9 @@ class TeacherPublishedAssessmentState
         startDate=DateTime.fromMicrosecondsSinceEpoch(date1.microsecondsSinceEpoch);
         //question.assessmentStartdate=;
       }else{
-        print("inside elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         startDate = DateTime.fromMicrosecondsSinceEpoch(
             assessmentVal.assessmentStartdate!);
       }
-
-      print(startDate);
       endDate = DateTime.fromMicrosecondsSinceEpoch(
           assessmentVal.assessmentEnddate == null
               ? 0

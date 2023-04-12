@@ -46,6 +46,7 @@ class Data {
     this.assessmentType,
     this.totalScore,
     this.assessmentDuration,
+    this.assessmentEndDate,
     this.subject,
     this.topic,
     this.subTopic,
@@ -62,6 +63,7 @@ class Data {
   String? assessmentType;
   int? totalScore;
   int? assessmentDuration;
+  int? assessmentEndDate;
   String? subject;
   String? topic;
   String? subTopic;
@@ -78,6 +80,7 @@ class Data {
         assessmentType: json["assessment_type"],
         totalScore: json["total_score"],
         assessmentDuration: json["assessment_duration"],
+    assessmentEndDate: json["assessment_end_date"],
         subject: json["subject"],
         topic: json["topic"],
         advisorName: json["advisor_name"],
@@ -101,6 +104,7 @@ class Data {
         "assessment_type": assessmentType,
         "total_score": totalScore,
         "assessment_duration": assessmentDuration,
+    "assessment_end_date": assessmentEndDate,
         "subject": subject,
         "topic": topic,
         "sub_topic": subTopic,
@@ -113,6 +117,11 @@ class Data {
         "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
         "access_token_details": accessTokenDetails?.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'Data{assessmentId: $assessmentId, assessmentType: $assessmentType, totalScore: $totalScore, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, dataClass: $dataClass, advisorName: $advisorName, advisorEmail: $advisorEmail, assessmentScoreMessage: $assessmentScoreMessage, assessmentSettings: $assessmentSettings, questions: $questions, accessTokenDetails: $accessTokenDetails}';
+  }
 }
 
 class AccessTokenDetails {
@@ -134,6 +143,11 @@ class AccessTokenDetails {
         "access_token": accessToken,
         "user_id": userId,
       };
+
+  @override
+  String toString() {
+    return 'AccessTokenDetails{accessToken: $accessToken, userId: $userId}';
+  }
 }
 
 class AssessmentScoreMessage {

@@ -238,6 +238,7 @@ class QnaRepo {
 
   static Future<ResponseEntity> createAssessmentTeacher(
       CreateAssessmentModel question) async {
+    print("1");
     if(question.assessmentStartdate==null){
       DateTime date1 = DateTime.now();
       date1 = DateTime(
@@ -248,28 +249,38 @@ class QnaRepo {
           date1.minute);
       question.assessmentStartdate=date1.microsecondsSinceEpoch;
     }
+    print("2");
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
     };
+    print("3");
     var request = http.Request('POST', Uri.parse(assessmentDomain));
+    print("4");
     request.body = createAssessmentModelToJson(question);
-    debugPrint(request.body);
-    log(request.body);
+    print(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print("5");
     if (response.statusCode == 200) {
+      print("6");
       String temp = await response.stream.bytesToString();
-      loginModel = responseEntityFromJson(temp);
+      print(temp);
+      loginModel =responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
+      print("7");
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       createAssessmentTeacher(question);
-    } else {}
+    } else {
+      String temp = await response.stream.bytesToString();
+      loginModel =responseEntityFromJson(temp);
+      print(loginModel.message);
+    }
     return loginModel;
   }
 

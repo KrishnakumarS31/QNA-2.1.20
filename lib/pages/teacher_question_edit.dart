@@ -727,7 +727,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                             borderRadius:
                                             BorderRadius.circular(5)),
                                       ),
-                                      onChanged: (val) {
+                                      onEditingComplete: () {
+                                        String val=chooses[i].text;
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;

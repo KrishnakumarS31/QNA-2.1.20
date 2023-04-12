@@ -164,9 +164,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                         children: [
                                           Row(children: [
                                             Text(
-                                                "Q${values.data!
-                                                    .questions![index - 1]
-                                                    .questionId}",
+                                                "Q $index",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -311,9 +309,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                         children: [
                                           Row(children: [
                                             Text(
-                                                "Q${values.data!
-                                                    .questions![index - 1]
-                                                    .questionId}",
+                                                "Q $index",
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         82, 165, 160, 1),
@@ -544,9 +540,7 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                                       children: [
                                         Row(children: [
                                           Text(
-                                              "Q${values.data!
-                                                  .questions![index - 1]
-                                                  .questionId}",
+                                              "Q $index",
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1),

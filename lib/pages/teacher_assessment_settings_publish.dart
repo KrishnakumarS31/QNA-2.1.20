@@ -2074,20 +2074,21 @@ class TeacherAssessmentSettingPublishState
                                             statusCode = await QnaService
                                                 .createAssessmentTeacherService(
                                                     assessment);
-                                            assessmentCode=statusCode
-                                                .data
-                                                .toString()
-                                                .substring(
-                                                18,
-                                                statusCode.data
-                                                    .toString()
-                                                    .length -
-                                                    1);
-                                          }
-                                          Navigator.of(context).pop();
-                                          Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
+
 
                                     if (statusCode.code == 200) {
+                                      assessmentCode=statusCode
+                                          .data
+                                          .toString()
+                                          .substring(
+                                          18,
+                                          statusCode.data
+                                              .toString()
+                                              .length -
+                                              1);
+                                    }
+                                            Navigator.of(context).pop();
+                                            Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
                                       Navigator.pushNamed(
                                           context,
                                           '/teacherPublishedAssessment',

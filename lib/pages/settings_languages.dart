@@ -207,8 +207,8 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                     selectedLocale = 'en';
                                   }
                                   Provider.of<LanguageChangeProvider>(context, listen: false).changeLocale(selectedLocale);
-                                  // int i = await AppUserRepo().createUserDetail(
-                                  //     AppUser(locale: selectedLocale, id: 35));
+                                  int i = await AppUserRepo().createUserDetail(
+                                      AppUser(locale: selectedLocale, id: 35));
                                  loginData.setString("locale", selectedLocale);
 
                                   Navigator.pushNamedAndRemoveUntil(context, '/',(route) => route.isFirst);

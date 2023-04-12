@@ -1037,8 +1037,6 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           onPressed: () async {
                             assessmentVal.assessmentStatus = "inprogress";
                             assessmentVal.assessmentType = "practice";
-                            print("66666666666666666666666666666666666666666666666");
-
                             // assessmentVal.assessmentStartdate =
                             //     date1.microsecondsSinceEpoch ;
                             showDialog(
@@ -1049,18 +1047,21 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                     color: Color.fromRGBO(48, 145, 139, 1),
                                   ));
                                 });
+                            print("-1");
                             ResponseEntity statusCode =
                                 await QnaService.createAssessmentTeacherService(
                                     assessmentVal);
-                            String assessmentCode = statusCode.data
-                                .toString()
-                                .substring(
-                                    18, statusCode.data.toString().length - 1);
-                            // QuestionPaperModel.QuestionPaperModel value =
-                            //     await QnaService.getQuestion(
-                            //         assessmentId: assessmentCode);
-                            Navigator.of(context).pop();
+                            print("0");
+
                             if (statusCode.code == 200) {
+                              String assessmentCode = statusCode.data
+                                  .toString()
+                                  .substring(
+                                  18, statusCode.data.toString().length - 1);
+                              // QuestionPaperModel.QuestionPaperModel value =
+                              //     await QnaService.getQuestion(
+                              //         assessmentId: assessmentCode);
+                              Navigator.of(context).pop();
                               Navigator.pushNamed(
                                   context,
                                   '/teacherPublishedAssessment',
