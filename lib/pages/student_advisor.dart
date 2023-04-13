@@ -817,7 +817,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           thickness: 2,
                         ),
                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                        ? Row(
+                            ? Row(
                           children: [
                             IconButton(
                               icon: Icon(
@@ -835,12 +835,12 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       title: AppLocalizations.of(context)!.advisor_contact,
                                       content:
                                       widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                      ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
-                                      :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                      ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
-                                      : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                      ? "Advisor Name- ${widget.questions.data!.advisorName}"
-                                      : "Not given",
+                                          ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                          :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
+                                          ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                          : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
+                                          ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                          : "Not given",
                                       button: "OK",
                                     ),
                                   ),
@@ -857,7 +857,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             48, 145, 139, 1),
                                         fontWeight: FontWeight.w500)),
                                 onPressed: () {
-                                   Navigator.push(
+                                  Navigator.push(
                                     context,
                                     PageTransition(
                                       type:
@@ -885,7 +885,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 color: const Color.fromRGBO(48, 145, 139, 1),
                               ),
                               onPressed: () {
-                                 Navigator.push(
+                                Navigator.push(
                                   context,
                                   PageTransition(
                                     type:
@@ -908,9 +908,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             ),
                           ],
                         )
-                        : const SizedBox(),
+                            : const SizedBox(),
                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                        ? const Divider(
+                            ? const Divider(
                           thickness: 2,
                         )
                             : const SizedBox(),
@@ -1398,7 +1398,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             thickness: 2,
                           ),
                           widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                          ? Row(
+                              ? Row(
                             children: [
                               IconButton(
                                 icon: Icon(
@@ -1489,12 +1489,12 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ),
                             ],
                           )
-                          : const SizedBox(),
+                              : const SizedBox(),
                           widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                          ? const Divider(
+                              ? const Divider(
                             thickness: 2,
                           )
-                          : const SizedBox(),
+                              : const SizedBox(),
                           const SizedBox(height: 30.0),
                           Container(
                             height: localHeight * 0.20,

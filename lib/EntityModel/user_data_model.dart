@@ -28,6 +28,11 @@ class UserDataModel {
     "message": message,
     "data": data?.toJson(),
   };
+
+  @override
+  String toString() {
+    return 'UserDataModel{code: $code, message: $message, data: $data}';
+  }
 }
 
 class Data {
@@ -104,4 +109,9 @@ class Data {
     "is_active": isActive,
     "email_verified": emailVerified,
   };
+
+  @override
+  String toString() {
+    return 'Data{id: $id, firstName: $firstName, lastName: $lastName, dob: $dob, gender: $gender, countryNationality: $countryNationality, countryResident: $countryResident, email: $email, rollNumber: $rollNumber, organisationName: $organisationName, role: $role, password: $password, createdBy: $createdBy, updatedBy: $updatedBy, isActive: $isActive, emailVerified: $emailVerified}';
+  }
 }

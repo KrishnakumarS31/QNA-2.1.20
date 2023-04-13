@@ -1110,6 +1110,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   int ansCorrect = 0;
                   int totalMark = 0;
                   int? givenMark = 0;
+
                   assessment.assessmentId = widget.assessmentid;
                   assessment.assessmentCode = widget.assessmentID;
                   assessment.statusId = 2;
@@ -1131,15 +1132,14 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
                   var endTimeTaken = (d2.difference(d1).toString());
 
-                  for (int j = 1; j <= Provider
-                      .of<Questions>(context, listen: false)
-                      .totalQuestion
-                      .length; j++) {
+                  for (int j = 1; j <= Provider.of<Questions>(context, listen: false)
+                      .totalQuestion.length; j++)
+                  {
                     List<int> selectedAnsId = [];
                     AssessmentResult quesResult = AssessmentResult();
                     quesResult.questionId =
                         values.data!.questions![j - 1].questionId;
-                    quesResult.statusId = 6;
+                    //quesResult.statusId = 6;
                     quesResult.questionTypeId =
                         values.data!.questions![j - 1].questionTypeId;
                     quesResult.marks = 0;
@@ -1148,12 +1148,15 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     if (values.data!.questions![j - 1].questionType ==
                         "Descripitive") {
                       quesResult.marks = 0;
+                      quesResult.statusId = 8;
                       quesResult.descriptiveText = Provider
                           .of<Questions>(context, listen: false)
                           .totalQuestion['$j'][0].toString();
                     }
                     else if (values.data!.questions![j - 1].questionType ==
-                        "Survey") {
+                        "Survey")
+                    {
+                      quesResult.statusId = 8;
                       List<dynamic> selectedAns = Provider
                           .of<Questions>(context, listen: false)
                           .totalQuestion['$j'][0];
@@ -1174,8 +1177,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       quesResult.marks = 0;
                     }
                     else {
-                      for (int i = 0; i <
-                          values.data!.questions![j - 1].choices!.length; i++) {
+                      for (int i = 0; i < values.data!.questions![j - 1].choices!.length; i++) {
                         if (values.data!.questions![j - 1].choices![i]
                             .rightChoice!) {
                           correctAns.add(values.data!.questions![j - 1]
@@ -1187,6 +1189,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           .of<Questions>(context, listen: false)
                           .totalQuestion['$j'][0];
                       selectedAns.sort();
+                      if(selectedAns.isEmpty){
+                        quesResult.statusId = 5;
+                      }
 
                       List<int> key = [];
                       List<String> value = [];
@@ -1203,12 +1208,16 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       quesResult.selectedQuestionChoice = selectedAnsId;
 
                       if (listEquals(correctAns, selectedAns)) {
+                        quesResult.statusId = 6;
                         quesResult.marks =
                             values.data!.questions![j - 1].questionMarks;
                         totalMark = totalMark +
                             values.data!.questions![j - 1].questionMarks!;
                         ansCorrect++;
                         givenMark = values.data!.totalScore;
+                      }
+                      else{
+                        quesResult.statusId = 7;
                       }
                     }
 
@@ -1346,6 +1355,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       //changes are made
       if (values.data!.questions![j - 1].questionType ==
           "Descripitive") {
+        quesResult.statusId = 8;
         quesResult.marks = 0;
         quesResult.descriptiveText = Provider
             .of<Questions>(context, listen: false)
@@ -1353,6 +1363,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       }
       else if (values.data!.questions![j - 1].questionType ==
           "Survey") {
+        quesResult.statusId = 8;
         List<dynamic> selectedAns = Provider
             .of<Questions>(context, listen: false)
             .totalQuestion['$j'][0];
@@ -1386,7 +1397,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
             .of<Questions>(context, listen: false)
             .totalQuestion['$j'][0];
         selectedAns.sort();
-
+if(selectedAns.isEmpty){
+  quesResult.statusId = 5;
+}
         List<int> key = [];
         List<String> value = [];
         for (int s = 0; s <
@@ -1402,12 +1415,16 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         quesResult.selectedQuestionChoice = selectedAnsId;
 
         if (listEquals(correctAns, selectedAns)) {
+          quesResult.statusId = 6;
           quesResult.marks =
               values.data!.questions![j - 1].questionMarks;
           totalMark = totalMark +
               values.data!.questions![j - 1].questionMarks!;
           ansCorrect++;
           givenMark = values.data!.totalScore;
+        }
+        else{
+          quesResult.statusId = 7;
         }
       }
 

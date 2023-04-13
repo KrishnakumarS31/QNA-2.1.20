@@ -155,14 +155,11 @@ class TeacherSelectedQuestionAssessmentState
 
   getData() {
     setState(() {
-      print("1");
       questionList.addAll(
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .getAllQuestion);
-      print("2");
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
           .getAssessment;
-      print("3");
       totalQues = questionList.length;
       for (int i = 0; i < questionList.length; i++) {
         totalMark = totalMark + questionList[i].questionMark!;

@@ -178,11 +178,12 @@ class QnaRepo {
 
     if (questionPaper!.data!.accessTokenDetails!.accessToken == null) {
       token = loginData.getString('token');
+      assessment?.userId = loginData.getInt('userId');
     } else {
       assessment!.userId = questionPaper.data!.accessTokenDetails!.userId!;
       token = questionPaper.data!.accessTokenDetails!.accessToken!;
     }
-    assessment?.userId = loginData.getInt('userId');
+
     LoginModel loginModel = LoginModel(code: 0, message: 'message');
     var headers = {
       'Authorization': 'Bearer $token',

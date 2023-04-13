@@ -7,22 +7,24 @@ class ResultCard extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
-    required this.results
+    required this.results,
+    required this.index,
   }) : super(key: key);
 
   final double height;
   final double width;
   final GetResultModel results;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
 
     bool condition = results.assessmentResults != null && results.assessmentResults?.isEmpty == false;
-    String? name =condition ? results.assessmentResults![0].firstName : " ";
+    String? name =condition ? results.assessmentResults![index].firstName : " ";
     String? assessmentCode = results.assessmentCode ?? " ";
-    int? timeTaken = condition ? results.assessmentResults![0].attemptDuration : 0;
-    int? percent = condition ? results.assessmentResults![0].attemptPercent : 0;
-    int? securedMark = condition ? results.assessmentResults![0].attemptScore : 0;
+    int? timeTaken = condition ? results.assessmentResults![index].attemptDuration : 0;
+    int? percent = condition ? results.assessmentResults![index].attemptPercent : 0;
+    int? securedMark = condition ? results.assessmentResults![index].attemptScore : 0;
     int? totalMark = results.totalScore ?? 0;
 
     return Padding(

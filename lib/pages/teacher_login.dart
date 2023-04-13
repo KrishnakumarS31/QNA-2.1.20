@@ -508,6 +508,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                             Navigator.of(context).pop();
 
                             if (loginResponse.code == 200) {
+                              final SharedPreferences loginData =await SharedPreferences.getInstance();
                               loginData?.setBool('login', false);
                               loginData?.setString('email', regNumber);
                               loginData?.setString('password', passWord);

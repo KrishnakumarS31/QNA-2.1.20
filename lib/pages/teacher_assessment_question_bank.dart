@@ -281,13 +281,18 @@ class TeacherAssessmentQuestionBankState
 
                     Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
                     for(int i =0;i<quesList.length;i++){
-                      Provider.of<QuestionPrepareProviderFinal>(context,
-                          listen: false)
-                          .addQuestion(quesList[i]);
                       if(quesList[i].questionType=="MCQ"){
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 1);
+                        quesList[i].questionMark=1;
+                        Provider.of<QuestionPrepareProviderFinal>(context,
+                            listen: false)
+                            .addQuestion(quesList[i]);
                       }else{
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
+                        quesList[i].questionMark=0;
+                        Provider.of<QuestionPrepareProviderFinal>(context,
+                            listen: false)
+                            .addQuestion(quesList[i]);
                       }
 
                     }
@@ -369,12 +374,13 @@ class _QuestionPreviewState extends State<QuestionPreview> {
             setState(() {
 
               if (value!) {
-                widget.question.questionMark = 0;
+                widget.question.questionType=="MCQ"?
+                widget.question.questionMark = 1:widget.question.questionMark = 0;
                 Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(widget.question!);
               } else {
-                print("fail 1");
+
                 Provider.of<NewQuestionProvider>(context, listen: false).removeQuestion(widget.question.questionId!);
-                print("fail 2");
+
                 // print(Provider.of<QuestionPrepareProviderFinal>(context,
                 //     listen: false)
                 //     .getAllQuestion.length);

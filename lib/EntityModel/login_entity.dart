@@ -31,6 +31,11 @@ class LoginModel {
         "message": message,
         "data": data?.toJson(),
       };
+
+  @override
+  String toString() {
+    return 'LoginModel{code: $code, message: $message, data: $data}';
+  }
 }
 
 class Data {
@@ -53,4 +58,9 @@ class Data {
         "first_name": firstName,
         "last_name": lastName
       };
+
+  @override
+  String toString() {
+    return 'Data{firstName: $firstName, lastName: $lastName, accessToken: $accessToken, userId: $userId}';
+  }
 }

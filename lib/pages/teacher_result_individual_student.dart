@@ -7,9 +7,11 @@ class TeacherResultIndividualStudent extends StatefulWidget {
   const TeacherResultIndividualStudent({
     Key? key,
     required this.result,
+    required this.index,
     this.advisorName,
   }) : super(key: key);
   final GetResultModel result;
+  final int index;
   final String? advisorName;
 
   @override
@@ -166,7 +168,8 @@ class TeacherResultIndividualStudentState
                           ),
                           Text(
                             widget
-                                .result.assessmentResults![0].organizationName!,
+                                .result.assessmentResults![widget.index].organizationName==null?"":widget
+                                .result.assessmentResults![widget.index].organizationName!,
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 color: const Color.fromRGBO(102, 102, 102, 1),
@@ -181,20 +184,23 @@ class TeacherResultIndividualStudentState
                       ResultCardNew(
                           height: height,
                           width: width,
+                          index: widget.index,
                           results: widget.result),
                       SizedBox(
                         height: height * 0.02,
                       ),
+                      Text(
+                        "*** Incorrect Answered ***",
+                        style: TextStyle(
+                            color: const Color.fromRGBO(238, 100, 0, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: height * 0.02),
+                      ),
                       SizedBox(
                         height: height * 0.03,
                       ),
-                      widget
-                          .result
-                          .assessmentResults![0]
-                          .questions![0]
-                          .questionType! ==
-                          "MCQ"
-                      ? Align(
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "MCQ",
@@ -204,28 +210,26 @@ class TeacherResultIndividualStudentState
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600),
                         ),
-                      )
-                      :const SizedBox(),
-                      widget
-                          .result
-                          .assessmentResults![0]
-                          .questions![0]
-                          .questionType! ==
-                          "MCQ"
-                      ? ListView.builder(
+                      ),
+                      ListView.builder(
                               scrollDirection: Axis.vertical,
                               shrinkWrap: true,
                               itemCount:
-                                  widget.result.assessmentResults!.length,
+                                  widget.result.assessmentResults![widget.index].questions!.length,
                               itemBuilder: (context, index) => Column(
                                 children: [
                                   widget
                                               .result
-                                              .assessmentResults![0]
+                                              .assessmentResults![widget.index]
                                               .questions![index]
                                               .questionType! ==
                                           "MCQ"
-                                      ? MouseRegion(
+                                      ?
+                                  (widget
+                                      .result
+                                      .assessmentResults![widget.index]
+                                      .questions![index].status=="Incorrect")?
+                                  MouseRegion(
                                           cursor: SystemMouseCursors.click,
                                           child: GestureDetector(
                                           onTap: () {},
@@ -233,156 +237,327 @@ class TeacherResultIndividualStudentState
                                             height: height,
                                             ques: widget
                                                 .result
-                                                .assessmentResults![0]
-                                                .questions!,
+                                                .assessmentResults![widget.index]
+                                                .questions![index],
+                                            quesNum: index,
                                             // ans: widget
                                             //     .result
                                             //     .assessmentResults![0]
                                             //     .questions,
                                           ),
                                         ))
-                                      : const SizedBox(),
+                                      :const SizedBox(): const SizedBox(),
                                   SizedBox(
                                     height: height * 0.02,
                                   ),
                                 ],
                               ),
-                            )
-                      : const SizedBox(),
+                            ),
+
+
+                      // widget
+                      //     .result
+                      //     .assessmentResults![0]
+                      //     .questions![0]
+                      //     .questionType! ==
+                      //     "MCQ"
+                      // ? Align(
+                      //   alignment: Alignment.centerLeft,
+                      //   child: Text(
+                      //     "MCQ",
+                      //     style: TextStyle(
+                      //         fontSize: height * 0.02,
+                      //         color: const Color.fromRGBO(28, 78, 80, 1),
+                      //         fontFamily: "Inter",
+                      //         fontWeight: FontWeight.w600),
+                      //   ),
+                      // )
+                      // : const SizedBox(),
+                      //
+                      // widget
+                      //     .result
+                      //     .assessmentResults![0]
+                      //     .questions![0]
+                      //     .questionType! ==
+                      //     "MCQ"
+                      // ? ListView.builder(
+                      //         scrollDirection: Axis.vertical,
+                      //         shrinkWrap: true,
+                      //         itemCount:
+                      //             widget.result.assessmentResults!.length,
+                      //         itemBuilder: (context, index) => Column(
+                      //           children: [
+                      //             widget
+                      //                         .result
+                      //                         .assessmentResults![0]
+                      //                         .questions![index]
+                      //                         .questionType! ==
+                      //                     "MCQ"
+                      //                 ? MouseRegion(
+                      //                     cursor: SystemMouseCursors.click,
+                      //                     child: GestureDetector(
+                      //                     onTap: () {},
+                      //                     child: QuesAndAns(
+                      //                       height: height,
+                      //                       ques: widget
+                      //                           .result
+                      //                           .assessmentResults![0]
+                      //                           .questions!,
+                      //                       // ans: widget
+                      //                       //     .result
+                      //                       //     .assessmentResults![0]
+                      //                       //     .questions,
+                      //                     ),
+                      //                   ))
+                      //                 : const SizedBox(),
+                      //             SizedBox(
+                      //               height: height * 0.02,
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       )
+                      // : const SizedBox(),
+
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(),
                       ),
-                      widget
-                          .result
-                          .assessmentResults![0]
-                          .questions![0]
-                          .questionType! ==
-                          "SURVEY"
-                     ? Align(
+
+                     //  widget
+                     //      .result
+                     //      .assessmentResults![0]
+                     //      .questions![0]
+                     //      .questionType! ==
+                     //      "SURVEY"
+                     // ? Align(
+                     //    alignment: Alignment.centerLeft,
+                     //    child: Text(
+                     //      'Survey',
+                     //      style: TextStyle(
+                     //          fontSize: height * 0.02,
+                     //          color: const Color.fromRGBO(28, 78, 80, 1),
+                     //          fontFamily: "Inter",
+                     //          fontWeight: FontWeight.w600),
+                     //    ),
+                     //  )
+                     //  : const SizedBox(),
+
+                   //    widget
+                   //        .result
+                   //        .assessmentResults![0]
+                   //        .questions![0]
+                   //        .questionType! ==
+                   //        "SURVEY"
+                   // ? ListView.builder(
+                   //            scrollDirection: Axis.vertical,
+                   //            shrinkWrap: true,
+                   //            itemCount:
+                   //                widget.result.assessmentResults!.length,
+                   //            itemBuilder: (context, index) => Column(
+                   //              children: [
+                   //                widget
+                   //                            .result
+                   //                            .assessmentResults![0]
+                   //                            .questions![index]
+                   //                            .questionType! ==
+                   //                        "SURVEY"
+                   //                    ? MouseRegion(
+                   //                        cursor: SystemMouseCursors.click,
+                   //                        child: GestureDetector(
+                   //                        onTap: () {},
+                   //                        child: QuesAndAns(
+                   //                          height: height,
+                   //                          ques: widget
+                   //                              .result
+                   //                              .assessmentResults![0]
+                   //                              .questions![index],
+                   //                          quesNum: index,
+                   //                          // ans: widget
+                   //                          //     .result
+                   //                          //     .assessmentResults![0]
+                   //                          //     .questions![0]
+                   //                          //     .descriptiveAnswers!,
+                   //                        )))
+                   //
+                   //                : const SizedBox(),
+                   //                SizedBox(
+                   //                  height: height * 0.02,
+                   //                ),
+                   //              ],
+                   //            ),
+                   //          )
+                   //    : const SizedBox(),
+
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Survey',
+                          "Survey",
                           style: TextStyle(
                               fontSize: height * 0.02,
                               color: const Color.fromRGBO(28, 78, 80, 1),
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600),
                         ),
-                      )
-                      : const SizedBox(),
-                      widget
-                          .result
-                          .assessmentResults![0]
-                          .questions![0]
-                          .questionType! ==
-                          "SURVEY"
-                   ? ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount:
-                                  widget.result.assessmentResults!.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  widget
-                                              .result
-                                              .assessmentResults![0]
-                                              .questions![index]
-                                              .questionType! ==
-                                          "SURVEY"
-                                      ? MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                          onTap: () {},
-                                          child: QuesAndAns(
-                                            height: height,
-                                            ques: widget
-                                                .result
-                                                .assessmentResults![0]
-                                                .questions!,
-                                            // ans: widget
-                                            //     .result
-                                            //     .assessmentResults![0]
-                                            //     .questions![0]
-                                            //     .descriptiveAnswers!,
-                                          )))
-
-                                  : const SizedBox(),
-                                  SizedBox(
-                                    height: height * 0.02,
-                                  ),
-                                ],
-                              ),
-                            )
-                      : const SizedBox(),
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Divider(),
                       ),
-
-                      widget
-                          .result
-                          .assessmentResults![0]
-                          .questions![0]
-                          .questionType! ==
-                          "descriptive"
-                      ? Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'DESCRIPTIVE',
-                          style: TextStyle(
-                              fontSize: height * 0.02,
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )
-                      : const SizedBox(),
-                      widget
-                          .result
-                          .assessmentResults![0]
-                          .questions![0]
-                          .questionType! ==
-                          "descriptive"
-                          ?
                       ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount:
-                                  widget.result.assessmentResults!.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  widget
-                                              .result
-                                              .assessmentResults![0]
-                                              .questions![0]
-                                              .questionType! ==
-                                          "descriptive"
-                                      ? MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                          onTap: () {},
-                                          child: QuesAndAns(
-                                            height: height,
-                                            ques: widget
-                                                .result
-                                                .assessmentResults![0]
-                                                .questions!,
-                                            // ans: widget
-                                            //     .result
-                                            //     .assessmentResults![0]
-                                            //     .questions![0]
-                                            //     .descriptiveAnswers!,
-                                          ),
-                                        ))
-                                      : const SizedBox(),
-                                  SizedBox(
-                                    height: height * 0.02,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount:
+                        widget.result.assessmentResults![widget.index].questions!.length,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            widget
+                                .result
+                                .assessmentResults![widget.index]
+                                .questions![index]
+                                .questionType! ==
+                                "Survey"
+                                ? MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: QuesAndAns(
+                                    height: height,
+                                    ques: widget
+                                        .result
+                                        .assessmentResults![widget.index]
+                                        .questions![index],
+                                    quesNum: index,
+                                    // ans: widget
+                                    //     .result
+                                    //     .assessmentResults![0]
+                                    //     .questions,
                                   ),
-                                ],
-                              ),
-                            )
-                      : const SizedBox(),
+                                ))
+                                : const SizedBox(),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                          ],
+                        ),
+                      ),
+
+
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Divider(),
+                      ),
+
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Descripitive",
+                          style: TextStyle(
+                              fontSize: height * 0.02,
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount:
+                        widget.result.assessmentResults![widget.index].questions!.length,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            widget
+                                .result
+                                .assessmentResults![widget.index]
+                                .questions![index]
+                                .questionType! ==
+                                "Descripitive"
+                                ? MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: QuesAndAns(
+                                    height: height,
+                                    ques: widget
+                                        .result
+                                        .assessmentResults![widget.index]
+                                        .questions![index],
+                                    quesNum: index,
+                                    // ans: widget
+                                    //     .result
+                                    //     .assessmentResults![0]
+                                    //     .questions,
+                                  ),
+                                ))
+                                : const SizedBox(),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      // widget
+                      //     .result
+                      //     .assessmentResults![0]
+                      //     .questions![0]
+                      //     .questionType! ==
+                      //     "descriptive"
+                      // ? Align(
+                      //   alignment: Alignment.centerLeft,
+                      //   child: Text(
+                      //     'DESCRIPTIVE',
+                      //     style: TextStyle(
+                      //         fontSize: height * 0.02,
+                      //         color: const Color.fromRGBO(28, 78, 80, 1),
+                      //         fontFamily: "Inter",
+                      //         fontWeight: FontWeight.w600),
+                      //   ),
+                      // )
+                      // : const SizedBox(),
+
+                      // widget
+                      //     .result
+                      //     .assessmentResults![0]
+                      //     .questions![0]
+                      //     .questionType! ==
+                      //     "descriptive"
+                      //     ?
+                      // ListView.builder(
+                      //         scrollDirection: Axis.vertical,
+                      //         shrinkWrap: true,
+                      //         itemCount:
+                      //             widget.result.assessmentResults!.length,
+                      //         itemBuilder: (context, index) => Column(
+                      //           children: [
+                      //             widget
+                      //                         .result
+                      //                         .assessmentResults![0]
+                      //                         .questions![0]
+                      //                         .questionType! ==
+                      //                     "descriptive"
+                      //                 ? MouseRegion(
+                      //                     cursor: SystemMouseCursors.click,
+                      //                     child: GestureDetector(
+                      //                     onTap: () {},
+                      //                     child: QuesAndAns(
+                      //                       height: height,
+                      //                       ques: widget
+                      //                           .result
+                      //                           .assessmentResults![0]
+                      //                           .questions![index],
+                      //                       quesNum: index,
+                      //                       // ans: widget
+                      //                       //     .result
+                      //                       //     .assessmentResults![0]
+                      //                       //     .questions![0]
+                      //                       //     .descriptiveAnswers!,
+                      //                     ),
+                      //                   ))
+                      //                 : const SizedBox(),
+                      //             SizedBox(
+                      //               height: height * 0.02,
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       )
+                      // : const SizedBox(),
+
                     ]),
               ),
             )));
@@ -398,11 +573,12 @@ class NumberList {
 
 class QuesAndAns extends StatefulWidget {
   const QuesAndAns(
-      {Key? key, required this.height, required this.ques})
+      {Key? key, required this.height, required this.ques,required this.quesNum})
       : super(key: key);
 
   final double height;
-  final List<Questions> ques;
+  final Questions ques;
+  final int quesNum;
 
   @override
   State<QuesAndAns> createState() => _QuesAndAnsState();
@@ -434,9 +610,18 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
-              Expanded(
-                child: Text(
-                  widget.ques.length.toString(),
+              Text(
+                '${widget.quesNum + 1}',
+                style: TextStyle(
+                    fontSize: widget.height * 0.014,
+                    color: const Color.fromRGBO(102, 102, 102, 1),
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400),
+              ),
+              SizedBox(width: widget.height* 0.005,),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(widget.ques.question ?? " ",
                   style: TextStyle(
                       fontSize: widget.height * 0.014,
                       color: const Color.fromRGBO(102, 102, 102, 1),
@@ -463,16 +648,26 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
+    widget.ques.questionType != "Descripitive" ?
               Expanded(
-                child: Text(
-                 widget.ques[0].selectedChoices![0],
+                child: Text(widget.ques.selectedChoices == null ? " " : widget.ques.selectedChoices![0],
                   style: TextStyle(
                       fontSize: widget.height * 0.014,
                       color: const Color.fromRGBO(102, 102, 102, 1),
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
                 ),
-              ),
+              ):
+    Expanded(
+      child: Text(widget.ques.descriptiveAnswers == null ? " " : widget.ques.descriptiveAnswers!.substring(1,widget.ques.descriptiveAnswers!.length-1),
+        style: TextStyle(
+            fontSize: widget.height * 0.014,
+            color: const Color.fromRGBO(102, 102, 102, 1),
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w400),
+      ),
+    ),
+
             ],
           ),
         ),

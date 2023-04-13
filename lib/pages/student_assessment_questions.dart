@@ -455,6 +455,7 @@ class StudQuestionState extends State<StudQuestion> {
             .now()
             .microsecondsSinceEpoch;
         if(a<d2){
+          countdownTimer!.cancel();
           Navigator.pushNamed(
               context,
               '/studentReviseQuest',
@@ -466,7 +467,6 @@ class StudQuestionState extends State<StudQuestion> {
                 values.data!.assessmentId!,
                 true
               ]);
-          countdownTimer!.cancel();
         }
 
       }
@@ -1098,6 +1098,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           size: height * 0.06,
                                         ),
                                         onPressed: () {
+                                          countdownTimer!.cancel();
                                           Navigator.pushNamed(
                                               context,
                                               '/studentReviseQuest',
@@ -1826,6 +1827,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                     219, 35, 35, 1),
                                                 false);
                                           }
+                                          countdownTimer!.cancel();
                                           Navigator.pushNamed(
                                               context,
                                               '/studentReviseQuest',

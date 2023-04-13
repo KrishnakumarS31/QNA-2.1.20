@@ -768,17 +768,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       ),
                       MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TeacherResultIndividualStudent(
-                                  result: widget.result),
-                            ),
-                          );
-                        },
                         child: ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -794,7 +783,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: TeacherResultIndividualStudent(
-                                          result: widget.result),
+                                          result: widget.result,
+                                        index: index,),
                                     ),
                                   );
                                 },
@@ -802,6 +792,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     height: height,
                                     width: width,
                                  results: widget.result,
+                                    index: index
                                 ),
                               )),
                               SizedBox(
@@ -809,8 +800,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                               ),
                             ],
                           ),
-                        ),
-                      )),
+                        )),
                       SizedBox(
                         height: height * 0.03,
                       )

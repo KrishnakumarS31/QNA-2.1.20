@@ -772,48 +772,38 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                       ),
                       MouseRegion(
                           cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: TeacherResultIndividualStudent(
-                                  result: widget.result),
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: widget.result.assessmentResults!.length,
+                            itemBuilder: (context, index) => Column(
+                              children: [
+                                MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      PageTransition(
+                                        type: PageTransitionType.rightToLeft,
+                                        child: TeacherResultIndividualStudent(
+                                            result: widget.result,
+                                          index: index,),
+                                      ),
+                                    );
+                                  },
+                                  child: ResultCard(
+                                      height: height,
+                                      width: width,
+                                      results: widget.result,
+                                  index: index,),
+                                )),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                              ],
                             ),
-                          );
-                        },
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemCount: widget.result.assessmentResults!.length,
-                          itemBuilder: (context, index) => Column(
-                            children: [
-                              MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: TeacherResultIndividualStudent(
-                                          result: widget.result),
-                                    ),
-                                  );
-                                },
-                                child: ResultCard(
-                                    height: height,
-                                    width: width,
-                                    results: widget.result),
-                              )),
-                              SizedBox(
-                                height: height * 0.02,
-                              ),
-                            ],
-                          ),
-                        ),
-                      )),
+                          )),
                       SizedBox(
                         height: height * 0.03,
                       )
