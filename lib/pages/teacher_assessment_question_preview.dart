@@ -338,8 +338,6 @@ class TeacherAssessmentQuestionPreviewState
                                           )),
                                       //shape: StadiumBorder(),
                                       onPressed: () {
-                                        print("Question id");
-                                        print(widget.question.questionId);
                                         Provider.of<QuestionPrepareProviderFinal>(
                                             context,
                                             listen: false)
@@ -373,6 +371,26 @@ class TeacherAssessmentQuestionPreviewState
                                           // );
                                         }
                                         else {
+                                          Provider.of<QuestionPrepareProviderFinal>(
+                                              context,
+                                              listen: false)
+                                              .updatemark(
+                                              int.parse(markController.text),
+                                              widget.index);
+                                          fieldName=='question'?
+                                          Provider.of<CreateAssessmentProvider>(
+                                              context,
+                                              listen: false)
+                                              .updatemark(
+                                              int.parse(markController.text),
+                                              index)
+                                              :
+                                          Provider.of<CreateAssessmentProvider>(
+                                              context,
+                                              listen: false)
+                                              .updateAddQuestionmark(
+                                              int.parse(markController.text),
+                                              index);
                                           //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(

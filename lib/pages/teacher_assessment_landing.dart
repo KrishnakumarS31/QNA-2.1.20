@@ -289,6 +289,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                 color: Colors.white,
               ),
               onPressed: () {
+
                 Navigator.of(context).pop();
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qna_test/Components/today_date.dart';
 
 import '../EntityModel/get_result_model.dart';
 
@@ -41,14 +42,14 @@ class CustomCard1 extends StatelessWidget {
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w700),
                 ),
-                Text(
-                  '${resultIndex.assessmentCode}',
-                  style: TextStyle(
-                      color: const Color.fromRGBO(102, 102, 102, 1),
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400),
-                ),
+                // Text(
+                //   '${resultIndex.assessmentCode}',
+                //   style: TextStyle(
+                //       color: const Color.fromRGBO(102, 102, 102, 1),
+                //       fontSize: height * 0.015,
+                //       fontFamily: "Inter",
+                //       fontWeight: FontWeight.w400),
+                // ),
               ],
             ),
             trailing: Column(
@@ -58,7 +59,17 @@ class CustomCard1 extends StatelessWidget {
                 Icon(
                   Icons.circle,
                   color:const Color.fromRGBO(255, 157, 77, 1),
-                  size: width * 0.05,
+                  size: width * 0.02,
+                ),
+                Text(
+                  resultIndex.assessmentStartDate != null ? convertDate(resultIndex.assessmentStartDate): " ",
+                  style: TextStyle(
+                      color: const Color.fromRGBO(
+                          102, 102, 102, 1),
+                      fontSize: height * 0.015,
+                      fontFamily: "Inter",
+                      fontWeight:
+                      FontWeight.w600),
                 ),
                 // Text(
                 //   datetime,

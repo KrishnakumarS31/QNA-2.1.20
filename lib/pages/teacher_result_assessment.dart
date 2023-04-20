@@ -24,10 +24,15 @@ class TeacherResultAssessment extends StatefulWidget {
 
 class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   IconData showIcon = Icons.expand_circle_down_outlined;
-
+  int totalMarks =0;
   @override
   void initState() {
     super.initState();
+    getData();
+  }
+
+  getData(){
+
   }
 
   changeIcon(IconData pramIcon) {
@@ -184,7 +189,17 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         Icons.circle,
                                         color: const Color.fromRGBO(
                                             255, 157, 77, 1),
-                                        size: width * 0.05,
+                                        size: width * 0.02,
+                                      ),
+                                      Text(
+                                        assessmentStartDate != null ? convertDate(assessmentStartDate): " ",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontSize: height * 0.015,
+                                            fontFamily: "Inter",
+                                            fontWeight:
+                                            FontWeight.w600),
                                       ),
                                     ],
                                   ),
@@ -384,7 +399,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            assessmentResultsLength != 0 ? assessmentResultsLength.toString() : "0",
+                                            widget.result.totalScore != null ? widget.result.totalScore.toString() : "0",
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(

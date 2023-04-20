@@ -727,49 +727,70 @@ class QuestionEditState extends State<QuestionEdit> {
                                             borderRadius:
                                             BorderRadius.circular(5)),
                                       ),
-                                      onEditingComplete: () {
+                                      onFieldSubmitted: (t){
                                         String val=chooses[i].text;
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
+                                          print("-----------------------------");
+                                          print(widget.question.choices![i]
+                                              .choiceText);
+                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
-                                          if (addChoiceId
-                                              .contains(tempChoiceId[i])) {
-                                            int index = addChoiceId
-                                                .indexOf(tempChoiceId[i]);
-                                            editQuestion.addChoices
-                                                ?.removeAt(index);
-                                            addChoice.rightChoice =
-                                            radioList[i];
-                                            addChoice.questionId =
-                                            tempChoiceId[i];
-                                            addChoice.choiceText = val;
-                                            editQuestion.addChoices
-                                                ?.add(addChoice);
+                                          if (addChoiceId.contains(tempChoiceId[i])) {
+                                            int index = addChoiceId.indexOf(tempChoiceId[i]);
+                                            editQuestion.addChoices?.removeAt(index);
+                                            addChoice.rightChoice = radioList[i];
+                                            addChoice.questionId = tempChoiceId[i];
+                                            addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
                                           } else {
-                                            if (editChoiceId
-                                                .contains(tempChoiceId[i])) {
-                                              int index = tempChoiceId
-                                                  .indexOf(tempChoiceId[i]);
-                                              editQuestion.editChoices
-                                                  ?.removeAt(index);
-                                              editChoice.rightChoice =
-                                              radioList[i];
-                                              editChoice.choiceId =
-                                              tempChoiceId[i];
-                                              editChoice.choiceText = val;
-                                              editQuestion.editChoices
-                                                  ?.add(editChoice);
+                                            if (editChoiceId.contains(tempChoiceId[i])) {
+                                              int index = tempChoiceId.indexOf(tempChoiceId[i]);
+                                              editQuestion.editChoices?.removeAt(index);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
                                             } else {
                                               editChoiceId.add(tempChoiceId[i]);
-                                              editChoice.rightChoice =
-                                              radioList[i];
-                                              editChoice.choiceId =
-                                              tempChoiceId[i];
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
                                               editChoice.choiceText = val;
-                                              editQuestion.editChoices
-                                                  ?.add(editChoice);
+                                              editQuestion.editChoices?.add(editChoice);
+                                            }
+                                          }
+                                        });
+                                      },
+                                      onTapOutside: (t) {
+                                        String val=chooses[i].text;
+                                        EditChoice editChoice = EditChoice();
+                                        setState(() {
+                                          chooses[i].text = val;
+                                          print("-----------------------------");
+                                          print(widget.question.choices![i]
+                                              .choiceText);
+                                          print(val);
+                                          widget.question.choices![i]
+                                              .choiceText = val;
+                                          if (addChoiceId.contains(tempChoiceId[i])) {
+                                            int index = addChoiceId.indexOf(tempChoiceId[i]);
+                                            editQuestion.addChoices?.removeAt(index);
+                                            addChoice.rightChoice = radioList[i];
+                                            addChoice.questionId = tempChoiceId[i];
+                                            addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
+                                          } else {
+                                            if (editChoiceId.contains(tempChoiceId[i])) {
+                                              int index = tempChoiceId.indexOf(tempChoiceId[i]);
+                                              editQuestion.editChoices?.removeAt(index);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
+                                            } else {
+                                              editChoiceId.add(tempChoiceId[i]);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;
+                                              editQuestion.editChoices?.add(editChoice);
                                             }
                                           }
                                         });

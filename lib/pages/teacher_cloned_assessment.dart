@@ -786,11 +786,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      assessment.assessmentSettings
-                                                  ?.notAvailable ==
-                                              false
-                                          ? "No"
-                                          : "Yes",
+                                      "Inactive",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -801,7 +797,11 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     ),
                                   ),
                                   Text(
-                                    "No",
+                                      assessment.assessmentSettings?.notAvailable == null
+                                          ? "No"
+                                          : assessment.assessmentSettings!.notAvailable!
+                                          ? "Yes"
+                                          : "No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),

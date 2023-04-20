@@ -1,13 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-import 'student_revise_quest.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:flutter/foundation.dart';
 
 class StudQuestion extends StatefulWidget {
   const StudQuestion(
@@ -42,13 +39,13 @@ class StudQuestionState extends State<StudQuestion> {
   late Map tempQuesAns = {};
   List<int> tilecount = [1];
   Color colorCode = const Color.fromRGBO(179, 179, 179, 1);
-  setTimr(){
-    myDuration = Duration(minutes: widget.ques.data!.assessmentDuration!);
+  setTime(){
+      myDuration = Duration(minutes: widget.ques.data!.assessmentDuration!);
   }
 
   @override
   void initState() {
-    setTimr();
+    setTime();
     Future.delayed(const Duration(seconds: 0)).then((_) {
       if (MediaQuery.of(context).copyWith().size.width > 700){
         showModalBottomSheet(
@@ -439,9 +436,10 @@ class StudQuestionState extends State<StudQuestion> {
     values = widget.ques;
     context.read<Questions>().createQuesAns(values.data!.questions!.length);
     context.read<QuestionNumProvider>().reset();
-
-    countdownTimer =
-        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    if(widget.ques.data!.assessmentType=='test') {
+      countdownTimer =
+          Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    }
     super.initState();
   }
 
@@ -1098,7 +1096,45 @@ class StudQuestionState extends State<StudQuestion> {
                                           size: height * 0.06,
                                         ),
                                         onPressed: () {
-                                          countdownTimer!.cancel();
+                                          if (Provider.of<Questions>(context,
+                                              listen: false)
+                                              .totalQuestion[
+                                          '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
+                                          [2] ==
+                                              true) {
+                                            context.read<Questions>().selectOption(
+                                                Provider.of<QuestionNumProvider>(
+                                                    context,
+                                                    listen: false)
+                                                    .questionNum,
+                                                selected,
+                                                const Color.fromRGBO(
+                                                    239, 218, 30, 1),
+                                                true);
+                                          } else if (selected.isNotEmpty) {
+                                            context.read<Questions>().selectOption(
+                                                Provider.of<QuestionNumProvider>(
+                                                    context,
+                                                    listen: false)
+                                                    .questionNum,
+                                                selected,
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                false);
+                                          } else {
+                                            context.read<Questions>().selectOption(
+                                                Provider.of<QuestionNumProvider>(
+                                                    context,
+                                                    listen: false)
+                                                    .questionNum,
+                                                selected,
+                                                const Color.fromRGBO(
+                                                    219, 35, 35, 1),
+                                                false);
+                                          }
+                                          if(widget.ques.data!.assessmentType=='test') {
+                                            countdownTimer!.cancel();
+                                          }
                                           Navigator.pushNamed(
                                               context,
                                               '/studentReviseQuest',
@@ -1108,7 +1144,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 widget.assessmentId,
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
-                                                false,
+                                                false
                                               ]);
                                           // Navigator.push(
                                           //   context,
@@ -1827,7 +1863,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                     219, 35, 35, 1),
                                                 false);
                                           }
-                                          countdownTimer!.cancel();
+                                          if(widget.ques.data!.assessmentType=='test') {
+                                            countdownTimer!.cancel();
+                                          }
                                           Navigator.pushNamed(
                                               context,
                                               '/studentReviseQuest',

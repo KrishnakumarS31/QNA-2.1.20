@@ -1114,6 +1114,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   assessment.assessmentId = widget.assessmentid;
                   assessment.assessmentCode = widget.assessmentID;
                   assessment.statusId = 2;
+                  print(widget.startTime);
+                  print("________________________________");
                   assessment.attemptStartdate = widget.startTime;
                   assessment.attemptEnddate = DateTime
                       .now()
@@ -1123,15 +1125,17 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime
                       .now()
                       .microsecondsSinceEpoch);
+                  print("________________________________1");
                   int difference = d2
                       .difference(d1)
                       .inMinutes;
+                  print("________________________________2");
                   assessment.attemptDuration = difference;
-
+                  print("________________________________3");
                   //int timeTaken = d2.difference(d1).inSeconds;
 
                   var endTimeTaken = (d2.difference(d1).toString());
-
+                  print("________________________________4");
                   for (int j = 1; j <= Provider.of<Questions>(context, listen: false)
                       .totalQuestion.length; j++)
                   {
@@ -1225,8 +1229,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   }
                   assessment.attemptScore = totalMark;
                   values.data!.totalScore = givenMark;
-                  int percent = ((ansCorrect / values.data!.questions!.length) *
+                  print("________________________________5");
+                  print(ansCorrect / givenMark!);
+                  int percent = ansCorrect < 1 ? 0 :((ansCorrect / givenMark!) *
                       100).round();
+                  print("________________________________6");
                   assessment.attemptPercentage = percent;
                   if (percent == 100) {
                     assessment.assessmentScoreId =
@@ -1256,6 +1263,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   48, 145, 139, 1),
                             ));
                       });
+                  print("----------------------------");
+                  print(assessment.attemptPercentage);
                   LoginModel loginResponse = await QnaService
                       .postAssessmentService(assessment, values);
                   Navigator.of(context).pop();
@@ -1322,6 +1331,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     assessment.assessmentCode = widget.assessmentID;
     assessment.statusId = 2;
     assessment.attemptStartdate = widget.startTime;
+    print(widget.startTime);
     assessment.attemptEnddate = DateTime
         .now()
         .microsecondsSinceEpoch;
@@ -1330,15 +1340,17 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     var d2 = DateTime.fromMicrosecondsSinceEpoch(DateTime
         .now()
         .microsecondsSinceEpoch);
+    print("_____________________________-1");
     int difference = d2
         .difference(d1)
         .inMinutes;
-    assessment.attemptDuration = difference;
+    assessment.attemptDuration = difference == 0 ? 1 : difference;
 
     //int timeTaken = d2.difference(d1).inSeconds;
-
+print("_____________________________");
+print(d2.difference(d1));
     var endTimeTaken = (d2.difference(d1).toString());
-
+    print("_____________________________1");
     for (int j = 1; j <= Provider
         .of<Questions>(context, listen: false)
         .totalQuestion
@@ -1432,7 +1444,7 @@ if(selectedAns.isEmpty){
     }
     assessment.attemptScore = totalMark;
     values.data!.totalScore = givenMark;
-    int percent = ((ansCorrect / values.data!.questions!.length) *
+    int percent = ((ansCorrect / totalMark) *
         100).round();
     assessment.attemptPercentage = percent;
     if (percent == 100) {
@@ -1454,8 +1466,10 @@ if(selectedAns.isEmpty){
     final DateFormat timeFormatter = DateFormat('hh:mm a');
     final String formatted = formatter.format(now);
     final String time = timeFormatter.format(now);
+    print("_____________________________2");
     LoginModel loginResponse = await QnaService
         .postAssessmentService(assessment, values);
+    print("_____________________________3");
     if (loginResponse.code == 200) {
       Navigator.pushNamed(
           context,

@@ -51,6 +51,10 @@ class TeacherAssessmentQuestionBankState
     ResponseEntity responseEntity = await QnaService.getQuestionBankService(5000, 1, search);
 
     CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    print("assess Question provider");
+    print(assess.questions!.length);
+    print("assess Add Question provider");
+    print(assess.addQuestion!.length);
     questions = responseEntity.data==null?[]:List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     List<int> tempQueIdList =[];
@@ -278,16 +282,27 @@ class TeacherAssessmentQuestionBankState
                     for(int i =0;i<assess.questions!.length;i++){
                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
                     }
-
                     Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
+                    print("new Question provider");
+                    print(quesList.length);
+                    print("assess Question provider");
+                    print(assess.questions!.length);
+                    print("assess Add Question provider");
+                    print(assess.addQuestion!.length);
                     for(int i =0;i<quesList.length;i++){
                       if(quesList[i].questionType=="MCQ"){
-                        Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 1);
-                        quesList[i].questionMark=1;
+                        int mark =1;
+                        //print(assess.questions![i].questionMarks);
+                        // if(i<=assess.questions!.length && assess.questions!.isNotEmpty){
+                        //   mark=assess.questions![i].questionMarks!;
+                        // }
+                        Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
+                        quesList[i].questionMark=mark;
                         Provider.of<QuestionPrepareProviderFinal>(context,
                             listen: false)
                             .addQuestion(quesList[i]);
-                      }else{
+                      }
+                      else{
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
                         quesList[i].questionMark=0;
                         Provider.of<QuestionPrepareProviderFinal>(context,
