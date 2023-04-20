@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
-import 'package:qna_test/Pages/teacher_create_assessment.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
-import 'package:qna_test/pages/teacher_assessment_searched.dart';
-import 'package:qna_test/pages/teacher_active_assessment.dart';
-import 'package:qna_test/pages/teacher_inactive_assessment.dart';
-import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Questions;
@@ -22,7 +16,6 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
     Key? key,
-
   }) : super(key: key);
 
 
@@ -280,7 +273,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -289,8 +282,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                 color: Colors.white,
               ),
               onPressed: () {
-
-                Navigator.of(context).pop();
+                Navigator.pushNamed(context, '/teacherLoginPage');
               },
             ),
             toolbarHeight: height * 0.100,
@@ -1354,11 +1346,15 @@ class _CardInfoState extends State<CardInfo> {
                       ),
                       Icon(
                         Icons.circle_rounded,
-                        color: widget.assessment.assessmentStatus == 'inprogress'
+                        color: widget.assessment.assessmentStatus == 'inprogress' && widget.assessment.assessmentType == 'test'
                             ? const Color.fromRGBO(255, 166, 0, 1)
-                            : widget.assessment.assessmentStatus == 'active'
+                            : widget.assessment.assessmentType == 'practice'
+                            ? const Color.fromRGBO(42, 36, 186, 1)
+                              : widget.assessment.assessmentStatus == 'active' && widget.assessment.assessmentType == 'test'
                                 ? const Color.fromRGBO(60, 176, 0, 1)
-                                : const Color.fromRGBO(136, 136, 136, 1),
+                        : widget.assessment.assessmentStatus == 'inactive' && widget.assessment.assessmentType == 'test'
+                        ? const Color.fromRGBO(136, 136, 136, 1)
+                        : const Color.fromRGBO(136, 136, 136, 1),
                       )
                     ],
                   ),

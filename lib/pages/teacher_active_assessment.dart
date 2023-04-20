@@ -110,7 +110,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                     ),
                   ),
                   Text(
-                    AppLocalizations.of(context)!.active,
+                    AppLocalizations.of(context)!.assessment_caps,
                     // "ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
