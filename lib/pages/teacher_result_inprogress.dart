@@ -95,9 +95,9 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -150,570 +150,570 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                         children: [
                           showIcon == Icons.expand_circle_down_outlined
                               ? CustomCard1(
-                                  height: height,
-                                  width: width,
-                                  resultIndex: widget.result,
-                                )
+                            height: height,
+                            width: width,
+                            resultIndex: widget.result,
+                          )
                               : Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: const Color.fromRGBO(
+                                      233, 233, 233, 1),
+                                ),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20))),
+                            height: height * 0.6912,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(
+                                    'Subject - ${widget.result.subject}',
+                                    style: TextStyle(
                                         color: const Color.fromRGBO(
-                                            233, 233, 233, 1),
-                                      ),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(20))),
-                                  height: height * 0.6912,
-                                  child: Column(
+                                            28, 78, 80, 1),
+                                        fontSize: height * 0.0187,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  trailing: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.end,
                                     children: [
-                                      ListTile(
-                                        title: Text(
-                                          'Subject - ${widget.result.subject}',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  28, 78, 80, 1),
-                                              fontSize: height * 0.0187,
-                                              fontFamily: "Inter",
-                                              fontWeight: FontWeight.w700),
-                                        ),
-                                        trailing: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Icon(
-                                              Icons.circle,
-                                              color: const Color.fromRGBO(
-                                                  255, 157, 77, 1),
-                                              size: width * 0.05,
-                                            ),
-                                            Text(
-                                              (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      102, 102, 102, 0.7),
-                                                  fontSize: height * 0.0125,
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
-                                        ),
+                                      Icon(
+                                        Icons.circle,
+                                        color: const Color.fromRGBO(
+                                            255, 157, 77, 1),
+                                        size: width * 0.05,
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            right: width * 0.02,
-                                            left: width * 0.02),
-                                        child: const Divider(),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Advisor',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        28, 78, 80, 1),
-                                                    fontSize: height * 0.0185,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                              ),
-                                              Text(
-                                                widget.advisorName!,
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.0175,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.005),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Title - ${widget.result.topic}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.005),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Sub Topic ${widget.result.subTopic}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.004),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Class ${widget.result.studentClass}',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                      ),
-                                      const Divider(),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          SizedBox(
-                                            height: height * 0.103,
-                                            width: width * 0.31,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              //crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  widget.result.assessmentType!,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  'Category',
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            height: height * 0.103,
-                                            width: width * 0.306,
-                                            decoration: const BoxDecoration(
-                                              border: Border(
-                                                left: BorderSide(
-                                                    width: 1.0,
-                                                    color: Color.fromRGBO(
-                                                        232, 232, 232, 1)),
-                                                right: BorderSide(
-                                                    width: 1.0,
-                                                    color: Color.fromRGBO(
-                                                        232, 232, 232, 1)),
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              //crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${widget.result.totalQuestions!}",
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  'Total',
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                Text(
-                                                  'Questions',
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: height * 0.103,
-                                            width: width * 0.265,
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              //crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${widget.result.totalScore!}",
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  'Total',
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                Text(
-                                                  'Marks',
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              102, 102, 102, 1),
-                                                      fontSize: height * 0.015,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      const Divider(),
-                                      Padding(
-                                        padding:
-                                            EdgeInsets.only(left: width * 0.03),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            'Schedule',
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    28, 78, 80, 1),
-                                                fontSize: height * 0.017,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            top: height * 0.007),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Test max. Time permitted: ',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            top: height * 0.007),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Test Opening Date & Time:',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                assessmentStartDate != null ? '${convertDate(assessmentStartDate)}, ${convertTime(assessmentStartDate)}': " ",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            top: height * 0.007),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Test Closing Date & Time:',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                assessmentEndDate != null ? '${convertDate(assessmentEndDate)}, ${convertTime(assessmentEndDate)} IST': " ",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.02,
-                                      ),
-                                      SizedBox(
-                                        height: height * 0.02,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Guest\t\t',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        28, 78, 80, 1),
-                                                    fontSize: height * 0.0185,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w700),
-                                              ),
-                                              Text(
-                                                widget.result
-                                                    .guestStudentAllowed ==
-                                                    true
-                                                    ? "Allowed"
-                                                    : "Not Allowed",
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.0175,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'URL: ',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.21,
-                                              ),
-                                              Container(
-                                                height: height * 0.037,
-                                                width: width * 0.52,
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  widget.result.url!,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontSize: height * 0.0175,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'Android APP:',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.1,
-                                              ),
-                                              Container(
-                                                height: height * 0.037,
-                                                width: width * 0.52,
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  widget.result.androidUrl!,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontSize: height * 0.0175,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: width * 0.03,
-                                            bottom: height * 0.015,
-                                            top: height * 0.002),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                'IOS APP:',
-                                                style: TextStyle(
-                                                    color: const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              SizedBox(
-                                                width: width * 0.17,
-                                              ),
-                                              Container(
-                                                height: height * 0.037,
-                                                width: width * 0.52,
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  widget.result.iosUrl!,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                      fontSize: height * 0.0175,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                      Text(
+                                        (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.7),
+                                            fontSize: height * 0.0125,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w400),
                                       ),
                                     ],
                                   ),
                                 ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      right: width * 0.02,
+                                      left: width * 0.02),
+                                  child: const Divider(),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      bottom: height * 0.015,
+                                      top: height * 0.002),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Advisor',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  28, 78, 80, 1),
+                                              fontSize: height * 0.0185,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w700),
+                                        ),
+                                        Text(
+                                          widget.advisorName!,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                              fontSize: height * 0.0175,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      bottom: height * 0.005),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Title - ${widget.result.topic}',
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fontSize: height * 0.0175,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      bottom: height * 0.005),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Sub Topic ${widget.result.subTopic}',
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fontSize: height * 0.0175,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      bottom: height * 0.004),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Class ${widget.result.studentClass}',
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              102, 102, 102, 1),
+                                          fontSize: height * 0.0175,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                ),
+                                const Divider(),
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      height: height * 0.103,
+                                      width: width * 0.31,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        //crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            widget.result.assessmentType!,
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontSize: height * 0.02,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w700),
+                                          ),
+                                          Text(
+                                            'Category',
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: height * 0.103,
+                                      width: width * 0.306,
+                                      decoration: const BoxDecoration(
+                                        border: Border(
+                                          left: BorderSide(
+                                              width: 1.0,
+                                              color: Color.fromRGBO(
+                                                  232, 232, 232, 1)),
+                                          right: BorderSide(
+                                              width: 1.0,
+                                              color: Color.fromRGBO(
+                                                  232, 232, 232, 1)),
+                                        ),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        //crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${widget.result.totalQuestions!}",
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontSize: height * 0.02,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w700),
+                                          ),
+                                          Text(
+                                            'Total',
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w400),
+                                          ),
+                                          Text(
+                                            'Questions',
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.103,
+                                      width: width * 0.265,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                        //crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${widget.result.totalScore!}",
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    82, 165, 160, 1),
+                                                fontSize: height * 0.02,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w700),
+                                          ),
+                                          Text(
+                                            'Total',
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w400),
+                                          ),
+                                          Text(
+                                            'Marks',
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                fontWeight:
+                                                FontWeight.w400),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const Divider(),
+                                Padding(
+                                  padding:
+                                  EdgeInsets.only(left: width * 0.03),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Schedule',
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              28, 78, 80, 1),
+                                          fontSize: height * 0.017,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      top: height * 0.007),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Test max. Time permitted: ',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w400),
+                                        ),
+                                        Text(
+                                          assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      top: height * 0.007),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Test Opening Date & Time:',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w400),
+                                        ),
+                                        Text(
+                                          assessmentStartDate != null ? '${convertDate(assessmentStartDate)}, ${convertTime(assessmentStartDate)}': " ",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      top: height * 0.007),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Test Closing Date & Time:',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w400),
+                                        ),
+                                        Text(
+                                          assessmentEndDate != null ? '${convertDate(assessmentEndDate)}, ${convertTime(assessmentEndDate)} IST': " ",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w600),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.03,
+                                      bottom: height * 0.015,
+                                      top: height * 0.002),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Guest\t\t',
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  28, 78, 80, 1),
+                                              fontSize: height * 0.0185,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w700),
+                                        ),
+                                        Text(
+                                          widget.result
+                                              .guestStudentAllowed ==
+                                              true
+                                              ? "Allowed"
+                                              : "Not Allowed",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                              fontSize: height * 0.0175,
+                                              fontFamily: "Inter",
+                                              fontWeight:
+                                              FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: width * 0.03,
+                                //       bottom: height * 0.015,
+                                //       top: height * 0.002),
+                                //   child: Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: Row(
+                                //       children: [
+                                //         Text(
+                                //           'URL: ',
+                                //           style: TextStyle(
+                                //               color: const Color.fromRGBO(
+                                //                   102, 102, 102, 1),
+                                //               fontSize: height * 0.015,
+                                //               fontFamily: "Inter",
+                                //               fontWeight:
+                                //               FontWeight.w400),
+                                //         ),
+                                //         SizedBox(
+                                //           width: width * 0.21,
+                                //         ),
+                                //         Container(
+                                //           height: height * 0.037,
+                                //           width: width * 0.52,
+                                //           alignment: Alignment.center,
+                                //           child: Text(
+                                //             widget.result.url!,
+                                //             style: TextStyle(
+                                //                 color:
+                                //                 const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontSize: height * 0.0175,
+                                //                 fontFamily: "Inter",
+                                //                 fontWeight:
+                                //                 FontWeight.w500),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: width * 0.03,
+                                //       bottom: height * 0.015,
+                                //       top: height * 0.002),
+                                //   child: Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: Row(
+                                //       children: [
+                                //         Text(
+                                //           'Android APP:',
+                                //           style: TextStyle(
+                                //               color: const Color.fromRGBO(
+                                //                   102, 102, 102, 1),
+                                //               fontSize: height * 0.015,
+                                //               fontFamily: "Inter",
+                                //               fontWeight:
+                                //               FontWeight.w400),
+                                //         ),
+                                //         SizedBox(
+                                //           width: width * 0.1,
+                                //         ),
+                                //         Container(
+                                //           height: height * 0.037,
+                                //           width: width * 0.52,
+                                //           alignment: Alignment.center,
+                                //           child: Text(
+                                //             widget.result.androidUrl!,
+                                //             style: TextStyle(
+                                //                 color:
+                                //                 const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontSize: height * 0.0175,
+                                //                 fontFamily: "Inter",
+                                //                 fontWeight:
+                                //                 FontWeight.w500),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: width * 0.03,
+                                //       bottom: height * 0.015,
+                                //       top: height * 0.002),
+                                //   child: Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: Row(
+                                //       children: [
+                                //         Text(
+                                //           'IOS APP:',
+                                //           style: TextStyle(
+                                //               color: const Color.fromRGBO(
+                                //                   102, 102, 102, 1),
+                                //               fontSize: height * 0.015,
+                                //               fontFamily: "Inter",
+                                //               fontWeight:
+                                //               FontWeight.w400),
+                                //         ),
+                                //         SizedBox(
+                                //           width: width * 0.17,
+                                //         ),
+                                //         Container(
+                                //           height: height * 0.037,
+                                //           width: width * 0.52,
+                                //           alignment: Alignment.center,
+                                //           child: Text(
+                                //             widget.result.iosUrl!,
+                                //             style: TextStyle(
+                                //                 color:
+                                //                 const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontSize: height * 0.0175,
+                                //                 fontFamily: "Inter",
+                                //                 fontWeight:
+                                //                 FontWeight.w500),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                              ],
+                            ),
+                          ),
                           Positioned(
                             top: showIcon == Icons.expand_circle_down_outlined
                                 ? height * 0.158
@@ -779,25 +779,25 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                             itemBuilder: (context, index) => Column(
                               children: [
                                 MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      PageTransition(
-                                        type: PageTransitionType.rightToLeft,
-                                        child: TeacherResultIndividualStudent(
-                                            result: widget.result,
-                                          index: index,),
-                                      ),
-                                    );
-                                  },
-                                  child: ResultCard(
-                                      height: height,
-                                      width: width,
-                                      results: widget.result,
-                                  index: index,),
-                                )),
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: TeacherResultIndividualStudent(
+                                              result: widget.result,
+                                              index: index,),
+                                          ),
+                                        );
+                                      },
+                                      child: ResultCard(
+                                        height: height,
+                                        width: width,
+                                        results: widget.result,
+                                        index: index,),
+                                    )),
                                 SizedBox(
                                   height: height * 0.02,
                                 ),

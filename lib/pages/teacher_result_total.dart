@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
+import '../Components/custom_result_card.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
-import '../Components/custom_result_card.dart';
 
 class TeacherResultTotal extends StatefulWidget {
   const TeacherResultTotal({
@@ -154,7 +154,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                               ? CustomCard1(
                             height: height,
                             width: width,
-                           resultIndex: widget.result,
+                            resultIndex: widget.result,
                           )
                               : Container(
                             decoration: BoxDecoration(
@@ -190,7 +190,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                         size: width * 0.05,
                                       ),
                                       Text(
-                                          (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
+                                        (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.7),
@@ -589,132 +589,132 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: width * 0.03,
-                                      bottom: height * 0.015,
-                                      top: height * 0.002),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'URL: ',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 1),
-                                              fontSize: height * 0.015,
-                                              fontFamily: "Inter",
-                                              fontWeight:
-                                              FontWeight.w400),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.21,
-                                        ),
-                                        // Container(
-                                        //   height: height * 0.037,
-                                        //   width: width * 0.52,
-                                        //   alignment: Alignment.center,
-                                        //   child: Text(
-                                        //     widget.result.url!,
-                                        //     style: TextStyle(
-                                        //         color:
-                                        //         const Color.fromRGBO(
-                                        //             82, 165, 160, 1),
-                                        //         fontSize: height * 0.0175,
-                                        //         fontFamily: "Inter",
-                                        //         fontWeight:
-                                        //         FontWeight.w500),
-                                        //   ),
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: width * 0.03,
-                                      bottom: height * 0.015,
-                                      top: height * 0.002),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'Android APP:',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 1),
-                                              fontSize: height * 0.015,
-                                              fontFamily: "Inter",
-                                              fontWeight:
-                                              FontWeight.w400),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.1,
-                                        ),
-                                        Container(
-                                          height: height * 0.037,
-                                          width: width * 0.52,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            widget.result.androidUrl!,
-                                            style: TextStyle(
-                                                color:
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight:
-                                                FontWeight.w500),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: width * 0.03,
-                                      bottom: height * 0.015,
-                                      top: height * 0.002),
-                                  child: Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'IOS APP:',
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  102, 102, 102, 1),
-                                              fontSize: height * 0.015,
-                                              fontFamily: "Inter",
-                                              fontWeight:
-                                              FontWeight.w400),
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.17,
-                                        ),
-                                        Container(
-                                          height: height * 0.037,
-                                          width: width * 0.52,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            widget.result.iosUrl!,
-                                            style: TextStyle(
-                                                color:
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight:
-                                                FontWeight.w500),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: width * 0.03,
+                                //       bottom: height * 0.015,
+                                //       top: height * 0.002),
+                                //   child: Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: Row(
+                                //       children: [
+                                //         Text(
+                                //           'URL: ',
+                                //           style: TextStyle(
+                                //               color: const Color.fromRGBO(
+                                //                   102, 102, 102, 1),
+                                //               fontSize: height * 0.015,
+                                //               fontFamily: "Inter",
+                                //               fontWeight:
+                                //               FontWeight.w400),
+                                //         ),
+                                //         SizedBox(
+                                //           width: width * 0.21,
+                                //         ),
+                                //         // Container(
+                                //         //   height: height * 0.037,
+                                //         //   width: width * 0.52,
+                                //         //   alignment: Alignment.center,
+                                //         //   child: Text(
+                                //         //     widget.result.url!,
+                                //         //     style: TextStyle(
+                                //         //         color:
+                                //         //         const Color.fromRGBO(
+                                //         //             82, 165, 160, 1),
+                                //         //         fontSize: height * 0.0175,
+                                //         //         fontFamily: "Inter",
+                                //         //         fontWeight:
+                                //         //         FontWeight.w500),
+                                //         //   ),
+                                //         // ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: width * 0.03,
+                                //       bottom: height * 0.015,
+                                //       top: height * 0.002),
+                                //   child: Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: Row(
+                                //       children: [
+                                //         Text(
+                                //           'Android APP:',
+                                //           style: TextStyle(
+                                //               color: const Color.fromRGBO(
+                                //                   102, 102, 102, 1),
+                                //               fontSize: height * 0.015,
+                                //               fontFamily: "Inter",
+                                //               fontWeight:
+                                //               FontWeight.w400),
+                                //         ),
+                                //         SizedBox(
+                                //           width: width * 0.1,
+                                //         ),
+                                //         Container(
+                                //           height: height * 0.037,
+                                //           width: width * 0.52,
+                                //           alignment: Alignment.center,
+                                //           child: Text(
+                                //             widget.result.androidUrl!,
+                                //             style: TextStyle(
+                                //                 color:
+                                //                 const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontSize: height * 0.0175,
+                                //                 fontFamily: "Inter",
+                                //                 fontWeight:
+                                //                 FontWeight.w500),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       left: width * 0.03,
+                                //       bottom: height * 0.015,
+                                //       top: height * 0.002),
+                                //   child: Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: Row(
+                                //       children: [
+                                //         Text(
+                                //           'IOS APP:',
+                                //           style: TextStyle(
+                                //               color: const Color.fromRGBO(
+                                //                   102, 102, 102, 1),
+                                //               fontSize: height * 0.015,
+                                //               fontFamily: "Inter",
+                                //               fontWeight:
+                                //               FontWeight.w400),
+                                //         ),
+                                //         SizedBox(
+                                //           width: width * 0.17,
+                                //         ),
+                                //         Container(
+                                //           height: height * 0.037,
+                                //           width: width * 0.52,
+                                //           alignment: Alignment.center,
+                                //           child: Text(
+                                //             widget.result.iosUrl!,
+                                //             style: TextStyle(
+                                //                 color:
+                                //                 const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontSize: height * 0.0175,
+                                //                 fontFamily: "Inter",
+                                //                 fontWeight:
+                                //                 FontWeight.w500),
+                                //           ),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -744,12 +744,12 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                         child: Text(
 
                           widget.result.assessmentResults?.length != null
-                          ?
+                              ?
                           'Total Participants List ('
                               '${widget.result
                               .assessmentResults!.length})'
-                          :
-                              'Total Participants List(0)'
+                              :
+                          'Total Participants List(0)'
                           ,
                           style: TextStyle(
                               fontSize: height * 0.0187,
@@ -785,26 +785,26 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                 Column(
                                   children: [
                                     MouseRegion(
-                                            cursor: SystemMouseCursors.click,
-                                            child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.rightToLeft,
-                                            child: TeacherResultIndividualStudent(
-                                                result: widget.result,
-                                              index: index,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: ResultCard(
-                                          height: height,
-                                          width: width,
-                                        results: widget.result,
-                                      index: index),
-                                    )),
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: TeacherResultIndividualStudent(
+                                                  result: widget.result,
+                                                  index: index,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          child: ResultCard(
+                                              height: height,
+                                              width: width,
+                                              results: widget.result,
+                                              index: index),
+                                        )),
                                     SizedBox(
                                       height: height * 0.02,
                                     ),

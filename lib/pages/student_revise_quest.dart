@@ -13,9 +13,10 @@ import '../Services/qna_service.dart';
 import 'student_result_page.dart';
 
 class StudentReviseQuest extends StatefulWidget {
-  const StudentReviseQuest({Key? key,
+  StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
     required this.startTime, required this.assessmentid,required this.submit,
+    this.userId
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
@@ -23,6 +24,7 @@ class StudentReviseQuest extends StatefulWidget {
   final String assessmentID;
   final int assessmentid;
   final bool submit;
+  int? userId;
 
 
 
@@ -1113,6 +1115,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
                   assessment.assessmentId = widget.assessmentid;
                   assessment.assessmentCode = widget.assessmentID;
+                  assessment.userId = widget.userId;
                   assessment.statusId = 2;
                   print(widget.startTime);
                   print("________________________________");
@@ -1265,6 +1268,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       });
                   print("----------------------------");
                   print(assessment.attemptPercentage);
+                  print(assessment.userId);
                   LoginModel loginResponse = await QnaService
                       .postAssessmentService(assessment, values);
                   Navigator.of(context).pop();

@@ -33,6 +33,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
   String name = "Student";
   String email = "Student@gmail.com";
   String assessmentId = "";
+  late int userId;
 
   @override
   void initState() {
@@ -42,6 +43,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
 
   getData() async {
     setState(() {
+      userId = widget.usedData!.data!.id;
       name = widget.usedData!.data!.firstName;
       email = widget.usedData!.data!.email;
     });
@@ -274,7 +276,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             arguments: [
                                               assessmentID.text,
                                               values,
-                                              widget.usedData!.data!.firstName
+                                              widget.usedData!.data!.firstName,
+                                              userId
                                             ]);
                                         // Navigator.push(
                                         //   context,

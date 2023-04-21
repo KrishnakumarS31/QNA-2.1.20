@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../Entity/question_paper_model.dart';
@@ -56,7 +57,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: const EndDrawerMenuPreLogin(),
+                  endDrawer: EndDrawerMenuPreLogin(),
                   resizeToAvoidBottomInset: true,
                   backgroundColor: Colors.white,
                   body: SingleChildScrollView(
@@ -230,6 +231,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             assessmentIdController.text,
                                             values,
                                             widget.name,
+                                            null
                                           ]);
                                       // Navigator.push(
                                       //   context,
@@ -501,6 +503,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             assessmentIdController.text,
                                             values,
                                             widget.name,
+                                            null
                                           ]);
                                       // Navigator.push(
                                       //   context,

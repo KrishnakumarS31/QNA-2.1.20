@@ -47,10 +47,107 @@ class TeacherPrepareQuesForAssessmentState
   late List<Map<String, dynamic>> _values;
   IconData showIcon = Icons.expand_circle_down_outlined;
 
-  ValueChanged<String?> _valueChangedHandler() {
-    return (value) => setState(() => _groupValue = value!);
+  ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
+    return (value) {
+      if(value=='Descripitive'){
+        showAlertDialogDes(context,height,value);
+      }
+      else{
+        setState(() => _groupValue = value!);
+      }
+    };
   }
 
+  showAlertDialogDes(BuildContext context, double height,String? value) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        setState(() {
+          chooses.clear();
+          radioList.clear();
+          tempChoiceList.clear();
+          questionController.text='';
+          _groupValue = value!;
+        });
+        Navigator.pop(context);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            'Alert',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Are you sure you want to clear this Question and Choices?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
   final _formKey = GlobalKey<FormState>();
@@ -177,7 +274,7 @@ class TeacherPrepareQuesForAssessmentState
                               value: AppLocalizations.of(context)!.mcq,
                               //'MCQs',
                               groupValue: _groupValue,
-                              onChanged: _valueChangedHandler(),
+                              onChanged: _valueChangedHandler(context,height),
                               label: 'MCQ',
                             ),
                             MyRadioOption<String>(
@@ -185,7 +282,7 @@ class TeacherPrepareQuesForAssessmentState
                               value: AppLocalizations.of(context)!.survey,
                               //'Survey',
                               groupValue: _groupValue,
-                              onChanged: _valueChangedHandler(),
+                              onChanged: _valueChangedHandler(context,height),
                               label:
                                   //AppLocalizations.of(context)!.survey,
                                   'Survey',
@@ -195,7 +292,7 @@ class TeacherPrepareQuesForAssessmentState
                               value: "Descripitive",
                               //'Descriptive',
                               groupValue: _groupValue,
-                              onChanged: _valueChangedHandler(),
+                              onChanged: _valueChangedHandler(context,height),
                               label:
                                   //AppLocalizations.of(context)!.descriptive,
                                   'Descriptive',
@@ -500,7 +597,9 @@ class TeacherPrepareQuesForAssessmentState
                                     borderRadius: BorderRadius.circular(5)),
                               )),
                           SizedBox(height: height * 0.010),
-                          Row(
+                          _groupValue=="Descripitive"?
+                          const SizedBox(height: 0,)
+                              :Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Expanded(
@@ -548,7 +647,9 @@ class TeacherPrepareQuesForAssessmentState
                         ],
                       ),
                     ),
-                    Form(
+                    _groupValue=="Descripitive"?
+                    const SizedBox(height: 0,)
+                        :Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -623,7 +724,9 @@ class TeacherPrepareQuesForAssessmentState
                       ),
                     ),
                     SizedBox(height: height * 0.020),
-                    Column(
+                    _groupValue=="Descripitive"?
+                    const SizedBox(height: 0,)
+                        :Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(

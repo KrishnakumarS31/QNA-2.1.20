@@ -602,6 +602,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.9"
+  universal_internet_checker:
+    dependency: "direct dev"
+    description:
+      name: universal_internet_checker
+      sha256: "1056ea2b7b2b33cc33dff50845233fafb3d4fc5de57135f2afef1a6b52733c2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.2"
   universal_io:
     dependency: transitive
     description:

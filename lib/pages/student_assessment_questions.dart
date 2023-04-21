@@ -7,16 +7,17 @@ import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class StudQuestion extends StatefulWidget {
-  const StudQuestion(
+  StudQuestion(
       {Key? key,
       required this.assessmentId,
       required this.ques,
-      required this.userName,
+      required this.userName, this.userId,
       })
       : super(key: key);
   final String assessmentId;
   final QuestionPaperModel ques;
   final String userName;
+  int? userId;
 
 
   @override
@@ -463,7 +464,8 @@ class StudQuestionState extends State<StudQuestion> {
                 widget.assessmentId,
                 now.microsecondsSinceEpoch,
                 values.data!.assessmentId!,
-                true
+                true,
+                widget!.userId
               ]);
         }
 
@@ -483,7 +485,8 @@ class StudQuestionState extends State<StudQuestion> {
                 widget.assessmentId,
                 now.microsecondsSinceEpoch,
                 values.data!.assessmentId!,
-                true
+                true,
+                widget!.userId
               ]);
         }
         myDuration = Duration(seconds: seconds);
@@ -1144,7 +1147,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 widget.assessmentId,
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
-                                                false
+                                                false,
+                                                widget!.userId
                                               ]);
                                           // Navigator.push(
                                           //   context,
@@ -1875,7 +1879,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 widget.assessmentId,
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
-                                                false
+                                                false,
+                                                widget!.userId
                                               ]);
                                           // Navigator.push(
                                           //   context,

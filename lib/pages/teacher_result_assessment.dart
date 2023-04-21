@@ -28,12 +28,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   @override
   void initState() {
     super.initState();
-    getData();
+    // getData();
   }
 
-  getData(){
-
-  }
 
   changeIcon(IconData pramIcon) {
     if (pramIcon == Icons.expand_circle_down_outlined) {
@@ -55,8 +52,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
 
     int assessmentResultsLength = widget.result.assessmentResults?.length ?? 0;
     int? assessmentDuration = widget.result.assessmentDuration;
-   int? assessmentStartDate = widget.result.assessmentStartDate;
-   int? assessmentEndDate = widget.result.assessmentEndDate;
+    int? assessmentStartDate = widget.result.assessmentStartDate;
+    int? assessmentEndDate = widget.result.assessmentEndDate;
     print(assessmentResultsLength);
     return WillPopScope(
         onWillPop: () async => false,
@@ -104,9 +101,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -745,9 +742,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                       Row(children: <Widget>[
                         const Expanded(
                             child: Divider(
-                          color: Color.fromRGBO(233, 233, 233, 1),
-                          thickness: 2,
-                        )),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              thickness: 2,
+                            )),
                         Padding(
                           padding: const EdgeInsets.only(right: 10, left: 10),
                           child: Text(
@@ -761,9 +758,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         ),
                         const Expanded(
                             child: Divider(
-                          color: Color.fromRGBO(233, 233, 233, 1),
-                          thickness: 2,
-                        )),
+                              color: Color.fromRGBO(233, 233, 233, 1),
+                              thickness: 2,
+                            )),
                       ]),
                       SizedBox(
                         height: height * 0.02,
@@ -772,239 +769,239 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherResultTotal(
-                                      result: widget.result,
-                                      userId: widget.userId,
-                                      advisorName: widget.advisorName),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color:
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: TeacherResultTotal(
+                                          result: widget.result,
+                                          userId: widget.userId,
+                                          advisorName: widget.advisorName),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color:
                                         const Color.fromRGBO(233, 233, 233, 1),
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
-                              height: height * 0.1675,
-                              width: width * 0.277,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          Color.fromRGBO(0, 167, 204, 1),
-                                          Color.fromRGBO(57, 191, 200, 1),
-                                        ],
                                       ),
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  height: height * 0.1675,
+                                  width: width * 0.277,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              Color.fromRGBO(0, 167, 204, 1),
+                                              Color.fromRGBO(57, 191, 200, 1),
+                                            ],
+                                          ),
+                                          color: Colors.black,
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(50),
+                                            bottomRight: Radius.circular(50),
+                                          ),
+                                        ),
+                                        height: height * 0.07,
+                                        width: width * 0.277,
+                                        child: Text(
+                                          widget.result.totalAttempts != null ? "${widget.result.totalAttempts} ": "0",
+                                          style: TextStyle(
+                                              fontSize: height * 0.0187,
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
-                                    ),
-                                    height: height * 0.07,
-                                    width: width * 0.277,
-                                    child: Text(
-                                        widget.result.assessmentResults!.length != null && widget.result.assessmentResults?.isEmpty == false ? "${widget.result.assessmentResults!.length} ": "0",
-                                      style: TextStyle(
-                                          fontSize: height * 0.0187,
-                                          color: const Color.fromRGBO(
-                                              255, 255, 255, 1),
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Text(
+                                        'Total',
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_circle_right_outlined,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  Text(
-                                    'Total',
-                                    style: TextStyle(
-                                        fontSize: height * 0.015,
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  const Icon(
-                                    Icons.arrow_circle_right_outlined,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )),
+                                ),
+                              )),
                           MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherResultSubmitted(
-                                      result: widget.result,
-                                      advisorName: widget.advisorName),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color:
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: TeacherResultSubmitted(
+                                          result: widget.result,
+                                          advisorName: widget.advisorName),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color:
                                         const Color.fromRGBO(233, 233, 233, 1),
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
-                              height: height * 0.1675,
-                              width: width * 0.277,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          Color.fromRGBO(82, 165, 160, 1),
-                                          Color.fromRGBO(0, 218, 205, 1),
-                                        ],
                                       ),
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  height: height * 0.1675,
+                                  width: width * 0.277,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              Color.fromRGBO(82, 165, 160, 1),
+                                              Color.fromRGBO(0, 218, 205, 1),
+                                            ],
+                                          ),
+                                          color: Colors.black,
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(50),
+                                            bottomRight: Radius.circular(50),
+                                          ),
+                                        ),
+                                        height: height * 0.07,
+                                        width: width * 0.277,
+                                        child: Text(widget.result.totalCompletedAttempts != null ? "${widget.result.totalCompletedAttempts} ": "0",
+                                          style: TextStyle(
+                                              fontSize: height * 0.0187,
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
-                                    ),
-                                    height: height * 0.07,
-                                    width: width * 0.277,
-                                    child: Text(widget.result.assessmentResults!.length != null && widget.result.assessmentResults?.isEmpty == false ? "${widget.result.assessmentResults!.length} ": "0",
-                                      style: TextStyle(
-                                          fontSize: height * 0.0187,
-                                          color: const Color.fromRGBO(
-                                              255, 255, 255, 1),
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Text(
+                                        'Submitted',
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_circle_right_outlined,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  Text(
-                                    'Submitted',
-                                    style: TextStyle(
-                                        fontSize: height * 0.015,
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  const Icon(
-                                    Icons.arrow_circle_right_outlined,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )),
+                                ),
+                              )),
                           MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: TeacherResultInProgress(
-                                      result: widget.result,
-                                      advisorName: widget.advisorName),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color:
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: TeacherResultInProgress(
+                                          result: widget.result,
+                                          advisorName: widget.advisorName),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color:
                                         const Color.fromRGBO(233, 233, 233, 1),
-                                  ),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(20))),
-                              height: height * 0.1675,
-                              width: width * 0.277,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                        colors: [
-                                          Color.fromRGBO(255, 153, 0, 1),
-                                          Color.fromRGBO(255, 199, 0, 1),
-                                        ],
                                       ),
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(50),
-                                        bottomRight: Radius.circular(50),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20))),
+                                  height: height * 0.1675,
+                                  width: width * 0.277,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        decoration: const BoxDecoration(
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                            colors: [
+                                              Color.fromRGBO(255, 153, 0, 1),
+                                              Color.fromRGBO(255, 199, 0, 1),
+                                            ],
+                                          ),
+                                          color: Colors.black,
+                                          borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(50),
+                                            bottomRight: Radius.circular(50),
+                                          ),
+                                        ),
+                                        height: height * 0.07,
+                                        width: width * 0.277,
+                                        child: Text(
+                                          widget.result.totalInprogressAttempts != null ? '${widget.result.totalInprogressAttempts}' : "0",
+                                          style: TextStyle(
+                                              fontSize: height * 0.0187,
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w700),
+                                        ),
                                       ),
-                                    ),
-                                    height: height * 0.07,
-                                    width: width * 0.277,
-                                    child: Text(
-                                        "0",
-                                      style: TextStyle(
-                                          fontSize: height * 0.0187,
-                                          color: const Color.fromRGBO(
-                                              255, 255, 255, 1),
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700),
-                                    ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      Text(
+                                        'In Progress',
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.01,
+                                      ),
+                                      const Icon(
+                                        Icons.arrow_circle_right_outlined,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      )
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  Text(
-                                    'In Progress',
-                                    style: TextStyle(
-                                        fontSize: height * 0.015,
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  const Icon(
-                                    Icons.arrow_circle_right_outlined,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )),
+                                ),
+                              )),
                         ],
                       ),
                       SizedBox(

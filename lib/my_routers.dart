@@ -124,8 +124,8 @@ class MyRoutes{
 
       case '/teacherPrepareQnBank':{
         final arguments = settings.arguments as List<dynamic>;
-          return SlideRightRoute(widget: TeacherPrepareQnBank(assessment: arguments[0],assessmentStatus: arguments[1],));
-        }
+        return SlideRightRoute(widget: TeacherPrepareQnBank(assessment: arguments[0],assessmentStatus: arguments[1],));
+      }
 
       case '/questionEdit':{
         final question = settings.arguments as QuestionEntity.Question;
@@ -198,7 +198,7 @@ class MyRoutes{
 
       case '/studQuestion':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2],));
+        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3]));
       }
 
       case '/studentAssessment':{
@@ -259,13 +259,14 @@ class MyRoutes{
       case '/studentReviseQuest':{
         final arguments = settings.arguments as List<dynamic>;
         return SlideRightRoute(widget: StudentReviseQuest(
-          questions: arguments[0],
-          userName: arguments[1],
-          assessmentID: arguments[2],
-          startTime: arguments[3],
-          assessmentid: arguments[4],
-          submit: arguments[5],
-          ));
+            questions: arguments[0],
+            userName: arguments[1],
+            assessmentID: arguments[2],
+            startTime: arguments[3],
+            assessmentid: arguments[4],
+            submit: arguments[5],
+            userId: arguments[6]
+        ));
       }
 
       case '/studentSearchLibrary':

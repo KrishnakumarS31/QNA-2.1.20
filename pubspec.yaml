@@ -55,6 +55,7 @@ dev_dependencies:
   connectivity_plus: ^3.0.2
   shared_preferences: ^2.0.17
   universal_html: ^2.0.9
+  universal_internet_checker: ^0.1.2
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

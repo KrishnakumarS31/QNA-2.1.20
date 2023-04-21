@@ -1,8 +1,10 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import 'package:universal_internet_checker/universal_internet_checker.dart';
 import "package:shared_preferences/shared_preferences.dart";
 
 class WelcomePage extends StatefulWidget {
@@ -19,6 +21,11 @@ class _WelcomePageState extends State<WelcomePage> {
   late bool newUser;
   bool teacherClick = false;
   bool memberStudentClick = false;
+  String _message = '';
+  StreamSubscription? subscription;
+  UniversalInternetChecker _internetChecker = UniversalInternetChecker();
+  var isDeviceConnected = false;
+  bool isAlertSet = false;
 
   // Future<bool> checkIfAlreadyLoggedIn(bool teacherClick) async {
   //   loginData = await SharedPreferences.getInstance();
@@ -69,7 +76,83 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
+    getConectivity();
   }
+  getConectivity() {
+    subscription = _internetChecker.onConnectionChange.listen((connected) async {
+      print("function");
+      print(connected);
+      _message = connected == ConnectionStatus.online
+          ? 'Connected'
+          : 'Not Connected';
+      print("function");
+      print(_message);
+      if (_message=='Not Connected') {
+        showDialogBox();
+      } else {}
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    subscription?.cancel();
+    super.dispose();
+  }
+
+  showDialogBox() => showCupertinoDialog<String>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: const Text(
+          "NO CONNECTION",
+          style: TextStyle(
+            color: Color.fromRGBO(82, 165, 160, 1),
+            fontSize: 25,
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        content: const Text(
+          "Please check your internet connectivity",
+          style: TextStyle(
+            color: Color.fromRGBO(82, 165, 160, 1),
+            fontSize: 16,
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () async {
+              Navigator.pop(context, 'Cancel');
+              ConnectionStatus status =
+              await UniversalInternetChecker.checkInternet();
+              print("dialog");
+              print(status);
+              setState(() {
+                _message = status == ConnectionStatus.offline
+                    ? 'Not Connected'
+                    : 'Connected';
+                print("dialog");
+                print(_message);
+                if(_message=='Not Connected'){
+                  showDialogBox();
+                }
+              });
+
+            },
+            child: const Text(
+              "OK",
+              style: TextStyle(
+                color: Color.fromRGBO(82, 165, 160, 1),
+                fontSize: 20,
+                fontFamily: "Inter",
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          )
+        ],
+      ));
 
   @override
   Widget build(BuildContext context) {

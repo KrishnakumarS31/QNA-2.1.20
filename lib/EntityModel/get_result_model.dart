@@ -24,7 +24,7 @@ class GetResultModel {
       this.androidUrl,
       this.url,
       this.iosUrl,
-      required this.guestStudentAllowed});
+      required this.guestStudentAllowed, this.totalAttempts, this.totalCompletedAttempts, this.totalInprogressAttempts});
 
   dynamic assessmentId;
   String? assessmentCode;
@@ -44,12 +44,15 @@ class GetResultModel {
   String? iosUrl;
   bool guestStudentAllowed;
   List<AssessmentResults>? assessmentResults;
+  int? totalAttempts;
+  int? totalInprogressAttempts;
+  int? totalCompletedAttempts;
 
   factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
         assessmentId: json["assessment_id"] ?? " ",
         assessmentType: json["assessment_type"] ?? " " ,
         assessmentCode: json["assessment_code"] ?? " ",
-        totalScore: json["total_score"] ?? " ",
+        totalScore: json["total_score"] ?? 0,
         totalQuestions: json["total_questions"] ?? " ",
         assessmentEndDate: json["assessment_enddate"] ?? " ",
         assessmentStartDate: json["assessment_startdate"] ?? " ",
@@ -57,6 +60,9 @@ class GetResultModel {
         subject: json["subject"] ?? " ",
         topic: json["topic"] ?? " ",
         subTopic: json["sub_topic"] ?? " ",
+        totalAttempts:json["total_attempts"] ?? 0,
+        totalCompletedAttempts: json["total_completed_attempts"] ?? 0,
+        totalInprogressAttempts: json["total_inprogress_attempts"] ?? 0,
         // url: json["url"] ?? " ",
         // androidUrl: json["android_app"] ?? " ",
         // iosUrl: json["ios_app"] ?? " ",
@@ -83,6 +89,9 @@ class GetResultModel {
         "sub_topic": subTopic,
         "class": studentClass,
         "attempt_percentage":attemptPercentage,
+       "total_attempts":totalAttempts,
+      "total_completed_attempts":totalCompletedAttempts,
+       "total_inprogress_attempts":totalInprogressAttempts,
         // "url": url,
         // "android_app": androidUrl,
         // "ios_app": iosUrl,
@@ -93,7 +102,9 @@ class GetResultModel {
 
 class AssessmentResults {
   AssessmentResults(
-      {this.userId,
+      {
+        this.attemptType,
+        this.userId,
       this.firstName,
       this.lastName,
       this.rollNumber,
@@ -105,6 +116,7 @@ class AssessmentResults {
       this.attemptScore,
       this.questions, this.attemptPercent});
 
+  String? attemptType;
   int? userId;
   String? firstName;
   String? lastName;
@@ -121,22 +133,26 @@ class AssessmentResults {
   //factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
   factory AssessmentResults.fromJson(Map<String, dynamic> json) =>
       AssessmentResults(
-        userId: json["user_id"],
+        attemptType: json["attempt_type"] ?? "",
+        userId: json["user_id"] ?? 0,
         firstName: json["first_name"] ?? "",
         lastName: json["last_name"] ?? "",
         rollNumber: json["roll_number"] ?? "",
         organizationName: json["organisation_name"] ?? "",
-        attemptId: json["attempt_id"],
+        attemptId: json["attempt_id"] ?? 0,
         attemptStartDate: json["attempt_startdate"] ?? 0,
         attemptEndDate: json["attempt_enddate"] ?? 0,
         attemptDuration: json["attempt_duration"] ?? 0,
         attemptScore: json["attempt_score"] ?? 0,
         attemptPercent: json["attempt_percentage"],
-        questions: List<Questions>.from(
+        questions: json["questions"] == null
+        ? [] :
+        List<Questions>.from(
             json["questions"].map((x) => Questions.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
+    "attempt_type":attemptType,
         "user_id": userId,
         "first_name": firstName,
         "last_name": lastName,
@@ -167,11 +183,13 @@ class Questions {
   String? status;
 
   factory Questions.fromJson(Map<String, dynamic> json) => Questions(
-        question: json["question"],
-        questionType: json["question_type"],
-        selectedChoices: json["selected_choices"],
-        descriptiveAnswers: json["descriptive_answer"],
-        status: json["status"],
+        question: json["question"] ?? "",
+        questionType: json["question_type"] ?? "",
+        selectedChoices: json["selected_choices"] == null
+        ? [" "] :
+        json["selected_choices"],
+        descriptiveAnswers: json["descriptive_answer"] ?? "",
+        status: json["status"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
