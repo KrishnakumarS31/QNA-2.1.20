@@ -126,7 +126,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(),
+                  endDrawer: const EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: Column(children: [
                     Container(
@@ -259,31 +259,31 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.09,
                         ),
-                        MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/settingsLanguages');
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: SettingsLanguages(
-                            //         ),
-                            //   ),
-                            // );
-                          },
-                          child: Row(
+                        Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              IconButton(
+                          MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/settingsLanguages');
+                            },
+                            child: IconButton(
                                 icon: const Icon(
-                                  Icons.g_translate_sharp,
+                                  Icons.translate,
                                   color: Color.fromRGBO(141, 167, 167, 1),
                                 ),
-                                onPressed: () {},
-                              ),
-                              Text(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/settingsLanguages');
+                                  },
+                              ))),
+                              MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/settingsLanguages');
+                                  },
+                                  child: Text(
                                   AppLocalizations.of(context)!.select_language,
                                   style: Theme.of(context)
                                       .primaryTextTheme
@@ -293,10 +293,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                               48, 145, 139, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.02))),
+                                          fontSize: height * 0.02)))))
                             ],
                           ),
-                        )),
                       ],
                     ),
                   ])));
@@ -329,7 +328,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(),
+                  endDrawer: const EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: Column(children: [
                     Container(
@@ -458,31 +457,31 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.09,
                         ),
-                        MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/settingsLanguages');
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: SettingsLanguages(
-                            //         ),
-                            //   ),
-                            // );
-                          },
-                          child: Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              IconButton(
+                            MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/settingsLanguages');
+                              },
+                              child: IconButton(
                                 icon: const Icon(
-                                  Icons.g_translate_sharp,
+                                  Icons.translate,
                                   color: Color.fromRGBO(141, 167, 167, 1),
                                 ),
-                                onPressed: () {},
-                              ),
-                              Text(
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/settingsLanguages');
+                                },
+                              ))),
+                              MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(context, '/settingsLanguages');
+                                  },
+                                  child: Text(
                                   AppLocalizations.of(context)!.select_language,
                                   style: Theme.of(context)
                                       .primaryTextTheme
@@ -492,10 +491,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                               48, 145, 139, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.023))),
+                                          fontSize: height * 0.023)))))
                             ],
                           ),
-                        )),
                       ],
                     ),
                   ])));

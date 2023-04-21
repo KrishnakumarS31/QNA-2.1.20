@@ -434,46 +434,43 @@ class _WelcomePageState extends State<WelcomePage> {
                                         SizedBox(
                                           height: localHeight * 0.05,
                                         ),
-                                        MaterialButton(
-                                            onPressed: () {
-                                              Navigator.pushNamed(context, '/settingsLanguages');
-                                              // Navigator.push(
-                                              //   context,
-                                              //   PageTransition(
-                                              //     type: PageTransitionType
-                                              //         .rightToLeft,
-                                              //     child: SettingsLanguages(
-                                              //         ),
-                                              //   ),
-                                              // );
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                  icon: const Icon(
-                                                    Icons.translate,
-                                                    color: Color.fromRGBO(
-                                                        141, 167, 167, 1),
-                                                  ),
-                                                  onPressed: () {},
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .select_language,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              48, 145, 139, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize:
-                                                          localHeight * 0.026),
-                                                )
-                                              ],
-                                            )),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                                    },
+                                                    child: IconButton(
+                                                      icon: const Icon(
+                                                        Icons.translate,
+                                                        color: Color.fromRGBO(141, 167, 167, 1),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pushNamed(context, '/settingsLanguages');
+                                                      },
+                                                    ))),
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                                    },
+                                                    child: Text(
+                                                        AppLocalizations.of(context)!.select_language,
+                                                        style: Theme.of(context)
+                                                            .primaryTextTheme
+                                                            .bodyLarge
+                                                            ?.merge(TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                48, 145, 139, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w500,
+                                                            fontSize: localHeight * 0.02)))))
+                                          ],
+                                        ),
                                       ],
                                     ))
                               ]),
@@ -735,46 +732,43 @@ class _WelcomePageState extends State<WelcomePage> {
                                         SizedBox(
                                           height: localHeight * 0.05,
                                         ),
-                                        MaterialButton(
-                                            onPressed: () {
-                                              Navigator.pushNamed(context, '/settingsLanguages');
-                                              // Navigator.push(
-                                              //   context,
-                                              //   PageTransition(
-                                              //     type: PageTransitionType
-                                              //         .rightToLeft,
-                                              //     child: SettingsLanguages(
-                                              //         ),
-                                              //   ),
-                                              // );
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                IconButton(
-                                                  icon: const Icon(
-                                                    Icons.translate,
-                                                    color: Color.fromRGBO(
-                                                        141, 167, 167, 1),
-                                                  ),
-                                                  onPressed: () {},
-                                                ),
-                                                Text(
-                                                  AppLocalizations.of(context)!
-                                                      .select_language,
-                                                  style: TextStyle(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              48, 145, 139, 1),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize:
-                                                          localHeight * 0.023),
-                                                )
-                                              ],
-                                            )),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                                    },
+                                                    child: IconButton(
+                                                      icon: const Icon(
+                                                        Icons.translate,
+                                                        color: Color.fromRGBO(141, 167, 167, 1),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pushNamed(context, '/settingsLanguages');
+                                                      },
+                                                    ))),
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                                    },
+                                                    child: Text(
+                                                        AppLocalizations.of(context)!.select_language,
+                                                        style: Theme.of(context)
+                                                            .primaryTextTheme
+                                                            .bodyLarge
+                                                            ?.merge(TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                48, 145, 139, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w500,
+                                                            fontSize: localHeight * 0.023)))))
+                                          ],
+                                        ),
                                       ],
                                     ))
                               ]),

@@ -704,7 +704,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     ),
                                   ),
                                   SizedBox(
-                                    width: width * 0.03,
+                                    width: width * 0.01,
                                   ),
                                   IconButton(
                                     onPressed: () {
@@ -714,6 +714,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       Icons.delete_outline,
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.04,
                                   ),
                                 ],
                               ),
