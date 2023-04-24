@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Components/custom_result_inProgress_card.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
 import '../Components/custom_card1.dart';
-import '../Components/custom_result_card.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 
 class TeacherResultInProgress extends StatefulWidget {
-  const TeacherResultInProgress({
+  TeacherResultInProgress({
     Key? key,
     required this.result,
     this.advisorName,
+    this.inProgressArray
   }) : super(key: key);
   final GetResultModel result;
   final String? advisorName;
+  List<AssessmentResults>? inProgressArray;
 
   @override
   TeacherResultInProgressState createState() => TeacherResultInProgressState();
@@ -188,7 +190,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                         size: width * 0.05,
                                       ),
                                       Text(
-                                        (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
+                                        (widget.inProgressArray != null && widget.inProgressArray?.isEmpty == false )? "${convertDate(widget.inProgressArray![0].attemptEndDate)} hrs" : " ",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.7),
@@ -738,11 +740,10 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          widget.result.assessmentResults?.length != null
+                        widget.inProgressArray?.length != null
                               ?
                           'Total Participants List ('
-                              '${widget.result
-                              .assessmentResults!.length})'
+                              '${widget.inProgressArray?.length})'
                               :
                           'Total Participants List(0)',
                           //'Total Participants List (${widget.result.assessmentResults!.length})',
@@ -775,7 +776,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
-                            itemCount: widget.result.assessmentResults!.length,
+                            itemCount: widget.inProgressArray!.length,
                             itemBuilder: (context, index) => Column(
                               children: [
                                 MouseRegion(
@@ -792,10 +793,11 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                           ),
                                         );
                                       },
-                                      child: ResultCard(
+                                      child: ResultInProgressCard(
                                         height: height,
                                         width: width,
-                                        results: widget.result,
+                                        inProgressArray: widget.inProgressArray,
+                                        results:widget.result,
                                         index: index,),
                                     )),
                                 SizedBox(

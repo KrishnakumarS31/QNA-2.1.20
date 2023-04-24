@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Components/custom_result_total_card.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
-import '../Components/custom_result_card.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
@@ -743,11 +743,10 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                         alignment: Alignment.centerLeft,
                         child: Text(
 
-                          widget.result.assessmentResults?.length != null
+                          widget.result.assessmentResults!.length != null
                               ?
                           'Total Participants List ('
-                              '${widget.result
-                              .assessmentResults!.length})'
+                              '${widget.result.assessmentResults!.length})'
                               :
                           'Total Participants List(0)'
                           ,
@@ -799,7 +798,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                               ),
                                             );
                                           },
-                                          child: ResultCard(
+                                          child: ResultTotalCard(
                                               height: height,
                                               width: width,
                                               results: widget.result,

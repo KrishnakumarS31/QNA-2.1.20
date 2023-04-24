@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/Components/custom_result_submit_card.dart';
 import 'package:qna_test/Pages/teacher_result_individual_student.dart';
-import '../Components/custom_result_card.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
 
 class TeacherResultSubmitted extends StatefulWidget {
-  const TeacherResultSubmitted({
+  TeacherResultSubmitted({
     Key? key,
     required this.result,
     this.advisorName,
     this.userId,
+    this.submittedArray
   }) : super(key: key);
   final GetResultModel result;
   final int? userId;
   final String? advisorName;
+  List<AssessmentResults>? submittedArray;
 
   @override
   TeacherResultSubmittedState createState() => TeacherResultSubmittedState();
@@ -188,7 +190,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                         size: width * 0.05,
                                       ),
                                       Text(
-                                        (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
+                                        (widget.submittedArray != null && widget.submittedArray?.isEmpty == false )? "${convertDate(widget.submittedArray![0].attemptEndDate)} hrs" : " ",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.7),
@@ -741,7 +743,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Total Participants List (${widget.result.assessmentResults!.length})',
+                          'Total Participants List (${widget.submittedArray!.length})',
                           style: TextStyle(
                               fontSize: height * 0.0187,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -771,7 +773,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
-                            itemCount: widget.result.assessmentResults!.length,
+                            itemCount:widget.submittedArray!.length,
                             itemBuilder: (context, index) => Column(
                               children: [
                                 MouseRegion(
@@ -788,9 +790,10 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                           ),
                                         );
                                       },
-                                      child: ResultCard(
+                                      child: ResultSubmitCard(
                                           height: height,
                                           width: width,
+                                          submittedArray : widget.submittedArray,
                                           results: widget.result,
                                           index: index
                                       ),

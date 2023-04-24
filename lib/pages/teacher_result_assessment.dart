@@ -13,10 +13,14 @@ class TeacherResultAssessment extends StatefulWidget {
     required this.result,
     this.userId,
     this.advisorName,
+    this.inProgressResults,
+    this.submittedResults
   }) : super(key: key);
   GetResultModel result;
   final int? userId;
   final String? advisorName;
+  List<AssessmentResults>? inProgressResults;
+  List<AssessmentResults>? submittedResults;
 
   @override
   TeacherResultAssessmentState createState() => TeacherResultAssessmentState();
@@ -28,7 +32,6 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   @override
   void initState() {
     super.initState();
-    // getData();
   }
 
 
@@ -50,11 +53,11 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    int assessmentResultsLength = widget.result.assessmentResults?.length ?? 0;
+
     int? assessmentDuration = widget.result.assessmentDuration;
     int? assessmentStartDate = widget.result.assessmentStartDate;
     int? assessmentEndDate = widget.result.assessmentEndDate;
-    print(assessmentResultsLength);
+
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -856,6 +859,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: TeacherResultSubmitted(
+                                          submittedArray: widget.submittedResults,
                                           result: widget.result,
                                           advisorName: widget.advisorName),
                                     ),
@@ -933,6 +937,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: TeacherResultInProgress(
+                                          inProgressArray : widget.inProgressResults,
                                           result: widget.result,
                                           advisorName: widget.advisorName),
                                     ),

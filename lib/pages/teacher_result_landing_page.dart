@@ -27,6 +27,10 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   GetResultModel getResultModel = GetResultModel(guestStudentAllowed: false);
   List<GetResultModel> results = [];
   List<GetResultModel> allResults = [];
+  late List<AssessmentResults> inProgressResults;
+  late List<AssessmentResults> submittedResults;
+  late GetResultModel inProgress;
+  late GetResultModel submitted;
 
   @override
   void initState() {
@@ -300,11 +304,15 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
                                 onTap: () {
+                                  inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+                                  submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
                                   Navigator.push(
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: TeacherResultAssessment(
+                                        inProgressResults: inProgressResults,
+                                          submittedResults: submittedResults,
                                           result: results[index],
                                           userId: widget.userId,
                                           advisorName: widget.advisorName),
