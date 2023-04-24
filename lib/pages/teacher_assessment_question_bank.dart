@@ -291,11 +291,11 @@ class TeacherAssessmentQuestionBankState
                     print(assess.addQuestion!.length);
                     for(int i =0;i<quesList.length;i++){
                       if(quesList[i].questionType=="MCQ"){
-                        int mark =1;
-                        //print(assess.questions![i].questionMarks);
-                        // if(i<=assess.questions!.length && assess.questions!.isNotEmpty){
-                        //   mark=assess.questions![i].questionMarks!;
+                        // for(int j =0;i<quesList.length;i++) {
+                        //   print("before adding mark");
+                        //   print(assess.addQuestion![i].questionMark ?? 99);
                         // }
+                        int mark =1;
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
                         quesList[i].questionMark=mark;
                         Provider.of<QuestionPrepareProviderFinal>(context,

@@ -103,7 +103,7 @@ class TeacherQuestionPreviewDeleteState
             // ),
             body: Center(
               child: SizedBox(
-                height: height * 0.81,
+                height: height * 0.85,
                 width: width * 0.888,
                 child: Card(
                     shape: RoundedRectangleBorder(
@@ -124,15 +124,23 @@ class TeacherQuestionPreviewDeleteState
                         Padding(
                           padding: EdgeInsets.only(
                               left: width * 0.03, top: height * 0.02),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text('${widget.question.questionType}',
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: height * 0.02)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('${widget.question.questionType}',
+                                    style: TextStyle(
+                                        color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: height * 0.02)),
+                              ),
+                              IconButton(onPressed: (){
+                                Navigator.of(context).pop();
+                              }, icon: Icon(Icons.close))
+                            ],
                           ),
                         ),
                         Padding(
@@ -151,6 +159,7 @@ class TeacherQuestionPreviewDeleteState
                         SizedBox(
                           height: height * 0.03,
                         ),
+                        widget.question.questionType=='Descripitive'?const SizedBox(height: 0,):
                         SizedBox(
                           height: height * 0.25,
                           child: SingleChildScrollView(

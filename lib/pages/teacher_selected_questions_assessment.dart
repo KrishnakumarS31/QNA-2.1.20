@@ -145,26 +145,28 @@ class TeacherSelectedQuestionAssessmentState
 
   @override
   void initState() {
-    super.initState();
     getData();
     subjectController.text = assessment.subject!;
     classController.text = assessment.createAssessmentModelClass!;
     topicController.text = assessment.topic!;
     subTopicController.text = assessment.subTopic!;
+    super.initState();
   }
 
   getData() {
-    setState(() {
+
       questionList.addAll(
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .getAllQuestion);
+      print("ooooooooooooooooooooooooooooooooooooooooooooooo");
+      print(questionList[0].questionMark);
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
           .getAssessment;
       totalQues = questionList.length;
       for (int i = 0; i < questionList.length; i++) {
         totalMark = totalMark + questionList[i].questionMark!;
       }
-    });
+
   }
 
   @override
@@ -1172,29 +1174,24 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        print("1");
-        print(widget.question.questionId);
-        print(Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-            .getAllQuestion.length);
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .removeQuestion(widget.question.questionId);
-        print("2");
+
         if(widget.question.questionId<1){
-          print("3");
+
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .removeQuestionInAddQuestion(widget.question.questionId);
-          print("4");
+
         }
         else{
-          print("5");
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .removeQuestion(widget.question.questionId);
-          print("6");
-        }
+          }
         Navigator.of(context).pop();
         setState(() {});
         List<Question.Question> quesListArg=Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
+
         //Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: quesListArg);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(

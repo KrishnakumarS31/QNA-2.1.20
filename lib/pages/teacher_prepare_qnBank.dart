@@ -9,6 +9,8 @@ import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
+import '../Providers/question_prepare_provider_final.dart';
+
 Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
 class TeacherPrepareQnBank extends StatefulWidget {
@@ -192,6 +194,16 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
 
   setData() async {
     loginData = await SharedPreferences.getInstance();
+    List<Question> quesList =Provider.of<QuestionPrepareProviderFinal>(context,
+        listen: false).getAllQuestion;
+    if(quesList.isNotEmpty){
+      setState(() {
+        subjectController.text=quesList[0].subject??'';
+        topicController.text=quesList[0].topic??'';
+        subtopicController.text=quesList[0].subTopic??'';
+        classRoomController.text=quesList[0].datumClass??'';
+      });
+    }
     setState(() {
       finalQuestion.questionType = 'MCQ';
     });

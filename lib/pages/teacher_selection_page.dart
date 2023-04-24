@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
 
 import '../EntityModel/user_data_model.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import 'teacher_questionBank_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSelectionPage extends StatefulWidget {
