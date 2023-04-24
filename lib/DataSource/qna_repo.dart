@@ -175,10 +175,9 @@ class QnaRepo {
       QuestionPaperModel? questionPaper) async {
     String? token;
     SharedPreferences loginData = await SharedPreferences.getInstance();
-
     if (questionPaper!.data!.accessTokenDetails!.accessToken == null) {
       token = loginData.getString('token');
-      assessment?.userId = loginData.getInt('userId');
+      assessment?.userId = assessment.userId;
     } else {
       assessment!.userId = questionPaper.data!.accessTokenDetails!.userId!;
       token = questionPaper.data!.accessTokenDetails!.accessToken!;
