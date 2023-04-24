@@ -465,7 +465,7 @@ class StudQuestionState extends State<StudQuestion> {
                 now.microsecondsSinceEpoch,
                 values.data!.assessmentId!,
                 true,
-                widget!.userId
+                widget.userId
               ]);
         }
 
@@ -486,7 +486,7 @@ class StudQuestionState extends State<StudQuestion> {
                 now.microsecondsSinceEpoch,
                 values.data!.assessmentId!,
                 true,
-                widget!.userId
+                widget.userId
               ]);
         }
         myDuration = Duration(seconds: seconds);
@@ -1148,7 +1148,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
                                                 false,
-                                                widget!.userId
+                                                widget.userId
                                               ]);
                                           // Navigator.push(
                                           //   context,
@@ -1880,7 +1880,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
                                                 false,
-                                                widget!.userId
+                                                widget.userId
                                               ]);
                                           // Navigator.push(
                                           //   context,

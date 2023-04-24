@@ -232,35 +232,35 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: localWidth / 15,
-                                                          right:
-                                                              localWidth / 15),
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .learner_applicant,
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    1),
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.024)),
-                                                      ),
-                                                    ),
+                                                    // Container(
+                                                    //   padding: EdgeInsets.only(
+                                                    //       left: localWidth / 15,
+                                                    //       right:
+                                                    //           localWidth / 15),
+                                                    //   child: Align(
+                                                    //     alignment: Alignment
+                                                    //         .centerLeft,
+                                                    //     child: Text(
+                                                    //         AppLocalizations.of(
+                                                    //                 context)!
+                                                    //             .learner_applicant,
+                                                    //         style: TextStyle(
+                                                    //             color: const Color
+                                                    //                     .fromRGBO(
+                                                    //                 102,
+                                                    //                 102,
+                                                    //                 102,
+                                                    //                 1),
+                                                    //             fontFamily:
+                                                    //                 'Inter',
+                                                    //             fontWeight:
+                                                    //                 FontWeight
+                                                    //                     .w600,
+                                                    //             fontSize:
+                                                    //                 localHeight *
+                                                    //                     0.024)),
+                                                    //   ),
+                                                    // ),
                                                     SizedBox(
                                                       height:
                                                           localHeight * 0.02,
@@ -331,37 +331,37 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   left: localWidth / 15,
                                                   right: localWidth / 15),
                                               child: Column(children: [
-                                                Container(
-                                                  padding: EdgeInsets.only(
-                                                      left: localWidth / 15,
-                                                      right: localWidth / 15),
-                                                  child: Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                        AppLocalizations
-                                                                .of(context)!
-                                                            .instructor_examiner,
-                                                        style: Theme.of(context)
-                                                            .primaryTextTheme
-                                                            .bodyLarge
-                                                            ?.merge(TextStyle(
-                                                                color: const Color
-                                                                        .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    1),
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.024))),
-                                                  ),
-                                                ),
+                                                // Container(
+                                                //   padding: EdgeInsets.only(
+                                                //       left: localWidth / 15,
+                                                //       right: localWidth / 15),
+                                                //   child: Align(
+                                                //     alignment:
+                                                //         Alignment.centerLeft,
+                                                //     child: Text(
+                                                //         AppLocalizations
+                                                //                 .of(context)!
+                                                //             .instructor_examiner,
+                                                //         style: Theme.of(context)
+                                                //             .primaryTextTheme
+                                                //             .bodyLarge
+                                                //             ?.merge(TextStyle(
+                                                //                 color: const Color
+                                                //                         .fromRGBO(
+                                                //                     102,
+                                                //                     102,
+                                                //                     102,
+                                                //                     1),
+                                                //                 fontFamily:
+                                                //                     'Inter',
+                                                //                 fontWeight:
+                                                //                     FontWeight
+                                                //                         .w600,
+                                                //                 fontSize:
+                                                //                     localHeight *
+                                                //                         0.024))),
+                                                //   ),
+                                                // ),
                                                 SizedBox(
                                                   height: localHeight * 0.02,
                                                 ),
@@ -571,27 +571,27 @@ class _WelcomePageState extends State<WelcomePage> {
                                               left: localWidth / 15,
                                               right: localWidth / 15),
                                           child: Column(children: [
-                                            Container(
-                                              padding: EdgeInsets.only(
-                                                  left: localWidth / 15,
-                                                  right: localWidth / 15),
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                    AppLocalizations.of(
-                                                            context)!
-                                                        .learner_applicant,
-                                                    style: TextStyle(
-                                                        color: const Color
-                                                                .fromRGBO(
-                                                            102, 102, 102, 1),
-                                                        fontFamily: 'Inter',
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: localHeight *
-                                                            0.02)),
-                                              ),
-                                            ),
+                                            // Container(
+                                            //   padding: EdgeInsets.only(
+                                            //       left: localWidth / 15,
+                                            //       right: localWidth / 15),
+                                            //   child: Align(
+                                            //     alignment: Alignment.centerLeft,
+                                            //     child: Text(
+                                            //         AppLocalizations.of(
+                                            //                 context)!
+                                            //             .learner_applicant,
+                                            //         style: TextStyle(
+                                            //             color: const Color
+                                            //                     .fromRGBO(
+                                            //                 102, 102, 102, 1),
+                                            //             fontFamily: 'Inter',
+                                            //             fontWeight:
+                                            //                 FontWeight.w600,
+                                            //             fontSize: localHeight *
+                                            //                 0.02)),
+                                            //   ),
+                                            // ),
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
@@ -652,34 +652,34 @@ class _WelcomePageState extends State<WelcomePage> {
                                               left: localWidth / 15,
                                               right: localWidth / 15),
                                           child: Column(children: [
-                                            Container(
-                                              padding: EdgeInsets.only(
-                                                  left: localWidth / 15,
-                                                  right: localWidth / 15),
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                    AppLocalizations
-                                                            .of(context)!
-                                                        .instructor_examiner,
-                                                    style: Theme.of(context)
-                                                        .primaryTextTheme
-                                                        .bodyLarge
-                                                        ?.merge(TextStyle(
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                102,
-                                                                102,
-                                                                102,
-                                                                1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontSize:
-                                                                localHeight *
-                                                                    0.02))),
-                                              ),
-                                            ),
+                                            // Container(
+                                            //   padding: EdgeInsets.only(
+                                            //       left: localWidth / 15,
+                                            //       right: localWidth / 15),
+                                            //   child: Align(
+                                            //     alignment: Alignment.centerLeft,
+                                            //     child: Text(
+                                            //         AppLocalizations
+                                            //                 .of(context)!
+                                            //             .instructor_examiner,
+                                            //         style: Theme.of(context)
+                                            //             .primaryTextTheme
+                                            //             .bodyLarge
+                                            //             ?.merge(TextStyle(
+                                            //                 color: const Color
+                                            //                         .fromRGBO(
+                                            //                     102,
+                                            //                     102,
+                                            //                     102,
+                                            //                     1),
+                                            //                 fontFamily: 'Inter',
+                                            //                 fontWeight:
+                                            //                     FontWeight.w600,
+                                            //                 fontSize:
+                                            //                     localHeight *
+                                            //                         0.02))),
+                                            //   ),
+                                            // ),
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),

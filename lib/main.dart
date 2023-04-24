@@ -1,12 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/opening_page.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:flutter/foundation.dart';
+import 'package:qna_test/pages/opening_page.dart';
 import 'DataSource/app_user_repo.dart';
 import 'Entity/app_user.dart';
 import 'Providers/LanguageChangeProvider.dart';
@@ -14,7 +12,6 @@ import 'Providers/create_assessment_provider.dart';
 import 'Providers/edit_assessment_provider.dart';
 import 'Providers/new_question_provider.dart';
 import 'Providers/question_prepare_provider.dart';
-import 'package:qna_test/Pages/welcome_page.dart';
 import 'my_routers.dart';
 import 'Providers/question_prepare_provider_final.dart';
 
@@ -72,7 +69,6 @@ class _MyAppState extends State<MyApp> {
 
   getData() async {
     AppUser? user = await AppUserRepo().getUserDetail();
-    print("---------------------------------1");
     if(user?.locale==null){
     }
     else{
@@ -100,9 +96,10 @@ class _MyAppState extends State<MyApp> {
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         ),
         home:
-        defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS || kIsWeb
-            ? const WelcomePage()
-            : SplashScreen(setLocale: setLocale)
+       // defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.macOS || kIsWeb
+           // ? const WelcomePage()
+           // :
+        SplashScreen(setLocale: setLocale)
       //initialRoute: '/',
        //  initialRoute: WelcomePage.id,
        // routes: {
