@@ -278,6 +278,7 @@
   "allow_public_for_practice": "Allow public access for practice",
   "publish_later": "Save and Publish Later",
   "publish_now": "Publish Now",
-  "advisor_contact": "Advisor Contact"
+  "advisor_contact": "Advisor Contact",
+  "enter_valid_name": "Enter your name in Alphabets only"
 
 }

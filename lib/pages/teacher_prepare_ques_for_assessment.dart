@@ -203,6 +203,8 @@ class TeacherPrepareQuesForAssessmentState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -597,8 +599,43 @@ class TeacherPrepareQuesForAssessmentState
                                     borderRadius: BorderRadius.circular(5)),
                               )),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"?
-                          const SizedBox(height: 0,)
+                          _groupValue=="Descripitive"
+                              ? const SizedBox(height: 0)
+                              : _groupValue=="Survey"
+                              ? Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    AppLocalizations.of(context)!.choices,
+                                    //"Choices",
+                                    style: TextStyle(
+                                      color:
+                                      const Color.fromRGBO(51, 51, 51, 1),
+                                      fontSize: height * 0.016,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.delete,
+                                //"Delete",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          )
                               :Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -610,7 +647,7 @@ class TeacherPrepareQuesForAssessmentState
                                     //"Choices",
                                     style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
+                                      const Color.fromRGBO(51, 51, 51, 1),
                                       fontSize: height * 0.016,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w500,
@@ -647,9 +684,10 @@ class TeacherPrepareQuesForAssessmentState
                         ],
                       ),
                     ),
-                    _groupValue=="Descripitive"?
-                    const SizedBox(height: 0,)
-                        :Form(
+                    _groupValue=="Descripitive"
+                        ? const SizedBox(height: 0,)
+                        : _groupValue=="Survey"
+                        ? Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -670,7 +708,7 @@ class TeacherPrepareQuesForAssessmentState
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
+                                        FloatingLabelBehavior.always,
                                         hintStyle: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.3),
@@ -682,7 +720,70 @@ class TeacherPrepareQuesForAssessmentState
                                         //"Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(5)),
+                                            BorderRadius.circular(5)),
+                                      ),
+                                      onChanged: (val) {
+                                        tempChoiceList[i].choiceText = val;
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      removeItem(i);
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                  ),
+                                  constraints.maxWidth > 700
+                                 ?  SizedBox(
+                                    width: width * 0.02,
+                                  )
+                                  : const SizedBox(),
+                                ],
+                              ),
+                            )
+                        ],
+                      ),
+                    )
+                        : Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < chooses.length; i++)
+                            Padding(
+                              padding: EdgeInsets.only(bottom: height * 0.02),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormField(
+                                      controller: chooses[i],
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: height * 0.018),
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        floatingLabelBehavior:
+                                        FloatingLabelBehavior.always,
+                                        hintStyle: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.3),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.02),
+                                        hintText: AppLocalizations.of(context)!
+                                            .type_op_here,
+                                        //"Type Option Here",
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
                                       ),
                                       onChanged: (val) {
                                         tempChoiceList[i].choiceText = val;
@@ -700,13 +801,13 @@ class TeacherPrepareQuesForAssessmentState
                                       radioList[i]
                                           ? Icons.radio_button_checked_outlined
                                           : Icons
-                                              .radio_button_unchecked_outlined,
+                                          .radio_button_unchecked_outlined,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
                                   SizedBox(
-                                    width: width * 0.03,
+                                    width: width * 0.01,
                                   ),
                                   IconButton(
                                     onPressed: () {
@@ -717,6 +818,11 @@ class TeacherPrepareQuesForAssessmentState
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
+                                  constraints.maxWidth > 700
+                                      ?  SizedBox(
+                                    width: width * 0.05,
+                                  )
+                                      : const SizedBox(),
                                 ],
                               ),
                             )
@@ -724,8 +830,8 @@ class TeacherPrepareQuesForAssessmentState
                       ),
                     ),
                     SizedBox(height: height * 0.020),
-                    _groupValue=="Descripitive"?
-                    const SizedBox(height: 0,)
+                    _groupValue=="Descripitive"
+                        ? const SizedBox(height: 0,)
                         :Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -904,6 +1010,7 @@ class TeacherPrepareQuesForAssessmentState
                   ]),
                 ))));
   }
+    );}
 
   changeIcon(IconData pramIcon) {
     if (pramIcon == Icons.expand_circle_down_outlined) {
@@ -916,11 +1023,9 @@ class TeacherPrepareQuesForAssessmentState
       });
     }
   }
-
   _onRadioChange(int key) {
     setState(() {
       radioList[key] = !radioList[key];
       tempChoiceList[key].rightChoice = radioList[key];
     });
-  }
-}
+  }}

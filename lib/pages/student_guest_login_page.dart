@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/pages/student_guest_assessment.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -82,7 +81,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(),
+                  endDrawer: const EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: SingleChildScrollView(
                     physics: const ClampingScrollPhysics(),
@@ -200,15 +199,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 ),
                                               ),
                                               validator: (value) {
-                                                if (value!.isEmpty ||
-                                                    !RegExp(r'^[a-z A-Z]+$')
-                                                        .hasMatch(value)) {
+                                                if (value!.isEmpty) {
                                                   return AppLocalizations.of(
                                                       context)!
                                                       .enter_your_name;
-                                                } else {
-                                                  return null;
+                                                } else if (!RegExp(r'^[a-z A-Z]+$')
+                                                    .hasMatch(value)) {
+                                                  return AppLocalizations.of(
+                                                      context)!
+                                                      .enter_valid_name;
                                                 }
+                                                return null;
                                               },
                                             )),
                                       ],
@@ -575,7 +576,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(),
+                  endDrawer: const EndDrawerMenuPreLogin(),
                   backgroundColor: Colors.white,
                   body: SingleChildScrollView(
                     physics: const ClampingScrollPhysics(),
@@ -689,15 +690,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               ),
                                             ),
                                             validator: (value) {
-                                              if (value!.isEmpty ||
-                                                  !RegExp(r'^[a-z A-Z]+$')
-                                                      .hasMatch(value)) {
+                                              if (value!.isEmpty) {
                                                 return AppLocalizations.of(
                                                     context)!
                                                     .enter_your_name;
-                                              } else {
-                                                return null;
+                                              } else if (!RegExp(r'^[a-z A-Z]+$')
+                                                  .hasMatch(value)) {
+                                                return AppLocalizations.of(
+                                                    context)!
+                                                    .enter_valid_name;
                                               }
+                                              return null;
                                             },
                                           )),
                                     ],

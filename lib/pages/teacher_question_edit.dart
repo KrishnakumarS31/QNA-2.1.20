@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/choice_entity.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
-import 'package:qna_test/Pages/teacher_questionBank_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/teacher_question_preview.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
@@ -352,7 +352,9 @@ class QuestionEditState extends State<QuestionEdit> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
             resizeToAvoidBottomInset: true,
@@ -757,9 +759,49 @@ class QuestionEditState extends State<QuestionEdit> {
                       ),
                     ),
                     SizedBox(height: height * 0.010),
-                    _groupValue=="Descripitive"?
-                    const SizedBox(height: 0,)
-                        :Row(
+                    _groupValue=="Descripitive"
+                        ? const SizedBox(height: 0,)
+                        : _groupValue=="Survey"
+                        ? Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              AppLocalizations.of(context)!.choices,
+                              //"Choices",
+                              style: TextStyle(
+                                color:
+                                const Color.fromRGBO(51, 51, 51, 1),
+                                fontSize: height * 0.016,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: width * 0.02,
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.delete,
+                          //"Delete",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(51, 51, 51, 1),
+                            fontSize: height * 0.016,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        constraints.maxWidth > 700
+                            ?  SizedBox(
+                          width: width * 0.02,
+                        )
+                            : const SizedBox(),
+                      ],
+                    )
+                        : Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Expanded(
@@ -789,7 +831,7 @@ class QuestionEditState extends State<QuestionEdit> {
                           width: width * 0.02,
                         ),
                         Text(
-                          "Delete",
+                          AppLocalizations.of(context)!.delete,
                           style: TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontSize: height * 0.016,
@@ -797,12 +839,145 @@ class QuestionEditState extends State<QuestionEdit> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
+                        constraints.maxWidth > 700
+                            ?  SizedBox(
+                          width: width * 0.06
+                        )
+                            : const SizedBox(),
                       ],
                     ),
                     SizedBox(height: height * 0.010),
-                    _groupValue=="Descripitive"?
+                    _groupValue=="Descripitive"
+                        ?
                     const SizedBox(height: 0,)
-                        :Form(
+                        : _groupValue=="Survey"
+                    ? Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < chooses.length; i++)
+                            Padding(
+                              padding: EdgeInsets.only(bottom: height * 0.02),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormField(
+                                      controller: chooses[i],
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: height * 0.018),
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        floatingLabelBehavior:
+                                        FloatingLabelBehavior.always,
+                                        hintStyle: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.3),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.02),
+                                        hintText: "Type Option Here",
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                      ),
+                                      onFieldSubmitted: (t){
+                                        String val=chooses[i].text;
+                                        EditChoice editChoice = EditChoice();
+                                        setState(() {
+                                          chooses[i].text = val;
+                                          print("-----------------------------");
+                                          print(widget.question.choices![i]
+                                              .choiceText);
+                                          print(val);
+                                          widget.question.choices![i]
+                                              .choiceText = val;
+                                          if (addChoiceId.contains(tempChoiceId[i])) {
+                                            int index = addChoiceId.indexOf(tempChoiceId[i]);
+                                            editQuestion.addChoices?.removeAt(index);
+                                            addChoice.rightChoice = radioList[i];
+                                            addChoice.questionId = tempChoiceId[i];
+                                            addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
+                                          } else {
+                                            if (editChoiceId.contains(tempChoiceId[i])) {
+                                              int index = tempChoiceId.indexOf(tempChoiceId[i]);
+                                              editQuestion.editChoices?.removeAt(index);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
+                                            } else {
+                                              editChoiceId.add(tempChoiceId[i]);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;
+                                              editQuestion.editChoices?.add(editChoice);
+                                            }
+                                          }
+                                        });
+                                      },
+                                      onTapOutside: (t) {
+                                        String val=chooses[i].text;
+                                        EditChoice editChoice = EditChoice();
+                                        setState(() {
+                                          chooses[i].text = val;
+                                          print("-----------------------------");
+                                          print(widget.question.choices![i]
+                                              .choiceText);
+                                          print(val);
+                                          widget.question.choices![i]
+                                              .choiceText = val;
+                                          if (addChoiceId.contains(tempChoiceId[i])) {
+                                            int index = addChoiceId.indexOf(tempChoiceId[i]);
+                                            editQuestion.addChoices?.removeAt(index);
+                                            addChoice.rightChoice = radioList[i];
+                                            addChoice.questionId = tempChoiceId[i];
+                                            addChoice.choiceText = val;editQuestion.addChoices?.add(addChoice);
+                                          } else {
+                                            if (editChoiceId.contains(tempChoiceId[i])) {
+                                              int index = tempChoiceId.indexOf(tempChoiceId[i]);
+                                              editQuestion.editChoices?.removeAt(index);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;editQuestion.editChoices?.add(editChoice);
+                                            } else {
+                                              editChoiceId.add(tempChoiceId[i]);
+                                              editChoice.rightChoice = radioList[i];
+                                              editChoice.choiceId = tempChoiceId[i];
+                                              editChoice.choiceText = val;
+                                              editQuestion.editChoices?.add(editChoice);
+                                            }
+                                          }
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.03,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      removeItem(i);
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                  ),
+                                  constraints.maxWidth > 700
+                                      ?  SizedBox(
+                                    width: width * 0.02,
+                                  )
+                                      : const SizedBox(),
+                                ],
+                              ),
+                            )
+                        ],
+                      ),
+                    )
+                  : Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -962,6 +1137,11 @@ class QuestionEditState extends State<QuestionEdit> {
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
+                                  constraints.maxWidth > 700
+                                      ?  SizedBox(
+                                    width: width * 0.05,
+                                  )
+                                      : const SizedBox(),
                                 ],
                               ),
                             )
@@ -1112,6 +1292,7 @@ class QuestionEditState extends State<QuestionEdit> {
                   ]),
                 ))));
   }
+    );}
 
   changeIcon(IconData pramIcon) {
     if (pramIcon == Icons.expand_circle_down_outlined) {

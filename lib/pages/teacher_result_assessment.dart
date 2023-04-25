@@ -4,6 +4,7 @@ import 'package:qna_test/Pages/teacher_result_submitted.dart';
 import 'package:qna_test/Pages/teacher_result_total.dart';
 import 'package:qna_test/pages/teacher_result_inprogress.dart';
 import '../Components/custom_card1.dart';
+import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 
@@ -61,6 +62,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
+            endDrawer: const EndDrawerMenuTeacher(),
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(

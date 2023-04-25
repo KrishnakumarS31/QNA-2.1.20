@@ -607,8 +607,43 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     borderRadius: BorderRadius.circular(5)),
                               )),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"?
-                          const SizedBox(height: 0,)
+                          _groupValue=="Descripitive"
+                              ? const SizedBox(height: 0)
+                              :  _groupValue=="Survey"
+                              ? Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    AppLocalizations.of(context)!.choices,
+                                    //"Choices",
+                                    style: TextStyle(
+                                      color:
+                                      const Color.fromRGBO(51, 51, 51, 1),
+                                      fontSize: height * 0.016,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: width * 0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.delete,
+                                //"Delete",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          )
                               :Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -657,9 +692,71 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                         ],
                       ),
                     ),
-                    _groupValue=="Descripitive"?
-                    const SizedBox(height: 0,)
-                        :Form(
+                    _groupValue=="Descripitive"
+                        ? const SizedBox(height: 0,)
+                        : _groupValue=="Survey"
+                    ? Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < chooses.length; i++)
+                            Padding(
+                              padding: EdgeInsets.only(bottom: height * 0.02),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormField(
+                                      controller: chooses[i],
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: height * 0.018),
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        floatingLabelBehavior:
+                                        FloatingLabelBehavior.always,
+                                        hintStyle: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.3),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.02),
+                                        hintText: AppLocalizations.of(context)!
+                                            .type_op_here,
+                                        //"Type Option Here",
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                      ),
+                                      onChanged: (val) {
+                                        tempChoiceList[i].choiceText = val;
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.01,
+                                  ),
+                                  IconButton(
+                                    onPressed: () {
+                                      removeItem(i);
+                                    },
+                                    icon: const Icon(
+                                      Icons.delete_outline,
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.04,
+                                  ),
+                                ],
+                              ),
+                            )
+                        ],
+                      ),
+                    )
+                    : Form(
                       key: _formKey,
                       child: Column(
                         children: [

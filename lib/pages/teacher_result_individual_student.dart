@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import '../Components/custom_result_new_card.dart';
+import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/get_result_model.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {
@@ -49,6 +50,7 @@ class TeacherResultIndividualStudentState
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
+            endDrawer: const EndDrawerMenuTeacher(),
             resizeToAvoidBottomInset: false,
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -92,9 +94,9 @@ class TeacherResultIndividualStudentState
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -212,47 +214,47 @@ class TeacherResultIndividualStudentState
                         ),
                       ),
                       ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount:
-                                  widget.result.assessmentResults![widget.index].questions!.length,
-                              itemBuilder: (context, index) => Column(
-                                children: [
-                                  widget
-                                              .result
-                                              .assessmentResults![widget.index]
-                                              .questions![index]
-                                              .questionType! ==
-                                          "MCQ"
-                                      ?
-                                  (widget
-                                      .result
-                                      .assessmentResults![widget.index]
-                                      .questions![index].status=="Incorrect")?
-                                  MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                          onTap: () {},
-                                          child: QuesAndAns(
-                                            height: height,
-                                            ques: widget
-                                                .result
-                                                .assessmentResults![widget.index]
-                                                .questions![index],
-                                            quesNum: index,
-                                            // ans: widget
-                                            //     .result
-                                            //     .assessmentResults![0]
-                                            //     .questions,
-                                          ),
-                                        ))
-                                      :const SizedBox(): const SizedBox(),
-                                  SizedBox(
-                                    height: height * 0.02,
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount:
+                        widget.result.assessmentResults![widget.index].questions!.length,
+                        itemBuilder: (context, index) => Column(
+                          children: [
+                            widget
+                                .result
+                                .assessmentResults![widget.index]
+                                .questions![index]
+                                .questionType! ==
+                                "MCQ"
+                                ?
+                            (widget
+                                .result
+                                .assessmentResults![widget.index]
+                                .questions![index].status=="Incorrect")?
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {},
+                                  child: QuesAndAns(
+                                    height: height,
+                                    ques: widget
+                                        .result
+                                        .assessmentResults![widget.index]
+                                        .questions![index],
+                                    quesNum: index,
+                                    // ans: widget
+                                    //     .result
+                                    //     .assessmentResults![0]
+                                    //     .questions,
                                   ),
-                                ],
-                              ),
+                                ))
+                                :const SizedBox(): const SizedBox(),
+                            SizedBox(
+                              height: height * 0.02,
                             ),
+                          ],
+                        ),
+                      ),
 
 
                       // widget
@@ -323,70 +325,70 @@ class TeacherResultIndividualStudentState
                         child: Divider(),
                       ),
 
-                     //  widget
-                     //      .result
-                     //      .assessmentResults![0]
-                     //      .questions![0]
-                     //      .questionType! ==
-                     //      "SURVEY"
-                     // ? Align(
-                     //    alignment: Alignment.centerLeft,
-                     //    child: Text(
-                     //      'Survey',
-                     //      style: TextStyle(
-                     //          fontSize: height * 0.02,
-                     //          color: const Color.fromRGBO(28, 78, 80, 1),
-                     //          fontFamily: "Inter",
-                     //          fontWeight: FontWeight.w600),
-                     //    ),
-                     //  )
-                     //  : const SizedBox(),
+                      //  widget
+                      //      .result
+                      //      .assessmentResults![0]
+                      //      .questions![0]
+                      //      .questionType! ==
+                      //      "SURVEY"
+                      // ? Align(
+                      //    alignment: Alignment.centerLeft,
+                      //    child: Text(
+                      //      'Survey',
+                      //      style: TextStyle(
+                      //          fontSize: height * 0.02,
+                      //          color: const Color.fromRGBO(28, 78, 80, 1),
+                      //          fontFamily: "Inter",
+                      //          fontWeight: FontWeight.w600),
+                      //    ),
+                      //  )
+                      //  : const SizedBox(),
 
-                   //    widget
-                   //        .result
-                   //        .assessmentResults![0]
-                   //        .questions![0]
-                   //        .questionType! ==
-                   //        "SURVEY"
-                   // ? ListView.builder(
-                   //            scrollDirection: Axis.vertical,
-                   //            shrinkWrap: true,
-                   //            itemCount:
-                   //                widget.result.assessmentResults!.length,
-                   //            itemBuilder: (context, index) => Column(
-                   //              children: [
-                   //                widget
-                   //                            .result
-                   //                            .assessmentResults![0]
-                   //                            .questions![index]
-                   //                            .questionType! ==
-                   //                        "SURVEY"
-                   //                    ? MouseRegion(
-                   //                        cursor: SystemMouseCursors.click,
-                   //                        child: GestureDetector(
-                   //                        onTap: () {},
-                   //                        child: QuesAndAns(
-                   //                          height: height,
-                   //                          ques: widget
-                   //                              .result
-                   //                              .assessmentResults![0]
-                   //                              .questions![index],
-                   //                          quesNum: index,
-                   //                          // ans: widget
-                   //                          //     .result
-                   //                          //     .assessmentResults![0]
-                   //                          //     .questions![0]
-                   //                          //     .descriptiveAnswers!,
-                   //                        )))
-                   //
-                   //                : const SizedBox(),
-                   //                SizedBox(
-                   //                  height: height * 0.02,
-                   //                ),
-                   //              ],
-                   //            ),
-                   //          )
-                   //    : const SizedBox(),
+                      //    widget
+                      //        .result
+                      //        .assessmentResults![0]
+                      //        .questions![0]
+                      //        .questionType! ==
+                      //        "SURVEY"
+                      // ? ListView.builder(
+                      //            scrollDirection: Axis.vertical,
+                      //            shrinkWrap: true,
+                      //            itemCount:
+                      //                widget.result.assessmentResults!.length,
+                      //            itemBuilder: (context, index) => Column(
+                      //              children: [
+                      //                widget
+                      //                            .result
+                      //                            .assessmentResults![0]
+                      //                            .questions![index]
+                      //                            .questionType! ==
+                      //                        "SURVEY"
+                      //                    ? MouseRegion(
+                      //                        cursor: SystemMouseCursors.click,
+                      //                        child: GestureDetector(
+                      //                        onTap: () {},
+                      //                        child: QuesAndAns(
+                      //                          height: height,
+                      //                          ques: widget
+                      //                              .result
+                      //                              .assessmentResults![0]
+                      //                              .questions![index],
+                      //                          quesNum: index,
+                      //                          // ans: widget
+                      //                          //     .result
+                      //                          //     .assessmentResults![0]
+                      //                          //     .questions![0]
+                      //                          //     .descriptiveAnswers!,
+                      //                        )))
+                      //
+                      //                : const SizedBox(),
+                      //                SizedBox(
+                      //                  height: height * 0.02,
+                      //                ),
+                      //              ],
+                      //            ),
+                      //          )
+                      //    : const SizedBox(),
 
                       Align(
                         alignment: Alignment.centerLeft,
@@ -648,7 +650,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
-    widget.ques.questionType != "Descripitive" ?
+              widget.ques.questionType != "Descripitive" ?
               Expanded(
                 child: Text(widget.ques.selectedChoices == null ? " " : widget.ques.selectedChoices![0],
                   style: TextStyle(
@@ -658,15 +660,15 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                       fontWeight: FontWeight.w400),
                 ),
               ):
-    Expanded(
-      child: Text(widget.ques.descriptiveAnswers == null ? " " : widget.ques.descriptiveAnswers!.substring(1,widget.ques.descriptiveAnswers!.length-1),
-        style: TextStyle(
-            fontSize: widget.height * 0.014,
-            color: const Color.fromRGBO(102, 102, 102, 1),
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w400),
-      ),
-    ),
+              Expanded(
+                child: Text(widget.ques.descriptiveAnswers == null ? " " : widget.ques.descriptiveAnswers!.substring(1,widget.ques.descriptiveAnswers!.length-1),
+                  style: TextStyle(
+                      fontSize: widget.height * 0.014,
+                      color: const Color.fromRGBO(102, 102, 102, 1),
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
 
             ],
           ),

@@ -282,7 +282,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/teacherLoginPage');
+                Navigator.of(context).pop();
               },
             ),
             toolbarHeight: height * 0.100,
@@ -1172,8 +1172,6 @@ class _CardInfoState extends State<CardInfo> {
                 .reSetQuestionList();
             Provider.of<EditAssessmentProvider>(context, listen: false)
                 .updateAssessment(widget.assessment);
-            print("before condition");
-            print(widget.assessment.assessmentStatus);
             if (widget.assessment.assessmentStatus == 'inprogress') {
               CreateAssessmentModel editAssessment =
                   CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);

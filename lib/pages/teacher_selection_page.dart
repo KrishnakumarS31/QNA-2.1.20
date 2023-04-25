@@ -210,7 +210,8 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         ),
                       ),
                       onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                        Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                        //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                         // Navigator.of(context).pushAndRemoveUntil(
                         //     MaterialPageRoute(
                         //         builder: (context) => TeacherAssessmentLanding(

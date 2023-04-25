@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/teacher_result_assessment.dart';
 import '../Components/custom_card.dart';
+import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Services/qna_service.dart';
@@ -211,6 +212,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
+            endDrawer: const EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -293,7 +295,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         height: height * 0.01,
                       ),
                       SizedBox(
-                        height: height * 0.35,
+                        height: height * 0.65,
                         child:  ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
