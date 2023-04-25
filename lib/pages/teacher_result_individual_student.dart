@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import '../Components/custom_result_card1.dart';
+import '../Components/custom_result_new_card.dart';
 import '../EntityModel/get_result_model.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {

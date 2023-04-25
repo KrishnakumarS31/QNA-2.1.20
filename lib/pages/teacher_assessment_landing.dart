@@ -515,7 +515,6 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               height: height,
                               width: width,
                               status: 'Active',
-
                               assessment: assessments[index],
                             ),
                             SizedBox(
@@ -1138,7 +1137,6 @@ class CardInfo extends StatefulWidget {
       required this.height,
       required this.width,
       required this.status,
-
       required this.assessment})
       : super(key: key);
 
@@ -1174,6 +1172,8 @@ class _CardInfoState extends State<CardInfo> {
                 .reSetQuestionList();
             Provider.of<EditAssessmentProvider>(context, listen: false)
                 .updateAssessment(widget.assessment);
+            print("before condition");
+            print(widget.assessment.assessmentStatus);
             if (widget.assessment.assessmentStatus == 'inprogress') {
               CreateAssessmentModel editAssessment =
                   CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);
@@ -1235,6 +1235,8 @@ class _CardInfoState extends State<CardInfo> {
                   questions: [], removeQuestions: [], addQuestion: []);
               editAssessment.userId = loginData.getInt('userId');
               editAssessment.subject = widget.assessment.subject;
+              editAssessment.assessmentId=widget.assessment.assessmentId;
+              editAssessment.assessmentCode=widget.assessment.assessmentCode;
               editAssessment.assessmentType =
                   widget.assessment.assessmentType ?? 'Not Mentioned';
               editAssessment.createAssessmentModelClass =
@@ -1257,9 +1259,14 @@ class _CardInfoState extends State<CardInfo> {
               widget.assessment.assessmentStartdate == null
                   ? 0
                   : editAssessment.assessmentStartdate = widget.assessment.assessmentStartdate;
+              widget.assessment.assessmentDuration == null
+                  ? 0
+                  : editAssessment.assessmentDuration = widget.assessment.assessmentDuration;
               widget.assessment.assessmentEnddate == null
                   ? ''
                   : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
+              print("active");
+              print(widget.assessment.assessmentSettings.toString());
               editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
               if (widget.assessment.questions!.isEmpty) {
               }
@@ -1289,8 +1296,6 @@ class _CardInfoState extends State<CardInfo> {
               //   ),
               // );
             }
-
-
             else {
               Navigator.pushNamed(context, '/teacherInactiveAssessment');
               // Navigator.push(
@@ -1346,7 +1351,7 @@ class _CardInfoState extends State<CardInfo> {
                       ),
                       Icon(
                         Icons.circle_rounded,
-                        color: widget.assessment.assessmentStatus == 'inprogress' && widget.assessment.assessmentType == 'test'
+                        color: widget.assessment.assessmentStatus == 'inprogress'
                             ? const Color.fromRGBO(255, 166, 0, 1)
                             : widget.assessment.assessmentType == 'practice'
                             ? const Color.fromRGBO(42, 36, 186, 1)

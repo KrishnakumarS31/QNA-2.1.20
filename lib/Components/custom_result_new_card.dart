@@ -14,7 +14,7 @@ class ResultCardNew extends StatelessWidget {
   final double height;
   final double width;
   final int index;
- final GetResultModel results;
+  final GetResultModel results;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                    name ?? " ",
+                      name ?? " ",
                       style: TextStyle(
                           fontSize: height * 0.0187,
                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -68,7 +68,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                results.assessmentStartDate != null ? convertDate(results.assessmentStartDate) : " ",
+                      results.assessmentResults![index].attemptStartDate != null ? convertDate(results.assessmentResults![index].attemptStartDate) : " ",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -76,7 +76,7 @@ class ResultCardNew extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      results.assessmentStartDate != null ? "${convertTime(results.assessmentStartDate)} IST" : "",
+                      results.assessmentResults![index].attemptStartDate != null ? "${convertTime(results.assessmentResults![index].attemptStartDate)} IST" : "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

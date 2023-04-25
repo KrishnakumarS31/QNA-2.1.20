@@ -83,7 +83,7 @@ class ResultSubmitCard extends StatelessWidget {
                       height: height * 0.023,
                     ),
                     Text(
-                      results.assessmentStartDate != null ? convertDate(results.assessmentStartDate) : " ",
+                      submittedArray![index].attemptStartDate != null ? convertDate(submittedArray![index].attemptStartDate) : " ",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -91,7 +91,7 @@ class ResultSubmitCard extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      results.assessmentStartDate != null ? "${convertTime(results.assessmentStartDate)} IST" : "",
+                      submittedArray![index].attemptStartDate != null ? "${convertTime(submittedArray![index].attemptStartDate)} IST" : "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

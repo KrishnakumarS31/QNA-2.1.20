@@ -111,15 +111,24 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
       ),
       onPressed: () {
         if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
+          print("true");
           Provider.of<NewQuestionProvider>(context, listen: false)
               .deleteQuestionList(widget.quesNum!);
+          print("line 2");
           Provider.of<QuestionPrepareProvider>(context, listen: false)
               .deleteQuestionList(widget.quesNum!);
-          Navigator.pushNamed(
-            context,
-            '/teacherAddMyQuestionBankForAssessment',
-            arguments: widget.assessment,
-          );
+          print("line 3");
+          if(Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion.isEmpty){
+            Navigator.pushNamed(context, '/teacherCreateAssessment');
+          }
+          else{
+            print("line 1");
+            Navigator.pushNamed(
+                context,
+                '/teacherAddMyQuestionBankForAssessment',
+                arguments: widget.assessment
+            );
+          }
           // Navigator.push(
           //   context,
           //   PageTransition(
@@ -129,13 +138,22 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
           // );
         }
         else{
+          print("false");
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .deleteQuestionList(widget.quesNum!);
-          Navigator.pushNamed(
-              context,
-              '/teacherAddMyQuestionBank',
-              arguments: false
-          );
+          if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
+            Navigator.pushNamed(context, '/teacherQuestionBank');
+          }
+          else{
+            print("line 1");
+            Navigator.pushNamed(
+                context,
+                '/teacherAddMyQuestionBank',
+                arguments: false
+            );
+          }
+
+          print("line 1");
           // Navigator.push(
           //   context,
           //   PageTransition(
@@ -345,6 +363,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                     questionController.text = '';
                                     urlController.text = '';
                                     adviceController.text = '';
+                                    radioList.clear();
+                                    chooses.clear();
                                     //selected='';
                                   });
                                 },

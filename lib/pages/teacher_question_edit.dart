@@ -484,6 +484,11 @@ class QuestionEditState extends State<QuestionEdit> {
                                     questionController.text = '';
                                     urlController.text = '';
                                     adviceController.text = '';
+                                    chooses.clear();
+                                    tempChoiceId.clear();
+                                    radioList.clear();
+                                    editChoiceId.clear();
+                                    addChoiceId.clear();
                                   });
                                 },
                               ),
@@ -835,10 +840,6 @@ class QuestionEditState extends State<QuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {

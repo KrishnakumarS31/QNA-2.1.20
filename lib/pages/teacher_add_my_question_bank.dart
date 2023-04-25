@@ -148,9 +148,11 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   @override
   void initState() {
     super.initState();
+
     finalQuesList.addAll(
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion);
+
   }
 
   @override
@@ -240,7 +242,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  finalQuesList[0].subject!,
+                                  finalQuesList.isEmpty?'':finalQuesList[0].subject!,
                                   style: TextStyle(
                                       fontSize: height * 0.02,
                                       fontFamily: "Inter",
@@ -270,7 +272,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             child: Row(
                               children: [
                                 Text(
-                                  finalQuesList[0].topic!,
+                                  finalQuesList.isEmpty?'':finalQuesList[0].topic!,
                                   style: TextStyle(
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
@@ -294,7 +296,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                   width: width * 0.01,
                                 ),
                                 Text(
-                                  finalQuesList[0].subTopic!,
+                                  finalQuesList.isEmpty?'':finalQuesList[0].subTopic!,
                                   style: TextStyle(
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
@@ -310,7 +312,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                finalQuesList[0].datumClass!,
+                                finalQuesList.isEmpty?'':finalQuesList[0].datumClass!,
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",

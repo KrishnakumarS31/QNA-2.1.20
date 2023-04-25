@@ -1037,8 +1037,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                           onPressed: () async {
                             assessmentVal.assessmentStatus = "inprogress";
                             assessmentVal.assessmentType = "practice";
-                            // assessmentVal.assessmentStartdate =
-                            //     date1.microsecondsSinceEpoch ;
+
                             showDialog(
                                 context: context,
                                 builder: (context) {

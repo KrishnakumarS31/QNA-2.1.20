@@ -45,4 +45,9 @@ class AssessmentSettings {
     "not_available": notAvailable ?? false,
     "show_answer_sheet_during_practice": showAnswerSheetDuringPractice ?? false,
   };
+
+  @override
+  String toString() {
+    return 'AssessmentSettings{allowedNumberOfTestRetries: $allowedNumberOfTestRetries, avalabilityForPractice: $avalabilityForPractice, numberOfDaysAfterTestAvailableForPractice: $numberOfDaysAfterTestAvailableForPractice, allowGuestStudent: $allowGuestStudent, showSolvedAnswerSheetInAdvisor: $showSolvedAnswerSheetInAdvisor, showAdvisorName: $showAdvisorName, showAdvisorEmail: $showAdvisorEmail, notAvailable: $notAvailable, showAnswerSheetDuringPractice: $showAnswerSheetDuringPractice}';
+  }
 }

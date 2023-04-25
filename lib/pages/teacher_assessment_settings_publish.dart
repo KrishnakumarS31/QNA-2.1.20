@@ -65,6 +65,7 @@ class TeacherAssessmentSettingPublishState
   DateTime endTime = DateTime.now();
   int hours = 0;
   int minutes = 0;
+  String testTypeBeforChange='';
 
   @override
   void initState() {
@@ -76,7 +77,9 @@ class TeacherAssessmentSettingPublishState
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
-
+    print(assessment.assessmentCode);
+    print(assessment.assessmentId);
+    testTypeBeforChange=assessment.assessmentType!;
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
@@ -91,6 +94,41 @@ class TeacherAssessmentSettingPublishState
     totalQues = assessment.questions == null ? 0 : assessment.questions!.length;
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
+    assessment.assessmentType=='test'?val=1:val=2;
+    if(assessment.assessmentDuration!=null){
+      if(assessment.assessmentDuration!>60){
+        timePermitHoursController.text= '${(assessment.assessmentDuration! / 60).floor()}';
+        timePermitMinutesController.text='${assessment.assessmentDuration! % 60}';
+      }
+      else{
+        timePermitMinutesController.text='${assessment.assessmentDuration!}';
+      }
+
+    }
+    else{
+      print("duration is null");
+    }
+    assessment.assessmentSettings?.numberOfDaysAfterTestAvailableForPractice==null?numOfDaysAfterTestController.text='':numOfDaysAfterTestController.text=
+    '${assessment.assessmentSettings!.numberOfDaysAfterTestAvailableForPractice!}';
+
+    if(assessment.assessmentSettings?.allowedNumberOfTestRetries==null){
+      retriesController.text='';
+      numOfRetriesStatus=false;
+    }else{
+      retriesController.text=
+      '${assessment.assessmentSettings!.allowedNumberOfTestRetries!}';
+      assessment.assessmentSettings!.allowedNumberOfTestRetries!>0?numOfRetriesStatus=true:numOfRetriesStatus=false;
+    }
+
+
+
+    assessment.assessmentSettings?.allowGuestStudent==null?allowedGuestStatus=false:allowedGuestStatus=assessment.assessmentSettings!.allowGuestStudent!;
+    assessment.assessmentSettings?.showSolvedAnswerSheetInAdvisor==null?showAnsAfterTest=false:showAnsAfterTest=assessment.assessmentSettings!.showSolvedAnswerSheetInAdvisor!;
+    assessment.assessmentSettings?.showAnswerSheetDuringPractice==null?showAnsDuringPractice=false:showAnsDuringPractice=assessment.assessmentSettings!.showAnswerSheetDuringPractice!;
+    assessment.assessmentSettings?.showAdvisorName==null?showNameStatus=false:showNameStatus=assessment.assessmentSettings!.showAdvisorName!;
+    assessment.assessmentSettings?.showAdvisorEmail==null?showEmailStatus=false:showEmailStatus=assessment.assessmentSettings!.showAdvisorEmail!;
+    assessment.assessmentSettings?.notAvailable==null?activeStatus=false:activeStatus=assessment.assessmentSettings!.notAvailable!;
+    assessment.assessmentSettings?.avalabilityForPractice==null?publicAccessStatus=false:publicAccessStatus=assessment.assessmentSettings!.avalabilityForPractice!;
   }
 
   final MaskTextInputFormatter timeMaskFormatter =
@@ -131,11 +169,6 @@ class TeacherAssessmentSettingPublishState
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        // Navigator.of(context).pushAndRemoveUntil(
-                        //     MaterialPageRoute(
-                        //         builder: (context) => TeacherAssessmentLanding(
-                        //             setLocale: widget.setLocale)),
-                        //         (route) => route.isFirst);
                         Navigator.of(context).pop();
                       },
                     ),
@@ -2088,7 +2121,9 @@ class TeacherAssessmentSettingPublishState
                                         ),
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
-                                          Center(
+                                          testTypeBeforChange=='test'?
+                                          SizedBox(height: 0)
+                                              :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
                                               child: ElevatedButton(
@@ -2106,7 +2141,7 @@ class TeacherAssessmentSettingPublishState
                                                     BorderRadius.circular(39),
                                                   ),
                                                 ),
-                                                //shape: StadiumBorder(),
+//shape: StadiumBorder(),
                                                 onPressed: () async {
                                                   if (val == 1) {
                                                     assessment.assessmentType =
@@ -2201,27 +2236,27 @@ class TeacherAssessmentSettingPublishState
                                                         context,
                                                         '/teacherAssessmentLanding',
                                                             (route) => route.isFirst);
-                                                    // Navigator.of(context).pushAndRemoveUntil(
-                                                    //     MaterialPageRoute(
-                                                    //         builder: (context) => TeacherAssessmentLanding(
-                                                    //             )),
-                                                    //         (route) => route.isFirst);
-                                                    // Navigator.push(
-                                                    //   context,
-                                                    //   PageTransition(
-                                                    //     type: PageTransitionType
-                                                    //         .rightToLeft,
-                                                    //     child: TeacherAssessmentLanding(
-                                                    //         setLocale:
-                                                    //             widget.setLocale),
-                                                    //   ),
-                                                    // );
+// Navigator.of(context).pushAndRemoveUntil(
+//     MaterialPageRoute(
+//         builder: (context) => TeacherAssessmentLanding(
+//             )),
+//         (route) => route.isFirst);
+// Navigator.push(
+//   context,
+//   PageTransition(
+//     type: PageTransitionType
+//         .rightToLeft,
+//     child: TeacherAssessmentLanding(
+//         setLocale:
+//             widget.setLocale),
+//   ),
+// );
                                                   }
                                                 },
                                                 child: Text(
                                                   AppLocalizations.of(context)!
                                                       .publish_later,
-                                                  //'Publish Later',
+//'Publish Later',
                                                   style: TextStyle(
                                                       fontSize: height * 0.025,
                                                       fontFamily: "Inter",
@@ -2235,7 +2270,183 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             height: height * 0.03,
                                           ),
-                                          Center(
+                                          testTypeBeforChange=='test'?
+                                          SizedBox(height: 0)
+                                              :Center(
+                                            child: SizedBox(
+                                              width: width * 0.6,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    minimumSize:
+                                                    const Size(280, 48),
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(39),
+                                                    ),
+                                                    side: const BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                    )),
+                                                onPressed: () async {
+                                                  if (val == 1) {
+                                                    assessment.assessmentType =
+                                                    'test';
+                                                  } else {
+                                                    assessment.assessmentType =
+                                                    'practice';
+                                                  }
+                                                  assessment.assessmentStatus =
+                                                  'active';
+                                                  AssessmentSettings
+                                                  assessmentSettings =
+                                                  AssessmentSettings();
+                                                  assessmentSettings
+                                                      .allowedNumberOfTestRetries =
+                                                  retriesController.text == ''
+                                                      ? 0
+                                                      : int.parse(
+                                                      retriesController
+                                                          .text);
+                                                  assessmentSettings
+                                                      .numberOfDaysAfterTestAvailableForPractice =
+                                                  numOfDaysAfterTestController
+                                                      .text ==
+                                                      ''
+                                                      ? 0
+                                                      : int.parse(
+                                                      numOfDaysAfterTestController
+                                                          .text);
+                                                  assessmentSettings
+                                                      .allowGuestStudent =
+                                                      allowedGuestStatus;
+                                                  assessmentSettings
+                                                      .showSolvedAnswerSheetInAdvisor =
+                                                      showAnsAfterTest;
+                                                  assessmentSettings
+                                                      .showAnswerSheetDuringPractice =
+                                                      showAnsDuringPractice;
+                                                  assessmentSettings
+                                                      .showAdvisorName =
+                                                      showNameStatus;
+                                                  assessmentSettings
+                                                      .showAdvisorEmail =
+                                                      showEmailStatus;
+                                                  assessmentSettings.notAvailable =
+                                                      activeStatus;
+                                                  assessmentSettings
+                                                      .avalabilityForPractice =
+                                                      publicAccessStatus;
+                                                  assessment.assessmentSettings =
+                                                      assessmentSettings;
+                                                  startDate = DateTime(
+                                                      startDate.year,
+                                                      startDate.month,
+                                                      startDate.day,
+                                                      startTime.hour,
+                                                      startTime.minute);
+                                                  assessment.assessmentStartdate =
+                                                      startDate
+                                                          .microsecondsSinceEpoch;
+                                                  endDate = DateTime(
+                                                      endDate.year,
+                                                      endDate.month,
+                                                      endDate.day,
+                                                      endTime.hour,
+                                                      endTime.minute);
+                                                  assessment.assessmentEnddate =
+                                                      endDate
+                                                          .microsecondsSinceEpoch;
+
+                                                  assessment.assessmentDuration =
+                                                      (hours * 60) + minutes;
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return const Center(
+                                                            child:
+                                                            CircularProgressIndicator(
+                                                              color: Color.fromRGBO(
+                                                                  48, 145, 139, 1),
+                                                            ));
+                                                      });
+                                                  ResponseEntity statusCode =
+                                                  ResponseEntity();
+                                                  String assessmentCode = '';
+                                                  if (assessment.assessmentId !=
+                                                      null) {
+                                                    statusCode = await QnaService
+                                                        .editAssessmentTeacherService(
+                                                        assessment,
+                                                        assessment
+                                                            .assessmentId!);
+                                                    print(statusCode.code);
+                                                    print(statusCode.message);
+                                                    assessmentCode =
+                                                    assessment.assessmentCode!;
+                                                  } else {
+                                                    statusCode = await QnaService
+                                                        .createAssessmentTeacherService(
+                                                        assessment);
+
+                                                    if (statusCode.code == 200) {
+                                                      assessmentCode = statusCode
+                                                          .data
+                                                          .toString()
+                                                          .substring(
+                                                          18,
+                                                          statusCode.data
+                                                              .toString()
+                                                              .length -
+                                                              1);
+                                                    }
+                                                    Navigator.of(context).pop();
+                                                    Provider.of<NewQuestionProvider>(
+                                                        context,
+                                                        listen: false)
+                                                        .reSetQuestionList();
+                                                    Navigator.pushNamed(context,
+                                                        '/teacherPublishedAssessment',
+                                                        arguments: [
+                                                          assessmentCode,
+                                                          questionListForNxtPage
+                                                        ]);
+// Navigator.push(
+//   context,
+//   PageTransition(
+//     type: PageTransitionType
+//         .rightToLeft,
+//     child: TeacherPublishedAssessment(
+//         assessmentCode:
+//             assessmentCode,
+//         questionList:
+//             questionListForNxtPage),
+//   ),
+// );
+                                                  }
+                                                },
+                                                child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .publish_now,
+//'Publish Now',
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.025,
+                                                      fontFamily: "Inter",
+                                                      color: const Color.fromRGBO(
+                                                          255, 255, 255, 1),
+                                                      fontWeight: FontWeight.w600),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: height * 0.03,
+                                          ),
+                                          testTypeBeforChange!='test'?
+                                          SizedBox(height: 0)
+                                              :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
                                               child: ElevatedButton(
@@ -2390,8 +2601,7 @@ class TeacherAssessmentSettingPublishState
                                                   }
                                                 },
                                                 child: Text(
-                                                  AppLocalizations.of(context)!
-                                                      .publish_now,
+                                                  'Save changes',
                                                   //'Publish Now',
                                                   style: TextStyle(
                                                       fontSize: height * 0.025,
@@ -2414,7 +2624,8 @@ class TeacherAssessmentSettingPublishState
                     ],
                   ),
                 ));
-          } else {
+          }
+          else {
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -4390,7 +4601,9 @@ class TeacherAssessmentSettingPublishState
                                         ),
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
-                                          Center(
+                                          testTypeBeforChange=='test'?
+                                        SizedBox(height: 0)
+                                              :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
                                               child: ElevatedButton(
@@ -4537,7 +4750,9 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             height: height * 0.03,
                                           ),
-                                          Center(
+                                          testTypeBeforChange=='test'?
+                                          SizedBox(height: 0)
+                                              :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
                                               child: ElevatedButton(
@@ -4640,8 +4855,8 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   String assessmentCode = '';
-                                                  if (assessment.assessmentId !=
-                                                      null) {
+                                                  if (assessment.assessmentId != null) {
+                                                    print("inside if");
                                                     statusCode = await QnaService
                                                         .editAssessmentTeacherService(
                                                         assessment,
@@ -4651,7 +4866,19 @@ class TeacherAssessmentSettingPublishState
                                                     print(statusCode.message);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
-                                                  } else {
+                                                    Navigator.of(context).pop();
+                                                    Provider.of<NewQuestionProvider>(
+                                                        context,
+                                                        listen: false)
+                                                        .reSetQuestionList();
+                                                    Navigator.pushNamed(context,
+                                                        '/teacherPublishedAssessment',
+                                                        arguments: [
+                                                          assessmentCode,
+                                                          questionListForNxtPage
+                                                        ]);
+                                                  }
+                                                  else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
                                                         assessment);
@@ -4696,6 +4923,193 @@ class TeacherAssessmentSettingPublishState
                                                   AppLocalizations.of(context)!
                                                       .publish_now,
 //'Publish Now',
+                                                  style: TextStyle(
+                                                      fontSize: height * 0.025,
+                                                      fontFamily: "Inter",
+                                                      color: const Color.fromRGBO(
+                                                          255, 255, 255, 1),
+                                                      fontWeight: FontWeight.w600),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: height * 0.03,
+                                          ),
+                                          testTypeBeforChange!='test'?
+                                          SizedBox(height: 0)
+                                              :Center(
+                                            child: SizedBox(
+                                              width: width * 0.6,
+                                              child: ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    minimumSize:
+                                                    const Size(280, 48),
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(39),
+                                                    ),
+                                                    side: const BorderSide(
+                                                      color: Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                    )),
+                                                onPressed: () async {
+                                                  if (val == 1) {
+                                                    assessment.assessmentType =
+                                                    'test';
+                                                  } else {
+                                                    assessment.assessmentType =
+                                                    'practice';
+                                                  }
+                                                  assessment.assessmentStatus =
+                                                  'active';
+                                                  AssessmentSettings
+                                                  assessmentSettings =
+                                                  AssessmentSettings();
+                                                  assessmentSettings
+                                                      .allowedNumberOfTestRetries =
+                                                  retriesController.text == ''
+                                                      ? 0
+                                                      : int.parse(
+                                                      retriesController
+                                                          .text);
+                                                  assessmentSettings
+                                                      .numberOfDaysAfterTestAvailableForPractice =
+                                                  numOfDaysAfterTestController
+                                                      .text ==
+                                                      ''
+                                                      ? 0
+                                                      : int.parse(
+                                                      numOfDaysAfterTestController
+                                                          .text);
+                                                  assessmentSettings
+                                                      .allowGuestStudent =
+                                                      allowedGuestStatus;
+                                                  assessmentSettings
+                                                      .showSolvedAnswerSheetInAdvisor =
+                                                      showAnsAfterTest;
+                                                  assessmentSettings
+                                                      .showAnswerSheetDuringPractice =
+                                                      showAnsDuringPractice;
+                                                  assessmentSettings
+                                                      .showAdvisorName =
+                                                      showNameStatus;
+                                                  assessmentSettings
+                                                      .showAdvisorEmail =
+                                                      showEmailStatus;
+                                                  assessmentSettings.notAvailable =
+                                                      activeStatus;
+                                                  assessmentSettings
+                                                      .avalabilityForPractice =
+                                                      publicAccessStatus;
+                                                  assessment.assessmentSettings =
+                                                      assessmentSettings;
+                                                  startDate = DateTime(
+                                                      startDate.year,
+                                                      startDate.month,
+                                                      startDate.day,
+                                                      startTime.hour,
+                                                      startTime.minute);
+                                                  assessment.assessmentStartdate =
+                                                      startDate
+                                                          .microsecondsSinceEpoch;
+                                                  endDate = DateTime(
+                                                      endDate.year,
+                                                      endDate.month,
+                                                      endDate.day,
+                                                      endTime.hour,
+                                                      endTime.minute);
+                                                  assessment.assessmentEnddate =
+                                                      endDate
+                                                          .microsecondsSinceEpoch;
+
+                                                  assessment.assessmentDuration =
+                                                      (hours * 60) + minutes;
+                                                  showDialog(
+                                                      context: context,
+                                                      builder: (context) {
+                                                        return const Center(
+                                                            child:
+                                                            CircularProgressIndicator(
+                                                              color: Color.fromRGBO(
+                                                                  48, 145, 139, 1),
+                                                            ));
+                                                      });
+                                                  ResponseEntity statusCode =
+                                                  ResponseEntity();
+                                                  String assessmentCode = '';
+
+                                                  if (assessment.assessmentCode !=
+                                                      null) {
+                                                    print("true bruh");
+                                                    statusCode = await QnaService
+                                                        .editAssessmentTeacherService(
+                                                        assessment,
+                                                        assessment
+                                                            .assessmentId!);
+                                                    assessmentCode =
+                                                    assessment.assessmentCode!;
+                                                    Navigator.of(context).pop();
+                                                    Provider.of<NewQuestionProvider>(
+                                                        context,
+                                                        listen: false)
+                                                        .reSetQuestionList();
+                                                    Navigator.pushNamed(context,
+                                                        '/teacherPublishedAssessment',
+                                                        arguments: [
+                                                          assessmentCode,
+                                                          questionListForNxtPage
+                                                        ]);
+                                                  } else {
+                                                    print("true bruh");
+                                                    print(assessment.assessmentId);
+                                                    print("false bruh");
+                                                    statusCode = await QnaService
+                                                        .createAssessmentTeacherService(
+                                                        assessment);
+
+                                                    if (statusCode.code == 200) {
+                                                      assessmentCode = statusCode
+                                                          .data
+                                                          .toString()
+                                                          .substring(
+                                                          18,
+                                                          statusCode.data
+                                                              .toString()
+                                                              .length -
+                                                              1);
+                                                    }
+                                                    Navigator.of(context).pop();
+                                                    Provider.of<NewQuestionProvider>(
+                                                        context,
+                                                        listen: false)
+                                                        .reSetQuestionList();
+                                                    Navigator.pushNamed(context,
+                                                        '/teacherPublishedAssessment',
+                                                        arguments: [
+                                                          assessmentCode,
+                                                          questionListForNxtPage
+                                                        ]);
+                                                    // Navigator.push(
+                                                    //   context,
+                                                    //   PageTransition(
+                                                    //     type: PageTransitionType
+                                                    //         .rightToLeft,
+                                                    //     child: TeacherPublishedAssessment(
+                                                    //         assessmentCode:
+                                                    //             assessmentCode,
+                                                    //         questionList:
+                                                    //             questionListForNxtPage),
+                                                    //   ),
+                                                    // );
+                                                  }
+                                                },
+                                                child: Text(
+                                                  'Save changes',
+                                                  //'Publish Now',
                                                   style: TextStyle(
                                                       fontSize: height * 0.025,
                                                       fontFamily: "Inter",

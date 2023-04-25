@@ -441,7 +441,18 @@ class StudQuestionState extends State<StudQuestion> {
       countdownTimer =
           Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
     }
+    else{
+      countdownTimer =
+          Timer.periodic(const Duration(seconds: 1), (_) => countDownSetState());
+    }
+
     super.initState();
+  }
+
+  void countDownSetState(){
+    setState(() {
+      myDuration = Duration(seconds: 0);
+    });
   }
 
   void setCountDown() {
@@ -2013,14 +2024,12 @@ class ChooseWidget extends StatelessWidget {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
             onTap: () {
-              if (selected.contains(question
-                  .data!
-                  .questions![
-                      Provider.of<QuestionNumProvider>(context, listen: false)
-                              .questionNum -
-                          1]
+              print("Go Go Poke");
+              if (selected.contains(question.data!.questions![
+                      Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1]
                   .choices![j - 1]
                   .choiceText)) {
+                print("inside if");
                 selected.remove(question
                     .data!
                     .questions![
@@ -2030,6 +2039,7 @@ class ChooseWidget extends StatelessWidget {
                     .choices![j - 1]
                     .choiceText);
                 if (selected.isEmpty) {
+                  print("inside if...if");
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,
@@ -2037,6 +2047,7 @@ class ChooseWidget extends StatelessWidget {
                       const Color.fromRGBO(219, 35, 35, 1),
                       false);
                 } else {
+                  print("inside if...else");
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,
@@ -2044,7 +2055,9 @@ class ChooseWidget extends StatelessWidget {
                       const Color.fromRGBO(82, 165, 160, 1),
                       false);
                 }
-              } else {
+              }
+              else {
+                print("inside else");
                 selected.add(question
                     .data!
                     .questions![
@@ -2060,7 +2073,9 @@ class ChooseWidget extends StatelessWidget {
                     const Color.fromRGBO(82, 165, 160, 1),
                     false);
               }
+
             },
+                //poke
             child: Padding(
               padding: EdgeInsets.only(
                   bottom: height * 0.013,

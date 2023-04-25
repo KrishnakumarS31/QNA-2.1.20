@@ -55,6 +55,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
     finalAssessment =
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .getAssessment;
+    print("${assessment.assessmentDuration}");
     finalAssessment.removeQuestions = [];
     for (int i = 0; i < finalAssessment.questions!.length; i++) {
       mark = mark + assessment.questions![i].questionMark!;
@@ -1131,6 +1132,42 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                     SizedBox(
                       height: height * 0.03,
                     ),
+                    Center(
+                      child: SizedBox(
+                        width: width * 0.888,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 1),
+                              minimumSize: const Size(280, 48),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(39),
+                              ),
+                              side: const BorderSide(
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              )),
+                          onPressed: () {
+                            // Provider.of<CreateAssessmentProvider>(context, listen: false)
+                            //     .getAssessment;
+                            print(finalAssessment.assessmentSettings.toString());
+                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                          },
+                          child: Text(
+                            'Edit',
+                            style: TextStyle(
+                                fontSize: height * 0.025,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.03,
+                    ),
+
+
                     Center(
                       child: SizedBox(
                         width: width * 0.888,
