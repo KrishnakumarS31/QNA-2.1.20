@@ -1448,8 +1448,14 @@ if(selectedAns.isEmpty){
     }
     assessment.attemptScore = totalMark;
     values.data!.totalScore = givenMark;
-    int percent = ((ansCorrect / totalMark) *
-        100).round();
+    int percent=0;
+    if(ansCorrect==0 || totalMark==0){
+      percent=0;
+    }
+    else{
+      percent = ((ansCorrect / totalMark) *
+          100).round();
+    }
     assessment.attemptPercentage = percent;
     if (percent == 100) {
       assessment.assessmentScoreId =

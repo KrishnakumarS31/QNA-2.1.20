@@ -77,9 +77,9 @@ class TeacherAssessmentSettingPublishState
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
-    print(assessment.assessmentCode);
-    print(assessment.assessmentId);
-    testTypeBeforChange=assessment.assessmentType!;
+
+    testTypeBeforChange=assessment.assessmentType??'';
+
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
@@ -95,7 +95,7 @@ class TeacherAssessmentSettingPublishState
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
     assessment.assessmentType=='test'?val=1:val=2;
-    if(assessment.assessmentDuration!=null){
+    if(assessment.assessmentDuration != null){
       if(assessment.assessmentDuration!>60){
         timePermitHoursController.text= '${(assessment.assessmentDuration! / 60).floor()}';
         timePermitMinutesController.text='${assessment.assessmentDuration! % 60}';

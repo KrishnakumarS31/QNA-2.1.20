@@ -450,9 +450,9 @@ class StudQuestionState extends State<StudQuestion> {
   }
 
   void countDownSetState(){
-    setState(() {
+    // setState(() {
       myDuration = Duration(seconds: 0);
-    });
+    //});
   }
 
   void setCountDown() {
@@ -1146,9 +1146,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                     219, 35, 35, 1),
                                                 false);
                                           }
-                                          if(widget.ques.data!.assessmentType=='test') {
-                                            countdownTimer!.cancel();
-                                          }
+                                          // if(widget.ques.data!.assessmentType=='test') {
+                                          //   countdownTimer!.cancel();
+                                          // }
                                           Navigator.pushNamed(
                                               context,
                                               '/studentReviseQuest',
@@ -1878,9 +1878,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                     219, 35, 35, 1),
                                                 false);
                                           }
-                                          if(widget.ques.data!.assessmentType=='test') {
-                                            countdownTimer!.cancel();
-                                          }
+                                          // if(widget.ques.data!.assessmentType=='test') {
+                                          //   countdownTimer!.cancel();
+                                          // }
                                           Navigator.pushNamed(
                                               context,
                                               '/studentReviseQuest',
@@ -1993,7 +1993,7 @@ class StudQuestionState extends State<StudQuestion> {
   }
 }
 
-class ChooseWidget extends StatelessWidget {
+class ChooseWidget extends StatefulWidget {
   const ChooseWidget({
     Key? key,
     required this.question,
@@ -2008,12 +2008,17 @@ class ChooseWidget extends StatelessWidget {
   final double width;
 
   @override
+  State<ChooseWidget> createState() => _ChooseWidgetState();
+}
+
+class _ChooseWidgetState extends State<ChooseWidget> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         for (int j = 1;
             j <=
-                question
+                widget.question
                     .data!
                     .questions![
                         context.watch<QuestionNumProvider>().questionNum - 1]
@@ -2025,12 +2030,12 @@ class ChooseWidget extends StatelessWidget {
               child: GestureDetector(
             onTap: () {
               print("Go Go Poke");
-              if (selected.contains(question.data!.questions![
+              if (widget.selected.contains(widget.question.data!.questions![
                       Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1]
                   .choices![j - 1]
                   .choiceText)) {
                 print("inside if");
-                selected.remove(question
+                widget.selected.remove(widget.question
                     .data!
                     .questions![
                         Provider.of<QuestionNumProvider>(context, listen: false)
@@ -2038,12 +2043,12 @@ class ChooseWidget extends StatelessWidget {
                             1]
                     .choices![j - 1]
                     .choiceText);
-                if (selected.isEmpty) {
+                if (widget.selected.isEmpty) {
                   print("inside if...if");
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,
-                      selected,
+                      widget.selected,
                       const Color.fromRGBO(219, 35, 35, 1),
                       false);
                 } else {
@@ -2051,14 +2056,14 @@ class ChooseWidget extends StatelessWidget {
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,
-                      selected,
+                      widget.selected,
                       const Color.fromRGBO(82, 165, 160, 1),
                       false);
                 }
               }
               else {
                 print("inside else");
-                selected.add(question
+                widget.selected.add(widget.question
                     .data!
                     .questions![
                         Provider.of<QuestionNumProvider>(context, listen: false)
@@ -2069,26 +2074,29 @@ class ChooseWidget extends StatelessWidget {
                 context.read<Questions>().selectOption(
                     Provider.of<QuestionNumProvider>(context, listen: false)
                         .questionNum,
-                    selected,
+                    widget.selected,
                     const Color.fromRGBO(82, 165, 160, 1),
                     false);
               }
+              setState(() {
+
+              });
 
             },
                 //poke
             child: Padding(
               padding: EdgeInsets.only(
-                  bottom: height * 0.013,
-                  left: width * 0.05,
-                  right: width * 0.05),
+                  bottom: widget.height * 0.013,
+                  left: widget.width * 0.05,
+                  right: widget.width * 0.05),
               child: Container(
-                  width: width * 0.744,
-                  height: height * 0.0512,
+                  width: widget.width * 0.744,
+                  height: widget.height * 0.0512,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
                         color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (selected.contains(question
+                    color: (widget.selected.contains(widget.question
                             .data!
                             .questions![Provider.of<QuestionNumProvider>(
                                         context,
@@ -2104,13 +2112,13 @@ class ChooseWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          width: width * 0.02,
+                          width: widget.width * 0.02,
                         ),
                         Expanded(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Text(
-                              question
+                              widget.question
                                   .data!
                                   .questions![context
                                           .watch<QuestionNumProvider>()
@@ -2119,7 +2127,7 @@ class ChooseWidget extends StatelessWidget {
                                   .choices![j - 1]
                                   .choiceText!,
                               style: TextStyle(
-                                color: (selected.contains(question
+                                color: (widget.selected.contains(widget.question
                                         .data!
                                         .questions![
                                             Provider.of<QuestionNumProvider>(
@@ -2131,9 +2139,9 @@ class ChooseWidget extends StatelessWidget {
                                         .choiceText))
                                     ? const Color.fromRGBO(255, 255, 255, 1)
                                     : const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: width >= 700
-                                    ? height * 0.0262
-                                    : height * 0.0162,
+                                fontSize: widget.width >= 700
+                                    ? widget.height * 0.0262
+                                    : widget.height * 0.0162,
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w700,
                               ),
