@@ -624,7 +624,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             color: Color.fromRGBO(
                                                 141, 167, 167, 1),
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.pushNamed(context, '/studentRegistrationPage');
+                                          },
                                         ),
                                         Text(
                                             AppLocalizations.of(context)!

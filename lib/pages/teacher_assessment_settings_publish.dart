@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
+import '../Components/today_date.dart';
 import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
@@ -66,20 +67,19 @@ class TeacherAssessmentSettingPublishState
   int hours = 0;
   int minutes = 0;
   String testTypeBeforChange='';
+  DateTime startDateBeforeChange=DateTime(1890,9,10,0,0,0);
+  DateTime endDateBeforeChange=DateTime(1890,9,10,0,0,0);
 
   @override
   void initState() {
     super.initState();
-
     questionListForNxtPage =
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
-
     testTypeBeforChange=assessment.assessmentType??'';
-
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
@@ -103,7 +103,6 @@ class TeacherAssessmentSettingPublishState
       else{
         timePermitMinutesController.text='${assessment.assessmentDuration!}';
       }
-
     }
     else{
       print("duration is null");
@@ -114,12 +113,23 @@ class TeacherAssessmentSettingPublishState
     if(assessment.assessmentSettings?.allowedNumberOfTestRetries==null){
       retriesController.text='';
       numOfRetriesStatus=false;
-    }else{
+    }
+    else{
       retriesController.text=
       '${assessment.assessmentSettings!.allowedNumberOfTestRetries!}';
       assessment.assessmentSettings!.allowedNumberOfTestRetries!>0?numOfRetriesStatus=true:numOfRetriesStatus=false;
     }
 
+    if(assessment.assessmentStartdate!=null){
+      startDateBeforeChange=DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentStartdate!);
+      startDateController.text=convertDate(assessment.assessmentStartdate!);
+      startTimeController.text=convertTime(assessment.assessmentStartdate!);
+    }
+    if(assessment.assessmentEnddate!=null){
+      endDateBeforeChange=DateTime.fromMicrosecondsSinceEpoch(assessment.assessmentEnddate!);
+      endDateController.text=convertDate(assessment.assessmentEnddate!);
+      endTimeController.text=convertTime(assessment.assessmentEnddate!);
+    }
 
 
     assessment.assessmentSettings?.allowGuestStudent==null?allowedGuestStatus=false:allowedGuestStatus=assessment.assessmentSettings!.allowGuestStudent!;
@@ -3279,9 +3289,7 @@ class TeacherAssessmentSettingPublishState
                                                               ),
                                                             ),
                                                             MouseRegion(
-                                                                cursor:
-                                                                SystemMouseCursors
-                                                                    .click,
+                                                                cursor: SystemMouseCursors.click,
                                                                 child:
                                                                 GestureDetector(
                                                                   onTap:

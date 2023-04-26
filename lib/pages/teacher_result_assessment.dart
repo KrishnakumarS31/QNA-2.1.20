@@ -53,12 +53,14 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
-
     int? assessmentDuration = widget.result.assessmentDuration;
     int? assessmentStartDate = widget.result.assessmentStartDate;
     int? assessmentEndDate = widget.result.assessmentEndDate;
-
+    var d = DateTime.fromMicrosecondsSinceEpoch(
+        widget.result.assessmentStartDate!);
+    var end = DateTime.fromMicrosecondsSinceEpoch(
+        widget.result.assessmentEndDate!);
+    DateTime now = DateTime.now();
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -189,9 +191,13 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     children: [
                                       Icon(
                                         Icons.circle,
-                                        color: const Color.fromRGBO(
-                                            255, 157, 77, 1),
-                                        size: width * 0.02,
+                                        color:
+                                        end.isBefore(now)
+                                            ? const Color.fromRGBO(66, 194, 0, 1)
+                                            : d.isAfter(now)
+                                            ? const Color.fromRGBO(179, 179, 179, 1)
+                                            : const Color.fromRGBO(255, 157, 77, 1),
+                                        size: height * 0.03,
                                       ),
                                       Text(
                                         assessmentStartDate != null ? convertDate(assessmentStartDate): " ",

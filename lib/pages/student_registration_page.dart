@@ -1006,14 +1006,14 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           fontWeight: FontWeight.w600,
                                           fontSize: localHeight * 0.018),
                                     ),
-                                    TextSpan(
-                                        text: "\t*",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.018)),
+                                    // TextSpan(
+                                    //     text: "\t*",
+                                    //     style: TextStyle(
+                                    //         color: const Color.fromRGBO(
+                                    //             219, 35, 35, 1),
+                                    //         fontFamily: 'Inter',
+                                    //         fontWeight: FontWeight.w600,
+                                    //         fontSize: localHeight * 0.018)),
                                   ])),
                                   labelStyle: TextStyle(
                                       color:
@@ -1040,13 +1040,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 onChanged: (value) {
                                   formKey.currentState!.validate();
                                 },
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Enter Roll Number';
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty) {
+                                //     return 'Enter Roll Number';
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                               ),
                             ),
                             SizedBox(
@@ -1383,9 +1383,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                 validator: (value) {
                                   if (studentPasswordController.text !=
                                       studentconfirmPasswordController.text) {
-                                    return 'Re-Enter Password';
+                                    return 'Re-enter exact same password';
                                   } else if (value!.isEmpty) {
-                                    return 'Enter Confirm Password';
+                                    return 'Re-enter exact same password';
                                   } else {
                                     return null;
                                   }
@@ -1413,29 +1413,30 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                       onPressed: () async {
                         bool valid = formKey.currentState!.validate();
                         StudentRegistrationModel student =
-                            StudentRegistrationModel(
-                                firstName: studentFirstNameController.text,
-                                lastName: studentLastNameController.text,
-                                dob: d,
-                                gender: gender,
-                                countryNationality: selectedCountryCitizen
-                                    .dropDownValue?.value,
-                                email: studentEmailController.text,
-                                password: studentPasswordController.text,
-                                rollNumber: studentRollNumberController.text,
-                                organisationName:
-                                    studentOrganisationNameController.text,
-                                countryResident:
-                                    selectedCountryResident
-                                        .dropDownValue?.value,
-                                role: also == true
-                                    ? ["student", "teacher"]
-                                    : ["student"]);
+                        StudentRegistrationModel(
+                            firstName: studentFirstNameController.text,
+                            lastName: studentLastNameController.text,
+                            dob: d,
+                            gender: gender,
+                            countryNationality: selectedCountryCitizen
+                                .dropDownValue?.value,
+                            email: studentEmailController.text,
+                            password: studentPasswordController.text,
+                            rollNumber: studentRollNumberController.text,
+                            organisationName:
+                            studentOrganisationNameController.text,
+                            countryResident:
+                            selectedCountryResident
+                                .dropDownValue?.value,
+                            role: also == true
+                                ? ["student", "teacher"]
+                                : ["student"]);
+                        if (pPCheck) {
+                        bool valid = formKey.currentState!.validate();
                         if (valid) {
                           LoginModel res =
                               await QnaService.postUserDetailsService(student);
                           if (res.code == 200) {
-
                             Navigator.pushNamed(
                                 context,
                                 '/studentRegisVerifyOtpPage',
@@ -1454,7 +1455,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: CustomDialog(
-                                  title: 'Incorrect Data',
+                                  title: 'Alert',
                                   content: '${res.message}',
                                   button: AppLocalizations.of(context)!.retry,
                                 ),
@@ -1462,7 +1463,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             );
                           }
                         }
-                      },
+                      }
+                        else {
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.rightToLeft,
+                              child: CustomDialog(
+                                  title: AppLocalizations.of(context)!
+                                      .agree_privacy_terms,
+                                  content: AppLocalizations.of(context)!.error,
+                                  button: AppLocalizations.of(context)!.retry),
+                            ),
+                          );
+                        }
+                        },
                       child: Text(
                         AppLocalizations.of(context)!.sent_otp,
                         style: TextStyle(

@@ -48,9 +48,13 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
     int? assessmentStartDate = widget.result.assessmentStartDate;
     int? assessmentEndDate = widget.result.assessmentEndDate;
     int? assessmentDuration = widget.result.assessmentDuration;
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    var d = DateTime.fromMicrosecondsSinceEpoch(
+        widget.result.assessmentStartDate!);
+    var end = DateTime.fromMicrosecondsSinceEpoch(
+        widget.result.assessmentEndDate!);
+    DateTime now = DateTime.now();
 
     return WillPopScope(
         onWillPop: () async => false,
@@ -187,18 +191,22 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     children: [
                                       Icon(
                                         Icons.circle,
-                                        color: const Color.fromRGBO(
-                                            255, 157, 77, 1),
-                                        size: width * 0.05,
+                                        color:
+                                        end.isBefore(now)
+                                            ? const Color.fromRGBO(66, 194, 0, 1)
+                                            : d.isAfter(now)
+                                            ? const Color.fromRGBO(179, 179, 179, 1)
+                                            : const Color.fromRGBO(255, 157, 77, 1),
+                                        size: height * 0.03,
                                       ),
                                       Text(
-                                        (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? "${convertDate(widget.result.assessmentResults![0].attemptEndDate)} hrs" : " ",
+                                        (widget.result.assessmentResults != null && widget.result.assessmentResults?.isEmpty == false )? convertDate(widget.result.assessmentStartDate) : " ",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
-                                                102, 102, 102, 0.7),
-                                            fontSize: height * 0.0125,
+                                                102, 102, 102, 1),
+                                            fontSize: height * 0.015,
                                             fontFamily: "Inter",
-                                            fontWeight: FontWeight.w400),
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     ],
                                   ),
