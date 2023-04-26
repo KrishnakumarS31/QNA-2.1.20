@@ -795,6 +795,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                 type: PageTransitionType.rightToLeft,
                                                 child: TeacherResultIndividualStudent(
                                                   result: widget.result,
+                                                  comingFrom: "total",
                                                   index: index,
                                                 ),
                                               ),

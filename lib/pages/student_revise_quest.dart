@@ -1233,11 +1233,21 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   assessment.attemptScore = totalMark;
                   values.data!.totalScore = givenMark;
                   print("________________________________5");
+                  print(ansCorrect);
+                  print(givenMark);
                   print(ansCorrect / givenMark!);
-                  int percent = ansCorrect < 1 ? 0 :((ansCorrect / givenMark!) *
-                      100).round();
+                  double f = 100/givenMark;
+                  print("F");
+                  print(f);
+                  double g = ansCorrect * f;
+                  print(g);
+                  print(g.round());
+                  int percent =g.round();
+                  print("Correct ah");
+                  print(percent);
                   print("________________________________6");
                   assessment.attemptPercentage = percent;
+
                   if (percent == 100) {
                     assessment.assessmentScoreId =
                         values.data!.assessmentScoreMessage![0]
@@ -1245,6 +1255,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     message = values.data!.assessmentScoreMessage![0]
                         .assessmentScoreStatus;
                   }
+
                   else {
                     assessment.assessmentScoreId =
                         values.data!.assessmentScoreMessage![1]
@@ -1293,7 +1304,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     //   PageTransition(
                     //     type: PageTransitionType.rightToLeft,
                     //     child: StudentResultPage(message: message,
-                    //       totalMarks: totalMark,
                     //       date: formatted,
                     //       time: time,
                     //       questions: values,
@@ -1453,8 +1463,14 @@ if(selectedAns.isEmpty){
       percent=0;
     }
     else{
-      percent = ((ansCorrect / totalMark) *
-          100).round();
+      print("Inside Else");
+      double f = 100/givenMark!;
+      print("F");
+      print(f);
+      double g = ansCorrect * f;
+      print(g);
+      print(g.round());
+      percent = g.round();
     }
     assessment.attemptPercentage = percent;
     if (percent == 100) {

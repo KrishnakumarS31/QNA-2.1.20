@@ -3,7 +3,7 @@ import 'package:qna_test/Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 
 class ResultInProgressCard extends StatelessWidget {
-  ResultInProgressCard({
+   ResultInProgressCard({
     Key? key,
     required this.height,
     required this.width,
@@ -83,7 +83,7 @@ class ResultInProgressCard extends StatelessWidget {
                       height: height * 0.023,
                     ),
                     Text(
-                      inProgressArray![index].attemptStartDate != null ? convertDate(inProgressArray![index].attemptStartDate) : " ",
+                     inProgressArray![index].attemptStartDate != null ? convertDate(inProgressArray![index].attemptStartDate) : " ",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

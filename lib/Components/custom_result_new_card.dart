@@ -8,21 +8,23 @@ class ResultCardNew extends StatelessWidget {
     required this.height,
     required this.width,
     required this.index,
-    required this.results
+    required this.results,
+    required this.assessmentResults
   }) : super(key: key);
 
   final double height;
   final double width;
   final int index;
   final GetResultModel results;
+  final List<AssessmentResults> assessmentResults;
 
   @override
   Widget build(BuildContext context) {
-    bool condition = results.assessmentResults != null && results.assessmentResults?.isEmpty == false;
-    String? name =condition ? results.assessmentResults![index].firstName : " ";
-    int? timeTaken = condition ? results.assessmentResults![index].attemptDuration : 0;
-    int? percent = condition ? results.assessmentResults![index].attemptPercent : 0;
-    int? securedMark = condition ? results.assessmentResults![index].attemptScore : 0;
+    bool condition = assessmentResults != null && assessmentResults?.isEmpty == false;
+    String? name =condition ? assessmentResults![index].firstName : " ";
+    int? timeTaken = condition ? assessmentResults![index].attemptDuration : 0;
+    int? percent = condition ? assessmentResults![index].attemptPercent : 0;
+    int? securedMark = condition ? assessmentResults![index].attemptScore : 0;
     int? totalMark = results.totalScore ?? 0;
 
     return Padding(
@@ -44,7 +46,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      name ?? " ",
+                    name ?? " ",
                       style: TextStyle(
                           fontSize: height * 0.0187,
                           color: const Color.fromRGBO(28, 78, 80, 1),
@@ -68,7 +70,7 @@ class ResultCardNew extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      results.assessmentResults![index].attemptStartDate != null ? convertDate(results.assessmentResults![index].attemptStartDate) : " ",
+                      assessmentResults![index].attemptStartDate != null ? convertDate(assessmentResults![index].attemptStartDate) : " ",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),
@@ -76,7 +78,7 @@ class ResultCardNew extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
-                      results.assessmentResults![index].attemptStartDate != null ? "${convertTime(results.assessmentResults![index].attemptStartDate)} IST" : "",
+                      assessmentResults![index].attemptStartDate != null ? "${convertTime(assessmentResults![index].attemptStartDate)} IST" : "",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

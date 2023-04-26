@@ -791,6 +791,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                             type: PageTransitionType.rightToLeft,
                                             child: TeacherResultIndividualStudent(
                                               result: widget.result,
+                                              comingFrom: "inProgress",
                                               index: index,),
                                           ),
                                         );

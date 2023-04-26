@@ -788,6 +788,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             type: PageTransitionType.rightToLeft,
                                             child: TeacherResultIndividualStudent(
                                               result: widget.result,
+                                              comingFrom: "submit",
                                               index: index,),
                                           ),
                                         );

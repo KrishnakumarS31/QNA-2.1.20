@@ -9,11 +9,13 @@ class TeacherResultIndividualStudent extends StatefulWidget {
     Key? key,
     required this.result,
     required this.index,
+    required this.comingFrom,
     this.advisorName,
   }) : super(key: key);
   final GetResultModel result;
   final int index;
   final String? advisorName;
+  final String? comingFrom;
 
   @override
   TeacherResultIndividualStudentState createState() =>
@@ -24,10 +26,25 @@ class TeacherResultIndividualStudentState
     extends State<TeacherResultIndividualStudent> {
   Uint8List? bytes;
   IconData showIcon = Icons.expand_circle_down_outlined;
+  // List<AssessmentResults>? inProgressResults;
+  // List<AssessmentResults>? submittedResults;
+  late List<AssessmentResults> totalResults;
 
   @override
   void initState() {
     super.initState();
+    if(widget.comingFrom == "submit")
+      {
+        totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+      }
+    else if(widget.comingFrom == "inProgress")
+      {
+        totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+      }
+    else {
+      totalResults = widget.result!.assessmentResults!;
+    }
+
   }
 
   changeIcon(IconData pramIcon) {
@@ -187,6 +204,7 @@ class TeacherResultIndividualStudentState
                           height: height,
                           width: width,
                           index: widget.index,
+                          assessmentResults: totalResults,
                           results: widget.result),
                       SizedBox(
                         height: height * 0.02,
