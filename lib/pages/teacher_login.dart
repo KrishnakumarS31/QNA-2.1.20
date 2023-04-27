@@ -404,7 +404,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                         children: [
                           Transform.scale(
                             filterQuality: FilterQuality.high,
-                            scale: 1.8,
+                            scale: 1.5,
                             child: Checkbox(
                               activeColor:
                                   const Color.fromRGBO(82, 165, 160, 1),

@@ -69,17 +69,23 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
           ));
         });
     pageLimit = 1;
+
     ResponseEntity response =
         await QnaService.getSearchAssessment(1, pageLimit, searchVal);
-    allAssessment = List<GetAssessmentModel>.from(
-        response.data.map((x) => GetAssessmentModel.fromJson(x)));
-    Navigator.of(context).pop();
-    setState(() {
-      searchValue = searchVal;
-      assessments.addAll(allAssessment);
-      loading = false;
-      pageLimit++;
-    });
+    if(response.data==null){
+      Navigator.of(context).pop();
+    }
+    else{
+      allAssessment = List<GetAssessmentModel>.from(
+          response.data.map((x) => GetAssessmentModel.fromJson(x)));
+      Navigator.of(context).pop();
+      setState(() {
+        searchValue = searchVal;
+        assessments.addAll(allAssessment);
+        loading = false;
+        pageLimit++;
+      });
+    }
   }
 
   loadMore(String searchValue) async {

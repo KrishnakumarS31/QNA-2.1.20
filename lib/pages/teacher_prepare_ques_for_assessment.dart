@@ -369,28 +369,36 @@ class TeacherPrepareQuesForAssessmentState
                         child: Column(children: [
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
-                              child: Row(children: [
-                                SizedBox(width: width * 0.10),
-                                Text(
-                                    AppLocalizations.of(context)!.subject_topic,
-                                    //"Subject and Topic",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            255, 255, 255, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.020)),
-                                SizedBox(width: width * 0.25),
-                                IconButton(
-                                  icon: Icon(
-                                    showIcon,
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                    size: height * 0.03,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                      AppLocalizations.of(context)!.subject_topic,
+                                      //"Subject and Topic",
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              255, 255, 255, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.020)),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  child: IconButton(
+                                    icon: Icon(
+                                      showIcon,
+                                      color:
+                                          const Color.fromRGBO(255, 255, 255, 1),
+                                      size: height * 0.03,
+                                    ),
+                                    onPressed: () {
+                                      changeIcon(showIcon);
+                                    },
                                   ),
-                                  onPressed: () {
-                                    changeIcon(showIcon);
-                                  },
                                 )
                               ])),
                           SizedBox(height: height * 0.010),

@@ -268,8 +268,11 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
                             backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
+                            const Color.fromRGBO(255, 255, 255, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -302,6 +305,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                           ),
                           //shape: StadiumBorder(),
                           onPressed: () async {
+                            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                            print(widget.editQuestionModel.questionType);
                             Question question = Question();
                             question.subject = widget.editQuestionModel.subject;
                             question.topic = widget.editQuestionModel.topic;
@@ -311,7 +316,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                 widget.editQuestionModel.editQuestionModelClass;
                             question.question =
                                 widget.editQuestionModel.question;
-                            question.questionType = 'MCQ';
+                            question.questionType = widget.question.questionType;
                             question.advisorUrl =
                                 widget.editQuestionModel.advisorUrl;
                             question.advisorText =

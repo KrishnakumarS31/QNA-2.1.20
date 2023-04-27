@@ -22,3 +22,21 @@ String convertTime(int? date)
   dateValue = DateTime.fromMicrosecondsSinceEpoch(date!);
   return "${dateValue.hour}:${dateValue.minute}";
 }
+String convertDuration(int? duration)
+{
+  String assessmentDuration = "";
+  if( duration!= null && duration> 60)
+  {
+    assessmentDuration = "${(duration/ 60).toStringAsFixed(2)} hrs";
+  }
+  if(duration != null && duration== 60)
+  {
+    assessmentDuration = "${(duration/ 60).toStringAsFixed(2)} hr";
+  }
+  else if(duration !=null && duration< 60)
+  {
+    assessmentDuration = "${(duration)} mins";
+  }
+
+  return assessmentDuration;
+}

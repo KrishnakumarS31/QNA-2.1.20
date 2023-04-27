@@ -12,6 +12,7 @@ String editQuestionModelToJson(EditQuestionModel data) =>
 
 class EditQuestionModel {
   EditQuestionModel({
+    this.questionType,
     this.question,
     this.subject,
     this.topic,
@@ -25,6 +26,7 @@ class EditQuestionModel {
   });
 
   String? question;
+  String? questionType;
   String? subject;
   String? topic;
   String? subTopic;
@@ -38,6 +40,7 @@ class EditQuestionModel {
   factory EditQuestionModel.fromJson(Map<String, dynamic> json) =>
       EditQuestionModel(
         question: json["question"],
+        questionType: json["question_type"],
         subject: json["subject"],
         topic: json["topic"],
         subTopic: json["sub_topic"],
@@ -53,6 +56,7 @@ class EditQuestionModel {
 
   Map<String, dynamic> toJson() => {
         "question": question,
+        "question_type": questionType,
         "subject": subject,
         "topic": topic,
         "sub_topic": subTopic,

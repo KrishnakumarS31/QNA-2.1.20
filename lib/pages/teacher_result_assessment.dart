@@ -33,6 +33,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   @override
   void initState() {
     super.initState();
+
   }
 
 
@@ -53,9 +54,10 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    int? assessmentDuration = widget.result.assessmentDuration;
+
     int? assessmentStartDate = widget.result.assessmentStartDate;
     int? assessmentEndDate = widget.result.assessmentEndDate;
+    int? assessmentDuration = widget.result.assessmentDuration;
     var d = DateTime.fromMicrosecondsSinceEpoch(
         widget.result.assessmentStartDate!);
     var end = DateTime.fromMicrosecondsSinceEpoch(
@@ -480,7 +482,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
+                                          assessmentDuration != null ? convertDuration(assessmentDuration) : "0",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),

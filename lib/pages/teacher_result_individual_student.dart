@@ -34,13 +34,13 @@ class TeacherResultIndividualStudentState
   void initState() {
     super.initState();
     if(widget.comingFrom == "submit")
-      {
-        totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "Completed").toList();
-      }
+    {
+      totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+    }
     else if(widget.comingFrom == "inProgress")
-      {
-        totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-      }
+    {
+      totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+    }
     else {
       totalResults = widget.result!.assessmentResults!;
     }
@@ -235,19 +235,15 @@ class TeacherResultIndividualStudentState
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount:
-                        widget.result.assessmentResults![widget.index].questions!.length,
+                        totalResults![widget.index].questions!.length,
                         itemBuilder: (context, index) => Column(
                           children: [
-                            widget
-                                .result
-                                .assessmentResults![widget.index]
+                            totalResults![widget.index]
                                 .questions![index]
                                 .questionType! ==
                                 "MCQ"
                                 ?
-                            (widget
-                                .result
-                                .assessmentResults![widget.index]
+                            (totalResults![widget.index]
                                 .questions![index].status=="Incorrect")?
                             MouseRegion(
                                 cursor: SystemMouseCursors.click,
@@ -255,9 +251,7 @@ class TeacherResultIndividualStudentState
                                   onTap: () {},
                                   child: QuesAndAns(
                                     height: height,
-                                    ques: widget
-                                        .result
-                                        .assessmentResults![widget.index]
+                                    ques: totalResults![widget.index]
                                         .questions![index],
                                     quesNum: index,
                                     // ans: widget
@@ -423,12 +417,10 @@ class TeacherResultIndividualStudentState
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount:
-                        widget.result.assessmentResults![widget.index].questions!.length,
+                        totalResults![widget.index].questions!.length,
                         itemBuilder: (context, index) => Column(
                           children: [
-                            widget
-                                .result
-                                .assessmentResults![widget.index]
+                            totalResults![widget.index]
                                 .questions![index]
                                 .questionType! ==
                                 "Survey"
@@ -438,9 +430,7 @@ class TeacherResultIndividualStudentState
                                   onTap: () {},
                                   child: QuesAndAns(
                                     height: height,
-                                    ques: widget
-                                        .result
-                                        .assessmentResults![widget.index]
+                                    ques: totalResults![widget.index]
                                         .questions![index],
                                     quesNum: index,
                                     // ans: widget
@@ -478,12 +468,10 @@ class TeacherResultIndividualStudentState
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount:
-                        widget.result.assessmentResults![widget.index].questions!.length,
+                        totalResults![widget.index].questions!.length,
                         itemBuilder: (context, index) => Column(
                           children: [
-                            widget
-                                .result
-                                .assessmentResults![widget.index]
+                            totalResults![widget.index]
                                 .questions![index]
                                 .questionType! ==
                                 "Descripitive"
@@ -493,9 +481,7 @@ class TeacherResultIndividualStudentState
                                   onTap: () {},
                                   child: QuesAndAns(
                                     height: height,
-                                    ques: widget
-                                        .result
-                                        .assessmentResults![widget.index]
+                                    ques: totalResults![widget.index]
                                         .questions![index],
                                     quesNum: index,
                                     // ans: widget

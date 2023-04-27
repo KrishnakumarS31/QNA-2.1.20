@@ -11,7 +11,8 @@ class StudQuestion extends StatefulWidget {
       {Key? key,
       required this.assessmentId,
       required this.ques,
-      required this.userName, this.userId,
+      required this.userName,
+        this.userId,
       })
       : super(key: key);
   final String assessmentId;

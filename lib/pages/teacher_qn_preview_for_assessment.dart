@@ -169,8 +169,11 @@ class TeacherQnPreviewAssessmentState
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
                             backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
+                            const Color.fromRGBO(255, 255, 255, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),

@@ -477,7 +477,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
+                                          assessmentDuration != null ? convertDuration(assessmentDuration) : "0",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -750,7 +750,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                        widget.inProgressArray?.length != null
+                          widget.inProgressArray?.length != null
                               ?
                           'Total Participants List ('
                               '${widget.inProgressArray?.length})'

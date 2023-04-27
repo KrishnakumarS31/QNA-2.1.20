@@ -1232,16 +1232,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   }
                   assessment.attemptScore = totalMark;
                   values.data!.totalScore = givenMark;
-                  print("________________________________5");
-                  print(ansCorrect);
-                  print(givenMark);
-                  print(ansCorrect / givenMark!);
-                  double f = 100/givenMark;
-                  print("F");
-                  print(f);
+                  double f=0;
+                  givenMark==0?f=0:
+                  f = 100/givenMark!;
                   double g = ansCorrect * f;
-                  print(g);
-                  print(g.round());
                   int percent =g.round();
                   print("Correct ah");
                   print(percent);

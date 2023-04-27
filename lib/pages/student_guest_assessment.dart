@@ -174,7 +174,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                 AppLocalizations.of(context)!
                                                     .enter_paper_id,
                                             prefixIcon: Icon(
-                                              Icons.account_box_outlined,
+                                              Icons.event_note_outlined,
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
                                               size: height * 0.04,
@@ -444,7 +444,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                               AppLocalizations.of(context)!
                                                   .enter_paper_id,
                                           prefixIcon: Icon(
-                                            Icons.account_box_outlined,
+                                            Icons.event_note_outlined,
                                             color: const Color.fromRGBO(
                                                 82, 165, 160, 1),
                                             size: height * 0.04,

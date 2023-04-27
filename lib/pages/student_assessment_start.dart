@@ -438,7 +438,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                           ),
                         ),
                         Container(
-                          width: 149,
+                          width: localWidth,
                           margin: const EdgeInsets.all(15),
                           child: Column(children: [
                             Align(
@@ -459,7 +459,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                           Align(
                               alignment: Alignment.center,
                               child: Text(
-                              name,
+                                name,
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .bodyLarge

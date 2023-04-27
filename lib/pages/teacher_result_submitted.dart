@@ -481,7 +481,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                               FontWeight.w400),
                                         ),
                                         Text(
-                                          assessmentDuration != null ? '${convertTime(assessmentDuration)} hrs' : "",
+                                          assessmentDuration != null ? convertDuration(assessmentDuration) : "0",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),

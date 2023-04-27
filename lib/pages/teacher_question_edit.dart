@@ -96,6 +96,7 @@ class QuestionEditState extends State<QuestionEdit> {
           tempChoiceId.clear();
           questionController.text='';
           _groupValue = value!;
+
           selected?.clear();
         });
         Navigator.pop(context);
@@ -231,6 +232,11 @@ class QuestionEditState extends State<QuestionEdit> {
         editQuestion.editQuestionModelClass = widget.question.datumClass;
         editQuestion.advisorUrl = widget.question.advisorUrl;
         editQuestion.advisorText = widget.question.advisorText;
+        editQuestion.questionType=widget.question.questionType;
+        if(widget.question.questionType=="Descripitive"){
+          editQuestion.addChoices=[];
+          editQuestion.editChoices=[];
+        }
         return TeacherQuestionPreview(
           question: widget.question,
           editQuestionModel: editQuestion,
@@ -1285,6 +1291,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                   adviceController.text;
                               widget.question.advisorUrl =
                                   urlController.text;
+                              print(_groupValue);
                             });
                             showQuestionPreview(context);
                           }),

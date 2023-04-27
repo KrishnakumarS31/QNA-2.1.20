@@ -27,7 +27,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    getConnectivity();
+    //getConnectivity();
     Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
     //  if (user != null) {

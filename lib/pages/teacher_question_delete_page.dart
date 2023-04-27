@@ -41,8 +41,106 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   IconData showIcon = Icons.expand_circle_down_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
-  ValueChanged<String?> _valueChangedHandler() {
-    return (value) => setState(() => _groupValue = value!);
+  ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
+    return (value) {
+      if(value=='Descripitive'){
+        showAlertDesDialog(context,height,value);
+      }
+      else{
+        setState(() => _groupValue = value!);
+      }
+    };
+  }
+
+  showAlertDesDialog(BuildContext context, double height,String? value) {
+    // set up the buttons
+    Widget cancelButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.white,
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'No',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        textStyle: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(48, 145, 139, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      child: Text(
+        'Yes',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(250, 250, 250, 1),
+            fontWeight: FontWeight.w500),
+      ),
+      onPressed: () {
+        setState(() {
+          chooses.clear();
+          radioList.clear();
+          //tempChoiceList.clear();
+          questionController.text='';
+          _groupValue = value!;
+        });
+        Navigator.pop(context);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          const Icon(
+            Icons.info,
+            color: Color.fromRGBO(238, 71, 0, 1),
+          ),
+          Text(
+            'Alert',
+            style: TextStyle(
+                fontSize: height * 0.02,
+                fontFamily: "Inter",
+                color: const Color.fromRGBO(0, 106, 100, 1),
+                fontWeight: FontWeight.w700),
+          ),
+        ],
+      ),
+      content: Text(
+        'Are you sure you want to clear this Question and Choices?',
+        style: TextStyle(
+            fontSize: height * 0.02,
+            fontFamily: "Inter",
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontWeight: FontWeight.w400),
+      ),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   final List<TextEditingController> chooses = [];
@@ -299,21 +397,21 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             icon: Icons.check_box_outlined,
                             value: 'MCQ',
                             groupValue: _groupValue,
-                            onChanged: _valueChangedHandler(),
+                            onChanged: _valueChangedHandler(context,height),
                             label: 'MCQ',
                           ),
                           MyRadioOption<String>(
                             icon: Icons.account_tree_outlined,
                             value: 'Survey',
                             groupValue: _groupValue,
-                            onChanged: _valueChangedHandler(),
+                            onChanged: _valueChangedHandler(context,height),
                             label: 'Survey',
                           ),
                           MyRadioOption<String>(
                             icon: Icons.library_books_sharp,
-                            value: 'Descriptive',
+                            value: 'Descripitive',
                             groupValue: _groupValue,
-                            onChanged: _valueChangedHandler(),
+                            onChanged: _valueChangedHandler(context,height),
                             label: 'Descriptive',
                           ),
                         ],
@@ -649,7 +747,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       ),
                     ),
                     SizedBox(height: height * 0.010),
-                    Row(
+                    _groupValue=="Descripitive"
+                        ? const SizedBox(height: 0)
+                        :  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         // Row(
@@ -667,7 +767,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         // ),
                         // Row(
                         //   children: [
-                        Text(
+                        _groupValue=="Survey"
+                            ? const SizedBox(height: 0)
+                            :  Text(
                           "Correct Answer",
                           style: TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
@@ -679,7 +781,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       ],
                     ),
                     SizedBox(height: height * 0.010),
-                    Form(
+                    _groupValue=="Descripitive"
+                        ? const SizedBox(height: 0)
+                        :  Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -717,7 +821,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   SizedBox(
                                     width: width * 0.03,
                                   ),
-                                  IconButton(
+                                  _groupValue=="Survey"
+                                      ? const SizedBox(height: 0)
+                                      :  IconButton(
                                     onPressed: () {
                                       _onRadioChange(i);
                                     },
@@ -753,7 +859,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                     Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextButton(
+                          _groupValue=="Descripitive"
+                              ? const SizedBox(height: 0)
+                              :  TextButton(
                             onPressed: () {
                               addField();
                             },
@@ -882,6 +990,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                           temp[i].rightChoice = radioList[i];
                                         }
                                       }
+                                      widget.finalQuestion.questionType=_groupValue;
                                       widget.finalQuestion.subject =
                                           subjectController.text;
                                       widget.finalQuestion.topic =
@@ -898,12 +1007,18 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                       widget.finalQuestion.advisorUrl =
                                           urlController.text;
                                       widget.finalQuestion.choices = temp;
+                                      Provider.of<QuestionPrepareProviderFinal>(context,
+                                          listen: false)
+                                          .updateQuestionList(
+                                          widget.quesNum, widget.finalQuestion);
                                     });
-                                    // Provider.of<QuestionPrepareProviderFinal>(context,
-                                    //         listen: false)
-                                    //     .updateQuestionList(
-                                    //         widget.quesNum, widget.finalQuestion);
-                                    Navigator.of(context).pop();
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) => TeacherAddMyQuestionBank(
+                                              assessment: widget.assessment,
+                                            )),
+                                            (route) => route.isFirst);
+
                                   },
                                   child: const Text("Save"),
                                 ),

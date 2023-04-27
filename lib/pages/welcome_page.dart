@@ -80,16 +80,18 @@ class _WelcomePageState extends State<WelcomePage> {
   }
   getConectivity() {
     subscription = _internetChecker.onConnectionChange.listen((connected) async {
-      print("function");
-      print(connected);
       _message = connected == ConnectionStatus.online
           ? 'Connected'
           : 'Not Connected';
-      print("function");
-      print(_message);
+      print("---------------------------1");
       if (_message=='Not Connected') {
+        setState(() {
+          isAlertSet=true;
+        });
         showDialogBox();
-      } else {}
+      } else {
+          isAlertSet?Navigator.of(context).pop():print("");
+      }
     });
   }
 
@@ -121,37 +123,43 @@ class _WelcomePageState extends State<WelcomePage> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context, 'Cancel');
-              ConnectionStatus status =
-              await UniversalInternetChecker.checkInternet();
-              print("dialog");
-              print(status);
-              setState(() {
-                _message = status == ConnectionStatus.offline
-                    ? 'Not Connected'
-                    : 'Connected';
-                print("dialog");
-                print(_message);
-                if(_message=='Not Connected'){
-                  showDialogBox();
-                }
-              });
-
-            },
-            child: const Text(
-              "OK",
-              style: TextStyle(
-                color: Color.fromRGBO(82, 165, 160, 1),
-                fontSize: 20,
-                fontFamily: "Inter",
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          )
-        ],
+        // actions: <Widget>[
+        //   TextButton(
+        //     onPressed: () async {
+        //       Navigator.pop(context, 'Cancel');
+        //       ConnectionStatus status =
+        //       await UniversalInternetChecker.checkInternet();
+        //       print("dialog");
+        //       print(status);
+        //       setState(() {
+        //         _message = status == ConnectionStatus.offline
+        //             ? 'Not Connected'
+        //             : 'Connected';
+        //         print("dialog");
+        //         print(_message);
+        //         if(_message=='Not Connected'){
+        //           showDialogBox();
+        //         }
+        //         else{
+        //           setState(() {
+        //             isAlertSet=false;
+        //           });
+        //           Navigator.of(context).pop();
+        //         }
+        //       });
+        //
+        //     },
+        //     child: const Text(
+        //       "OK",
+        //       style: TextStyle(
+        //         color: Color.fromRGBO(82, 165, 160, 1),
+        //         fontSize: 20,
+        //         fontFamily: "Inter",
+        //         fontWeight: FontWeight.w600,
+        //       ),
+        //     ),
+        //   )
+        // ],
       ));
 
   @override
