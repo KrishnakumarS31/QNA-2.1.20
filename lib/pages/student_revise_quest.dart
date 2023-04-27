@@ -131,9 +131,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         IconButton(
                                           tooltip: AppLocalizations.of(context)!
                                               .revise,
-                                          icon: const Icon(
+                                          icon:Icon(
                                             Icons.chevron_left,
-                                            size: 30,
+                                            size: localHeight * 0.05,
                                             color: Colors.white,
                                           ),
                                           onPressed: () {
@@ -157,7 +157,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                               style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     255, 255, 255, 1),
-                                                fontSize: localHeight * 0.018,
+                                                fontSize: localHeight * 0.020,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w700,
                                               ),
@@ -1040,6 +1040,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
+        return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
         return AlertDialog(
           insetPadding: EdgeInsets.only(
               left: localWidth * 0.13, right: localWidth * 0.13),
@@ -1057,7 +1059,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
                 ),
-                SizedBox(width: localHeight * 0.015),
+                SizedBox(width: localHeight * 0.005),
                 Text(AppLocalizations.of(context)!.confirm,
                   style: TextStyle(
                       fontFamily: 'Inter',
@@ -1070,7 +1072,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
           content:
           Text(AppLocalizations.of(context)!.sure_to_submit,),
           actions: <Widget>[
-            SizedBox(width: localWidth * 0.020),
+            constraints.maxWidth > 700
+            ? const SizedBox()
+                : SizedBox(width: localWidth * 0.020),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -1092,7 +1096,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                 Navigator.of(context).pop();
               },
             ),
-            SizedBox(width: localWidth * 0.005),
+            constraints.maxWidth > 700
+            ? SizedBox(width: localWidth * 0.05)
+                : SizedBox(width: localWidth * 0.005),
             ElevatedButton(
                 style:
                 ElevatedButton.styleFrom(
@@ -1323,12 +1329,15 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                   }
                 }
             ),
-            SizedBox(width: localHeight * 0.030),
+            constraints.maxWidth > 700
+            ? SizedBox(width: localWidth * 0.040)
+            : SizedBox(width: localWidth * 0.030),
           ],
         );
       },
     );
   }
+    );}
 
   Future<void> submit() async {
     String message = '';

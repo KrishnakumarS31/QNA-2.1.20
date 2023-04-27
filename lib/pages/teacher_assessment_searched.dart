@@ -48,7 +48,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
 
   initialData() async {
     ResponseEntity response =
-        await QnaService.getSearchAssessment(1, pageLimit, widget.search);
+        await QnaService.getSearchAssessment(5, pageLimit, widget.search);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
@@ -71,7 +71,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
     pageLimit = 1;
 
     ResponseEntity response =
-        await QnaService.getSearchAssessment(1, pageLimit, searchVal);
+        await QnaService.getSearchAssessment(5, pageLimit, searchVal);
     if(response.data==null){
       Navigator.of(context).pop();
     }

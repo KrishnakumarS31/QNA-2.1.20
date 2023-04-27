@@ -28,6 +28,9 @@ class _CustomCardState extends State<CustomCard> {
     var d = DateTime.fromMicrosecondsSinceEpoch(
         widget.result.assessmentStartDate!);
     var startDate = "${d.day}/${d.month}/${d.year}";
+    var end = DateTime.fromMicrosecondsSinceEpoch(
+        widget.result.assessmentEndDate!);
+    DateTime now = DateTime.now();
     return Container(
       height: widget.height * 0.1825,
       decoration: BoxDecoration(
@@ -53,7 +56,12 @@ class _CustomCardState extends State<CustomCard> {
               children: [
                 Icon(
                   Icons.circle,
-                  color: const Color.fromRGBO(66, 194, 0, 1),
+                  color:
+                  end.isBefore(now)
+                      ? const Color.fromRGBO(66, 194, 0, 1)
+                      : d.isAfter(now)
+                      ? const Color.fromRGBO(179, 179, 179, 1)
+                      : const Color.fromRGBO(255, 157, 77, 1),
                   size: widget.height * 0.03,
                 ),
                 Text(

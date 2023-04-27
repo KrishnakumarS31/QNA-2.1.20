@@ -211,7 +211,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               AppLocalizations.of(context)!
                                                   .hint_regId,
                                               prefixIcon: Icon(
-                                                  Icons.contacts_outlined,
+                                                  Icons.account_box_outlined,
                                                   size: localHeight * 0.05,
                                                   color: const Color.fromRGBO(
                                                       82, 165, 160, 1)),
@@ -772,7 +772,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             AppLocalizations.of(context)!
                                                 .hint_regId,
                                             prefixIcon: Icon(
-                                                Icons.contacts_outlined,
+                                                Icons.account_box_outlined,
                                                 size: localHeight * 0.04,
                                                 color: const Color.fromRGBO(
                                                     82, 165, 160, 1)),

@@ -17,10 +17,11 @@ class CustomCard1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // DateTime tsdate = DateTime.fromMillisecondsSinceEpoch(date);
-    // String datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
-    // String time = "${tsdate.hour}:${tsdate.minute}";
-
+    var d = DateTime.fromMicrosecondsSinceEpoch(
+        resultIndex.assessmentStartDate!);
+    var end = DateTime.fromMicrosecondsSinceEpoch(
+        resultIndex.assessmentEndDate!);
+    DateTime now = DateTime.now();
     return Container(
       height: height * 0.1825,
       decoration: BoxDecoration(
@@ -58,8 +59,13 @@ class CustomCard1 extends StatelessWidget {
               children: [
                 Icon(
                   Icons.circle,
-                  color:const Color.fromRGBO(255, 157, 77, 1),
-                  size: width * 0.02,
+                  color:
+                  end.isBefore(now)
+                      ? const Color.fromRGBO(66, 194, 0, 1)
+                      : d.isAfter(now)
+                      ? const Color.fromRGBO(179, 179, 179, 1)
+                      : const Color.fromRGBO(255, 157, 77, 1),
+                  size: height * 0.03,
                 ),
                 Text(
                   resultIndex.assessmentStartDate != null ? convertDate(resultIndex.assessmentStartDate): " ",

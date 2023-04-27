@@ -393,7 +393,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: SettingsLanguages(),
+                                child: const SettingsLanguages(),
                               ),
                             );
                           }),
@@ -419,7 +419,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: PrivacyPolicyHamburger(
+                                child: const PrivacyPolicyHamburger(
                                     ),
                               ),
                             );
@@ -444,7 +444,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: TermsOfServiceHamburger(
+                                child: const TermsOfServiceHamburger(
                                     ),
                               ),
                             );
@@ -468,7 +468,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: CookiePolicy(),
+                                child: const CookiePolicy(),
                               ),
                             );
                           }),
@@ -497,7 +497,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: AboutUs(),
+                                child: const AboutUs(),
                               ),
                             );
                           }),
@@ -520,7 +520,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: HelpPageHamburger(),
+                                child: const HelpPageHamburger(),
                               ),
                             );
                           }),
@@ -615,7 +615,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                         context,
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
-                                          child: WelcomePage(
+                                          child: const WelcomePage(
                                               ),
                                         ),
                                       );
