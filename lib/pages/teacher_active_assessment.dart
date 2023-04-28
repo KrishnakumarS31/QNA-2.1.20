@@ -1150,7 +1150,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                             // Provider.of<CreateAssessmentProvider>(context, listen: false)
                             //     .getAssessment;
                             print(finalAssessment.assessmentSettings.toString());
-                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: 'editActive',);
                           },
                           child: Text(
                             'Edit',
@@ -1184,7 +1184,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               )),
                           //shape: StadiumBorder(),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/teacherClonedAssessment');
+                            Navigator.pushNamed(context, '/teacherClonedAssessment',arguments: 'clone',);
                             // Navigator.push(
                             //   context,
                             //   PageTransition(

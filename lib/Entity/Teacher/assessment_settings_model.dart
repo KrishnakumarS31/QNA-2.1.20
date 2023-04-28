@@ -1,3 +1,10 @@
+import 'dart:convert';
+AssessmentSettings assessmentSettingsFromJson(String str) =>
+    AssessmentSettings.fromJson(json.decode(str));
+
+String assessmentSettingsToJson(AssessmentSettings data) =>
+    json.encode(data.toJson());
+
 class AssessmentSettings {
   AssessmentSettings({
     this.allowedNumberOfTestRetries,
@@ -9,6 +16,8 @@ class AssessmentSettings {
     this.showAdvisorEmail,
     this.notAvailable,
     this.showAnswerSheetDuringPractice,
+    this.advisorName,
+    this.advisorEmail,
   });
 
   int? allowedNumberOfTestRetries;
@@ -20,6 +29,8 @@ class AssessmentSettings {
   bool? showAdvisorEmail;
   bool? notAvailable;
   bool? showAnswerSheetDuringPractice;
+  String? advisorName;
+  String? advisorEmail;
 
   factory AssessmentSettings.fromJson(Map<String, dynamic> json) =>
       AssessmentSettings(
@@ -32,6 +43,8 @@ class AssessmentSettings {
         showAdvisorEmail: json["show_advisor_email"] ?? false,
         notAvailable: json["not_available"] ?? false,
         showAnswerSheetDuringPractice: json["show_answer_sheet_during_practice"] ?? false,
+        advisorName: json["advisor_name"]??'',
+        advisorEmail: json["advisor_email"]??'',
       );
 
   Map<String, dynamic> toJson() => {
@@ -44,6 +57,8 @@ class AssessmentSettings {
     "show_advisor_email": showAdvisorEmail ?? false,
     "not_available": notAvailable ?? false,
     "show_answer_sheet_during_practice": showAnswerSheetDuringPractice ?? false,
+    "advisor_name": advisorName??'',
+    "advisor_email": advisorEmail??'',
   };
 
   @override

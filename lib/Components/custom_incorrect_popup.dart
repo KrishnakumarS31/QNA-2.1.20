@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CustomDialog extends StatefulWidget {
-  const CustomDialog(
+  CustomDialog(
       {Key? key,
       required this.title,
       required this.content,
-      required this.button})
+      required this.button,
+      this.numberOfScreenBack})
       : super(key: key);
   final String title;
   final String content;
   final String button;
+  int? numberOfScreenBack;
 
   @override
   State<CustomDialog> createState() => _CustomDialogState();
@@ -69,7 +71,14 @@ class _CustomDialogState extends State<CustomDialog> {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  if(widget.numberOfScreenBack==null || widget.numberOfScreenBack==0){
+                    Navigator.of(context).pop();
+                  }
+                  else{
+                    int count = 0;
+                    Navigator.of(context).popUntil((_) => count++ >= widget.numberOfScreenBack!);
+                  }
+
                 },
                 child: Text(
                   widget.button,

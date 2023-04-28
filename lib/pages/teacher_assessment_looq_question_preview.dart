@@ -330,6 +330,7 @@ class TeacherAssessmentLooqQuestionPreviewState
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) => TeacherClonedAssessmentPreview(
+                                                assessmentType: 'clone',
                                               )),
                                               (route) => route.isFirst);
                                     }

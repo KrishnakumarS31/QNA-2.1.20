@@ -22,10 +22,10 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
-    Key? key,
+    Key? key,required this.assessmentType
   }) : super(key: key);
 
-
+final String assessmentType;
   @override
   TeacherAssessmentSummaryState createState() =>
       TeacherAssessmentSummaryState();
@@ -90,7 +90,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
         // Navigator.push(
         //   context,
         //   PageTransition(
@@ -1081,7 +1081,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                   question: questionList[i],
                                   index: i,
                                   assessment: assessment,
-
+                                  assessmenType: widget.assessmentType,
                                 ),
                             ],
                           ),
@@ -1092,7 +1092,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           left: width * 0.78,
                           child: FloatingActionButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,'']);
+                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,'',widget.assessmentType]);
                               // Navigator.push(
                               //   context,
                               //   PageTransition(
@@ -1207,6 +1207,7 @@ class QuestionWidget extends StatefulWidget {
       required this.question,
       required this.index,
       required this.assessment,
+        required this.assessmenType
       })
       : super(key: key);
 
@@ -1214,6 +1215,7 @@ class QuestionWidget extends StatefulWidget {
   final Question.Question question;
   final int index;
   final CreateAssessmentModel assessment;
+  final String assessmenType;
 
 
   @override
@@ -1500,6 +1502,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           question: widget.question,
           index: widget.index,
           pageName: 'TeacherAssessmentSummary',
+          assessmentType: widget.assessmenType,
         );
       },
     );

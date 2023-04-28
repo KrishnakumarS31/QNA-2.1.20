@@ -261,7 +261,7 @@ class TeacherAssessmentLooqQuestionBankState
                             color: Color.fromRGBO(82, 165, 160, 1),
                           )),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview');
+                        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview',arguments: 'clone');
                         // Navigator.push(
                         //   context,
                         //   PageTransition(

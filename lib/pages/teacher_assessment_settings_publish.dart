@@ -19,9 +19,12 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter/foundation.dart';
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
-  const TeacherAssessmentSettingPublish({
+  TeacherAssessmentSettingPublish({
     Key? key,
+    required this.assessmentType
   }) : super(key: key);
+
+  String assessmentType;
 
   @override
   TeacherAssessmentSettingPublishState createState() =>
@@ -95,18 +98,18 @@ class TeacherAssessmentSettingPublishState
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
     assessment.assessmentType=='test'?val=1:val=2;
-    if(assessment.assessmentDuration != null){
-      if(assessment.assessmentDuration!>60){
-        timePermitHoursController.text= '${(assessment.assessmentDuration! / 60).floor()}';
-        timePermitMinutesController.text='${assessment.assessmentDuration! % 60}';
-      }
-      else{
-        timePermitMinutesController.text='${assessment.assessmentDuration!}';
-      }
-    }
-    else{
-      print("duration is null");
-    }
+    // if(assessment.assessmentDuration != null){
+    //   if(assessment.assessmentDuration!>60){
+    //     timePermitHoursController.text= '${(assessment.assessmentDuration! / 60).floor()}';
+    //     timePermitMinutesController.text='${assessment.assessmentDuration! % 60}';
+    //   }
+    //   else{
+    //     timePermitMinutesController.text='${assessment.assessmentDuration!}';
+    //   }
+    // }
+    // else{
+    //   print("duration is null");
+    // }
     assessment.assessmentSettings?.numberOfDaysAfterTestAvailableForPractice==null?numOfDaysAfterTestController.text='':numOfDaysAfterTestController.text=
     '${assessment.assessmentSettings!.numberOfDaysAfterTestAvailableForPractice!}';
 
@@ -2131,7 +2134,7 @@ class TeacherAssessmentSettingPublishState
                                         ),
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
-                                          testTypeBeforChange=='test'?
+                                          widget.assessmentType=='editActive'?
                                           SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
@@ -2280,7 +2283,7 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             height: height * 0.03,
                                           ),
-                                          testTypeBeforChange=='test'?
+                                          widget.assessmentType=='editActive'?
                                           SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
@@ -2454,7 +2457,7 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             height: height * 0.03,
                                           ),
-                                          testTypeBeforChange!='test'?
+                                          widget.assessmentType!='editActive'?
                                           SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
@@ -2475,6 +2478,7 @@ class TeacherAssessmentSettingPublishState
                                                           82, 165, 160, 1),
                                                     )),
                                                 onPressed: () async {
+                                                  print("-------------------------------------------------------------------------------------");
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
@@ -2559,17 +2563,27 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   String assessmentCode = '';
-
-                                                  if (assessment.assessmentId !=
-                                                      null) {
+                                                  if (widget.assessmentType=='editActive') {
                                                     statusCode = await QnaService
-                                                        .editAssessmentTeacherService(
-                                                        assessment,
+                                                        .editActiveAssessmentTeacherService(
+                                                        assessment.assessmentSettings!,
                                                         assessment
                                                             .assessmentId!);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
-                                                  } else {
+                                                    Navigator.of(context).pop();
+                                                    Provider.of<NewQuestionProvider>(
+                                                        context,
+                                                        listen: false)
+                                                        .reSetQuestionList();
+                                                    Navigator.pushNamed(context,
+                                                        '/teacherPublishedAssessment',
+                                                        arguments: [
+                                                          assessmentCode,
+                                                          questionListForNxtPage
+                                                        ]);
+                                                  }
+                                                  else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
                                                         assessment);
@@ -3173,10 +3187,12 @@ class TeacherAssessmentSettingPublishState
                                                                     0.020),
                                                           ),
                                                           onChanged: (val) {
+                                                            print("hours");
+                                                            print(val);
+                                                            print(int.parse(val));
                                                             setState(() {
                                                               hours =
-                                                                  int.parse(
-                                                                      val);
+                                                                  int.parse(val);
                                                             });
                                                           },
                                                           style: TextStyle(
@@ -4609,7 +4625,7 @@ class TeacherAssessmentSettingPublishState
                                         ),
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
-                                          testTypeBeforChange=='test'?
+                                          widget.assessmentType=='editActive'?
                                         SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
@@ -4758,7 +4774,7 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             height: height * 0.03,
                                           ),
-                                          testTypeBeforChange=='test'?
+                                          widget.assessmentType=='editActive'?
                                           SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
@@ -4863,7 +4879,7 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   String assessmentCode = '';
-                                                  if (assessment.assessmentId != null) {
+                                                  if (widget.assessmentType=='inprogress') {
                                                     print("inside if");
                                                     statusCode = await QnaService
                                                         .editAssessmentTeacherService(
@@ -4944,7 +4960,8 @@ class TeacherAssessmentSettingPublishState
                                           SizedBox(
                                             height: height * 0.03,
                                           ),
-                                          testTypeBeforChange!='test'?
+
+                                          widget.assessmentType!='editActive'?
                                           SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
@@ -4965,6 +4982,7 @@ class TeacherAssessmentSettingPublishState
                                                           82, 165, 160, 1),
                                                     )),
                                                 onPressed: () async {
+                                                  print("-------------------------------------------------------------------------------------");
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
@@ -5049,13 +5067,10 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   String assessmentCode = '';
-
-                                                  if (assessment.assessmentCode !=
-                                                      null) {
-                                                    print("true bruh");
+                                                  if (widget.assessmentType=='editActive') {
                                                     statusCode = await QnaService
-                                                        .editAssessmentTeacherService(
-                                                        assessment,
+                                                        .editActiveAssessmentTeacherService(
+                                                        assessment.assessmentSettings!,
                                                         assessment
                                                             .assessmentId!);
                                                     assessmentCode =
@@ -5071,10 +5086,8 @@ class TeacherAssessmentSettingPublishState
                                                           assessmentCode,
                                                           questionListForNxtPage
                                                         ]);
-                                                  } else {
-                                                    print("true bruh");
-                                                    print(assessment.assessmentId);
-                                                    print("false bruh");
+                                                  }
+                                                  else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
                                                         assessment);

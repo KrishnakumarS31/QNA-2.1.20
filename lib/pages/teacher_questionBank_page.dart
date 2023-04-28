@@ -152,6 +152,14 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     setState(() {
                                       pageNumber = 1;
                                       questionList = [];
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/teacherLooqQuestionBank',
+                                        arguments: teacherQuestionBankSearchController
+                                            .text,
+                                      ).then((value) =>
+                                          teacherQuestionBankSearchController
+                                              .clear());
                                     });
                                   } else {
                                     getData('');

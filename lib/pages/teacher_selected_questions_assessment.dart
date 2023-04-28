@@ -21,10 +21,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment(
-      {Key? key, this.questions})
+      {Key? key, this.questions,required this.assessmentType})
       : super(key: key);
 
   final List<Question.Question>? questions;
+  final String assessmentType;
 
   @override
   TeacherSelectedQuestionAssessmentState createState() =>
@@ -154,16 +155,17 @@ class TeacherSelectedQuestionAssessmentState
   }
 
   getData() {
-
       questionList.addAll(
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .getAllQuestion);
       print("ooooooooooooooooooooooooooooooooooooooooooooooo");
+      print(questionList[0].question);
       print(questionList[0].questionMark);
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
           .getAssessment;
       totalQues = questionList.length;
       for (int i = 0; i < questionList.length; i++) {
+        print(questionList[i].questionMark!);
         totalMark = totalMark + questionList[i].questionMark!;
       }
 
@@ -984,6 +986,7 @@ class TeacherSelectedQuestionAssessmentState
                                   question: questionList[i],
                                   index: i,
                                   assessment: assessment,
+                                  assessmentType: widget.assessmentType,
                                 ),
                             ],
                           ),
@@ -994,7 +997,9 @@ class TeacherSelectedQuestionAssessmentState
                           left: width * 0.78,
                           child: FloatingActionButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,null]);
+                              print(questionList[0].question);
+                              print(questionList[0].questionMark);
+                              Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,null,widget.assessmentType]);
                               // Navigator.push(
                               //   context,
                               //   PageTransition(
@@ -1091,7 +1096,7 @@ class TeacherSelectedQuestionAssessmentState
                           if(markZero){
                             showAlertDialog(context, height);
                           }else{
-                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
                           }
 
                         },
@@ -1119,6 +1124,7 @@ class QuestionWidget extends StatefulWidget {
       required this.question,
       required this.index,
       required this.assessment,
+        required this.assessmentType
       })
       : super(key: key);
 
@@ -1126,6 +1132,7 @@ class QuestionWidget extends StatefulWidget {
   final Question.Question question;
   final int index;
   final CreateAssessmentModel assessment;
+  final String assessmentType;
 
 
   @override
@@ -1197,6 +1204,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             MaterialPageRoute(
                 builder: (context) => TeacherSelectedQuestionAssessment(
                   questions: quesListArg,
+                  assessmentType: widget.assessmentType,
                     )),
                 (route) => route.isFirst);
       },
@@ -1349,7 +1357,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       Navigator.pushNamed(
                           context,
                           '/teacherAssessmentQuestionPreview',
-                          arguments: [widget.assessment,widget.question, widget.index,'']
+                          arguments: [widget.assessment,widget.question, widget.index,'',widget.assessmentType]
                       );
                       // Navigator.push(
                       //   context,

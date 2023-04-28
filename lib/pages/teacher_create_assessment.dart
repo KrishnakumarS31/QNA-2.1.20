@@ -877,7 +877,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                   Navigator.pushNamed(
                                       context,
                                       '/teacherAssessmentQuestionBank',
-                                      arguments: [true,TeacherCreateAssessmentSearchController.text]
+                                      arguments: [true,TeacherCreateAssessmentSearchController.text,'new']
                                   );
                                   // Navigator.push(
                                   //   context,

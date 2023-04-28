@@ -18,13 +18,15 @@ class TeacherAssessmentQuestionPreview extends StatefulWidget {
       required this.assessment,
       required this.question,
       required this.index,
-      this.pageName})
+      this.pageName,
+      required this.assessmentType})
       : super(key: key);
 
   final CreateAssessmentModel assessment;
   final Question.Question question;
   final int index;
   final String? pageName;
+  final String assessmentType;
 
   @override
   TeacherAssessmentQuestionPreviewState createState() =>
@@ -319,6 +321,7 @@ class TeacherAssessmentQuestionPreviewState
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) => TeacherSelectedQuestionAssessment(
+                                                assessmentType: widget.assessmentType,
                                               )),
                                               (route) => route.isFirst);
                                     }
@@ -377,6 +380,12 @@ class TeacherAssessmentQuestionPreviewState
                                               .updatemark(
                                               int.parse(markController.text),
                                               widget.index);
+                                          Provider.of<QuestionPrepareProviderFinal>(
+                                              context,
+                                              listen: false)
+                                              .updatemark(
+                                              int.parse(markController.text),
+                                              widget.index);
                                           fieldName=='question'?
                                           Provider.of<CreateAssessmentProvider>(
                                               context,
@@ -395,6 +404,7 @@ class TeacherAssessmentQuestionPreviewState
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(
                                                   builder: (context) => TeacherSelectedQuestionAssessment(
+                                                    assessmentType: widget.assessmentType,
                                                   )),
                                                   (route) => route.isFirst);
                                         }

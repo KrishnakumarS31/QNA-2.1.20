@@ -8,7 +8,6 @@ class NewQuestionProvider extends ChangeNotifier {
   List<Question> get getAllQuestion => _questionList;
 
   void addQuestion(Question question) {
-    question.questionMark=0;
     _questionList.add(question);
     notifyListeners();
   }

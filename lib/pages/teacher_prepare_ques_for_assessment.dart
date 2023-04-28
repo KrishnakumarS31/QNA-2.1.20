@@ -50,7 +50,12 @@ class TeacherPrepareQuesForAssessmentState
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
       if(value=='Descripitive'){
-        showAlertDialogDes(context,height,value);
+        if(chooses.isEmpty){
+          setState(() => _groupValue = value!);
+        }
+        else{
+          showAlertDialogDes(context,height,value);
+        }
       }
       else{
         setState(() => _groupValue = value!);
@@ -1002,6 +1007,7 @@ class TeacherPrepareQuesForAssessmentState
                                         if (_groupValue == 'Descripitive') {
                                           finalQuestion.choices = [];
                                         }
+                                        _groupValue=="MCQ"?finalQuestion.questionMark=1:finalQuestion.questionMark=0;
                                         showQuestionPreview(context);
                                       },
                                       child: Text(

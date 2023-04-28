@@ -10,7 +10,7 @@ import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
 import '../EntityModel/static_response.dart';
 import '../EntityModel/student_registration_model.dart';
-
+import '../Entity/Teacher/assessment_settings_model.dart' as AssessmentSettings;
 class QnaService {
   static Future<UserDataModel> getUserDataService(int? userId) async {
     return await QnaRepo.getUserData(userId);
@@ -102,6 +102,11 @@ class QnaService {
   static Future<ResponseEntity> editAssessmentTeacherService(
       CreateAssessmentModel assessment, int assessmentId) async {
     return await QnaRepo.editAssessmentTeacher(assessment, assessmentId);
+  }
+
+  static Future<ResponseEntity> editActiveAssessmentTeacherService(
+      AssessmentSettings.AssessmentSettings assessment, int assessmentId) async {
+    return await QnaRepo.editActiveAssessmentTeacher(assessment, assessmentId);
   }
 
   static Future<ResponseEntity> getResultDataService(

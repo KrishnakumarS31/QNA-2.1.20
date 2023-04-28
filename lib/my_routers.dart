@@ -310,12 +310,12 @@ class MyRoutes{
 
       case '/teacherAssessmentQuestionBank':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessmentQuestionBank(assessment: arguments[0],searchText: arguments[1], ));
+        return SlideRightRoute(widget: TeacherAssessmentQuestionBank(assessment: arguments[0],searchText: arguments[1],assessmentType: arguments[2]));
       }
 
       case '/teacherAssessmentQuestionPreview':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessmentQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3],));
+        return SlideRightRoute(widget: TeacherAssessmentQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3],assessmentType: arguments[4],));
       }
 
       case '/teacherAssessmentLooqQuestionPreview':{
@@ -329,16 +329,20 @@ class MyRoutes{
       }
 
       case '/teacherAssessmentSettingPublish':
-        return SlideRightRoute(widget: TeacherAssessmentSettingPublish());
+        final assessmentType = settings.arguments as String;
+        return SlideRightRoute(widget: TeacherAssessmentSettingPublish(assessmentType: assessmentType,));
 
       case '/teacherAssessmentSummary':
-        return SlideRightRoute(widget: TeacherAssessmentSummary());
+        final assessmentType = settings.arguments as String;
+        return SlideRightRoute(widget: TeacherAssessmentSummary(assessmentType: assessmentType,));
 
       case '/teacherClonedAssessment':
-        return SlideRightRoute(widget: TeacherClonedAssessment());
+        final assessmentType = settings.arguments as String;
+        return SlideRightRoute(widget: TeacherClonedAssessment(assessmentType: assessmentType,));
 
       case '/teacherClonedAssessmentPreview':
-        return SlideRightRoute(widget: TeacherClonedAssessmentPreview());
+        final assessmentType = settings.arguments as String;
+        return SlideRightRoute(widget: TeacherClonedAssessmentPreview(assessmentType: assessmentType,));
 
       case '/teacherForgotPassword':{
         final arguments = settings.arguments as List<dynamic>;
@@ -395,8 +399,8 @@ class MyRoutes{
 
       case '/teacherRecentAssessment':
         {
-          final search = settings.arguments as CreateAssessmentModel;
-          return SlideRightRoute(widget: TeacherRecentAssessment(finalAssessment: search,));
+          final arguments = settings.arguments as List<dynamic>;
+          return SlideRightRoute(widget: TeacherRecentAssessment(finalAssessment: arguments[0],assessmentType: arguments[1],));
         }
 
       case '/teacherRegistrationOtpPage':
@@ -407,8 +411,8 @@ class MyRoutes{
 
       case '/teacherSelectedQuestionAssessment':
         {
-          final questions = settings.arguments as List<QuestionEntity.Question>;
-          return SlideRightRoute(widget: TeacherSelectedQuestionAssessment(questions: questions,));
+          final arguments = settings.arguments as List<dynamic>;
+          return SlideRightRoute(widget: TeacherSelectedQuestionAssessment(questions: arguments[0],assessmentType: arguments[1],));
         }
 
       case '/teacherUserProfile':{

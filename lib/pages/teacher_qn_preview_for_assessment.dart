@@ -206,6 +206,7 @@ class TeacherQnPreviewAssessmentState
                           ),
                           //shape: StadiumBorder(),
                           onPressed: () {
+                            widget.finalQuestion.questionType=='MCQ'?widget.finalQuestion.questionMark=1:widget.finalQuestion.questionMark=0;
                             Provider.of<NewQuestionProvider>(context,
                                 listen: false)
                                 .addQuestion(widget.finalQuestion);

@@ -39,7 +39,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
 
   initialData() async {
     ResponseEntity response =
-        await QnaService.getSearchQuestion(100, pageLimit, widget.search);
+        await QnaService.getSearchQuestion(10000, pageLimit, widget.search);
     allQuestion =
         List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     setState(() {

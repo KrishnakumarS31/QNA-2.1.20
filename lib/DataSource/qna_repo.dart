@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-
+import '../Entity/Teacher/assessment_settings_model.dart' as AssessmentSettings;
+import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/edit_question_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/question_paper_model.dart';
@@ -438,6 +439,42 @@ class QnaRepo {
       editAssessmentTeacher(assessment, assessmentId);
     } else {
 
+    }
+    return loginModel;
+  }
+
+  static Future<ResponseEntity> editActiveAssessmentTeacher(
+      AssessmentSettings.AssessmentSettings assessment, int assessmentId) async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
+    var headers = {
+      'Authorization': 'Bearer ${loginData.getString('token')}',
+      'Content-Type': 'application/json'
+    };
+    var request = http.Request(
+        'PUT',
+        Uri.parse(
+            '$assessmentDomain/$assessmentId?user_id=${loginData.getInt('userId')}'));
+    assessment.advisorName=loginData.getString('firstName');
+    assessment.advisorEmail=loginData.getString('email');
+    request.body = assessmentSettingsToJson(assessment);
+    String t="{\"assessment_settings\": ${request.body} }";
+    request.body=t;
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      String temp = await response.stream.bytesToString();
+      print(temp);
+      loginModel = responseEntityFromJson(temp);
+    } else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel =
+      await logInUser(email!, pass!, loginData.getString('role'));
+      editActiveAssessmentTeacher(assessment, assessmentId);
+    } else {
+      String temp = await response.stream.bytesToString();
+      print(temp);
     }
     return loginModel;
   }

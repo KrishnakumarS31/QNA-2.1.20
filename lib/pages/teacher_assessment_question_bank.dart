@@ -15,11 +15,12 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherAssessmentQuestionBank extends StatefulWidget {
   TeacherAssessmentQuestionBank(
-      {Key? key, this.assessment,this.searchText})
+      {Key? key, this.assessment,this.searchText,required this.assessmentType})
       : super(key: key);
 
   final bool? assessment;
   String? searchText;
+  String assessmentType;
 
 
   @override
@@ -51,10 +52,6 @@ class TeacherAssessmentQuestionBankState
     ResponseEntity responseEntity = await QnaService.getQuestionBankService(5000, 1, search);
 
     CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-    print("assess Question provider");
-    print(assess.questions!.length);
-    print("assess Add Question provider");
-    print(assess.addQuestion!.length);
     questions = responseEntity.data==null?[]:List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     List<int> tempQueIdList =[];
@@ -283,19 +280,10 @@ class TeacherAssessmentQuestionBankState
                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
                     }
                     Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
-                    print("new Question provider");
-                    print(quesList.length);
-                    print("assess Question provider");
-                    print(assess.questions!.length);
-                    print("assess Add Question provider");
-                    print(assess.addQuestion!.length);
                     for(int i =0;i<quesList.length;i++){
                       if(quesList[i].questionType=="MCQ"){
-                        // for(int j =0;i<quesList.length;i++) {
-                        //   print("before adding mark");
-                        //   print(assess.addQuestion![i].questionMark ?? 99);
-                        // }
                         int mark =1;
+                        quesList[i].questionMark!=1?mark=quesList[i].questionMark!:mark=1;
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
                         quesList[i].questionMark=mark;
                         Provider.of<QuestionPrepareProviderFinal>(context,
@@ -312,7 +300,7 @@ class TeacherAssessmentQuestionBankState
 
                     }
 
-                    Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: questions);
+                    Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
 
                     // Navigator.push(
                     //   context,
@@ -396,15 +384,6 @@ class _QuestionPreviewState extends State<QuestionPreview> {
 
                 Provider.of<NewQuestionProvider>(context, listen: false).removeQuestion(widget.question.questionId!);
 
-                // print(Provider.of<QuestionPrepareProviderFinal>(context,
-                //     listen: false)
-                //     .getAllQuestion.length);
-                // Provider.of<QuestionPrepareProviderFinal>(context,
-                //         listen: false)
-                //     .removeQuestion(widget.question.questionId);
-                // print("fail 3");
-                // Provider.of<CreateAssessmentProvider>(context, listen: false)
-                //     .removeQuestion(widget.question.questionId);
               }
               valuefirst = value;
             });

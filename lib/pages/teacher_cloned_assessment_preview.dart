@@ -14,9 +14,9 @@ import '../Services/qna_service.dart';
 
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
-    Key? key,
+    Key? key,required this.assessmentType
   }) : super(key: key);
-
+  final String assessmentType;
   @override
   TeacherClonedAssessmentPreviewState createState() =>
       TeacherClonedAssessmentPreviewState();
@@ -401,7 +401,7 @@ class TeacherClonedAssessmentPreviewState
                           if(markZero){
                             showAlertDialog(context, height);
                           }else{
-                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
                           }
 
                           // Navigator.push(

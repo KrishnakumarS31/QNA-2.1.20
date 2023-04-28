@@ -692,7 +692,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   PageTransition(
                                     type:
                                     PageTransitionType.rightToLeft,
-                                    child: const CustomDialog(
+                                    child: CustomDialog(
                                       title: 'Alert',
                                       content:
                                       'Answersheet are shown only in Practice mode',
@@ -720,7 +720,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     PageTransition(
                                       type:
                                       PageTransitionType.rightToLeft,
-                                      child: const CustomDialog(
+                                      child:  CustomDialog(
                                         title: 'Alert',
                                         content:
                                         'Answersheet are shown only in Practice mode',
@@ -745,7 +745,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   PageTransition(
                                     type:
                                     PageTransitionType.rightToLeft,
-                                    child: const CustomDialog(
+                                    child:  CustomDialog(
                                       title: 'Alert',
                                       content:
                                       'Answersheet are shown only in Practice mode',
@@ -1278,7 +1278,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     PageTransition(
                                       type:
                                       PageTransitionType.rightToLeft,
-                                      child: const CustomDialog(
+                                      child:  CustomDialog(
                                         title: 'Alert',
                                         content:
                                         'Answersheet are shown only in Practice mode',
@@ -1306,7 +1306,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       PageTransition(
                                         type: PageTransitionType
                                             .rightToLeft,
-                                        child: const CustomDialog(
+                                        child: CustomDialog(
                                           title: 'Alert',
                                           content:
                                           'Answersheet are shown only in Practice mode',
@@ -1331,7 +1331,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     PageTransition(
                                       type:
                                       PageTransitionType.rightToLeft,
-                                      child: const CustomDialog(
+                                      child:  CustomDialog(
                                         title: 'Alert',
                                         content:
                                         'Answersheet are shown only in Practice mode',

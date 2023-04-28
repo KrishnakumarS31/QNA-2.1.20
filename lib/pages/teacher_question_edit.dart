@@ -307,6 +307,7 @@ class QuestionEditState extends State<QuestionEdit> {
                 statusCode.message!,
                 //'please enter the correct password',
                 button: "Ok",
+                numberOfScreenBack: 2,
               ),
             ),
           );

@@ -47,7 +47,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
-      if(value=='Descripitive'){
+      if(chooses.isEmpty){
+        setState(() => _groupValue = value!);
+      }
+      else if(value=='Descripitive'){
         showAlertDialog(context,height,value);
       }
       else{

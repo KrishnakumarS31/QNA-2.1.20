@@ -389,9 +389,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
                             onTap: (){
-
                               Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
-
                               // Navigator.push(
                               //   context,
                               //   PageTransition(

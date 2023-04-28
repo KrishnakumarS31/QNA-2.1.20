@@ -11,10 +11,10 @@ import '../Providers/edit_assessment_provider.dart';
 
 class TeacherClonedAssessment extends StatefulWidget {
   const TeacherClonedAssessment({
-    Key? key,
+    Key? key, required this.assessmentType
 
   }) : super(key: key);
-
+  final String assessmentType;
 
   @override
   TeacherClonedAssessmentState createState() => TeacherClonedAssessmentState();
@@ -1048,7 +1048,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               )),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/teacherClonedAssessmentPreview');
+                            Navigator.pushNamed(context, '/teacherClonedAssessmentPreview',arguments: widget.assessmentType,);
                             // Navigator.push(
                             //   context,
                             //   PageTransition(

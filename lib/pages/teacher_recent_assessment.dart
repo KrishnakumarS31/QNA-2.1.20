@@ -10,9 +10,10 @@ import '../Providers/edit_assessment_provider.dart';
 
 class TeacherRecentAssessment extends StatefulWidget {
   TeacherRecentAssessment(
-      {Key? key, required this.finalAssessment})
+      {Key? key, required this.finalAssessment,required this.assessmentType})
       : super(key: key);
   CreateAssessmentModel finalAssessment;
+  String assessmentType;
 
   @override
   TeacherRecentAssessmentState createState() => TeacherRecentAssessmentState();
@@ -993,7 +994,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               )),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/teacherAssessmentSummary');
+                            Navigator.pushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmentType);
                             // Navigator.push(
                             //   context,
                             //   PageTransition(
