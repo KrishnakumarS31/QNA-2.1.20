@@ -284,7 +284,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.pushReplacementNamed(context, '/teacherQuestionBank');
                         },
                         child: Text(
                           'Back to Questions',

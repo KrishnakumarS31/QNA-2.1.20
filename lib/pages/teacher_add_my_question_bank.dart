@@ -167,16 +167,17 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             endDrawer: EndDrawerMenuTeacher(),
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
             appBar: AppBar(
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.chevron_left,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
+              // leading: IconButton(
+              //   icon: const Icon(
+              //     Icons.chevron_left,
+              //     size: 40.0,
+              //     color: Colors.white,
+              //   ),
+              //   onPressed: () {
+              //     Navigator.of(context).pop();
+              //   },
+              // ),
+              automaticallyImplyLeading: false,
               toolbarHeight: height * 0.100,
               centerTitle: true,
               title: Column(

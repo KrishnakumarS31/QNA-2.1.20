@@ -129,7 +129,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pushReplacementNamed(context,
+                    '/teacherAssessmentLanding');
               },
             ),
             toolbarHeight: height * 0.100,

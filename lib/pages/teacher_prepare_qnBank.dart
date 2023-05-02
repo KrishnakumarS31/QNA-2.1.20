@@ -969,9 +969,22 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             ),
                                           );
                                         }
-                                        // else if(){
-                                        //
-                                        // }
+                                        else if(_groupValue=='MCQ' && tempChoiceList.isEmpty){
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: "Alert",
+                                                //'Wrong password',
+                                                content:
+                                                "At least one choice must be added",
+                                                //'please enter the correct password',
+                                                button: AppLocalizations.of(context)!.retry,
+                                              ),
+                                            ),
+                                          );
+                                        }
                                         else {
                                           List<Choice> temp = [];
                                           List<Choice> selectedTemp = [];

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher_qn_preview_for_assessment.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -948,61 +950,99 @@ class TeacherPrepareQuesForAssessmentState
                                                   255, 255, 255, 1),
                                             ),
                                             onPressed: () {
-                                              List<Choice> temp = [];
-                                              List<Choice> selectedTemp = [];
-                                              for (int i = 0;
-                                              i < chooses.length;
-                                              i++) {
-                                                if (radioList[i]) {
-                                                  //selectedTemp.add(demoQuestionModel.choices![i]);
-                                                }
-                                                //temp.add(demoQuestionModel.choices![i]);
+                                              if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
+                                                Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: CustomDialog(
+                                                      title: "Alert",
+                                                      //'Wrong password',
+                                                      content:
+                                                      "Enter Subject, Class and Question",
+                                                      //'please enter the correct password',
+                                                      button: AppLocalizations.of(context)!.retry,
+                                                    ),
+                                                  ),
+                                                );
                                               }
-                                              demoQuestionModel.subject =
-                                                  subjectController.text;
-                                              demoQuestionModel.topic =
-                                                  topicController.text;
-                                              demoQuestionModel.subTopic =
-                                                  subtopicController.text;
-                                              demoQuestionModel.datumClass =
-                                                  classRoomController.text;
-                                              demoQuestionModel.question =
-                                                  questionController.text;
-                                              demoQuestionModel.questionType =
-                                                  _groupValue;
-                                              demoQuestionModel.choices =
-                                                  selectedTemp;
-                                              demoQuestionModel.advisorText =
-                                                  adviceController.text;
-                                              demoQuestionModel.advisorUrl =
-                                                  urlController.text;
-                                              demoQuestionModel.choices = temp;
-                                              //demoQuestionModel.questionId = ques!.length;
+                                              else if(_groupValue=='MCQ' && tempChoiceList.isEmpty){
+                                                Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: CustomDialog(
+                                                      title: "Alert",
+                                                      //'Wrong password',
+                                                      content:
+                                                      "At least one choice must be added",
+                                                      //'please enter the correct password',
+                                                      button: AppLocalizations.of(context)!.retry,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                              else{
+                                            List<Choice> temp = [];
+                                            List<Choice> selectedTemp = [];
+                                            // for (int i = 0;
+                                            // i < chooses.length;
+                                            // i++) {
+                                            //   if (radioList[i]) {
+                                            //     //selectedTemp.add(demoQuestionModel.choices![i]);
+                                            //   }
+                                            //   //temp.add(demoQuestionModel.choices![i]);
+                                            // }
+                                            demoQuestionModel.subject =
+                                                subjectController.text;
+                                            demoQuestionModel.topic =
+                                                topicController.text;
+                                            demoQuestionModel.subTopic =
+                                                subtopicController.text;
+                                            demoQuestionModel.datumClass =
+                                                classRoomController.text;
+                                            demoQuestionModel.question =
+                                                questionController.text;
+                                            demoQuestionModel.questionType =
+                                                _groupValue;
+                                            demoQuestionModel.choices =
+                                                selectedTemp;
+                                            demoQuestionModel.advisorText =
+                                                adviceController.text;
+                                            demoQuestionModel.advisorUrl =
+                                                urlController.text;
+                                            demoQuestionModel.choices = temp;
+                                            //demoQuestionModel.questionId = ques!.length;
 
-                                        //---------**************Actual API Integration DATA-------------
-                                        finalQuestion.question =
-                                            questionController.text;
-                                        finalQuestion.advisorText =
-                                            adviceController.text;
-                                        finalQuestion.advisorUrl =
-                                            urlController.text;
-                                        finalQuestion.subject =
-                                            subjectController.text;
-                                        finalQuestion.topic =
-                                            topicController.text;
-                                        finalQuestion.subTopic =
-                                            subtopicController.text;
-                                        finalQuestion.datumClass =
-                                            classRoomController.text;
-                                        finalQuestion.choices = tempChoiceList;
-                                        finalQuestion.questionType =
-                                            _groupValue;
-                                        if (_groupValue == 'Descripitive') {
-                                          finalQuestion.choices = [];
-                                        }
-                                        _groupValue=="MCQ"?finalQuestion.questionMark=1:finalQuestion.questionMark=0;
-                                        showQuestionPreview(context);
-                                      },
+                                            //---------**************Actual API Integration DATA-------------
+                                            finalQuestion.question =
+                                                questionController.text;
+                                            finalQuestion.advisorText =
+                                                adviceController.text;
+                                            finalQuestion.advisorUrl =
+                                                urlController.text;
+                                            finalQuestion.subject =
+                                                subjectController.text;
+                                            finalQuestion.topic =
+                                                topicController.text;
+                                            finalQuestion.subTopic =
+                                                subtopicController.text;
+                                            finalQuestion.datumClass =
+                                                classRoomController.text;
+                                            finalQuestion.choices =
+                                                tempChoiceList;
+                                            finalQuestion.questionType =
+                                                _groupValue;
+                                            if (_groupValue == 'Descripitive') {
+                                              finalQuestion.choices = [];
+                                            }
+                                            _groupValue == "MCQ"
+                                                ? finalQuestion.questionMark = 1
+                                                : finalQuestion.questionMark =
+                                                    0;
+                                            showQuestionPreview(context);
+                                          }
+                                        },
                                       child: Text(
                                           AppLocalizations.of(context)!.preview
                                           //"Preview"

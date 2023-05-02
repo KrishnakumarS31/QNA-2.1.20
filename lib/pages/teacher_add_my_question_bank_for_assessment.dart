@@ -185,21 +185,22 @@ class TeacherAddMyQuestionBankForAssessmentState
             resizeToAvoidBottomInset: true,
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
             appBar: AppBar(
-              leading: IconButton(
-                icon: const Icon(
-                  Icons.chevron_left,
-                  size: 40.0,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
-                  // Navigator.of(context).pushAndRemoveUntil(
-                  //     MaterialPageRoute(
-                  //         builder: (context) => TeacherCreateAssessment(
-                  //             )),
-                  //         (route) => route.isFirst);
-                },
-              ),
+              // leading: IconButton(
+              //   icon: const Icon(
+              //     Icons.chevron_left,
+              //     size: 40.0,
+              //     color: Colors.white,
+              //   ),
+              //   onPressed: () {
+              //     Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
+              //     // Navigator.of(context).pushAndRemoveUntil(
+              //     //     MaterialPageRoute(
+              //     //         builder: (context) => TeacherCreateAssessment(
+              //     //             )),
+              //     //         (route) => route.isFirst);
+              //   },
+              // ),
+              automaticallyImplyLeading: false,
               toolbarHeight: height * 0.100,
               centerTitle: true,
               title: Column(

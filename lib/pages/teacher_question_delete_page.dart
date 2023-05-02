@@ -217,30 +217,29 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
               .deleteQuestionList(widget.quesNum!);
           print("line 3");
           if(Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion.isEmpty){
-            Navigator.pushNamed(context, '/teacherCreateAssessment');
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 5;
+            });
           }
           else{
             print("line 1");
-            Navigator.pushNamed(
-                context,
-                '/teacherAddMyQuestionBankForAssessment',
-                arguments: widget.assessment
-            );
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 5;
+            });
           }
-          // Navigator.push(
-          //   context,
-          //   PageTransition(
-          //     type: PageTransitionType.rightToLeft,
-          //     child: TeacherAddMyQuestionBankForAssessment(assessment: widget.assessment,),
-          //   ),
-          // );
         }
         else{
           print("false");
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .deleteQuestionList(widget.quesNum!);
           if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
-            Navigator.pushNamed(context, '/teacherQuestionBank');
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 5;
+            });
+            //Navigator.pushNamed(context, '/teacherQuestionBank');
           }
           else{
             print("line 1");

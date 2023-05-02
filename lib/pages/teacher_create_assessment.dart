@@ -997,7 +997,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             Navigator.pushNamed(
                                 context,
                                 '/teacherSelectedQuestionAssessment',
-                                arguments: newQuestions
+                                arguments: [newQuestions,'new'],
                             );
                             // Navigator.push(
                             //   context,
