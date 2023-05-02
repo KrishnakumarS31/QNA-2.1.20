@@ -2388,8 +2388,8 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   String assessmentCode = '';
-                                                  if (assessment.assessmentId !=
-                                                      null) {
+                                                  if (widget.assessmentType=='inprogress') {
+                                                    print("inside if");
                                                     statusCode = await QnaService
                                                         .editAssessmentTeacherService(
                                                         assessment,
@@ -2399,7 +2399,19 @@ class TeacherAssessmentSettingPublishState
                                                     print(statusCode.message);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
-                                                  } else {
+                                                    Navigator.of(context).pop();
+                                                    Provider.of<NewQuestionProvider>(
+                                                        context,
+                                                        listen: false)
+                                                        .reSetQuestionList();
+                                                    Navigator.pushNamed(context,
+                                                        '/teacherPublishedAssessment',
+                                                        arguments: [
+                                                          assessmentCode,
+                                                          questionListForNxtPage
+                                                        ]);
+                                                  }
+                                                  else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
                                                         assessment);

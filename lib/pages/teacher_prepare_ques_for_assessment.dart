@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher_qn_preview_for_assessment.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -12,7 +15,7 @@ Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 class TeacherPrepareQuesForAssessment extends StatefulWidget {
   const TeacherPrepareQuesForAssessment(
       {Key? key,
-        required this.assessment,
+      required this.assessment,
 
       })
       : super(key: key);
@@ -976,43 +979,44 @@ class TeacherPrepareQuesForAssessmentState
                                               demoQuestionModel.choices = temp;
                                               //demoQuestionModel.questionId = ques!.length;
 
-                                              //---------**************Actual API Integration DATA-------------
-                                              finalQuestion.question =
-                                                  questionController.text;
-                                              finalQuestion.advisorText =
-                                                  adviceController.text;
-                                              finalQuestion.advisorUrl =
-                                                  urlController.text;
-                                              finalQuestion.subject =
-                                                  subjectController.text;
-                                              finalQuestion.topic =
-                                                  topicController.text;
-                                              finalQuestion.subTopic =
-                                                  subtopicController.text;
-                                              finalQuestion.datumClass =
-                                                  classRoomController.text;
-                                              finalQuestion.choices = tempChoiceList;
-                                              finalQuestion.questionType =
-                                                  _groupValue;
-                                              if (_groupValue == 'Descripitive') {
-                                                finalQuestion.choices = [];
-                                              }
-                                              showQuestionPreview(context);
-                                            },
-                                            child: Text(
-                                                AppLocalizations.of(context)!.preview
-                                              //"Preview"
-                                            ),
+                                        //---------**************Actual API Integration DATA-------------
+                                        finalQuestion.question =
+                                            questionController.text;
+                                        finalQuestion.advisorText =
+                                            adviceController.text;
+                                        finalQuestion.advisorUrl =
+                                            urlController.text;
+                                        finalQuestion.subject =
+                                            subjectController.text;
+                                        finalQuestion.topic =
+                                            topicController.text;
+                                        finalQuestion.subTopic =
+                                            subtopicController.text;
+                                        finalQuestion.datumClass =
+                                            classRoomController.text;
+                                        finalQuestion.choices = tempChoiceList;
+                                        finalQuestion.questionType =
+                                            _groupValue;
+                                        if (_groupValue == 'Descripitive') {
+                                          finalQuestion.choices = [];
+                                        }
+                                        _groupValue=="MCQ"?finalQuestion.questionMark=1:finalQuestion.questionMark=0;
+                                        showQuestionPreview(context);
+                                      },
+                                      child: Text(
+                                          AppLocalizations.of(context)!.preview
+                                          //"Preview"
                                           ),
-                                        ]),
-                                    onPressed: () {}),
-                              ),
-                              SizedBox(height: height * 0.010),
-                            ],
-                          ),
-                        ]),
-                      ))));
-        }
+                                    ),
+                                  ]),
+                              onPressed: () {}),
+                        ),
+                        SizedBox(height: height * 0.010),
+                      ],
+                    ),
+                  ]),
+                ))));
+  }
     );}
 
   changeIcon(IconData pramIcon) {

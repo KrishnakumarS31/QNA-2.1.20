@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import 'package:qna_test/pages/teacher_assess_looq_ques_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -103,14 +106,12 @@ class TeacherAssessmentLooqPrepareQuesState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: const EndDrawerMenuTeacher(),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -270,9 +271,7 @@ class TeacherAssessmentLooqPrepareQuesState
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
-                                constraints.maxWidth > 700
-                                    ?  SizedBox(width: width * 0.05)
-                                    : SizedBox(width: width * 0.10),
+                                SizedBox(width: width * 0.10),
                                 Text(
                                     AppLocalizations.of(context)!.subject_topic,
                                     //"Subject and Topic",
@@ -282,9 +281,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.020)),
-                                constraints.maxWidth > 700
-                                    ? SizedBox(width: width * 0.7)
-                                    : SizedBox(width: width * 0.35),
+                                SizedBox(width: width * 0.25),
                                 IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -415,7 +412,6 @@ class TeacherAssessmentLooqPrepareQuesState
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
@@ -791,7 +787,7 @@ class TeacherAssessmentLooqPrepareQuesState
                       ],
                     ),
                   ]),
-                ))));});
+                ))));
   }
 
   changeIcon(IconData pramIcon) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
@@ -11,11 +12,13 @@ import '../Providers/edit_assessment_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherActiveAssessment extends StatefulWidget {
-  const TeacherActiveAssessment(
-      {Key? key, required this.assessment})
+  TeacherActiveAssessment(
+      {Key? key, required this.assessment,
+      required this.assessmentType})
       : super(key: key);
 
   final GetAssessmentModel assessment;
+  String assessmentType;
 
   @override
   TeacherActiveAssessmentState createState() => TeacherActiveAssessmentState();
@@ -50,12 +53,13 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   }
 
   getData() {
+    //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
         .getAssessment;
     finalAssessment =
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .getAssessment;
-    print("${assessment.assessmentDuration}");
+    //print("${}");
     finalAssessment.removeQuestions = [];
     for (int i = 0; i < finalAssessment.questions!.length; i++) {
       mark = mark + assessment.questions![i].questionMark!;
@@ -1132,6 +1136,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                     SizedBox(
                       height: height * 0.03,
                     ),
+                    widget.assessmentType=='myAssessment'?
                     Center(
                       child: SizedBox(
                         width: width * 0.888,
@@ -1162,7 +1167,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           ),
                         ),
                       ),
-                    ),
+                    ):
+                    const SizedBox(height: 0,),
                     SizedBox(
                       height: height * 0.03,
                     ),

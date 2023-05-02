@@ -278,8 +278,8 @@ class MyRoutes{
       }
 
       case '/teacherActiveAssessment':{
-        final assessment = settings.arguments as GetAssessmentModel;
-        return SlideRightRoute(widget: TeacherActiveAssessment(assessment: assessment,));
+        final arguments = settings.arguments as List<dynamic>;
+        return SlideRightRoute(widget: TeacherActiveAssessment(assessment: arguments[0], assessmentType: arguments[1],));
       }
 
       case '/teacherAddMyQuestionBankForAssessment':

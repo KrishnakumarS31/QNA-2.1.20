@@ -47,6 +47,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   }
 
   initialData() async {
+    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     ResponseEntity response =
         await QnaService.getSearchAssessment(5, pageLimit, widget.search);
     allAssessment = List<GetAssessmentModel>.from(
@@ -493,7 +494,7 @@ class CardInfo extends StatelessWidget {
             Navigator.pushNamed(
                 context,
                 '/teacherActiveAssessment',
-                arguments: assessment
+                arguments: [assessment,'GlobalAssessment']
             );
             // Navigator.push(
             //   context,

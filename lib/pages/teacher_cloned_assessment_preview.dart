@@ -290,6 +290,7 @@ class TeacherClonedAssessmentPreviewState
                                   assessment: assessment,
                                   question: quesList[i],
                                   finalAssessment: finalAssessment,
+                                  assessmentType: widget.assessmentType,
                                 ),
                             ],
                           ),
@@ -439,7 +440,8 @@ class QuestionWidget extends StatefulWidget {
       required this.index,
       required this.assessment,
       required this.question,
-        required this.finalAssessment
+        required this.finalAssessment,
+        required this.assessmentType
       })
       : super(key: key);
 
@@ -448,6 +450,8 @@ class QuestionWidget extends StatefulWidget {
   GetAssessmentModel assessment;
   Questions.Question question;
   CreateAssessmentModel.CreateAssessmentModel finalAssessment;
+  String assessmentType;
+
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -500,7 +504,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             .deleteQuestionList(widget.index);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeLooqQuestionInAssess(widget.question!.questionId);
-        Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',(route) => route.isFirst);
+        Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',(route) => route.isFirst,arguments: widget.assessmentType);
 
         // Navigator.push(
         //   context,

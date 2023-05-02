@@ -233,7 +233,10 @@ class QnaRepo {
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       createQuestionTeacher(question);
-    } else {}
+    } else {
+      String temp = await response.stream.bytesToString();
+      print(temp);
+    }
     return loginModel;
   }
 
@@ -438,7 +441,9 @@ class QnaRepo {
           await logInUser(email!, pass!, loginData.getString('role'));
       editAssessmentTeacher(assessment, assessmentId);
     } else {
-
+      print("error");
+      String temp = await response.stream.bytesToString();
+      print(temp);
     }
     return loginModel;
   }

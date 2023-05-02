@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -188,6 +191,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   @override
   void initState() {
     super.initState();
+    subjectController.text='';
+    classRoomController.text='';
     _count = 0;
     _values = [];
     demoQuestionModel.choices?.add(choice);
@@ -215,14 +220,12 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: const EndDrawerMenuTeacher(),
+            endDrawer: EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -382,9 +385,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
-                                constraints.maxWidth > 700
-                                ?  SizedBox(width: width * 0.05)
-                                    : SizedBox(width: width * 0.10),
+                                SizedBox(width: width * 0.10),
                                 Text(
                                     AppLocalizations.of(context)!.subject_topic,
                                     //"Subject and Topic",
@@ -394,9 +395,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.020)),
-                                constraints.maxWidth > 700
-                                ? SizedBox(width: width * 0.7)
-                                : SizedBox(width: width * 0.35),
+                                SizedBox(width: width * 0.25),
                                 IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -418,9 +417,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: subjectController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -458,9 +458,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: topicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -492,9 +493,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: subtopicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -526,9 +528,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: classRoomController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: Colors.black,
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -585,9 +588,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               maxLines: 5,
                               controller: questionController,
                               style: TextStyle(
-                                  color: Colors.black,
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w700,
                                   fontSize: height * 0.018),
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
@@ -712,9 +715,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: Colors.black,
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w700,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -772,9 +776,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: Colors.black,
+                                          color: const Color.fromRGBO(
+                                              82, 165, 160, 1),
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w700,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -881,9 +886,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     TextFormField(
                         controller: adviceController,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             fontSize: height * 0.018),
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -905,9 +910,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     TextFormField(
                         controller: urlController,
                         style: TextStyle(
-                            color: Colors.black,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
                             fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
+                            fontWeight: FontWeight.w700,
                             fontSize: height * 0.018),
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -948,59 +953,81 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             255, 255, 255, 1),
                                       ),
                                       onPressed: () {
-                                        List<Choice> temp = [];
-                                        List<Choice> selectedTemp = [];
-                                        for (int i = 0;
-                                            i < chooses.length;
-                                            i++) {
-                                          if (radioList[i]) {
-                                            //selectedTemp.add(demoQuestionModel.choices![i]);
-                                          }
-                                          //temp.add(demoQuestionModel.choices![i]);
+                                        if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: "Alert",
+                                                //'Wrong password',
+                                                content:
+                                                "Enter Subject, Class and Question",
+                                                //'please enter the correct password',
+                                                button: AppLocalizations.of(context)!.retry,
+                                              ),
+                                            ),
+                                          );
                                         }
-                                        demoQuestionModel.subject =
-                                            subjectController.text;
-                                        demoQuestionModel.topic =
-                                            topicController.text;
-                                        demoQuestionModel.subTopic =
-                                            subtopicController.text;
-                                        demoQuestionModel.datumClass =
-                                            classRoomController.text;
-                                        demoQuestionModel.question =
-                                            questionController.text;
-                                        demoQuestionModel.questionType =
-                                            _groupValue;
-                                        demoQuestionModel.choices =
-                                            selectedTemp;
-                                        demoQuestionModel.advisorText =
-                                            adviceController.text;
-                                        demoQuestionModel.advisorUrl =
-                                            urlController.text;
-                                        demoQuestionModel.choices = temp;
-                                        //demoQuestionModel.questionId = ques!.length;
+                                        // else if(){
+                                        //
+                                        // }
+                                        else {
+                                          List<Choice> temp = [];
+                                          List<Choice> selectedTemp = [];
+                                          // for (int i = 0;
+                                          // i < chooses.length;
+                                          // i++) {
+                                          //   if (radioList[i]) {
+                                          //     //selectedTemp.add(demoQuestionModel.choices![i]);
+                                          //   }
+                                          //   //temp.add(demoQuestionModel.choices![i]);
+                                          // }
+                                          demoQuestionModel.subject =
+                                              subjectController.text;
+                                          demoQuestionModel.topic =
+                                              topicController.text;
+                                          demoQuestionModel.subTopic =
+                                              subtopicController.text;
+                                          demoQuestionModel.datumClass =
+                                              classRoomController.text;
+                                          demoQuestionModel.question =
+                                              questionController.text;
+                                          demoQuestionModel.questionType =
+                                              _groupValue;
+                                          demoQuestionModel.choices =
+                                              selectedTemp;
+                                          demoQuestionModel.advisorText =
+                                              adviceController.text;
+                                          demoQuestionModel.advisorUrl =
+                                              urlController.text;
+                                          demoQuestionModel.choices = temp;
+                                          //demoQuestionModel.questionId = ques!.length;
 
-                                        //---------**************Actual API Integration DATA-------------
-                                        finalQuestion.question =
-                                            questionController.text;
-                                        finalQuestion.advisorText =
-                                            adviceController.text;
-                                        finalQuestion.advisorUrl =
-                                            urlController.text;
-                                        finalQuestion.subject =
-                                            subjectController.text;
-                                        finalQuestion.topic =
-                                            topicController.text;
-                                        finalQuestion.subTopic =
-                                            subtopicController.text;
-                                        finalQuestion.datumClass =
-                                            classRoomController.text;
-                                        finalQuestion.choices = tempChoiceList;
-                                        finalQuestion.questionType =
-                                            _groupValue;
-                                        if (_groupValue == 'Descriptive') {
-                                          finalQuestion.choices = [];
+                                          //---------**************Actual API Integration DATA-------------
+                                          finalQuestion.question =
+                                              questionController.text;
+                                          finalQuestion.advisorText =
+                                              adviceController.text;
+                                          finalQuestion.advisorUrl =
+                                              urlController.text;
+                                          finalQuestion.subject =
+                                              subjectController.text;
+                                          finalQuestion.topic =
+                                              topicController.text;
+                                          finalQuestion.subTopic =
+                                              subtopicController.text;
+                                          finalQuestion.datumClass =
+                                              classRoomController.text;
+                                          finalQuestion.choices =
+                                              tempChoiceList;
+                                          finalQuestion.questionType =
+                                              _groupValue;
+                                          if (_groupValue == 'Descriptive') {
+                                            finalQuestion.choices = [];
+                                          }
+                                          showQuestionPreview(context);
                                         }
-                                        showQuestionPreview(context);
                                       },
                                       child: Text(
                                           AppLocalizations.of(context)!.preview
@@ -1014,7 +1041,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                       ],
                     ),
                   ]),
-                ))));});
+                ))));
   }
 
   changeIcon(IconData pramIcon) {

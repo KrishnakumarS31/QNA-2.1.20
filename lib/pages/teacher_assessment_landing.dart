@@ -1066,7 +1066,12 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                               listen: false)
                                                           .updateAssessment(
                                                               assessment);
-                                                      Navigator.pushNamed(context, '/teacherCreateAssessment');
+                                                      Navigator.pushNamed(context, '/teacherCreateAssessment').then((value) {
+                                                        topicController.clear();
+                                                        subjectController.clear();
+                                                        subTopicController.clear();
+                                                        classController.clear();
+                                                      });
                                                       // Navigator.push(
                                                       //   context,
                                                       //   PageTransition(
@@ -1284,7 +1289,7 @@ class _CardInfoState extends State<CardInfo> {
 
               Provider.of<CreateAssessmentProvider>(context, listen: false)
                   .updateAssessment(editAssessment);
-              Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: widget.assessment);
+              Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: [widget.assessment,'myAssessment']);
 
 
               // Navigator.push(
