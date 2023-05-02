@@ -111,7 +111,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(),
+                  endDrawer: const EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Column(children: [
@@ -353,6 +353,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       48, 145, 139, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
+                                                  fontStyle: FontStyle.italic,
                                                   fontSize:
                                                   localHeight * 0.017)),
                                         )),
@@ -491,7 +492,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           ),
                                         ),
                                         child: Text(
-                                            AppLocalizations.of(context)!.login,
+                                            AppLocalizations.of(context)!.login_loginPage,
                                             style: TextStyle(
                                                 fontFamily: 'Inter',
                                                 fontSize: localHeight * 0.034,
@@ -906,6 +907,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   48, 145, 139, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
+                                              fontStyle: FontStyle.italic,
                                               fontSize:
                                               localHeight * 0.014)),
                                     )),
@@ -1044,7 +1046,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           ),
                                         ),
                                         child: Text(
-                                            AppLocalizations.of(context)!.login,
+                                            AppLocalizations.of(context)!.login_loginPage,
                                             style: TextStyle(
                                                 fontFamily: 'Inter',
                                                 fontSize: localHeight * 0.024,

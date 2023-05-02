@@ -4,7 +4,6 @@ import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
-import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -216,12 +215,14 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -381,7 +382,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
-                                SizedBox(width: width * 0.10),
+                                constraints.maxWidth > 700
+                                ?  SizedBox(width: width * 0.05)
+                                    : SizedBox(width: width * 0.10),
                                 Text(
                                     AppLocalizations.of(context)!.subject_topic,
                                     //"Subject and Topic",
@@ -391,7 +394,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.020)),
-                                SizedBox(width: width * 0.25),
+                                constraints.maxWidth > 700
+                                ? SizedBox(width: width * 0.7)
+                                : SizedBox(width: width * 0.35),
                                 IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -413,10 +418,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: subjectController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -454,10 +458,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: topicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -489,10 +492,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: subtopicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -524,10 +526,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     controller: classRoomController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
@@ -584,9 +585,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               maxLines: 5,
                               controller: questionController,
                               style: TextStyle(
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  color: Colors.black,
                                   fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w700,
+                                  fontWeight: FontWeight.w400,
                                   fontSize: height * 0.018),
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
@@ -711,10 +712,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              82, 165, 160, 1),
+                                          color: Colors.black,
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -772,10 +772,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              82, 165, 160, 1),
+                                          color: Colors.black,
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -882,9 +881,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     TextFormField(
                         controller: adviceController,
                         style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            color: Colors.black,
                             fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                             fontSize: height * 0.018),
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -906,9 +905,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     TextFormField(
                         controller: urlController,
                         style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            color: Colors.black,
                             fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                             fontSize: height * 0.018),
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
@@ -1015,7 +1014,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                       ],
                     ),
                   ]),
-                ))));
+                ))));});
   }
 
   changeIcon(IconData pramIcon) {

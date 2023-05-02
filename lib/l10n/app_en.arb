@@ -100,7 +100,7 @@
   "last_name_hint": "Last Name",
   "dob_caps": "DATE OF BIRTH",
   "dob_format": "DD / MM / YYYY",
-  "gender": "\t Gender",
+  "gender": "\t GENDER",
   "male": "Male",
   "female": "Female",
   "others": "Others",
@@ -279,6 +279,7 @@
   "publish_later": "Save and Publish Later",
   "publish_now": "Publish Now",
   "advisor_contact": "Advisor Contact",
-  "enter_valid_name": "Enter your name in Alphabets only"
+  "enter_valid_name": "Enter your name in Alphabets only",
+  "login_loginPage": "Login"
 
 }

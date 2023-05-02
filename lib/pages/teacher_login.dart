@@ -362,6 +362,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                               48, 145, 139, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
+                                          fontStyle: FontStyle.italic,
                                           fontSize: height * 0.017)),
                                 ),
                               ),
@@ -593,7 +594,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                         }
                       },
                       child: Text(
-                        AppLocalizations.of(context)!.login,
+                        AppLocalizations.of(context)!.login_loginPage,
                         style: TextStyle(
                             fontSize: height * 0.027,
                             fontFamily: "Inter",

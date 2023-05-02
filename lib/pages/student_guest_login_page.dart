@@ -190,7 +190,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                         102, 102, 102, 0.3),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: height * 0.03),
+                                                    fontSize: height * 0.02),
                                                 prefixIcon: Icon(
                                                   Icons.account_box_outlined,
                                                   color: const Color.fromRGBO(

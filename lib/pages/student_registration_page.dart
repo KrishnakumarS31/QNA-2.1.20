@@ -313,6 +313,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   Widget build(BuildContext context) {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -679,7 +681,10 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: localWidth * 0.038,
+                                  left:
+                                  constraints.maxWidth > 700
+                                  ? localWidth * 0.009
+                                  : localWidth * 0.02,
                                   child: Container(
                                     color: Colors.white,
                                     child: RichText(
@@ -692,7 +697,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                 102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.015),
+                                            fontSize: localHeight * 0.014),
                                       ),
                                       TextSpan(
                                           text: "\t* \t",
@@ -777,7 +782,10 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: localWidth * 0.038,
+                                  left:
+                                  constraints.maxWidth > 700
+                                      ? localWidth * 0.009
+                                      : localWidth * 0.025,
                                   child: Container(
                                     color: Colors.white,
                                     child: RichText(
@@ -882,7 +890,10 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: localWidth * 0.038,
+                                  left:
+                                  constraints.maxWidth > 700
+                                      ? localWidth * 0.009
+                                      : localWidth * 0.025,
                                   child: Container(
                                     color: Colors.white,
                                     child: RichText(
@@ -1495,6 +1506,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
             ),
           ),
           //)
-        ));
+        ));});
   }
 }

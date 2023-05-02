@@ -135,6 +135,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                             ),
                             Text(
                               name,
+                              softWrap: false,
+                              textAlign: TextAlign.center,
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .bodyLarge

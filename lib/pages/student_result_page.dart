@@ -671,8 +671,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           255, 255, 255, 1),
                                                     ),
                                                   ),
-                                                  SizedBox(width: localHeight *
-                                                      0.015),
+                                                  // SizedBox(width: localHeight *
+                                                  //     0.005),
                                                   Text(
                                                     AppLocalizations.of(
                                                         context)!
@@ -691,8 +691,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 content: const Text(
                                                     "Are you sure you want to exit ?"),
                                                 actions: <Widget>[
-                                                  SizedBox(width: localWidth *
-                                                      0.020),
+                                                  // SizedBox(width: localWidth *
+                                                  //     0.015),
                                                   ElevatedButton(
                                                     style: ElevatedButton
                                                         .styleFrom(
@@ -727,7 +727,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     },
                                                   ),
                                                   SizedBox(width: localWidth *
-                                                      0.005),
+                                                      0.01),
                                                   ElevatedButton(
                                                       style: ElevatedButton
                                                           .styleFrom(
