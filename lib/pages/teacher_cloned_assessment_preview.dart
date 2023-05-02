@@ -80,7 +80,7 @@ class TeacherClonedAssessmentPreviewState
       ),
       onPressed: () {
         //Provider.of<QuestionsForAssessmentSettingsPublishedProvider>(context, listen: false).addQuestion(widget.questions! as QuestionEntityForAssessmentSettingsPublished);
-        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
+        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
         // Navigator.push(
         //   context,
         //   PageTransition(
