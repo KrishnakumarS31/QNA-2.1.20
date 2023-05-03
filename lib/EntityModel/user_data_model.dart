@@ -102,7 +102,7 @@ class Data {
     "email": email,
     "roll_number": rollNumber,
     "organisation_name": organisationName,
-    "role": role==null?[]:List<dynamic>.from(role!.map((x) => x)),
+    "role": role==null?[]:List<dynamic>.from(role.map((x) => x)),
     "password": password,
     "created_by": createdBy,
     "updated_by": updatedBy,

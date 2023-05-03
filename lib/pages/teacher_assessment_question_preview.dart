@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/teacher_add_my_question_bank.dart';
-import 'package:qna_test/pages/teacher_assessment_summary.dart';
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../Entity/demo_question_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
@@ -48,17 +44,13 @@ class TeacherAssessmentQuestionPreviewState
   getData(){
     List<int> questionId=[];
     List<int> addQuestionId=[];
-    print("1");
     for(int i =0;i<widget.assessment.questions!.length ; i++){
       questionId.add(widget.assessment.questions![i].questionId!);
     }
-    print("22");
     for(int i =0;i<widget.assessment.addQuestion!.length ; i++){
       addQuestionId.add(widget.assessment.addQuestion![i].questionId!);
     }
-    print("2.5");
     if(questionId.contains(widget.question.questionId)){
-      print("3");
       setState(() {
         index = questionId.indexOf(widget.question.questionId);
         fieldName='question';
@@ -67,7 +59,6 @@ class TeacherAssessmentQuestionPreviewState
       });
     }
     else{
-      print("4");
       setState(() {
         index = addQuestionId.indexOf(widget.question.questionId);
         fieldName='addQuestion';
@@ -284,8 +275,6 @@ class TeacherAssessmentQuestionPreviewState
                                     cursor: SystemMouseCursors.click,
                                     child: GestureDetector(
                                   onTap: () {
-                                    print("Question id");
-                                    print(widget.question.questionId);
                                     Provider.of<QuestionPrepareProviderFinal>(
                                         context,
                                         listen: false)

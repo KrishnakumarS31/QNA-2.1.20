@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import '../Entity/demo_question_model.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 
@@ -41,7 +38,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
-import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
-import 'package:qna_test/pages/teacher_my_question_bank.dart';
-import 'package:qna_test/pages/teacher_question_delete_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -164,7 +160,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         onWillPop: () async => false,
         child: Scaffold(
             resizeToAvoidBottomInset: true,
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
             appBar: AppBar(
               // leading: IconButton(

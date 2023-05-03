@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/pages/student_looq_selected_assessment.dart';
 
 class StudentLooqLanding extends StatefulWidget {
   const StudentLooqLanding({Key? key,})

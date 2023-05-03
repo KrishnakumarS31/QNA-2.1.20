@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 
 class TeacherForgotPassword extends StatefulWidget {
-  TeacherForgotPassword({Key? key, required this.email, required this.otp})
+  const TeacherForgotPassword({Key? key, required this.email, required this.otp})
       : super(key: key);
 
   final String email;

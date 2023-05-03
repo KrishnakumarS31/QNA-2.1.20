@@ -42,7 +42,7 @@ class TeacherResultIndividualStudentState
       totalResults = widget.result.assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
     }
     else {
-      totalResults = widget.result!.assessmentResults!;
+      totalResults = widget.result.assessmentResults!;
     }
 
   }
@@ -235,15 +235,15 @@ class TeacherResultIndividualStudentState
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount:
-                        totalResults![widget.index].questions!.length,
+                        totalResults[widget.index].questions!.length,
                         itemBuilder: (context, index) => Column(
                           children: [
-                            totalResults![widget.index]
+                            totalResults[widget.index]
                                 .questions![index]
                                 .questionType! ==
                                 "MCQ"
                                 ?
-                            (totalResults![widget.index]
+                            (totalResults[widget.index]
                                 .questions![index].status=="Incorrect")?
                             MouseRegion(
                                 cursor: SystemMouseCursors.click,
@@ -251,7 +251,7 @@ class TeacherResultIndividualStudentState
                                   onTap: () {},
                                   child: QuesAndAns(
                                     height: height,
-                                    ques: totalResults![widget.index]
+                                    ques: totalResults[widget.index]
                                         .questions![index],
                                     quesNum: index,
                                     // ans: widget
@@ -417,10 +417,10 @@ class TeacherResultIndividualStudentState
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount:
-                        totalResults![widget.index].questions!.length,
+                        totalResults[widget.index].questions!.length,
                         itemBuilder: (context, index) => Column(
                           children: [
-                            totalResults![widget.index]
+                            totalResults[widget.index]
                                 .questions![index]
                                 .questionType! ==
                                 "Survey"
@@ -430,7 +430,7 @@ class TeacherResultIndividualStudentState
                                   onTap: () {},
                                   child: QuesAndAns(
                                     height: height,
-                                    ques: totalResults![widget.index]
+                                    ques: totalResults[widget.index]
                                         .questions![index],
                                     quesNum: index,
                                     // ans: widget
@@ -468,10 +468,10 @@ class TeacherResultIndividualStudentState
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount:
-                        totalResults![widget.index].questions!.length,
+                        totalResults[widget.index].questions!.length,
                         itemBuilder: (context, index) => Column(
                           children: [
-                            totalResults![widget.index]
+                            totalResults[widget.index]
                                 .questions![index]
                                 .questionType! ==
                                 "Descripitive"
@@ -481,7 +481,7 @@ class TeacherResultIndividualStudentState
                                   onTap: () {},
                                   child: QuesAndAns(
                                     height: height,
-                                    ques: totalResults![widget.index]
+                                    ques: totalResults[widget.index]
                                         .questions![index],
                                     quesNum: index,
                                     // ans: widget

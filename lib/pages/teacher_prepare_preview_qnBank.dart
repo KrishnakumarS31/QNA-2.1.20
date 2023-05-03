@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -73,7 +72,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
     selected = widget.finalQuestion!.choices;
     for (int i = 0; i < widget.finalQuestion!.choices!.length; i++) {
       chooses.add(TextEditingController());
-      chooses[i].text = widget.finalQuestion!.choices![i]!.choiceText!;
+      chooses[i].text = widget.finalQuestion!.choices![i].choiceText!;
       radioList.add(false);
       if (widget.finalQuestion!.choices![i].rightChoice!) {
         radioList[i] = true;

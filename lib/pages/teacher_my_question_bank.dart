@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_create_assessment.dart';
-import 'package:qna_test/Pages/teacher_questionBank_page.dart';
-import 'package:qna_test/pages/teacher_question_preview_delete.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
-import '../EntityModel/create_question_model.dart' as create_question_model;
-import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherMyQuestionBank extends StatefulWidget {

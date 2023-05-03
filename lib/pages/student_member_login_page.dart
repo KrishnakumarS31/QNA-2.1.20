@@ -10,9 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../EntityModel/user_data_model.dart';
-import 'forgot_password_email.dart';
-import 'student_registration_page.dart';
-import 'student_assessment_start.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 // import 'package:universal_html/html.dart';
 
@@ -670,7 +667,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     ),
                     backgroundColor: Colors.transparent,
                   ),
-                  endDrawer: EndDrawerMenuPreLogin(),
+                  endDrawer: const EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Column(children: [

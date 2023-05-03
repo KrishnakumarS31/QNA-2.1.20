@@ -7,6 +7,7 @@ import '../pages/privacy_policy_hamburger.dart';
 import '../pages/terms_of_services.dart';
 import '../pages/about_us.dart';
 import '../pages/help_page.dart';
+import '../DataSource/http_url.dart';
 
 class EndDrawerMenuPreLogin extends StatefulWidget {
   const EndDrawerMenuPreLogin({Key? key})
@@ -55,7 +56,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: SettingsLanguages(),
+                          child: const SettingsLanguages(),
                         ),
                       );
                     }),
@@ -81,7 +82,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: PrivacyPolicyHamburger(
+                          child: const PrivacyPolicyHamburger(
                               ),
                         ),
                       );
@@ -106,7 +107,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: TermsOfServiceHamburger(
+                          child: const TermsOfServiceHamburger(
                               ),
                         ),
                       );
@@ -130,7 +131,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: CookiePolicy(),
+                          child: const CookiePolicy(),
                         ),
                       );
                     }),
@@ -159,7 +160,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: AboutUs(),
+                          child: const AboutUs(),
                         ),
                       );
                     }),
@@ -182,7 +183,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: HelpPageHamburger(),
+                          child: const HelpPageHamburger(),
                         ),
                       );
                     }),
@@ -190,7 +191,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "${AppLocalizations.of(context)!.version}: 1.0.0",
+                    "${AppLocalizations.of(context)!.version}: $version",
                     style: const TextStyle(
                         color: Color.fromRGBO(180, 180, 180, 1),
                         fontFamily: 'Inter',

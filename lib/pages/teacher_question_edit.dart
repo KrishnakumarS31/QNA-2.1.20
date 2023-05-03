@@ -366,7 +366,7 @@ class QuestionEditState extends State<QuestionEdit> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -896,10 +896,6 @@ class QuestionEditState extends State<QuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {
@@ -930,10 +926,6 @@ class QuestionEditState extends State<QuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {
@@ -1052,10 +1044,6 @@ class QuestionEditState extends State<QuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {
@@ -1292,7 +1280,6 @@ class QuestionEditState extends State<QuestionEdit> {
                                   adviceController.text;
                               widget.question.advisorUrl =
                                   urlController.text;
-                              print(_groupValue);
                             });
                             showQuestionPreview(context);
                           }),

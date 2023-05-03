@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
-import '../EntityModel/static_response.dart';
 
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ChangeEmailStudent extends StatefulWidget {

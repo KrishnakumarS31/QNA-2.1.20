@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_looq_landing_page.dart';
 
-import '../EntityModel/user_data_model.dart';
 
 class StudentSearchLibrary extends StatefulWidget {
   const StudentSearchLibrary({Key? key,})
@@ -125,7 +124,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
                                     context,
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
-                                      child: StudentLooqLanding(
+                                      child: const StudentLooqLanding(
                                           ),
                                     ),
                                   );

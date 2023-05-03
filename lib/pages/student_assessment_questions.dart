@@ -2030,12 +2030,10 @@ class _ChooseWidgetState extends State<ChooseWidget> {
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
             onTap: () {
-              print("Go Go Poke");
               if (widget.selected.contains(widget.question.data!.questions![
                       Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1]
                   .choices![j - 1]
                   .choiceText)) {
-                print("inside if");
                 widget.selected.remove(widget.question
                     .data!
                     .questions![
@@ -2045,7 +2043,6 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                     .choices![j - 1]
                     .choiceText);
                 if (widget.selected.isEmpty) {
-                  print("inside if...if");
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,
@@ -2053,7 +2050,6 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       const Color.fromRGBO(219, 35, 35, 1),
                       false);
                 } else {
-                  print("inside if...else");
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,
@@ -2063,7 +2059,6 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                 }
               }
               else {
-                print("inside else");
                 widget.selected.add(widget.question
                     .data!
                     .questions![

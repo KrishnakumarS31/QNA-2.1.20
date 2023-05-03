@@ -1,9 +1,7 @@
 
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart' as QuestionEntity;
-import 'package:qna_test/EntityModel/CreateAssessmentModel.dart';
 import 'package:qna_test/EntityModel/user_data_model.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import 'package:qna_test/pages/about_us.dart';
@@ -48,7 +46,6 @@ import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import 'package:qna_test/pages/teacher_selection_page.dart';
 import 'package:qna_test/pages/teacher_user_profile.dart';
 import 'package:qna_test/pages/terms_of_services.dart';
-import 'Entity/Teacher/get_assessment_model.dart';
 import 'Pages/forgot_password_email.dart';
 import 'Pages/privacy_policy_hamburger.dart';
 import 'Pages/reset_password_student.dart';
@@ -88,16 +85,16 @@ class MyRoutes{
 
     switch (settings.name){
       case '/':
-        return SlideRightRoute(widget: WelcomePage());
+        return SlideRightRoute(widget: const WelcomePage());
 
       case '/studentSelectionPage':
-        return SlideRightRoute(widget: StudentSelectionPage());
+        return SlideRightRoute(widget: const StudentSelectionPage());
 
       case '/teacherLoginPage':
-        return SlideRightRoute(widget: TeacherLogin());
+        return SlideRightRoute(widget: const TeacherLogin());
 
       case '/settingsLanguages':
-        return SlideRightRoute(widget: SettingsLanguages());
+        return SlideRightRoute(widget: const SettingsLanguages());
 
       case '/teacherSelectionPage':{
         final userData = settings.arguments as UserDataModel;
@@ -105,16 +102,16 @@ class MyRoutes{
       }
 
       case '/teacherRegistrationPage':
-        return SlideRightRoute(widget: TeacherRegistrationPage());
+        return SlideRightRoute(widget: const TeacherRegistrationPage());
 
       case '/teacherForgotPasswordEmail':
-        return SlideRightRoute(widget: TeacherForgotPasswordEmail());
+        return SlideRightRoute(widget: const TeacherForgotPasswordEmail());
 
       case '/teacherQuestionBank':
-        return SlideRightRoute(widget: TeacherQuestionBank());
+        return SlideRightRoute(widget: const TeacherQuestionBank());
 
       case '/teacherAssessmentLanding':
-        return SlideRightRoute(widget: TeacherAssessmentLanding());
+        return SlideRightRoute(widget: const TeacherAssessmentLanding());
 
       case '/teacherLooqQuestionBank':
         {
@@ -143,7 +140,7 @@ class MyRoutes{
       }
 
       case '/teacherCreateAssessment':
-        return SlideRightRoute(widget: TeacherCreateAssessment());
+        return SlideRightRoute(widget: const TeacherCreateAssessment());
 
       case '/teacherQuestionPreviewDelete':{
         final question = settings.arguments as List<dynamic>;
@@ -151,7 +148,7 @@ class MyRoutes{
       }
 
       case '/aboutUs':
-        return SlideRightRoute(widget: AboutUs());
+        return SlideRightRoute(widget: const AboutUs());
 
       case '/changeEmailStudent':{
         final userId = settings.arguments as int;
@@ -159,7 +156,7 @@ class MyRoutes{
       }
 
       case '/cookiePolicy':
-        return SlideRightRoute(widget: CookiePolicy());
+        return SlideRightRoute(widget: const CookiePolicy());
 
       case '/forgotPasswordEmail':
         {
@@ -168,13 +165,13 @@ class MyRoutes{
         }
 
       case '/helpPageHamburger':
-        return SlideRightRoute(widget: HelpPageHamburger());
+        return SlideRightRoute(widget: const HelpPageHamburger());
 
       case '/privacyPolicyHamburger':
-        return SlideRightRoute(widget: PrivacyPolicyHamburger());
+        return SlideRightRoute(widget: const PrivacyPolicyHamburger());
 
       case '/privacyPolicyHamburger':
-        return SlideRightRoute(widget: PrivacyPolicyHamburger());
+        return SlideRightRoute(widget: const PrivacyPolicyHamburger());
 
       case '/resetPasswordStudent':{
         final userId = settings.arguments as int;
@@ -182,7 +179,7 @@ class MyRoutes{
       }
 
       case '/resetPassword':
-        return SlideRightRoute(widget: ResetPassword());
+        return SlideRightRoute(widget: const ResetPassword());
 
 
 
@@ -217,16 +214,16 @@ class MyRoutes{
       }
 
       case '/studentGuestLogin':
-        return SlideRightRoute(widget: StudentGuestLogin());
+        return SlideRightRoute(widget: const StudentGuestLogin());
 
       case '/studentLooqLanding':
-        return SlideRightRoute(widget: StudentLooqLanding());
+        return SlideRightRoute(widget: const StudentLooqLanding());
 
       case '/studentLooqSelectedAssessment':
-        return SlideRightRoute(widget: StudentLooqSelectedAssessment());
+        return SlideRightRoute(widget: const StudentLooqSelectedAssessment());
 
       case '/studentMemberLoginPage':
-        return SlideRightRoute(widget: StudentMemberLoginPage());
+        return SlideRightRoute(widget: const StudentMemberLoginPage());
 
       case '/studentRegisVerifyOtpPage':{
         final email = settings.arguments as String;
@@ -234,7 +231,7 @@ class MyRoutes{
       }
 
       case '/studentRegistrationPage':
-        return SlideRightRoute(widget: StudentRegistrationPage());
+        return SlideRightRoute(widget: const StudentRegistrationPage());
 
       case '/studentRegistrationUpdatePage':{
         final arguments = settings.arguments as List<dynamic>;
@@ -270,7 +267,7 @@ class MyRoutes{
       }
 
       case '/studentSearchLibrary':
-        return SlideRightRoute(widget: StudentSearchLibrary());
+        return SlideRightRoute(widget: const StudentSearchLibrary());
 
       case '/studentUserProfile':{
         final userData = settings.arguments as UserDataModel;
@@ -350,7 +347,7 @@ class MyRoutes{
       }
 
       case '/teacherInactiveAssessment':
-        return SlideRightRoute(widget: TeacherInactiveAssessment());
+        return SlideRightRoute(widget: const TeacherInactiveAssessment());
 
       case '/teacherLooqClonePreview':{
         final question = settings.arguments as QuestionEntity.Question;
@@ -427,7 +424,7 @@ class MyRoutes{
         }
 
       case '/termsOfServiceHamburger':
-        return SlideRightRoute(widget: TermsOfServiceHamburger());
+        return SlideRightRoute(widget: const TermsOfServiceHamburger());
 
       case '/verifyOtpPage':{
         final arguments = settings.arguments as List<dynamic>;
@@ -439,7 +436,7 @@ class MyRoutes{
     //Navigator.pushNamed(context, '/teacherQuestionPreviewDelete');
     //Navigator.pushNamed(context, '/teacherAddMyQuestionBank',arguments: [widget.assessment,widget.assessmentStatus]);
 
-    return MaterialPageRoute(builder: (context) => Scaffold(
+    return MaterialPageRoute(builder: (context) => const Scaffold(
       body: Text('no route defiend'),
     ));
   }
@@ -457,8 +454,8 @@ class SlideRightRoute extends PageRouteBuilder {
         Animation<double> animation,
         Animation<double> secondaryAnimation,
         Widget child) {
-      return new SlideTransition(
-        position: new Tween<Offset>(
+      return SlideTransition(
+        position: Tween<Offset>(
           begin: const Offset(1.0, 0.0),
           end: Offset.zero,
         ).animate(animation),

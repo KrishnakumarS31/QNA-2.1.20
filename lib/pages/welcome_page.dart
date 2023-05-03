@@ -83,7 +83,6 @@ class _WelcomePageState extends State<WelcomePage> {
       _message = connected == ConnectionStatus.online
           ? 'Connected'
           : 'Not Connected';
-      print("---------------------------1");
       if (_message=='Not Connected') {
         setState(() {
           isAlertSet=true;
@@ -104,8 +103,8 @@ class _WelcomePageState extends State<WelcomePage> {
 
   showDialogBox() => showCupertinoDialog<String>(
       context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text(
+      builder: (BuildContext context) => const CupertinoAlertDialog(
+        title: Text(
           "NO CONNECTION",
           style: TextStyle(
             color: Color.fromRGBO(82, 165, 160, 1),
@@ -114,7 +113,7 @@ class _WelcomePageState extends State<WelcomePage> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        content: const Text(
+        content: Text(
           "Please check your internet connectivity",
           style: TextStyle(
             color: Color.fromRGBO(82, 165, 160, 1),

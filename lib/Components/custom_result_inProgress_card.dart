@@ -64,7 +64,7 @@ class ResultInProgressCard extends StatelessWidget {
                           fontWeight: FontWeight.w400),
                     ),
                     Text(
-                      "$timeTaken",
+                     timeTaken != null ? convertAttemptDuration(timeTaken) :"0",
                       style: TextStyle(
                           fontSize: height * 0.013,
                           color: const Color.fromRGBO(102, 102, 102, 1),

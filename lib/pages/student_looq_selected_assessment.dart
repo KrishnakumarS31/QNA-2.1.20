@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/pages/student_assessment_questions.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/question_paper_model.dart';
 import '../Services/qna_service.dart';
@@ -40,7 +38,7 @@ class StudentLooqSelectedAssessmentState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(

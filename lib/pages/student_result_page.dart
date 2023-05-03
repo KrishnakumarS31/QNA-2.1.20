@@ -9,6 +9,7 @@ import '../pages/about_us.dart';
 import '../pages/help_page.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../DataSource/http_url.dart';
 class StudentResultPage extends StatefulWidget {
   const StudentResultPage({Key? key,
     required this.totalMarks,
@@ -143,8 +144,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
-                                Navigator.of(context).pop();
-                                Navigator.pushNamed(context, '/studentSelectionPage');
+                                Navigator.pushNamed(
+                                    context,
+                                    '/studGuestAssessment',
+                                    arguments: widget.userName);
+                                // Navigator.of(context).pop();
+                                // Navigator.pushNamed(context, '/studentSelectionPage');
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -399,7 +404,92 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   onTap: () async {
                                     showDialog(
                                       context: context,
-                                      builder: (context) => AlertDialog(
+                                      builder: (context) =>
+                                      constraints.maxWidth > 700
+                                          ? AlertDialog(
+                                        insetPadding: EdgeInsets.only(
+                                            left: localWidth * 0.13, right: localWidth * 0.13),
+                                        title: Row(
+                                            children: [
+                                              SizedBox(width: localHeight * 0.030),
+                                              Container(
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color.fromRGBO(82, 165, 160, 1),
+                                                ),
+                                                height: localHeight * 0.1,
+                                                width: localWidth * 0.1,
+                                                child: const Icon(Icons.info_outline_rounded,
+                                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                                ),
+                                              ),
+                                              SizedBox(width: localHeight * 0.003),
+                                              Text(AppLocalizations.of(context)!.confirm,
+                                                style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: localHeight * 0.024,
+                                                    color: const Color.fromRGBO(0, 106, 100, 1),
+                                                    fontWeight: FontWeight.w700
+                                                ),),
+                                            ]
+                                        ),
+                                        content: const Text("\t\t\t\tAre you sure you want to logout ??"),
+                                        actions: <Widget>[
+                                          // constraints.maxWidth > 700
+                                          //     ? const SizedBox()
+                                          //     :
+                                          SizedBox(width: localWidth * 0.030),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                                              minimumSize: const Size(90, 30),
+                                              side: const BorderSide(
+                                                width: 1.5,
+                                                color: Color.fromRGBO(82, 165, 160, 1),
+                                              ),
+                                            ),
+                                            child: Text(AppLocalizations.of(context)!.no,
+                                                style: TextStyle(
+                                                    fontFamily: 'Inter',
+                                                    fontSize: localHeight * 0.018,
+                                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                                    fontWeight: FontWeight.w500
+                                                )
+                                            ),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          constraints.maxWidth > 700
+                                              ? SizedBox(width: localWidth * 0.05)
+                                              : SizedBox(width: localWidth * 0.005),
+                                          ElevatedButton(
+                                              style:
+                                              ElevatedButton.styleFrom(
+                                                backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                                minimumSize: const Size(90, 30),
+                                              ),
+                                              child: Text(AppLocalizations.of(context)!.yes,
+                                                  style: TextStyle(
+                                                      fontFamily: 'Inter',
+                                                      fontSize: localHeight * 0.018,
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.w500
+                                                  )
+                                              ),
+                                              onPressed: () async {
+                                                SharedPreferences preferences =
+                                                await SharedPreferences.getInstance();
+                                                await preferences.clear();
+                                                Navigator.pushNamed(context, '/');
+                                              }
+                                          ),
+                                          constraints.maxWidth > 700
+                                              ? SizedBox(width: localWidth * 0.040)
+                                              : SizedBox(width: localWidth * 0.030),
+                                        ],
+                                      )
+                                          : AlertDialog(
                                         insetPadding: EdgeInsets.only(
                                             left: localWidth * 0.13, right: localWidth * 0.13),
                                         title: Row(children: [
@@ -480,7 +570,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "${AppLocalizations.of(context)!.version}: 1.0.0",
+                                    "${AppLocalizations.of(context)!.version}: $version",
                                     style: const TextStyle(
                                         color: Color.fromRGBO(180, 180, 180, 1),
                                         fontFamily: 'Inter',
@@ -763,9 +853,13 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                         139, 1),
                                                                   ));
                                                             });
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        Navigator.pushNamed(context, '/studentSelectionPage');
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            '/studGuestAssessment',
+                                                            arguments: widget.userName);
+                                                        // Navigator.of(context)
+                                                        //     .pop();
+                                                        // Navigator.pushNamed(context, '/studentSelectionPage');
                                                         // Navigator.push(
                                                         //   context,
                                                         //   PageTransition(
@@ -1009,8 +1103,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
-                                Navigator.of(context).pop();
-                                Navigator.pushNamed(context, '/studentSelectionPage');
+                                Navigator.pushNamed(
+                                    context,
+                                    '/studGuestAssessment',
+                                    arguments: widget.userName);
+                                // Navigator.of(context).pop();
+                                // Navigator.pushNamed(context, '/studentSelectionPage');
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -1345,7 +1443,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "${AppLocalizations.of(context)!.version}: 1.0.0",
+                                    "${AppLocalizations.of(context)!.version}: $version",
                                     style: const TextStyle(
                                         color: Color.fromRGBO(180, 180, 180, 1),
                                         fontFamily: 'Inter',
@@ -1632,9 +1730,13 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                         139, 1),
                                                                   ));
                                                             });
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                        Navigator.pushNamed(context, '/studentSelectionPage');
+                                                        Navigator.pushNamed(
+                                                            context,
+                                                            '/studGuestAssessment',
+                                                            arguments: widget.userName);
+                                                        // Navigator.of(context)
+                                                        //     .pop();
+                                                        // Navigator.pushNamed(context, '/studentSelectionPage');
                                                         // Navigator.push(
                                                         //   context,
                                                         //   PageTransition(

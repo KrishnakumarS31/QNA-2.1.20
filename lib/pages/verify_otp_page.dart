@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/student_forgot_password.dart';
 
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
@@ -234,7 +233,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                     child: Text("   Resend OTP",
                                         style: TextStyle(
                                             color: enableResendButton == false ? Colors.grey :
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                                const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14)))
@@ -462,7 +461,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       onPressed: () {
         setState(() {
           enableResendButton = false;
-          myDuration = Duration(minutes: 5);
+          myDuration = const Duration(minutes: 5);
           countdownTimer =
               Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
         });

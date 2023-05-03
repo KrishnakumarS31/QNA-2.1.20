@@ -5,7 +5,6 @@ import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../EntityModel/user_data_model.dart';
-import '../Pages/welcome_page.dart';
 import '../Services/qna_service.dart';
 import '../pages/change_email_student.dart';
 import '../pages/cookie_policy.dart';
@@ -14,6 +13,7 @@ import '../pages/terms_of_services.dart';
 import '../pages/about_us.dart';
 import '../pages/help_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../DataSource/http_url.dart';
 
 class EndDrawerMenuStudent extends StatefulWidget {
   EndDrawerMenuStudent(
@@ -542,7 +542,92 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                         onTap: () async {
                           showDialog(
                             context: context,
-                            builder: (context) => AlertDialog(
+                            builder: (context) =>
+                            constraints.maxWidth > 700
+                                ? AlertDialog(
+                              insetPadding: EdgeInsets.only(
+                                  left: width * 0.13, right: width * 0.13),
+                              title: Row(
+                                  children: [
+                                    SizedBox(width: localHeight * 0.030),
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      ),
+                                      height: localHeight * 0.1,
+                                      width: width * 0.1,
+                                      child: const Icon(Icons.info_outline_rounded,
+                                        color: Color.fromRGBO(255, 255, 255, 1),
+                                      ),
+                                    ),
+                                    SizedBox(width: localHeight * 0.003),
+                                    Text(AppLocalizations.of(context)!.confirm,
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: localHeight * 0.024,
+                                          color: const Color.fromRGBO(0, 106, 100, 1),
+                                          fontWeight: FontWeight.w700
+                                      ),),
+                                  ]
+                              ),
+                              content: const Text("\t\t\t\tAre you sure you want to logout ??"),
+                              actions: <Widget>[
+                                // constraints.maxWidth > 700
+                                //     ? const SizedBox()
+                                //     :
+                                SizedBox(width: width * 0.030),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                                    minimumSize: const Size(90, 30),
+                                    side: const BorderSide(
+                                      width: 1.5,
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                  ),
+                                  child: Text(AppLocalizations.of(context)!.no,
+                                      style: TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: localHeight * 0.018,
+                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          fontWeight: FontWeight.w500
+                                      )
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                constraints.maxWidth > 700
+                                    ? SizedBox(width: width * 0.05)
+                                    : SizedBox(width: width * 0.005),
+                                ElevatedButton(
+                                    style:
+                                    ElevatedButton.styleFrom(
+                                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                      minimumSize: const Size(90, 30),
+                                    ),
+                                    child: Text(AppLocalizations.of(context)!.yes,
+                                        style: TextStyle(
+                                            fontFamily: 'Inter',
+                                            fontSize: localHeight * 0.018,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500
+                                        )
+                                    ),
+                                    onPressed: () async {
+                                      SharedPreferences preferences =
+                                      await SharedPreferences.getInstance();
+                                      await preferences.clear();
+                                      Navigator.pushNamed(context, '/');
+                                    }
+                                ),
+                                constraints.maxWidth > 700
+                                    ? SizedBox(width: width * 0.040)
+                                    : SizedBox(width: width * 0.030),
+                              ],
+                            )
+                                  : AlertDialog(
                               insetPadding: EdgeInsets.only(
                                   left: width * 0.13, right: width * 0.13),
                               title: Row(children: [
@@ -611,14 +696,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                       SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                       await preferences.clear();
-                                      Navigator.push(
-                                        context,
-                                        PageTransition(
-                                          type: PageTransitionType.rightToLeft,
-                                          child: const WelcomePage(
-                                              ),
-                                        ),
-                                      );
+                                      Navigator.pushNamed(context, '/');
                                     }),
                                 SizedBox(width: localHeight * 0.030),
                               ],
@@ -630,7 +708,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                       Align(
                         alignment: Alignment.center,
                         child: Text(
-                          "${AppLocalizations.of(context)!.version}: 1.0.0",
+                          "${AppLocalizations.of(context)!.version}: $version",
                           style: const TextStyle(
                               color: Color.fromRGBO(180, 180, 180, 1),
                               fontFamily: 'Inter',

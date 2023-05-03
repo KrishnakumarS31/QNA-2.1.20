@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
-import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
-import '../Entity/demo_question_model.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/new_question_provider.dart';
@@ -389,7 +386,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
               if (value!) {
                 widget.question.questionType=="MCQ"?
                 widget.question.questionMark = 1:widget.question.questionMark = 0;
-                Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(widget.question!);
+                Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(widget.question);
               } else {
 
                 Provider.of<NewQuestionProvider>(context, listen: false).removeQuestion(widget.question.questionId!);

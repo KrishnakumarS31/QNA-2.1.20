@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
-import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherQnPreviewAssessment extends StatefulWidget {
   TeacherQnPreviewAssessment(
-      {required this.assessment,
+      {super.key, required this.assessment,
       required this.finalQuestion,
       });
   Question finalQuestion;

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
-import 'package:qna_test/Pages/teacher_looq_search_question.dart';
-import 'package:qna_test/pages/teacher_question_edit.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
-import 'teacher_prepare_qnBank.dart';
 
 class TeacherQuestionBank extends StatefulWidget {
   const TeacherQuestionBank({
@@ -107,7 +103,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                   ])),
             ),
           ),
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(

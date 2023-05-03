@@ -3,7 +3,6 @@ import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/choice_entity.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Pages/teacher_looq_preview.dart';
-import 'package:qna_test/Pages/teacher_questionBank_page.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -345,7 +344,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
@@ -872,10 +871,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {
@@ -906,10 +901,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {
@@ -1024,10 +1015,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         EditChoice editChoice = EditChoice();
                                         setState(() {
                                           chooses[i].text = val;
-                                          print("-----------------------------");
-                                          print(widget.question.choices![i]
-                                              .choiceText);
-                                          print(val);
                                           widget.question.choices![i]
                                               .choiceText = val;
                                           if (addChoiceId.contains(tempChoiceId[i])) {

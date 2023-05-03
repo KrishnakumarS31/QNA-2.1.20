@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/pages/teacher_assessment_landing.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
@@ -70,7 +68,7 @@ class TeacherPublishedAssessmentState
 
       }else{
         for (int i = 0; i < widget.questionList!.length; i++) {
-          mark = mark + widget.questionList![i]!.questionMark!;
+          mark = mark + widget.questionList![i].questionMark!;
         }
       }
 
@@ -104,7 +102,7 @@ class TeacherPublishedAssessmentState
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -113,7 +111,8 @@ class TeacherPublishedAssessmentState
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                 // Navigator.push(
                 //   context,
                 //   PageTransition(
@@ -1085,7 +1084,8 @@ class TeacherPublishedAssessmentState
                               )),
                           //shape: StadiumBorder(),
                           onPressed: () {
-                            Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                            Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                           // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                             // Navigator.of(context).pushAndRemoveUntil(
                             //     MaterialPageRoute(
                             //         builder: (context) => TeacherAssessmentLanding(

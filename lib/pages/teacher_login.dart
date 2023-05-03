@@ -50,7 +50,6 @@ class TeacherLoginState extends State<TeacherLogin> {
   @override
   void initState() {
     super.initState();
-    //check_if_alread_loggedin();
   }
 
   void check_if_alread_loggedin() async {
@@ -510,17 +509,17 @@ class TeacherLoginState extends State<TeacherLogin> {
 
                             if (loginResponse.code == 200) {
                               final SharedPreferences loginData =await SharedPreferences.getInstance();
-                              loginData?.setBool('login', false);
-                              loginData?.setString('email', regNumber);
-                              loginData?.setString('password', passWord);
-                              loginData?.setString('role', 'teacher');
-                              loginData?.setString(
+                              loginData.setBool('login', false);
+                              loginData.setString('email', regNumber);
+                              loginData.setString('password', passWord);
+                              loginData.setString('role', 'teacher');
+                              loginData.setString(
                                   'firstName', loginResponse.data.firstName);
-                              loginData?.setString(
+                              loginData.setString(
                                   'lastName', loginResponse.data.lastName);
-                              loginData?.setString(
+                              loginData.setString(
                                   'token', loginResponse.data.accessToken);
-                              loginData?.setInt(
+                              loginData.setInt(
                                   'userId', loginResponse.data.userId);
                               UserDataModel userDataModel = UserDataModel();
                               userDataModel =
@@ -647,21 +646,6 @@ class TeacherLoginState extends State<TeacherLogin> {
                                       fontWeight: FontWeight.w500,
                                       fontSize: height * 0.0225))),
                         )),
-                        //SizedBox(width: width * 0.15),
-                        // domainName == "https://dev.qnatest.com"
-                        //     ? Container(
-                        //         padding: const EdgeInsets.all(0.0),
-                        //         height: height * 0.08,
-                        //         width: width * 0.2,
-                        //         child:
-                        //             Image.asset("assets/images/SSSH-black.png"),
-                        //       )
-                        //     : Container(
-                        //         padding: const EdgeInsets.all(0.0),
-                        //         height: height * 0.08,
-                        //         width: width * 0.2,
-                        //         child: Image.asset("assets/images/SSSUHE.png"),
-                        //       ),
                       ],
                     ),
                   ]),

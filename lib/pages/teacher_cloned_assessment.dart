@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/EntityModel/CreateAssessmentModel.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
@@ -69,7 +67,6 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
               ? 0
               : finalAssessment.assessmentEnddate!);
     });
-    print(finalAssessment.assessmentId);
   }
 
   @override
@@ -81,7 +78,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -330,7 +327,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                           ),
                         ),
                         Text(
-                          "${assessment.assessmentCode!}",
+                          assessment.assessmentCode!,
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,

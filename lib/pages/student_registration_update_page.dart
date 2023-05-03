@@ -3,7 +3,6 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
-import 'package:qna_test/Pages/student_regis_verify_otp.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';
@@ -310,32 +309,32 @@ class StudentRegistrationUpdatePageState
   void initState() {
     if (widget.isEdit == true) {
       date = DateTime.fromMicrosecondsSinceEpoch(
-          widget.userData!.userDataModel.data!.dob);
+          widget.userData.userDataModel.data!.dob);
       formatted = formatter.format(date);
       studentFirstNameController =
-          widget.userData?.userDataModel.data?.firstName != null
+          widget.userData.userDataModel.data?.firstName != null
               ? TextEditingController(
-                  text: widget.userData?.userDataModel.data?.firstName)
+                  text: widget.userData.userDataModel.data?.firstName)
               : studentFirstNameController;
       studentLastNameController =
-          widget.userData?.userDataModel.data?.lastName != null
+          widget.userData.userDataModel.data?.lastName != null
               ? TextEditingController(
-                  text: widget.userData?.userDataModel.data?.lastName)
+                  text: widget.userData.userDataModel.data?.lastName)
               : studentLastNameController;
       studentEmailController =
-          widget.userData?.userDataModel.data?.email != null
+          widget.userData.userDataModel.data?.email != null
               ? TextEditingController(
-                  text: widget.userData?.userDataModel.data?.email)
+                  text: widget.userData.userDataModel.data?.email)
               : studentEmailController;
       studentRollNumberController =
-          widget.userData?.userDataModel.data?.rollNumber != null
+          widget.userData.userDataModel.data?.rollNumber != null
               ? TextEditingController(
-                  text: widget.userData?.userDataModel.data?.rollNumber)
+                  text: widget.userData.userDataModel.data?.rollNumber)
               : studentRollNumberController;
       studentOrganisationNameController =
-          widget.userData?.userDataModel.data?.organisationName != null
+          widget.userData.userDataModel.data?.organisationName != null
               ? TextEditingController(
-                  text: widget.userData?.userDataModel.data?.organisationName)
+                  text: widget.userData.userDataModel.data?.organisationName)
               : studentOrganisationNameController;
       studentDobController = formatted != null
           ? TextEditingController(text: formatted)

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
-import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
-import '../Entity/demo_question_model.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
@@ -80,7 +76,7 @@ class TeacherAssessmentLooqQuestionBankState
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(

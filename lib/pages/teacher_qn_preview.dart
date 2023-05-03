@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
-import 'teacher_add_my_question_bank.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherPreparePreview extends StatefulWidget {

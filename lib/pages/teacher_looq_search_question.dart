@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_looq_clone_preview.dart';
 
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -108,7 +106,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             automaticallyImplyLeading: false,
             toolbarHeight: height * 0.100,

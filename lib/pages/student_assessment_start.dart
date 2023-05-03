@@ -3,8 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/custom_incorrect_popup.dart';
-import 'package:qna_test/pages/student_assessment_questions.dart';
-import 'package:qna_test/pages/student_search_library.dart';
 import '../Components/end_drawer_menu_student.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
@@ -62,16 +60,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     elevation: 0,
-                    leading: IconButton(
-                      icon: const Icon(
-                        Icons.chevron_left,
-                        size: 30,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    automaticallyImplyLeading: false,
+                    // leading: IconButton(
+                    //   icon: const Icon(
+                    //     Icons.chevron_left,
+                    //     size: 30,
+                    //     color: Colors.white,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: EndDrawerMenuStudent(
@@ -271,7 +270,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     Navigator.of(context).pop();
                                     if (assessmentID.text.length >= 8) {
                                       if (values.code == 200) {
-                                        print(values.toString());
                                         Navigator.pushNamed(
                                             context,
                                             '/studQuestion',

@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Entity/Teacher/question_entity_for_assessment_settings_published.dart';
-import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
-import 'package:qna_test/pages/teacher_assessment_landing.dart';
-import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
-import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Entity/Teacher/response_entity.dart';
@@ -14,7 +8,6 @@ import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
-import '../Providers/questions_for_assessment_settings_published.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -158,14 +151,10 @@ class TeacherSelectedQuestionAssessmentState
       questionList.addAll(
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .getAllQuestion);
-      print("ooooooooooooooooooooooooooooooooooooooooooooooo");
-      print(questionList[0].question);
-      print(questionList[0].questionMark);
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
           .getAssessment;
       totalQues = questionList.length;
       for (int i = 0; i < questionList.length; i++) {
-        print(questionList[i].questionMark!);
         totalMark = totalMark + questionList[i].questionMark!;
       }
 
@@ -997,8 +986,6 @@ class TeacherSelectedQuestionAssessmentState
                           left: width * 0.78,
                           child: FloatingActionButton(
                             onPressed: () {
-                              print(questionList[0].question);
-                              print(questionList[0].questionMark);
                               Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,null,widget.assessmentType]);
                               // Navigator.push(
                               //   context,
@@ -1048,7 +1035,8 @@ class TeacherSelectedQuestionAssessmentState
                                 await QnaService.createAssessmentTeacherService(
                                     assessment);
                           }
-                          Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                          Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                        // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                           // Navigator.of(context).pushAndRemoveUntil(
                           //     MaterialPageRoute(
                           //         builder: (context) => TeacherAssessmentLanding(

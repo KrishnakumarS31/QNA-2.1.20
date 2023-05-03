@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Providers/question_prepare_provider_final.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
@@ -87,7 +84,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -1154,7 +1151,6 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                           onPressed: () {
                             // Provider.of<CreateAssessmentProvider>(context, listen: false)
                             //     .getAssessment;
-                            print(finalAssessment.assessmentSettings.toString());
                             Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: 'editActive',);
                           },
                           child: Text(

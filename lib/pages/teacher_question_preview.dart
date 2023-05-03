@@ -31,8 +31,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question!.advisorText!;
-    urlController.text = widget.question!.advisorUrl!;
+    adviceController.text = widget.question.advisorText!;
+    urlController.text = widget.question.advisorUrl!;
   }
 
   @override
@@ -124,7 +124,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                 Row(
                                   children: [
                                     Text(
-                                      widget.question!.subject!,
+                                      widget.question.subject!,
                                       style: TextStyle(
                                         color:
                                             const Color.fromRGBO(28, 78, 80, 1),
@@ -134,7 +134,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                       ),
                                     ),
                                     Text(
-                                      '  |  ${widget.question!.topic}  -  ${widget.question!.subTopic}',
+                                      '  |  ${widget.question.topic}  -  ${widget.question.subTopic}',
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -146,7 +146,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                   ],
                                 ),
                                 Text(
-                                  widget.question!.datumClass!,
+                                  widget.question.datumClass!,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.015,
@@ -170,7 +170,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                             Padding(
                               padding:
                                   const EdgeInsets.only(right: 10, left: 10),
-                              child: Text(widget.question!.questionType!,
+                              child: Text(widget.question.questionType!,
                                   style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -190,7 +190,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                               left: width * 0.03, top: height * 0.02),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text(widget.question!.question!,
+                            child: Text(widget.question.question!,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: 'Inter',
@@ -206,7 +206,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                           child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: ChooseWidget(
-                                  question: widget.question!,
+                                  question: widget.question,
                                   selected: selected,
                                   height: height,
                                   width: width)),
@@ -305,8 +305,6 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                           ),
                           //shape: StadiumBorder(),
                           onPressed: () async {
-                            print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-                            print(widget.editQuestionModel.questionType);
                             Question question = Question();
                             question.subject = widget.editQuestionModel.subject;
                             question.topic = widget.editQuestionModel.topic;

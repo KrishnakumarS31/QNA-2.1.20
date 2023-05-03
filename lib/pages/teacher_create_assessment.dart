@@ -2,25 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Components/today_date.dart';
-import 'package:qna_test/Pages/teacher_prepare_qnBank.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
-import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
-import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart' as TeacherPublishedAss;
-import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../EntityModel/login_entity.dart';
 import '../Providers/create_assessment_provider.dart';
-import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart' as QuestionEntity;
 import '../Services/qna_service.dart';
-import '../Entity/question_paper_model.dart' as QuestionPaperModel;
 
 class TeacherCreateAssessment extends StatefulWidget {
   const TeacherCreateAssessment({
@@ -76,7 +69,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -1062,11 +1055,9 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                     color: Color.fromRGBO(48, 145, 139, 1),
                                   ));
                                 });
-                            print("-1");
                             ResponseEntity statusCode =
                                 await QnaService.createAssessmentTeacherService(
                                     assessmentVal);
-                            print("0");
 
                             if (statusCode.code == 200) {
                               String assessmentCode = statusCode.data

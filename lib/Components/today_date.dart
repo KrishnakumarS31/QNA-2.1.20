@@ -7,8 +7,6 @@ String todayDate() {
   return formatted;
 }
 
-
-
 String convertDate(int? date)
 {
   DateTime dateValue;
@@ -22,6 +20,7 @@ String convertTime(int? date)
   dateValue = DateTime.fromMicrosecondsSinceEpoch(date!);
   return "${dateValue.hour}:${dateValue.minute}";
 }
+
 String convertDuration(int? duration)
 {
   String assessmentDuration = "";
@@ -37,6 +36,58 @@ String convertDuration(int? duration)
   {
     assessmentDuration = "${(duration)} mins";
   }
+
+  return assessmentDuration;
+}
+
+String convertAttemptDuration(int? duration) {
+  duration = 60;
+  String assessmentDuration = '';
+  if (duration< 60) {
+    if (duration.toString().length == 1) {
+      assessmentDuration = "00:0$duration min";
+    }
+    else if (duration.toString().length == 2)
+    {
+      assessmentDuration = "00:$duration min";
+    }
+  }
+
+  else if(duration == 60)
+    {
+      assessmentDuration = "01:00 hr";
+    }
+
+  else if (duration> 60) {
+    int d=0;
+    int f;
+    List<String> ch;
+    String b;
+    double c;
+    double g = duration / 60;
+    f = g.toInt();
+    ch = g.toString().split(".");
+    if(ch.length == 2)
+    { if( ch[1] != null && ch[1].length == 1)
+    {
+      b= "0.${ch[1]}";
+      c= double.parse(b);
+      d = (c*60).toInt();
+      assessmentDuration = "$f:$d hrs";
+    }
+    else if(ch[1] != null && ch[1].length == 2) {
+      b= "${ch[1]}";
+      d= (int.parse(b)) * 60;
+      assessmentDuration = "$f:$d min";
+    }}
+
+    else if(ch.length ==1)
+      {
+        assessmentDuration ="$f:00 hrs";
+      }
+
+  }
+
 
   return assessmentDuration;
 }

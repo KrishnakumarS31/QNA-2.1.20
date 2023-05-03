@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
-import 'package:qna_test/Pages/teacher_assessment_settings_publish.dart';
-import 'package:qna_test/pages/teacher_assessment_landing.dart';
-import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
-import 'package:qna_test/pages/teacher_published_assessment.dart';
-import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
-import '../Providers/question_prepare_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 
@@ -266,7 +258,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
         child: Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
-          endDrawer: EndDrawerMenuTeacher(),
+          endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(
@@ -1136,7 +1128,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               await QnaService.editAssessmentTeacherService(
                                   assessment, assessment.assessmentId!);
                           if (statusCode.code == 200) {
-                            Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                            Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                          //  Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                             // Navigator.of(context).pushAndRemoveUntil(
                             //     MaterialPageRoute(
                             //         builder: (context) => TeacherAssessmentLanding(

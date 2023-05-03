@@ -82,7 +82,6 @@ class TeacherAssessmentSettingPublishState
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
-    print(assessment.assessmentId);
     testTypeBeforChange=assessment.assessmentType??'';
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
@@ -2136,7 +2135,7 @@ class TeacherAssessmentSettingPublishState
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
                                           widget.assessmentType=='editActive'?
-                                          SizedBox(height: 0)
+                                          const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
@@ -2246,10 +2245,11 @@ class TeacherAssessmentSettingPublishState
                                                       listen: false)
                                                       .reSetQuestionList();
                                                   if (statusCode.code == 200) {
-                                                    Navigator.pushNamedAndRemoveUntil(
-                                                        context,
-                                                        '/teacherAssessmentLanding',
-                                                            (route) => route.isFirst);
+                                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                                                    // Navigator.pushNamedAndRemoveUntil(
+                                                    //     context,
+                                                    //     '/teacherAssessmentLanding',
+                                                    //         (route) => route.isFirst);
 // Navigator.of(context).pushAndRemoveUntil(
 //     MaterialPageRoute(
 //         builder: (context) => TeacherAssessmentLanding(
@@ -2285,7 +2285,7 @@ class TeacherAssessmentSettingPublishState
                                             height: height * 0.03,
                                           ),
                                           widget.assessmentType=='editActive'?
-                                          SizedBox(height: 0)
+                                          const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
@@ -2390,14 +2390,11 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity();
                                                   String assessmentCode = '';
                                                   if (widget.assessmentType=='inprogress') {
-                                                    print("inside if");
                                                     statusCode = await QnaService
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
                                                             .assessmentId!);
-                                                    print(statusCode.code);
-                                                    print(statusCode.message);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -2471,7 +2468,7 @@ class TeacherAssessmentSettingPublishState
                                             height: height * 0.03,
                                           ),
                                           widget.assessmentType!='editActive'?
-                                          SizedBox(height: 0)
+                                          const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
@@ -2491,7 +2488,6 @@ class TeacherAssessmentSettingPublishState
                                                           82, 165, 160, 1),
                                                     )),
                                                 onPressed: () async {
-                                                  print("-------------------------------------------------------------------------------------");
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
@@ -3200,9 +3196,6 @@ class TeacherAssessmentSettingPublishState
                                                                     0.020),
                                                           ),
                                                           onChanged: (val) {
-                                                            print("hours");
-                                                            print(val);
-                                                            print(int.parse(val));
                                                             setState(() {
                                                               hours =
                                                                   int.parse(val);
@@ -4639,7 +4632,7 @@ class TeacherAssessmentSettingPublishState
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
                                           widget.assessmentType=='editActive'?
-                                        SizedBox(height: 0)
+                                        const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
@@ -4749,10 +4742,11 @@ class TeacherAssessmentSettingPublishState
                                                       listen: false)
                                                       .reSetQuestionList();
                                                   if (statusCode.code == 200) {
-                                                    Navigator.pushNamedAndRemoveUntil(
-                                                        context,
-                                                        '/teacherAssessmentLanding',
-                                                            (route) => route.isFirst);
+                                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                                                    // Navigator.pushNamedAndRemoveUntil(
+                                                    //     context,
+                                                    //     '/teacherAssessmentLanding',
+                                                    //         (route) => route.isFirst);
 // Navigator.of(context).pushAndRemoveUntil(
 //     MaterialPageRoute(
 //         builder: (context) => TeacherAssessmentLanding(
@@ -4788,7 +4782,7 @@ class TeacherAssessmentSettingPublishState
                                             height: height * 0.03,
                                           ),
                                           widget.assessmentType=='editActive'?
-                                          SizedBox(height: 0)
+                                          const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
@@ -4893,14 +4887,11 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity();
                                                   String assessmentCode = '';
                                                   if (widget.assessmentType=='inprogress') {
-                                                    print("inside if");
                                                     statusCode = await QnaService
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
                                                             .assessmentId!);
-                                                    print(statusCode.code);
-                                                    print(statusCode.message);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -4975,7 +4966,7 @@ class TeacherAssessmentSettingPublishState
                                           ),
 
                                           widget.assessmentType!='editActive'?
-                                          SizedBox(height: 0)
+                                          const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,
@@ -4995,7 +4986,6 @@ class TeacherAssessmentSettingPublishState
                                                           82, 165, 160, 1),
                                                     )),
                                                 onPressed: () async {
-                                                  print("-------------------------------------------------------------------------------------");
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';

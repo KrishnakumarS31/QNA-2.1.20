@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
-import 'package:qna_test/pages/teacher_my_question_bank.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
-import 'teacher_prepare_preview_qnBank.dart';
 
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   const TeacherQuestionPreviewDelete(
@@ -139,7 +136,7 @@ class TeacherQuestionPreviewDeleteState
                               ),
                               IconButton(onPressed: (){
                                 Navigator.of(context).pop();
-                              }, icon: Icon(Icons.close))
+                              }, icon: const Icon(Icons.close))
                             ],
                           ),
                         ),

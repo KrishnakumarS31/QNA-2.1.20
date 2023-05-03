@@ -155,16 +155,12 @@ class TeacherClonedAssessmentPreviewState
         mark = mark + quesList[i].questionMark!;
       }
     });
-    print(finalAssessment.assessmentId);
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    TextEditingController teacherQuestionBankSearchController =
-        TextEditingController();
-    Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -350,10 +346,11 @@ class TeacherClonedAssessmentPreviewState
                               await QnaService.createAssessmentTeacherService(
                                   finalAssessment);
                           if (statusCode.code == 200) {
-                            Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                '/teacherAssessmentLanding',
-                                (route) => route.isFirst);
+                            Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                            // Navigator.pushNamedAndRemoveUntil(
+                            //     context,
+                            //     '/teacherAssessmentLanding',
+                            //     (route) => route.isFirst);
                             // Navigator.of(context).pushAndRemoveUntil(
                             //     MaterialPageRoute(
                             //         builder: (context) => TeacherAssessmentLanding(
@@ -507,7 +504,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .deleteQuestionList(widget.index);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
-            .removeLooqQuestionInAssess(widget.question!.questionId);
+            .removeLooqQuestionInAssess(widget.question.questionId);
         Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',(route) => route.isFirst,arguments: widget.assessmentType);
 
         // Navigator.push(

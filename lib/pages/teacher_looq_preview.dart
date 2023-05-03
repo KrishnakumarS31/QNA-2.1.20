@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/EntityModel/create_question_model.dart';
-import 'package:qna_test/Pages/teacher_selection_page.dart';
 
 import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
@@ -33,8 +31,8 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
   @override
   void initState() {
     super.initState();
-    adviceController.text = widget.question!.advisorText!;
-    urlController.text = widget.question!.advisorUrl!;
+    adviceController.text = widget.question.advisorText!;
+    urlController.text = widget.question.advisorUrl!;
   }
 
   @override
@@ -132,7 +130,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                                 Row(
                                   children: [
                                     Text(
-                                      widget.question!.subject!,
+                                      widget.question.subject!,
                                       style: TextStyle(
                                         color:
                                         const Color.fromRGBO(28, 78, 80, 1),
@@ -142,9 +140,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                                       ),
                                     ),
                                     Text(
-                                      '  |  ${widget.question!
-                                          .topic}  -  ${widget.question!
-                                          .subTopic}',
+                                      '  |  ${widget.question.topic}  -  ${widget.question.subTopic}',
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -156,7 +152,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                                   ],
                                 ),
                                 Text(
-                                  widget.question!.datumClass!,
+                                  widget.question.datumClass!,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.015,
@@ -180,7 +176,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             Padding(
                               padding:
                               const EdgeInsets.only(right: 10, left: 10),
-                              child: Text(widget.question!.questionType!,
+                              child: Text(widget.question.questionType!,
                                   style: TextStyle(
                                       color:
                                       const Color.fromRGBO(82, 165, 160, 1),
@@ -200,7 +196,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                               left: width * 0.03, top: height * 0.02),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text(widget.question!.question!,
+                            child: Text(widget.question.question!,
                                 style: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: 'Inter',
@@ -216,7 +212,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                           child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
                               child: ChooseWidget(
-                                  question: widget.question!,
+                                  question: widget.question,
                                   selected: selected,
                                   height: height,
                                   width: width)),

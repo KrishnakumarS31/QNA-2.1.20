@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
-import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -209,13 +207,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
       ),
       onPressed: () {
         if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
-          print("true");
           Provider.of<NewQuestionProvider>(context, listen: false)
-              .deleteQuestionList(widget.quesNum!);
-          print("line 2");
+              .deleteQuestionList(widget.quesNum);
           Provider.of<QuestionPrepareProvider>(context, listen: false)
-              .deleteQuestionList(widget.quesNum!);
-          print("line 3");
+              .deleteQuestionList(widget.quesNum);
           if(Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion.isEmpty){
             int count = 0;
             Navigator.popUntil(context, (route) {
@@ -223,7 +218,6 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             });
           }
           else{
-            print("line 1");
             int count = 0;
             Navigator.popUntil(context, (route) {
               return count++ == 5;
@@ -231,9 +225,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
           }
         }
         else{
-          print("false");
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-              .deleteQuestionList(widget.quesNum!);
+              .deleteQuestionList(widget.quesNum);
           if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
             int count = 0;
             Navigator.popUntil(context, (route) {
@@ -242,14 +235,12 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             //Navigator.pushNamed(context, '/teacherQuestionBank');
           }
           else{
-            print("line 1");
             int count = 0;
             Navigator.popUntil(context, (route) {
               return count++ == 5;
             });
           }
 
-          print("line 1");
           // Navigator.push(
           //   context,
           //   PageTransition(
@@ -304,20 +295,20 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   @override
   void initState() {
     super.initState();
-    _groupValue = widget.finalQuestion!.questionType;
-    subjectController.text = widget.finalQuestion!.subject!;
-    topicController.text = widget.finalQuestion!.topic!;
-    subtopicController.text = widget.finalQuestion!.subTopic!;
-    classRoomController.text = widget.finalQuestion!.datumClass!;
-    questionController.text = widget.finalQuestion!.question!;
-    urlController.text = widget.finalQuestion!.advisorUrl!;
-    adviceController.text = widget.finalQuestion!.advisorText!;
-    selected = widget.finalQuestion!.choices;
-    for (int i = 0; i < widget.finalQuestion!.choices!.length; i++) {
+    _groupValue = widget.finalQuestion.questionType;
+    subjectController.text = widget.finalQuestion.subject!;
+    topicController.text = widget.finalQuestion.topic!;
+    subtopicController.text = widget.finalQuestion.subTopic!;
+    classRoomController.text = widget.finalQuestion.datumClass!;
+    questionController.text = widget.finalQuestion.question!;
+    urlController.text = widget.finalQuestion.advisorUrl!;
+    adviceController.text = widget.finalQuestion.advisorText!;
+    selected = widget.finalQuestion.choices;
+    for (int i = 0; i < widget.finalQuestion.choices!.length; i++) {
       chooses.add(TextEditingController());
-      chooses[i].text = widget.finalQuestion!.choices![i]!.choiceText!;
+      chooses[i].text = widget.finalQuestion.choices![i].choiceText!;
       radioList.add(false);
-      if (widget.finalQuestion!.choices![i].rightChoice!) {
+      if (widget.finalQuestion.choices![i].rightChoice!) {
         radioList[i] = true;
       }
     }
@@ -332,7 +323,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(

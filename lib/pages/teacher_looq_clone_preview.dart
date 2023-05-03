@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
-import 'package:qna_test/Pages/teacher_looq_question_edit.dart';
 
 import '../Components/end_drawer_menu_teacher.dart';
 
@@ -40,7 +38,7 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             appBar: AppBar(
               leading: IconButton(
                 icon: const Icon(
