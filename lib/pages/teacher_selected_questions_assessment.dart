@@ -1284,7 +1284,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             Navigator.pushNamed(
                 context,
                 '/teacherAssessmentQuestionPreview',
-                arguments: [widget.assessment,widget.question, widget.index,'']
+                arguments: [widget.assessment,widget.question, widget.index,'',widget.assessmentType]
             );
           },
           child: Container(

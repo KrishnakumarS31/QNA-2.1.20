@@ -243,11 +243,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
           }
           else{
             print("line 1");
-            Navigator.pushNamed(
-                context,
-                '/teacherAddMyQuestionBank',
-                arguments: false
-            );
+            int count = 0;
+            Navigator.popUntil(context, (route) {
+              return count++ == 5;
+            });
           }
 
           print("line 1");

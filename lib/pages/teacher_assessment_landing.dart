@@ -1272,7 +1272,7 @@ class _CardInfoState extends State<CardInfo> {
                   ? ''
                   : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
               print("active");
-              print(widget.assessment.assessmentSettings.toString());
+              print(editAssessment.assessmentId);
               editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
               if (widget.assessment.questions!.isEmpty) {
               }

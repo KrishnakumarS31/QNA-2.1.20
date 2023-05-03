@@ -157,6 +157,7 @@ class TeacherAssessmentLooqQuestionPreviewState
                                     SizedBox(
                                       width: width * 0.05,
                                       child: TextField(
+                                        enabled: widget.question.questionType=='MCQ',
                                         controller: markController,
                                         style: TextStyle(
                                             fontSize: height * 0.02,

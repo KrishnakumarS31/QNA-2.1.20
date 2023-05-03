@@ -155,6 +155,7 @@ class TeacherClonedAssessmentPreviewState
         mark = mark + quesList[i].questionMark!;
       }
     });
+    print(finalAssessment.assessmentId);
   }
 
   @override
@@ -402,6 +403,9 @@ class TeacherClonedAssessmentPreviewState
                           if(markZero){
                             showAlertDialog(context, height);
                           }else{
+                            finalAssessment.assessmentId=null;
+                            Provider.of<CreateAssessmentProvider>(context, listen: false)
+                                .updateAssessment(finalAssessment);
                             Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
                           }
 

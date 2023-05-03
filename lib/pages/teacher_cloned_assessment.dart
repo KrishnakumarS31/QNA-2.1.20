@@ -69,6 +69,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
               ? 0
               : finalAssessment.assessmentEnddate!);
     });
+    print(finalAssessment.assessmentId);
   }
 
   @override
@@ -1095,12 +1096,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   @override
   void initState() {
-    for (int i = 0; i < widget.question.choices!.length; i++) {
-      if (widget.question.choices![i].rightChoice!) {
-        ans = '${widget.question.choices![i].choiceText}, $ans';
+    if(widget.question.questionType=="MCQ"){
+      for (int i = 0; i < widget.question.choices!.length; i++) {
+        if (widget.question.choices![i].rightChoice!) {
+          ans = '${widget.question.choices![i].choiceText}, $ans';
+        }
       }
+      ans = ans.substring(0, ans.length - 2);
     }
-    ans = ans.substring(0,ans.length-2);
     super.initState();
   }
 

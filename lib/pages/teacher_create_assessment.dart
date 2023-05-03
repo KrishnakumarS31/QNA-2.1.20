@@ -8,6 +8,7 @@ import 'package:qna_test/pages/teacher_assessment_question_bank.dart';
 import 'package:qna_test/pages/teacher_prepare_ques_for_assessment.dart';
 import 'package:qna_test/pages/teacher_published_assessment.dart' as TeacherPublishedAss;
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
@@ -994,11 +995,26 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(
+                            if(newQuestions.isEmpty){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: 'Alert',
+                                    content: 'At least one question should be created',
+                                    button: AppLocalizations.of(context)!.retry,
+                                  ),
+                                ),
+                              );
+                            }
+                            else{
+                              Navigator.pushNamed(
                                 context,
                                 '/teacherSelectedQuestionAssessment',
-                                arguments: [newQuestions,'new'],
-                            );
+                                arguments: [newQuestions, 'new'],
+                              );
+                            }
                             // Navigator.push(
                             //   context,
                             //   PageTransition(
