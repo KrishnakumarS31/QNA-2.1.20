@@ -277,22 +277,9 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                 await QnaService.updatePassword(
                                     oldPassword.text,
                                     newPassword.text,
-                                   widget.userId);
-                            if (statusCode.code == 200) {
+                                   widget.userId,context);
+                            if (statusCode.code == 200 && oldPassword.text.isNotEmpty && newPassword.text.isNotEmpty) {
                               showAlertDialog(context);
-                            } else {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: CustomDialog(
-                                    title: 'Incorrect Password',
-                                    content:
-                                        'Your Password has not been changed',
-                                    button: AppLocalizations.of(context)!.retry,
-                                  ),
-                                ),
-                              );
                             }
                           }
                         },

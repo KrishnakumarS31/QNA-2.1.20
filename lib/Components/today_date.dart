@@ -41,9 +41,8 @@ String convertDuration(int? duration)
 }
 
 String convertAttemptDuration(int? duration) {
-  duration = 60;
   String assessmentDuration = '';
-  if (duration< 60) {
+  if (duration!< 60) {
     if (duration.toString().length == 1) {
       assessmentDuration = "00:0$duration min";
     }
@@ -58,7 +57,7 @@ String convertAttemptDuration(int? duration) {
       assessmentDuration = "01:00 hr";
     }
 
-  else if (duration> 60) {
+  else if (duration! > 60) {
     int d=0;
     int f;
     List<String> ch;

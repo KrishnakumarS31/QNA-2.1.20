@@ -7,10 +7,10 @@ import '../Entity/Teacher/question_entity.dart';
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   const TeacherQuestionPreviewDelete(
       {super.key,
-      this.assessment,
-      required this.question,
-      required this.index,
-     });
+        this.assessment,
+        required this.question,
+        required this.index,
+      });
 
   final Question question;
   final int index;
@@ -129,7 +129,7 @@ class TeacherQuestionPreviewDeleteState
                                 child: Text('${widget.question.questionType}',
                                     style: TextStyle(
                                         color:
-                                            const Color.fromRGBO(82, 165, 160, 1),
+                                        const Color.fromRGBO(82, 165, 160, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
                                         fontSize: height * 0.02)),
@@ -178,7 +178,7 @@ class TeacherQuestionPreviewDeleteState
                             child: Text("Advisor",
                                 style: TextStyle(
                                     color:
-                                        const Color.fromRGBO(82, 165, 160, 1),
+                                    const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                     fontSize: height * 0.02)),
@@ -193,7 +193,7 @@ class TeacherQuestionPreviewDeleteState
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
                                 labelText:
-                                    'Suggest what to study if answered incorrectly ',
+                                'Suggest what to study if answered incorrectly ',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -226,7 +226,7 @@ class TeacherQuestionPreviewDeleteState
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(255, 255, 255, 1),
+                            const Color.fromRGBO(255, 255, 255, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -234,11 +234,10 @@ class TeacherQuestionPreviewDeleteState
                           ),
                           //shape: StadiumBorder(),
                           onPressed: () {
-                            Question ques = Question();
                             Navigator.pushNamed(
                                 context,
                                 '/preparePreviewQnBank',
-                                arguments: [ques,widget.question,]
+                                arguments: [widget.question,]
                             );
                             // Navigator.push(
                             //   context,
@@ -266,7 +265,7 @@ class TeacherQuestionPreviewDeleteState
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -275,12 +274,12 @@ class TeacherQuestionPreviewDeleteState
                           //shape: StadiumBorder(),
                           onPressed: () {
                             Provider.of<QuestionPrepareProviderFinal>(context,
-                                    listen: false)
+                                listen: false)
                                 .deleteQuestionList(widget.index);
                             Navigator.pushNamed(
-                                context,
-                                '/teacherMyQuestionBank',
-                                arguments: widget.assessment,
+                              context,
+                              '/teacherMyQuestionBank',
+                              arguments: widget.assessment,
                             );
                             // Navigator.push(
                             //   context,
@@ -345,42 +344,42 @@ class _ChooseWidgetState extends State<ChooseWidget> {
       children: [
         for (int j = 0; j < widget.question.choices!.length; j++)
           MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.only(bottom: widget.height * 0.013),
-              child: Container(
-                  width: widget.width * 0.744,
-                  height: widget.height * 0.0412,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.choices![j].rightChoice!)
-                        ? const Color.fromRGBO(82, 165, 160, 1)
-                        : const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: widget.width * 0.02,
-                        ),
-                        Text(
-                          '${widget.question.choices![j].choiceText}',
-                          style: TextStyle(
-                            color: (widget.question.choices![j].rightChoice!)
-                                ? const Color.fromRGBO(255, 255, 255, 1)
-                                : const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: widget.height * 0.0162,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ])),
-            ),
-            ))
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: widget.height * 0.013),
+                  child: Container(
+                      width: widget.width * 0.744,
+                      height: widget.height * 0.0412,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(
+                            color: const Color.fromRGBO(209, 209, 209, 1)),
+                        color: (widget.question.choices![j].rightChoice!)
+                            ? const Color.fromRGBO(82, 165, 160, 1)
+                            : const Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: widget.width * 0.02,
+                            ),
+                            Text(
+                              '${widget.question.choices![j].choiceText}',
+                              style: TextStyle(
+                                color: (widget.question.choices![j].rightChoice!)
+                                    ? const Color.fromRGBO(255, 255, 255, 1)
+                                    : const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: widget.height * 0.0162,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ])),
+                ),
+              ))
       ],
     );
   }

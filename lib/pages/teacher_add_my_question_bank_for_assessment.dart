@@ -82,10 +82,10 @@ class TeacherAddMyQuestionBankForAssessmentState
         //   Provider.of<QuestionPrepareProvider>(context, listen: false)
         //       .reSetQuestionList();
         CreateAssessmentModel.CreateAssessmentModel assessmentVal =
-        Provider.of<CreateAssessmentProvider>(
-            context,
-            listen:
-            false).getAssessment;
+            Provider.of<CreateAssessmentProvider>(
+                context,
+                listen:
+                false).getAssessment;
         assessmentVal.addQuestion?.addAll(finalQuesList);
         for(int i =0;i<finalQuesList.length;i++){
           finalQuesList[i].questionId=assessmentVal.addQuestion!.length+i-100;
@@ -102,21 +102,22 @@ class TeacherAddMyQuestionBankForAssessmentState
             false)
             .updateAssessment(
             assessmentVal);
+        //Navigator.pushNamed(context, '/teacherCreateAssessment');
         Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
         // Navigator.of(context).pushAndRemoveUntil(
         //     MaterialPageRoute(
         //         builder: (context) => TeacherCreateAssessment(
         //             )),
         //         (route) => route.isFirst);
-          // Navigator.push(
-          //   context,
-          //   PageTransition(
-          //     type: PageTransitionType.rightToLeft,
-          //     child: TeacherCreateAssessment(
-          //         //assessment: widget.assessment,
-          //         setLocale: widget.setLocale),
-          //   ),
-          // );
+        // Navigator.push(
+        //   context,
+        //   PageTransition(
+        //     type: PageTransitionType.rightToLeft,
+        //     child: TeacherCreateAssessment(
+        //         //assessment: widget.assessment,
+        //         setLocale: widget.setLocale),
+        //   ),
+        // );
         // }
       },
     );
@@ -223,9 +224,9 @@ class TeacherAddMyQuestionBankForAssessmentState
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: Container(
@@ -246,7 +247,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                             color: const Color.fromRGBO(28, 78, 80, 0.08),
                           ),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(20))),
+                          const BorderRadius.all(Radius.circular(20))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -262,7 +263,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                       fontSize: height * 0.02,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(28, 78, 80, 1),
+                                      const Color.fromRGBO(28, 78, 80, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
@@ -271,7 +272,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                       fontSize: height * 0.015,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],
@@ -292,7 +293,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
@@ -304,7 +305,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
@@ -316,7 +317,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                               ],
@@ -332,7 +333,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
                                     color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
+                                    const Color.fromRGBO(102, 102, 102, 1),
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
@@ -363,12 +364,12 @@ class TeacherAddMyQuestionBankForAssessmentState
                               //     }),
                               for (int i = 0; i < finalQuesList.length; i++)
                                 QuestionPreview(
-                                    height: height,
-                                    assessment: widget.assessment,
-                                    width: width,
-                                    question: finalQuesList[i],
-                                    quesNum: i,
-                                    ),
+                                  height: height,
+                                  assessment: widget.assessment,
+                                  width: width,
+                                  question: finalQuesList[i],
+                                  quesNum: i,
+                                ),
                             ],
                           ),
                         ),
@@ -379,37 +380,37 @@ class TeacherAddMyQuestionBankForAssessmentState
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                            onTap: (){
-                              Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child: TeacherPrepareQuesForAssessment(
-                              //         assessment: widget.assessment,
-                              //         ),
-                              //   ),
-                              // );
-                            },
-                            child: FloatingActionButton(
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+                                onTap: (){
+                                  Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+                                  // Navigator.push(
+                                  //   context,
+                                  //   PageTransition(
+                                  //     type: PageTransitionType.rightToLeft,
+                                  //     child: TeacherPrepareQuesForAssessment(
+                                  //         assessment: widget.assessment,
+                                  //         ),
+                                  //   ),
+                                  // );
+                                },
+                                child: FloatingActionButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
 
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: TeacherPrepareQuesForAssessment(
-                                //         assessment: widget.assessment,
-                                //         ),
-                                //   ),
-                                // );
-                              },
-                              backgroundColor:
+                                    // Navigator.push(
+                                    //   context,
+                                    //   PageTransition(
+                                    //     type: PageTransitionType.rightToLeft,
+                                    //     child: TeacherPrepareQuesForAssessment(
+                                    //         assessment: widget.assessment,
+                                    //         ),
+                                    //   ),
+                                    // );
+                                  },
+                                  backgroundColor:
                                   const Color.fromRGBO(28, 78, 80, 1),
-                              child:  const Icon(Icons.add),
-                            ),
-                          ))
+                                  child:  const Icon(Icons.add),
+                                ),
+                              ))
                       )
                     ],
                   ),
@@ -443,12 +444,12 @@ class TeacherAddMyQuestionBankForAssessmentState
 }
 
 class QuestionPreview extends StatelessWidget {
-   QuestionPreview(
+  QuestionPreview(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.question,
-      required this.quesNum,
+        required this.height,
+        required this.width,
+        required this.question,
+        required this.quesNum,
         required this.assessment,
       })
       : super(key: key);
@@ -487,51 +488,51 @@ class QuestionPreview extends StatelessWidget {
                         fontWeight: FontWeight.w600),
                   ),
                   MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        '/teacherQuesDelete',
-                        arguments: [
-                          quesNum,
-                          question,
-                          assessment
-                        ],);
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            '/teacherQuesDelete',
+                            arguments: [
+                              quesNum,
+                              question,
+                              assessment
+                            ],);
 
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: TeacherQuesDelete(
-                      //         quesNum: quesNum,
-                      //         finalQuestion: question,
-                      //     assessment: assessment,),
-                      //   ),
-                      // );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.edit_button,
-                          //'Edit',
-                          style: TextStyle(
-                              fontSize: height * 0.0185,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontWeight: FontWeight.w400),
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherQuesDelete(
+                          //         quesNum: quesNum,
+                          //         finalQuestion: question,
+                          //     assessment: assessment,),
+                          //   ),
+                          // );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.edit_button,
+                              //'Edit',
+                              style: TextStyle(
+                                  fontSize: height * 0.0185,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              width: width * 0.01,
+                            ),
+                            const Icon(
+                              Icons.mode_edit_outline_outlined,
+                              color: Color.fromRGBO(28, 78, 80, 1),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: width * 0.01,
-                        ),
-                        const Icon(
-                          Icons.mode_edit_outline_outlined,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                      ],
-                    ),
-                  ))
+                      ))
                 ],
               ),
               SizedBox(

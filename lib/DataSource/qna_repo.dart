@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:page_transition/page_transition.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/assessment_settings_model.dart' as AssessmentSettings;
 import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/edit_question_model.dart';
@@ -143,7 +145,21 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> updatePassword(
-      String oldPassword, String newPassword, int userId) async {
+      String oldPassword, String newPassword, int userId,BuildContext context) async {
+    if(oldPassword.isEmpty || newPassword.isEmpty) {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Incorrect Password',
+            content:
+            'Your Password has not been changed',
+            button: "Retry",
+          ),
+        ),
+      );
+      }
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity responses =
         ResponseEntity(code: 0, message: 'Incorrect OTP');
@@ -157,16 +173,18 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-
+    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
+      print(email);
+      print(pass);
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
-      updatePassword(oldPassword, newPassword, userId);
+      updatePassword(oldPassword, newPassword, userId,context);
     } else {}
 
     return responses;

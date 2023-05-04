@@ -266,7 +266,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                           if (valid || newEmail.text == reNewEmail.text) {
                             ResponseEntity response =
                             await QnaService.updatePassword(oldEmail.text,
-                                newEmail.text, widget.userId);
+                                newEmail.text, widget.userId,context);
                             if (response.code == 200) {
                               Navigator.push(
                                 context,

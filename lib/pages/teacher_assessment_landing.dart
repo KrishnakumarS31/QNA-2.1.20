@@ -6,6 +6,7 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Questions;
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../EntityModel/user_data_model.dart';
 import '../Providers/create_assessment_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Providers/edit_assessment_provider.dart';
@@ -42,6 +43,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   ScrollController scrollController = ScrollController();
   int pageLimit = 1;
   String searchVal = '';
+  SharedPreferences? loginData;
 
   @override
   void initState() {
@@ -72,7 +74,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   children: [
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.026,
+                      MediaQuery.of(context).copyWith().size.height * 0.026,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -101,23 +103,23 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             .primaryTextTheme
                             .bodyLarge
                             ?.merge(TextStyle(
-                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
-                                fontSize: MediaQuery.of(context)
-                                        .copyWith()
-                                        .size
-                                        .height *
-                                    0.02)),
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w700,
+                            fontSize: MediaQuery.of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02)),
                       ),
                     ),
                     SizedBox(
                       width:
-                          MediaQuery.of(context).copyWith().size.width * 0.052,
+                      MediaQuery.of(context).copyWith().size.width * 0.052,
                     ),
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.019,
+                      MediaQuery.of(context).copyWith().size.height * 0.019,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -135,14 +137,14 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
@@ -161,20 +163,20 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                       ],
                     ),
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.019,
+                      MediaQuery.of(context).copyWith().size.height * 0.019,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -192,14 +194,14 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
@@ -218,14 +220,14 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                       ],
                     ),
@@ -240,7 +242,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
 
   getQuestionData() async {
     ResponseEntity response =
-        await QnaService.getAllAssessment(10, pageLimit, searchVal);
+    await QnaService.getAllAssessment(10, pageLimit, searchVal);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
@@ -251,7 +253,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
 
   getData(String search) async {
     ResponseEntity response =
-        await QnaService.getAllAssessment(10, pageLimit, search);
+    await QnaService.getAllAssessment(10, pageLimit, search);
     allAssessment = response.data==null?[]:List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
@@ -281,8 +283,21 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                 size: 40.0,
                 color: Colors.white,
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const Center(
+                          child: CircularProgressIndicator(
+                            color: Color.fromRGBO(48, 145, 139, 1),
+                          ));
+                    });
+                loginData = await SharedPreferences.getInstance();
+                UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+                userDataModel =
+                await QnaService.getUserDataService(loginData?.getInt('userId'));
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/teacherSelectionPage',arguments: userDataModel);
               },
             ),
             toolbarHeight: height * 0.100,
@@ -307,9 +322,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       end: Alignment.bottomCenter,
                       begin: Alignment.topCenter,
                       colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ])),
             ),
           ),
           body: SingleChildScrollView(
@@ -340,15 +355,15 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           children: [
                             Checkbox(
                               activeColor:
-                                  const Color.fromRGBO(82, 165, 160, 1),
+                              const Color.fromRGBO(82, 165, 160, 1),
                               fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
+                              MaterialStateProperty.resolveWith<Color>(
                                       (states) {
-                                if (states.contains(MaterialState.selected)) {
-                                  return const Color.fromRGBO(82, 165, 160, 1);
-                                }
-                                return const Color.fromRGBO(82, 165, 160, 1);
-                              }),
+                                    if (states.contains(MaterialState.selected)) {
+                                      return const Color.fromRGBO(82, 165, 160, 1);
+                                    }
+                                    return const Color.fromRGBO(82, 165, 160, 1);
+                                  }),
 
                               value: agree,
                               onChanged: (val) {
@@ -410,7 +425,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               width: width * 0.13,
                               decoration: const BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
+                                BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               ),
                               child: IconButton(
@@ -421,8 +436,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                   pageLimit = 1;
                                   agree
                                       ? getData(
-                                          teacherQuestionBankSearchController
-                                              .text)
+                                      teacherQuestionBankSearchController
+                                          .text)
                                       :
 
                                   Navigator.pushNamed(context, '/teacherAssessmentSearched',arguments: teacherQuestionBankSearchController
@@ -456,31 +471,31 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     ),
                     SizedBox(height: height * 0.04),
                     Align(
-                      alignment: Alignment.center,
-                    child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(children: [
-                          TextSpan(
-                            text: AppLocalizations.of(context)!
-                                .disclaimer_qn_prepare,
-                            //"DISCLAIMER:",
-                            style: TextStyle(
-                                fontSize: height * 0.015,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                fontFamily: "Inter"),
-                          ),
-                          TextSpan(
-                            text: AppLocalizations.of(context)!
-                                .disclaimer_text_qn_prepare,
-                            //"\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
-                            style: TextStyle(
-                                fontSize: height * 0.015,
-                                fontWeight: FontWeight.w500,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontFamily: "Inter"),
-                          ),
-                        ]))),
+                        alignment: Alignment.center,
+                        child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text: AppLocalizations.of(context)!
+                                    .disclaimer_qn_prepare,
+                                //"DISCLAIMER:",
+                                style: TextStyle(
+                                    fontSize: height * 0.015,
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                              TextSpan(
+                                text: AppLocalizations.of(context)!
+                                    .disclaimer_text_qn_prepare,
+                                //"\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
+                                style: TextStyle(
+                                    fontSize: height * 0.015,
+                                    fontWeight: FontWeight.w500,
+                                    color: const Color.fromRGBO(153, 153, 153, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                            ]))),
                     SizedBox(height: height * 0.02),
                     Text(
                       AppLocalizations.of(context)!.tests,
@@ -534,29 +549,29 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       children: [
                         Expanded(
                             child: Padding(
-                          padding: EdgeInsets.only(right: width * 0.05),
-                          child: const Divider(),
-                        )),
-                        
+                              padding: EdgeInsets.only(right: width * 0.05),
+                              child: const Divider(),
+                            )),
+
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                            onTap: () {
-                              getQuestionData();
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.view_more,
-                              //"View More",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(28, 78, 80, 1),
-                                fontSize: height * 0.0175,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          )),
+                                onTap: () {
+                                  getQuestionData();
+                                },
+                                child: Text(
+                                  AppLocalizations.of(context)!.view_more,
+                                  //"View More",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontSize: height * 0.0175,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              )),
                         ),
                         const Icon(Icons.chevron_right)
                       ],
@@ -570,7 +585,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -582,8 +597,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                 listen: false)
                                 .resetAssessment();
                             assessment = Provider.of<CreateAssessmentProvider>(
-                                    context,
-                                    listen: false)
+                                context,
+                                listen: false)
                                 .getAssessment;
                             showDialog(
                                 context: context,
@@ -601,7 +616,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                           border: Border.all(
                                               color: Colors.black38, width: 1),
                                           borderRadius:
-                                              BorderRadius.circular(17),
+                                          BorderRadius.circular(17),
                                         ),
                                         child: Padding(
                                           padding: EdgeInsets.only(
@@ -613,43 +628,43 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             key: formKey,
                                             child: Column(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                               children: [
                                                 Align(
                                                   alignment:
-                                                      Alignment.centerLeft,
+                                                  Alignment.centerLeft,
                                                   child: Text(
                                                     AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .assessment_title,
                                                     //'Assessment Title',
                                                     style: TextStyle(
                                                         fontSize: height * 0.02,
                                                         fontFamily: "Inter",
                                                         color: const Color
-                                                                .fromRGBO(
+                                                            .fromRGBO(
                                                             82, 165, 160, 1),
                                                         fontWeight:
-                                                            FontWeight.w700),
+                                                        FontWeight.w700),
                                                   ),
                                                 ),
                                                 Align(
                                                   alignment:
-                                                      Alignment.centerLeft,
+                                                  Alignment.centerLeft,
                                                   child: Text(
                                                     AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .sub_class_others,
                                                     // 'Subject, Class and Other details',
                                                     style: TextStyle(
                                                         fontSize:
-                                                            height * 0.015,
+                                                        height * 0.015,
                                                         fontFamily: "Inter",
                                                         color: const Color
-                                                                .fromRGBO(
+                                                            .fromRGBO(
                                                             153, 153, 153, 1),
                                                         fontWeight:
-                                                            FontWeight.w400),
+                                                        FontWeight.w400),
                                                   ),
                                                 ),
                                                 SizedBox(
@@ -659,13 +674,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   alignment: Alignment.topLeft,
                                                   child: TextFormField(
                                                     controller:
-                                                        subjectController,
+                                                    subjectController,
                                                     keyboardType:
-                                                        TextInputType.text,
+                                                    TextInputType.text,
                                                     decoration: InputDecoration(
                                                       floatingLabelBehavior:
-                                                          FloatingLabelBehavior
-                                                              .always,
+                                                      FloatingLabelBehavior
+                                                          .always,
                                                       labelText: "${AppLocalizations.of(context)!.sub_caps} *",
                                                       // label: SizedBox(
                                                       //   width: width * 0.10,
@@ -709,51 +724,51 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       // ),
                                                       labelStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                          FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.018),
+                                                          height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(102,
+                                                              .fromRGBO(102,
                                                               102, 102, 0.3),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w400,
+                                                          FontWeight.w400,
                                                           fontSize:
-                                                              height * 0.02),
+                                                          height * 0.02),
                                                       hintText:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .sub_hint,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .sub_hint,
                                                       //'Type Subject Here',
                                                       focusedBorder: OutlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          82,
-                                                                          165,
-                                                                          160,
-                                                                          1)),
+                                                          const BorderSide(
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1)),
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                       border:
-                                                          OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15)),
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                     ),
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return AppLocalizations
-                                                                .of(context)!
+                                                            .of(context)!
                                                             .enter_subject;
                                                         //'Enter Subject';
                                                       } else {
@@ -774,11 +789,11 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   child: TextFormField(
                                                     controller: classController,
                                                     keyboardType:
-                                                        TextInputType.text,
+                                                    TextInputType.text,
                                                     decoration: InputDecoration(
                                                       floatingLabelBehavior:
-                                                          FloatingLabelBehavior
-                                                              .always,
+                                                      FloatingLabelBehavior
+                                                          .always,
                                                       labelText: "${AppLocalizations.of(context)!.class_caps} *",
                                                       // label: SizedBox(
                                                       //   width: width * 0.15,
@@ -824,51 +839,51 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       // ),
                                                       labelStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                          FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.018),
+                                                          height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(102,
+                                                              .fromRGBO(102,
                                                               102, 102, 0.3),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w400,
+                                                          FontWeight.w400,
                                                           fontSize:
-                                                              height * 0.02),
+                                                          height * 0.02),
                                                       hintText:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .type_here,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .type_here,
                                                       //'Type Here',
                                                       focusedBorder: OutlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          82,
-                                                                          165,
-                                                                          160,
-                                                                          1)),
+                                                          const BorderSide(
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1)),
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                       border:
-                                                          OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15)),
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                     ),
                                                     validator: (value) {
                                                       if (value!.isEmpty) {
                                                         return AppLocalizations
-                                                                .of(context)!
+                                                            .of(context)!
                                                             .enter_class;
                                                         //'Enter Class';
                                                       } else {
@@ -889,58 +904,58 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   child: TextFormField(
                                                     controller: topicController,
                                                     keyboardType:
-                                                        TextInputType.text,
+                                                    TextInputType.text,
                                                     decoration: InputDecoration(
                                                       floatingLabelBehavior:
-                                                          FloatingLabelBehavior
-                                                              .always,
+                                                      FloatingLabelBehavior
+                                                          .always,
                                                       labelText:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .topic_optional,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .topic_optional,
                                                       //'TOPIC (Optional)',
                                                       labelStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                          FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.018),
+                                                          height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(102,
+                                                              .fromRGBO(102,
                                                               102, 102, 0.3),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w400,
+                                                          FontWeight.w400,
                                                           fontSize:
-                                                              height * 0.02),
+                                                          height * 0.02),
                                                       hintText:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .topic_hint,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .topic_hint,
                                                       //'Type Topic Here',
                                                       focusedBorder: OutlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          82,
-                                                                          165,
-                                                                          160,
-                                                                          1)),
+                                                          const BorderSide(
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1)),
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                       border:
-                                                          OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15)),
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                     ),
                                                   ),
                                                 ),
@@ -951,59 +966,59 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   alignment: Alignment.topLeft,
                                                   child: TextFormField(
                                                     controller:
-                                                        subTopicController,
+                                                    subTopicController,
                                                     keyboardType:
-                                                        TextInputType.text,
+                                                    TextInputType.text,
                                                     decoration: InputDecoration(
                                                       floatingLabelBehavior:
-                                                          FloatingLabelBehavior
-                                                              .always,
+                                                      FloatingLabelBehavior
+                                                          .always,
                                                       labelText: AppLocalizations
-                                                              .of(context)!
+                                                          .of(context)!
                                                           .sub_topic_optional,
                                                       // 'SUB TOPIC (Optional)',
                                                       labelStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(
+                                                              .fromRGBO(
                                                               51, 51, 51, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                          FontWeight.w600,
                                                           fontSize:
-                                                              height * 0.018),
+                                                          height * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color
-                                                                  .fromRGBO(102,
+                                                              .fromRGBO(102,
                                                               102, 102, 0.3),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
-                                                              FontWeight.w400,
+                                                          FontWeight.w400,
                                                           fontSize:
-                                                              height * 0.02),
+                                                          height * 0.02),
                                                       hintText:
-                                                          AppLocalizations.of(
-                                                                  context)!
-                                                              .sub_topic_hint,
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .sub_topic_hint,
                                                       //'Type Sub Topic Here',
                                                       focusedBorder: OutlineInputBorder(
                                                           borderSide:
-                                                              const BorderSide(
-                                                                  color: Color
-                                                                      .fromRGBO(
-                                                                          82,
-                                                                          165,
-                                                                          160,
-                                                                          1)),
+                                                          const BorderSide(
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                  82,
+                                                                  165,
+                                                                  160,
+                                                                  1)),
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      15)),
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                       border:
-                                                          OutlineInputBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          15)),
+                                                      OutlineInputBorder(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(
+                                                              15)),
                                                     ),
                                                   ),
                                                 ),
@@ -1012,17 +1027,17 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 ),
                                                 ElevatedButton(
                                                   style:
-                                                      ElevatedButton.styleFrom(
+                                                  ElevatedButton.styleFrom(
                                                     backgroundColor:
-                                                        const Color.fromRGBO(
-                                                            82, 165, 160, 1),
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
                                                     minimumSize:
-                                                        const Size(280, 48),
+                                                    const Size(280, 48),
                                                     shape:
-                                                        RoundedRectangleBorder(
+                                                    RoundedRectangleBorder(
                                                       borderRadius:
-                                                          BorderRadius.circular(
-                                                              39),
+                                                      BorderRadius.circular(
+                                                          39),
                                                     ),
                                                   ),
                                                   onPressed: () async {
@@ -1031,20 +1046,20 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         .validate();
                                                     if (valid) {
                                                       SharedPreferences
-                                                          loginData =
-                                                          await SharedPreferences
-                                                              .getInstance();
+                                                      loginData =
+                                                      await SharedPreferences
+                                                          .getInstance();
                                                       Provider.of<NewQuestionProvider>(
                                                           context,
                                                           listen: false)
                                                           .reSetQuestionList();
                                                       Provider.of<QuestionPrepareProviderFinal>(
-                                                              context,
-                                                              listen: false)
+                                                          context,
+                                                          listen: false)
                                                           .reSetQuestionList();
                                                       Provider.of<CreateAssessmentProvider>(
-                                                              context,
-                                                              listen: false)
+                                                          context,
+                                                          listen: false)
                                                           .resetAssessment();
                                                       assessment.topic =
                                                           topicController.text;
@@ -1055,17 +1070,17 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           subjectController
                                                               .text;
                                                       assessment
-                                                              .createAssessmentModelClass =
+                                                          .createAssessmentModelClass =
                                                           classController.text;
                                                       assessment.questions = [];
                                                       assessment.userId =
                                                           loginData
                                                               .getInt('userId');
                                                       Provider.of<CreateAssessmentProvider>(
-                                                              context,
-                                                              listen: false)
+                                                          context,
+                                                          listen: false)
                                                           .updateAssessment(
-                                                              assessment);
+                                                          assessment);
                                                       Navigator.pushNamed(context, '/teacherCreateAssessment').then((value) {
                                                         topicController.clear();
                                                         subjectController.clear();
@@ -1086,18 +1101,18 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   },
                                                   child: Text(
                                                     AppLocalizations.of(
-                                                            context)!
+                                                        context)!
                                                         .save_continue,
                                                     //'Save & Continue',
                                                     style: TextStyle(
                                                         fontSize:
-                                                            height * 0.025,
+                                                        height * 0.025,
                                                         fontFamily: "Inter",
                                                         color: const Color
-                                                                .fromRGBO(
+                                                            .fromRGBO(
                                                             255, 255, 255, 1),
                                                         fontWeight:
-                                                            FontWeight.w600),
+                                                        FontWeight.w600),
                                                   ),
                                                 ),
                                               ],
@@ -1120,7 +1135,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     fontSize: height * 0.025,
                                     fontFamily: "Inter",
                                     color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                     fontWeight: FontWeight.w600),
                               ),
                               const Icon(Icons.chevron_right)
@@ -1142,10 +1157,10 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
 class CardInfo extends StatefulWidget {
   const CardInfo(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.status,
-      required this.assessment})
+        required this.height,
+        required this.width,
+        required this.status,
+        required this.assessment})
       : super(key: key);
 
   final double height;
@@ -1175,238 +1190,208 @@ class _CardInfoState extends State<CardInfo> {
         child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
-          onTap: () async {
-            Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-                .reSetQuestionList();
-            Provider.of<EditAssessmentProvider>(context, listen: false)
-                .updateAssessment(widget.assessment);
-            if (widget.assessment.assessmentStatus == 'inprogress') {
-              CreateAssessmentModel editAssessment =
+              onTap: () async {
+                Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+                    .reSetQuestionList();
+                Provider.of<EditAssessmentProvider>(context, listen: false)
+                    .updateAssessment(widget.assessment);
+                if (widget.assessment.assessmentStatus == 'inprogress') {
+                  CreateAssessmentModel editAssessment =
                   CreateAssessmentModel(questions: [], removeQuestions: [],addQuestion: []);
-              editAssessment.assessmentId = widget.assessment.assessmentId;
-              editAssessment.assessmentType = widget.assessment.assessmentType;
-              editAssessment.assessmentStatus = widget.assessment.assessmentStatus;
-              editAssessment.assessmentCode=widget.assessment.assessmentCode;
-              editAssessment.subject = widget.assessment.subject;
-              editAssessment.createAssessmentModelClass =
-                  widget.assessment.getAssessmentModelClass;
-              widget.assessment.topic == null
-                  ? 0
-                  : editAssessment.topic = widget.assessment.topic;
-              widget.assessment.subTopic == null
-                  ? 0
-                  : editAssessment.subTopic = widget.assessment.subTopic;
-              widget.assessment.totalScore == null
-                  ? 0
-                  : editAssessment.totalScore = widget.assessment.totalScore;
-              widget.assessment.questions!.isEmpty
-                  ? 0
-                  : editAssessment.totalQuestions = widget.assessment.questions!.length;
-              widget.assessment.assessmentDuration == null
-                  ? ''
-                  : editAssessment.totalScore = widget.assessment.totalScore;
-              editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
-              if (widget.assessment.questions!.isEmpty) {
-              } else {
-                for (int i = 0; i < widget.assessment.questions!.length; i++) {
-                  Question question = Question();
-                  question.questionMarks = widget.assessment.questions![i].questionMark;
-                  question.questionId = widget.assessment.questions![i].questionId;
-                  editAssessment.questions?.add(question);
-                  Provider.of<QuestionPrepareProviderFinal>(context,
+                  editAssessment.assessmentId = widget.assessment.assessmentId;
+                  editAssessment.assessmentType = widget.assessment.assessmentType;
+                  editAssessment.assessmentStatus = widget.assessment.assessmentStatus;
+                  editAssessment.assessmentCode=widget.assessment.assessmentCode;
+                  editAssessment.subject = widget.assessment.subject;
+                  editAssessment.createAssessmentModelClass =
+                      widget.assessment.getAssessmentModelClass;
+                  widget.assessment.topic == null
+                      ? 0
+                      : editAssessment.topic = widget.assessment.topic;
+                  widget.assessment.subTopic == null
+                      ? 0
+                      : editAssessment.subTopic = widget.assessment.subTopic;
+                  widget.assessment.totalScore == null
+                      ? 0
+                      : editAssessment.totalScore = widget.assessment.totalScore;
+                  widget.assessment.questions!.isEmpty
+                      ? 0
+                      : editAssessment.totalQuestions = widget.assessment.questions!.length;
+                  widget.assessment.assessmentDuration == null
+                      ? ''
+                      : editAssessment.totalScore = widget.assessment.totalScore;
+                  editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
+                  if (widget.assessment.questions!.isEmpty) {
+                  } else {
+                    for (int i = 0; i < widget.assessment.questions!.length; i++) {
+                      Question question = Question();
+                      question.questionMarks = widget.assessment.questions![i].questionMark;
+                      question.questionId = widget.assessment.questions![i].questionId;
+                      editAssessment.questions?.add(question);
+                      Provider.of<QuestionPrepareProviderFinal>(context,
                           listen: false)
-                      .addQuestion(widget.assessment.questions![i]);
+                          .addQuestion(widget.assessment.questions![i]);
+                    }
+                  }
+
+                  Provider.of<CreateAssessmentProvider>(context, listen: false)
+                      .updateAssessment(editAssessment);
+                  Navigator.pushNamed(context, '/teacherRecentAssessment',
+                      arguments: [editAssessment,'inprogress']);
+
+
+                  // Navigator.push(
+                  //   context,
+                  //   PageTransition(
+                  //     type: PageTransitionType.rightToLeft,
+                  //     child: TeacherRecentAssessment(
+                  //       finalAssessment: editAssessment,
+                  //     ),
+                  //   ),
+                  // );
                 }
-              }
-
-              Provider.of<CreateAssessmentProvider>(context, listen: false)
-                  .updateAssessment(editAssessment);
-              Navigator.pushNamed(context, '/teacherRecentAssessment',
-                  arguments: [editAssessment,'inprogress']);
-
-
-              // Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeft,
-              //     child: TeacherRecentAssessment(
-              //       finalAssessment: editAssessment,
-              //     ),
-              //   ),
-              // );
-            }
-            else if (widget.assessment.assessmentStatus == 'active') {
-              SharedPreferences loginData = await SharedPreferences.getInstance();
-              CreateAssessmentModel editAssessment = CreateAssessmentModel(
-                  questions: [], removeQuestions: [], addQuestion: []);
-              editAssessment.userId = loginData.getInt('userId');
-              editAssessment.subject = widget.assessment.subject;
-              editAssessment.assessmentId=widget.assessment.assessmentId;
-              editAssessment.assessmentCode=widget.assessment.assessmentCode;
-              editAssessment.assessmentType =
-                  widget.assessment.assessmentType ?? 'Not Mentioned';
-              editAssessment.createAssessmentModelClass =
-                  widget.assessment.getAssessmentModelClass;
-              widget.assessment.topic == null
-                  ? 0
-                  : editAssessment.topic = widget.assessment.topic;
-              widget.assessment.subTopic == null
-                  ? 0
-                  : editAssessment.subTopic = widget.assessment.subTopic;
-              widget.assessment.totalScore == null
-                  ? 0
-                  : editAssessment.totalScore = widget.assessment.totalScore;
-              widget.assessment.questions!.isEmpty
-                  ? 0
-                  : editAssessment.totalQuestions = widget.assessment.questions!.length;
-              widget.assessment.assessmentDuration == null
-                  ? ''
-                  : editAssessment.totalScore = widget.assessment.totalScore;
-              widget.assessment.assessmentStartdate == null
-                  ? 0
-                  : editAssessment.assessmentStartdate = widget.assessment.assessmentStartdate;
-              widget.assessment.assessmentDuration == null
-                  ? 0
-                  : editAssessment.assessmentDuration = widget.assessment.assessmentDuration;
-              widget.assessment.assessmentEnddate == null
-                  ? ''
-                  : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
-              print("active");
-              print(editAssessment.assessmentId);
-              editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
-              if (widget.assessment.questions!.isEmpty) {
-              }
-              else {
-                for (int i = 0; i < widget.assessment.questions!.length; i++) {
-                  Questions.Question question = Questions.Question();
-                  question = widget.assessment.questions![i];
-                  editAssessment.addQuestion?.add(question);
-                  Provider.of<QuestionPrepareProviderFinal>(context,
+                else if (widget.assessment.assessmentStatus == 'active') {
+                  SharedPreferences loginData = await SharedPreferences.getInstance();
+                  CreateAssessmentModel editAssessment = CreateAssessmentModel(
+                      questions: [], removeQuestions: [], addQuestion: []);
+                  editAssessment.userId = loginData.getInt('userId');
+                  editAssessment.subject = widget.assessment.subject;
+                  editAssessment.assessmentId=widget.assessment.assessmentId;
+                  editAssessment.assessmentCode=widget.assessment.assessmentCode;
+                  editAssessment.assessmentType =
+                      widget.assessment.assessmentType ?? 'Not Mentioned';
+                  editAssessment.createAssessmentModelClass =
+                      widget.assessment.getAssessmentModelClass;
+                  widget.assessment.topic == null
+                      ? 0
+                      : editAssessment.topic = widget.assessment.topic;
+                  widget.assessment.subTopic == null
+                      ? 0
+                      : editAssessment.subTopic = widget.assessment.subTopic;
+                  widget.assessment.totalScore == null
+                      ? 0
+                      : editAssessment.totalScore = widget.assessment.totalScore;
+                  widget.assessment.questions!.isEmpty
+                      ? 0
+                      : editAssessment.totalQuestions = widget.assessment.questions!.length;
+                  widget.assessment.assessmentDuration == null
+                      ? ''
+                      : editAssessment.totalScore = widget.assessment.totalScore;
+                  widget.assessment.assessmentStartdate == null
+                      ? 0
+                      : editAssessment.assessmentStartdate = widget.assessment.assessmentStartdate;
+                  widget.assessment.assessmentDuration == null
+                      ? 0
+                      : editAssessment.assessmentDuration = widget.assessment.assessmentDuration;
+                  widget.assessment.assessmentEnddate == null
+                      ? ''
+                      : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
+                  print("active");
+                  print(editAssessment.assessmentId);
+                  editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
+                  if (widget.assessment.questions!.isEmpty) {
+                  }
+                  else {
+                    for (int i = 0; i < widget.assessment.questions!.length; i++) {
+                      Questions.Question question = Questions.Question();
+                      question = widget.assessment.questions![i];
+                      editAssessment.addQuestion?.add(question);
+                      Provider.of<QuestionPrepareProviderFinal>(context,
                           listen: false)
-                      .addQuestion(widget.assessment.questions![i]);
+                          .addQuestion(widget.assessment.questions![i]);
+                    }
+                  }
+
+                  Provider.of<CreateAssessmentProvider>(context, listen: false)
+                      .updateAssessment(editAssessment);
+                  Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: [widget.assessment,'myAssessment']);
+
+
+                  // Navigator.push(
+                  //   context,
+                  //   PageTransition(
+                  //     type: PageTransitionType.rightToLeft,
+                  //     child: TeacherActiveAssessment(
+                  //       assessment: assessment,
+                  //     ),
+                  //   ),
+                  // );
                 }
-              }
-
-              Provider.of<CreateAssessmentProvider>(context, listen: false)
-                  .updateAssessment(editAssessment);
-              Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: [widget.assessment,'myAssessment']);
-
-
-              // Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeft,
-              //     child: TeacherActiveAssessment(
-              //       assessment: assessment,
-              //     ),
-              //   ),
-              // );
-            }
-            else {
-              Navigator.pushNamed(context, '/teacherInactiveAssessment');
-              // Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeft,
-              //     child: TeacherInactiveAssessment(),
-              //   ),
-              // );
-            }
-          },
-          child: Container(
-            height: widget.height * 0.1087,
-            width: widget.width * 0.888,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-              border: Border.all(
-                color: const Color.fromRGBO(82, 165, 160, 0.15),
-              ),
-              color: const Color.fromRGBO(82, 165, 160, 0.1),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
+                else {
+                  Navigator.pushNamed(context, '/teacherInactiveAssessment');
+                  // Navigator.push(
+                  //   context,
+                  //   PageTransition(
+                  //     type: PageTransitionType.rightToLeft,
+                  //     child: TeacherInactiveAssessment(),
+                  //   ),
+                  // );
+                }
+              },
+              child: Container(
+                height: widget.height * 0.1087,
+                width: widget.width * 0.888,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                  border: Border.all(
+                    color: const Color.fromRGBO(82, 165, 160, 0.15),
+                  ),
+                  color: const Color.fromRGBO(82, 165, 160, 0.1),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding:
                       EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            widget.assessment.subject!,
-                            style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: widget.height * 0.0175,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                widget.assessment.subject!,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontSize: widget.height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                " | ${widget.assessment.getAssessmentModelClass}",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontSize: widget.height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            " | ${widget.assessment.getAssessmentModelClass}",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: widget.height * 0.0175,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                          Icon(
+                            Icons.circle_rounded,
+                            color: widget.assessment.assessmentStatus == 'inprogress'
+                                ? const Color.fromRGBO(255, 166, 0, 1)
+                                : widget.assessment.assessmentType == 'practice'
+                                ? const Color.fromRGBO(42, 36, 186, 1)
+                                : widget.assessment.assessmentStatus == 'active' && widget.assessment.assessmentType == 'test'
+                                ? const Color.fromRGBO(60, 176, 0, 1)
+                                : widget.assessment.assessmentStatus == 'inactive' && widget.assessment.assessmentType == 'test'
+                                ? const Color.fromRGBO(136, 136, 136, 1)
+                                : const Color.fromRGBO(136, 136, 136, 1),
+                          )
                         ],
                       ),
-                      Icon(
-                        Icons.circle_rounded,
-                        color: widget.assessment.assessmentStatus == 'inprogress'
-                            ? const Color.fromRGBO(255, 166, 0, 1)
-                            : widget.assessment.assessmentType == 'practice'
-                            ? const Color.fromRGBO(42, 36, 186, 1)
-                              : widget.assessment.assessmentStatus == 'active' && widget.assessment.assessmentType == 'test'
-                                ? const Color.fromRGBO(60, 176, 0, 1)
-                        : widget.assessment.assessmentStatus == 'inactive' && widget.assessment.assessmentType == 'test'
-                        ? const Color.fromRGBO(136, 136, 136, 1)
-                        : const Color.fromRGBO(136, 136, 136, 1),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: widget.width * 0.02),
-                  child: Row(
-                    children: [
-                      Text(
-                        AppLocalizations.of(context)!.assessment_id_caps,
-                        //"Assessment ID: ",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(102, 102, 102, 1),
-                          fontSize: widget.height * 0.015,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      Text(
-                        " ${widget.assessment.assessmentCode}",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(82, 165, 160, 1),
-                          fontSize: widget.height * 0.015,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: widget.width * 0.02),
+                      child: Row(
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.institute_test_id,
-                            // "Institute Test ID: ",
+                            AppLocalizations.of(context)!.assessment_id_caps,
+                            //"Assessment ID: ",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: widget.height * 0.015,
@@ -1415,7 +1400,7 @@ class _CardInfoState extends State<CardInfo> {
                             ),
                           ),
                           Text(
-                            "-------------",
+                            " ${widget.assessment.assessmentCode}",
                             style: TextStyle(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               fontSize: widget.height * 0.015,
@@ -1425,21 +1410,51 @@ class _CardInfoState extends State<CardInfo> {
                           ),
                         ],
                       ),
-                      Text(
-                        datetime,
-                        style: TextStyle(
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontSize: widget.height * 0.015,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
-                        ),
+                    ),
+                    Padding(
+                      padding:
+                      EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.institute_test_id,
+                                // "Institute Test ID: ",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: widget.height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Text(
+                                "-------------",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: widget.height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            datetime,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: widget.height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
+              ),
             )),
       ),
     );

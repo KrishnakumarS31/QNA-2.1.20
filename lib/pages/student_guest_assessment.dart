@@ -53,16 +53,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                     ),
                     elevation: 0,
                     automaticallyImplyLeading: false,
-                    // leading: IconButton(
-                    //   icon: const Icon(
-                    //     Icons.chevron_left,
-                    //     size: 30,
-                    //     color: Colors.white,
-                    //   ),
-                    //   onPressed: () {
-                    //     Navigator.of(context).pop();
-                    //   },
-                    // ),
+                    leading: IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: Drawer(

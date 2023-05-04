@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:qna_test/EntityModel/user_data_model.dart';
 import '../Entity/Teacher/edit_question_model.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
@@ -39,8 +40,8 @@ class QnaService {
   }
 
   static Future<ResponseEntity> updatePassword(
-      String oldPassword, String newPassword, int userId) async {
-    return await QnaRepo.updatePassword(oldPassword, newPassword, userId);
+      String oldPassword, String newPassword, int userId,BuildContext context) async {
+    return await QnaRepo.updatePassword(oldPassword, newPassword, userId,context);
   }
 
   static Future<LoginModel> postUserDetailsService(

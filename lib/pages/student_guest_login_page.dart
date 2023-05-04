@@ -908,10 +908,11 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {
                                   name = nameController.text;
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/studGuestAssessment',
-                                      arguments: name);
+                                  // Navigator.pushNamed(
+                                  //     context,
+                                  //     '/studGuestAssessment',
+                                  //     arguments: name);
+                                  Navigator.of(context).pushNamedAndRemoveUntil('/studGuestAssessment', ModalRoute.withName('/studentSelectionPage'),arguments: name);
                                   nameController.clear();
                                   rollNumController.clear();
                                 }

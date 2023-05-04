@@ -57,9 +57,9 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: Container(
@@ -89,7 +89,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
                                     color:
-                                        const Color.fromRGBO(153, 153, 153, 1),
+                                    const Color.fromRGBO(153, 153, 153, 1),
                                     fontWeight: FontWeight.w600),
                               ),
                               Row(
@@ -119,12 +119,12 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                           ),
                           for (int i = 0; i < quesList.length; i++)
                             QuestionPreview(
-                                height: height,
-                                width: width,
-                                question: quesList[i],
-                                index: i,
-                                assessment: widget.assessment,
-                                ),
+                              height: height,
+                              width: width,
+                              question: quesList[i],
+                              index: i,
+                              assessment: widget.assessment,
+                            ),
                         ],
                       ),
                     ),
@@ -153,25 +153,12 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                         // );
                       } else {
                         Provider.of<QuestionPrepareProviderFinal>(context,
-                                listen: false)
+                            listen: false)
                             .reSetQuestionList();
                         //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
+                        Navigator.pushNamed(context, '/teacherQuestionBank');
 
-                        Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
-                        // Navigator.of(context).pushAndRemoveUntil(
-                        //     MaterialPageRoute(
-                        //         builder: (context) => TeacherQuestionBank(
-                        //             )),
-                        //         (route) => route.isFirst);
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: TeacherQuestionBank(
-                        //       setLocale: widget.setLocale,
-                        //     ),
-                        //   ),
-                        // );
+                        // Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',ModalRoute.withName('/teacherSelectionPage'));
                       }
                     },
                     child: Text(
@@ -193,11 +180,11 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
 class QuestionPreview extends StatelessWidget {
   const QuestionPreview(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.question,
-      required this.index,
-      this.assessment,
+        required this.height,
+        required this.width,
+        required this.question,
+        required this.index,
+        this.assessment,
       })
       : super(key: key);
 
@@ -223,115 +210,104 @@ class QuestionPreview extends StatelessWidget {
     return MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(
-            context,
-            '/teacherQuestionPreviewDelete',
-            arguments: [
-              question,
-              index,
-              assessment
-            ]
-        );
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherQuestionPreviewDelete(
-        //         question: question,
-        //         index: index,
-        //         assessment: assessment,
-        //         ),
-        //   ),
-        // );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          color: const Color.fromRGBO(82, 165, 160, 0.08),
+          onTap: () {
+            // Navigator.pushNamed(
+            //     context,
+            //     '/teacherQuestionPreviewDelete',
+            //     arguments: [
+            //       question,
+            //       index,
+            //       assessment
+            //     ]
+            // );
+          },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Container(
-                  height: height * 0.04,
-                  width: width * 0.9,
-                  color: const Color.fromRGBO(82, 165, 160, 1),
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        right: width * 0.02, left: width * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+            child: Container(
+              color: const Color.fromRGBO(82, 165, 160, 0.08),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: height * 0.04,
+                      width: width * 0.9,
+                      color: const Color.fromRGBO(82, 165, 160, 1),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            right: width * 0.02, left: width * 0.02),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              question.subject!,
-                              style: TextStyle(
-                                  fontSize: height * 0.017,
-                                  fontFamily: "Inter",
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
+                            Row(
+                              children: [
+                                Text(
+                                  question.subject!,
+                                  style: TextStyle(
+                                      fontSize: height * 0.017,
+                                      fontFamily: "Inter",
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(
+                                  "  |  ${question.topic} - ${question.subTopic}",
+                                  style: TextStyle(
+                                      fontSize: height * 0.015,
+                                      fontFamily: "Inter",
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
                             ),
                             Text(
-                              "  |  ${question.topic} - ${question.subTopic}",
+                              question.datumClass!,
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontFamily: "Inter",
                                   color: Colors.white,
-                                  fontWeight: FontWeight.w400),
+                                  fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),
-                        Text(
-                          question.datumClass!,
-                          style: TextStyle(
-                              fontSize: height * 0.015,
-                              fontFamily: "Inter",
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '${question.questionType}',
+                        style: TextStyle(
+                            fontSize: height * 0.02,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        question.question!,
+                        style: TextStyle(
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(51, 51, 51, 1),
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * 0.01,
+                    ),
+                    const Divider()
+                  ],
                 ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '${question.questionType}',
-                    style: TextStyle(
-                        fontSize: height * 0.02,
-                        fontFamily: "Inter",
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    question.question!,
-                    style: TextStyle(
-                        fontSize: height * 0.0175,
-                        fontFamily: "Inter",
-                        color: const Color.fromRGBO(51, 51, 51, 1),
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-                SizedBox(
-                  height: height * 0.01,
-                ),
-                const Divider()
-              ],
+              ),
             ),
           ),
-        ),
-      ),
-    ));
+        ));
   }
 }

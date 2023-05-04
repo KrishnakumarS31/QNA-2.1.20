@@ -44,6 +44,7 @@ import 'package:qna_test/pages/teacher_question_preview_delete.dart';
 import 'package:qna_test/pages/teacher_recent_assessment.dart';
 import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import 'package:qna_test/pages/teacher_selection_page.dart';
+import 'package:qna_test/pages/teacher_submitted_question_preview.dart';
 import 'package:qna_test/pages/teacher_user_profile.dart';
 import 'package:qna_test/pages/terms_of_services.dart';
 import 'Pages/forgot_password_email.dart';
@@ -78,164 +79,161 @@ import 'Pages/teacher_verify_page.dart';
 import 'Pages/verify_otp_page.dart';
 
 class MyRoutes{
-
-
-
   static Route<dynamic> generateRoute(RouteSettings settings){
-
+    print(settings.name);
     switch (settings.name){
       case '/':
-        return SlideRightRoute(widget: const WelcomePage());
+        return SlideRightRoute(widget: const WelcomePage(),settings: settings);
 
       case '/studentSelectionPage':
-        return SlideRightRoute(widget: const StudentSelectionPage());
+        return SlideRightRoute(widget: const StudentSelectionPage(),settings: settings);
 
       case '/teacherLoginPage':
-        return SlideRightRoute(widget: const TeacherLogin());
+        return SlideRightRoute(widget: const TeacherLogin(),settings: settings);
 
       case '/settingsLanguages':
-        return SlideRightRoute(widget: const SettingsLanguages());
+        return SlideRightRoute(widget: const SettingsLanguages(),settings: settings);
 
       case '/teacherSelectionPage':{
         final userData = settings.arguments as UserDataModel;
-        return SlideRightRoute(widget: TeacherSelectionPage(userData: userData));
+        return SlideRightRoute(widget: TeacherSelectionPage(userData: userData),settings: settings);
       }
 
       case '/teacherRegistrationPage':
-        return SlideRightRoute(widget: const TeacherRegistrationPage());
+        return SlideRightRoute(widget: const TeacherRegistrationPage(),settings: settings);
 
       case '/teacherForgotPasswordEmail':
-        return SlideRightRoute(widget: const TeacherForgotPasswordEmail());
+        return SlideRightRoute(widget: const TeacherForgotPasswordEmail(),settings: settings);
 
       case '/teacherQuestionBank':
-        return SlideRightRoute(widget: const TeacherQuestionBank());
+        return SlideRightRoute(widget: const TeacherQuestionBank(),settings: settings);
 
       case '/teacherAssessmentLanding':
-        return SlideRightRoute(widget: const TeacherAssessmentLanding());
+        return SlideRightRoute(widget: const TeacherAssessmentLanding(),settings: settings);
 
       case '/teacherLooqQuestionBank':
         {
           final search = settings.arguments as String;
-          return SlideRightRoute(widget: TeacherLooqQuestionBank(search: search,));
+          return SlideRightRoute(widget: TeacherLooqQuestionBank(search: search,),settings: settings);
         }
 
       case '/teacherPrepareQnBank':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherPrepareQnBank(assessment: arguments[0],assessmentStatus: arguments[1],));
+        return SlideRightRoute(widget: TeacherPrepareQnBank(assessment: arguments[0],assessmentStatus: arguments[1],),settings: settings);
       }
 
       case '/questionEdit':{
         final question = settings.arguments as QuestionEntity.Question;
-        return SlideRightRoute(widget: QuestionEdit(question: question,));
+        return SlideRightRoute(widget: QuestionEdit(question: question,),settings: settings);
       }
 
       case '/teacherMyQuestionBank':{
         final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherMyQuestionBank(assessment: assessment));
+        return SlideRightRoute(widget: TeacherMyQuestionBank(assessment: assessment),settings: settings);
       }
 
       case '/teacherQuesDelete':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherQuesDelete(quesNum: question[0], finalQuestion: question[1], assessment: question[2],));
+        return SlideRightRoute(widget: TeacherQuesDelete(quesNum: question[0], finalQuestion: question[1], assessment: question[2],),settings: settings);
       }
 
       case '/teacherCreateAssessment':
-        return SlideRightRoute(widget: const TeacherCreateAssessment());
+        return SlideRightRoute(widget: const TeacherCreateAssessment(),settings: settings);
 
       case '/teacherQuestionPreviewDelete':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherQuestionPreviewDelete(question: question[0], index: question[1],assessment: question[2],));
+        return SlideRightRoute(widget: TeacherQuestionPreviewDelete(question: question[0], index: question[1],assessment: question[2],),settings: settings);
       }
 
       case '/aboutUs':
-        return SlideRightRoute(widget: const AboutUs());
+        return SlideRightRoute(widget: const AboutUs(),settings: settings);
 
       case '/changeEmailStudent':{
         final userId = settings.arguments as int;
-        return SlideRightRoute(widget: ChangeEmailStudent(userId: userId,));
+        return SlideRightRoute(widget: ChangeEmailStudent(userId: userId,),settings: settings);
       }
 
       case '/cookiePolicy':
-        return SlideRightRoute(widget: const CookiePolicy());
+        return SlideRightRoute(widget: const CookiePolicy(),settings: settings);
 
       case '/forgotPasswordEmail':
         {
           final isFromStudent = settings.arguments as bool;
-          return SlideRightRoute(widget: ForgotPasswordEmail(isFromStudent: isFromStudent,));
+          return SlideRightRoute(widget: ForgotPasswordEmail(isFromStudent: isFromStudent,),settings: settings);
         }
 
       case '/helpPageHamburger':
-        return SlideRightRoute(widget: const HelpPageHamburger());
+        return SlideRightRoute(widget: const HelpPageHamburger(),settings: settings);
 
       case '/privacyPolicyHamburger':
-        return SlideRightRoute(widget: const PrivacyPolicyHamburger());
+        return SlideRightRoute(widget: const PrivacyPolicyHamburger(),settings: settings);
 
       case '/privacyPolicyHamburger':
-        return SlideRightRoute(widget: const PrivacyPolicyHamburger());
+        return SlideRightRoute(widget: const PrivacyPolicyHamburger(),settings: settings);
 
       case '/resetPasswordStudent':{
         final userId = settings.arguments as int;
-        return SlideRightRoute(widget: ResetPasswordStudent(userId: userId,));
+        return SlideRightRoute(widget: ResetPasswordStudent(userId: userId,),settings: settings);
       }
 
       case '/resetPassword':
-        return SlideRightRoute(widget: const ResetPassword());
+        return SlideRightRoute(widget: const ResetPassword(),settings: settings);
 
 
 
       case '/studMemAdvisor':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudMemAdvisor(questions: question[0], assessmentId: question[1],));
+        return SlideRightRoute(widget: StudMemAdvisor(questions: question[0], assessmentId: question[1],),settings: settings);
       }
 
       case '/studentMemAnswerSheet':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentMemAnswerSheet(questions: question[0], assessmentId: question[1],));
+        return SlideRightRoute(widget: StudentMemAnswerSheet(questions: question[0], assessmentId: question[1],),settings: settings);
       }
 
       case '/studQuestion':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3]));
+        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3]),settings: settings);
       }
 
       case '/studentAssessment':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentAssessment(regNumber: arguments[0], usedData: arguments[1],));
+        return SlideRightRoute(widget: StudentAssessment(regNumber: arguments[0], usedData: arguments[1],),settings: settings);
       }
 
       case '/studentForgotPassword':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],));
+        return SlideRightRoute(widget: StudentForgotPassword(email: arguments[0], otp: arguments[1], isFromStudent: arguments[2],),settings: settings);
       }
 
       case '/studGuestAssessment':{
         final name = settings.arguments as String;
-        return SlideRightRoute(widget: StudGuestAssessment(name: name,));
+        return SlideRightRoute(widget: StudGuestAssessment(name: name,),settings: settings);
       }
 
       case '/studentGuestLogin':
-        return SlideRightRoute(widget: const StudentGuestLogin());
+        return SlideRightRoute(widget: const StudentGuestLogin(),settings: settings);
 
       case '/studentLooqLanding':
-        return SlideRightRoute(widget: const StudentLooqLanding());
+        return SlideRightRoute(widget: const StudentLooqLanding(),settings: settings);
 
       case '/studentLooqSelectedAssessment':
-        return SlideRightRoute(widget: const StudentLooqSelectedAssessment());
+        return SlideRightRoute(widget: const StudentLooqSelectedAssessment(),settings: settings);
 
       case '/studentMemberLoginPage':
-        return SlideRightRoute(widget: const StudentMemberLoginPage());
+        return SlideRightRoute(widget: const StudentMemberLoginPage(),settings: settings);
 
       case '/studentRegisVerifyOtpPage':{
         final email = settings.arguments as String;
-        return SlideRightRoute(widget: StudentRegisVerifyOtpPage(email: email,));
+        return SlideRightRoute(widget: StudentRegisVerifyOtpPage(email: email,),settings: settings);
       }
 
       case '/studentRegistrationPage':
-        return SlideRightRoute(widget: const StudentRegistrationPage());
+        return SlideRightRoute(widget: const StudentRegistrationPage(),settings: settings);
 
       case '/studentRegistrationUpdatePage':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentRegistrationUpdatePage(userData: arguments[0], isEdit: arguments[1],));
+        return SlideRightRoute(widget: StudentRegistrationUpdatePage(userData: arguments[0], isEdit: arguments[1],),settings: settings);
       }
 
       case '/studentResultPage':{
@@ -250,7 +248,7 @@ class MyRoutes{
           message: arguments[6],
           endTime: arguments[7],
           givenMark: arguments[8],
-        ));
+        ),settings: settings);
       }
 
       case '/studentReviseQuest':{
@@ -263,172 +261,177 @@ class MyRoutes{
             assessmentid: arguments[4],
             submit: arguments[5],
             userId: arguments[6]
-        ));
+        ),settings: settings);
       }
 
       case '/studentSearchLibrary':
-        return SlideRightRoute(widget: const StudentSearchLibrary());
+        return SlideRightRoute(widget: const StudentSearchLibrary(),settings: settings);
 
       case '/studentUserProfile':{
         final userData = settings.arguments as UserDataModel;
-        return SlideRightRoute(widget: StudentUserProfile(userDataModel: userData,));
+        return SlideRightRoute(widget: StudentUserProfile(userDataModel: userData,),settings: settings);
       }
 
       case '/teacherActiveAssessment':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherActiveAssessment(assessment: arguments[0], assessmentType: arguments[1],));
+        return SlideRightRoute(widget: TeacherActiveAssessment(assessment: arguments[0], assessmentType: arguments[1],),settings: settings);
       }
 
       case '/teacherAddMyQuestionBankForAssessment':
         {
           final assessment = settings.arguments as bool;
-          return SlideRightRoute(widget: TeacherAddMyQuestionBankForAssessment(assessment: assessment,));
+          return SlideRightRoute(widget: TeacherAddMyQuestionBankForAssessment(assessment: assessment,),settings: settings);
         }
       case '/teacherAddMyQuestionBank':
         {
           final assessment = settings.arguments as bool;
-          return SlideRightRoute(widget: TeacherAddMyQuestionBank(assessment: assessment,));
+          return SlideRightRoute(widget: TeacherAddMyQuestionBank(assessment: assessment,),settings: settings);
         }
 
       case '/teacherAssessLooqQuesPreview':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessLooqQuesPreview(assessment: arguments[0], finalQuestion: arguments[1],));
+        return SlideRightRoute(widget: TeacherAssessLooqQuesPreview(assessment: arguments[0], finalQuestion: arguments[1],),settings: settings);
       }
 
       case '/teacherAssessmentLooqPrepareQues':{
         final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherAssessmentLooqPrepareQues(assessment: assessment));
+        return SlideRightRoute(widget: TeacherAssessmentLooqPrepareQues(assessment: assessment),settings: settings);
       }
 
       case '/teacherAssessmentLooqQuestionBank':{
         final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherAssessmentLooqQuestionBank(assessment: assessment));
+        return SlideRightRoute(widget: TeacherAssessmentLooqQuestionBank(assessment: assessment),settings: settings);
       }
 
       case '/teacherAssessmentQuestionBank':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessmentQuestionBank(assessment: arguments[0],searchText: arguments[1],assessmentType: arguments[2]));
+        return SlideRightRoute(widget: TeacherAssessmentQuestionBank(assessment: arguments[0],searchText: arguments[1],assessmentType: arguments[2]),settings: settings);
       }
 
       case '/teacherAssessmentQuestionPreview':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessmentQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3],assessmentType: arguments[4],));
+        return SlideRightRoute(widget: TeacherAssessmentQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3],assessmentType: arguments[4],),settings: settings);
       }
 
       case '/teacherAssessmentLooqQuestionPreview':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherAssessmentLooqQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3], quesId: arguments[4],));
+        return SlideRightRoute(widget: TeacherAssessmentLooqQuestionPreview(assessment: arguments[0], question: arguments[1], index: arguments[2],pageName: arguments[3], quesId: arguments[4],),settings: settings);
       }
 
       case '/teacherAssessmentSearched':{
         final assessment = settings.arguments as String;
-        return SlideRightRoute(widget: TeacherAssessmentSearched(search: assessment,));
+        return SlideRightRoute(widget: TeacherAssessmentSearched(search: assessment,),settings: settings);
       }
 
       case '/teacherAssessmentSettingPublish':
         final assessmentType = settings.arguments as String;
-        return SlideRightRoute(widget: TeacherAssessmentSettingPublish(assessmentType: assessmentType,));
+        return SlideRightRoute(widget: TeacherAssessmentSettingPublish(assessmentType: assessmentType,),settings: settings);
 
       case '/teacherAssessmentSummary':
         final assessmentType = settings.arguments as String;
-        return SlideRightRoute(widget: TeacherAssessmentSummary(assessmentType: assessmentType,));
+        return SlideRightRoute(widget: TeacherAssessmentSummary(assessmentType: assessmentType,),settings: settings);
 
       case '/teacherClonedAssessment':
         final assessmentType = settings.arguments as String;
-        return SlideRightRoute(widget: TeacherClonedAssessment(assessmentType: assessmentType,));
+        return SlideRightRoute(widget: TeacherClonedAssessment(assessmentType: assessmentType,),settings: settings);
 
       case '/teacherClonedAssessmentPreview':
         final assessmentType = settings.arguments as String;
-        return SlideRightRoute(widget: TeacherClonedAssessmentPreview(assessmentType: assessmentType,));
+        return SlideRightRoute(widget: TeacherClonedAssessmentPreview(assessmentType: assessmentType,),settings: settings);
 
       case '/teacherForgotPassword':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherForgotPassword(email: arguments[0], otp: arguments[1],));
+        return SlideRightRoute(widget: TeacherForgotPassword(email: arguments[0], otp: arguments[1],),settings: settings);
       }
 
       case '/teacherInactiveAssessment':
-        return SlideRightRoute(widget: const TeacherInactiveAssessment());
+        return SlideRightRoute(widget: const TeacherInactiveAssessment(),settings: settings);
 
       case '/teacherLooqClonePreview':{
         final question = settings.arguments as QuestionEntity.Question;
-        return SlideRightRoute(widget: TeacherLooqClonePreview(question: question,));
+        return SlideRightRoute(widget: TeacherLooqClonePreview(question: question,),settings: settings);
       }
 
       case '/teacherLooqPreview':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherLooqPreview(question: arguments[0], editQuestionModel: arguments[1],));
+        return SlideRightRoute(widget: TeacherLooqPreview(question: arguments[0], editQuestionModel: arguments[1],),settings: settings);
       }
 
       case '/looqQuestionEdit':{
         final question = settings.arguments as QuestionEntity.Question;
-        return SlideRightRoute(widget: LooqQuestionEdit(question: question,));
+        return SlideRightRoute(widget: LooqQuestionEdit(question: question,),settings: settings);
       }
 
       case '/preparePreviewQnBank':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: PreparePreviewQnBank(question: arguments[0], finalQuestion: arguments[1],));
+        return SlideRightRoute(widget: PreparePreviewQnBank(question: arguments[0],),settings: settings);
       }
 
       case '/teacherPrepareQuesForAssessment':{
         final assessment = settings.arguments as bool;
-        return SlideRightRoute(widget: TeacherPrepareQuesForAssessment(assessment: assessment));
+        return SlideRightRoute(widget: TeacherPrepareQuesForAssessment(assessment: assessment),settings: settings);
       }
 
       case '/teacherPublishedAssessment':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherPublishedAssessment(assessmentCode: arguments[0],questionList: arguments[1],));
+        return SlideRightRoute(widget: TeacherPublishedAssessment(assessmentCode: arguments[0],questionList: arguments[1],),settings: settings);
       }
 
       case '/teacherPreparePreview':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherPreparePreview(assessment: arguments[0],finalQuestion: arguments[1],assessmentStatus: arguments[2],));
+        return SlideRightRoute(widget: TeacherPreparePreview(assessment: arguments[0],finalQuestion: arguments[1],assessmentStatus: arguments[2],),settings: settings);
       }
 
       case '/teacherQnPreviewAssessment':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherQnPreviewAssessment(assessment: arguments[0],finalQuestion: arguments[1]));
+        return SlideRightRoute(widget: TeacherQnPreviewAssessment(assessment: arguments[0],finalQuestion: arguments[1]),settings: settings);
       }
 
       case '/teacherQuestionPreview':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: TeacherQuestionPreview(question: question[0],editQuestionModel: question[1],));
+        return SlideRightRoute(widget: TeacherQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
+      }
+
+      case '/teacherSubmittedQuestionPreview':{
+        final question = settings.arguments as List<dynamic>;
+        return SlideRightRoute(widget: TeacherSubmittedQuestionPreview(question: question[0],editQuestionModel: question[1],),settings: settings);
       }
 
       case '/teacherRecentAssessment':
         {
           final arguments = settings.arguments as List<dynamic>;
-          return SlideRightRoute(widget: TeacherRecentAssessment(finalAssessment: arguments[0],assessmentType: arguments[1],));
+          return SlideRightRoute(widget: TeacherRecentAssessment(finalAssessment: arguments[0],assessmentType: arguments[1],),settings: settings);
         }
 
       case '/teacherRegistrationOtpPage':
         {
           final search = settings.arguments as String;
-          return SlideRightRoute(widget: TeacherRegistrationOtpPage(email: search,));
+          return SlideRightRoute(widget: TeacherRegistrationOtpPage(email: search,),settings: settings);
         }
 
       case '/teacherSelectedQuestionAssessment':
         {
           final arguments = settings.arguments as List<dynamic>;
-          return SlideRightRoute(widget: TeacherSelectedQuestionAssessment(questions: arguments[0],assessmentType: arguments[1],));
+          return SlideRightRoute(widget: TeacherSelectedQuestionAssessment(questions: arguments[0],assessmentType: arguments[1],),settings: settings);
         }
 
       case '/teacherUserProfile':{
         final userData = settings.arguments as UserDataModel;
-        return SlideRightRoute(widget: TeacherUserProfile(userDataModel: userData,));
+        return SlideRightRoute(widget: TeacherUserProfile(userDataModel: userData,),settings: settings);
       }
 
       case '/teacherVerifyOtpPage':
         {
           final email = settings.arguments as String;
-          return SlideRightRoute(widget: TeacherVerifyOtpPage(email: email,));
+          return SlideRightRoute(widget: TeacherVerifyOtpPage(email: email,),settings: settings);
         }
 
       case '/termsOfServiceHamburger':
-        return SlideRightRoute(widget: const TermsOfServiceHamburger());
+        return SlideRightRoute(widget: const TermsOfServiceHamburger(),settings: settings);
 
       case '/verifyOtpPage':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: VerifyOtpPage(isFromStudent: arguments[0], email: arguments[1],));
+        return SlideRightRoute(widget: VerifyOtpPage(isFromStudent: arguments[0], email: arguments[1],),settings: settings);
       }
 
 
@@ -443,14 +446,18 @@ class MyRoutes{
 }
 
 class SlideRightRoute extends PageRouteBuilder {
+
   final Widget widget;
-  SlideRightRoute({required this.widget})
+  final RouteSettings settings;
+  SlideRightRoute({required this.widget,required this.settings})
       : super(
-    pageBuilder: (BuildContext context, Animation<double> animation,
+    pageBuilder: (
+        BuildContext context, Animation<double> animation,
         Animation<double> secondaryAnimation) {
       return widget;
     },
-    transitionsBuilder: (BuildContext context,
+    transitionsBuilder: (
+        BuildContext context,
         Animation<double> animation,
         Animation<double> secondaryAnimation,
         Widget child) {
