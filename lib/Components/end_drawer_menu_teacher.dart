@@ -30,6 +30,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
   @override
   void initState() {
     getData();
+    print(userId);
     super.initState();
   }
 
@@ -260,7 +261,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: const ResetPassword(),
+                                child: ResetPassword(userId:userId!),
                               ),
                             );
                           }),
@@ -337,7 +338,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: const PrivacyPolicyHamburger(
-                                    ),
+                                ),
                               ),
                             );
                           }),
@@ -361,7 +362,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: const TermsOfServiceHamburger(
-                                    ),
+                                ),
                               ),
                             );
                           }),

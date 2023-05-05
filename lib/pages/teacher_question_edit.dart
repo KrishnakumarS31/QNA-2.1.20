@@ -290,12 +290,6 @@ class QuestionEditState extends State<QuestionEdit> {
         await QnaService.deleteQuestion(widget.question.questionId!);
         if (statusCode.code == 200) {
           Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-          //Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
-          // Navigator.of(context).pushAndRemoveUntil(
-          //     MaterialPageRoute(
-          //         builder: (context) => TeacherQuestionBank(
-          //             )),
-          //         (route) => route.isFirst);
         }
         else{
           Navigator.push(

@@ -1099,7 +1099,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           ans = '${widget.question.choices![i].choiceText}, $ans';
         }
       }
-      ans = ans.substring(0, ans.length - 2);
+      ans = ans==''?'':ans.substring(0, ans.length - 2);
     }
     super.initState();
   }

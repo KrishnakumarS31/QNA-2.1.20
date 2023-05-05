@@ -347,16 +347,7 @@ class TeacherClonedAssessmentPreviewState
                                   finalAssessment);
                           if (statusCode.code == 200) {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-                            //Navigator.pushNamed(context, '/teacherAssessmentLanding');
-                            // Navigator.pushNamedAndRemoveUntil(
-                            //     context,
-                            //     '/teacherAssessmentLanding',
-                            //     (route) => route.isFirst);
-                            // Navigator.of(context).pushAndRemoveUntil(
-                            //     MaterialPageRoute(
-                            //         builder: (context) => TeacherAssessmentLanding(
-                            //             )),
-                            //         (route) => route.isFirst);
+
                           }
                         },
                         child: Text(

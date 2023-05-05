@@ -290,11 +290,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         await QnaService.deleteQuestion(widget.question.questionId!);
         if (statusCode.code == 200) {
           Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
-          // Navigator.of(context).pushAndRemoveUntil(
-          //     MaterialPageRoute(
-          //         builder: (context) => TeacherQuestionBank(
-          //             )),
-          //         (route) => route.isFirst);
+
         }
         else{
           Navigator.push(

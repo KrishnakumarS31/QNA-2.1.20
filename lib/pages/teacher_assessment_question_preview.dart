@@ -308,6 +308,7 @@ class TeacherAssessmentQuestionPreviewState
                                       // );
                                     } else {
                                       //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
+                                      print("----------------------------------------------TeacherAssessmentQuestionPreview");
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
                                               builder: (context) => TeacherSelectedQuestionAssessment(
@@ -353,7 +354,7 @@ class TeacherAssessmentQuestionPreviewState
                                             index);
                                         if (widget.pageName ==
                                             'TeacherAssessmentSummary') {
-                                          Navigator.pushNamed(context, '/teacherAssessmentSummary');
+                                          Navigator.pushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmentType);
                                           // Navigator.push(
                                           //   context,
                                           //   PageTransition(
@@ -391,6 +392,7 @@ class TeacherAssessmentQuestionPreviewState
                                               int.parse(markController.text),
                                               index);
                                           //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
+                                          print("-------------------------------------------------TeacherAssessmentQuestionPreview");
                                           Navigator.of(context).pushAndRemoveUntil(
                                               MaterialPageRoute(
                                                   builder: (context) => TeacherSelectedQuestionAssessment(

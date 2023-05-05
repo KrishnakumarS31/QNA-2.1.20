@@ -1041,12 +1041,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                           .pushNamed(
                                           '/teacherAddMyQuestionBank',
                                           arguments: widget.assessment);
-                                      // Navigator.of(context).pushAndRemoveUntil(
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) => TeacherAddMyQuestionBank(
-                                      //           assessment: widget.assessment,
-                                      //         )),
-                                      //         (route) => route.isFirst);
+
                                     }
                                   },
                                   child: const Text("Save"),

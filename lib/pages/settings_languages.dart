@@ -212,11 +212,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                  loginData.setString("locale", selectedLocale);
 
                                   Navigator.pushNamedAndRemoveUntil(context, '/',(route) => route.isFirst);
-                                  // Navigator.of(context).pushAndRemoveUntil(
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => WelcomePage(
-                                  //             )),
-                                  //     (route) => route.isFirst);
+
                                 },
                                 child: Container(
                                     decoration: const BoxDecoration(

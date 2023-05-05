@@ -718,11 +718,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                   .updateAssessment(
                                                                       assessmentVal);
                                                               Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
-                                                              // Navigator.of(context).pushAndRemoveUntil(
-                                                              //     MaterialPageRoute(
-                                                              //         builder: (context) => TeacherCreateAssessment(
-                                                              //             )),
-                                                              //         (route) => route.isFirst);
+
                                                             }
                                                           },
                                                           child: Text(

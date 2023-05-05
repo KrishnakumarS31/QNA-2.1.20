@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Components/today_date.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
@@ -560,7 +561,7 @@ class CardInfo extends StatelessWidget {
                       ],
                     ),
                     Text(
-                      "10/1/2023",
+                      assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
                       style: TextStyle(
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: height * 0.015,

@@ -177,7 +177,7 @@ class MyRoutes{
       }
 
       case '/resetPassword':
-        return SlideRightRoute(widget: const ResetPassword(),settings: settings);
+        return SlideRightRoute(widget: ResetPassword(),settings: settings);
 
 
 

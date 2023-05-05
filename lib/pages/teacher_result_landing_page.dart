@@ -36,6 +36,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   @override
   void initState() {
     super.initState();
+    print("fvwefvwervwerv.length + ${results.length}");
     Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
@@ -45,6 +46,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
           ),
           context: context,
           builder: (builder) {
+            print("results.length + ${results.length}");
             return Container(
               decoration: BoxDecoration(
                   border: Border.all(
@@ -62,7 +64,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                   children: [
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.026,
+                      MediaQuery.of(context).copyWith().size.height * 0.026,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -98,14 +100,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
@@ -115,7 +117,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                     ),
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.026,
+                      MediaQuery.of(context).copyWith().size.height * 0.026,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -132,14 +134,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
@@ -149,7 +151,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                     ),
                     SizedBox(
                       height:
-                          MediaQuery.of(context).copyWith().size.height * 0.026,
+                      MediaQuery.of(context).copyWith().size.height * 0.026,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -166,14 +168,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               .primaryTextTheme
                               .bodyLarge
                               ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.016)),
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: MediaQuery.of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.016)),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).copyWith().size.width *
@@ -192,7 +194,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
 
   getData() async {
     ResponseEntity response =
-        await QnaService.getResultDataService(widget.userId, 5, pageLimit);
+    await QnaService.getResultDataService(widget.userId, 5, pageLimit);
     //widget.userId
     allResults = List<GetResultModel>.from(
         response.data.map((x) => GetResultModel.fromJson(x)));
@@ -254,9 +256,9 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -296,38 +298,50 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       ),
                       SizedBox(
                         height: height * 0.7,
-                        child:  ListView.builder(
+                        child:
+                        results.isEmpty
+                            ? Text(
+                          'NO RESULTS FOUND',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )
+                            : ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
                           itemCount: results.length,
                           itemBuilder: (context, index) => Column(
                             children: [
                               MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                                onTap: () {
-                                  inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
-                                  submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: TeacherResultAssessment(
-                                        inProgressResults: inProgressResults,
-                                          submittedResults: submittedResults,
-                                          result: results[index],
-                                          userId: widget.userId,
-                                          advisorName: widget.advisorName),
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+                                      submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: TeacherResultAssessment(
+                                              inProgressResults: inProgressResults,
+                                              submittedResults: submittedResults,
+                                              result: results[index],
+                                              userId: widget.userId,
+                                              advisorName: widget.advisorName),
+                                        ),
+                                      );
+                                    },
+                                    child: CustomCard(
+                                        height: height,
+                                        width: width,
+                                        //subject: results[index].subject,
+                                        result: results[index]
                                     ),
-                                  );
-                                },
-                                child: CustomCard(
-                                  height: height,
-                                  width: width,
-                                  //subject: results[index].subject,
-                                  result: results[index]
-                                ),
-                              )),
+                                  )),
                               SizedBox(
                                 height: height * 0.02,
                               ),
@@ -341,30 +355,30 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       ),
                       Align(
                         alignment: Alignment.centerRight,
-                          child:
-                          MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    getData();
-                                  },
-                              child: Wrap(
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                children: [
-                                  Text(
-                                      'View More',
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(28, 78, 80, 1),
-                                          fontSize: height * 0.0187,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w600)),
-                                  Icon(Icons.chevron_right,
-                                    color: const Color.fromRGBO(141, 167, 167, 1),
-                                          size: height * 0.034,),
-                                ],
-                              )
-                              )),
-                        ),
+                        child:
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                                onTap: () {
+                                  getData();
+                                },
+                                child: Wrap(
+                                  crossAxisAlignment: WrapCrossAlignment.center,
+                                  children: [
+                                    Text(
+                                        'View More',
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(28, 78, 80, 1),
+                                            fontSize: height * 0.0187,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w600)),
+                                    Icon(Icons.chevron_right,
+                                      color: const Color.fromRGBO(141, 167, 167, 1),
+                                      size: height * 0.034,),
+                                  ],
+                                )
+                            )),
+                      ),
                       SizedBox(
                         height: height * 0.02,
                       ),

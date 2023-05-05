@@ -1087,12 +1087,7 @@ class TeacherPublishedAssessmentState
                           onPressed: () {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
 
-                            // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
-                            // Navigator.of(context).pushAndRemoveUntil(
-                            //     MaterialPageRoute(
-                            //         builder: (context) => TeacherAssessmentLanding(
-                            //             )),
-                            //         (route) => route.isFirst);
+
                           },
                           child: Text(
                             'Back to My Assessment',

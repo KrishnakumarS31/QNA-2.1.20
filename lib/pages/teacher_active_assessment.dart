@@ -1234,6 +1234,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   @override
   void initState() {
+    print(widget.question);
     if(widget.question.questionType=="MCQ")
     {
     for (int i = 0; i < widget.question.choices!.length; i++) {
@@ -1241,7 +1242,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         ans = '${widget.question.choices![i].choiceText}, $ans';
       }
     }
-    ans = ans.substring(0, ans.length - 2);
+    ans = ans==''?'':ans.substring(0, ans.length - 2);
+    print(ans);
   }
     super.initState();
   }

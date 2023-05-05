@@ -1037,12 +1037,7 @@ class TeacherSelectedQuestionAssessmentState
                           }
                           Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
 
-                          // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
-                          // Navigator.of(context).pushAndRemoveUntil(
-                          //     MaterialPageRoute(
-                          //         builder: (context) => TeacherAssessmentLanding(
-                          //             )),
-                          //         (route) => route.isFirst);
+
                         },
                         child: Text(
                           'Save Assessment',
@@ -1189,6 +1184,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             .getAllQuestion;
 
         //Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: quesListArg);
+        print("---------------------------------------------TeacherSelectedQuestionAssessment");
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (context) => TeacherSelectedQuestionAssessment(

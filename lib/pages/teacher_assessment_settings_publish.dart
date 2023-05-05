@@ -1980,25 +1980,7 @@ class TeacherAssessmentSettingPublishState
                                                       .reSetQuestionList();
                                                   if (statusCode.code == 200) {
                                                     Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-                                                    // Navigator.pushNamedAndRemoveUntil(
-                                                    //     context,
-                                                    //     '/teacherAssessmentLanding',
-                                                    //         (route) => route.isFirst);
-// Navigator.of(context).pushAndRemoveUntil(
-//     MaterialPageRoute(
-//         builder: (context) => TeacherAssessmentLanding(
-//             )),
-//         (route) => route.isFirst);
-// Navigator.push(
-//   context,
-//   PageTransition(
-//     type: PageTransitionType
-//         .rightToLeft,
-//     child: TeacherAssessmentLanding(
-//         setLocale:
-//             widget.setLocale),
-//   ),
-// );
+
                                                   }
                                                 },
                                                 child: Text(
@@ -2421,11 +2403,7 @@ class TeacherAssessmentSettingPublishState
                         color: Colors.white,
                       ),
                       onPressed: () {
-// Navigator.of(context).pushAndRemoveUntil(
-//     MaterialPageRoute(
-//         builder: (context) => TeacherAssessmentLanding(
-//             setLocale: widget.setLocale)),
-//         (route) => route.isFirst);
+
                         Navigator.of(context).pop();
                       },
                     ),
@@ -4222,25 +4200,7 @@ class TeacherAssessmentSettingPublishState
                                                       .reSetQuestionList();
                                                   if (statusCode.code == 200) {
                                                     Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-                                                    // Navigator.pushNamedAndRemoveUntil(
-                                                    //     context,
-                                                    //     '/teacherAssessmentLanding',
-                                                    //         (route) => route.isFirst);
-// Navigator.of(context).pushAndRemoveUntil(
-//     MaterialPageRoute(
-//         builder: (context) => TeacherAssessmentLanding(
-//             )),
-//         (route) => route.isFirst);
-// Navigator.push(
-//   context,
-//   PageTransition(
-//     type: PageTransitionType
-//         .rightToLeft,
-//     child: TeacherAssessmentLanding(
-//         setLocale:
-//             widget.setLocale),
-//   ),
-// );
+
                                                   }
                                                 },
                                                 child: Text(

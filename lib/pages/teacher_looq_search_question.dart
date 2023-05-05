@@ -274,6 +274,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                           ),
                         ),
                         onPressed: () {
+                          //Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
                           Navigator.of(context).pop();
                         },
                         child: Text(

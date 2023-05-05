@@ -904,12 +904,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                     false)
                                                                     .updateAssessment(
                                                                     assessment);
-                                                                //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentSummary',(route) => route.isFirst);
-                                                                // Navigator.of(context).pushAndRemoveUntil(
-                                                                //     MaterialPageRoute(
-                                                                //         builder: (context) => TeacherAssessmentSummary(
-                                                                //             )),
-                                                                //         (route) => route.isFirst);
+
                                                                 Navigator.pop(context);
                                                               }
                                                             },
@@ -1129,12 +1124,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               assessment, assessment.assessmentId!);
                           if (statusCode.code == 200) {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-                            //  Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
-                            // Navigator.of(context).pushAndRemoveUntil(
-                            //     MaterialPageRoute(
-                            //         builder: (context) => TeacherAssessmentLanding(
-                            //             )),
-                            //         (route) => route.isFirst);
+
                           }
 
                           // Navigator.push(
@@ -1174,7 +1164,13 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               color: Color.fromRGBO(82, 165, 160, 1),
                             )),
                         onPressed: () {
-                          showAlert(context, height);
+                          bool pros=true;
+                          for(int i=0;i<assessment.questions!.length;i++){
+                            if(questionList[i].questionType=="MCQ" && questionList[i].questionMark==0){
+                              pros=false;
+                            }
+                          }
+                          pros?Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType):showAlert(context, height);
                         },
                         child: Text(
                           'Continue',
