@@ -313,7 +313,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
-        Navigator.pushNamed(context, '/studentMemberLoginPage');
+        Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',ModalRoute.withName('/studentSelectionPage'));
         // Navigator.push(
         //   context,
         //   PageTransition(

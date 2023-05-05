@@ -30,42 +30,43 @@ class SplashScreenState extends State<SplashScreen> {
     //getConnectivity();
     Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
-    //  if (user != null) {
-        //widget.setLocale(Locale.fromSubtags(languageCode: user.locale));
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child:
-            //StudentMemberLoginPage(setLocale: widget.setLocale)
-            const WelcomePage(),
-          ),
-        );
-     // }
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child:
+          //StudentMemberLoginPage(setLocale: widget.setLocale)
+          const WelcomePage(),
+        ),
+      );
+      //  if (user != null) {
+      //widget.setLocale(Locale.fromSubtags(languageCode: user.locale));
+      //Navigator.of(context).pushReplacementNamed('/');
+      // }
       // else {
       //   Navigator.pushNamed(context, '/settingsLanguages');
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: SettingsLanguages(),
-        //   ),
-        // );
-     // }
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child: SettingsLanguages(),
+      //   ),
+      // );
+      // }
     });
   }
 
   getConnectivity() => subscription = Connectivity()
-          .onConnectivityChanged
-          .listen((ConnectivityResult result) async {
-        isDeviceConnected = await InternetConnectionChecker().hasConnection;
-        if (!isDeviceConnected && isAlertSet == false) {
-          showDialogBox();
-          setState(() {
-            isAlertSet = true;
-          });
-        } else {}
+      .onConnectivityChanged
+      .listen((ConnectivityResult result) async {
+    isDeviceConnected = await InternetConnectionChecker().hasConnection;
+    if (!isDeviceConnected && isAlertSet == false) {
+      showDialogBox();
+      setState(() {
+        isAlertSet = true;
       });
+    } else {}
+  });
 
   @override
   void dispose() {
@@ -79,67 +80,67 @@ class SplashScreenState extends State<SplashScreen> {
     double width = MediaQuery.of(context).size.width;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-    return
-      domainName == "https://sssuhe.qnatest.com"
-      ? EasySplashScreen(
-        logoWidth:
-        constraints.maxWidth > 700
-        ? width * 0.1
-        : width * 0.3,
-        logo: Image.asset(
-            "assets/images/SSSUHE.png"),
-        backgroundColor: Colors.white,
-        showLoader: true,
-        loaderColor: const Color.fromRGBO(82, 165, 160, 1),
-        navigator: const WelcomePage(),
-      )
+          return
+            domainName == "https://sssuhe.qnatest.com"
+                ? EasySplashScreen(
+              logoWidth:
+              constraints.maxWidth > 700
+                  ? width * 0.1
+                  : width * 0.3,
+              logo: Image.asset(
+                  "assets/images/SSSUHE.png"),
+              backgroundColor: Colors.white,
+              showLoader: true,
+              loaderColor: const Color.fromRGBO(82, 165, 160, 1),
+              navigator: const WelcomePage(),
+            )
 
-      // Container(
-      //   width: width,
-      //   height: height,
-      //   decoration: const BoxDecoration(
-      //     image: DecorationImage(
-      //       fit: BoxFit.fill,
-      //       image: AssetImage("assets/images/sssuhe_splash.png"),
-      //     ),
-      //   ),
-      // )
-      // Container(
-      //   width: width,
-      //   height: height,
-      //   decoration: const BoxDecoration(
-      //     image: DecorationImage(
-      //       fit: BoxFit.fill,
-      //       image: AssetImage("assets/images/sssuhe_splash.png"),
-      //     ),
-      //   ),
-      // )
-      :   EasySplashScreen(
-          logoWidth:
-          constraints.maxWidth > 700
-          ? width * 0.15
-          : width * 0.7,
-          logo: Image.asset(
-          "assets/images/qna_splash_screen.jpg"),
-          //backgroundColor: Colors.white,
-          showLoader: true,
-          loaderColor: const Color.fromRGBO(82, 165, 160, 1),
-          navigator: const WelcomePage(),
-          );
+            // Container(
+            //   width: width,
+            //   height: height,
+            //   decoration: const BoxDecoration(
+            //     image: DecorationImage(
+            //       fit: BoxFit.fill,
+            //       image: AssetImage("assets/images/sssuhe_splash.png"),
+            //     ),
+            //   ),
+            // )
+            // Container(
+            //   width: width,
+            //   height: height,
+            //   decoration: const BoxDecoration(
+            //     image: DecorationImage(
+            //       fit: BoxFit.fill,
+            //       image: AssetImage("assets/images/sssuhe_splash.png"),
+            //     ),
+            //   ),
+            // )
+                :   EasySplashScreen(
+              logoWidth:
+              constraints.maxWidth > 700
+                  ? width * 0.15
+                  : width * 0.7,
+              logo: Image.asset(
+                  "assets/images/qna_splash_screen.jpg"),
+              //backgroundColor: Colors.white,
+              showLoader: true,
+              loaderColor: const Color.fromRGBO(82, 165, 160, 1),
+              navigator: const WelcomePage(),
+            );
 
-    //   Container(
-    //   width: width,
-    //   height: height,
-    //   decoration: const BoxDecoration(
-    //     image: DecorationImage(
-    //       fit: BoxFit.fill,
-    //       image: AssetImage("assets/images/qna_splash_screen.jpg"),
-    //     ),
-    //   ),
-    // );
+          //   Container(
+          //   width: width,
+          //   height: height,
+          //   decoration: const BoxDecoration(
+          //     image: DecorationImage(
+          //       fit: BoxFit.fill,
+          //       image: AssetImage("assets/images/qna_splash_screen.jpg"),
+          //     ),
+          //   ),
+          // );
+        }
+    );
   }
-  );
-}
 
   showDialogBox() => showCupertinoDialog<String>(
       context: context,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -225,16 +227,15 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
           }
         }
         else{
+          print("new flow");
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .deleteQuestionList(widget.quesNum);
           if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
-            int count = 0;
-            Navigator.popUntil(context, (route) {
-              return count++ == 5;
-            });
+            Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
             //Navigator.pushNamed(context, '/teacherQuestionBank');
           }
           else{
+            print("else");
             int count = 0;
             Navigator.popUntil(context, (route) {
               return count++ == 5;
@@ -964,50 +965,89 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                   onPressed: () {
-                                    //List<String> temp=[];
-                                    // for(int i=0;i< _values.length;i++){
-                                    //   temp.add(_values[i]['value']);
-                                    // }
-                                    setState(() {
-                                      List<Choice> temp = [];
-                                      for (int i = 0; i < chooses.length; i++) {
-                                        Choice ch = Choice();
-                                        temp.add(ch);
-                                        temp[i].choiceText = chooses[i].text;
-                                        temp[i].rightChoice = false;
-                                        if (radioList[i]) {
-                                          temp[i].rightChoice = radioList[i];
+                                    if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: CustomDialog(
+                                            title: "Alert",
+                                            //'Wrong password',
+                                            content:
+                                            "Enter Subject, Class and Question",
+                                            //'please enter the correct password',
+                                            button: "Retry",
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    else if(_groupValue=='MCQ' && chooses.isEmpty){
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: CustomDialog(
+                                            title: "Alert",
+                                            //'Wrong password',
+                                            content:
+                                            "At least one choice must be added",
+                                            //'please enter the correct password',
+                                            button: "Retry",
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    else {
+                                      setState(() {
+                                        List<Choice> temp = [];
+                                        for (int i = 0;
+                                        i < chooses.length;
+                                        i++) {
+                                          Choice ch = Choice();
+                                          temp.add(ch);
+                                          temp[i].choiceText = chooses[i].text;
+                                          temp[i].rightChoice = false;
+                                          if (radioList[i]) {
+                                            temp[i].rightChoice = radioList[i];
+                                          }
                                         }
-                                      }
-                                      widget.finalQuestion.questionType=_groupValue;
-                                      widget.finalQuestion.subject =
-                                          subjectController.text;
-                                      widget.finalQuestion.topic =
-                                          topicController.text;
-                                      widget.finalQuestion.subTopic =
-                                          subtopicController.text;
-                                      widget.finalQuestion.datumClass =
-                                          classRoomController.text;
-                                      widget.finalQuestion.question =
-                                          questionController.text;
-                                      widget.finalQuestion.choices = selected;
-                                      widget.finalQuestion.advisorText =
-                                          adviceController.text;
-                                      widget.finalQuestion.advisorUrl =
-                                          urlController.text;
-                                      widget.finalQuestion.choices = temp;
-                                      Provider.of<QuestionPrepareProviderFinal>(context,
-                                          listen: false)
-                                          .updateQuestionList(
-                                          widget.quesNum, widget.finalQuestion);
-                                    });
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                            builder: (context) => TeacherAddMyQuestionBank(
-                                              assessment: widget.assessment,
-                                            )),
-                                            (route) => route.isFirst);
+                                        widget.finalQuestion.questionType =
+                                            _groupValue;
+                                        widget.finalQuestion.subject =
+                                            subjectController.text;
+                                        widget.finalQuestion.topic =
+                                            topicController.text;
+                                        widget.finalQuestion.subTopic =
+                                            subtopicController.text;
+                                        widget.finalQuestion.datumClass =
+                                            classRoomController.text;
+                                        widget.finalQuestion.question =
+                                            questionController.text;
+                                        widget.finalQuestion.choices = selected;
+                                        widget.finalQuestion.advisorText =
+                                            adviceController.text;
+                                        widget.finalQuestion.advisorUrl =
+                                            urlController.text;
+                                        widget.finalQuestion.choices = temp;
+                                        Provider.of<
+                                            QuestionPrepareProviderFinal>(
+                                            context,
+                                            listen: false)
+                                            .updateQuestionList(widget.quesNum,
+                                            widget.finalQuestion);
+                                      });
 
+                                      Navigator.of(context)
+                                          .pushNamed(
+                                          '/teacherAddMyQuestionBank',
+                                          arguments: widget.assessment);
+                                      // Navigator.of(context).pushAndRemoveUntil(
+                                      //     MaterialPageRoute(
+                                      //         builder: (context) => TeacherAddMyQuestionBank(
+                                      //           assessment: widget.assessment,
+                                      //         )),
+                                      //         (route) => route.isFirst);
+                                    }
                                   },
                                   child: const Text("Save"),
                                 ),

@@ -76,21 +76,22 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 size: 40.0,
                 color: Colors.white,
               ),
-              onPressed: () async {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return const Center(
-                          child: CircularProgressIndicator(
-                            color: Color.fromRGBO(48, 145, 139, 1),
-                          ));
-                    });
-                loginData = await SharedPreferences.getInstance();
-                UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-                userDataModel =
-                await QnaService.getUserDataService(loginData?.getInt('userId'));
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/teacherSelectionPage',arguments: userDataModel);
+              onPressed: () {
+                // showDialog(
+                //     context: context,
+                //     builder: (context) {
+                //       return const Center(
+                //           child: CircularProgressIndicator(
+                //             color: Color.fromRGBO(48, 145, 139, 1),
+                //           ));
+                //     });
+                // loginData = await SharedPreferences.getInstance();
+                // UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+                // userDataModel =
+                // await QnaService.getUserDataService(loginData?.getInt('userId'));
+                // Navigator.pop(context);
+                // Navigator.pushNamed(context, '/teacherSelectionPage',arguments: userDataModel);
+                Navigator.of(context).pop();
               },
             ),
             toolbarHeight: height * 0.100,

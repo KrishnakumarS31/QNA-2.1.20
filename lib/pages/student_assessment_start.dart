@@ -11,11 +11,9 @@ import '../Services/qna_service.dart';
 class StudentAssessment extends StatefulWidget {
   StudentAssessment(
       {Key? key,
-      required this.regNumber,
-      required this.usedData})
+        required this.usedData})
       : super(key: key);
 
-  final String? regNumber;
   UserDataModel? usedData;
 
   @override
@@ -60,17 +58,16 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     elevation: 0,
-                    automaticallyImplyLeading: false,
-                    // leading: IconButton(
-                    //   icon: const Icon(
-                    //     Icons.chevron_left,
-                    //     size: 30,
-                    //     color: Colors.white,
-                    //   ),
-                    //   onPressed: () {
-                    //     Navigator.of(context).pop();
-                    //   },
-                    // ),
+                    leading: IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: EndDrawerMenuStudent(
@@ -140,11 +137,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                   .primaryTextTheme
                                   .bodyLarge
                                   ?.merge(const TextStyle(
-                                      color: Color.fromRGBO(28, 78, 80, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      letterSpacing: -0.02,
-                                      fontSize: 24)),
+                                  color: Color.fromRGBO(28, 78, 80, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: -0.02,
+                                  fontSize: 24)),
                             ),
                             SizedBox(
                               height: localHeight * 0.03,
@@ -160,25 +157,25 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                   alignment: Alignment.topLeft,
                                   child: RichText(
                                       text: TextSpan(children: [
-                                    TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .enter_assId,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.017),
-                                    ),
-                                    TextSpan(
-                                        text: "\t*",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.017)),
-                                  ])),
+                                        TextSpan(
+                                          text: AppLocalizations.of(context)!
+                                              .enter_assId,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.017),
+                                        ),
+                                        TextSpan(
+                                            text: "\t*",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    219, 35, 35, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: localHeight * 0.017)),
+                                      ])),
                                 ),
                                 SizedBox(
                                   height: localHeight * 0.02,
@@ -190,13 +187,13 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                       child: Form(
                                           key: formKey,
                                           autovalidateMode:
-                                              AutovalidateMode.disabled,
+                                          AutovalidateMode.disabled,
                                           child: TextFormField(
                                               validator: (value) {
                                                 return value!.length < 8
                                                     ? AppLocalizations.of(
-                                                            context)!
-                                                        .valid_assId
+                                                    context)!
+                                                    .valid_assId
                                                     : null;
                                               },
                                               controller: assessmentID,
@@ -207,7 +204,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               inputFormatters: [
                                                 FilteringTextInputFormatter
                                                     .allow(
-                                                        RegExp('[a-zA-Z0-9]')),
+                                                    RegExp('[a-zA-Z0-9]')),
                                               ],
                                               keyboardType: TextInputType.text,
                                               decoration: InputDecoration(
@@ -218,7 +215,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 16),
                                                 hintText: AppLocalizations.of(
-                                                        context)!
+                                                    context)!
                                                     .assessment_id,
                                                 prefixIcon: const Icon(
                                                     Icons.event_note_outlined,
@@ -240,7 +237,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
-                                      const Color.fromRGBO(82, 165, 160, 1),
+                                  const Color.fromRGBO(82, 165, 160, 1),
                                   minimumSize: const Size(280, 48),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(39),
@@ -456,20 +453,20 @@ class StudentAssessmentState extends State<StudentAssessment> {
                             SizedBox(
                               height: localHeight * 0.02,
                             ),
-                          Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                name,
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.merge(const TextStyle(
+                            Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  name,
+                                  style: Theme.of(context)
+                                      .primaryTextTheme
+                                      .bodyLarge
+                                      ?.merge(const TextStyle(
                                       color: Color.fromRGBO(28, 78, 80, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: -0.02,
                                       fontSize: 24)),
-                            )),
+                                )),
                             SizedBox(
                               height: localHeight * 0.03,
                             ),
@@ -485,25 +482,25 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                   alignment: Alignment.topLeft,
                                   child: RichText(
                                       text: TextSpan(children: [
-                                    TextSpan(
-                                      text: AppLocalizations.of(context)!
-                                          .enter_assId,
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: localHeight * 0.017),
-                                    ),
-                                    TextSpan(
-                                        text: "\t*",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.017)),
-                                  ])),
+                                        TextSpan(
+                                          text: AppLocalizations.of(context)!
+                                              .enter_assId,
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: localHeight * 0.017),
+                                        ),
+                                        TextSpan(
+                                            text: "\t*",
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    219, 35, 35, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: localHeight * 0.017)),
+                                      ])),
                                 ),
                                 SizedBox(
                                   height: localHeight * 0.02,
@@ -515,13 +512,13 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                       child: Form(
                                           key: formKey,
                                           autovalidateMode:
-                                              AutovalidateMode.disabled,
+                                          AutovalidateMode.disabled,
                                           child: TextFormField(
                                               validator: (value) {
                                                 return value!.length < 8
                                                     ? AppLocalizations.of(
-                                                            context)!
-                                                        .valid_assId
+                                                    context)!
+                                                    .valid_assId
                                                     : null;
                                               },
                                               controller: assessmentID,
@@ -532,7 +529,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               inputFormatters: [
                                                 FilteringTextInputFormatter
                                                     .allow(
-                                                        RegExp('[a-zA-Z0-9]')),
+                                                    RegExp('[a-zA-Z0-9]')),
                                               ],
                                               keyboardType: TextInputType.text,
                                               decoration: InputDecoration(
@@ -543,7 +540,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: 16),
                                                 hintText: AppLocalizations.of(
-                                                        context)!
+                                                    context)!
                                                     .assessment_id,
                                                 prefixIcon: const Icon(
                                                     Icons.event_note_outlined,
@@ -565,7 +562,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
-                                      const Color.fromRGBO(82, 165, 160, 1),
+                                  const Color.fromRGBO(82, 165, 160, 1),
                                   minimumSize: const Size(280, 48),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(39),
@@ -586,9 +583,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         builder: (context) {
                                           return const Center(
                                               child: CircularProgressIndicator(
-                                            color:
+                                                color:
                                                 Color.fromRGBO(48, 145, 139, 1),
-                                          ));
+                                              ));
                                         });
                                     values = await QnaService.getQuestion(
                                         assessmentId: assessmentID.text);
@@ -621,13 +618,13 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                           context,
                                           PageTransition(
                                             type:
-                                                PageTransitionType.rightToLeft,
+                                            PageTransitionType.rightToLeft,
                                             child: CustomDialog(
                                               title: '${values.message}',
                                               content: '',
                                               button:
-                                                  AppLocalizations.of(context)!
-                                                      .retry,
+                                              AppLocalizations.of(context)!
+                                                  .retry,
                                             ),
                                           ),
                                         );
@@ -641,8 +638,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             title: '${values.message}',
                                             content: '',
                                             button:
-                                                AppLocalizations.of(context)!
-                                                    .retry,
+                                            AppLocalizations.of(context)!
+                                                .retry,
                                           ),
                                         ),
                                       );

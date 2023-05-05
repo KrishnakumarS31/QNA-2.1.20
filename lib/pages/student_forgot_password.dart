@@ -8,9 +8,9 @@ import '../EntityModel/static_response.dart';
 class StudentForgotPassword extends StatefulWidget {
   const StudentForgotPassword(
       {Key? key,
-      required this.email,
-      required this.otp,
-      required this.isFromStudent,
+        required this.email,
+        required this.otp,
+        required this.isFromStudent,
       })
       : super(key: key);
 
@@ -70,9 +70,9 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                         end: Alignment.bottomRight,
                         begin: Alignment.topLeft,
                         colors: [
-                      Color.fromRGBO(82, 165, 160, 1),
-                      Color.fromRGBO(0, 106, 100, 1),
-                    ])),
+                          Color.fromRGBO(82, 165, 160, 1),
+                          Color.fromRGBO(0, 106, 100, 1),
+                        ])),
               ),
             ),
             body: Column(children: [
@@ -100,30 +100,30 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                               },
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 label: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .new_password_caps,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017),
-                                  ),
-                                  TextSpan(
-                                      text: "\t*",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                ])),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .new_password_caps,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017),
+                                      ),
+                                      TextSpan(
+                                          text: "\t*",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.017)),
+                                    ])),
                                 hintText:
-                                    AppLocalizations.of(context)!.new_password,
+                                AppLocalizations.of(context)!.new_password,
                                 hintStyle: TextStyle(
                                     color: const Color.fromRGBO(
                                         102, 102, 102, 0.3),
@@ -160,28 +160,28 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                               },
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 label: RichText(
                                     text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!
-                                        .confirm_new_password_caps,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017),
-                                  ),
-                                  TextSpan(
-                                      text: "\t*",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                ])),
+                                      TextSpan(
+                                        text: AppLocalizations.of(context)!
+                                            .confirm_new_password_caps,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017),
+                                      ),
+                                      TextSpan(
+                                          text: "\t*",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  219, 35, 35, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.017)),
+                                    ])),
                                 hintText: AppLocalizations.of(context)!
                                     .confirm_new_password,
                                 hintStyle: TextStyle(
@@ -214,7 +214,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
+                          const Color.fromRGBO(82, 165, 160, 1),
                           minimumSize: Size(width * 0.77, height * 0.06),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(39),
@@ -224,8 +224,8 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                           bool valid = formKey.currentState!.validate();
                           if (valid) {
                             StaticResponse res =
-                                await QnaService.updatePasswordOtp(
-                                    widget.email, widget.otp, newPassword.text);
+                            await QnaService.updatePasswordOtp(
+                                widget.email, widget.otp, newPassword.text);
                             //int statusCode= QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
                             if (res.code == 200 && newPassword.text.isNotEmpty) {
                               showAlertDialog(context);
@@ -237,7 +237,7 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
                                   child: CustomDialog(
                                     title: 'Incorrect OTP',
                                     content:
-                                        'Your Password has not been changed',
+                                    'Your Password has not been changed',
                                     button: AppLocalizations.of(context)!.retry,
                                   ),
                                 ),
@@ -308,25 +308,12 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
           ),
           onPressed: () {
             if (widget.isFromStudent == true) {
-              Navigator.pushNamed(context, '/studentMemberLoginPage');
-              // Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeft,
-              //     child: StudentMemberLoginPage(),
-              //   ),
-              // );
+              Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',ModalRoute.withName('/studentSelectionPage'));
             } else if (widget.isFromStudent == false) {
-              Navigator.pushNamed(context, '/teacherLoginPage');
-              // Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeft,
-              //     child: TeacherLogin(),
-              //   ),
-              // );
+              print("INSIDE ELSE");
+              Navigator.popUntil(context, ModalRoute.withName('/teacherLoginPage'));
+              //Navigator.pushNamedAndRemoveUntil(context, '/teacherLoginPage',ModalRoute.withName('/'));
             }
-            //Navigator.of(context).pop();
           },
         )
       ],

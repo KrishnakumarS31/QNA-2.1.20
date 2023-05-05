@@ -90,20 +90,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
-          Navigator.pushNamed(
-              context,
-              '/teacherMyQuestionBank',
-              arguments: widget.assessment
-          );
-
-          // Navigator.push(
-          //   context,
-          //   PageTransition(
-          //     type: PageTransitionType.rightToLeft,
-          //     child: TeacherMyQuestionBank(
-          //         assessment: widget.assessment,),
-          //   ),
-          // );
+          Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
         }
       },
     );

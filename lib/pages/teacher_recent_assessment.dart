@@ -68,7 +68,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                Navigator.of(context).pop();
               },
             ),
             toolbarHeight: height * 0.100,

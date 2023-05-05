@@ -238,6 +238,8 @@ class ResetPasswordState extends State<ResetPassword> {
                                     oldPassword.text,
                                     newPassword.text,
                                     loginData.getInt('userId')!,context);
+                            print("Inside Teacher");
+                            print(statusCode.code);
                             if (statusCode.code == 200) {
                               showAlertDialog(context);
                             } else {
@@ -285,7 +287,7 @@ class ResetPasswordState extends State<ResetPassword> {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
-        Navigator.pushNamed(context, '/teacherLoginPage');
+        Navigator.popUntil(context, ModalRoute.withName('/teacherLoginPage'));
         // Navigator.push(
         //   context,
         //   PageTransition(

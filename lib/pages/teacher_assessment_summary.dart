@@ -267,8 +267,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/teacherRecentAssessment',
-                    arguments: [assessment,'inprogress']);
+                Navigator.of(context).pop();
               },
             ),
             toolbarHeight: height * 0.100,
@@ -1129,7 +1128,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           await QnaService.editAssessmentTeacherService(
                               assessment, assessment.assessmentId!);
                           if (statusCode.code == 200) {
-                            Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
                             //  Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                             // Navigator.of(context).pushAndRemoveUntil(
                             //     MaterialPageRoute(
@@ -1263,8 +1262,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeQuestion(widget.question.questionId);
         //Provider.of<CreateAssessmentProvider>(context, listen: false).addRemoveQuesList(widget.question.questionId);
-        Navigator.pushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmenType);
-
+        Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentSummary', ModalRoute.withName('/teacherRecentAssessment'),arguments: widget.assessmenType);
         // assessment.removeQuestions?.add(widget.question.questionId);
         // Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
         // setState(() {});

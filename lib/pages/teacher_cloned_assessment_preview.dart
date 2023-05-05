@@ -346,7 +346,8 @@ class TeacherClonedAssessmentPreviewState
                               await QnaService.createAssessmentTeacherService(
                                   finalAssessment);
                           if (statusCode.code == 200) {
-                            Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+                            //Navigator.pushNamed(context, '/teacherAssessmentLanding');
                             // Navigator.pushNamedAndRemoveUntil(
                             //     context,
                             //     '/teacherAssessmentLanding',
@@ -505,7 +506,9 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             .deleteQuestionList(widget.index);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeLooqQuestionInAssess(widget.question.questionId);
-        Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',(route) => route.isFirst,arguments: widget.assessmentType);
+
+        Navigator.of(context).pushNamedAndRemoveUntil('/teacherClonedAssessmentPreview', ModalRoute.withName('/teacherClonedAssessment'),arguments: widget.assessmentType);
+
 
         // Navigator.push(
         //   context,

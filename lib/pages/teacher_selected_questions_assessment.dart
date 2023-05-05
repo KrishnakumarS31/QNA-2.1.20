@@ -1035,8 +1035,9 @@ class TeacherSelectedQuestionAssessmentState
                                 await QnaService.createAssessmentTeacherService(
                                     assessment);
                           }
-                          Navigator.pushNamed(context, '/teacherAssessmentLanding');
-                        // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                          Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+
+                          // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                           // Navigator.of(context).pushAndRemoveUntil(
                           //     MaterialPageRoute(
                           //         builder: (context) => TeacherAssessmentLanding(

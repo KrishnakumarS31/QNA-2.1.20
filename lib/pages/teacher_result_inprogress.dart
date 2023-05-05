@@ -110,6 +110,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
             ),
             body: SingleChildScrollView(
               scrollDirection: Axis.vertical,
+              physics: const ClampingScrollPhysics(),
               child: Padding(
                 padding: EdgeInsets.only(
                     top: height * 0.023,
@@ -785,6 +786,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                           cursor: SystemMouseCursors.click,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
+                            physics: const ClampingScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: widget.inProgressArray!.length,
                             itemBuilder: (context, index) => Column(

@@ -334,10 +334,11 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             ResponseEntity statusCode =
                             await QnaService.createQuestionTeacherService(
                                 createQuestion);
-                            int count = 0;
-                            Navigator.popUntil(context, (route) {
-                              return count++ == 3;
-                            });
+                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+                            // int count = 0;
+                            // Navigator.popUntil(context, (route) {
+                            //   return count++ == 3;
+                            // });
                           },
                           child: Text(
                             'Finalize',

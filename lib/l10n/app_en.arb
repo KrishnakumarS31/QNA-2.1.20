@@ -267,7 +267,7 @@
   "end_date": "End Date",
   "available_for_practice": "Available for Practice",
   "for_institute_students": "For institution students only",
-  "no_of_days_test": "Number of days after test",
+  "make_test_practice": "Make Test available for Practice after",
   "only_mcq_for_practice": "Only MCQ will be available for Practice",
   "institute_organisation": "Institution / Organisation",
   "access_control": "Access Control",

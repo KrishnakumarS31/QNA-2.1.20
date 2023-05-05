@@ -784,6 +784,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                           cursor: SystemMouseCursors.click,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
+                            physics: const ClampingScrollPhysics(),
                             shrinkWrap: true,
                             itemCount:widget.submittedArray!.length,
                             itemBuilder: (context, index) => Column(

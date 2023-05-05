@@ -912,7 +912,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   //     context,
                                   //     '/studGuestAssessment',
                                   //     arguments: name);
-                                  Navigator.of(context).pushNamedAndRemoveUntil('/studGuestAssessment', ModalRoute.withName('/studentSelectionPage'),arguments: name);
+                                  Navigator.of(context).pushNamed('/studGuestAssessment',arguments: name);
                                   nameController.clear();
                                   rollNumController.clear();
                                 }

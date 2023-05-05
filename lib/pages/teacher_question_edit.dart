@@ -289,7 +289,8 @@ class QuestionEditState extends State<QuestionEdit> {
         LoginModel statusCode =
         await QnaService.deleteQuestion(widget.question.questionId!);
         if (statusCode.code == 200) {
-          Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
+          Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+          //Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
           // Navigator.of(context).pushAndRemoveUntil(
           //     MaterialPageRoute(
           //         builder: (context) => TeacherQuestionBank(
@@ -375,6 +376,9 @@ class QuestionEditState extends State<QuestionEdit> {
                   color: Colors.white,
                 ),
                 onPressed: () {
+                  subjectController.clear();
+                  questionController.clear();
+                  classRoomController.clear();
                   Navigator.of(context).pop();
                 },
               ),
@@ -1263,26 +1267,59 @@ class QuestionEditState extends State<QuestionEdit> {
                             ),
                           ),
                           onPressed: () {
-                            setState(() {
-                              widget.question.questionType=_groupValue;
-                              widget.question.subject =
-                                  subjectController.text;
-                              widget.question.topic =
-                                  topicController.text;
-                              widget.question.subTopic =
-                                  subtopicController.text;
-                              widget.question.datumClass =
-                                  classRoomController.text;
-                              widget.question.question =
-                                  questionController.text;
-                              widget.question.choices = selected;
-                              widget.question.advisorText =
-                                  adviceController.text;
-                              widget.question.advisorUrl =
-                                  urlController.text;
-                            });
-                            showQuestionPreview(context);
-                          }),
+                            if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Alert",
+                                    //'Wrong password',
+                                    content:
+                                    "Enter Subject, Class and Question",
+                                    //'please enter the correct password',
+                                    button: "Retry",
+                                  ),
+                                ),
+                              );
+                            }
+                            else if(_groupValue=='MCQ' && chooses.isEmpty){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Alert",
+                                    //'Wrong password',
+                                    content:
+                                    "At least one choice must be added",
+                                    //'please enter the correct password',
+                                    button: "Retry",
+                                  ),
+                                ),
+                              );
+                            }
+                            else{
+                                setState(() {
+                                  widget.question.questionType = _groupValue;
+                                  widget.question.subject =
+                                      subjectController.text;
+                                  widget.question.topic = topicController.text;
+                                  widget.question.subTopic =
+                                      subtopicController.text;
+                                  widget.question.datumClass =
+                                      classRoomController.text;
+                                  widget.question.question =
+                                      questionController.text;
+                                  widget.question.choices = selected;
+                                  widget.question.advisorText =
+                                      adviceController.text;
+                                  widget.question.advisorUrl =
+                                      urlController.text;
+                                });
+                                showQuestionPreview(context);
+                              }
+                            }),
                     ),
                   ]),
                 ))));

@@ -104,25 +104,26 @@ class TeacherPublishedAssessmentState
           backgroundColor: Colors.white,
           endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.chevron_left,
-                size: 40.0,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.pushNamed(context, '/teacherAssessmentLanding');
-                //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
-                // Navigator.push(
-                //   context,
-                //   PageTransition(
-                //     type: PageTransitionType.leftToRight,
-                //     child:
-                //         TeacherAssessmentLanding(),
-                //   ),
-                // );
-              },
-            ),
+            // leading: IconButton(
+            //   icon: const Icon(
+            //     Icons.chevron_left,
+            //     size: 40.0,
+            //     color: Colors.white,
+            //   ),
+            //   onPressed: () {
+            //     Navigator.of(context).pop();
+            //     //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+            //     // Navigator.push(
+            //     //   context,
+            //     //   PageTransition(
+            //     //     type: PageTransitionType.leftToRight,
+            //     //     child:
+            //     //         TeacherAssessmentLanding(),
+            //     //   ),
+            //     // );
+            //   },
+            // ),
+            automaticallyImplyLeading: false,
             toolbarHeight: height * 0.100,
             centerTitle: true,
             title: Column(
@@ -1084,8 +1085,9 @@ class TeacherPublishedAssessmentState
                               )),
                           //shape: StadiumBorder(),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/teacherAssessmentLanding');
-                           // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
+                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+
+                            // Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
                             // Navigator.of(context).pushAndRemoveUntil(
                             //     MaterialPageRoute(
                             //         builder: (context) => TeacherAssessmentLanding(

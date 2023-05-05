@@ -256,14 +256,6 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                 '/teacherLooqClonePreview',
                                 arguments: i
                             );
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: TeacherLooqClonePreview(
-                            //         question: i),
-                            //   ),
-                            // );
                           },
                           child: QuestionPreview(
                             height: height,
@@ -282,7 +274,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                           ),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/teacherQuestionBank');
+                          Navigator.of(context).pop();
                         },
                         child: Text(
                           'Back to Questions',
@@ -319,7 +311,18 @@ class QuestionPreview extends StatelessWidget {
     for (int i = 0; i < question.choices!.length; i++) {
       answer = '$answer ${question.choices![i]}';
     }
-    return Column(
+
+    return MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+          onTap: () {
+      Navigator.pushNamed(
+          context,
+          '/teacherLooqClonePreview',
+          arguments: question
+      );
+    },
+    child: Column(
       children: [
         Container(
           height: height * 0.04,
@@ -401,6 +404,6 @@ class QuestionPreview extends StatelessWidget {
         ),
         const Divider()
       ],
-    );
+    )));
   }
 }

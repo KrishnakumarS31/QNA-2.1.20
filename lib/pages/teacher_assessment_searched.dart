@@ -125,8 +125,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushReplacementNamed(context,
-                    '/teacherAssessmentLanding');
+                Navigator.of(context).pop();
               },
             ),
             toolbarHeight: height * 0.100,
@@ -397,59 +396,7 @@ class CardInfo extends StatelessWidget {
         onTap: () async {
           Provider.of<EditAssessmentProvider>(context, listen: false)
               .updateAssessment(assessment);
-          if (assessment.assessmentStatus == 'inprogress') {
-            CreateAssessmentModel editAssessment =
-                CreateAssessmentModel(questions: [], removeQuestions: []);
-            editAssessment.assessmentId = assessment.assessmentId;
-            editAssessment.assessmentType = assessment.assessmentType;
-            editAssessment.assessmentStatus = assessment.assessmentStatus;
-            editAssessment.subject = assessment.subject;
-            editAssessment.createAssessmentModelClass =
-                assessment.getAssessmentModelClass;
-            assessment.topic == null
-                ? 0
-                : editAssessment.topic = assessment.topic;
-            assessment.subTopic == null
-                ? 0
-                : editAssessment.subTopic = assessment.subTopic;
-            assessment.totalScore == null
-                ? 0
-                : editAssessment.totalScore = assessment.totalScore;
-            assessment.questions!.isEmpty
-                ? 0
-                : editAssessment.totalQuestions = assessment.questions!.length;
-            assessment.assessmentDuration == null
-                ? ''
-                : editAssessment.totalScore = assessment.totalScore;
-            if (assessment.questions!.isEmpty) {
-            } else {
-              for (int i = 0; i < assessment.questions!.length; i++) {
-                Question question = Question();
-                question.questionMarks = assessment.questions![i].questionMark;
-                question.questionId = assessment.questions![i].questionId;
-                editAssessment.questions?.add(question);
-                Provider.of<QuestionPrepareProviderFinal>(context,
-                        listen: false)
-                    .addQuestion(assessment.questions![i]);
-              }
-            }
 
-            Provider.of<CreateAssessmentProvider>(context, listen: false)
-                .updateAssessment(editAssessment);
-            Navigator.pushNamed(context,
-                '/teacherRecentAssessment',
-                arguments: editAssessment);
-
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherRecentAssessment(
-            //       finalAssessment: editAssessment,
-            //     ),
-            //   ),
-            // );
-          } else if (assessment.assessmentStatus == 'active') {
             SharedPreferences loginData = await SharedPreferences.getInstance();
             CreateAssessmentModel editAssessment = CreateAssessmentModel(
                 questions: [], removeQuestions: [], addQuestion: []);
@@ -502,16 +449,7 @@ class CardInfo extends StatelessWidget {
             //     ),
             //   ),
             // );
-          } else {
-            Navigator.pushNamed(context, '/teacherInactiveAssessment');
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherInactiveAssessment(),
-            //   ),
-            // );
-          }
+
         },
         child: Container(
           height: height * 0.1087,

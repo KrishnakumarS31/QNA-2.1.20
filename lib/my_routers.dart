@@ -198,7 +198,7 @@ class MyRoutes{
 
       case '/studentAssessment':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentAssessment(regNumber: arguments[0], usedData: arguments[1],),settings: settings);
+        return SlideRightRoute(widget: StudentAssessment(usedData: arguments[1]),settings: settings);
       }
 
       case '/studentForgotPassword':{
@@ -451,6 +451,7 @@ class SlideRightRoute extends PageRouteBuilder {
   final RouteSettings settings;
   SlideRightRoute({required this.widget,required this.settings})
       : super(
+    settings: RouteSettings(name: '${settings.name}'),
     pageBuilder: (
         BuildContext context, Animation<double> animation,
         Animation<double> secondaryAnimation) {

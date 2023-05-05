@@ -332,8 +332,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                 await QnaService.editQuestionTeacherService(
                                     widget.editQuestionModel,
                                     widget.question.questionId);
-                            int count = 0;
-                            Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
+                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
                           },
                           child: Text(
                             'Finalize',

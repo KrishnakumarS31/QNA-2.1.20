@@ -1,6 +1,6 @@
 # QnATest
 
-A new Flutter project.
+ITNEDUCATION Product
 
 ## Getting Started
 

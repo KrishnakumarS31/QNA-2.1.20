@@ -441,111 +441,153 @@ class TeacherAssessmentSettingPublishState
                                                     ),
                                                     Column(
                                                       children: [
-                                                        Text(
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .test_qn_page,
-                                                          // "Test",
-                                                          style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                28, 78, 80, 1),
-                                                            fontSize:
-                                                            height * 0.025,
-                                                            fontFamily: "Inter",
-                                                            fontWeight:
-                                                            FontWeight.w600,
+                                                        Row(children: [
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .test_qn_page,
+                                                            // "Test",
+                                                            style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  28, 78, 80, 1),
+                                                              fontSize:
+                                                              height * 0.025,
+                                                              fontFamily: "Inter",
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                            ),
                                                           ),
-                                                        ),
+                                                          SizedBox(width: width * 0.3),
+                                                          Transform.scale(
+                                                            scale: 1.5,
+                                                            child: Radio(
+                                                              value: 1,
+                                                              groupValue: val,
+                                                              onChanged: (value) {
+                                                                setState(() {
+                                                                  val = value!;
+                                                                });
+                                                              },
+                                                              activeColor:
+                                                              const Color.fromRGBO(
+                                                                  82, 165, 160, 1),
+                                                            ),
+                                                          ),
+                                                        ]),
+
                                                       ],
                                                     ),
-                                                    //),
-                                                    Row(children: [
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .results_visible_teacher,
-                                                        // "Results visible only to teacher",
-                                                        style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              153, 153, 153, 1),
-                                                          fontSize: height * 0.02,
-                                                          fontFamily: "Inter",
-                                                          fontWeight:
-                                                          FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: width * 0.3),
-                                                      Transform.scale(
-                                                        scale: 1.5,
-                                                        child: Radio(
-                                                          value: 1,
-                                                          groupValue: val,
-                                                          onChanged: (value) {
-                                                            setState(() {
-                                                              val = value!;
-                                                            });
-                                                          },
-                                                          activeColor:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                        ),
-                                                      ),
-                                                    ]),
                                                     Column(
                                                       children: [
-                                                        Text(
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .practice_qn_page,
-                                                          // "Practice",
-                                                          style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                28, 78, 80, 1),
-                                                            fontSize:
-                                                            height * 0.025,
-                                                            fontFamily: "Inter",
-                                                            fontWeight:
-                                                            FontWeight.w600,
+                                                        Row(children: [
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .practice_qn_page,
+                                                            // "Practice",
+                                                            style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  28, 78, 80, 1),
+                                                              fontSize:
+                                                              height * 0.025,
+                                                              fontFamily: "Inter",
+                                                              fontWeight:
+                                                              FontWeight.w600,
+                                                            ),
                                                           ),
-                                                        ),
+                                                          SizedBox(width: width * 0.28),
+                                                          Transform.scale(
+                                                            scale: 1.5,
+                                                            child: Radio(
+                                                              value: 2,
+                                                              groupValue: val,
+                                                              onChanged: (value) {
+                                                                setState(() {
+                                                                  val = value!;
+                                                                });
+                                                              },
+                                                              activeColor:
+                                                              const Color.fromRGBO(
+                                                                  82, 165, 160, 1),
+                                                            ),
+                                                          ),
+                                                        ])
                                                       ],
                                                     ),
-                                                    Row(children: [
+                                            Column(
+                                              children: [
+                                                Row(children: [
+                                                  Text(
+                                                    AppLocalizations.of(context)!.make_test_practice,
+                                                    //"Make Test available for Practice after",
+                                                    style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          28, 78, 80, 1),
+                                                      fontSize: height * 0.02,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  SizedBox(width: width * 0.15),
+                                                  SizedBox(
+                                                    width: width * 0.2,
+                                                    child: TextField(
+                                                      controller:
+                                                      numOfDaysAfterTestController,
+                                                      keyboardType:
+                                                      TextInputType.number,
+                                                      decoration:
+                                                      InputDecoration(
+                                                        hintText: "# day/s",
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102,
+                                                                102,
+                                                                102,
+                                                                0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize:
+                                                            height * 0.020),
+                                                      ),
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                          height * 0.020,
+                                                          color: Colors.black),
+                                                    ),
+                                                  ),
+                                                ]),
+                                                Row(
+                                                    //mainAxisAlignment: MainAxisAlignment.,
+                                                    children: [
                                                       Text(
                                                         AppLocalizations.of(
                                                             context)!
-                                                            .results_visible_teacher,
-                                                        // "No results provided to teacher",
+                                                            .only_mcq_for_practice,
+                                                        //"Only MCQ will be available for Practice",
                                                         style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
+                                                          color: const Color
+                                                              .fromRGBO(
                                                               153, 153, 153, 1),
-                                                          fontSize: height * 0.02,
+                                                          fontSize:
+                                                          height * 0.02,
                                                           fontFamily: "Inter",
-                                                          fontWeight:
-                                                          FontWeight.w700,
+                                                          fontStyle: FontStyle.italic,
+                                                          fontWeight: FontWeight.w700,
                                                         ),
                                                       ),
-                                                      SizedBox(width: width * 0.3),
-                                                      Transform.scale(
-                                                        scale: 1.5,
-                                                        child: Radio(
-                                                          value: 2,
-                                                          groupValue: val,
-                                                          onChanged: (value) {
-                                                            setState(() {
-                                                              val = value!;
-                                                            });
-                                                          },
-                                                          activeColor:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                        ),
-                                                      ),
-                                                    ])
+                                                      SizedBox(
+                                                          height:
+                                                          height * 0.035),
+                                                    ]),
+                                                    ]
+                                                    )
                                                   ],
                                                 ),
                                               ],
@@ -559,8 +601,6 @@ class TeacherAssessmentSettingPublishState
                                           child: Container(
                                             padding:
                                             const EdgeInsets.only(left: 10),
-                                            // height: height * 0.1087,
-                                            // width: width * 0.888,
                                             decoration: BoxDecoration(
                                               borderRadius: const BorderRadius.all(
                                                   Radius.circular(8.0)),
@@ -1175,31 +1215,6 @@ class TeacherAssessmentSettingPublishState
                                                                         } else {}
                                                                       },
                                                                     )
-                                                                  // TextFormField(
-                                                                  //   decoration: InputDecoration(
-                                                                  //       hintText: "00:00 AM",
-                                                                  //       hintStyle: TextStyle(
-                                                                  //           color: const Color
-                                                                  //               .fromRGBO(
-                                                                  //               102,
-                                                                  //               102,
-                                                                  //               102,
-                                                                  //               0.3),
-                                                                  //           fontFamily:
-                                                                  //           'Inter',
-                                                                  //           fontWeight:
-                                                                  //           FontWeight
-                                                                  //               .w400,
-                                                                  //           fontSize: height *
-                                                                  //               0.020)),
-                                                                  //   controller:
-                                                                  //   endTimeController,
-                                                                  //   keyboardType:
-                                                                  //   TextInputType
-                                                                  //       .datetime,
-                                                                  //   enabled: true,
-                                                                  //   onChanged: (value) {},
-                                                                  // ),
                                                                 )),
                                                           ],
                                                         ),
@@ -1219,287 +1234,6 @@ class TeacherAssessmentSettingPublishState
                                           child: Container(
                                             padding:
                                             const EdgeInsets.only(left: 10),
-                                            decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.all(
-                                                  Radius.circular(8.0)),
-                                              border: Border.all(
-                                                color: const Color.fromRGBO(
-                                                    230, 230, 230, 1),
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: height * 0.015,
-                                                    ),
-                                                    Text(
-                                                      AppLocalizations.of(context)!
-                                                          .available_for_practice,
-                                                      //"Available for Practice",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                        fontSize: height * 0.03,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: height * 0.002,
-                                                    ),
-                                                    Text(
-                                                      AppLocalizations.of(context)!
-                                                          .for_institute_students,
-                                                      //"For institution students only",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            153, 153, 153, 1),
-                                                        fontSize: height * 0.025,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: height * 0.025,
-                                                    ),
-                                                    Row(children: [
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .no_of_days_test,
-                                                        //"Number of days after test",
-                                                        style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              28, 78, 80, 1),
-                                                          fontSize: height * 0.02,
-                                                          fontFamily: "Inter",
-                                                          fontWeight:
-                                                          FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: width * 0.2),
-                                                      SizedBox(
-                                                        width: width * 0.2,
-                                                        child: TextField(
-                                                          controller:
-                                                          numOfDaysAfterTestController,
-                                                          keyboardType:
-                                                          TextInputType.number,
-                                                          decoration:
-                                                          InputDecoration(
-                                                            hintText: "# day/s",
-                                                            hintStyle: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    0.3),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight:
-                                                                FontWeight.w400,
-                                                                fontSize:
-                                                                height * 0.020),
-                                                          ),
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                              height * 0.020,
-                                                              color: Colors.black),
-                                                        ),
-                                                      )
-                                                    ]),
-                                                    // SizedBox(height: height * 0.02),
-                                                    Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .only_mcq_for_practice,
-                                                            //"Only MCQ will be available for Practice",
-                                                            style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  153, 153, 153, 1),
-                                                              fontSize:
-                                                              height * 0.02,
-                                                              fontFamily: "Inter",
-                                                              fontWeight:
-                                                              FontWeight.w700,
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                              height * 0.035),
-                                                          // Checkbox(
-                                                          //   activeColor:
-                                                          //       const Color.fromRGBO(
-                                                          //           153, 153, 153, 0.8),
-                                                          //   fillColor:
-                                                          //       MaterialStateProperty
-                                                          //           .resolveWith<Color>(
-                                                          //               (states) {
-                                                          //     if (states.contains(
-                                                          //         MaterialState
-                                                          //             .selected)) {
-                                                          //       return const Color
-                                                          //               .fromRGBO(
-                                                          //           82,
-                                                          //           165,
-                                                          //           160,
-                                                          //           1); // Disabled color
-                                                          //     }
-                                                          //     return const Color
-                                                          //             .fromRGBO(
-                                                          //         82,
-                                                          //         165,
-                                                          //         160,
-                                                          //         1); // Regular color
-                                                          //   }),
-                                                          //   value: mcqAgree,
-                                                          //   onChanged: (val) {
-                                                          //     setState(() {
-                                                          //       mcqAgree = val!;
-                                                          //       if (mcqAgree) {}
-                                                          //     });
-                                                          //   },
-                                                          // ),
-                                                        ]),
-
-                                                    // Row(
-                                                    //     mainAxisAlignment:
-                                                    //         MainAxisAlignment
-                                                    //             .spaceBetween,
-                                                    //     children: [
-                                                    //       Text(
-                                                    //         "Survey",
-                                                    //         style: TextStyle(
-                                                    //           color:
-                                                    //               const Color.fromRGBO(
-                                                    //                   153,
-                                                    //                   153,
-                                                    //                   153,
-                                                    //                   0.8),
-                                                    //           fontSize: height * 0.015,
-                                                    //           fontFamily: "Inter",
-                                                    //           fontWeight:
-                                                    //               FontWeight.w700,
-                                                    //         ),
-                                                    //       ),
-                                                    //       Checkbox(
-                                                    //         activeColor:
-                                                    //             const Color.fromRGBO(
-                                                    //                 82, 165, 160, 1),
-                                                    //         fillColor:
-                                                    //             MaterialStateProperty
-                                                    //                 .resolveWith<Color>(
-                                                    //                     (states) {
-                                                    //           if (states.contains(
-                                                    //               MaterialState
-                                                    //                   .selected)) {
-                                                    //             return const Color
-                                                    //                     .fromRGBO(
-                                                    //                 82,
-                                                    //                 165,
-                                                    //                 160,
-                                                    //                 1); // Disabled color
-                                                    //           }
-                                                    //           return const Color
-                                                    //                   .fromRGBO(
-                                                    //               82,
-                                                    //               165,
-                                                    //               160,
-                                                    //               1); // Regular color
-                                                    //         }),
-                                                    //         value: surveyAgree,
-                                                    //         onChanged: (val) {
-                                                    //           setState(() {
-                                                    //             surveyAgree = val!;
-                                                    //             if (surveyAgree) {}
-                                                    //           });
-                                                    //         },
-                                                    //       ),
-                                                    //     ]),
-                                                    // Row(
-                                                    //     mainAxisAlignment:
-                                                    //         MainAxisAlignment
-                                                    //             .spaceBetween,
-                                                    //     children: [
-                                                    //       Text(
-                                                    //         "Descriptive",
-                                                    //         style: TextStyle(
-                                                    //           color:
-                                                    //               const Color.fromRGBO(
-                                                    //                   153,
-                                                    //                   153,
-                                                    //                   153,
-                                                    //                   0.8),
-                                                    //           fontSize: height * 0.015,
-                                                    //           fontFamily: "Inter",
-                                                    //           fontWeight:
-                                                    //               FontWeight.w700,
-                                                    //         ),
-                                                    //       ),
-                                                    //       Checkbox(
-                                                    //         activeColor:
-                                                    //             const Color.fromRGBO(
-                                                    //                 82, 165, 160, 1),
-                                                    //         fillColor:
-                                                    //             MaterialStateProperty
-                                                    //                 .resolveWith<Color>(
-                                                    //                     (states) {
-                                                    //           if (states.contains(
-                                                    //               MaterialState
-                                                    //                   .selected)) {
-                                                    //             return const Color
-                                                    //                     .fromRGBO(
-                                                    //                 82,
-                                                    //                 165,
-                                                    //                 160,
-                                                    //                 1); // Disabled color
-                                                    //           }
-                                                    //           return const Color
-                                                    //                   .fromRGBO(
-                                                    //               82,
-                                                    //               165,
-                                                    //               160,
-                                                    //               1); // Regular color
-                                                    //         }),
-                                                    //         value: descriptiveAgree,
-                                                    //         onChanged: (val) {
-                                                    //           setState(() {
-                                                    //             descriptiveAgree = val!;
-                                                    //             if (descriptiveAgree) {}
-                                                    //           });
-                                                    //         },
-                                                    //       ),
-                                                    //     ]),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: height * 0.025,
-                                        ),
-                                        Center(
-                                          child: Container(
-                                            padding:
-                                            const EdgeInsets.only(left: 10),
-                                            // height: height * 0.1087,
-                                            // width: width * 0.888,
                                             decoration: BoxDecoration(
                                               borderRadius: const BorderRadius.all(
                                                   Radius.circular(8.0)),
@@ -2245,7 +1979,7 @@ class TeacherAssessmentSettingPublishState
                                                       listen: false)
                                                       .reSetQuestionList();
                                                   if (statusCode.code == 200) {
-                                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                                                    Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
                                                     // Navigator.pushNamedAndRemoveUntil(
                                                     //     context,
                                                     //     '/teacherAssessmentLanding',
@@ -2798,7 +2532,7 @@ class TeacherAssessmentSettingPublishState
                                           ),
                                         ])),
                                     Text(
-                                      "\t\t\t|\t\t\t",
+                                      "\t|\t",
                                       style: TextStyle(
                                         color:
                                         const Color.fromRGBO(209, 209, 209, 1),
@@ -2822,7 +2556,7 @@ class TeacherAssessmentSettingPublishState
                                                 fontFamily: "Inter"),
                                           ),
                                           TextSpan(
-                                            text: "\t${assessment.subTopic}",
+                                            text: "${assessment.subTopic}",
                                             style: TextStyle(
                                                 fontSize: height * 0.018,
                                                 fontWeight: FontWeight.w400,
@@ -2936,7 +2670,7 @@ class TeacherAssessmentSettingPublishState
                                                     Text(
                                                       AppLocalizations.of(context)!
                                                           .category,
-//"Category",
+                                                      //"Category",
                                                       style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             82, 165, 160, 1),
@@ -2951,11 +2685,12 @@ class TeacherAssessmentSettingPublishState
                                                     ),
                                                     Column(
                                                       children: [
-                                                        Text(
+                                                        Row(children: [
+                                                          Text(
                                                           AppLocalizations.of(
                                                               context)!
                                                               .test_qn_page,
-// "Test",
+                                                            // "Test",
                                                           style: TextStyle(
                                                             color: const Color
                                                                 .fromRGBO(
@@ -2967,53 +2702,28 @@ class TeacherAssessmentSettingPublishState
                                                             FontWeight.w600,
                                                           ),
                                                         ),
+                                                          SizedBox(width: width * 0.2),
+                                                          Transform.scale(
+                                                            scale: 1.5,
+                                                            child: Radio(
+                                                              value: 1,
+                                                              groupValue: val,
+                                                              onChanged: (value) {
+                                                                setState(() {
+                                                                  val = value!;
+                                                                });
+                                                              },
+                                                              activeColor:
+                                                              const Color.fromRGBO(
+                                                                  82, 165, 160, 1),
+                                                            ),
+                                                          ),
+                                                        ]),
                                                       ],
                                                     ),
-//),
                                                     Row(children: [
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .results_visible_teacher,
-// "Results visible only to teacher",
-                                                        style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              153, 153, 153, 1),
-                                                          fontSize: height * 0.015,
-                                                          fontFamily: "Inter",
-                                                          fontWeight:
-                                                          FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: width * 0.2),
-                                                      Transform.scale(
-                                                        scale: 1.5,
-                                                        child: Radio(
-                                                          value: 1,
-                                                          groupValue: val,
-                                                          onChanged: (value) {
-                                                            setState(() {
-                                                              val = value!;
-                                                            });
-                                                          },
-                                                          activeColor:
-                                                          const Color.fromRGBO(
-                                                              82, 165, 160, 1),
-                                                        ),
-                                                      ),
-                                                    ]),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: width * 0.01,
-                                                          right: width * 0.15),
-                                                      child: Column(
-                                                        children: [
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .practice_qn_page,
-// "Practice",
+                                                      Text(AppLocalizations.of(context)!.practice_qn_page,
+                                                        // "Practice",
                                                             style: TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
@@ -3025,26 +2735,7 @@ class TeacherAssessmentSettingPublishState
                                                               FontWeight.w600,
                                                             ),
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    Row(children: [
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .results_visible_teacher,
-// "No results provided to teacher",
-                                                        style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              153, 153, 153, 1),
-                                                          fontSize: height * 0.015,
-                                                          fontFamily: "Inter",
-                                                          fontWeight:
-                                                          FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: width * 0.2),
+                                                      SizedBox(width: width * 0.13),
                                                       Transform.scale(
                                                         scale: 1.5,
                                                         child: Radio(
@@ -3060,7 +2751,79 @@ class TeacherAssessmentSettingPublishState
                                                               82, 165, 160, 1),
                                                         ),
                                                       ),
-                                                    ])
+                                                    ]),
+                                                    Row(children: [
+                                                      Text(
+                                                        AppLocalizations.of(context)!.make_test_practice,
+                                                        //"Make Test available for Practice after",
+
+                                                        style: TextStyle(
+                                                          color:
+                                                          const Color.fromRGBO(
+                                                              28, 78, 80, 1),
+                                                          fontSize: height * 0.0175,
+                                                          fontFamily: "Inter",
+                                                          fontWeight:
+                                                          FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                      SizedBox(width: width * 0.08),
+                                                      SizedBox(
+                                                        width: width * 0.1,
+                                                        child: TextField(
+                                                          controller:
+                                                          numOfDaysAfterTestController,
+                                                          keyboardType:
+                                                          TextInputType.number,
+                                                          decoration:
+                                                          InputDecoration(
+                                                            hintText: "# day/s",
+                                                            hintStyle: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    102,
+                                                                    102,
+                                                                    102,
+                                                                    0.3),
+                                                                fontFamily: 'Inter',
+                                                                fontWeight:
+                                                                FontWeight.w400,
+                                                                fontSize:
+                                                                height * 0.020),
+                                                          ),
+                                                          style: TextStyle(
+                                                              fontSize:
+                                                              height * 0.020,
+                                                              color: Colors.black),
+                                                        ),
+                                                      )
+                                                    ]),
+                                                    Row(
+                                                        mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            AppLocalizations.of(
+                                                                context)!
+                                                                .only_mcq_for_practice,
+//"Only MCQ will be available for Practice",
+                                                            style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  153, 153, 153, 1),
+                                                              fontSize:
+                                                              height * 0.015,
+                                                              fontFamily: "Inter",
+                                                              fontStyle: FontStyle.italic,
+                                                              fontWeight:
+                                                              FontWeight.w700,
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                              height:
+                                                              height * 0.035),
+                                                        ]),
                                                   ],
                                                 ),
                                               ],
@@ -3074,8 +2837,6 @@ class TeacherAssessmentSettingPublishState
                                           child: Container(
                                             padding:
                                             const EdgeInsets.only(left: 10),
-// height: height * 0.1087,
-// width: width * 0.888,
                                             decoration: BoxDecoration(
                                               borderRadius: const BorderRadius.all(
                                                   Radius.circular(8.0)),
@@ -3095,7 +2856,6 @@ class TeacherAssessmentSettingPublishState
                                                   crossAxisAlignment:
                                                   CrossAxisAlignment
                                                       .start,
-//mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     SizedBox(
                                                       height: height * 0.015,
@@ -3157,7 +2917,7 @@ class TeacherAssessmentSettingPublishState
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                          width: width * 0.45),
+                                                          width: width * 0.38),
                                                       SizedBox(
                                                         width: width * 0.1,
                                                         child: TextField(
@@ -3717,287 +3477,6 @@ class TeacherAssessmentSettingPublishState
                                           child: Container(
                                             padding:
                                             const EdgeInsets.only(left: 10),
-                                            decoration: BoxDecoration(
-                                              borderRadius: const BorderRadius.all(
-                                                  Radius.circular(8.0)),
-                                              border: Border.all(
-                                                color: const Color.fromRGBO(
-                                                    230, 230, 230, 1),
-                                              ),
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                              crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                              children: [
-                                                Column(
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(
-                                                      height: height * 0.015,
-                                                    ),
-                                                    Text(
-                                                      AppLocalizations.of(context)!
-                                                          .available_for_practice,
-//"Available for Practice",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            82, 165, 160, 1),
-                                                        fontSize: height * 0.025,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: height * 0.002,
-                                                    ),
-                                                    Text(
-                                                      AppLocalizations.of(context)!
-                                                          .for_institute_students,
-//"For institution students only",
-                                                      style: TextStyle(
-                                                        color: const Color.fromRGBO(
-                                                            153, 153, 153, 1),
-                                                        fontSize: height * 0.015,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      height: height * 0.025,
-                                                    ),
-                                                    Row(children: [
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .no_of_days_test,
-//"Number of days after test",
-                                                        style: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              28, 78, 80, 1),
-                                                          fontSize: height * 0.0175,
-                                                          fontFamily: "Inter",
-                                                          fontWeight:
-                                                          FontWeight.w600,
-                                                        ),
-                                                      ),
-                                                      SizedBox(width: width * 0.15),
-                                                      SizedBox(
-                                                        width: width * 0.2,
-                                                        child: TextField(
-                                                          controller:
-                                                          numOfDaysAfterTestController,
-                                                          keyboardType:
-                                                          TextInputType.number,
-                                                          decoration:
-                                                          InputDecoration(
-                                                            hintText: "# day/s",
-                                                            hintStyle: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    102,
-                                                                    102,
-                                                                    102,
-                                                                    0.3),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight:
-                                                                FontWeight.w400,
-                                                                fontSize:
-                                                                height * 0.020),
-                                                          ),
-                                                          style: TextStyle(
-                                                              fontSize:
-                                                              height * 0.020,
-                                                              color: Colors.black),
-                                                        ),
-                                                      )
-                                                    ]),
-                                                    //SizedBox(height: width * 0.0001),
-                                                    Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .only_mcq_for_practice,
-//"Only MCQ will be available for Practice",
-                                                            style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  153, 153, 153, 1),
-                                                              fontSize:
-                                                              height * 0.015,
-                                                              fontFamily: "Inter",
-                                                              fontWeight:
-                                                              FontWeight.w700,
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                              height:
-                                                              height * 0.035),
-// Checkbox(
-//   activeColor:
-//       const Color.fromRGBO(
-//           153, 153, 153, 0.8),
-//   fillColor:
-//       MaterialStateProperty
-//           .resolveWith<Color>(
-//               (states) {
-//     if (states.contains(
-//         MaterialState
-//             .selected)) {
-//       return const Color
-//               .fromRGBO(
-//           82,
-//           165,
-//           160,
-//           1); // Disabled color
-//     }
-//     return const Color
-//             .fromRGBO(
-//         82,
-//         165,
-//         160,
-//         1); // Regular color
-//   }),
-//   value: mcqAgree,
-//   onChanged: (val) {
-//     setState(() {
-//       mcqAgree = val!;
-//       if (mcqAgree) {}
-//     });
-//   },
-// ),
-                                                        ]),
-
-// Row(
-//     mainAxisAlignment:
-//         MainAxisAlignment
-//             .spaceBetween,
-//     children: [
-//       Text(
-//         "Survey",
-//         style: TextStyle(
-//           color:
-//               const Color.fromRGBO(
-//                   153,
-//                   153,
-//                   153,
-//                   0.8),
-//           fontSize: height * 0.015,
-//           fontFamily: "Inter",
-//           fontWeight:
-//               FontWeight.w700,
-//         ),
-//       ),
-//       Checkbox(
-//         activeColor:
-//             const Color.fromRGBO(
-//                 82, 165, 160, 1),
-//         fillColor:
-//             MaterialStateProperty
-//                 .resolveWith<Color>(
-//                     (states) {
-//           if (states.contains(
-//               MaterialState
-//                   .selected)) {
-//             return const Color
-//                     .fromRGBO(
-//                 82,
-//                 165,
-//                 160,
-//                 1); // Disabled color
-//           }
-//           return const Color
-//                   .fromRGBO(
-//               82,
-//               165,
-//               160,
-//               1); // Regular color
-//         }),
-//         value: surveyAgree,
-//         onChanged: (val) {
-//           setState(() {
-//             surveyAgree = val!;
-//             if (surveyAgree) {}
-//           });
-//         },
-//       ),
-//     ]),
-// Row(
-//     mainAxisAlignment:
-//         MainAxisAlignment
-//             .spaceBetween,
-//     children: [
-//       Text(
-//         "Descriptive",
-//         style: TextStyle(
-//           color:
-//               const Color.fromRGBO(
-//                   153,
-//                   153,
-//                   153,
-//                   0.8),
-//           fontSize: height * 0.015,
-//           fontFamily: "Inter",
-//           fontWeight:
-//               FontWeight.w700,
-//         ),
-//       ),
-//       Checkbox(
-//         activeColor:
-//             const Color.fromRGBO(
-//                 82, 165, 160, 1),
-//         fillColor:
-//             MaterialStateProperty
-//                 .resolveWith<Color>(
-//                     (states) {
-//           if (states.contains(
-//               MaterialState
-//                   .selected)) {
-//             return const Color
-//                     .fromRGBO(
-//                 82,
-//                 165,
-//                 160,
-//                 1); // Disabled color
-//           }
-//           return const Color
-//                   .fromRGBO(
-//               82,
-//               165,
-//               160,
-//               1); // Regular color
-//         }),
-//         value: descriptiveAgree,
-//         onChanged: (val) {
-//           setState(() {
-//             descriptiveAgree = val!;
-//             if (descriptiveAgree) {}
-//           });
-//         },
-//       ),
-//     ]),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: height * 0.025,
-                                        ),
-                                        Center(
-                                          child: Container(
-                                            padding:
-                                            const EdgeInsets.only(left: 10),
-// height: height * 0.1087,
-// width: width * 0.888,
                                             decoration: BoxDecoration(
                                               borderRadius: const BorderRadius.all(
                                                   Radius.circular(8.0)),
@@ -4742,7 +4221,7 @@ class TeacherAssessmentSettingPublishState
                                                       listen: false)
                                                       .reSetQuestionList();
                                                   if (statusCode.code == 200) {
-                                                    Navigator.pushNamed(context, '/teacherAssessmentLanding');
+                                                    Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
                                                     // Navigator.pushNamedAndRemoveUntil(
                                                     //     context,
                                                     //     '/teacherAssessmentLanding',

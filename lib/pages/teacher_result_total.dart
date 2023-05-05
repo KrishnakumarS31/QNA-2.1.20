@@ -110,6 +110,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
             ),
             body: SingleChildScrollView(
               scrollDirection: Axis.vertical,
+              physics: const ClampingScrollPhysics(),
               child: Padding(
                 padding: EdgeInsets.only(
                     top: height * 0.023,
@@ -788,6 +789,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                           cursor: SystemMouseCursors.click,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
+                            physics: const ClampingScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: widget.result.assessmentResults!.length,
                             itemBuilder: (context, index) =>
