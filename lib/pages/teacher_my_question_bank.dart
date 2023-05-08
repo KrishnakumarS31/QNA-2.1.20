@@ -211,15 +211,15 @@ class QuestionPreview extends StatelessWidget {
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
           onTap: () {
-            // Navigator.pushNamed(
-            //     context,
-            //     '/teacherQuestionPreviewDelete',
-            //     arguments: [
-            //       question,
-            //       index,
-            //       assessment
-            //     ]
-            // );
+            Navigator.pushNamed(
+                context,
+                '/teacherQuestionPreviewDelete',
+                arguments: [
+                  question,
+                  index,
+                  assessment
+                ]
+            );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),

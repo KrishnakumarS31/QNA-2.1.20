@@ -87,6 +87,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "QNA Test",
       locale: Locale(context.watch<LanguageChangeProvider>().currentLocale),
       onGenerateRoute: MyRoutes.generateRoute,
       debugShowCheckedModeBanner: false,

@@ -1185,13 +1185,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
         //Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: quesListArg);
         print("---------------------------------------------TeacherSelectedQuestionAssessment");
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-                builder: (context) => TeacherSelectedQuestionAssessment(
-                  questions: quesListArg,
-                  assessmentType: widget.assessmentType,
-                    )),
-                (route) => route.isFirst);
+        Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [quesListArg,widget.assessmentType]);
+
       },
     );
     // set up the AlertDialog

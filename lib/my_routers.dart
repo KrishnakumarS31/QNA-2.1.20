@@ -80,7 +80,6 @@ import 'Pages/verify_otp_page.dart';
 
 class MyRoutes{
   static Route<dynamic> generateRoute(RouteSettings settings){
-    print(settings.name);
     switch (settings.name){
       case '/':
         return SlideRightRoute(widget: const WelcomePage(),settings: settings);

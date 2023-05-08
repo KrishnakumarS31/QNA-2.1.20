@@ -1,6 +1,6 @@
 {
-    "name": "QnATest",
-    "short_name": "QnATest",
+    "name": "QNA Test",
+    "short_name": "QNA Test",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

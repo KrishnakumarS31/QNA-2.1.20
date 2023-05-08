@@ -30,7 +30,6 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
   @override
   void initState() {
     getData();
-    print(userId);
     super.initState();
   }
 
@@ -261,7 +260,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               context,
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
-                                child: ResetPassword(userId:userId!),
+                                child: ResetPassword(userId:userId),
                               ),
                             );
                           }),

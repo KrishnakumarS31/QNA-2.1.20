@@ -32,20 +32,20 @@ class QuestionNumProvider extends ChangeNotifier {
 }
 
 class Questions extends ChangeNotifier {
-  final Map _quesAns = Map();
+  final Map _quesAns = {};
 
   Map get totalQuestion => _quesAns;
 
   void createQuesAns(int totalQuestion) {
     for (int i = 1; i <= totalQuestion; i++) {
-      _quesAns['$i'] = [[], Color.fromRGBO(179, 179, 179, 1), false];
+      _quesAns['$i'] = [[], const Color.fromRGBO(179, 179, 179, 1), false];
     }
     notifyListeners();
   }
 
   void selectOption(
       int quesNum, List<dynamic> option, Color colorFlag, bool notSure) {
-    _quesAns['${quesNum}'] = [option, colorFlag, notSure];
+    _quesAns['$quesNum'] = [option, colorFlag, notSure];
     notifyListeners();
   }
 }

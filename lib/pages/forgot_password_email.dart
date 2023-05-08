@@ -208,7 +208,9 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                         Icons.chevron_left,
                         color: Color.fromRGBO(82, 165, 160, 1),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                     ),
                     Text(AppLocalizations.of(context)!.back,
                         style: Theme.of(context)

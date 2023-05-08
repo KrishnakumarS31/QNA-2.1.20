@@ -1029,14 +1029,24 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         widget.finalQuestion.advisorUrl =
                                             urlController.text;
                                         widget.finalQuestion.choices = temp;
-                                        Provider.of<
-                                            QuestionPrepareProviderFinal>(
+                                        print("1");
+                                        List<Question> t=
+                                        Provider.of<QuestionPrepareProviderFinal>(
                                             context,
-                                            listen: false)
-                                            .updateQuestionList(widget.quesNum,
-                                            widget.finalQuestion);
+                                            listen: false).getAllQuestion;
+                                        print(t.length);
+                                        t.length==0?
+                                        Provider.of<NewQuestionProvider>(
+                                            context,
+                                            listen: false).updateQuestionList(widget.quesNum, widget.finalQuestion):
+                                        Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(widget.quesNum, widget.finalQuestion);
+                                        print("2");
                                       });
-
+                                      widget.assessment?
+                                      Navigator.of(context)
+                                          .popAndPushNamed(
+                                          '/teacherAddMyQuestionBankForAssessment',
+                                          arguments: widget.assessment):
                                       Navigator.of(context)
                                           .pushNamed(
                                           '/teacherAddMyQuestionBank',
@@ -1047,7 +1057,95 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   child: const Text("Save"),
                                 ),
                               ]),
-                          onPressed: () {}),
+                          onPressed: () {
+                            if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Alert",
+                                    //'Wrong password',
+                                    content:
+                                    "Enter Subject, Class and Question",
+                                    //'please enter the correct password',
+                                    button: "Retry",
+                                  ),
+                                ),
+                              );
+                            }
+                            else if(_groupValue=='MCQ' && chooses.isEmpty){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Alert",
+                                    //'Wrong password',
+                                    content:
+                                    "At least one choice must be added",
+                                    //'please enter the correct password',
+                                    button: "Retry",
+                                  ),
+                                ),
+                              );
+                            }
+                            else {
+                              setState(() {
+                                List<Choice> temp = [];
+                                for (int i = 0;
+                                i < chooses.length;
+                                i++) {
+                                  Choice ch = Choice();
+                                  temp.add(ch);
+                                  temp[i].choiceText = chooses[i].text;
+                                  temp[i].rightChoice = false;
+                                  if (radioList[i]) {
+                                    temp[i].rightChoice = radioList[i];
+                                  }
+                                }
+                                widget.finalQuestion.questionType =
+                                    _groupValue;
+                                widget.finalQuestion.subject =
+                                    subjectController.text;
+                                widget.finalQuestion.topic =
+                                    topicController.text;
+                                widget.finalQuestion.subTopic =
+                                    subtopicController.text;
+                                widget.finalQuestion.datumClass =
+                                    classRoomController.text;
+                                widget.finalQuestion.question =
+                                    questionController.text;
+                                widget.finalQuestion.choices = selected;
+                                widget.finalQuestion.advisorText =
+                                    adviceController.text;
+                                widget.finalQuestion.advisorUrl =
+                                    urlController.text;
+                                widget.finalQuestion.choices = temp;
+                                print("1");
+                                List<Question> t=
+                                    Provider.of<
+                                        QuestionPrepareProviderFinal>(
+                                        context,
+                                        listen: false)
+                                        .getAllQuestion;
+                                print(t.length);
+                                Provider.of<
+                                    QuestionPrepareProviderFinal>(
+                                    context,
+                                    listen: false)
+                                    .updateQuestionList(widget.quesNum,
+                                    widget.finalQuestion);
+                                print("2");
+                              });
+
+                              Navigator.of(context)
+                                  .pushNamed(
+                                  '/teacherAddMyQuestionBank',
+                                  arguments: widget.assessment);
+
+                            }
+                          }),
                     ),
                   ]),
                 ))));

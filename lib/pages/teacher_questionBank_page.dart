@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,6 +44,25 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     if (responseEntity.code == 200) {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
+      print("condition");
+      print(search != '' && questions.isEmpty);
+
+
+    }
+    else{
+        print("TRue");
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title: 'Alert',
+              content: 'No Questions Found.',
+              button:
+              "Retry",
+            ),
+          ),
+        );
     }
     setState(() {
       questionList.addAll(questions);
@@ -356,6 +379,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 )),
                             onPressed: () {
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false).reSetQuestionList();
                               Navigator.pushNamed(context, '/teacherPrepareQnBank',arguments: [false,null]);
                               // Navigator.push(
                               //   context,

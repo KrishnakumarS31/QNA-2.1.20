@@ -71,27 +71,6 @@ class TeacherAssessmentQuestionBankState
     });
   }
 
-  showAlertDialog(BuildContext context) {
-    Widget okButton = TextButton(
-      child: const Text("OK"),
-      onPressed: () {},
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: const Text("My title"),
-      content: const Text("This is my message."),
-      actions: [
-        okButton,
-      ],
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {

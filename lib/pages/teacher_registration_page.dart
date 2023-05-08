@@ -31,8 +31,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
   TextEditingController teacherPasswordController = TextEditingController();
   TextEditingController teacherconfirmPasswordController =
       TextEditingController();
-  bool tocCheck = false;
-  bool also = false;
+  // bool tocCheck = false;
+  // bool also = false;
   bool pPCheck = false;
   bool error = true;
   String? gender;
@@ -1119,35 +1119,32 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             SizedBox(
                               height: localHeight * 0.02,
                             ),
-                            Row(children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Checkbox(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  value: tocCheck,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      tocCheck = val!;
-                                      if (tocCheck) {
-                                        also = true;
-                                      }
-                                    });
-                                  },
-                                ),
-                              ),
-                              const Text(
-                                'Register me also as STUDENT',
-                                style: TextStyle(
-                                    fontSize: 17.0,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: "Inter"),
-                              ),
-                            ]),
-                            SizedBox(
-                              height: localHeight * 0.03,
-                            ),
+                            // Row(children: [
+                            //   Align(
+                            //     alignment: Alignment.centerLeft,
+                            //     child: Checkbox(
+                            //       shape: RoundedRectangleBorder(
+                            //           borderRadius: BorderRadius.circular(10)),
+                            //       value: tocCheck,
+                            //       onChanged: (val) {
+                            //         setState(() {
+                            //           tocCheck = val!;
+                            //           if (tocCheck) {
+                            //             also = true;
+                            //           }
+                            //         });
+                            //       },
+                            //     ),
+                            //   ),
+                            //   const Text(
+                            //     'Register me also as STUDENT',
+                            //     style: TextStyle(
+                            //         fontSize: 17.0,
+                            //         fontWeight: FontWeight.w600,
+                            //         color: Color.fromRGBO(102, 102, 102, 1),
+                            //         fontFamily: "Inter"),
+                            //   ),
+                            // ]),
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -1401,9 +1398,11 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             countryResident:
                             selectedCountryResident
                                 .dropDownValue?.value,
-                            role: also == true
-                                ? ["teacher", "student"]
-                                : ["teacher"]);
+                            role:
+                            //also == true ?
+                            ["teacher","student"]
+                               // : ["teacher"]
+                        );
                         if (pPCheck) {
                         bool valid = formKey.currentState!.validate();
                         if (valid) {

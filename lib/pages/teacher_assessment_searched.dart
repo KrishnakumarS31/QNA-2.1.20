@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
@@ -126,7 +128,9 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+
+                //Navigator.of(context).pop();
               },
             ),
             toolbarHeight: height * 0.100,

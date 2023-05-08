@@ -555,10 +555,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                     controller: subjectController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "SUBJECT",
@@ -592,10 +591,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                     controller: topicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "TOPIC",
@@ -629,10 +627,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                     controller: subtopicController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: 'SUB TOPIC',
@@ -666,10 +663,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                     controller: classRoomController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            82, 165, 160, 1),
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w700,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
                                       labelText: "CLASS",
@@ -728,9 +724,9 @@ class QuestionEditState extends State<QuestionEdit> {
                             controller: questionController,
                             keyboardType: TextInputType.text,
                             style: TextStyle(
-                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                color: Colors.black,
                                 fontFamily: 'Inter',
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w400,
                                 fontSize: height * 0.018),
                             decoration: InputDecoration(
                               floatingLabelBehavior:
@@ -869,10 +865,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              82, 165, 160, 1),
+                                          color: Colors.black,
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -987,10 +982,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              82, 165, 160, 1),
+                                          color: Colors.black,
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -1184,9 +1178,9 @@ class QuestionEditState extends State<QuestionEdit> {
                     TextFormField(
                       controller: adviceController,
                       style: TextStyle(
-                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          color: Colors.black,
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w400,
                           fontSize: height * 0.018),
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -1214,9 +1208,9 @@ class QuestionEditState extends State<QuestionEdit> {
                     TextFormField(
                       controller: urlController,
                       style: TextStyle(
-                          color: const Color.fromRGBO(82, 165, 160, 1),
+                          color: Colors.black,
                           fontFamily: 'Inter',
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w400,
                           fontSize: height * 0.018),
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -1252,7 +1246,7 @@ class QuestionEditState extends State<QuestionEdit> {
                             ),
                           ),
                           child: Text(
-                            "Preview",
+                              AppLocalizations.of(context)!.preview,
                             style: TextStyle(
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: height * 0.025,

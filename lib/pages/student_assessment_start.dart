@@ -58,16 +58,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     elevation: 0,
-                    leading: IconButton(
-                      icon: const Icon(
-                        Icons.chevron_left,
-                        size: 30,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    automaticallyImplyLeading: false,
+                    // leading: IconButton(
+                    //   icon: const Icon(
+                    //     Icons.chevron_left,
+                    //     size: 30,
+                    //     color: Colors.white,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: EndDrawerMenuStudent(
@@ -382,16 +383,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     elevation: 0,
-                    leading: IconButton(
-                      icon: const Icon(
-                        Icons.chevron_left,
-                        size: 30,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    automaticallyImplyLeading: false,
+                    // leading: IconButton(
+                    //   icon: const Icon(
+                    //     Icons.chevron_left,
+                    //     size: 30,
+                    //     color: Colors.white,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     backgroundColor: Colors.transparent,
                   ),
                   endDrawer: EndDrawerMenuStudent(

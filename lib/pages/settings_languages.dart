@@ -42,36 +42,38 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
   getdata() async {
     // AppUser? user = await AppUserRepo().getUserDetail();
     // print(user!.locale);
-    loginData = await SharedPreferences.getInstance();
-    if (loginData.getString("locale") == 'ta') {
+    String st = Provider.of<LanguageChangeProvider>(context, listen: false).currentLocale;
+    print("Init Print Locale");
+    print(st);
+    if (st == 'ta') {
       setState(() {
         selected = 'வணக்கம் (Tamil)';
       });
-    } else if (loginData.getString("locale") == 'hi') {
+    } else if (st == 'hi') {
       setState(() {
         selected = 'नमस्ते (Hindi)';
       });
-    } else if (loginData.getString("locale") == 'kn') {
+    } else if (st == 'kn') {
       setState(() {
         selected = 'ಕನ್ನಡ (Kannada)';
       });
-    } else if (loginData.getString("locale") == 'mr') {
+    } else if (st == 'mr') {
       setState(() {
         selected = 'नमस्कार Marathi';
       });
-    } else if (loginData.getString("locale") == 'es') {
+    } else if (st == 'es') {
       setState(() {
         selected = 'Hola (Spanish)';
       });
-    } else if (loginData.getString("locale") == 'te') {
+    } else if (st == 'te') {
       setState(() {
         selected = 'హలో (Telugu)';
       });
-    } else if (loginData.getString("locale") == 'ml') {
+    } else if (st == 'ml') {
       setState(() {
         selected = 'ഹലോ (Malayalam)';
       });
-    } else if (loginData.getString("locale") == 'pa') {
+    } else if (st == 'pa') {
       setState(() {
         selected = 'ਪੰਜਾਬੀ (Punjabi)';
       });
@@ -211,7 +213,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                       AppUser(locale: selectedLocale, id: 35));
                                  loginData.setString("locale", selectedLocale);
 
-                                  Navigator.pushNamedAndRemoveUntil(context, '/',(route) => route.isFirst);
+                                 // Navigator.pushNamedAndRemoveUntil(context, '/',(route) => route.isFirst);
 
                                 },
                                 child: Container(

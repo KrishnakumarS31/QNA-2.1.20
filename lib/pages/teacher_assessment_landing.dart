@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as Questions;
@@ -256,6 +258,20 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     await QnaService.getAllAssessment(10, pageLimit, search);
     allAssessment = response.data==null?[]:List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    if(allAssessment.isEmpty){
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Alert',
+            content: 'No assessment found.',
+            button:
+            "Retry",
+          ),
+        ),
+      );
+    }
     setState(() {
       assessments.addAll(allAssessment);
       loading = false;

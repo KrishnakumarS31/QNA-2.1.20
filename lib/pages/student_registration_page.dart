@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
-import 'package:qna_test/Pages/student_regis_verify_otp.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
@@ -30,9 +29,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   TextEditingController studentPasswordController = TextEditingController();
   TextEditingController studentconfirmPasswordController =
       TextEditingController();
-  bool tocCheck = false;
+  // bool tocCheck = false;
   bool pPCheck = false;
-  bool also = false;
+  // bool also = false;
   bool error = true;
   String? gender;
   final studentDobController = TextEditingController();
@@ -1123,35 +1122,35 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             SizedBox(
                               height: localHeight * 0.02,
                             ),
-                            Row(children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Checkbox(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  value: tocCheck,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      tocCheck = val!;
-                                      if (tocCheck) {
-                                        also = true;
-                                      }
-                                    });
-                                  },
-                                ),
-                              ),
-                              Text(
-                                AppLocalizations.of(context)!.reg_as_student,
-                                style: const TextStyle(
-                                    fontSize: 17.0,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color.fromRGBO(102, 102, 102, 1),
-                                    fontFamily: "Inter"),
-                              ),
-                            ]),
-                            SizedBox(
-                              height: localHeight * 0.01,
-                            ),
+                            // Row(children: [
+                            //   Align(
+                            //     alignment: Alignment.centerLeft,
+                            //     child: Checkbox(
+                            //       shape: RoundedRectangleBorder(
+                            //           borderRadius: BorderRadius.circular(10)),
+                            //       value: tocCheck,
+                            //       onChanged: (val) {
+                            //         setState(() {
+                            //           tocCheck = val!;
+                            //           if (tocCheck) {
+                            //             also = true;
+                            //           }
+                            //         });
+                            //       },
+                            //     ),
+                            //   ),
+                            //   Text(
+                            //     AppLocalizations.of(context)!.reg_as_student,
+                            //     style: const TextStyle(
+                            //         fontSize: 17.0,
+                            //         fontWeight: FontWeight.w600,
+                            //         color: Color.fromRGBO(102, 102, 102, 1),
+                            //         fontFamily: "Inter"),
+                            //   ),
+                            // ]),
+                            // SizedBox(
+                            //   height: localHeight * 0.01,
+                            // ),
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -1439,9 +1438,11 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             countryResident:
                             selectedCountryResident
                                 .dropDownValue?.value,
-                            role: also == true
-                                ? ["student", "teacher"]
-                                : ["student"]);
+                            role:
+                            //also == true?
+                            ["student","teacher"]
+                                //: ["student"]
+                        );
                         if (pPCheck) {
                         bool valid = formKey.currentState!.validate();
                         if (valid) {

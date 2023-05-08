@@ -717,7 +717,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                           false)
                                                                   .updateAssessment(
                                                                       assessmentVal);
-                                                              Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
+                                                              Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment', ModalRoute.withName('/teacherAssessmentLanding'));
 
                                                             }
                                                           },

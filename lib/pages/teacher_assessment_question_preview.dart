@@ -309,12 +309,8 @@ class TeacherAssessmentQuestionPreviewState
                                     } else {
                                       //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
                                       print("----------------------------------------------TeacherAssessmentQuestionPreview");
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                          MaterialPageRoute(
-                                              builder: (context) => TeacherSelectedQuestionAssessment(
-                                                assessmentType: widget.assessmentType,
-                                              )),
-                                              (route) => route.isFirst);
+                                      Navigator.of(context).pushNamedAndRemoveUntil('/teacherSelectedQuestionAssessment', ModalRoute.withName('/teacherAssessmentQuestionBank'));
+
                                     }
                                   },
                                   child: SizedBox(
@@ -391,14 +387,9 @@ class TeacherAssessmentQuestionPreviewState
                                               .updateAddQuestionmark(
                                               int.parse(markController.text),
                                               index);
-                                          //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
-                                          print("-------------------------------------------------TeacherAssessmentQuestionPreview");
-                                          Navigator.of(context).pushAndRemoveUntil(
-                                              MaterialPageRoute(
-                                                  builder: (context) => TeacherSelectedQuestionAssessment(
-                                                    assessmentType: widget.assessmentType,
-                                                  )),
-                                                  (route) => route.isFirst);
+
+
+                                          Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment');
                                         }
                                       },
                                       child: Text(

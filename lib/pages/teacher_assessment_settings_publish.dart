@@ -108,7 +108,6 @@ class TeacherAssessmentSettingPublishState
     //   }
     // }
     // else{
-    //   print("duration is null");
     // }
     assessment.assessmentSettings?.numberOfDaysAfterTestAvailableForPractice==null?numOfDaysAfterTestController.text='':numOfDaysAfterTestController.text=
     '${assessment.assessmentSettings!.numberOfDaysAfterTestAvailableForPractice!}';
@@ -539,7 +538,16 @@ class TeacherAssessmentSettingPublishState
                                                       controller:
                                                       numOfDaysAfterTestController,
                                                       keyboardType:
-                                                      TextInputType.number,
+                                                      const TextInputType
+                                                          .numberWithOptions(
+                                                          decimal:
+                                                          false),
+                                                      inputFormatters: <
+                                                          TextInputFormatter>[
+                                                        FilteringTextInputFormatter
+                                                            .allow(RegExp(
+                                                            "[0-9]")),
+                                                      ],
                                                       decoration:
                                                       InputDecoration(
                                                         hintText: "# day/s",
@@ -2752,7 +2760,16 @@ class TeacherAssessmentSettingPublishState
                                                           controller:
                                                           numOfDaysAfterTestController,
                                                           keyboardType:
-                                                          TextInputType.number,
+                                                          const TextInputType
+                                                              .numberWithOptions(
+                                                              decimal:
+                                                              false),
+                                                          inputFormatters: <
+                                                              TextInputFormatter>[
+                                                            FilteringTextInputFormatter
+                                                                .allow(RegExp(
+                                                                "[0-9]")),
+                                                          ],
                                                           decoration:
                                                           InputDecoration(
                                                             hintText: "# day/s",

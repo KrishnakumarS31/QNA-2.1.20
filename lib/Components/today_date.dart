@@ -57,7 +57,7 @@ String convertAttemptDuration(int? duration) {
       assessmentDuration = "01:00 hr";
     }
 
-  else if (duration! > 60) {
+  else if (duration> 60) {
     int d=0;
     int f;
     List<String> ch;
@@ -67,15 +67,15 @@ String convertAttemptDuration(int? duration) {
     f = g.toInt();
     ch = g.toString().split(".");
     if(ch.length == 2)
-    { if( ch[1] != null && ch[1].length == 1)
+    { if( ch[1].length == 1)
     {
       b= "0.${ch[1]}";
       c= double.parse(b);
       d = (c*60).toInt();
       assessmentDuration = "$f:$d hrs";
     }
-    else if(ch[1] != null && ch[1].length == 2) {
-      b= "${ch[1]}";
+    else if(ch[1].length == 2) {
+      b= ch[1];
       d= (int.parse(b)) * 60;
       assessmentDuration = "$f:$d min";
     }}

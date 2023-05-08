@@ -144,12 +144,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
-                                Navigator.pushNamed(
-                                    context,
-                                    '/studGuestAssessment',
-                                    arguments: widget.userName);
+                                // Navigator.pushNamed(
+                                //     context,
+                                //     '/studGuestAssessment',
+                                //     arguments: widget.userName);
                                 // Navigator.of(context).pop();
-                                // Navigator.pushNamed(context, '/studentSelectionPage');
+                                Navigator.pushNamed(context, '/studentSelectionPage');
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -853,10 +853,11 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                     139, 1),
                                                               ));
                                                         });
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studGuestAssessment',
-                                                        arguments: widget.userName);
+                                                    Navigator.pushNamed(context, '/studentSelectionPage');
+                                                    // Navigator.pushNamed(
+                                                    //     context,
+                                                    //     '/studGuestAssessment',
+                                                    //     arguments: widget.userName);
                                                     // Navigator.of(context)
                                                     //     .pop();
                                                     // Navigator.pushNamed(context, '/studentSelectionPage');
@@ -1103,12 +1104,12 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
-                                Navigator.pushNamed(
-                                    context,
-                                    '/studGuestAssessment',
-                                    arguments: widget.userName);
+                                // Navigator.pushNamed(
+                                //     context,
+                                //     '/studGuestAssessment',
+                                //     arguments: widget.userName);
                                 // Navigator.of(context).pop();
-                                // Navigator.pushNamed(context, '/studentSelectionPage');
+                                Navigator.pushNamed(context, '/studentSelectionPage');
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -1730,13 +1731,13 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                         139, 1),
                                                                   ));
                                                             });
-                                                        Navigator.pushNamed(
-                                                            context,
-                                                            '/studGuestAssessment',
-                                                            arguments: widget.userName);
+                                                        // Navigator.pushNamed(
+                                                        //     context,
+                                                        //     '/studGuestAssessment',
+                                                        //     arguments: widget.userName);
                                                         // Navigator.of(context)
                                                         //     .pop();
-                                                        // Navigator.pushNamed(context, '/studentSelectionPage');
+                                                        Navigator.pushNamed(context, '/studentSelectionPage');
                                                         // Navigator.push(
                                                         //   context,
                                                         //   PageTransition(

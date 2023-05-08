@@ -258,7 +258,7 @@ class ResetPasswordState extends State<ResetPassword> {
                                     borderRadius: BorderRadius.circular(15)),
                               ),
                               validator: (value) {
-                                if (newPassword.text != oldPassword.text) {
+                                if (newPassword.text != reNewPassword.text) {
                                   return AppLocalizations.of(context)!
                                       .mis_match_password;
                                 } else if (value!.isEmpty) {

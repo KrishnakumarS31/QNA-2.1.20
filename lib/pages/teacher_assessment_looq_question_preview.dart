@@ -318,14 +318,6 @@ class TeacherAssessmentLooqQuestionPreviewState
                                       //Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',,(route) => route.isFirst);
                                       print("-----------------------------------------TeacherAssessmentLooqQuestionPreview");
                                       Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',ModalRoute.withName('/teacherClonedAssessment'),arguments: 'clone');
-
-
-                                      // Navigator.of(context).pushAndRemoveUntil(
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) => const TeacherClonedAssessmentPreview(
-                                      //           assessmentType: 'clone',
-                                      //         )),
-                                      //         (route) => route.isFirst);
                                     }
                                   },
                                   child: Text(

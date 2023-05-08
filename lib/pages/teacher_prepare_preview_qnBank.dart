@@ -290,7 +290,6 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         await QnaService.deleteQuestion(widget.question.questionId!);
         if (statusCode.code == 200) {
           Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
-
         }
         else{
           Navigator.push(
@@ -1250,7 +1249,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   ),
                                 ),
                                 child: Text(
-                                  "Preview",
+                                    AppLocalizations.of(context)!.preview,
                                   style: TextStyle(
                                     color: const Color.fromRGBO(255, 255, 255, 1),
                                     fontSize: height * 0.025,

@@ -103,7 +103,7 @@ class TeacherAddMyQuestionBankForAssessmentState
             .updateAssessment(
             assessmentVal);
         //Navigator.pushNamed(context, '/teacherCreateAssessment');
-        Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment',(route) => route.isFirst);
+        Navigator.pushNamedAndRemoveUntil(context, '/teacherCreateAssessment', ModalRoute.withName('/teacherAssessmentLanding'));
 
       },
     );

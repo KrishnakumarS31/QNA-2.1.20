@@ -108,7 +108,16 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
           backgroundColor: Colors.white,
           endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
-            automaticallyImplyLeading: false,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 40.0,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+              },
+            ),
             toolbarHeight: height * 0.100,
             centerTitle: true,
             title: Column(
@@ -274,8 +283,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                           ),
                         ),
                         onPressed: () {
-                          //Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
+                          //Navigator.of(context).pop();
                         },
                         child: Text(
                           'Back to Questions',

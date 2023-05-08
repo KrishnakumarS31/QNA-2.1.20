@@ -9,6 +9,8 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../EntityModel/login_entity.dart';
 import '../Services/qna_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
 
 class LooqQuestionEdit extends StatefulWidget {
   const LooqQuestionEdit({
@@ -353,7 +355,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  int count = 0;
+                  Navigator.popUntil(context, (route) {
+                    return count++ == 2;
+                  });
                 },
               ),
               toolbarHeight: height * 0.100,
@@ -475,16 +480,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                IconButton(
-                                  icon: Icon(
+                                Icon(
                                     Icons.clear_sharp,
                                     size: height * 0.028,
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                   ),
-                                  onPressed: () {
-
-                                  },
-                                ),
                                 Text(
                                   "Clear All",
                                   style: TextStyle(
@@ -1282,10 +1282,63 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                       showQuestionPreview(context);
                                     }
                                   },
-                                  child: const Text("Preview"),
+                                  child: Text(AppLocalizations.of(context)!.preview),
                                 ),
                               ]),
-                          onPressed: () {}),
+                          onPressed: () {
+                            if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Alert",
+                                    //'Wrong password',
+                                    content:
+                                    "Enter Subject, Class and Question",
+                                    //'please enter the correct password',
+                                    button: "Retry",
+                                  ),
+                                ),
+                              );
+                            }
+                            else if(_groupValue=='MCQ' && chooses.isEmpty){
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: "Alert",
+                                    //'Wrong password',
+                                    content:
+                                    "At least one choice must be added",
+                                    //'please enter the correct password',
+                                    button: "Retry",
+                                  ),
+                                ),
+                              );
+                            }
+                            else {
+                              setState(() {
+                                widget.question.subject =
+                                    subjectController.text;
+                                widget.question.topic =
+                                    topicController.text;
+                                widget.question.subTopic =
+                                    subtopicController.text;
+                                widget.question.datumClass =
+                                    classRoomController.text;
+                                widget.question.question =
+                                    questionController.text;
+                                widget.question.choices = selected;
+                                widget.question.advisorText =
+                                    adviceController.text;
+                                widget.question.advisorUrl =
+                                    urlController.text;
+                              });
+                              showQuestionPreview(context);
+                            }
+                          }),
                     ),
                   ]),
                 ))));
