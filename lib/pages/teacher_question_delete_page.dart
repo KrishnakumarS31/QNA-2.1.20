@@ -357,9 +357,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -376,7 +376,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       //width: 335,
                       decoration: BoxDecoration(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(10.0)),
+                        const BorderRadius.all(Radius.circular(10.0)),
                         border: Border.all(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                         ),
@@ -480,11 +480,49 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                               width: 1, color: Color.fromRGBO(82, 165, 160, 1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Column(
-                            //crossAxisAlignment: CrossAxisAlignment.start,
+                        child:
+                        showIcon!=Icons.expand_circle_down_outlined?
+                        Container(
+                          //height: height * 0.060,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            child: Row(children: [
+                              SizedBox(width: width * 0.10),
+                              Text("Subject and Topic",
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(
+                                          255, 255, 255, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: height * 0.020)),
+                              SizedBox(width: width * 0.25),
+                              //SizedBox(width: height * 0.025),
+                              IconButton(
+                                icon: Icon(
+                                  showIcon,
+                                  color: const Color.fromRGBO(
+                                      255, 255, 255, 1),
+                                  size: height * 0.03,
+                                ),
+                                onPressed: () {
+                                  changeIcon(showIcon);
+                                },
+                              )
+                              // IconButton(
+                              //   icon: const Icon(
+                              //     Icons.arrow_circle_up_sharp,
+                              //     size: 30,
+                              //     color: Color.fromRGBO(255, 255, 255, 1),
+                              //   ),
+                              //   onPressed: () {
+                              //     changeIcon(showIcon);
+                              //   },
+                              // ),
+                            ])):
+                        Column(
+                          //crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                  //height: height * 0.060,
+                                //height: height * 0.060,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   child: Row(children: [
                                     SizedBox(width: width * 0.10),
@@ -536,7 +574,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         decoration: InputDecoration(
                                           labelText: "SUBJECT",
                                           floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -555,10 +593,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                   color: Color.fromRGBO(
                                                       82, 165, 160, 1)),
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                         )),
                                     SizedBox(height: height * 0.015),
                                     TextFormField(
@@ -573,7 +611,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         decoration: InputDecoration(
                                           labelText: "TOPIC",
                                           floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -592,10 +630,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                   color: Color.fromRGBO(
                                                       82, 165, 160, 1)),
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                         )),
                                     SizedBox(height: height * 0.015),
                                     TextFormField(
@@ -610,7 +648,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         decoration: InputDecoration(
                                           labelText: 'SUB TOPIC',
                                           floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -629,10 +667,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                   color: Color.fromRGBO(
                                                       82, 165, 160, 1)),
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                         )),
                                     SizedBox(height: height * 0.015),
                                     TextFormField(
@@ -647,7 +685,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         decoration: InputDecoration(
                                           labelText: "CLASS",
                                           floatingLabelBehavior:
-                                              FloatingLabelBehavior.always,
+                                          FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(
                                               color: const Color.fromRGBO(
                                                   51, 51, 51, 1),
@@ -666,10 +704,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                   color: Color.fromRGBO(
                                                       82, 165, 160, 1)),
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                           border: OutlineInputBorder(
                                               borderRadius:
-                                                  BorderRadius.circular(15)),
+                                              BorderRadius.circular(15)),
                                         )),
                                   ])),
                               SizedBox(height: height * 0.010),
@@ -707,7 +745,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 fontSize: height * 0.018),
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               labelStyle: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: 'Inter',
@@ -715,7 +753,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   fontSize: height * 0.015),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.02),
@@ -794,7 +832,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
+                                        FloatingLabelBehavior.always,
                                         hintStyle: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.3),
@@ -804,7 +842,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         hintText: "Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(5)),
+                                            BorderRadius.circular(5)),
                                       ),
                                     ),
                                   ),
@@ -822,9 +860,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                       radioList[i]
                                           ? Icons.radio_button_checked_outlined
                                           : Icons
-                                              .radio_button_unchecked_outlined,
+                                          .radio_button_unchecked_outlined,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -907,7 +945,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.02),
                         hintText:
-                            "Suggest what to study if answered incorrectly",
+                        "Suggest what to study if answered incorrectly",
                       ),
                       onChanged: (val) {
                         setState(() {
@@ -950,7 +988,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             maximumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -962,7 +1000,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     foregroundColor:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                   onPressed: () {
                                     if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
@@ -1031,9 +1069,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         widget.finalQuestion.choices = temp;
                                         print("1");
                                         List<Question> t=
-                                        Provider.of<QuestionPrepareProviderFinal>(
-                                            context,
-                                            listen: false).getAllQuestion;
+                                            Provider.of<QuestionPrepareProviderFinal>(
+                                                context,
+                                                listen: false).getAllQuestion;
                                         print(t.length);
                                         t.length==0?
                                         Provider.of<NewQuestionProvider>(
@@ -1191,50 +1229,50 @@ class _ChooseWidgetState extends State<ChooseWidget> {
           MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
-            onTap: () {
-              setState(() {
-                if (widget.question.choices![j].rightChoice!) {
-                  widget.question.choices![j].rightChoice = false;
-                } else {
-                  widget.question.choices![j].rightChoice = true;
-                }
-              });
-            },
-            child: Padding(
-              padding: EdgeInsets.only(bottom: widget.height * 0.013),
-              child: Container(
-                  width: widget.width * 0.744,
-                  height: widget.height * 0.0412,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(
-                        color: const Color.fromRGBO(209, 209, 209, 1)),
-                    color: (widget.question.choices![j].rightChoice!)
-                        ? const Color.fromRGBO(82, 165, 160, 1)
-                        : const Color.fromRGBO(255, 255, 255, 1),
-                  ),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: widget.width * 0.02,
-                        ),
-                        Expanded(
-                          child: Text(
-                            widget.question.choices![j].choiceText!,
-                            style: TextStyle(
-                              color: (widget.question.choices![j].rightChoice!)
-                                  ? const Color.fromRGBO(255, 255, 255, 1)
-                                  : const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.height * 0.0162,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w700,
+                onTap: () {
+                  setState(() {
+                    if (widget.question.choices![j].rightChoice!) {
+                      widget.question.choices![j].rightChoice = false;
+                    } else {
+                      widget.question.choices![j].rightChoice = true;
+                    }
+                  });
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: widget.height * 0.013),
+                  child: Container(
+                      width: widget.width * 0.744,
+                      height: widget.height * 0.0412,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(
+                            color: const Color.fromRGBO(209, 209, 209, 1)),
+                        color: (widget.question.choices![j].rightChoice!)
+                            ? const Color.fromRGBO(82, 165, 160, 1)
+                            : const Color.fromRGBO(255, 255, 255, 1),
+                      ),
+                      child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: widget.width * 0.02,
                             ),
-                          ),
-                        ),
-                      ])),
-            ),
-          ))
+                            Expanded(
+                              child: Text(
+                                widget.question.choices![j].choiceText!,
+                                style: TextStyle(
+                                  color: (widget.question.choices![j].rightChoice!)
+                                      ? const Color.fromRGBO(255, 255, 255, 1)
+                                      : const Color.fromRGBO(102, 102, 102, 1),
+                                  fontSize: widget.height * 0.0162,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ])),
+                ),
+              ))
       ],
     );
   }

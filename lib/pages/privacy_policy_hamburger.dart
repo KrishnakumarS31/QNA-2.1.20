@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PrivacyPolicyHamburger extends StatefulWidget {
@@ -25,6 +24,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -83,7 +84,9 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    "ITNEducation Inc., builds range of IT in\nEducation products and services that help \nmillions of students / learners  and \nteachers / instructors to learn digitally and freely.",
+                    constraints.maxWidth > 700
+                    ? "ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \nteachers / instructors to learn digitally and freely."
+                        : "ITNEducation Inc., builds range of IT in\nEducation products and services that help \nmillions of students / learners  and \nteachers / instructors to learn digitally and freely.",
                     style: TextStyle(
                         fontSize: height * 0.018,
                         fontWeight: FontWeight.w500,
@@ -93,7 +96,10 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                 ),
                 SizedBox(height: height * 0.05),
                 Padding(
-                  padding: EdgeInsets.only(left: height * 0.03),
+                  padding: EdgeInsets.only(left:
+                  constraints.maxWidth > 700
+                  ? height * 0.9
+                          : height * 0.03),
                   child: MouseRegion(
                     cursor: SystemMouseCursors.click,
                     child: GestureDetector(
@@ -122,7 +128,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
               ],
             )),
       ),
-    );
+    );});
   }
 
   Future<void> _launchUrl() async {

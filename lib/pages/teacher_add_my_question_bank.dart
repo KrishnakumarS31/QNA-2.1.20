@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
@@ -77,20 +79,33 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
             builder: (context) {
               return const Center(
                   child: CircularProgressIndicator(
-                color: Color.fromRGBO(48, 145, 139, 1),
-              ));
+                    color: Color.fromRGBO(48, 145, 139, 1),
+                  ));
             });
 
         create_question_model.CreateQuestionModel createQuestionModel =
-            create_question_model.CreateQuestionModel();
+        create_question_model.CreateQuestionModel();
         createQuestionModel.questions = finalQuesList;
         SharedPreferences loginData = await SharedPreferences.getInstance();
         createQuestionModel.authorId = loginData.getInt('userId');
         ResponseEntity statusCode =
-            await QnaService.createQuestionTeacherService(createQuestionModel);
+        await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
-          Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
+          // String input=statusCode.data.toString().substring(15,statusCode.data.toString().length-1);
+          // List<int> idList = (jsonDecode(input) as List<dynamic>).cast<int>();
+          // print(idList);
+          // for(int i=0;i<idList.length;i++){
+          //   createQuestionModel.questions![i].questionId=idList[i];
+          //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+          //       .updateQuestionList(i, createQuestionModel.questions![i]);
+          // }
+          Navigator.pushNamed(
+              context,
+              '/teacherMyQuestionBank',
+              arguments: widget.assessment
+          );
+          //Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
         }
       },
     );
@@ -193,9 +208,9 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: Container(
@@ -216,7 +231,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             color: const Color.fromRGBO(28, 78, 80, 0.08),
                           ),
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(20))),
+                          const BorderRadius.all(Radius.circular(20))),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -232,7 +247,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       fontSize: height * 0.02,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(28, 78, 80, 1),
+                                      const Color.fromRGBO(28, 78, 80, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
@@ -241,7 +256,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       fontSize: height * 0.015,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w600),
                                 ),
                               ],
@@ -262,7 +277,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
@@ -274,7 +289,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
@@ -286,7 +301,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       fontSize: height * 0.0175,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                               ],
@@ -302,7 +317,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
                                     color:
-                                        const Color.fromRGBO(102, 102, 102, 1),
+                                    const Color.fromRGBO(102, 102, 102, 1),
                                     fontWeight: FontWeight.w400),
                               ),
                             ),
@@ -333,11 +348,11 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               //     }),
                               for (int i = 0; i < finalQuesList.length; i++)
                                 QuestionPreview(
-                                    height: height,
-                                    width: width,
-                                    question: finalQuesList[i],
-                                    quesNum: i,
-                                    ),
+                                  height: height,
+                                  width: width,
+                                  question: finalQuesList[i],
+                                  quesNum: i,
+                                ),
                             ],
                           ),
                         ),
@@ -348,48 +363,48 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    '/teacherPrepareQnBank',
-                                    arguments: [false,'']
-                                );
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context,
+                                        '/teacherPrepareQnBank',
+                                        arguments: [false,'']
+                                    );
 
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: TeacherPrepareQnBank(
-                                //         assessment: false,
-                                //         ),
-                                //   ),
-                                // );
-                              },
-                              child: FloatingActionButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/teacherPrepareQnBank',
-                                      arguments: [
-                                        false,
-                                        ''
-                                      ]);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   PageTransition(
+                                    //     type: PageTransitionType.rightToLeft,
+                                    //     child: TeacherPrepareQnBank(
+                                    //         assessment: false,
+                                    //         ),
+                                    //   ),
+                                    // );
+                                  },
+                                  child: FloatingActionButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context,
+                                          '/teacherPrepareQnBank',
+                                          arguments: [
+                                            false,
+                                            ''
+                                          ]);
 
-                                  // Navigator.push(
-                                  //   context,
-                                  //   PageTransition(
-                                  //     type: PageTransitionType.rightToLeft,
-                                  //     child: TeacherPrepareQnBank(
-                                  //         assessment: false,
-                                  //         ),
-                                  //   ),
-                                  // );
-                                },
-                                backgroundColor:
+                                      // Navigator.push(
+                                      //   context,
+                                      //   PageTransition(
+                                      //     type: PageTransitionType.rightToLeft,
+                                      //     child: TeacherPrepareQnBank(
+                                      //         assessment: false,
+                                      //         ),
+                                      //   ),
+                                      // );
+                                    },
+                                    backgroundColor:
                                     const Color.fromRGBO(28, 78, 80, 1),
-                                child: const Icon(Icons.add),
-                              )
-                          ))
+                                    child: const Icon(Icons.add),
+                                  )
+                              ))
                       )
                     ],
                   ),
@@ -425,10 +440,10 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
 class QuestionPreview extends StatelessWidget {
   const QuestionPreview(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.question,
-      required this.quesNum,
+        required this.height,
+        required this.width,
+        required this.question,
+        required this.quesNum,
       })
       : super(key: key);
 
@@ -467,48 +482,48 @@ class QuestionPreview extends StatelessWidget {
                   MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                          context,
-                          '/teacherQuesDelete',
-                          arguments: [
-                            quesNum,
-                            question,
-                            false
-                          ]);
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context,
+                              '/teacherQuesDelete',
+                              arguments: [
+                                quesNum,
+                                question,
+                                false
+                              ]);
 
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: TeacherQuesDelete(
-                      //         quesNum: quesNum,
-                      //         finalQuestion: question, assessment: false,),
-                      //   ),
-                      // );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.edit_button,
-                          //'Edit',
-                          style: TextStyle(
-                              fontSize: height * 0.0185,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontWeight: FontWeight.w400),
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherQuesDelete(
+                          //         quesNum: quesNum,
+                          //         finalQuestion: question, assessment: false,),
+                          //   ),
+                          // );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.edit_button,
+                              //'Edit',
+                              style: TextStyle(
+                                  fontSize: height * 0.0185,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            SizedBox(
+                              width: width * 0.01,
+                            ),
+                            const Icon(
+                              Icons.mode_edit_outline_outlined,
+                              color: Color.fromRGBO(28, 78, 80, 1),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: width * 0.01,
-                        ),
-                        const Icon(
-                          Icons.mode_edit_outline_outlined,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                      ],
-                    ),
-                  ))
+                      ))
                 ],
               ),
               SizedBox(

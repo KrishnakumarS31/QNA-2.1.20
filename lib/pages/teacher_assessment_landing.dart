@@ -245,6 +245,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   getQuestionData() async {
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageLimit, searchVal);
+    print(response.data);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
@@ -684,47 +685,47 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior
                                                           .always,
-                                                      labelText: "${AppLocalizations.of(context)!.sub_caps} *",
-                                                      // label: SizedBox(
-                                                      //   width: width * 0.10,
-                                                      //   child: Row(
-                                                      //     children: [
-                                                      //       Text(
-                                                      //         AppLocalizations.of(context)!.sub_caps,
-                                                      //         //'SUBJECT',
-                                                      //         style: TextStyle(
-                                                      //             fontSize:
-                                                      //                 height *
-                                                      //                     0.015,
-                                                      //             fontFamily:
-                                                      //                 "Inter",
-                                                      //             color: const Color
-                                                      //                     .fromRGBO(
-                                                      //                 51,
-                                                      //                 51,
-                                                      //                 51,
-                                                      //                 1),
-                                                      //             fontWeight:
-                                                      //                 FontWeight
-                                                      //                     .w600),
-                                                      //       ),
-                                                      //       Text(
-                                                      //         '\t*',
-                                                      //         style: TextStyle(
-                                                      //             fontSize:
-                                                      //                 height *
-                                                      //                     0.015,
-                                                      //             fontFamily:
-                                                      //                 "Inter",
-                                                      //             color: Colors
-                                                      //                 .red,
-                                                      //             fontWeight:
-                                                      //                 FontWeight
-                                                      //                     .w600),
-                                                      //       ),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
+                                                      //labelText: "${AppLocalizations.of(context)!.sub_caps} *",
+                                                      label: SizedBox(
+                                                        width: width * 0.20,
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              AppLocalizations.of(context)!.sub_caps,
+                                                              //'SUBJECT',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  height *
+                                                                      0.018,
+                                                                  fontFamily:
+                                                                  "Inter",
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51,
+                                                                      51,
+                                                                      51,
+                                                                      1),
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                            ),
+                                                            Text(
+                                                              '\t*',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  height *
+                                                                      0.015,
+                                                                  fontFamily:
+                                                                  "Inter",
+                                                                  color: Colors
+                                                                      .red,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
                                                       labelStyle: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(
@@ -797,49 +798,49 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior
                                                           .always,
-                                                      labelText: "${AppLocalizations.of(context)!.class_caps} *",
-                                                      // label: SizedBox(
-                                                      //   width: width * 0.15,
-                                                      //   child: Row(
-                                                      //     children: [
-                                                      //       Text(
-                                                      //         AppLocalizations.of(
-                                                      //                 context)!
-                                                      //             .class_caps,
-                                                      //         // 'CLASS',
-                                                      //         style: TextStyle(
-                                                      //             fontSize:
-                                                      //                 height *
-                                                      //                     0.015,
-                                                      //             fontFamily:
-                                                      //                 "Inter",
-                                                      //             color: const Color
-                                                      //                     .fromRGBO(
-                                                      //                 51,
-                                                      //                 51,
-                                                      //                 51,
-                                                      //                 1),
-                                                      //             fontWeight:
-                                                      //                 FontWeight
-                                                      //                     .w600),
-                                                      //       ),
-                                                      //       Text(
-                                                      //         '\t*',
-                                                      //         style: TextStyle(
-                                                      //             fontSize:
-                                                      //                 height *
-                                                      //                     0.015,
-                                                      //             fontFamily:
-                                                      //                 "Inter",
-                                                      //             color: Colors
-                                                      //                 .red,
-                                                      //             fontWeight:
-                                                      //                 FontWeight
-                                                      //                     .w600),
-                                                      //       ),
-                                                      //     ],
-                                                      //   ),
-                                                      // ),
+                                                      //labelText: "${AppLocalizations.of(context)!.class_caps} *",
+                                                      label: SizedBox(
+                                                        width: width * 0.18,
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .class_caps,
+                                                              // 'CLASS',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  height *
+                                                                      0.018,
+                                                                  fontFamily:
+                                                                  "Inter",
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      51,
+                                                                      51,
+                                                                      51,
+                                                                      1),
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                            ),
+                                                            Text(
+                                                              '\t*',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                  height *
+                                                                      0.015,
+                                                                  fontFamily:
+                                                                  "Inter",
+                                                                  color: Colors
+                                                                      .red,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
                                                       labelStyle: TextStyle(
                                                           color: const Color
                                                               .fromRGBO(
@@ -1181,9 +1182,15 @@ class _CardInfoState extends State<CardInfo> {
   @override
   void initState() {
     // TODO: implement initState
-    DateTime tsdate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
-    datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+    getdate();
+    print(datetime);
     super.initState();
+  }
+  getdate(){
+    setState(() {
+      DateTime tsdate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
+      datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+    });
   }
   @override
   Widget build(BuildContext context) {

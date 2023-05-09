@@ -879,24 +879,29 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                     SizedBox(
                       height: height * 0.02,
                     ),
-                    Row(
-                      children: [
-                        const Expanded(child: Divider()),
-                        Text(
-                          "  View All Questions  ",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.02,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
+                    GestureDetector(
+                      onTap: (){
+                        showQuestionDetails();
+                      },
+                      child: Row(
+                        children: [
+                          const Expanded(child: Divider()),
+                          Text(
+                            "  View All Questions  ",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        const Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        const Expanded(child: Divider()),
-                      ],
+                          const Icon(
+                            Icons.keyboard_arrow_down_sharp,
+                            color: Color.fromRGBO(28, 78, 80, 1),
+                          ),
+                          const Expanded(child: Divider()),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: height * 0.02,
@@ -1050,7 +1055,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     assessment = widget.assessment;
     for (int i = 0; i < widget.question.choices!.length; i++) {
       if (widget.question.choices![i].rightChoice!) {
-        ans = '${widget.question.choices![i].choiceText}, $ans';
+        ans = '${widget.question.choices![i].choiceText} $ans';
       }
     }
     super.initState();

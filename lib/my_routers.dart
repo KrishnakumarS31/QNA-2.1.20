@@ -22,7 +22,7 @@ import 'package:qna_test/pages/teacher_active_assessment.dart';
 import 'package:qna_test/pages/teacher_add_my_question_bank_for_assessment.dart';
 import 'package:qna_test/pages/teacher_assess_looq_ques_preview.dart';
 import 'package:qna_test/pages/teacher_assessment_landing.dart';
-import 'package:qna_test/pages/teacher_assessment_looq_preapare_ques.dart';
+import 'package:qna_test/pages/teacher_assessment_looq_prepare_ques.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_ques_bank.dart';
 import 'package:qna_test/pages/teacher_assessment_looq_question_preview.dart';
 import 'package:qna_test/pages/teacher_assessment_question_bank.dart';

@@ -96,6 +96,8 @@ class TeacherLoginState extends State<TeacherLogin> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -387,7 +389,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 fontSize: height * 0.017),
                           ),
                           TextSpan(
-                              text: "\t*",
+                              text: "\t *",
                               style: TextStyle(
                                   color: const Color.fromRGBO(219, 35, 35, 1),
                                   fontFamily: 'Inter',
@@ -402,9 +404,13 @@ class TeacherLoginState extends State<TeacherLogin> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(width: width * 0.02),
                           Transform.scale(
                             filterQuality: FilterQuality.high,
-                            scale: 1.5,
+                            scale:
+                            constraints.maxWidth > 700
+                            ? 1.2
+                            : 1.5,
                             child: Checkbox(
                               activeColor:
                                   const Color.fromRGBO(82, 165, 160, 1),
@@ -431,7 +437,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                             TextSpan(
                               text: AppLocalizations.of(context)!.agree_msg,
                               style: TextStyle(
-                                  fontSize: height * 0.020,
+                                  fontSize: height * 0.02,
                                   fontWeight: FontWeight.w400,
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: "Inter"),
@@ -607,7 +613,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                         //SizedBox(width: width * 0.3),
                         IconButton(
                           icon: Icon(
-                            Icons.edit_calendar,
+                            Icons.edit_calendar_sharp,
                             color: const Color.fromRGBO(141, 167, 167, 1),
                             size: height * 0.034,
                           ),
@@ -651,4 +657,4 @@ class TeacherLoginState extends State<TeacherLogin> {
                   ]),
             )));
   }
-}
+    );}}

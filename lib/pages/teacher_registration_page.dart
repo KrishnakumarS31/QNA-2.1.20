@@ -315,7 +315,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
     double localWidth = MediaQuery.of(context).size.width;
     double localHeight = MediaQuery.of(context).size.height;
 
-    return WillPopScope(
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
           appBar: AppBar(
@@ -686,7 +688,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: localWidth * 0.038,
+                                  left:
+                                  constraints.maxWidth > 700
+                                      ? localWidth * 0.009
+                                      : localWidth * 0.025,
                                   child: Container(
                                     color: Colors.white,
                                     child: RichText(
@@ -784,7 +789,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: localWidth * 0.038,
+                                  left:
+                                  constraints.maxWidth > 700
+                                      ? localWidth * 0.009
+                                      : localWidth * 0.025,
                                   child: Container(
                                     color: Colors.white,
                                     child: RichText(
@@ -889,7 +897,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: localWidth * 0.038,
+                                  left:
+                                  constraints.maxWidth > 700
+                                      ? localWidth * 0.009
+                                      : localWidth * 0.025,
                                   child: Container(
                                     color: Colors.white,
                                     child: RichText(
@@ -1465,4 +1476,4 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
           //)
         ));
   }
-}
+    );}}

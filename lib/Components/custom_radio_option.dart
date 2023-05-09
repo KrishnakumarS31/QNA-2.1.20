@@ -41,7 +41,7 @@ class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
                 : const Color.fromRGBO(82, 165, 160, 1)),
         const SizedBox(width: 5),
         Text(
-          widget.value.toString(),
+          widget.label.toString(),
           style: TextStyle(
             color: isSelected
                 ? Colors.white

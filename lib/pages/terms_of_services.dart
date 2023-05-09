@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TermsOfServiceHamburger extends StatefulWidget {
   const TermsOfServiceHamburger({
@@ -24,6 +25,8 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -44,7 +47,8 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "TERMS OF SERVICE",
+              AppLocalizations.of(context)!.terms_caps,
+                //"TERMS OF SERVICE",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.0225,
@@ -84,7 +88,8 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                   child: RichText(
                       text: TextSpan(children: [
                         TextSpan(
-                            text: "Terms of Service",
+                            text: AppLocalizations.of(context)!.terms_of_services,
+                            //"Terms of Service",
                             recognizer: TapGestureRecognizer()..onTap = _launchUrl,
                             style: TextStyle(
                                 color: const Color.fromRGBO(0, 107, 232, 1),
@@ -94,7 +99,11 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                                 fontSize: height * 0.018)),
                         TextSpan(
                             text:
-                            " \t\tdefines ITNEDCUATION \nrelationship with you as you interact with \nQNATEST app services",
+                            constraints.maxWidth > 700
+                            ?  AppLocalizations.of(context)!.terms_page_web
+                            //" \t\tdefines ITNEDCUATION relationship with you as you interact with QNATEST app services"
+                                : AppLocalizations.of(context)!.terms_caps,
+                            //" \t\tdefines ITNEDCUATION \nrelationship with you as you interact with \nQNATEST app services",
                             style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontFamily: 'Inter',
@@ -105,7 +114,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
               ],
             )),
       ),
-    );
+    );});
   }
 
   Future<void> _launchUrl() async {

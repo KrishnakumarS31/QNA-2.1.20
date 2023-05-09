@@ -15,7 +15,7 @@ Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 class TeacherAssessmentLooqPrepareQues extends StatefulWidget {
   const TeacherAssessmentLooqPrepareQues(
       {Key? key,
-      required this.assessment,
+        required this.assessment,
       })
       : super(key: key);
 
@@ -78,9 +78,9 @@ class TeacherAssessmentLooqPrepareQuesState
       context: context,
       builder: (BuildContext context) {
         return TeacherAssessLooqQuesPreview(
-            assessment: widget.assessment,
-            finalQuestion: finalQuestion,
-            );
+          assessment: widget.assessment,
+          finalQuestion: finalQuestion,
+        );
       },
     );
   }
@@ -145,9 +145,9 @@ class TeacherAssessmentLooqPrepareQuesState
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -165,7 +165,7 @@ class TeacherAssessmentLooqPrepareQuesState
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
+                          const BorderRadius.all(Radius.circular(10.0)),
                           border: Border.all(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                           ),
@@ -187,18 +187,19 @@ class TeacherAssessmentLooqPrepareQuesState
                               groupValue: _groupValue,
                               onChanged: _valueChangedHandler(),
                               label:
-                                  //AppLocalizations.of(context)!.survey,
-                                  'Survey',
+                              //AppLocalizations.of(context)!.survey,
+                              'Survey',
                             ),
                             MyRadioOption<String>(
                               icon: Icons.library_books_sharp,
-                              value: AppLocalizations.of(context)!.descriptive,
-                              //'Descriptive',
+                              value:
+                              //AppLocalizations.of(context)!.descriptive,
+                              'Descripitive',
                               groupValue: _groupValue,
                               onChanged: _valueChangedHandler(),
                               label:
-                                  //AppLocalizations.of(context)!.descriptive,
-                                  'Descriptive',
+                              //AppLocalizations.of(context)!.descriptive,
+                              'Descriptive',
                             ),
                           ],
                         ),
@@ -286,7 +287,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                   icon: Icon(
                                     showIcon,
                                     color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                     size: height * 0.03,
                                   ),
                                   onPressed: () {
@@ -303,7 +304,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                     controller: subjectController,
                                     keyboardType: TextInputType.text,
                                     style: TextStyle(
-                                      color: Colors.black,
+                                        color: Colors.black,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
@@ -312,7 +313,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                           .sub_caps,
                                       //"SUBJECT",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -333,10 +334,10 @@ class TeacherAssessmentLooqPrepareQuesState
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -352,7 +353,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                           .topic_caps,
                                       //"TOPIC",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -370,7 +371,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                       //"Type Topic Here",
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -386,7 +387,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                           .sub_topic_caps,
                                       //'SUB TOPIC',
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -404,7 +405,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                       //'Type Sub Topic Here',
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -419,7 +420,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                           .class_caps,
                                       //"CLASS",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -437,7 +438,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                       //"Type Here",
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                               ])),
                           SizedBox(height: height * 0.010),
@@ -476,7 +477,7 @@ class TeacherAssessmentLooqPrepareQuesState
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: 'Inter',
@@ -489,7 +490,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                     fontWeight: FontWeight.w400,
                                     fontSize: height * 0.02),
                                 hintText:
-                                    AppLocalizations.of(context)!.type_qn_here,
+                                AppLocalizations.of(context)!.type_qn_here,
                                 //"Type Question Here",
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5)),
@@ -506,7 +507,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                     //"Choices",
                                     style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
+                                      const Color.fromRGBO(51, 51, 51, 1),
                                       fontSize: height * 0.016,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w500,
@@ -563,7 +564,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
+                                        FloatingLabelBehavior.always,
                                         hintStyle: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.3),
@@ -575,7 +576,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                         //"Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(5)),
+                                            BorderRadius.circular(5)),
                                       ),
                                       onChanged: (val) {
                                         tempChoiceList[i].choiceText = val;
@@ -593,9 +594,9 @@ class TeacherAssessmentLooqPrepareQuesState
                                       radioList[i]
                                           ? Icons.radio_button_checked_outlined
                                           : Icons
-                                              .radio_button_unchecked_outlined,
+                                          .radio_button_unchecked_outlined,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -712,7 +713,7 @@ class TeacherAssessmentLooqPrepareQuesState
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    const Color.fromRGBO(82, 165, 160, 1),
+                                const Color.fromRGBO(82, 165, 160, 1),
                                 maximumSize: const Size(280, 48),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(39),
@@ -730,8 +731,8 @@ class TeacherAssessmentLooqPrepareQuesState
                                         List<Choice> temp = [];
                                         List<Choice> selectedTemp = [];
                                         for (int i = 0;
-                                            i < chooses.length;
-                                            i++) {
+                                        i < chooses.length;
+                                        i++) {
                                           if (radioList[i]) {
                                             //selectedTemp.add(demoQuestionModel.choices![i]);
                                           }
@@ -777,8 +778,8 @@ class TeacherAssessmentLooqPrepareQuesState
                                       },
                                       child: Text(
                                           AppLocalizations.of(context)!.preview
-                                          //"Preview"
-                                          ),
+                                        //"Preview"
+                                      ),
                                     ),
                                   ]),
                               onPressed: () {}),

@@ -383,95 +383,177 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           ])),
                                     ]
                                 ),
-                                SizedBox(height: localHeight * 0.02),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    SizedBox(width: localHeight * 0.5),
-                                    Checkbox(
-                                      activeColor: const Color.fromRGBO(
-                                          82, 165, 160, 1),
-                                      fillColor: MaterialStateProperty
-                                          .resolveWith<Color>((states) {
-                                        if (states.contains(
-                                            MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
-                                      value: agree,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          agree = val!;
-                                          if (agree) {}
-                                        });
-                                      },
-                                    ),
-                                    SizedBox(width: localWidth * 0.02),
-                                    RichText(
-                                        text: TextSpan(children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .agree_msg,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.017,
-                                                fontWeight: FontWeight.w400,
-                                                color: const Color.fromRGBO(
-                                                    51, 51, 51, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .privacy_Policy,
-                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.017,
-                                                fontWeight: FontWeight.w400,
-                                                decoration:
-                                                TextDecoration.underline,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!.and,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.017,
-                                                fontWeight: FontWeight.w400,
-                                                decoration:
-                                                TextDecoration.underline,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                            AppLocalizations.of(context)!.terms,
-                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.017,
-                                                fontWeight: FontWeight.w400,
-                                                decoration:
-                                                TextDecoration.underline,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .services,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.017,
-                                                fontWeight: FontWeight.w400,
-                                                color: const Color.fromRGBO(
-                                                    51, 51, 51, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                        ])),
-                                  ],
+                                SizedBox(height: localHeight * 0.01),
+                                Padding(
+                                  padding: EdgeInsets.only(left: localWidth * 0.1),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(width: localWidth * 0.15),
+                                      Transform.scale(
+                                        filterQuality: FilterQuality.high,
+                                        scale: 1.2,
+                                        child: Checkbox(
+                                          activeColor:
+                                          const Color.fromRGBO(82, 165, 160, 1),
+                                          fillColor:
+                                          MaterialStateProperty.resolveWith<Color>(
+                                                  (states) {
+                                                if (states.contains(MaterialState.selected)) {
+                                                  return const Color.fromRGBO(82, 165, 160, 1);
+                                                }
+                                                return const Color.fromRGBO(82, 165, 160, 1);
+                                              }),
+                                          value: agree,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              agree = val!;
+                                              if (agree) {}
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(width: localWidth * 0.015),
+                                      RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.agree_msg,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.02,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                              AppLocalizations.of(context)!.privacy_Policy,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.020,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration: TextDecoration.underline,
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.and,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.020,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration: TextDecoration.underline,
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.terms,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.020,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration: TextDecoration.underline,
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.services,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.020,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: const Color.fromRGBO(51, 51, 51, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                          ])),
+                                    ],
+                                  ),
                                 ),
+                                // Row(
+                                //   crossAxisAlignment: CrossAxisAlignment.start,
+                                //   children: [
+                                //     SizedBox(width: localHeight * 0.5),
+                                //     Checkbox(
+                                //       activeColor: const Color.fromRGBO(
+                                //           82, 165, 160, 1),
+                                //       fillColor: MaterialStateProperty
+                                //           .resolveWith<Color>((states) {
+                                //         if (states.contains(
+                                //             MaterialState.selected)) {
+                                //           return const Color.fromRGBO(
+                                //               82, 165, 160, 1);
+                                //         }
+                                //         return const Color.fromRGBO(
+                                //             82, 165, 160, 1);
+                                //       }),
+                                //       value: agree,
+                                //       onChanged: (val) {
+                                //         setState(() {
+                                //           agree = val!;
+                                //           if (agree) {}
+                                //         });
+                                //       },
+                                //     ),
+                                //     SizedBox(width: localWidth * 0.02),
+                                //     RichText(
+                                //         text: TextSpan(children: [
+                                //           TextSpan(
+                                //             text: AppLocalizations.of(context)!
+                                //                 .agree_msg,
+                                //             style: TextStyle(
+                                //                 fontSize: localHeight * 0.017,
+                                //                 fontWeight: FontWeight.w400,
+                                //                 color: const Color.fromRGBO(
+                                //                     51, 51, 51, 1),
+                                //                 fontFamily: "Inter"),
+                                //           ),
+                                //           TextSpan(
+                                //             text: AppLocalizations.of(context)!
+                                //                 .privacy_Policy,
+                                //             recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
+                                //             style: TextStyle(
+                                //                 fontSize: localHeight * 0.017,
+                                //                 fontWeight: FontWeight.w400,
+                                //                 decoration:
+                                //                 TextDecoration.underline,
+                                //                 color: const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontFamily: "Inter"),
+                                //           ),
+                                //           TextSpan(
+                                //             text: AppLocalizations.of(context)!.and,
+                                //             style: TextStyle(
+                                //                 fontSize: localHeight * 0.017,
+                                //                 fontWeight: FontWeight.w400,
+                                //                 decoration:
+                                //                 TextDecoration.underline,
+                                //                 color: const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontFamily: "Inter"),
+                                //           ),
+                                //           TextSpan(
+                                //             text:
+                                //             AppLocalizations.of(context)!.terms,
+                                //             recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                                //             style: TextStyle(
+                                //                 fontSize: localHeight * 0.017,
+                                //                 fontWeight: FontWeight.w400,
+                                //                 decoration:
+                                //                 TextDecoration.underline,
+                                //                 color: const Color.fromRGBO(
+                                //                     82, 165, 160, 1),
+                                //                 fontFamily: "Inter"),
+                                //           ),
+                                //           TextSpan(
+                                //             text: AppLocalizations.of(context)!
+                                //                 .services,
+                                //             style: TextStyle(
+                                //                 fontSize: localHeight * 0.017,
+                                //                 fontWeight: FontWeight.w400,
+                                //                 color: const Color.fromRGBO(
+                                //                     51, 51, 51, 1),
+                                //                 fontFamily: "Inter"),
+                                //           ),
+                                //         ])),
+                                //   ],
+                                // ),
                                 SizedBox(height: localHeight * 0.02),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -618,7 +700,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       children: [
                                         IconButton(
                                           icon: const Icon(
-                                            Icons.edit_calendar,
+                                            Icons.edit_calendar_sharp,
                                             color: Color.fromRGBO(
                                                 141, 167, 167, 1),
                                           ),
@@ -938,11 +1020,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 SizedBox(height: localHeight * 0.02),
                                 Row(
-                               //   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    //SizedBox(width: localHeight * 0.01),
-                                    Checkbox(
+                                    Transform.scale(
+                                      filterQuality: FilterQuality.high,
+                                      scale: 1.5,
+                                      child: Checkbox(
                                       activeColor: const Color.fromRGBO(
                                           82, 165, 160, 1),
                                       fillColor: MaterialStateProperty
@@ -962,8 +1045,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           if (agree) {}
                                         });
                                       },
-                                    ),
-                                    //SizedBox(width: localWidth * 0.02),
+                                    )),
+                                    SizedBox(width: localWidth * 0.015),
                                     RichText(
                                         text: TextSpan(children: [
                                           TextSpan(
@@ -1231,7 +1314,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       children: [
                                         IconButton(
                                           icon: const Icon(
-                                            Icons.edit_calendar,
+                                            Icons.edit_calendar_sharp,
                                             color: Color.fromRGBO(
                                                 141, 167, 167, 1),
                                           ),

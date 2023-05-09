@@ -280,6 +280,15 @@
   "publish_now": "Publish Now",
   "advisor_contact": "Advisor Contact",
   "enter_valid_name": "Enter your name in Alphabets only",
-  "login_loginPage": "Login"
-
+  "login_loginPage": "Login",
+  "alert_popup": "Alert",
+  "enter_sub_class": "Enter Subject, Class and Question",
+  "one_choice_must": "At least one choice must be added",
+  "privacy_policy_caps": "PRIVACY POLICY",
+  "terms_caps": "TERMS OF SERVICE",
+  "cookie_policy_description_web": "QNATest apps will not request cookies to be set on your device. We do not use cookies, when you visit QNATEST website or deploy the app.There are no settings related to cookie preferences.",
+  "about_us_description_web": "ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and teachers / instructors to learn digitally and freely.\nQNATest is an Intelligent Learning Evaluation, Assessment & Advisor platform, which is:",
+  "find_answers_web": "If you are unable to find answers to your queries related to the QNATest App,please\nfeel free to\t\t",
+  "terms_page": " \t\tdefines ITNEDUCATION relationship with you as you interact with QNATEST app services",
+  "terms_page_web": " \t\tdefines ITNEDCUATION \nrelationship with you as you interact with \nQNATEST app services"
 }

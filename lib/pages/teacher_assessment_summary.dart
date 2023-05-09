@@ -1118,6 +1118,16 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               context,
                               listen: false)
                               .getAssessment;
+                          DateTime startDate=DateTime.now();
+                          startDate = DateTime(
+                              startDate.year,
+                              startDate.month,
+                              startDate.day,
+                              startDate.hour,
+                              startDate.minute);
+                          assessment.assessmentStartdate =
+                              startDate
+                                  .microsecondsSinceEpoch;
                           ResponseEntity statusCode = ResponseEntity();
                           statusCode =
                           await QnaService.editAssessmentTeacherService(

@@ -441,23 +441,26 @@ class TeacherAssessmentSettingPublishState
                                                     Column(
                                                       children: [
                                                         Row(children: [
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .test_qn_page,
-                                                            // "Test",
-                                                            style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  28, 78, 80, 1),
-                                                              fontSize:
-                                                              height * 0.025,
-                                                              fontFamily: "Inter",
-                                                              fontWeight:
-                                                              FontWeight.w600,
+                                                          SizedBox(
+                                                            width: width * 0.3,
+                                                            child: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .test_qn_page,
+                                                              // "Test",
+                                                              style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    28, 78, 80, 1),
+                                                                fontSize:
+                                                                height * 0.025,
+                                                                fontFamily: "Inter",
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                              ),
                                                             ),
                                                           ),
-                                                          SizedBox(width: width * 0.3),
+
                                                           Transform.scale(
                                                             scale: 1.5,
                                                             child: Radio(
@@ -480,23 +483,25 @@ class TeacherAssessmentSettingPublishState
                                                     Column(
                                                       children: [
                                                         Row(children: [
-                                                          Text(
-                                                            AppLocalizations.of(
-                                                                context)!
-                                                                .practice_qn_page,
-                                                            // "Practice",
-                                                            style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  28, 78, 80, 1),
-                                                              fontSize:
-                                                              height * 0.025,
-                                                              fontFamily: "Inter",
-                                                              fontWeight:
-                                                              FontWeight.w600,
+                                                          SizedBox(
+                                                            width: width * 0.3,
+                                                            child: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .practice_qn_page,
+                                                              // "Practice",
+                                                              style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    28, 78, 80, 1),
+                                                                fontSize:
+                                                                height * 0.025,
+                                                                fontFamily: "Inter",
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                              ),
                                                             ),
                                                           ),
-                                                          SizedBox(width: width * 0.28),
                                                           Transform.scale(
                                                             scale: 1.5,
                                                             child: Radio(
@@ -515,86 +520,86 @@ class TeacherAssessmentSettingPublishState
                                                         ])
                                                       ],
                                                     ),
-                                            Column(
-                                              children: [
-                                                Row(children: [
-                                                  Text(
-                                                    AppLocalizations.of(context)!.make_test_practice,
-                                                    //"Make Test available for Practice after",
-                                                    style: TextStyle(
-                                                      color:
-                                                      const Color.fromRGBO(
-                                                          28, 78, 80, 1),
-                                                      fontSize: height * 0.02,
-                                                      fontFamily: "Inter",
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: width * 0.15),
-                                                  SizedBox(
-                                                    width: width * 0.2,
-                                                    child: TextField(
-                                                      controller:
-                                                      numOfDaysAfterTestController,
-                                                      keyboardType:
-                                                      const TextInputType
-                                                          .numberWithOptions(
-                                                          decimal:
-                                                          false),
-                                                      inputFormatters: <
-                                                          TextInputFormatter>[
-                                                        FilteringTextInputFormatter
-                                                            .allow(RegExp(
-                                                            "[0-9]")),
-                                                      ],
-                                                      decoration:
-                                                      InputDecoration(
-                                                        hintText: "# day/s",
-                                                        hintStyle: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102,
-                                                                102,
-                                                                102,
-                                                                0.3),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize:
-                                                            height * 0.020),
-                                                      ),
-                                                      style: TextStyle(
-                                                          fontSize:
-                                                          height * 0.020,
-                                                          color: Colors.black),
-                                                    ),
-                                                  ),
-                                                ]),
-                                                Row(
-                                                    //mainAxisAlignment: MainAxisAlignment.,
-                                                    children: [
-                                                      Text(
-                                                        AppLocalizations.of(
-                                                            context)!
-                                                            .only_mcq_for_practice,
-                                                        //"Only MCQ will be available for Practice",
-                                                        style: TextStyle(
-                                                          color: const Color
-                                                              .fromRGBO(
-                                                              153, 153, 153, 1),
-                                                          fontSize:
-                                                          height * 0.02,
-                                                          fontFamily: "Inter",
-                                                          fontStyle: FontStyle.italic,
-                                                          fontWeight: FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                          height:
-                                                          height * 0.035),
-                                                    ]),
-                                                    ]
+                                                    Column(
+                                                        children: [
+                                                          Row(children: [
+                                                            Text(
+                                                              AppLocalizations.of(context)!.make_test_practice,
+                                                              //"Make Test available for Practice after",
+                                                              style: TextStyle(
+                                                                color:
+                                                                const Color.fromRGBO(
+                                                                    28, 78, 80, 1),
+                                                                fontSize: height * 0.02,
+                                                                fontFamily: "Inter",
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                              ),
+                                                            ),
+                                                            SizedBox(width: width * 0.15),
+                                                            SizedBox(
+                                                              width: width * 0.2,
+                                                              child: TextField(
+                                                                controller:
+                                                                numOfDaysAfterTestController,
+                                                                keyboardType:
+                                                                const TextInputType
+                                                                    .numberWithOptions(
+                                                                    decimal:
+                                                                    false),
+                                                                inputFormatters: <
+                                                                    TextInputFormatter>[
+                                                                  FilteringTextInputFormatter
+                                                                      .allow(RegExp(
+                                                                      "[0-9]")),
+                                                                ],
+                                                                decoration:
+                                                                InputDecoration(
+                                                                  hintText: "# day/s",
+                                                                  hintStyle: TextStyle(
+                                                                      color: const Color
+                                                                          .fromRGBO(
+                                                                          102,
+                                                                          102,
+                                                                          102,
+                                                                          0.3),
+                                                                      fontFamily: 'Inter',
+                                                                      fontWeight:
+                                                                      FontWeight.w400,
+                                                                      fontSize:
+                                                                      height * 0.020),
+                                                                ),
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    height * 0.020,
+                                                                    color: Colors.black),
+                                                              ),
+                                                            ),
+                                                          ]),
+                                                          Row(
+                                                            //mainAxisAlignment: MainAxisAlignment.,
+                                                              children: [
+                                                                Text(
+                                                                  AppLocalizations.of(
+                                                                      context)!
+                                                                      .only_mcq_for_practice,
+                                                                  //"Only MCQ will be available for Practice",
+                                                                  style: TextStyle(
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        153, 153, 153, 1),
+                                                                    fontSize:
+                                                                    height * 0.02,
+                                                                    fontFamily: "Inter",
+                                                                    fontStyle: FontStyle.italic,
+                                                                    fontWeight: FontWeight.w700,
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                    height:
+                                                                    height * 0.035),
+                                                              ]),
+                                                        ]
                                                     )
                                                   ],
                                                 ),
@@ -1271,9 +1276,9 @@ class TeacherAssessmentSettingPublishState
                                                       style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             82, 165, 160, 1),
-                                                        fontSize: height * 0.03,
+                                                        fontSize: height * 0.025,
                                                         fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
+                                                        fontWeight: FontWeight.w400,
                                                       ),
                                                     ),
                                                     // ),
@@ -2672,23 +2677,25 @@ class TeacherAssessmentSettingPublishState
                                                     Column(
                                                       children: [
                                                         Row(children: [
-                                                          Text(
-                                                          AppLocalizations.of(
-                                                              context)!
-                                                              .test_qn_page,
-                                                            // "Test",
-                                                          style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                28, 78, 80, 1),
-                                                            fontSize:
-                                                            height * 0.0175,
-                                                            fontFamily: "Inter",
-                                                            fontWeight:
-                                                            FontWeight.w600,
+                                                          SizedBox(
+                                                            width: width * 0.4,
+                                                            child: Text(
+                                                              AppLocalizations.of(
+                                                                  context)!
+                                                                  .test_qn_page,
+                                                              // "Test",
+                                                              style: TextStyle(
+                                                                color: const Color
+                                                                    .fromRGBO(
+                                                                    28, 78, 80, 1),
+                                                                fontSize:
+                                                                height * 0.0175,
+                                                                fontFamily: "Inter",
+                                                                fontWeight:
+                                                                FontWeight.w600,
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ),
-                                                          SizedBox(width: width * 0.2),
                                                           Transform.scale(
                                                             scale: 1.5,
                                                             child: Radio(
@@ -2708,20 +2715,22 @@ class TeacherAssessmentSettingPublishState
                                                       ],
                                                     ),
                                                     Row(children: [
-                                                      Text(AppLocalizations.of(context)!.practice_qn_page,
-                                                        // "Practice",
-                                                            style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  28, 78, 80, 1),
-                                                              fontSize:
-                                                              height * 0.0175,
-                                                              fontFamily: "Inter",
-                                                              fontWeight:
-                                                              FontWeight.w600,
-                                                            ),
+                                                      SizedBox(
+                                                        width: width * 0.4,
+                                                        child: Text(AppLocalizations.of(context)!.practice_qn_page,
+                                                          // "Practice",
+                                                          style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                28, 78, 80, 1),
+                                                            fontSize:
+                                                            height * 0.0175,
+                                                            fontFamily: "Inter",
+                                                            fontWeight:
+                                                            FontWeight.w600,
                                                           ),
-                                                      SizedBox(width: width * 0.13),
+                                                        ),
+                                                      ),
                                                       Transform.scale(
                                                         scale: 1.5,
                                                         child: Radio(
@@ -3501,9 +3510,9 @@ class TeacherAssessmentSettingPublishState
                                                       style: TextStyle(
                                                         color: const Color.fromRGBO(
                                                             82, 165, 160, 1),
-                                                        fontSize: height * 0.025,
+                                                        fontSize: height * 0.02,
                                                         fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w700,
+                                                        fontWeight: FontWeight.w400,
                                                       ),
                                                     ),
 // ),
@@ -4106,7 +4115,7 @@ class TeacherAssessmentSettingPublishState
                                         SizedBox(height: height * 0.05),
                                         Column(children: [
                                           widget.assessmentType=='editActive'?
-                                        const SizedBox(height: 0)
+                                          const SizedBox(height: 0)
                                               :Center(
                                             child: SizedBox(
                                               width: width * 0.6,

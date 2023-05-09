@@ -31,6 +31,8 @@ class AboutUsState extends State<AboutUs> {
       AppLocalizations.of(context)!.anonymous,
       //"Anonymous"
     ];
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -90,7 +92,9 @@ class AboutUsState extends State<AboutUs> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    AppLocalizations.of(context)!.about_us_description,
+                      constraints.maxWidth > 700
+                   ? AppLocalizations.of(context)!.about_us_description_web
+                          : AppLocalizations.of(context)!.about_us_description,
                     // "ITNEducation Inc., builds range of IT in\nEducation products and services that help\nmillions of students / learners  and\nteachers / instructors to learn digitally and\nfreely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\nplatform, which is:",
                     style: TextStyle(
                         fontSize: height * 0.018,
@@ -101,7 +105,11 @@ class AboutUsState extends State<AboutUs> {
                 ),
                 SizedBox(height: height * 0.03),
                 Padding(
-                  padding: EdgeInsets.only(left: height * 0.065),
+                  padding: EdgeInsets.only(left:
+                  constraints.maxWidth > 700
+                  ? height * 0.9
+                          : height * 0.065
+                  ),
                   child: Column(
                     children: str.map((list) {
                       return Row(children: [
@@ -136,4 +144,4 @@ class AboutUsState extends State<AboutUs> {
       ),
     );
   }
-}
+    );}}

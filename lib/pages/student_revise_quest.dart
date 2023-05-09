@@ -102,7 +102,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     Column(
                         children: [
                           Container(
-                            height: localHeight * 0.25,
+                            height: localHeight * 0.27,
                             width: localWidth * 1,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
@@ -120,7 +120,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               ),
                             ),
                             child: Column(
-                              //crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(height: localHeight * 0.020),
                                 Align(
@@ -130,11 +129,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         IconButton(
                                           tooltip: AppLocalizations.of(context)!
                                               .revise,
-                                          icon:Icon(
+                                          icon:const Icon(
                                             Icons.chevron_left,
-                                            size: localHeight * 0.05,
                                             color: Colors.white,
                                           ),
+                                          iconSize: localHeight * 0.06,
                                           onPressed: () {
                                             context.read<QuestionNumProvider>()
                                                 .skipQuestionNum(1);
@@ -151,16 +150,14 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                   .skipQuestionNum(1);
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text(
-                                              AppLocalizations.of(context)!.revise,
-                                              style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    255, 255, 255, 1),
-                                                fontSize: localHeight * 0.020,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700,
-                                              ),
-                                            ),
+                                            child:  Text(
+                                                AppLocalizations.of(context)!
+                                                    .revise,
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: localHeight * 0.024))
                                           )),
                                         )
                                       ]),

@@ -27,7 +27,7 @@ class TeacherClonedAssessmentPreviewState
   bool additionalDetails = true;
   GetAssessmentModel assessment = GetAssessmentModel();
   CreateAssessmentModel.CreateAssessmentModel finalAssessment =
-      CreateAssessmentModel.CreateAssessmentModel(questions: []);
+  CreateAssessmentModel.CreateAssessmentModel(questions: []);
   List<Questions.Question> quesList = [];
 
   int mark = 0;
@@ -208,9 +208,9 @@ class TeacherClonedAssessmentPreviewState
                       end: Alignment.bottomCenter,
                       begin: Alignment.topCenter,
                       colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ])),
             ),
           ),
           body: Padding(
@@ -312,7 +312,7 @@ class TeacherClonedAssessmentPreviewState
                               // );
                             },
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             child: const Icon(Icons.add),
                           ))
                     ],
@@ -329,7 +329,7 @@ class TeacherClonedAssessmentPreviewState
                             color: Color.fromRGBO(82, 165, 160, 1),
                           ),
                           backgroundColor:
-                              const Color.fromRGBO(255, 255, 255, 1),
+                          const Color.fromRGBO(255, 255, 255, 1),
                           minimumSize: const Size(280, 48),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(39),
@@ -339,15 +339,24 @@ class TeacherClonedAssessmentPreviewState
                         onPressed: () async {
                           finalAssessment.assessmentStatus = 'inprogress';
                           AssessmentSettings assessmentSettings =
-                              AssessmentSettings();
+                          AssessmentSettings();
                           finalAssessment.assessmentSettings =
                               assessmentSettings;
+                          DateTime startDate=DateTime.now();
+                          startDate = DateTime(
+                              startDate.year,
+                              startDate.month,
+                              startDate.day,
+                              startDate.hour,
+                              startDate.minute);
+                          finalAssessment.assessmentStartdate =
+                              startDate
+                                  .microsecondsSinceEpoch;
                           ResponseEntity statusCode =
-                              await QnaService.createAssessmentTeacherService(
-                                  finalAssessment);
+                          await QnaService.createAssessmentTeacherService(
+                              finalAssessment);
                           if (statusCode.code == 200) {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-
                           }
                         },
                         child: Text(
@@ -370,7 +379,7 @@ class TeacherClonedAssessmentPreviewState
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -429,10 +438,10 @@ class TeacherClonedAssessmentPreviewState
 class QuestionWidget extends StatefulWidget {
   QuestionWidget(
       {Key? key,
-      required this.height,
-      required this.index,
-      required this.assessment,
-      required this.question,
+        required this.height,
+        required this.index,
+        required this.assessment,
+        required this.question,
         required this.finalAssessment,
         required this.assessmentType
       })
@@ -594,7 +603,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                                       fontSize: widget.height * 0.017,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                                 Text(
@@ -603,7 +612,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                                       fontSize: widget.height * 0.017,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
+                                      const Color.fromRGBO(51, 51, 51, 1),
                                       fontWeight: FontWeight.w400),
                                 ),
                               ],
@@ -624,7 +633,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                                       fontSize: widget.height * 0.017,
                                       fontFamily: "Inter",
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                       fontWeight: FontWeight.w700),
                                 ),
                               ],

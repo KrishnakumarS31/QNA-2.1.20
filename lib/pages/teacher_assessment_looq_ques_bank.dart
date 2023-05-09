@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -26,23 +28,34 @@ class TeacherAssessmentLooqQuestionBankState
     extends State<TeacherAssessmentLooqQuestionBank> {
   bool additionalDetails = true;
   TextEditingController teacherQuestionBankSearchController =
-      TextEditingController();
+  TextEditingController();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question> questions = [];
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getData('');
   }
 
-  getData() async {
+  getData(String search) async {
     ResponseEntity responseEntity =
-        await QnaService.getQuestionBankService(1000, 1, '');
+    await QnaService.getQuestionBankService(1000, 1, search);
     setState(() {
-      questions = List<Question>.from(
+      responseEntity.data==null?[]:questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
     });
+    if(questions.isEmpty){Navigator.push(
+      context,
+      PageTransition(
+        type: PageTransitionType.rightToLeft,
+        child: CustomDialog(
+          title: 'Alert',
+          content: 'No Questions Found.',
+          button: AppLocalizations.of(context)!.retry,
+        ),
+      ),
+    );}
   }
 
 
@@ -99,9 +112,9 @@ class TeacherAssessmentLooqQuestionBankState
                       end: Alignment.bottomCenter,
                       begin: Alignment.topCenter,
                       colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ])),
             ),
           ),
           body: Padding(
@@ -129,20 +142,17 @@ class TeacherAssessmentLooqQuestionBankState
                           width: width * 0.13,
                           decoration: const BoxDecoration(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
+                            BorderRadius.all(Radius.circular(8.0)),
                             color: Color.fromRGBO(82, 165, 160, 1),
                           ),
                           child: IconButton(
                             iconSize: height * 0.04,
                             color: const Color.fromRGBO(255, 255, 255, 1),
                             onPressed: () {
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child:  TeacherAssessmentSearched(),
-                              //   ),
-                              // );
+                              setState(() {
+                                questions.clear();
+                              });
+                              getData(teacherQuestionBankSearchController.text);
                             },
                             icon: const Icon(Icons.search),
                           )),
@@ -227,7 +237,7 @@ class TeacherAssessmentLooqQuestionBankState
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
+                          const Color.fromRGBO(82, 165, 160, 1),
                           minimumSize: const Size(280, 48),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(39),

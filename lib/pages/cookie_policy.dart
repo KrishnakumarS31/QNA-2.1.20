@@ -23,6 +23,8 @@ class CookiePolicyState extends State<CookiePolicy> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -95,7 +97,9 @@ class CookiePolicyState extends State<CookiePolicy> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Text(
-                    AppLocalizations.of(context)!.cookie_policy_description,
+                      constraints.maxWidth > 700
+                    ? AppLocalizations.of(context)!.cookie_policy_description_web
+                          : AppLocalizations.of(context)!.cookie_policy_description,
                     //"QNATest apps will not request cookies to\nbe set on your device. We do not use\ncookies, when you visit QNATEST web\nsite or deploy the app.  There are no\nsettings related to cookie preferences.",
                     style: TextStyle(
                         fontSize: height * 0.018,
@@ -109,4 +113,4 @@ class CookiePolicyState extends State<CookiePolicy> {
       ),
     );
   }
-}
+    );}}

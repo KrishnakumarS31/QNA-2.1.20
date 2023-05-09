@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
+import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -29,7 +31,7 @@ class TeacherAssessmentQuestionBankState
     extends State<TeacherAssessmentQuestionBank> {
   bool additionalDetails = true;
   TextEditingController teacherQuestionBankSearchController =
-      TextEditingController();
+  TextEditingController();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question> questions = [];
   int pageNumber = 1;
@@ -38,7 +40,6 @@ class TeacherAssessmentQuestionBankState
 
   @override
   void initState() {
-
     Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
     widget.searchText==null?teacherQuestionBankSearchController.text='':teacherQuestionBankSearchController.text=widget.searchText!;
     getData(widget.searchText==null?'':widget.searchText!);
@@ -46,7 +47,6 @@ class TeacherAssessmentQuestionBankState
   }
 
   getData(String search) async {
-
     ResponseEntity responseEntity = await QnaService.getQuestionBankService(5000, 1, search);
     CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     questions = responseEntity.data==null?[]:List<Question>.from(
@@ -56,7 +56,6 @@ class TeacherAssessmentQuestionBankState
     for(int i =0;i<questions.length;i++){
       tempQueIdList.add(questions[i].questionId!);
     }
-
     for(int i =0;i<assess.questions!.length;i++){
       int index = tempQueIdList.indexOf(assess.questions![i].questionId!);
       Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(questions[index]);
@@ -69,6 +68,17 @@ class TeacherAssessmentQuestionBankState
       quesIdList;
       questions;
     });
+    if(questions.isEmpty){Navigator.push(
+      context,
+      PageTransition(
+        type: PageTransitionType.rightToLeft,
+        child: CustomDialog(
+          title: 'Alert',
+          content: 'No Questions Found.',
+          button: AppLocalizations.of(context)!.retry,
+        ),
+      ),
+    );}
   }
 
 
@@ -94,7 +104,7 @@ class TeacherAssessmentQuestionBankState
         toolbarHeight: height * 0.100,
         centerTitle: true,
         title:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(
             AppLocalizations.of(context)!.search_results_caps,
             //"SEARCH RESULTS",
@@ -122,9 +132,9 @@ class TeacherAssessmentQuestionBankState
                   end: Alignment.bottomCenter,
                   begin: Alignment.topCenter,
                   colors: [
-                Color.fromRGBO(0, 106, 100, 1),
-                Color.fromRGBO(82, 165, 160, 1),
-              ])),
+                    Color.fromRGBO(0, 106, 100, 1),
+                    Color.fromRGBO(82, 165, 160, 1),
+                  ])),
         ),
       ),
       body: Padding(
@@ -169,7 +179,7 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1)),
                     borderRadius: BorderRadius.circular(15)),
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
               ),
               enabled: true,
               onChanged: (value) {},
@@ -253,7 +263,7 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
-
+                    print("Invalid value");
                     List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
                     for(int i =0;i<otQues.length;i++){
                       quesList[i].questionMark=otQues[i].questionMark;
@@ -267,8 +277,8 @@ class TeacherAssessmentQuestionBankState
                       if(quesList[i].questionType=="MCQ"){
                         int mark = 1;
                         quesList[i].questionMark != 1
-                              ? mark = quesList[i].questionMark!
-                              : mark = 1;
+                            ? mark = quesList[i].questionMark!
+                            : mark = 1;
 
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
                         quesList[i].questionMark=mark;
@@ -367,9 +377,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
                 widget.question.questionMark = 1:widget.question.questionMark = 0;
                 Provider.of<NewQuestionProvider>(context, listen: false).addQuestion(widget.question);
               } else {
-
                 Provider.of<NewQuestionProvider>(context, listen: false).removeQuestion(widget.question.questionId!);
-
               }
               valuefirst = value;
             });

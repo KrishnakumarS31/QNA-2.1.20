@@ -1165,9 +1165,12 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               height: localHeight * 0.02,
                             ),
                             Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                             crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Checkbox(
+                                  Transform.scale(
+                                      filterQuality: FilterQuality.high,
+                                      scale: 1.5,
+                                      child: Checkbox(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(1)),
                                     value: pPCheck,
@@ -1177,16 +1180,16 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         if (pPCheck) {}
                                       });
                                     },
-                                  ),
+                                  )),
                                   RichText(
                                       text: TextSpan(children: [
                                     TextSpan(
                                       text: AppLocalizations.of(context)!
                                           .agree_msg,
-                                      style: const TextStyle(
-                                          fontSize: 15.0,
+                                      style: TextStyle(
+                                          fontSize: localHeight * 0.02,
                                           fontWeight: FontWeight.w400,
-                                          color: Color.fromRGBO(51, 51, 51, 1),
+                                          color: const Color.fromRGBO(51, 51, 51, 1),
                                           fontFamily: "Inter"),
                                     ),
                                     TextSpan(

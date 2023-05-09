@@ -17,8 +17,8 @@ Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 class TeacherPrepareQnBank extends StatefulWidget {
   const TeacherPrepareQnBank(
       {Key? key,
-      this.assessment,
-      this.assessmentStatus})
+        this.assessment,
+        this.assessmentStatus})
       : super(key: key);
 
   final bool? assessment;
@@ -102,14 +102,14 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
       ),
       onPressed: () {
         setState(() {
-            chooses.clear();
-            radioList.clear();
-            tempChoiceList.clear();
-            questionController.text='';
+          chooses.clear();
+          radioList.clear();
+          tempChoiceList.clear();
+          questionController.text='';
           _groupValue = value!;
         });
         Navigator.pop(context);
-              },
+      },
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
@@ -258,9 +258,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -278,7 +278,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
+                          const BorderRadius.all(Radius.circular(10.0)),
                           border: Border.all(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                           ),
@@ -300,8 +300,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               groupValue: _groupValue,
                               onChanged: _valueChangedHandler(context,height),
                               label:
-                                  //AppLocalizations.of(context)!.survey,
-                                  'Survey',
+                              //AppLocalizations.of(context)!.survey,
+                              'Survey',
                             ),
                             MyRadioOption<String>(
                               icon: Icons.library_books_sharp,
@@ -310,8 +310,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               groupValue: _groupValue,
                               onChanged: _valueChangedHandler(context,height),
                               label:
-                                  //AppLocalizations.of(context)!.descriptive,
-                                  'Descripitive',
+                              //AppLocalizations.of(context)!.descriptive,
+                              'Descriptive',
                             ),
                           ],
                         ),
@@ -380,36 +380,67 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               width: 1, color: Color.fromRGBO(82, 165, 160, 1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Column(children: [
+                        child:
+                        showIcon!=Icons.expand_circle_down_outlined
+                            ?Container(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(width: width * 0.03,),
+                                  Text(
+                                      AppLocalizations.of(context)!.subject_topic,
+                                      //"Subject and Topic",
+                                      style: TextStyle(
+                                          color: const Color.fromRGBO(
+                                              255, 255, 255, 1),
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: height * 0.020)),
+                                  // SizedBox(width: width * 0.25),
+                                  SizedBox(width: width * 0.70),
+                                  IconButton(
+                                    icon: Icon(
+                                      showIcon,
+                                      color:
+                                      const Color.fromRGBO(255, 255, 255, 1),
+                                      size: height * 0.03,
+                                    ),
+                                    onPressed: () {
+                                      changeIcon(showIcon);
+                                    },
+                                  )
+                                ])):
+                        Column(children: [
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
 
-                                SizedBox(width: width * 0.10),
-                                Text(
-                                    AppLocalizations.of(context)!.subject_topic,
-                                    //"Subject and Topic",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            255, 255, 255, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.020)),
-                                SizedBox(width: width * 0.25),
-                                IconButton(
-                                  icon: Icon(
-                                    showIcon,
-                                    color:
+                                    SizedBox(width: width * 0.03),
+                                    Text(
+                                        AppLocalizations.of(context)!.subject_topic,
+                                        //"Subject and Topic",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                255, 255, 255, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.020)),
+                                    SizedBox(width: width * 0.70),
+                                    IconButton(
+                                      icon: Icon(
+                                        showIcon,
+                                        color:
                                         const Color.fromRGBO(255, 255, 255, 1),
-                                    size: height * 0.03,
-                                  ),
-                                  onPressed: () {
-                                    changeIcon(showIcon);
-                                  },
-                                )
-                              ])),
+                                        size: height * 0.03,
+                                      ),
+                                      onPressed: () {
+                                        changeIcon(showIcon);
+                                      },
+                                    )
+                                  ])),
                           SizedBox(height: height * 0.010),
                           Container(
                               margin: const EdgeInsets.only(
@@ -428,7 +459,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           .sub_caps,
                                       //"SUBJECT",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -449,10 +480,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -468,7 +499,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           .topic_caps,
                                       //"TOPIC",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -486,7 +517,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       //"Type Topic Here",
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -502,7 +533,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           .sub_topic_caps,
                                       //'SUB TOPIC',
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -520,7 +551,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       //'Type Sub Topic Here',
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -536,7 +567,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           .class_caps,
                                       //"CLASS",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -554,7 +585,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       //"Type Here",
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                               ])),
                           SizedBox(height: height * 0.010),
@@ -593,7 +624,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 floatingLabelBehavior:
-                                    FloatingLabelBehavior.always,
+                                FloatingLabelBehavior.always,
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: 'Inter',
@@ -606,7 +637,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     fontWeight: FontWeight.w400,
                                     fontSize: height * 0.02),
                                 hintText:
-                                    AppLocalizations.of(context)!.type_qn_here,
+                                AppLocalizations.of(context)!.type_qn_here,
                                 //"Type Question Here",
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(5)),
@@ -660,7 +691,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     //"Choices",
                                     style: TextStyle(
                                       color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
+                                      const Color.fromRGBO(51, 51, 51, 1),
                                       fontSize: height * 0.016,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w500,
@@ -700,7 +731,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     _groupValue=="Descripitive"
                         ? const SizedBox(height: 0,)
                         : _groupValue=="Survey"
-                    ? Form(
+                        ? Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -760,7 +791,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                         ],
                       ),
                     )
-                    : Form(
+                        : Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -780,7 +811,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         floatingLabelBehavior:
-                                            FloatingLabelBehavior.always,
+                                        FloatingLabelBehavior.always,
                                         hintStyle: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 0.3),
@@ -792,7 +823,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         //"Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(5)),
+                                            BorderRadius.circular(5)),
                                       ),
                                       onChanged: (val) {
                                         tempChoiceList[i].choiceText = val;
@@ -810,9 +841,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       radioList[i]
                                           ? Icons.radio_button_checked_outlined
                                           : Icons
-                                              .radio_button_unchecked_outlined,
+                                          .radio_button_unchecked_outlined,
                                       color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
+                                      const Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                   ),
                                   SizedBox(
@@ -838,7 +869,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                     ),
                     SizedBox(height: height * 0.020),
                     _groupValue=="Descripitive"?
-                        const SizedBox(height: 0,)
+                    const SizedBox(height: 0,)
                         :Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -934,7 +965,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    const Color.fromRGBO(82, 165, 160, 1),
+                                const Color.fromRGBO(82, 165, 160, 1),
                                 maximumSize: const Size(280, 48),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(39),

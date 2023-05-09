@@ -147,7 +147,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
 
   List<int> tempChoiceId = [];
   EditQuestionModel editQuestion =
-      EditQuestionModel(editChoices: [], addChoices: [], removeChoices: []);
+  EditQuestionModel(editChoices: [], addChoices: [], removeChoices: []);
 
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
@@ -285,7 +285,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
       ),
       onPressed: () async {
         LoginModel statusCode =
-            await QnaService.deleteQuestion(widget.question.questionId!);
+        await QnaService.deleteQuestion(widget.question.questionId!);
         Navigator.pushNamed(context, '/teacherQuestionBank');
         // Navigator.push(
         //   context,
@@ -382,9 +382,9 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                         end: Alignment.bottomCenter,
                         begin: Alignment.topCenter,
                         colors: [
-                      Color.fromRGBO(0, 106, 100, 1),
-                      Color.fromRGBO(82, 165, 160, 1),
-                    ])),
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
               ),
             ),
             body: SingleChildScrollView(
@@ -400,7 +400,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                       margin: const EdgeInsets.only(left: 15),
                       decoration: BoxDecoration(
                         borderRadius:
-                            const BorderRadius.all(Radius.circular(10.0)),
+                        const BorderRadius.all(Radius.circular(10.0)),
                         border: Border.all(
                           color: const Color.fromRGBO(82, 165, 160, 1),
                         ),
@@ -481,10 +481,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Icon(
-                                    Icons.clear_sharp,
-                                    size: height * 0.028,
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                  ),
+                                  Icons.clear_sharp,
+                                  size: height * 0.028,
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                ),
                                 Text(
                                   "Clear All",
                                   style: TextStyle(
@@ -508,7 +508,33 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               width: 1, color: Color.fromRGBO(82, 165, 160, 1)),
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: Column(children: [
+                        child:
+                        showIcon!=Icons.expand_circle_down_outlined?
+                        Container(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            child: Row(children: [
+                              SizedBox(width: width * 0.10),
+                              Text("Subject and Topic",
+                                  style: TextStyle(
+                                      color: const Color.fromRGBO(
+                                          255, 255, 255, 1),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: height * 0.020)),
+                              SizedBox(width: width * 0.25),
+                              IconButton(
+                                icon: Icon(
+                                  showIcon,
+                                  color:
+                                  const Color.fromRGBO(255, 255, 255, 1),
+                                  size: height * 0.03,
+                                ),
+                                onPressed: () {
+                                  changeIcon(showIcon);
+                                },
+                              )
+                            ])):
+                        Column(children: [
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
@@ -525,7 +551,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   icon: Icon(
                                     showIcon,
                                     color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                     size: height * 0.03,
                                   ),
                                   onPressed: () {
@@ -550,7 +576,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: "SUBJECT",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -569,10 +595,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -587,7 +613,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: "TOPIC",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -606,10 +632,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -624,7 +650,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: 'SUB TOPIC',
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -643,10 +669,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                                 SizedBox(height: height * 0.015),
                                 TextFormField(
@@ -661,7 +687,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                     decoration: InputDecoration(
                                       labelText: "CLASS",
                                       floatingLabelBehavior:
-                                          FloatingLabelBehavior.always,
+                                      FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
                                           color: const Color.fromRGBO(
                                               51, 51, 51, 1),
@@ -680,10 +706,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                               color: Color.fromRGBO(
                                                   82, 165, 160, 1)),
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                       border: OutlineInputBorder(
                                           borderRadius:
-                                              BorderRadius.circular(15)),
+                                          BorderRadius.circular(15)),
                                     )),
                               ])),
                           SizedBox(height: height * 0.010),
@@ -721,7 +747,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 fontSize: height * 0.018),
                             decoration: InputDecoration(
                               floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              FloatingLabelBehavior.always,
                               labelStyle: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontFamily: 'Inter',
@@ -729,7 +755,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   fontSize: height * 0.015),
                               hintStyle: TextStyle(
                                   color:
-                                      const Color.fromRGBO(102, 102, 102, 0.3),
+                                  const Color.fromRGBO(102, 102, 102, 0.3),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.02),
@@ -814,10 +840,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           ),
                         ),
                         SizedBox(
-                          width: width * 0.02,
+                          width: width * 0.03,
                         ),
                         Text(
-                         "Delete",
+                          "Delete",
                           style: TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontSize: height * 0.016,
@@ -825,7 +851,9 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(),
+                        SizedBox(
+                          width: width * 0.01,
+                        ),
                       ],
                     ),
                     SizedBox(height: height * 0.010),
@@ -1171,7 +1199,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.02),
                         hintText:
-                            "Suggest what to study if answered incorrectly",
+                        "Suggest what to study if answered incorrectly",
                       ),
                       onChanged: (val) {
                         setState(() {
@@ -1214,7 +1242,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             maximumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -1226,7 +1254,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 TextButton(
                                   style: TextButton.styleFrom(
                                     foregroundColor:
-                                        const Color.fromRGBO(255, 255, 255, 1),
+                                    const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                   onPressed: () {
                                     if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){

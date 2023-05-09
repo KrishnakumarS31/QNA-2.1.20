@@ -316,38 +316,41 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   ),
                                   SizedBox(height: height * 0.02),
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(width: height * 0.4),
-                                      Checkbox(
-                                        activeColor: const Color.fromRGBO(
-                                            82, 165, 160, 1),
-                                        fillColor: MaterialStateProperty
-                                            .resolveWith<Color>((states) {
-                                          if (states.contains(
-                                              MaterialState.selected)) {
-                                            return const Color.fromRGBO(
-                                                82, 165, 160, 1);
-                                          }
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }),
-                                        value: agree,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            agree = val!;
-                                            if (agree) {}
-                                          });
-                                        },
-                                      ),
-                                      SizedBox(width: width * 0.03),
+                                      Transform.scale(
+                                          filterQuality: FilterQuality.high,
+                                          scale: 1.2,
+                                          child: Checkbox(
+                                            activeColor: const Color.fromRGBO(
+                                                82, 165, 160, 1),
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith<Color>((states) {
+                                              if (states.contains(
+                                                  MaterialState.selected)) {
+                                                return const Color.fromRGBO(
+                                                    82, 165, 160, 1);
+                                              }
+                                              return const Color.fromRGBO(
+                                                  82, 165, 160, 1);
+                                            }),
+                                            value: agree,
+                                            onChanged: (val) {
+                                              setState(() {
+                                                agree = val!;
+                                                if (agree) {}
+                                              });
+                                            },
+                                          )),
+                                      SizedBox(width: width * 0.015),
                                       RichText(
                                           text: TextSpan(children: [
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .agree_msg,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
@@ -358,7 +361,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   .privacy_Policy,
                                                 recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -369,7 +372,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!.and,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -382,7 +385,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               AppLocalizations.of(context)!.terms,
                                               recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -394,7 +397,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               text: AppLocalizations.of(context)!
                                                   .services,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.02,
                                                   fontWeight: FontWeight.w400,
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
@@ -803,7 +806,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     CrossAxisAlignment.start,
                                     children: [
                                       Transform.scale(
-                                        scale: 1.8,
+                                        scale: 1.5,
                                         child: Checkbox(
                                           activeColor: const Color.fromRGBO(
                                               82, 165, 160, 1),
@@ -833,7 +836,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               text: AppLocalizations.of(context)!
                                                   .agree_msg,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.018,
                                                   fontWeight: FontWeight.w400,
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),
@@ -844,7 +847,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   .privacy_Policy,
                                               recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.018,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -856,7 +859,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               text:
                                               AppLocalizations.of(context)!.and,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.018,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -869,7 +872,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   .terms,
                                               recognizer: TapGestureRecognizer()..onTap = () => _launchUrlTerms(),
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.018,
                                                   fontWeight: FontWeight.w400,
                                                   decoration:
                                                   TextDecoration.underline,
@@ -881,7 +884,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               text: AppLocalizations.of(context)!
                                                   .services,
                                               style: TextStyle(
-                                                  fontSize: height * 0.017,
+                                                  fontSize: height * 0.018,
                                                   fontWeight: FontWeight.w400,
                                                   color: const Color.fromRGBO(
                                                       51, 51, 51, 1),

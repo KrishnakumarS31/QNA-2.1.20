@@ -36,7 +36,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   int pageLimit = 1;
   String searchValue = '';
   TextEditingController teacherQuestionBankSearchController =
-      TextEditingController();
+  TextEditingController();
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   initialData() async {
     Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     ResponseEntity response =
-        await QnaService.getSearchAssessment(5, pageLimit, widget.search);
+    await QnaService.getSearchAssessment(5, pageLimit, widget.search);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     setState(() {
@@ -65,15 +65,26 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
         builder: (context) {
           return const Center(
               child: CircularProgressIndicator(
-            color: Color.fromRGBO(48, 145, 139, 1),
-          ));
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
         });
     pageLimit = 1;
 
     ResponseEntity response =
-        await QnaService.getSearchAssessment(5, pageLimit, searchVal);
+    await QnaService.getSearchAssessment(5, pageLimit, searchVal);
     if(response.data==null){
       Navigator.of(context).pop();
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Alert',
+            content: 'No Assessment Found.',
+            button: AppLocalizations.of(context)!.retry,
+          ),
+        ),
+      );
     }
     else{
       allAssessment = List<GetAssessmentModel>.from(
@@ -94,11 +105,11 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
         builder: (context) {
           return const Center(
               child: CircularProgressIndicator(
-            color: Color.fromRGBO(48, 145, 139, 1),
-          ));
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
         });
     ResponseEntity response =
-        await QnaService.getSearchAssessment(5, pageLimit, searchValue);
+    await QnaService.getSearchAssessment(5, pageLimit, searchValue);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     Navigator.of(context).pop();
@@ -107,6 +118,19 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
       loading = false;
       pageLimit++;
     });
+    if(allAssessment.isEmpty) {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Alert',
+            content: 'No more assessment are found.',
+            button: AppLocalizations.of(context)!.retry,
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -140,7 +164,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.assessment_caps,
-                   // "ASSESSMENTS",
+                    // "ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -165,9 +189,9 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                       end: Alignment.bottomCenter,
                       begin: Alignment.topCenter,
                       colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ])),
             ),
           ),
           body: SingleChildScrollView(
@@ -259,7 +283,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                               width: width * 0.13,
                               decoration: const BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
+                                BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               ),
                               child: IconButton(
@@ -342,31 +366,42 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                       height: height * 0.02,
                     ),
                     MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                      onTap: () {
-                        loadMore(searchValue);
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.load_more,
-                            // "Load More",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontSize: height * 0.0175,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w600,
-                            ),
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () {
+                            assessments.isEmpty?Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: 'Alert',
+                                  content: 'No Assessment Found.',
+                                  button: AppLocalizations.of(context)!.retry,
+                                ),
+                              ),
+                            ):
+                            loadMore(teacherQuestionBankSearchController.text);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.load_more,
+                                // "Load More",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.expand_more_outlined,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              )
+                            ],
                           ),
-                          const Icon(
-                            Icons.expand_more_outlined,
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                          )
-                        ],
-                      ),
-                    )),
+                        )),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -380,11 +415,11 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
 class CardInfo extends StatelessWidget {
   const CardInfo(
       {Key? key,
-      required this.height,
-      required this.width,
-      required this.status,
+        required this.height,
+        required this.width,
+        required this.status,
 
-      required this.assessment})
+        required this.assessment})
       : super(key: key);
 
   final double height;
@@ -398,154 +433,124 @@ class CardInfo extends StatelessWidget {
       child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
-        onTap: () async {
-          Provider.of<EditAssessmentProvider>(context, listen: false)
-              .updateAssessment(assessment);
+            onTap: () async {
+              Provider.of<EditAssessmentProvider>(context, listen: false)
+                  .updateAssessment(assessment);
 
-            SharedPreferences loginData = await SharedPreferences.getInstance();
-            CreateAssessmentModel editAssessment = CreateAssessmentModel(
-                questions: [], removeQuestions: [], addQuestion: []);
-            editAssessment.userId = loginData.getInt('userId');
-            editAssessment.subject = assessment.subject;
-            editAssessment.assessmentType =
-                assessment.assessmentType ?? 'Not Mentioned';
-            editAssessment.createAssessmentModelClass =
-                assessment.getAssessmentModelClass;
-            assessment.topic == null
-                ? 0
-                : editAssessment.topic = assessment.topic;
-            assessment.subTopic == null
-                ? 0
-                : editAssessment.subTopic = assessment.subTopic;
-            assessment.totalScore == null
-                ? 0
-                : editAssessment.totalScore = assessment.totalScore;
-            assessment.questions!.isEmpty
-                ? 0
-                : editAssessment.totalQuestions = assessment.questions!.length;
-            assessment.assessmentDuration == null
-                ? ''
-                : editAssessment.totalScore = assessment.totalScore;
-            if (assessment.questions!.isEmpty) {
-            } else {
-              for (int i = 0; i < assessment.questions!.length; i++) {
-                Questions.Question question = Questions.Question();
-                question = assessment.questions![i];
-                editAssessment.addQuestion?.add(question);
-                Provider.of<QuestionPrepareProviderFinal>(context,
-                        listen: false)
-                    .addQuestion(assessment.questions![i]);
+              SharedPreferences loginData = await SharedPreferences.getInstance();
+              CreateAssessmentModel editAssessment = CreateAssessmentModel(
+                  questions: [], removeQuestions: [], addQuestion: []);
+              editAssessment.userId = loginData.getInt('userId');
+              editAssessment.subject = assessment.subject;
+              editAssessment.assessmentType =
+                  assessment.assessmentType ?? 'Not Mentioned';
+              editAssessment.createAssessmentModelClass =
+                  assessment.getAssessmentModelClass;
+              assessment.topic == null
+                  ? 0
+                  : editAssessment.topic = assessment.topic;
+              assessment.subTopic == null
+                  ? 0
+                  : editAssessment.subTopic = assessment.subTopic;
+              assessment.totalScore == null
+                  ? 0
+                  : editAssessment.totalScore = assessment.totalScore;
+              assessment.questions!.isEmpty
+                  ? 0
+                  : editAssessment.totalQuestions = assessment.questions!.length;
+              assessment.assessmentDuration == null
+                  ? ''
+                  : editAssessment.totalScore = assessment.totalScore;
+              if (assessment.questions!.isEmpty) {
+              } else {
+                for (int i = 0; i < assessment.questions!.length; i++) {
+                  Questions.Question question = Questions.Question();
+                  question = assessment.questions![i];
+                  editAssessment.addQuestion?.add(question);
+                  Provider.of<QuestionPrepareProviderFinal>(context,
+                      listen: false)
+                      .addQuestion(assessment.questions![i]);
+                }
               }
-            }
 
-            Provider.of<CreateAssessmentProvider>(context, listen: false)
-                .updateAssessment(editAssessment);
-            Navigator.pushNamed(
-                context,
-                '/teacherActiveAssessment',
-                arguments: [assessment,'GlobalAssessment']
-            );
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherActiveAssessment(
-            //       assessment: assessment,
-            //     ),
-            //   ),
-            // );
+              Provider.of<CreateAssessmentProvider>(context, listen: false)
+                  .updateAssessment(editAssessment);
+              Navigator.pushNamed(
+                  context,
+                  '/teacherActiveAssessment',
+                  arguments: [assessment,'GlobalAssessment']
+              );
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //     type: PageTransitionType.rightToLeft,
+              //     child: TeacherActiveAssessment(
+              //       assessment: assessment,
+              //     ),
+              //   ),
+              // );
 
-        },
-        child: Container(
-          height: height * 0.1087,
-          width: width * 0.888,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-            border: Border.all(
-              color: const Color.fromRGBO(82, 165, 160, 0.15),
-            ),
-            color: const Color.fromRGBO(82, 165, 160, 0.1),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
+            },
+            child: Container(
+              height: height * 0.1087,
+              width: width * 0.888,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                border: Border.all(
+                  color: const Color.fromRGBO(82, 165, 160, 0.15),
+                ),
+                color: const Color.fromRGBO(82, 165, 160, 0.1),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
                     EdgeInsets.only(left: width * 0.02, right: width * 0.02),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          assessment.subject!,
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                          ),
+                        Row(
+                          children: [
+                            Text(
+                              assessment.subject!,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              " | ${assessment.getAssessmentModelClass}",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          " | ${assessment.getAssessmentModelClass}",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Icon(
-                      Icons.circle_rounded,
-                      color: assessment.assessmentStatus == 'inprogress'
-                          ? const Color.fromRGBO(255, 166, 0, 1)
-                          : assessment.assessmentStatus == 'active'
+                        Icon(
+                          Icons.circle_rounded,
+                          color: assessment.assessmentStatus == 'inprogress'
+                              ? const Color.fromRGBO(255, 166, 0, 1)
+                              : assessment.assessmentStatus == 'active'
                               ? const Color.fromRGBO(60, 176, 0, 1)
                               : const Color.fromRGBO(136, 136, 136, 1),
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.02),
-                child: Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.assessment_id_caps,
-                      //"Assessment ID: ",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(102, 102, 102, 1),
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
+                        )
+                      ],
                     ),
-                    Text(
-                      " ${assessment.assessmentCode}",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: width * 0.02),
+                    child: Row(
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.institute_test_id,
-                          // "Institute Test ID: ",
+                          AppLocalizations.of(context)!.assessment_id_caps,
+                          //"Assessment ID: ",
                           style: TextStyle(
                             color: const Color.fromRGBO(102, 102, 102, 1),
                             fontSize: height * 0.015,
@@ -554,7 +559,7 @@ class CardInfo extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " ----------",
+                          " ${assessment.assessmentCode}",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.015,
@@ -564,22 +569,52 @@ class CardInfo extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Text(
-                      assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(28, 78, 80, 1),
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
+                  ),
+                  Padding(
+                    padding:
+                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.institute_test_id,
+                              // "Institute Test ID: ",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              " ----------",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                fontSize: height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      )),
+            ),
+          )),
     );
   }
 }

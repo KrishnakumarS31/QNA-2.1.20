@@ -22,6 +22,8 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -79,7 +81,11 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                 ),
                 SizedBox(height: height * 0.03),
                 Padding(
-                  padding: EdgeInsets.only(left: height * 0.03),
+                  padding: EdgeInsets.only(left:
+                  constraints.maxWidth > 700
+                  ? height * 0.9
+                          : height * 0.03
+                  ),
                   child: Text(
                     AppLocalizations.of(context)!.can_help,
                     //"How can we help you ?",
@@ -91,32 +97,11 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                   ),
                 ),
                 SizedBox(height: height * 0.02),
-                // Padding(
-                //   padding: EdgeInsets.only(left: height * 0.03),
-                //   child: RichText(
-                //       text: TextSpan(children: [
-                //     TextSpan(
-                //         text: AppLocalizations.of(context)!.check_out,
-                //         //"Please first check out the\t\t",
-                //         style: TextStyle(
-                //             color: const Color.fromRGBO(102, 102, 102, 1),
-                //             fontFamily: 'Inter',
-                //             fontWeight: FontWeight.w400,
-                //             fontSize: height * 0.018)),
-                //     TextSpan(
-                //         text: AppLocalizations.of(context)!.faq,
-                //         //"FAQs",
-                //         style: TextStyle(
-                //             color: const Color.fromRGBO(0, 107, 232, 1),
-                //             fontFamily: 'Inter',
-                //             decoration: TextDecoration.underline,
-                //             fontWeight: FontWeight.w400,
-                //             fontSize: height * 0.018)),
-                //   ])),
-                // ),
-                //SizedBox(height: height * 0.04),
                 Padding(
-                    padding: EdgeInsets.only(left: height * 0.03),
+                    padding: EdgeInsets.only(left:
+                    constraints.maxWidth > 700
+                        ? height * 0.7
+                    : height * 0.03),
                     child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
@@ -125,7 +110,9 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                           text: TextSpan(children: [
                         TextSpan(
                             text:
-                                AppLocalizations.of(context)!.find_answers,
+                          constraints.maxWidth > 700
+                              ? AppLocalizations.of(context)!.find_answers_web
+                              : AppLocalizations.of(context)!.find_answers,
                             // "If you are unable to find answers to your\nqueries related to the QNATest App,please\nfeel free to\t\t",
                             style: TextStyle(
                                 color:
@@ -147,7 +134,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                 )],
             )),
       ),
-    );
+    );});
   }
 
   Future<void> _launchUrl() async {

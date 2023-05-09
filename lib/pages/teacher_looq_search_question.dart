@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
@@ -26,7 +28,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
   int pageLimit = 1;
   String searchValue = '';
   TextEditingController teacherQuestionBankSearchController =
-      TextEditingController();
+  TextEditingController();
 
   @override
   void initState() {
@@ -37,9 +39,9 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
 
   initialData() async {
     ResponseEntity response =
-        await QnaService.getSearchQuestion(10000, pageLimit, widget.search);
+    await QnaService.getSearchQuestion(10, pageLimit, widget.search);
     allQuestion =
-        List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     setState(() {
       searchValue = widget.search;
       question.addAll(allQuestion);
@@ -54,17 +56,17 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         builder: (context) {
           return const Center(
               child: CircularProgressIndicator(
-            color: Color.fromRGBO(48, 145, 139, 1),
-          ));
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
         });
     pageLimit = 1;
     ResponseEntity response =
-        await QnaService.getSearchQuestion(100, pageLimit, searchVal);
+    await QnaService.getSearchQuestion(100, pageLimit, searchVal);
     if (response.data == null) {
       allQuestion = [];
     } else {
       allQuestion =
-          List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+      List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     }
     Navigator.of(context).pop();
     setState(() {
@@ -73,6 +75,19 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
       loading = false;
       pageLimit++;
     });
+    if(allQuestion.isEmpty) {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Alert',
+            content: 'No question found.',
+            button: 'Retry',
+          ),
+        ),
+      );
+    }
   }
 
   loadMore(String searchValue) async {
@@ -81,19 +96,32 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         builder: (context) {
           return const Center(
               child: CircularProgressIndicator(
-            color: Color.fromRGBO(48, 145, 139, 1),
-          ));
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
         });
     ResponseEntity response =
-        await QnaService.getSearchQuestion(1, pageLimit, searchValue);
+    await QnaService.getSearchQuestion(10, pageLimit, searchValue);
     allQuestion =
-        List<Question>.from(response.data.map((x) => Question.fromJson(x)));
+    List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     Navigator.of(context).pop();
     setState(() {
       question.addAll(allQuestion);
       loading = false;
       pageLimit++;
     });
+    if(allQuestion.isEmpty) {
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Alert',
+            content: 'No more question found.',
+            button: 'Retry',
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -148,9 +176,9 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                       end: Alignment.bottomCenter,
                       begin: Alignment.topCenter,
                       colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
+                        Color.fromRGBO(0, 106, 100, 1),
+                        Color.fromRGBO(82, 165, 160, 1),
+                      ])),
             ),
           ),
           body: SingleChildScrollView(
@@ -181,7 +209,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                               width: width * 0.13,
                               decoration: const BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0)),
+                                BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               ),
                               child: IconButton(
@@ -259,24 +287,67 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                       MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context,
+                                    '/teacherLooqClonePreview',
+                                    arguments: i
+                                );
+                              },
+                              child: QuestionPreview(
+                                height: height,
+                                width: width,
+                                question: i,
+                              ))),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
+                    MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
                           onTap: () {
-                            Navigator.pushNamed(
-                                context,
-                                '/teacherLooqClonePreview',
-                                arguments: i
-                            );
+                            question.isEmpty?Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: 'Alert',
+                                  content: 'No Question Found.',
+                                  button: 'Retry',
+                                ),
+                              ),
+                            ):
+                            loadMore(teacherQuestionBankSearchController.text);
                           },
-                          child: QuestionPreview(
-                            height: height,
-                            width: width,
-                            question: i,
-                          ))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Load More',
+                                // "Load More",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.expand_more_outlined,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              )
+                            ],
+                          ),
+                        )),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
                     Align(
                       alignment: Alignment.center,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
+                          const Color.fromRGBO(82, 165, 160, 1),
                           minimumSize: const Size(280, 48),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(39),
@@ -323,97 +394,97 @@ class QuestionPreview extends StatelessWidget {
     }
 
     return MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-          onTap: () {
-      Navigator.pushNamed(
-          context,
-          '/teacherLooqClonePreview',
-          arguments: question
-      );
-    },
-    child: Column(
-      children: [
-        Container(
-          height: height * 0.04,
-          width: width * 0.9,
-          color: const Color.fromRGBO(82, 165, 160, 1),
-          child: Padding(
-            padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                  context,
+                  '/teacherLooqClonePreview',
+                  arguments: question
+              );
+            },
+            child: Column(
               children: [
-                Row(
-                  children: [
-                    Text(
-                      question.subject!,
-                      style: TextStyle(
-                          fontSize: height * 0.017,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontWeight: FontWeight.w600),
+                Container(
+                  height: height * 0.04,
+                  width: width * 0.9,
+                  color: const Color.fromRGBO(82, 165, 160, 1),
+                  child: Padding(
+                    padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              question.subject!,
+                              style: TextStyle(
+                                  fontSize: height * 0.017,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              "  |  ${question.topic} - ${question.subTopic}",
+                              style: TextStyle(
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                        Text(
+                          question.datumClass!,
+                          style: TextStyle(
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
                     ),
-                    Text(
-                      "  |  ${question.topic} - ${question.subTopic}",
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.03),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      question.questionType!,
                       style: TextStyle(
                           fontSize: height * 0.015,
                           fontFamily: "Inter",
-                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          color: const Color.fromRGBO(28, 78, 80, 1),
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: height * 0.01,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: width * 0.03),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      question.question!,
+                      style: TextStyle(
+                          fontSize: height * 0.0175,
+                          fontFamily: "Inter",
+                          color: const Color.fromRGBO(51, 51, 51, 1),
                           fontWeight: FontWeight.w400),
                     ),
-                  ],
+                  ),
                 ),
-                Text(
-                  question.datumClass!,
-                  style: TextStyle(
-                      fontSize: height * 0.015,
-                      fontFamily: "Inter",
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontWeight: FontWeight.w600),
+                SizedBox(
+                  height: height * 0.01,
                 ),
+                const Divider()
               ],
-            ),
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: width * 0.03),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.questionType!,
-              style: TextStyle(
-                  fontSize: height * 0.015,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(28, 78, 80, 1),
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: width * 0.03),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              question.question!,
-              style: TextStyle(
-                  fontSize: height * 0.0175,
-                  fontFamily: "Inter",
-                  color: const Color.fromRGBO(51, 51, 51, 1),
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: height * 0.01,
-        ),
-        const Divider()
-      ],
-    )));
+            )));
   }
 }
