@@ -20,7 +20,7 @@ class ResultCardNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool condition = assessmentResults != null && assessmentResults.isEmpty == false;
+    bool condition = assessmentResults.isEmpty == false;
     String? name =condition ? assessmentResults[index].firstName : " ";
     int? timeTaken = condition ? assessmentResults[index].attemptDuration : 0;
     int? percent = condition ? assessmentResults[index].attemptPercent : 0;

@@ -31,6 +31,7 @@ class TeacherAssessmentLooqQuestionBankState
   TextEditingController();
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question> questions = [];
+  bool questionsPresent = false;
 
   @override
   void initState() {
@@ -40,22 +41,30 @@ class TeacherAssessmentLooqQuestionBankState
 
   getData(String search) async {
     ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(1000, 1, search);
+    await QnaService.getQuestionBankService(100000, 1, search);
     setState(() {
       responseEntity.data==null?[]:questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
+      if(questions.isNotEmpty){
+        questionsPresent=true;
+      }
+      else{
+        questionsPresent=false;
+      }
     });
-    if(questions.isEmpty){Navigator.push(
-      context,
-      PageTransition(
-        type: PageTransitionType.rightToLeft,
-        child: CustomDialog(
-          title: 'Alert',
-          content: 'No Questions Found.',
-          button: AppLocalizations.of(context)!.retry,
-        ),
-      ),
-    );}
+    // if(questions.isEmpty){
+    //   Navigator.push(
+    //   context,
+    //   PageTransition(
+    //     type: PageTransitionType.rightToLeft,
+    //     child: CustomDialog(
+    //       title: 'Alert',
+    //       content: 'No Questions Found.',
+    //       button: AppLocalizations.of(context)!.retry,
+    //     ),
+    //   ),
+    // );
+    // }
   }
 
 
@@ -214,7 +223,8 @@ class TeacherAssessmentLooqQuestionBankState
                 SizedBox(
                   height: height * 0.6,
                   width: width * 0.9,
-                  child: SingleChildScrollView(
+                  child: questionsPresent?
+                  SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     child: Column(
                       children: [
@@ -226,11 +236,23 @@ class TeacherAssessmentLooqQuestionBankState
                           ),
                       ],
                     ),
-                  ),
+                  )
+                  :
+                  Text(
+                    'NO QUESTIONS FOUND',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: const Color.fromRGBO(28, 78, 80, 1),
+                      fontSize: height * 0.0175,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  )
                 ),
                 // SizedBox(
                 //   height: height * 0.02,
                 // ),
+
                 Center(
                   child: SizedBox(
                     width: width * 0.8,
@@ -246,7 +268,8 @@ class TeacherAssessmentLooqQuestionBankState
                             color: Color.fromRGBO(82, 165, 160, 1),
                           )),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview',arguments: 'clone');
+                        questionsPresent?
+                        Navigator.pushNamed(context, '/teacherClonedAssessmentPreview',arguments: 'clone'):{};
                         // Navigator.push(
                         //   context,
                         //   PageTransition(

@@ -419,8 +419,6 @@ class ResetPasswordState extends State<ResetPassword> {
                                 oldPassword.text,
                                 newPassword.text,
                                 widget.userId!,context);
-                            print("Inside Teacher");
-                            print(statusCode.code);
                             if (statusCode.code == 200) {
                               showAlertDialog(context);
                             }

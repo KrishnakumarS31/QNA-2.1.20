@@ -43,9 +43,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   @override
   void initState() {
     super.initState();
-
-    // print(values.data!.totalScore);
-    // print("values.data!.totalScore");
     values = widget.questions;
     for (int j = 1; j <= Provider
         .of<Questions>(context, listen: false)
@@ -218,17 +215,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               fontWeight: FontWeight.w600,
                             ),),
                           SizedBox(height: localHeight * 0.030),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(left: 8.0),
-                          //   child: Text(
-                          //       AppLocalizations.of(context)!.pls_tap_ques,
-                          //       style: TextStyle(
-                          //           color: const Color.fromRGBO(102, 102, 102, 1),
-                          //           fontFamily: 'Inter',
-                          //           fontStyle: FontStyle.italic,
-                          //           fontWeight: FontWeight.w500,
-                          //           fontSize: localHeight * 0.021)),
-                          // ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -315,13 +301,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                   .copyWith()
                                                                   .size
                                                                   .width *
-                                                                  0.008,
+                                                                  0.002,
                                                               top: MediaQuery
                                                                   .of(context)
                                                                   .copyWith()
                                                                   .size
                                                                   .height *
-                                                                  0.004,
+                                                                  0.003,
                                                               child: Icon(Icons
                                                                   .question_mark,
                                                                 color: const Color
@@ -394,7 +380,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                               .totalQuestion['$index'][0]
                                                               .toString()
                                                               .length - 1),
-                                                          //"${Provider.of<Questions>(context, listen: false).totalQuestion['$index'][0]}",
                                                           style:
                                                           Provider
                                                               .of<Questions>(
@@ -445,7 +430,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                           child: GestureDetector(
                                         onTap: () {},
                                         child: Container(
-                                          //decoration: BoxDecoration(border: Border.all()),
                                             margin: const EdgeInsets.all(5),
                                             padding: const EdgeInsets.all(5),
                                             width: localWidth * 0.4,
@@ -518,13 +502,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                                                   .copyWith()
                                                                   .size
                                                                   .width *
-                                                                  0.008,
+                                                                  0.002,
                                                               top: MediaQuery
                                                                   .of(context)
                                                                   .copyWith()
                                                                   .size
                                                                   .height *
-                                                                  0.004,
+                                                                  0.003,
                                                               child: Icon(Icons
                                                                   .question_mark,
                                                                 color: const Color
@@ -699,7 +683,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               ),
                             ),
                             child: Column(
-                              //crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 SizedBox(height: localHeight * 0.060),
                                 Align(
@@ -998,7 +981,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         borderRadius: BorderRadius.circular(39),
                                       ),
                                     ),
-                                    //shape: StadiumBorder(),
                                     child: Text(
                                         AppLocalizations.of(context)!.submit,
                                         style: const TextStyle(
@@ -1034,7 +1016,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         .width;
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
@@ -1055,7 +1037,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
                 ),
-                SizedBox(width: localHeight * 0.005),
+                constraints.maxWidth > 700
+                 ? SizedBox(width: localHeight * 0.005)
+                : SizedBox(width: localHeight * 0.03),
                 Text(AppLocalizations.of(context)!.confirm,
                   style: TextStyle(
                       fontFamily: 'Inter',
@@ -1132,8 +1116,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       .difference(d1)
                       .inMinutes;
                   assessment.attemptDuration = difference;
-                  //int timeTaken = d2.difference(d1).inSeconds;
-
                   var endTimeTaken = (d2.difference(d1).toString());
                   for (int j = 1; j <= Provider.of<Questions>(context, listen: false)
                       .totalQuestion.length; j++)
@@ -1142,12 +1124,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     AssessmentResult quesResult = AssessmentResult();
                     quesResult.questionId =
                         values.data!.questions![j - 1].questionId;
-                    //quesResult.statusId = 6;
                     quesResult.questionTypeId =
                         values.data!.questions![j - 1].questionTypeId;
                     quesResult.marks = 0;
                     List<dynamic> correctAns = [];
-                    //changes are made
                     if (values.data!.questions![j - 1].questionType ==
                         "Descripitive") {
                       quesResult.marks = 0;
@@ -1282,20 +1262,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           endTimeTaken,
                           givenMark
                         ]);
-
-                    // Navigator.push(
-                    //   context,
-                    //   PageTransition(
-                    //     type: PageTransitionType.rightToLeft,
-                    //     child: StudentResultPage(message: message,
-                    //       date: formatted,
-                    //       time: time,
-                    //       questions: values,
-                    //       assessmentCode: widget.assessmentID,
-                    //       userName: widget.userName,
-                    //       endTime: endTimeTaken,),
-                    //   ),
-                    // );
                   }
                   else {
                     Navigator.push(
@@ -1344,8 +1310,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         .difference(d1)
         .inMinutes;
     assessment.attemptDuration = difference == 0 ? 1 : difference;
-
-    //int timeTaken = d2.difference(d1).inSeconds;
     var endTimeTaken = (d2.difference(d1).toString());
     for (int j = 1; j <= Provider
         .of<Questions>(context, listen: false)
@@ -1360,7 +1324,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
           values.data!.questions![j - 1].questionTypeId;
       quesResult.marks = 0;
       List<dynamic> correctAns = [];
-      //changes are made
       if (values.data!.questions![j - 1].questionType ==
           "Descripitive") {
         quesResult.statusId = 8;
@@ -1486,21 +1449,6 @@ if(selectedAns.isEmpty){
             endTimeTaken,
             givenMark
           ]);
-
-      // Navigator.push(
-      //   context,
-      //   PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     child: StudentResultPage(message: message,
-      //       totalMarks: totalMark,
-      //       date: formatted,
-      //       time: time,
-      //       questions: values,
-      //       assessmentCode: widget.assessmentID,
-      //       userName: widget.userName,
-      //       endTime: endTimeTaken,),
-      //   ),
-      // );
     }
     else {
       Navigator.push(

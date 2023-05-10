@@ -632,7 +632,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               fontWeight: FontWeight.w700,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: 'SUB TOPIC',
+                                            labelText: 'SEMESTER (Section)',
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -669,7 +669,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               fontWeight: FontWeight.w700,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: "CLASS",
+                                            labelText: "DEGREE (Class)",
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(

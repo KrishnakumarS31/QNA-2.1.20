@@ -92,14 +92,6 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         await QnaService.createQuestionTeacherService(createQuestionModel);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
-          // String input=statusCode.data.toString().substring(15,statusCode.data.toString().length-1);
-          // List<int> idList = (jsonDecode(input) as List<dynamic>).cast<int>();
-          // print(idList);
-          // for(int i=0;i<idList.length;i++){
-          //   createQuestionModel.questions![i].questionId=idList[i];
-          //   Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
-          //       .updateQuestionList(i, createQuestionModel.questions![i]);
-          // }
           Navigator.pushNamed(
               context,
               '/teacherMyQuestionBank',

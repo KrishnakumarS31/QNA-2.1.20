@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
@@ -373,6 +374,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               alignment: Alignment.topLeft,
                               child: TextFormField(
                                 controller: teacherFirstNameController,
+                                maxLength: 100,
+                                maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:
@@ -1068,6 +1071,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               alignment: Alignment.topLeft,
                               child: TextFormField(
                                 controller: teacherOrganisationNameController,
+                                maxLength: 200,
+                                maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:

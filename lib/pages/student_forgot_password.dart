@@ -310,7 +310,6 @@ class StudentForgotPasswordState extends State<StudentForgotPassword> {
             if (widget.isFromStudent == true) {
               Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',ModalRoute.withName('/studentSelectionPage'));
             } else if (widget.isFromStudent == false) {
-              print("INSIDE ELSE");
               Navigator.popUntil(context, ModalRoute.withName('/teacherLoginPage'));
 
             }

@@ -912,6 +912,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                             219, 35, 35, 1),
                                                         false);
                                               }
+                                              setState(() {
+
+                                              });
                                             },
                                             child: Provider.of<Questions>(
                                                             context,
@@ -1598,9 +1601,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             onTap: () {
                                               if (Provider.of<Questions>(
                                                                   context,
-                                                                  listen: false)
-                                                              .totalQuestion[
-                                                          '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
+                                                                  listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
                                                       [2] ==
                                                   false) {
                                                 context
@@ -1614,7 +1615,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                         const Color.fromRGBO(
                                                             239, 218, 30, 1),
                                                         true);
-                                              } else if (Provider.of<Questions>(
+                                              }
+                                              else if (Provider.of<Questions>(
                                                                   context,
                                                                   listen: false)
                                                               .totalQuestion[
@@ -1632,7 +1634,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                         const Color.fromRGBO(
                                                             82, 165, 160, 1),
                                                         false);
-                                              } else {
+                                              }
+                                              else {
                                                 context
                                                     .read<Questions>()
                                                     .selectOption(
@@ -1645,6 +1648,9 @@ class StudQuestionState extends State<StudQuestion> {
                                                             219, 35, 35, 1),
                                                         false);
                                               }
+                                              setState(() {
+
+                                              });
                                             },
                                             child: Provider.of<Questions>(
                                                             context,

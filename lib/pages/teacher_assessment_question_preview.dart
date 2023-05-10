@@ -307,8 +307,6 @@ class TeacherAssessmentQuestionPreviewState
                                       //   ),
                                       // );
                                     } else {
-                                      //Navigator.pushNamedAndRemoveUntil(context, '/teacherSelectedQuestionAssessment',,(route) => route.isFirst);
-                                      print("----------------------------------------------TeacherAssessmentQuestionPreview");
                                       Navigator.of(context).pushNamedAndRemoveUntil('/teacherSelectedQuestionAssessment', ModalRoute.withName('/teacherAssessmentQuestionBank'));
 
                                     }
@@ -350,7 +348,9 @@ class TeacherAssessmentQuestionPreviewState
                                             index);
                                         if (widget.pageName ==
                                             'TeacherAssessmentSummary') {
-                                          Navigator.pushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmentType);
+                                          Navigator.of(context).pop();
+                                          Navigator.popAndPushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmentType);
+                                          //Navigator.pushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmentType);
                                           // Navigator.push(
                                           //   context,
                                           //   PageTransition(
@@ -387,9 +387,9 @@ class TeacherAssessmentQuestionPreviewState
                                               .updateAddQuestionmark(
                                               int.parse(markController.text),
                                               index);
-
-
-                                          Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment');
+                                          Navigator.of(context).pop();
+List<Question.Question> qt=[];
+                                          Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [qt,widget.assessmentType]);
                                         }
                                       },
                                       child: Text(

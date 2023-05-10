@@ -185,9 +185,7 @@ class Questions {
   factory Questions.fromJson(Map<String, dynamic> json) => Questions(
         question: json["question"] ?? "",
         questionType: json["question_type"] ?? "",
-        selectedChoices: json["selected_choices"] == null
-        ? [" "] :
-        json["selected_choices"],
+        selectedChoices: json["selected_choices"] ?? [" "],
         descriptiveAnswers: json["descriptive_answer"] ?? "",
         status: json["status"] ?? "",
       );

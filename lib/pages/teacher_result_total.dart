@@ -278,7 +278,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Sub Topic ${widget.result.subTopic}',
+                                      'SEMESTER (Section) ${widget.result.subTopic}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),

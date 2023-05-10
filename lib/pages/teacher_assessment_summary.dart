@@ -785,7 +785,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                 labelText: AppLocalizations
                                                                     .of(context)!
                                                                     .sub_topic_optional,
-                                                                // 'SUB TOPIC (Optional)',
+                                                                // 'Semester(Section) (Optional)',
                                                                 labelStyle: TextStyle(
                                                                     color: const Color
                                                                         .fromRGBO(
@@ -820,7 +820,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                 hintText: AppLocalizations
                                                                     .of(context)!
                                                                     .sub_topic_hint,
-                                                                //'Type Sub Topic Here',
+                                                                //'Type Semester(Section) Here',
                                                                 focusedBorder: OutlineInputBorder(
                                                                     borderSide: const BorderSide(
                                                                         color: Color.fromRGBO(
@@ -975,7 +975,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Sub Topic: ${assessment.subTopic}',
+                                'Semester(Section): ${assessment.subTopic}',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",

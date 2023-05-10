@@ -788,7 +788,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Sub Topic: ${assessmentVal.subTopic}',
+                                  'Semester(Section): ${assessmentVal.subTopic}',
                                   style: TextStyle(
                                       fontSize: height * 0.015,
                                       fontFamily: "Inter",

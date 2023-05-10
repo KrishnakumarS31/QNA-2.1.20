@@ -370,6 +370,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               alignment: Alignment.topLeft,
                               child: TextFormField(
                                 controller: studentFirstNameController,
+                                maxLength: 100,
+                                maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:
@@ -1066,6 +1068,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               alignment: Alignment.topLeft,
                               child: TextFormField(
                                 controller: studentOrganisationNameController,
+                                maxLength: 200,
+                                maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:

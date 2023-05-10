@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 class AppUser {
   int id;

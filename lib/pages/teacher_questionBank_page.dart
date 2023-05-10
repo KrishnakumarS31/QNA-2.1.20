@@ -5,7 +5,6 @@ import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
-import '../EntityModel/user_data_model.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 
@@ -44,13 +43,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     if (responseEntity.code == 200) {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
-      print("condition");
-      print(search != '' && questions.isEmpty);
 
 
     }
     else{
-        print("TRue");
         Navigator.push(
           context,
           PageTransition(

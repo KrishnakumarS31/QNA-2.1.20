@@ -54,23 +54,23 @@ class CustomRadioButton<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return Container(
       margin: EdgeInsets.only(
           left: height * 0.068, bottom: height * 0.008, top: height * 0.008),
       child: InkWell(
         onTap: () => onChanged(value),
         child: Row(
-          //mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Container(
-            //   width: width * 0.2,
-            // ),
             _buildLabel(),
-            const SizedBox(width: 10),
+            constraints.maxWidth > 700
+            ? const SizedBox()
+            : SizedBox(width: width * 0.05),
             _buildText(),
           ],
         ),
       ),
     );
   }
-}
+    );}}

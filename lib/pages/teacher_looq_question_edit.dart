@@ -574,7 +574,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
-                                      labelText: "SUBJECT",
+                                      labelText:AppLocalizations.of(context)!.sub_caps,
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
@@ -589,7 +589,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: height * 0.02),
-                                      hintText: "Type Subject Here",
+                                      hintText:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .sub_hint,
+                                      //'Type Subject Here',
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               color: Color.fromRGBO(
@@ -611,7 +615,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
-                                      labelText: "TOPIC",
+                                      labelText:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .topic_optional,
+                                      //"TOPIC",
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
@@ -626,7 +634,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: height * 0.02),
-                                      hintText: "Type Topic Here",
+                                      hintText:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .topic_optional,
+                                      //"Type Topic Here",
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               color: Color.fromRGBO(
@@ -648,7 +660,9 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
-                                      labelText: 'SUB TOPIC',
+                                      labelText: AppLocalizations
+                                          .of(context)!
+                                          .sub_topic_optional,
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
@@ -663,7 +677,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: height * 0.02),
-                                      hintText: 'Type Sub Topic Here',
+                                      hintText:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .sub_topic_hint,
+                                      //'Type Sub Topic Here',
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               color: Color.fromRGBO(
@@ -685,7 +703,11 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         fontWeight: FontWeight.w700,
                                         fontSize: height * 0.018),
                                     decoration: InputDecoration(
-                                      labelText: "CLASS",
+                                      labelText:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .class_caps,
+                                      // 'CLASS',
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
@@ -700,7 +722,10 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: height * 0.02),
-                                      hintText: "Type Here",
+                                      hintText: AppLocalizations.of(
+                                          context)!
+                                          .type_here,
+                                      //'Type Here',
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               color: Color.fromRGBO(

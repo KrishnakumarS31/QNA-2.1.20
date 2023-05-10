@@ -89,7 +89,7 @@ class TeacherAssessmentQuestionBankState
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      endDrawer: EndDrawerMenuTeacher(),
+      endDrawer: const EndDrawerMenuTeacher(),
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(
@@ -98,7 +98,7 @@ class TeacherAssessmentQuestionBankState
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
           },
         ),
         toolbarHeight: height * 0.100,
@@ -263,9 +263,8 @@ class TeacherAssessmentQuestionBankState
                         color: Color.fromRGBO(82, 165, 160, 1),
                       )),
                   onPressed: () {
-                    print("Invalid value");
                     List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
-                    for(int i =0;i<otQues.length;i++){
+                    for(int i =0;i<quesList.length && i<otQues.length;i++){
                       quesList[i].questionMark=otQues[i].questionMark;
                     }
                     CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
@@ -279,7 +278,6 @@ class TeacherAssessmentQuestionBankState
                         quesList[i].questionMark != 1
                             ? mark = quesList[i].questionMark!
                             : mark = 1;
-
                         Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
                         quesList[i].questionMark=mark;
                         Provider.of<QuestionPrepareProviderFinal>(context,

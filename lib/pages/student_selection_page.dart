@@ -177,7 +177,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(
-                              left: width * 0.3, right: width * 0.3),
+                              left: width * 0.4),
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -378,7 +378,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           height: height * 0.030,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 50),
+                          padding: EdgeInsets.only(left: width * 0.21),
                           child: Column(children: [
                             CustomRadioButton<String>(
                               value: '1',

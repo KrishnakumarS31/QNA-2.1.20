@@ -29,6 +29,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
   String searchValue = '';
   TextEditingController teacherQuestionBankSearchController =
   TextEditingController();
+  bool questionsPresent= false;
 
   @override
   void initState() {
@@ -43,6 +44,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
     allQuestion =
     List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     setState(() {
+      allQuestion.isEmpty?questionsPresent=false:questionsPresent=true;
       searchValue = widget.search;
       question.addAll(allQuestion);
       loading = false;
@@ -70,24 +72,25 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
     }
     Navigator.of(context).pop();
     setState(() {
+      allQuestion.isEmpty?questionsPresent=false:questionsPresent=true;
       searchValue = searchVal;
       question.addAll(allQuestion);
       loading = false;
       pageLimit++;
     });
-    if(allQuestion.isEmpty) {
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title: 'Alert',
-            content: 'No question found.',
-            button: 'Retry',
-          ),
-        ),
-      );
-    }
+    // if(allQuestion.isEmpty) {
+    //   Navigator.push(
+    //     context,
+    //     PageTransition(
+    //       type: PageTransitionType.rightToLeft,
+    //       child: CustomDialog(
+    //         title: 'Alert',
+    //         content: 'No question found.',
+    //         button: 'Retry',
+    //       ),
+    //     ),
+    //   );
+    // }
   }
 
   loadMore(String searchValue) async {
@@ -283,22 +286,45 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                       ],
                     ),
                     SizedBox(height: height * 0.02),
-                    for (Question i in question)
-                      MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context,
-                                    '/teacherLooqClonePreview',
-                                    arguments: i
-                                );
-                              },
-                              child: QuestionPreview(
-                                height: height,
-                                width: width,
-                                question: i,
-                              ))),
+                    questionsPresent?
+                    Column(
+                      children: [
+                        for (Question i in question)
+                          MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                        context,
+                                        '/teacherLooqClonePreview',
+                                        arguments: i
+                                    );
+                                  },
+                                  child: QuestionPreview(
+                                    height: height,
+                                    width: width,
+                                    question: i,
+                                  ))),
+                      ],
+                    ):
+                    Column(
+                      children: [
+                        SizedBox(height: height * 0.04),
+                        Center(
+                          child: Text(
+                            'NO QUESTIONS FOUND',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.0175,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -370,7 +396,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                   ],
                 )),
           ),
-        ));
+        )
+    );
   }
 }
 

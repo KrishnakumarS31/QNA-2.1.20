@@ -40,11 +40,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
   }
 
   getdata() async {
-    // AppUser? user = await AppUserRepo().getUserDetail();
-    // print(user!.locale);
     String st = Provider.of<LanguageChangeProvider>(context, listen: false).currentLocale;
-    print("Init Print Locale");
-    print(st);
     if (st == 'ta') {
       setState(() {
         selected = 'வணக்கம் (Tamil)';

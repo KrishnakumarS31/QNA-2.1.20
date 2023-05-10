@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/teacher_cloned_assessment_preview.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Providers/create_assessment_provider.dart';
@@ -316,7 +315,6 @@ class TeacherAssessmentLooqQuestionPreviewState
                                       // );
                                     } else {
                                       //Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',,(route) => route.isFirst);
-                                      print("-----------------------------------------TeacherAssessmentLooqQuestionPreview");
                                       Navigator.pushNamedAndRemoveUntil(context, '/teacherClonedAssessmentPreview',ModalRoute.withName('/teacherClonedAssessment'),arguments: 'clone');
                                     }
                                   },

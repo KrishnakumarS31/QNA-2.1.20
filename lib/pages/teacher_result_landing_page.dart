@@ -36,7 +36,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   @override
   void initState() {
     super.initState();
-    print("fvwefvwervwerv.length + ${results.length}");
     Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
@@ -46,7 +45,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
           ),
           context: context,
           builder: (builder) {
-            print("results.length + ${results.length}");
             return Container(
               decoration: BoxDecoration(
                   border: Border.all(

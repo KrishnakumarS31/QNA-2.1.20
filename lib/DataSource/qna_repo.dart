@@ -173,15 +173,12 @@ class QnaRepo {
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
-    print(response.statusCode);
     if (response.statusCode == 200) {
       String temp = await response.stream.bytesToString();
       responses = responseEntityFromJson(temp);
     } else if (response.statusCode == 401) {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
-      print(email);
-      print(pass);
       LoginModel loginModel =
           await logInUser(email!, pass!, loginData.getString('role'));
       updatePassword(oldPassword, newPassword, userId,context);

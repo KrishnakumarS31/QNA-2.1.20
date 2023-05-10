@@ -3,10 +3,9 @@ import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as Question;
 import '../Entity/Teacher/response_entity.dart';
-
-//import '../Entity/Teacher/result_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
+import '../Providers/new_question_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -785,11 +784,6 @@ class TeacherSelectedQuestionAssessmentState
                                                                 loginData =
                                                                 await SharedPreferences
                                                                     .getInstance();
-                                                            // Provider.of<QuestionPrepareProviderFinal>(
-                                                            //         context,
-                                                            //         listen:
-                                                            //             false)
-                                                            //     .reSetQuestionList();
                                                             assessment.topic =
                                                                 topicController
                                                                     .text;
@@ -882,7 +876,7 @@ class TeacherSelectedQuestionAssessmentState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Sub Topic: ${assessment.subTopic}',
+                                'SEMESTER (Section): ${assessment.subTopic}',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
@@ -890,15 +884,6 @@ class TeacherSelectedQuestionAssessmentState
                                         const Color.fromRGBO(102, 102, 102, 1),
                                     fontWeight: FontWeight.w400),
                               ),
-                              // Text(
-                              //   '${assessment.assessmentStartdate}',
-                              //   style: TextStyle(
-                              //       fontSize: height * 0.015,
-                              //       fontFamily: "Inter",
-                              //       color:
-                              //           const Color.fromRGBO(102, 102, 102, 1),
-                              //       fontWeight: FontWeight.w400),
-                              // ),
                             ],
                           )
                         ],
@@ -987,14 +972,6 @@ class TeacherSelectedQuestionAssessmentState
                           child: FloatingActionButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,null,widget.assessmentType]);
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child: TeacherAssessmentQuestionBank(
-                              //         ),
-                              //   ),
-                              // );
                             },
                             backgroundColor:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -1024,6 +1001,16 @@ class TeacherSelectedQuestionAssessmentState
                           ResponseEntity statusCode = ResponseEntity();
                           if (assessment.assessmentId != null) {
                             assessment.assessmentStatus = 'inprogress';
+                            DateTime startDate = DateTime.now();
+                            startDate=DateTime(
+                                startDate.year,
+                                startDate.month,
+                                startDate.day,
+                                startDate.hour,
+                                startDate.minute);
+                            assessment.assessmentStartdate =
+                                startDate
+                                    .microsecondsSinceEpoch;
                             statusCode =
                                 await QnaService.editAssessmentTeacherService(
                                     assessment, assessment.assessmentId!);
@@ -1125,7 +1112,6 @@ class QuestionWidget extends StatefulWidget {
 
 class _QuestionWidgetState extends State<QuestionWidget> {
   showAlertDialog(BuildContext context, double height) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -1182,14 +1168,10 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         setState(() {});
         List<Question.Question> quesListArg=Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
-
-        //Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: quesListArg);
-        print("---------------------------------------------TeacherSelectedQuestionAssessment");
         Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [quesListArg,widget.assessmentType]);
 
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [

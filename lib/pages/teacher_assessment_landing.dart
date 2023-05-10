@@ -46,6 +46,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   int pageLimit = 1;
   String searchVal = '';
   SharedPreferences? loginData;
+  bool assessmentPresent= false;
 
   @override
   void initState() {
@@ -246,8 +247,24 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageLimit, searchVal);
     print(response.data);
-    allAssessment = List<GetAssessmentModel>.from(
-        response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    if(response.data!=null){
+      allAssessment = List<GetAssessmentModel>.from(
+          response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    }
+    if(allAssessment.isEmpty){
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title: 'Alert',
+            content: 'No more assessments found.',
+            button:
+            "Retry",
+          ),
+        ),
+      );
+    }
     setState(() {
       assessments.addAll(allAssessment);
       pageLimit++;
@@ -259,21 +276,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     await QnaService.getAllAssessment(10, pageLimit, search);
     allAssessment = response.data==null?[]:List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
-    if(allAssessment.isEmpty){
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title: 'Alert',
-            content: 'No assessment found.',
-            button:
-            "Retry",
-          ),
-        ),
-      );
-    }
+
     setState(() {
+      allAssessment.isEmpty?assessmentPresent=false:assessmentPresent=true;
       assessments.addAll(allAssessment);
       loading = false;
       pageLimit++;
@@ -527,6 +532,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     SizedBox(
                       height: height * 0.02,
                     ),
+                    assessmentPresent?
                     SizedBox(
                       height: height * 0.35,
                       child: ListView.builder(
@@ -545,6 +551,23 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           ],
                         ),
                       ),
+                    ):
+                    Column(
+                      children: [
+                        SizedBox(height: height * 0.04),
+                        Center(
+                          child: Text(
+                            'NO ASSESSMENT FOUND',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.0175,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: height * 0.02,
@@ -1183,7 +1206,6 @@ class _CardInfoState extends State<CardInfo> {
   void initState() {
     // TODO: implement initState
     getdate();
-    print(datetime);
     super.initState();
   }
   getdate(){
@@ -1296,8 +1318,6 @@ class _CardInfoState extends State<CardInfo> {
                   widget.assessment.assessmentEnddate == null
                       ? ''
                       : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
-                  print("active");
-                  print(editAssessment.assessmentId);
                   editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
                   if (widget.assessment.questions!.isEmpty) {
                   }
@@ -1399,16 +1419,16 @@ class _CardInfoState extends State<CardInfo> {
                       padding: EdgeInsets.only(left: widget.width * 0.02),
                       child: Row(
                         children: [
-                          Text(
-                            AppLocalizations.of(context)!.assessment_id_caps,
-                            //"Assessment ID: ",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.height * 0.015,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                          // Text(
+                          //   AppLocalizations.of(context)!.assessment_id_caps,
+                          //   //"Assessment ID: ",
+                          //   style: TextStyle(
+                          //     color: const Color.fromRGBO(102, 102, 102, 1),
+                          //     fontSize: widget.height * 0.015,
+                          //     fontFamily: "Inter",
+                          //     fontWeight: FontWeight.w400,
+                          //   ),
+                          // ),
                           Text(
                             " ${widget.assessment.assessmentCode}",
                             style: TextStyle(
@@ -1427,29 +1447,29 @@ class _CardInfoState extends State<CardInfo> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                AppLocalizations.of(context)!.institute_test_id,
-                                // "Institute Test ID: ",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: widget.height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Text(
-                                "-------------",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontSize: widget.height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       AppLocalizations.of(context)!.institute_test_id,
+                          //       // "Institute Test ID: ",
+                          //       style: TextStyle(
+                          //         color: const Color.fromRGBO(102, 102, 102, 1),
+                          //         fontSize: widget.height * 0.015,
+                          //         fontFamily: "Inter",
+                          //         fontWeight: FontWeight.w400,
+                          //       ),
+                          //     ),
+                          //     Text(
+                          //       "-------------",
+                          //       style: TextStyle(
+                          //         color: const Color.fromRGBO(82, 165, 160, 1),
+                          //         fontSize: widget.height * 0.015,
+                          //         fontFamily: "Inter",
+                          //         fontWeight: FontWeight.w500,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           Text(
                             datetime,
                             style: TextStyle(

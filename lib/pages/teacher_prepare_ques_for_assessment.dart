@@ -361,6 +361,7 @@ class TeacherPrepareQuesForAssessmentState
                                 )
                               ]),
                           SizedBox(height: height * 0.001),
+                          showIcon!=Icons.expand_circle_down_outlined?
                           Container(
                             margin: const EdgeInsets.all(5),
                             padding: const EdgeInsets.all(5),
@@ -378,7 +379,7 @@ class TeacherPrepareQuesForAssessmentState
                                         children: [
                                           constraints.maxWidth > 700
                                               ?  SizedBox(width: width * 0.05)
-                                              : SizedBox(width: width * 0.10),
+                                              : SizedBox(width: width * 0.05),
                                           Text(
                                             AppLocalizations.of(context)!.subject_topic,
                                             //"Subject and Topic",
@@ -391,7 +392,7 @@ class TeacherPrepareQuesForAssessmentState
                                           ),
                                           constraints.maxWidth > 700
                                               ? SizedBox(width: width * 0.7)
-                                              : SizedBox(width: width * 0.35),
+                                              : SizedBox(width: width * 0.3),
                                           IconButton(
                                             icon: Icon(
                                               showIcon,
@@ -554,6 +555,44 @@ class TeacherPrepareQuesForAssessmentState
                                 SizedBox(height: height * 0.010),
                               ]),
                             ),
+                          ):
+                          Column(
+                            children: [
+                              Container(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        constraints.maxWidth > 700
+                                            ?  SizedBox(width: width * 0.05)
+                                            : SizedBox(width: width * 0.05),
+                                        Text(
+                                          AppLocalizations.of(context)!.subject_topic,
+                                          //"Subject and Topic",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.020),
+                                        ),
+                                        constraints.maxWidth > 700
+                                            ? SizedBox(width: width * 0.7)
+                                            : SizedBox(width: width * 0.3),
+                                        IconButton(
+                                          icon: Icon(
+                                            showIcon,
+                                            color:
+                                            const Color.fromRGBO(255, 255, 255, 1),
+                                            size: height * 0.03,
+                                          ),
+                                          onPressed: () {
+                                            changeIcon(showIcon);
+                                          },
+                                        ),
+                                      ])),
+                              SizedBox(height: height * 0.02,)
+                            ],
                           ),
                           Container(
                             alignment: Alignment.centerLeft,

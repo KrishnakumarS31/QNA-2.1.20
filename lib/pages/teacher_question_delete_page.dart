@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/Pages/teacher_add_my_question_bank.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
@@ -227,7 +226,6 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
           }
         }
         else{
-          print("new flow");
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .deleteQuestionList(widget.quesNum);
           if(Provider.of<QuestionPrepareProviderFinal>(context, listen: false).getAllQuestion.isEmpty){
@@ -235,7 +233,6 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
             //Navigator.pushNamed(context, '/teacherQuestionBank');
           }
           else{
-            print("else");
             int count = 0;
             Navigator.popUntil(context, (route) {
               return count++ == 5;
@@ -646,7 +643,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                             fontWeight: FontWeight.w700,
                                             fontSize: height * 0.018),
                                         decoration: InputDecoration(
-                                          labelText: 'SUB TOPIC',
+                                          labelText: 'SEMESTER (Section)',
                                           floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(
@@ -661,7 +658,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.02),
-                                          hintText: 'Type Sub Topic Here',
+                                          hintText: 'Type SEMESTER (Section) Here',
                                           focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color: Color.fromRGBO(
@@ -683,7 +680,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                             fontWeight: FontWeight.w700,
                                             fontSize: height * 0.018),
                                         decoration: InputDecoration(
-                                          labelText: "CLASS",
+                                          labelText: "DEGREE (Class)",
                                           floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(
@@ -1067,18 +1064,15 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         widget.finalQuestion.advisorUrl =
                                             urlController.text;
                                         widget.finalQuestion.choices = temp;
-                                        print("1");
                                         List<Question> t=
                                             Provider.of<QuestionPrepareProviderFinal>(
                                                 context,
                                                 listen: false).getAllQuestion;
-                                        print(t.length);
-                                        t.length==0?
+                                        t.isEmpty?
                                         Provider.of<NewQuestionProvider>(
                                             context,
                                             listen: false).updateQuestionList(widget.quesNum, widget.finalQuestion):
                                         Provider.of<QuestionPrepareProviderFinal>(context, listen: false).updateQuestionList(widget.quesNum, widget.finalQuestion);
-                                        print("2");
                                       });
                                       widget.assessment?
                                       Navigator.of(context)
@@ -1160,21 +1154,18 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 widget.finalQuestion.advisorUrl =
                                     urlController.text;
                                 widget.finalQuestion.choices = temp;
-                                print("1");
                                 List<Question> t=
                                     Provider.of<
                                         QuestionPrepareProviderFinal>(
                                         context,
                                         listen: false)
                                         .getAllQuestion;
-                                print(t.length);
                                 Provider.of<
                                     QuestionPrepareProviderFinal>(
                                     context,
                                     listen: false)
                                     .updateQuestionList(widget.quesNum,
                                     widget.finalQuestion);
-                                print("2");
                               });
 
                               Navigator.of(context)

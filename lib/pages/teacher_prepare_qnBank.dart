@@ -387,7 +387,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(width: width * 0.03,),
+                                  SizedBox(width: width<700?width * 0.02:width * 0.03,),
                                   Text(
                                       AppLocalizations.of(context)!.subject_topic,
                                       //"Subject and Topic",
@@ -398,7 +398,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           fontWeight: FontWeight.w600,
                                           fontSize: height * 0.020)),
                                   // SizedBox(width: width * 0.25),
-                                  SizedBox(width: width * 0.70),
+                                  SizedBox(width: width<700?width * 0.3:width * 0.70),
                                   IconButton(
                                     icon: Icon(
                                       showIcon,
@@ -418,7 +418,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
 
-                                    SizedBox(width: width * 0.03),
+                                    SizedBox( width: width<700?width * 0.02:width * 0.03),
                                     Text(
                                         AppLocalizations.of(context)!.subject_topic,
                                         //"Subject and Topic",
@@ -428,7 +428,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
                                             fontSize: height * 0.020)),
-                                    SizedBox(width: width * 0.70),
+                                    SizedBox(width: width<700?width * 0.3:width * 0.70),
                                     IconButton(
                                       icon: Icon(
                                         showIcon,

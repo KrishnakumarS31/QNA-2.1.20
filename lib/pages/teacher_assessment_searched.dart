@@ -37,6 +37,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   String searchValue = '';
   TextEditingController teacherQuestionBankSearchController =
   TextEditingController();
+  bool assessmentPresent= false;
 
   @override
   void initState() {
@@ -49,9 +50,12 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
     Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     ResponseEntity response =
     await QnaService.getSearchAssessment(5, pageLimit, widget.search);
-    allAssessment = List<GetAssessmentModel>.from(
-        response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    if(response.data != null){
+      allAssessment = List<GetAssessmentModel>.from(
+          response.data.map((x) => GetAssessmentModel.fromJson(x)));
+    }
     setState(() {
+      allAssessment.isEmpty?assessmentPresent=false:assessmentPresent=true;
       searchValue = widget.search;
       assessments.addAll(allAssessment);
       loading = false;
@@ -74,23 +78,27 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
     await QnaService.getSearchAssessment(5, pageLimit, searchVal);
     if(response.data==null){
       Navigator.of(context).pop();
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title: 'Alert',
-            content: 'No Assessment Found.',
-            button: AppLocalizations.of(context)!.retry,
-          ),
-        ),
-      );
+      // Navigator.push(
+      //   context,
+      //   PageTransition(
+      //     type: PageTransitionType.rightToLeft,
+      //     child: CustomDialog(
+      //       title: 'Alert',
+      //       content: 'No Assessment Found.',
+      //       button: AppLocalizations.of(context)!.retry,
+      //     ),
+      //   ),
+      // );
+      setState(() {
+        assessmentPresent=false;
+      });
     }
     else{
       allAssessment = List<GetAssessmentModel>.from(
           response.data.map((x) => GetAssessmentModel.fromJson(x)));
       Navigator.of(context).pop();
       setState(() {
+        assessmentPresent=true;
         searchValue = searchVal;
         assessments.addAll(allAssessment);
         loading = false;
@@ -343,6 +351,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                     SizedBox(
                       height: height * 0.02,
                     ),
+                    assessmentPresent?
                     SizedBox(
                       height: height * 0.45,
                       child: ListView.builder(
@@ -361,6 +370,23 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                           ],
                         ),
                       ),
+                    ):
+                    Column(
+                      children: [
+                        SizedBox(height: height * 0.04),
+                        Center(
+                          child: Text(
+                            'NO ASSESSMENT FOUND',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.0175,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: height * 0.02,
@@ -548,16 +574,16 @@ class CardInfo extends StatelessWidget {
                     padding: EdgeInsets.only(left: width * 0.02),
                     child: Row(
                       children: [
-                        Text(
-                          AppLocalizations.of(context)!.assessment_id_caps,
-                          //"Assessment ID: ",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 1),
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                        // Text(
+                        //   AppLocalizations.of(context)!.assessment_id_caps,
+                        //   //"Assessment ID: ",
+                        //   style: TextStyle(
+                        //     color: const Color.fromRGBO(102, 102, 102, 1),
+                        //     fontSize: height * 0.015,
+                        //     fontFamily: "Inter",
+                        //     fontWeight: FontWeight.w400,
+                        //   ),
+                        // ),
                         Text(
                           " ${assessment.assessmentCode}",
                           style: TextStyle(
@@ -576,29 +602,29 @@ class CardInfo extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.institute_test_id,
-                              // "Institute Test ID: ",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Text(
-                              " ----------",
-                              style: TextStyle(
-                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Text(
+                        //       AppLocalizations.of(context)!.institute_test_id,
+                        //       // "Institute Test ID: ",
+                        //       style: TextStyle(
+                        //         color: const Color.fromRGBO(102, 102, 102, 1),
+                        //         fontSize: height * 0.015,
+                        //         fontFamily: "Inter",
+                        //         fontWeight: FontWeight.w400,
+                        //       ),
+                        //     ),
+                        //     Text(
+                        //       " ----------",
+                        //       style: TextStyle(
+                        //         color: const Color.fromRGBO(82, 165, 160, 1),
+                        //         fontSize: height * 0.015,
+                        //         fontFamily: "Inter",
+                        //         fontWeight: FontWeight.w500,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                         Text(
                           assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
                           style: TextStyle(

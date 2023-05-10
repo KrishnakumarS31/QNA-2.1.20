@@ -50,13 +50,11 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   }
 
   getData() {
-    //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
         .getAssessment;
     finalAssessment =
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .getAssessment;
-    //print("${}");
     finalAssessment.removeQuestions = [];
     for (int i = 0; i < finalAssessment.questions!.length; i++) {
       mark = mark + assessment.questions![i].questionMark!;
@@ -1234,7 +1232,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
 
   @override
   void initState() {
-    print(widget.question);
     if(widget.question.questionType=="MCQ")
     {
     for (int i = 0; i < widget.question.choices!.length; i++) {
@@ -1243,7 +1240,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       }
     }
     ans = ans==''?'':ans.substring(0, ans.length - 2);
-    print(ans);
   }
     super.initState();
   }

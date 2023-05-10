@@ -217,14 +217,14 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                           .copyWith()
                                                           .size
                                                           .width *
-                                                          0.008,
+                                                          0.002,
                                                       top: MediaQuery
                                                           .of(
                                                           context)
                                                           .copyWith()
                                                           .size
                                                           .height *
-                                                          0.004,
+                                                          0.003,
                                                       child: Icon(
                                                         Icons
                                                             .question_mark,
@@ -356,7 +356,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                   Flexible(
                                                       child:
                                                       TextButton(
-                                                        //onPressed: _launchURLBrowser,
                                                         onPressed: () async {
                                                           final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
                                                           if (!await launchUrl(url)) {
@@ -394,283 +393,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       ]),
                                     )
                                         : const SizedBox(height: 0)
-                                  //: null
                                 )
                             ]),
                             const SizedBox(height: 25),
-                            // const Divider(
-                            //   thickness: 2,
-                            // ),
-                            // Row(
-                            //   children: [
-                            //     IconButton(
-                            //       icon: Icon(
-                            //         Icons.note_alt,
-                            //         size: localHeight * 0.02,
-                            //         color: const Color.fromRGBO(48, 145, 139, 1),
-                            //       ),
-                            //       onPressed: () {
-                            //         values.data!.assessmentType != "test"
-                            //             ?
-                            //         Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-                            //             : Navigator.push(
-                            //           context,
-                            //           PageTransition(
-                            //             type:
-                            //             PageTransitionType.rightToLeft,
-                            //             child: const CustomDialog(
-                            //               title: 'Alert',
-                            //               content:
-                            //               'Answersheet are shown only in Practice mode',
-                            //               button: "OK",
-                            //             ),
-                            //           ),
-                            //         );
-                            //       },
-                            //     ),
-                            //     TextButton(
-                            //         child: Text(
-                            //             AppLocalizations.of(context)!
-                            //                 .answer_sheet,
-                            //             style: TextStyle(
-                            //                 fontFamily: 'Inter',
-                            //                 fontSize: localHeight * 0.02,
-                            //                 color: const Color.fromRGBO(
-                            //                     48, 145, 139, 1),
-                            //                 fontWeight: FontWeight.w500)),
-                            //         onPressed: () {
-                            //           values.data!.assessmentType != "test"
-                            //               ?
-                            //           Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-                            //               : Navigator.push(
-                            //             context,
-                            //             PageTransition(
-                            //               type: PageTransitionType
-                            //                   .rightToLeft,
-                            //               child: const CustomDialog(
-                            //                 title: 'Alert',
-                            //                 content:
-                            //                 'Answersheet are shown only in Practice mode',
-                            //                 button: "OK",
-                            //               ),
-                            //             ),
-                            //           );
-                            //         }),
-                            //     const SizedBox(width: 150),
-                            //     IconButton(
-                            //       icon: Icon(
-                            //         Icons.chevron_right,
-                            //         size: localHeight * 0.025,
-                            //         color: const Color.fromRGBO(48, 145, 139, 1),
-                            //       ),
-                            //       onPressed: () {
-                            //         values.data!.assessmentType != "test"
-                            //             ?
-                            //         Navigator.pushNamed(context, '/studentMemAnswerSheet',arguments: [values,widget.assessmentId])
-                            //             : Navigator.push(
-                            //           context,
-                            //           PageTransition(
-                            //             type:
-                            //             PageTransitionType.rightToLeft,
-                            //             child: const CustomDialog(
-                            //               title: 'Alert',
-                            //               content:
-                            //               'Answersheet are shown only in Practice mode',
-                            //               button: "OK",
-                            //             ),
-                            //           ),
-                            //         );
-                            //       },
-                            //     ),
-                            //   ],
-                            // ),
-                            // const Divider(
-                            //   thickness: 2,
-                            // ),
-                            // widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //     ? Row(
-                            //   children: [
-                            //     IconButton(
-                            //       icon: Icon(
-                            //         Icons.quick_contacts_dialer_rounded,
-                            //         size: localHeight * 0.02,
-                            //         color: const Color.fromRGBO(48, 145, 139, 1),
-                            //       ),
-                            //       onPressed: () {
-                            //         Navigator.push(
-                            //           context,
-                            //           PageTransition(
-                            //             type:
-                            //             PageTransitionType.rightToLeft,
-                            //             child: CustomDialog(
-                            //               title: AppLocalizations.of(context)!.advisor_contact,
-                            //               content:
-                            //               widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //                   ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
-                            //                   :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //                   ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
-                            //                   : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                            //                   ? "Advisor Name- ${widget.questions.data!.advisorName}"
-                            //                   : "Not given",
-                            //               button: "OK",
-                            //             ),
-                            //           ),
-                            //         );
-                            //       },
-                            //     ),
-                            //     TextButton(
-                            //         child: Text(
-                            //             AppLocalizations.of(context)!.advisor_contact,
-                            //             style: TextStyle(
-                            //                 fontFamily: 'Inter',
-                            //                 fontSize: localHeight * 0.02,
-                            //                 color: const Color.fromRGBO(
-                            //                     48, 145, 139, 1),
-                            //                 fontWeight: FontWeight.w500)),
-                            //         onPressed: () {
-                            //           Navigator.push(
-                            //             context,
-                            //             PageTransition(
-                            //               type: PageTransitionType
-                            //                   .rightToLeft,
-                            //               child: CustomDialog(
-                            //                 title: AppLocalizations.of(context)!.advisor_contact,
-                            //                 content:
-                            //                 widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //                     ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
-                            //                     :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //                     ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
-                            //                     : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                            //                     ? "Advisor Name- ${widget.questions.data!.advisorName}"
-                            //                     : "Not given",
-                            //                 button: "OK",
-                            //               ),
-                            //             ),
-                            //           );
-                            //         }),
-                            //     const SizedBox(width: 140),
-                            //     IconButton(
-                            //       icon: Icon(
-                            //         Icons.chevron_right,
-                            //         size: localHeight * 0.025,
-                            //         color: const Color.fromRGBO(48, 145, 139, 1),
-                            //       ),
-                            //       onPressed: () {
-                            //         Navigator.push(
-                            //           context,
-                            //           PageTransition(
-                            //             type:
-                            //             PageTransitionType.rightToLeft,
-                            //             child: CustomDialog(
-                            //               title: AppLocalizations.of(context)!.advisor_contact,
-                            //               content:
-                            //               widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //                   ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
-                            //                   :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //                   ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
-                            //                   : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                            //                   ? "Advisor Name- ${widget.questions.data!.advisorName}"
-                            //                   : "Not given",
-                            //               button: "OK",
-                            //             ),
-                            //           ),
-                            //         );
-                            //       },
-                            //     ),
-                            //   ],
-                            // )
-                            //     : const SizedBox(),
-                            // widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                            //     ? const Divider(
-                            //   thickness: 2,
-                            // )
-                            //     : const SizedBox(),
-                           // const SizedBox(height: 30.0),
-                           //  Container(
-                           //    height: localHeight * 0.20,
-                           //    decoration: BoxDecoration(
-                           //      gradient: const LinearGradient(
-                           //        begin: Alignment.topLeft,
-                           //        end: Alignment.bottomRight,
-                           //        colors: [
-                           //          Color.fromRGBO(0, 106, 100, 1),
-                           //          Color.fromRGBO(82, 165, 160, 1),
-                           //        ],
-                           //      ),
-                           //      borderRadius: BorderRadius.vertical(
-                           //          top: Radius.elliptical(
-                           //              localWidth / 1.0, localHeight * 0.3)),
-                           //    ),
-                           //    child: Row(
-                           //      children: [
-                           //        Padding(
-                           //          padding: EdgeInsets.only(
-                           //              top: localHeight * 0.03,
-                           //              left: localHeight * 0.12),
-                           //          child: Column(
-                           //              mainAxisAlignment:
-                           //              MainAxisAlignment.center,
-                           //              children: [
-                           //                Text(
-                           //                  AppLocalizations.of(context)!
-                           //                      .pls_contact,
-                           //                  textAlign: TextAlign.center,
-                           //                  style: TextStyle(
-                           //                      color: const Color.fromRGBO(
-                           //                          255, 255, 255, 1),
-                           //                      fontFamily: 'Inter',
-                           //                      fontWeight: FontWeight.w700,
-                           //                      fontSize: localHeight * 0.020),
-                           //                ),
-                           //                SizedBox(height: localHeight * 0.010),
-                           //                RichText(
-                           //                    textAlign: TextAlign.start,
-                           //                    text: TextSpan(children: [
-                           //                      TextSpan(
-                           //                          text: ' “ ',
-                           //                          style: TextStyle(
-                           //                              color:
-                           //                              const Color.fromRGBO(
-                           //                                  255, 255, 255, 1),
-                           //                              fontFamily: 'Inter',
-                           //                              fontWeight:
-                           //                              FontWeight.w800,
-                           //                              fontSize:
-                           //                              localHeight * 0.030)),
-                           //                      TextSpan(
-                           //                          text: AppLocalizations.of(
-                           //                              context)!
-                           //                              .retry_msg,
-                           //                          style: TextStyle(
-                           //                              color:
-                           //                              const Color.fromRGBO(
-                           //                                  255, 255, 255, 1),
-                           //                              fontFamily: 'Inter',
-                           //                              fontWeight:
-                           //                              FontWeight.w400,
-                           //                              fontSize:
-                           //                              localHeight * 0.015)),
-                           //                      TextSpan(
-                           //                          text: ' ” ',
-                           //                          style: TextStyle(
-                           //                              color:
-                           //                              const Color.fromRGBO(
-                           //                                  255, 255, 255, 1),
-                           //                              fontFamily: 'Inter',
-                           //                              fontWeight:
-                           //                              FontWeight.w800,
-                           //                              fontSize:
-                           //                              localHeight * 0.030)),
-                           //                    ])),
-                           //              ]),
-                           //        )
-                           //      ],
-                           //    ),
-                           //  ),
-                            //const SizedBox(height: 30.0),
                           ])
                         ]),
-                       // const SizedBox(height: 25),
                         const Divider(
                           thickness: 2,
                         ),
@@ -779,11 +506,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       title: AppLocalizations.of(context)!.advisor_contact,
                                       content:
                                       widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                          ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
                                           :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                          ? "${widget.questions.data!.advisorEmail}"
                                           : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                          ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                          ? "${widget.questions.data!.advisorName}"
                                           : "Not given",
                                       button: "OK",
                                     ),
@@ -810,11 +537,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         title: AppLocalizations.of(context)!.advisor_contact,
                                         content:
                                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
                                             :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                            ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                            ? "${widget.questions.data!.advisorName}"
                                             : "Not given",
                                         button: "OK",
                                       ),
@@ -838,11 +565,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       title: AppLocalizations.of(context)!.advisor_contact,
                                       content:
                                       widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                          ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
                                           :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                          ? "${widget.questions.data!.advisorEmail}"
                                           : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                          ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                          ? "${widget.questions.data!.advisorName}"
                                           : "Not given",
                                       button: "OK",
                                     ),
@@ -858,7 +585,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                           thickness: 2,
                         )
                             : const SizedBox(),
-                        // SizedBox(height: localHeight * 0.070),
                         const SizedBox(height: 30.0),
                         Container(
                           height: localHeight * 0.20,
@@ -921,7 +647,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     ])),
                               ]),
                         ),
-                        //const SizedBox(height: 30.0),
                       ]))));
         } else {
           return WillPopScope(
@@ -952,7 +677,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                       ),
                       Text(
                         widget.assessmentId,
-                        //values.data!.assessment!.assessmentCode,
                         style: TextStyle(
                           color: const Color.fromRGBO(255, 255, 255, 1),
                           fontSize: localHeight * 0.016,
@@ -1216,7 +940,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                 Flexible(
                                                     child:
                                                     TextButton(
-                                                      //onPressed: _launchURLBrowser,
                                                       onPressed: () async {
                                                         final Uri url = Uri.parse(values.data!.questions![index - 1].advisorUrl!);
                                                         if (!await launchUrl(url)) {
@@ -1254,7 +977,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     ]),
                                   )
                                       : const SizedBox(height: 0)
-                                //: null
                               )
                           ]),
                           const SizedBox(height: 25),
@@ -1365,11 +1087,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         title: AppLocalizations.of(context)!.advisor_contact,
                                         content:
                                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
                                             :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                            ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                            ? "${widget.questions.data!.advisorName}"
                                             : "Not given",
                                         button: "OK",
                                       ),
@@ -1396,11 +1118,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           title: AppLocalizations.of(context)!.advisor_contact,
                                           content:
                                           widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                              ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                              ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
                                               :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                              ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                              ? "${widget.questions.data!.advisorEmail}"
                                               : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                              ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                              ? "${widget.questions.data!.advisorName}"
                                               : "Not given",
                                           button: "OK",
                                         ),
@@ -1424,11 +1146,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         title: AppLocalizations.of(context)!.advisor_contact,
                                         content:
                                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "Advisor Name- ${widget.questions.data!.advisorName}\nAdvisor Email - ${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
                                             :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "Advisor Email - ${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
-                                            ? "Advisor Name- ${widget.questions.data!.advisorName}"
+                                            ? "${widget.questions.data!.advisorName}"
                                             : "Not given",
                                         button: "OK",
                                       ),
@@ -1526,7 +1248,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ],
                             ),
                           ),
-                          //const SizedBox(height: 30.0),
                         ])
                       ])
                   )
@@ -1535,15 +1256,6 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
       },
     );
   }
-
-// _launchURLBrowser() async {
-//   const url = 'https://flutterdevs.com/';
-//   if (await canLaunch(url)) {
-//     await launch(url, forceSafariVC: true, forceWebView: true);
-//   } else {
-//     throw 'Could not launch $url';
-//   }
-// }
 }
 
 class Question {
