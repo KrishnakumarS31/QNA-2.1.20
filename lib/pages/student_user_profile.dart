@@ -45,7 +45,8 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                   body: Column(
                     children: [
                       constraints.maxWidth > 700
-                          ? Container(
+                          ?
+                      Container(
                         height: height * 0.3,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(
@@ -95,50 +96,52 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                               ],
                             ),
                             SizedBox(
-                              height: height * 0.005,
+                              height: height * 0.020,
                             ),
                             Row(
                               children: [
                                 SizedBox(width: width * 0.025),
                                 Icon(
                                   Icons.account_circle_outlined,
-                                  size: width * 0.05,
+                                  size: width * 0.06,
                                   color: const Color.fromRGBO(255, 255, 255, 1),
                                 ),
-                                SizedBox(width: width * 0.015),
-                                Text(
-                                  '${widget.userDataModel.data?.firstName}',
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
-                                    fontSize: height * 0.03,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                SizedBox(width: width * 0.010),
+                                Column(
+                                  children: [
+                                    SizedBox(width: width * 0.02),
+                                    Text(
+                                      '${widget.userDataModel.data?.firstName}',
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        fontSize: height * 0.03,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(height: height * 0.02),
+                                    Text(
+                                      AppLocalizations.of(context)!.student,
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(255, 255, 255, 1),
+                                        fontSize: height * 0.03,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                             SizedBox(
                               height: height * 0.002,
                             ),
-                            Row(
-                              children: [
-                                SizedBox(width: width * 0.08),
-                                Text(
-                                  AppLocalizations.of(context)!.student,
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
-                                    fontSize: height * 0.03,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
+
                           ],
                         ),
                       )
-
-                          : Container(
+                          :
+                      Container(
                         height: height * 0.25,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(

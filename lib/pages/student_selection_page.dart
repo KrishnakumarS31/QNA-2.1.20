@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:page_transition/page_transition.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../Components/custom_radio_button.dart';
 import '../EntityModel/login_entity.dart';
@@ -8,6 +9,7 @@ import '../EntityModel/user_data_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Pages/welcome_page.dart';
 import '../Services/qna_service.dart';
 
 class StudentSelectionPage extends StatefulWidget {
@@ -107,14 +109,16 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/');
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: WelcomePage(),
-                        //   ),
-                        // );
+                        print("INSIDE ONPRESSED");
+                        // Navigator.popUntil(context, ModalRoute.withName('/'));
+                        // Navigator.pushNamed(context, ('/'));
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: WelcomePage(),
+                          ),
+                        );
                         // Navigator.of(context).pop();
                       },
                     ),
@@ -310,14 +314,16 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/');
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: WelcomePage(),
-                        //   ),
-                        // );
+                        print("INSIDE ONPRESSED");
+                        // Navigator.popUntil(context, ModalRoute.withName('/'));
+                        // Navigator.pushNamed(context, ('/'));
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: WelcomePage(),
+                          ),
+                        );
                       },
                     ),
                     backgroundColor: Colors.transparent,

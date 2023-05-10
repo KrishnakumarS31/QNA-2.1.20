@@ -1322,7 +1322,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                   Padding(
                     padding: EdgeInsets.only(left: localWidth * 0.08),
                     child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Checkbox(
                             shape: RoundedRectangleBorder(
@@ -1335,53 +1335,55 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               });
                             },
                           ),
-                          RichText(
-                              text: TextSpan(children: [
-                            TextSpan(
-                              text: AppLocalizations.of(context)!.agree_msg,
-                              style: const TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: "Inter"),
-                            ),
-                            TextSpan(
-                              text:
-                                  AppLocalizations.of(context)!.privacy_Policy,
-                              style: const TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w400,
-                                  decoration: TextDecoration.underline,
-                                  color: Color.fromRGBO(82, 165, 160, 1),
-                                  fontFamily: "Inter"),
-                            ),
-                            TextSpan(
-                              text: AppLocalizations.of(context)!.and,
-                              style: const TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w400,
-                                  decoration: TextDecoration.underline,
-                                  color: Color.fromRGBO(82, 165, 160, 1),
-                                  fontFamily: "Inter"),
-                            ),
-                            TextSpan(
-                              text: AppLocalizations.of(context)!.terms,
-                              style: const TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w400,
-                                  decoration: TextDecoration.underline,
-                                  color: Color.fromRGBO(82, 165, 160, 1),
-                                  fontFamily: "Inter"),
-                            ),
-                            TextSpan(
-                              text: AppLocalizations.of(context)!.services,
-                              style: const TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w400,
-                                  color: Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: "Inter"),
-                            ),
-                          ])),
+                          Flexible(
+                            child: RichText(
+                                text: TextSpan(children: [
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.agree_msg,
+                                style:  TextStyle(
+                                    fontSize: localHeight * 0.02,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                              TextSpan(
+                                text:
+                                    AppLocalizations.of(context)!.privacy_Policy,
+                                style:  TextStyle(
+                                    fontSize: localHeight * 0.02,
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.underline,
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.and,
+                                style:  TextStyle(
+                                    fontSize: localHeight * 0.02,
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.underline,
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.terms,
+                                style:  TextStyle(
+                                    fontSize: localHeight * 0.02,
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.underline,
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                              TextSpan(
+                                text: AppLocalizations.of(context)!.services,
+                                style:  TextStyle(
+                                    fontSize: localHeight * 0.02,
+                                    fontWeight: FontWeight.w400,
+                                    color: Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: "Inter"),
+                              ),
+                            ])),
+                          ),
                         ]),
                   ),
                   SizedBox(

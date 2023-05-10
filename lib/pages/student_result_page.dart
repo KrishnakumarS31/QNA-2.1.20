@@ -630,6 +630,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       alignment: Alignment.topCenter,
                                       child: Column(
                                         children: [
+                                          SizedBox(height: localHeight * 0.03),
                                           Text(
                                             AppLocalizations.of(context)!
                                                 .result_card,
@@ -642,7 +643,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 localHeight * 0.024),
                                           ),
                                           SizedBox(
-                                              height: localHeight * 0.01),
+                                              height: localHeight * 0.03),
                                           Text(widget.assessmentCode,
                                               style: TextStyle(
                                                   color:

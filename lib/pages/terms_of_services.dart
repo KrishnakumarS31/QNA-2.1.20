@@ -102,7 +102,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                             constraints.maxWidth > 700
                             ?  AppLocalizations.of(context)!.terms_page_web
                             //" \t\tdefines ITNEDCUATION relationship with you as you interact with QNATEST app services"
-                                : AppLocalizations.of(context)!.terms_caps,
+                                : AppLocalizations.of(context)!.terms_page,
                             //" \t\tdefines ITNEDCUATION \nrelationship with you as you interact with \nQNATEST app services",
                             style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),

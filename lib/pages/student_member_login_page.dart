@@ -387,7 +387,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 Padding(
                                   padding: EdgeInsets.only(left: localWidth * 0.1),
                                   child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       SizedBox(width: localWidth * 0.15),
                                       Transform.scale(
@@ -414,55 +414,57 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         ),
                                       ),
                                       SizedBox(width: localWidth * 0.015),
-                                      RichText(
-                                          text: TextSpan(children: [
-                                            TextSpan(
-                                              text: AppLocalizations.of(context)!.agree_msg,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.02,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                                  fontFamily: "Inter"),
-                                            ),
-                                            TextSpan(
-                                              text:
-                                              AppLocalizations.of(context)!.privacy_Policy,
-                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.020,
-                                                  fontWeight: FontWeight.w400,
-                                                  decoration: TextDecoration.underline,
-                                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                                  fontFamily: "Inter"),
-                                            ),
-                                            TextSpan(
-                                              text: AppLocalizations.of(context)!.and,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.020,
-                                                  fontWeight: FontWeight.w400,
-                                                  decoration: TextDecoration.underline,
-                                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                                  fontFamily: "Inter"),
-                                            ),
-                                            TextSpan(
-                                              text: AppLocalizations.of(context)!.terms,
-                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.020,
-                                                  fontWeight: FontWeight.w400,
-                                                  decoration: TextDecoration.underline,
-                                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                                  fontFamily: "Inter"),
-                                            ),
-                                            TextSpan(
-                                              text: AppLocalizations.of(context)!.services,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.020,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                                  fontFamily: "Inter"),
-                                            ),
-                                          ])),
+                                      Flexible(
+                                        child: RichText(
+                                            text: TextSpan(children: [
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!.agree_msg,
+                                                style: TextStyle(
+                                                    fontSize: localHeight * 0.02,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                                    fontFamily: "Inter"),
+                                              ),
+                                              TextSpan(
+                                                text:
+                                                AppLocalizations.of(context)!.privacy_Policy,
+                                                recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
+                                                style: TextStyle(
+                                                    fontSize: localHeight * 0.020,
+                                                    fontWeight: FontWeight.w400,
+                                                    decoration: TextDecoration.underline,
+                                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                                    fontFamily: "Inter"),
+                                              ),
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!.and,
+                                                style: TextStyle(
+                                                    fontSize: localHeight * 0.020,
+                                                    fontWeight: FontWeight.w400,
+                                                    decoration: TextDecoration.underline,
+                                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                                    fontFamily: "Inter"),
+                                              ),
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!.terms,
+                                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                                                style: TextStyle(
+                                                    fontSize: localHeight * 0.020,
+                                                    fontWeight: FontWeight.w400,
+                                                    decoration: TextDecoration.underline,
+                                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                                    fontFamily: "Inter"),
+                                              ),
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!.services,
+                                                style: TextStyle(
+                                                    fontSize: localHeight * 0.020,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                                    fontFamily: "Inter"),
+                                              ),
+                                            ])),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1020,7 +1022,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 SizedBox(height: localHeight * 0.02),
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Transform.scale(
                                       filterQuality: FilterQuality.high,
@@ -1047,66 +1049,68 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       },
                                     )),
                                     SizedBox(width: localWidth * 0.015),
-                                    RichText(
-                                        text: TextSpan(children: [
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .agree_msg,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.018,
-                                                fontWeight: FontWeight.w400,
-                                                color: const Color.fromRGBO(
-                                                    51, 51, 51, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .privacy_Policy,
-                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.018,
-                                                fontWeight: FontWeight.w400,
-                                                decoration:
-                                                TextDecoration.underline,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!.and,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.018,
-                                                fontWeight: FontWeight.w400,
-                                                decoration:
-                                                TextDecoration.underline,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                            AppLocalizations.of(context)!.terms,
-                                            recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.018,
-                                                fontWeight: FontWeight.w400,
-                                                decoration:
-                                                TextDecoration.underline,
-                                                color: const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                          TextSpan(
-                                            text: AppLocalizations.of(context)!
-                                                .services,
-                                            style: TextStyle(
-                                                fontSize: localHeight * 0.018,
-                                                fontWeight: FontWeight.w400,
-                                                color: const Color.fromRGBO(
-                                                    51, 51, 51, 1),
-                                                fontFamily: "Inter"),
-                                          ),
-                                        ])),
+                                    Flexible(
+                                      child: RichText(
+                                          text: TextSpan(children: [
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .agree_msg,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.018,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: const Color.fromRGBO(
+                                                      51, 51, 51, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .privacy_Policy,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.018,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration:
+                                                  TextDecoration.underline,
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.and,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.018,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration:
+                                                  TextDecoration.underline,
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text:
+                                              AppLocalizations.of(context)!.terms,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.018,
+                                                  fontWeight: FontWeight.w400,
+                                                  decoration:
+                                                  TextDecoration.underline,
+                                                  color: const Color.fromRGBO(
+                                                      82, 165, 160, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!
+                                                  .services,
+                                              style: TextStyle(
+                                                  fontSize: localHeight * 0.018,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: const Color.fromRGBO(
+                                                      51, 51, 51, 1),
+                                                  fontFamily: "Inter"),
+                                            ),
+                                          ])),
+                                    ),
                                   ],
                                 ),
                                 SizedBox(height: localHeight * 0.02),

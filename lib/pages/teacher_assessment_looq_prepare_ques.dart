@@ -779,7 +779,57 @@ class TeacherAssessmentLooqPrepareQuesState
                                       ),
                                     ),
                                   ]),
-                              onPressed: () {}),
+                              onPressed: () {
+                                {
+                                  List<Choice> temp = [];
+                                  List<Choice> selectedTemp = [];
+                                  for (int i = 0;
+                                  i < chooses.length;
+                                  i++) {
+                                    if (radioList[i]) {
+                                      //selectedTemp.add(demoQuestionModel.choices![i]);
+                                    }
+                                    //temp.add(demoQuestionModel.choices![i]);
+                                  }
+                                  demoQuestionModel.subject =
+                                      subjectController.text;
+                                  demoQuestionModel.topic =
+                                      topicController.text;
+                                  demoQuestionModel.subTopic =
+                                      subtopicController.text;
+                                  demoQuestionModel.datumClass =
+                                      classRoomController.text;
+                                  demoQuestionModel.question =
+                                      questionController.text;
+                                  demoQuestionModel.questionType = 'MCQ';
+                                  demoQuestionModel.choices =
+                                      selectedTemp;
+                                  demoQuestionModel.advisorText =
+                                      adviceController.text;
+                                  demoQuestionModel.advisorUrl =
+                                      urlController.text;
+                                  demoQuestionModel.choices = temp;
+                                  //demoQuestionModel.questionId = ques!.length;
+
+                                  //---------**************Actual API Integration DATA-------------
+                                  finalQuestion.question =
+                                      questionController.text;
+                                  finalQuestion.advisorText =
+                                      adviceController.text;
+                                  finalQuestion.advisorUrl =
+                                      urlController.text;
+                                  finalQuestion.subject =
+                                      subjectController.text;
+                                  finalQuestion.topic =
+                                      topicController.text;
+                                  finalQuestion.subTopic =
+                                      subtopicController.text;
+                                  finalQuestion.datumClass =
+                                      classRoomController.text;
+                                  finalQuestion.choices = tempChoiceList;
+                                  showQuestionPreview(context);
+                                }
+                              }),
                         ),
                         SizedBox(height: height * 0.010),
                       ],

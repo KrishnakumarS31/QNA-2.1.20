@@ -5,7 +5,7 @@ import 'package:qna_test/EntityModel/create_question_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherSubmittedQuestionPreview extends StatefulWidget {
   const TeacherSubmittedQuestionPreview({
     Key? key,
@@ -336,7 +336,7 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                             Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
                           },
                           child: Text(
-                            'Finalize',
+                              AppLocalizations.of(context)!.finalize,
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",

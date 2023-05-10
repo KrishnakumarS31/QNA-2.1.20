@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/EntityModel/create_question_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Services/qna_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -341,7 +341,7 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             // });
                           },
                           child: Text(
-                            'Finalize',
+                            AppLocalizations.of(context)!.finalize,
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
