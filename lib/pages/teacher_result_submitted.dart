@@ -6,7 +6,7 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherResultSubmitted extends StatefulWidget {
   TeacherResultSubmitted({
     Key? key,
@@ -279,7 +279,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'SEMESTER (Section) ${widget.result.subTopic}',
+                                      '${AppLocalizations.of(context)!.sub_topic_optional} ${widget.result.subTopic}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),

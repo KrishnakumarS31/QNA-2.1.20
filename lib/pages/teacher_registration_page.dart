@@ -333,9 +333,11 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
               },
             ),
             centerTitle: true,
-            title: const Text(
-              "TEACHER REGISTRATION",
-              style: TextStyle(
+            title: Text(
+              AppLocalizations.of(context)!
+                  .teacher_reg_caps,
+              //"TEACHER REGISTRATION",
+              style: const TextStyle(
                 color: Color.fromRGBO(255, 255, 255, 1),
                 fontSize: 18.0,
                 fontFamily: "Inter",
@@ -422,7 +424,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Enter First Name';
+                                    return AppLocalizations.of(context)!
+                                        .enter_first_name;
+                                      //'Enter First Name';
                                   } else {
                                     return null;
                                   }
@@ -488,7 +492,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Enter Last Name';
+                                    return AppLocalizations.of(context)!
+                                          .enter_first_name;
+                                    //'Enter Last Name';
                                   } else {
                                     return null;
                                   }
@@ -589,7 +595,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return 'Enter Date Of Birth';
+                                      return  AppLocalizations.of(context)!
+                                          .enter_dob;
+                                        //'Enter Date Of Birth';
                                     } else {
                                       return null;
                                     }
@@ -609,7 +617,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                       const EdgeInsets.only(left: 5, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
-                                      //background color of dropdown button
                                       border: Border.all(
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
@@ -758,7 +765,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
                                                       localHeight * 0.016),
-                                              hintText: "Enter Country"),
+                                              hintText: AppLocalizations.of(context)!
+                                                  .enter_country,
+                                              //"Enter Country"
+                                          ),
                                           clearIconProperty: IconProperty(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 0.3)),
@@ -770,10 +780,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
                                                       localHeight * 0.016),
-                                              hintText: "Enter Country"),
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_country,
+                                            //"Enter Country"
+                                          ),
                                           validator: (value) {
                                             if (value == null) {
-                                              return "Required field";
+                                              return AppLocalizations.of(context)!.required_field;
+                                                //"Required field";
                                             } else {
                                               return null;
                                             }
@@ -801,7 +816,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                     child: RichText(
                                         text: TextSpan(children: [
                                       TextSpan(
-                                        text: "\tCOUNTRY CITIZEN",
+                                        text:
+                                            "\t ${AppLocalizations.of(context)!.country_citizen}",
+                                        //"\tCOUNTRY CITIZEN",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
@@ -870,10 +887,15 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                   fontWeight: FontWeight.w400,
                                                   fontSize:
                                                       localHeight * 0.016),
-                                              hintText: "Enter Country"),
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .enter_country
+                                              //"Enter Country"
+                                              ),
                                           validator: (value) {
                                             if (value == null) {
-                                              return "Required field";
+                                              return AppLocalizations.of(context)!.required_field;
+                                                //"Required field";
                                             } else {
                                               return null;
                                             }
@@ -909,7 +931,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                     child: RichText(
                                         text: TextSpan(children: [
                                       TextSpan(
-                                        text: '\tCOUNTRY RESIDENT',
+                                        text:
+                                        "\t ${AppLocalizations.of(context)!.country_resident}",
+                                        //'\tCOUNTRY RESIDENT',
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
                                                 102, 102, 102, 1),
@@ -962,7 +986,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                             fontWeight: FontWeight.w600,
                                             fontSize: localHeight * 0.018)),
                                   ])),
-                                  helperText: 'an OTP will be sent to Email ID',
+                                  helperText:
+                                  AppLocalizations.of(context)!.email_helper_text,
+                                  //'an OTP will be sent to Email ID',
                                   labelStyle: TextStyle(
                                       color:
                                           const Color.fromRGBO(51, 51, 51, 1),
@@ -1028,14 +1054,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           fontWeight: FontWeight.w600,
                                           fontSize: localHeight * 0.018),
                                     ),
-                                    // TextSpan(
-                                    //     text: "\t*",
-                                    //     style: TextStyle(
-                                    //         color: const Color.fromRGBO(
-                                    //             219, 35, 35, 1),
-                                    //         fontFamily: 'Inter',
-                                    //         fontWeight: FontWeight.w600,
-                                    //         fontSize: localHeight * 0.018)),
                                   ])),
                                   hintStyle: TextStyle(
                                       color: const Color.fromRGBO(
@@ -1043,7 +1061,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
                                       fontSize: localHeight * 0.016),
-                                  hintText: 'Registration ID',
+                                  hintText:
+                                  AppLocalizations.of(context)!.registration_id,
+                                  //'Registration ID',
                                   focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                           color:
@@ -1055,13 +1075,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 onChanged: (value) {
                                   formKey.currentState!.validate();
                                 },
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return 'Enter Roll Number';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
                               ),
                             ),
                             SizedBox(
@@ -1125,7 +1138,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 },
                                 validator: (value) {
                                   if (value!.isEmpty) {
-                                    return 'Enter Organization Name';
+                                    return  AppLocalizations.of(context)!.enter_org_name;
+                                      //'Enter Organization Name';
                                   } else {
                                     return null;
                                   }
@@ -1135,32 +1149,6 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             SizedBox(
                               height: localHeight * 0.02,
                             ),
-                            // Row(children: [
-                            //   Align(
-                            //     alignment: Alignment.centerLeft,
-                            //     child: Checkbox(
-                            //       shape: RoundedRectangleBorder(
-                            //           borderRadius: BorderRadius.circular(10)),
-                            //       value: tocCheck,
-                            //       onChanged: (val) {
-                            //         setState(() {
-                            //           tocCheck = val!;
-                            //           if (tocCheck) {
-                            //             also = true;
-                            //           }
-                            //         });
-                            //       },
-                            //     ),
-                            //   ),
-                            //   const Text(
-                            //     'Register me also as STUDENT',
-                            //     style: TextStyle(
-                            //         fontSize: 17.0,
-                            //         fontWeight: FontWeight.w600,
-                            //         color: Color.fromRGBO(102, 102, 102, 1),
-                            //         fontFamily: "Inter"),
-                            //   ),
-                            // ]),
                             Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -1224,7 +1212,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 },
                                 validator: (value) {
                                   if (value!.length < 8) {
-                                    return "Enter Minimum 8 Characters";
+                                    return AppLocalizations.of(context)!.minimum_8_char;
+                                      //"Enter Minimum 8 Characters";
                                   } else {
                                     return null;
                                   }
@@ -1285,9 +1274,12 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 validator: (value) {
                                   if (teacherPasswordController.text !=
                                       teacherconfirmPasswordController.text) {
-                                    return 'Re-enter exact same password';
+                                    return
+                                      AppLocalizations.of(context)!.re_enter_password;
+                                    //'Re-enter exact same password';
                                   } else if (value!.isEmpty) {
-                                    return 'Re-enter exact same password';
+                                    return AppLocalizations.of(context)!.re_enter_password;
+                                    //'Re-enter exact same password';
                                   } else {
                                     return null;
                                   }
@@ -1343,7 +1335,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 style:  TextStyle(
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(51, 51, 51, 1),
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
@@ -1353,7 +1345,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
                                     decoration: TextDecoration.underline,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
@@ -1362,7 +1354,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
                                     decoration: TextDecoration.underline,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
@@ -1371,7 +1363,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
                                     decoration: TextDecoration.underline,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
@@ -1379,7 +1371,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 style:  TextStyle(
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
-                                    color: Color.fromRGBO(51, 51, 51, 1),
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: "Inter"),
                               ),
                             ])),
@@ -1441,7 +1433,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: CustomDialog(
-                                  title: 'Incorrect Data',
+                                  title: AppLocalizations.of(context)!.alert_popup,
+                                  //'Incorrect Data',
                                   content: '${res.message}',
                                   button: AppLocalizations.of(context)!.retry,
                                 ),
@@ -1465,7 +1458,8 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                         }
                         },
                       child: Text(
-                        'Send OTP',
+                          AppLocalizations.of(context)!.send_otp,
+                          //'Send OTP',
                         style: TextStyle(
                             fontSize: localHeight * 0.024,
                             fontFamily: "Inter",

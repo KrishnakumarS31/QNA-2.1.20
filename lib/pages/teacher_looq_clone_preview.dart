@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 
 class TeacherLooqClonePreview extends StatefulWidget {
@@ -56,7 +56,8 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "PREPARE QUESTION",
+                      AppLocalizations.of(context)!.prepare_qn_title,
+                      //"PREPARE QUESTION",
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0225,
@@ -192,7 +193,9 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                           padding: EdgeInsets.only(left: width * 0.03),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Advisor",
+                            child: Text(
+                                AppLocalizations.of(context)!.advisor,
+                                //"Advisor",
                                 style: TextStyle(
                                     color:
                                         const Color.fromRGBO(82, 165, 160, 1),
@@ -210,7 +213,8 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
                                 labelText:
-                                    'Suggest what to study if answered incorrectly ',
+                                AppLocalizations.of(context)!.suggest_study,
+                                //'Suggest what to study if answered incorrectly ',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -229,7 +233,8 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                             enabled: false,
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
-                                labelText: 'URL - Any reference (Optional)',
+                                labelText: AppLocalizations.of(context)!.url_reference,
+                                //'URL - Any reference (Optional)',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -255,18 +260,10 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                                 '/looqQuestionEdit',
                                 arguments: widget.question,
                             );
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: LooqQuestionEdit(
-                            //         question: widget.question,
-                            //         ),
-                            //   ),
-                            // );
                           },
                           child: Text(
-                            'Clone',
+                            AppLocalizations.of(context)!.clone_qn,
+                           // 'Clone',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -287,17 +284,11 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
                             ),
                           ),
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child:  const TeacherAddMyQuestionBank(),
-                            //   ),
-                            // );
                             Navigator.of(context).pop();
                           },
                           child: Text(
-                            'Back',
+                            AppLocalizations.of(context)!.back,
+                            //'Back',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",

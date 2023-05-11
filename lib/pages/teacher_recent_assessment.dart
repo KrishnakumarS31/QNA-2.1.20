@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/edit_assessment_provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherRecentAssessment extends StatefulWidget {
   TeacherRecentAssessment(
       {Key? key, required this.finalAssessment,required this.assessmentType})
@@ -77,7 +77,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "IN PROGRESS",
+                    AppLocalizations.of(context)!.in_progress_caps,
+                    //"IN PROGRESS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -86,7 +87,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                     ),
                   ),
                   Text(
-                    "ASSESSMENTS",
+                    AppLocalizations.of(context)!.assessment_id_caps,
+                    //"ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -218,7 +220,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                         ),
                                       ),
                                       Text(
-                                        "Marks",
+                                        AppLocalizations.of(context)!.marks,
+                                        //"Marks",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -253,7 +256,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                         ),
                                       ),
                                       Text(
-                                        "Questions",
+                                        AppLocalizations.of(context)!.qn_button,
+                                        //"Questions",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -279,7 +283,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Assessment ID:",
+                            AppLocalizations.of(context)!.assessment_id_caps,
+                            //"Assessment ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -296,12 +301,6 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w700,
                           ),
-                          // style: TextStyle(
-                          //   color: const Color.fromRGBO(153, 153, 153, 1),
-                          //   fontSize: height * 0.0175,
-                          //   fontFamily: "Inter",
-                          //   fontWeight: FontWeight.w400,
-                          // ),
                         ),
                       ],
                     ),
@@ -313,7 +312,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Institute Test ID:",
+                            AppLocalizations.of(context)!.institute_test_id_small,
+                            //"Institute Test ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -345,7 +345,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Time Permitted:",
+                            AppLocalizations.of(context)!.time_permitted,
+                            //"Time Permitted:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -375,7 +376,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Start Date & Time:",
+                            "${AppLocalizations.of(context)!.start_date_time} : ",
+                            //"Start Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -413,7 +415,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "End Date & Time:",
+                            "${AppLocalizations.of(context)!.end_date_time} : ",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -456,7 +458,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Additional Details",
+                              AppLocalizations.of(context)!.additional_details,
+                              //"Additional Details",
                               style: TextStyle(
                                 color: const Color.fromRGBO(
                                     255, 255, 255, 1),
@@ -497,7 +500,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Additional Details",
+                              AppLocalizations.of(context)!.additional_details,
+                              //"Additional Details",
                               style: TextStyle(
                                 color: const Color.fromRGBO(
                                     255, 255, 255, 1),
@@ -534,7 +538,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Category",
+                                AppLocalizations.of(context)!.category,
+                                //"Category",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -564,7 +569,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Retries",
+                                AppLocalizations.of(context)!.retries,
+                                // "Retries",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -578,8 +584,10 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                               finalAssessment.assessmentSettings
                                   ?.allowedNumberOfTestRetries !=
                                   null
-                                  ? "Allowed (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries} Times)"
-                                  : "Not Allowed",
+                                  ? "${AppLocalizations.of(context)!.allowed}(${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries} Times)"
+                              //"Allowed (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries} Times)"
+                                  : AppLocalizations.of(context)!.not_allowed,
+                              //"Not Allowed",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -598,7 +606,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Guest",
+                                AppLocalizations.of(context)!.guest,
+                                // "Guest",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -611,11 +620,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             Text(
                               assessment.assessmentSettings?.allowGuestStudent ==
                                   null
-                                  ? "Not Allowed"
+                                  ? AppLocalizations.of(context)!.not_allowed
+                              //"Not Allowed"
                                   : assessment
                                   .assessmentSettings!.allowGuestStudent!
-                                  ? "Allowed"
-                                  : "Not Allowed",
+                                  ? AppLocalizations.of(context)!.allowed
+                              //"Allowed"
+                                  : AppLocalizations.of(context)!.not_allowed,
+                              //"Not Allowed",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -634,7 +646,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Answer Sheet",
+                                  AppLocalizations.of(context)!.answer_sheet,
+                                //"Answer Sheet",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -648,11 +661,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                               assessment.assessmentSettings
                                   ?.showSolvedAnswerSheetInAdvisor ==
                                   null
-                                  ? "Not Viewable"
+                                  ? AppLocalizations.of(context)!.not_viewable
+                              //"Not Viewable"
                                   : assessment.assessmentSettings!
                                   .showSolvedAnswerSheetInAdvisor!
-                                  ? "Viewable"
-                                  : "Not Viewable",
+                                  ? AppLocalizations.of(context)!.viewable
+                              //"Viewable"
+                                  : AppLocalizations.of(context)!.not_viewable,
+                              //"Not Viewable",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -671,7 +687,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Advisor",
+                                  AppLocalizations.of(context)!.advisor,
+                                //"Advisor",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -684,11 +701,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             Text(
                               assessment.assessmentSettings?.showAdvisorName ==
                                   null
-                                  ? "No"
+                                  ? AppLocalizations.of(context)!.no
+                              //"No"
                                   : assessment
                                   .assessmentSettings!.showAdvisorName!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+                              //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+                              //"No",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -707,7 +727,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Email",
+                                  AppLocalizations.of(context)!.email_small,
+                                //"Email",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -720,11 +741,14 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             Text(
                               assessment.assessmentSettings?.showAdvisorEmail ==
                                   null
-                                  ? "No"
+                                  ? AppLocalizations.of(context)!.no
+                              //"No"
                                   : assessment
                                   .assessmentSettings!.showAdvisorEmail!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+                              //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+                              //"No",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -743,7 +767,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             SizedBox(
                               width: width * 0.4,
                               child: Text(
-                                "Inactive",
+                                AppLocalizations.of(context)!.in_active,
+                                //"Inactive",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(
                                       102, 102, 102, 1),
@@ -755,10 +780,13 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                             ),
                             Text(
                               assessment.assessmentSettings?.notAvailable == null
-                                  ? "No"
+                                  ? AppLocalizations.of(context)!.no
+                              //"No"
                                   : assessment.assessmentSettings!.notAvailable!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+                              //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+                              //"No",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -793,7 +821,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Questions",
+                              AppLocalizations.of(context)!.qn_button,
+                              //"Questions",
                               style: TextStyle(
                                 color: const Color.fromRGBO(
                                     255, 255, 255, 1),
@@ -834,7 +863,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                           MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Questions",
+                              AppLocalizations.of(context)!.qn_button,
+                              //"Questions",
                               style: TextStyle(
                                 color: const Color.fromRGBO(
                                     255, 255, 255, 1),
@@ -887,7 +917,8 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                         children: [
                           const Expanded(child: Divider()),
                           Text(
-                            "  View All Questions  ",
+                            AppLocalizations.of(context)!.view_all_qns,
+                            //"  View All Questions  ",
                             style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
                               fontSize: height * 0.02,
@@ -906,82 +937,82 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                     SizedBox(
                       height: height * 0.02,
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              right: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "WEB",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: height * 0.08,
-                            width: width * 0.3,
-                            child: Center(
-                              child: Text(
-                                "Android App",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: const Color.fromRGBO(153, 153, 153, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "IOS App",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: height * 0.08,
+                    //       width: width * 0.28,
+                    //       decoration: const BoxDecoration(
+                    //         border: Border(
+                    //           right: BorderSide(
+                    //             width: 1,
+                    //             color: Color.fromRGBO(232, 232, 232, 1),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "WEB",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             color: const Color.fromRGBO(153, 153, 153, 1),
+                    //             fontSize: height * 0.015,
+                    //             fontFamily: "Inter",
+                    //             fontWeight: FontWeight.w400,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: SizedBox(
+                    //         height: height * 0.08,
+                    //         width: width * 0.3,
+                    //         child: Center(
+                    //           child: Text(
+                    //             "Android App",
+                    //             textAlign: TextAlign.center,
+                    //             style: TextStyle(
+                    //               decoration: TextDecoration.underline,
+                    //               color: const Color.fromRGBO(153, 153, 153, 1),
+                    //               fontSize: height * 0.015,
+                    //               fontFamily: "Inter",
+                    //               fontWeight: FontWeight.w400,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       height: height * 0.08,
+                    //       width: width * 0.28,
+                    //       decoration: const BoxDecoration(
+                    //         border: Border(
+                    //           left: BorderSide(
+                    //             width: 1,
+                    //             color: Color.fromRGBO(232, 232, 232, 1),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "IOS App",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             color: const Color.fromRGBO(153, 153, 153, 1),
+                    //             fontSize: height * 0.015,
+                    //             fontFamily: "Inter",
+                    //             fontWeight: FontWeight.w400,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: height * 0.03,
+                    // ),
                     Center(
                       child: SizedBox(
                         width: width * 0.888,
@@ -998,17 +1029,10 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                               )),
                           onPressed: () {
                             Navigator.pushNamed(context, '/teacherAssessmentSummary',arguments: widget.assessmentType);
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: TeacherAssessmentSummary(
-                            //         ),
-                            //   ),
-                            // );
                           },
                           child: Text(
-                            'Edit',
+                            AppLocalizations.of(context)!.edit_button,
+                            //'Edit',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -1038,7 +1062,7 @@ class QuestionWidget extends StatefulWidget {
       : super(key: key);
 
   final double height;
-  Question.Question question;
+  questions.Question question;
   CreateAssessmentModel assessment;
   int index;
 
@@ -1114,7 +1138,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   Row(
                     children: [
                       Text(
-                        "Marks: ",
+                        AppLocalizations.of(context)!.marks_small,
+                        // "Marks: ",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: widget.height * 0.015,

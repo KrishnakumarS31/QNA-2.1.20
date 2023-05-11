@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   const TeacherQuestionPreviewDelete(
@@ -46,58 +47,6 @@ class TeacherQuestionPreviewDeleteState
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            // appBar: AppBar(
-            //   actions: [
-            //     Padding(
-            //       padding: const EdgeInsets.only(right: 10),
-            //       child: IconButton(
-            //         icon: const Icon(
-            //           Icons.menu,
-            //           size: 40.0,
-            //           color: Colors.white,
-            //         ),
-            //         onPressed: () {
-            //           Navigator.of(context).pop();
-            //         },
-            //       ),
-            //     ),
-            //   ],
-            //   leading: IconButton(
-            //     icon: const Icon(
-            //       Icons.chevron_left,
-            //       size: 40.0,
-            //       color: Colors.white,
-            //     ),
-            //     onPressed: () {
-            //       Navigator.of(context).pop();
-            //     },
-            //   ),
-            //   toolbarHeight: height * 0.100,
-            //   centerTitle: true,
-            //   title: Column(
-            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //       children: [
-            //         Text(
-            //           "PREPARE QUESTION",
-            //           style: TextStyle(
-            //             color: const Color.fromRGBO(255, 255, 255, 1),
-            //             fontSize: height * 0.0225,
-            //             fontFamily: "Inter",
-            //             fontWeight: FontWeight.w400,
-            //           ),
-            //         ),
-            //       ]),
-            //   flexibleSpace: Container(
-            //     decoration: const BoxDecoration(
-            //         gradient: LinearGradient(
-            //             end: Alignment.bottomCenter,
-            //             begin: Alignment.topCenter,
-            //             colors: [
-            //               Color.fromRGBO(0, 106, 100, 1),
-            //               Color.fromRGBO(82, 165, 160, 1),
-            //             ])),
-            //   ),
-            // ),
             body: Center(
               child: SizedBox(
                 height: height * 0.85,
@@ -113,11 +62,9 @@ class TeacherQuestionPreviewDeleteState
                         right: width * 0.030,
                         bottom: height * 0.015,
                         top: height * 0.025),
-                    //padding: const EdgeInsets.all(40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        //ChooseWidget(question: question, selected: selected, height: height, width: width),
                         Padding(
                           padding: EdgeInsets.only(
                               left: width * 0.03, top: height * 0.02),
@@ -156,7 +103,7 @@ class TeacherQuestionPreviewDeleteState
                         SizedBox(
                           height: height * 0.03,
                         ),
-                        widget.question.questionType=='Descripitive'?const SizedBox(height: 0,):
+                        widget.question.questionType=='Descriptive'?const SizedBox(height: 0,):
                         SizedBox(
                           height: height * 0.25,
                           child: SingleChildScrollView(
@@ -175,7 +122,9 @@ class TeacherQuestionPreviewDeleteState
                           padding: EdgeInsets.only(left: width * 0.03),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Advisor",
+                            child: Text(
+                                AppLocalizations.of(context)!.advisor,
+                              //"Advisor",
                                 style: TextStyle(
                                     color:
                                     const Color.fromRGBO(82, 165, 160, 1),
@@ -193,7 +142,8 @@ class TeacherQuestionPreviewDeleteState
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
                                 labelText:
-                                'Suggest what to study if answered incorrectly ',
+                                AppLocalizations.of(context)!.suggest_study,
+                                //'Suggest what to study if answered incorrectly ',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -212,7 +162,9 @@ class TeacherQuestionPreviewDeleteState
                             enabled: false,
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
-                                labelText: 'URL - Any reference (Optional)',
+                                labelText:
+                                AppLocalizations.of(context)!.url_reference,
+                                //'URL - Any reference (Optional)',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -232,26 +184,16 @@ class TeacherQuestionPreviewDeleteState
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          //shape: StadiumBorder(),
                           onPressed: () {
                             Navigator.pushNamed(
                                 context,
                                 '/preparePreviewQnBank',
                                 arguments: [widget.question,]
                             );
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: PreparePreviewQnBank(
-                            //         finalQuestion: widget.question,
-                            //         question: ques,
-                            //         ),
-                            //   ),
-                            // );
                           },
                           child: Text(
-                            'Edit',
+                            AppLocalizations.of(context)!.edit_button,
+                            //'Edit',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -271,7 +213,6 @@ class TeacherQuestionPreviewDeleteState
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          //shape: StadiumBorder(),
                           onPressed: () {
                             Provider.of<QuestionPrepareProviderFinal>(context,
                                 listen: false)
@@ -281,18 +222,10 @@ class TeacherQuestionPreviewDeleteState
                               '/teacherMyQuestionBank',
                               arguments: widget.assessment,
                             );
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: TeacherMyQuestionBank(
-                            //         assessment: widget.assessment,
-                            //         ),
-                            //   ),
-                            // );
                           },
                           child: Text(
-                            'Delete',
+                            AppLocalizations.of(context)!.delete,
+                            // 'Delete',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",

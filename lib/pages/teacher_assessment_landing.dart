@@ -6,9 +6,8 @@ import 'package:qna_test/Providers/new_question_provider.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/question_entity.dart' as Questions;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../EntityModel/user_data_model.dart';
 import '../Providers/create_assessment_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Providers/edit_assessment_provider.dart';
@@ -246,7 +245,6 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   getQuestionData() async {
     ResponseEntity response =
     await QnaService.getAllAssessment(10, pageLimit, searchVal);
-    print(response.data);
     if(response.data!=null){
       allAssessment = List<GetAssessmentModel>.from(
           response.data.map((x) => GetAssessmentModel.fromJson(x)));
@@ -257,10 +255,12 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title: 'Alert',
-            content: 'No more assessments found.',
-            button:
-            "Retry",
+            title: AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content: AppLocalizations.of(context)!.no_more_assessment,
+            //'No more assessments found.',
+            button: AppLocalizations.of(context)!.alert_popup
+           // "Retry",
           ),
         ),
       );
@@ -557,7 +557,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         SizedBox(height: height * 0.04),
                         Center(
                           child: Text(
-                            'NO ASSESSMENT FOUND',
+                            AppLocalizations.of(context)!.no_assessment_found_caps,
+                            //'NO ASSESSMENT FOUND',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -1205,13 +1206,13 @@ class _CardInfoState extends State<CardInfo> {
   @override
   void initState() {
     // TODO: implement initState
-    getdate();
+    getDate();
     super.initState();
   }
-  getdate(){
+  getDate(){
     setState(() {
-      DateTime tsdate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
-      datetime = "${tsdate.day}/${tsdate.month}/${tsdate.year}";
+      DateTime tsDate = DateTime.fromMicrosecondsSinceEpoch(widget.assessment.assessmentStartdate!);
+      datetime = "${tsDate.day}/${tsDate.month}/${tsDate.year}";
     });
   }
   @override
@@ -1270,17 +1271,6 @@ class _CardInfoState extends State<CardInfo> {
                       .updateAssessment(editAssessment);
                   Navigator.pushNamed(context, '/teacherRecentAssessment',
                       arguments: [editAssessment,'inprogress']);
-
-
-                  // Navigator.push(
-                  //   context,
-                  //   PageTransition(
-                  //     type: PageTransitionType.rightToLeft,
-                  //     child: TeacherRecentAssessment(
-                  //       finalAssessment: editAssessment,
-                  //     ),
-                  //   ),
-                  // );
                 }
                 else if (widget.assessment.assessmentStatus == 'active') {
                   SharedPreferences loginData = await SharedPreferences.getInstance();
@@ -1323,7 +1313,7 @@ class _CardInfoState extends State<CardInfo> {
                   }
                   else {
                     for (int i = 0; i < widget.assessment.questions!.length; i++) {
-                      Questions.Question question = Questions.Question();
+                      questions.Question question = questions.Question();
                       question = widget.assessment.questions![i];
                       editAssessment.addQuestion?.add(question);
                       Provider.of<QuestionPrepareProviderFinal>(context,
@@ -1335,27 +1325,60 @@ class _CardInfoState extends State<CardInfo> {
                   Provider.of<CreateAssessmentProvider>(context, listen: false)
                       .updateAssessment(editAssessment);
                   Navigator.pushNamed(context, '/teacherActiveAssessment',arguments: [widget.assessment,'myAssessment']);
-
-
-                  // Navigator.push(
-                  //   context,
-                  //   PageTransition(
-                  //     type: PageTransitionType.rightToLeft,
-                  //     child: TeacherActiveAssessment(
-                  //       assessment: assessment,
-                  //     ),
-                  //   ),
-                  // );
                 }
                 else {
+                  SharedPreferences loginData = await SharedPreferences.getInstance();
+                  CreateAssessmentModel editAssessment = CreateAssessmentModel(
+                      questions: [], removeQuestions: [], addQuestion: []);
+                  editAssessment.userId = loginData.getInt('userId');
+                  editAssessment.subject = widget.assessment.subject;
+                  editAssessment.assessmentId=widget.assessment.assessmentId;
+                  editAssessment.assessmentCode=widget.assessment.assessmentCode;
+                  editAssessment.assessmentType =
+                      widget.assessment.assessmentType ?? 'Not Mentioned';
+                  editAssessment.createAssessmentModelClass =
+                      widget.assessment.getAssessmentModelClass;
+                  widget.assessment.topic == null
+                      ? 0
+                      : editAssessment.topic = widget.assessment.topic;
+                  widget.assessment.subTopic == null
+                      ? 0
+                      : editAssessment.subTopic = widget.assessment.subTopic;
+                  widget.assessment.totalScore == null
+                      ? 0
+                      : editAssessment.totalScore = widget.assessment.totalScore;
+                  widget.assessment.questions!.isEmpty
+                      ? 0
+                      : editAssessment.totalQuestions = widget.assessment.questions!.length;
+                  widget.assessment.assessmentDuration == null
+                      ? ''
+                      : editAssessment.totalScore = widget.assessment.totalScore;
+                  widget.assessment.assessmentStartdate == null
+                      ? 0
+                      : editAssessment.assessmentStartdate = widget.assessment.assessmentStartdate;
+                  widget.assessment.assessmentDuration == null
+                      ? 0
+                      : editAssessment.assessmentDuration = widget.assessment.assessmentDuration;
+                  widget.assessment.assessmentEnddate == null
+                      ? ''
+                      : editAssessment.assessmentEnddate = widget.assessment.assessmentEnddate;
+                  editAssessment.assessmentSettings=widget.assessment.assessmentSettings;
+                  if (widget.assessment.questions!.isEmpty) {
+                  }
+                  else {
+                    for (int i = 0; i < widget.assessment.questions!.length; i++) {
+                      questions.Question question = questions.Question();
+                      question = widget.assessment.questions![i];
+                      editAssessment.addQuestion?.add(question);
+                      Provider.of<QuestionPrepareProviderFinal>(context,
+                          listen: false)
+                          .addQuestion(widget.assessment.questions![i]);
+                    }
+                  }
+
+                  Provider.of<CreateAssessmentProvider>(context, listen: false)
+                      .updateAssessment(editAssessment);
                   Navigator.pushNamed(context, '/teacherInactiveAssessment');
-                  // Navigator.push(
-                  //   context,
-                  //   PageTransition(
-                  //     type: PageTransitionType.rightToLeft,
-                  //     child: TeacherInactiveAssessment(),
-                  //   ),
-                  // );
                 }
               },
               child: Container(

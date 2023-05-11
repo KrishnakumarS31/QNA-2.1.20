@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
-//AppLocalizations.of(context)!.agree_privacy_terms
 class TeacherForgotPasswordEmail extends StatefulWidget {
   const TeacherForgotPasswordEmail({
     Key? key,
@@ -210,9 +209,6 @@ class TeacherForgotPasswordEmailState
   }
 
   showAlertDialog(double height) {
-    // set up the button
-    //double height = MediaQuery.of(context).size.height;
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -225,7 +221,8 @@ class TeacherForgotPasswordEmailState
             width: height * 0.002,
           ),
           Text(
-            "OTP Sent!",
+            AppLocalizations.of(context)!.otp_sent,
+            //"OTP Sent!",
             style: TextStyle(
                 color: const Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
@@ -235,7 +232,8 @@ class TeacherForgotPasswordEmailState
         ],
       ),
       content: Text(
-        "If this email ID is registered with us you will receive OTP",
+        AppLocalizations.of(context)!.receive_otp,
+        //"If this email ID is registered with us you will receive OTP",
         style: TextStyle(
             color: const Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',
@@ -245,7 +243,8 @@ class TeacherForgotPasswordEmailState
       actions: [
         TextButton(
           child: Text(
-            "Enter OTP",
+            AppLocalizations.of(context)!.enter_otp,
+            //"Enter OTP",
             style: TextStyle(
                 color: const Color.fromRGBO(48, 145, 139, 1),
                 fontFamily: 'Inter',
@@ -258,20 +257,10 @@ class TeacherForgotPasswordEmailState
                 '/teacherVerifyOtpPage',
                 arguments: _controller.text
             );
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //     type: PageTransitionType.rightToLeft,
-            //     child: TeacherVerifyOtpPage(
-            //         email: _controller.text,),
-            //   ),
-            // );
           },
         )
       ],
     );
-
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {

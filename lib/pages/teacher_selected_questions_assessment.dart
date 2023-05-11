@@ -876,7 +876,7 @@ class TeacherSelectedQuestionAssessmentState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'SEMESTER (Section): ${assessment.subTopic}',
+                                '${AppLocalizations.of(context)!.sub_topic_optional} : ${assessment.subTopic}',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",

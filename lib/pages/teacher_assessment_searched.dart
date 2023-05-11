@@ -12,7 +12,7 @@ import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import '../Entity/Teacher/question_entity.dart' as Questions;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Services/qna_service.dart';
 
 class TeacherAssessmentSearched extends StatefulWidget {
@@ -132,8 +132,12 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title: 'Alert',
-            content: 'No more assessment are found.',
+            title:
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content:
+            AppLocalizations.of(context)!.alert_popup,
+            //'No more assessment are found.',
             button: AppLocalizations.of(context)!.retry,
           ),
         ),
@@ -222,7 +226,6 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    //SizedBox(height: height * 0.005),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -236,40 +239,6 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
-                        //     Checkbox(
-                        //       activeColor:
-                        //           const Color.fromRGBO(82, 165, 160, 1),
-                        //       fillColor:
-                        //           MaterialStateProperty.resolveWith<Color>(
-                        //               (states) {
-                        //         if (states.contains(MaterialState.selected)) {
-                        //           return const Color.fromRGBO(
-                        //               82, 165, 160, 1); // Disabled color
-                        //         }
-                        //         return const Color.fromRGBO(
-                        //             82, 165, 160, 1); // Regular color
-                        //       }),
-                        //       value: agree,
-                        //       onChanged: (val) {
-                        //         setState(() {
-                        //           agree = val!;
-                        //           if (agree) {}
-                        //         });
-                        //       },
-                        //     ),
-                        //     SizedBox(
-                        //       width: width * 0.01,
-                        //     ),
-                        //     Text(
-                        //       'Only My Assessments',
-                        //       textAlign: TextAlign.left,
-                        //       style: TextStyle(fontSize: height * 0.015),
-                        //     )
-                        //   ],
-                        // )
                       ],
                     ),
                     SizedBox(height: height * 0.02),
@@ -376,7 +345,8 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                         SizedBox(height: height * 0.04),
                         Center(
                           child: Text(
-                            'NO ASSESSMENT FOUND',
+                            AppLocalizations.of(context)!.no_assessment_found_caps,
+                            //'NO ASSESSMENT FOUND',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -400,8 +370,11 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: CustomDialog(
-                                  title: 'Alert',
-                                  content: 'No Assessment Found.',
+                                  title:
+                                  AppLocalizations.of(context)!.alert_popup,
+                                  //'Alert',
+                                  content: AppLocalizations.of(context)!.no_more_assessment,
+                                  //'No Assessment Found.',
                                   button: AppLocalizations.of(context)!.retry,
                                 ),
                               ),
@@ -490,7 +463,7 @@ class CardInfo extends StatelessWidget {
               if (assessment.questions!.isEmpty) {
               } else {
                 for (int i = 0; i < assessment.questions!.length; i++) {
-                  Questions.Question question = Questions.Question();
+                  questions.Question question = questions.Question();
                   question = assessment.questions![i];
                   editAssessment.addQuestion?.add(question);
                   Provider.of<QuestionPrepareProviderFinal>(context,

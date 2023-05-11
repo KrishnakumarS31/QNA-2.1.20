@@ -36,14 +36,14 @@ class TeacherLoginState extends State<TeacherLogin> {
   Future<void> _launchUrlTerms() async {
     final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
     if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
     }
   }
 
   Future<void> _launchUrlPrivacy() async {
     final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
     if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
     }
   }
 
@@ -52,7 +52,7 @@ class TeacherLoginState extends State<TeacherLogin> {
     super.initState();
   }
 
-  void check_if_alread_loggedin() async {
+  void checkLogin() async {
     loginData = await SharedPreferences.getInstance();
     newUser = (loginData?.getBool('login') ?? true);
     if (newUser == false && loginData?.getString('role') == 'teacher') {
@@ -75,18 +75,6 @@ class TeacherLoginState extends State<TeacherLogin> {
         emailController.clear();
         passwordController.clear();
       });
-      // Navigator.push(
-      //   context,
-      //   PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     child: TeacherSelectionPage(
-      //       userData: userDataModel,
-      //     ),
-      //   ),
-      // ).then((value) {
-      //   emailController.clear();
-      //   passwordController.clear();
-      // });
     }
   }
 
@@ -152,24 +140,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 width: width * 0.45,
                                 child:
                                     Image.asset("assets/images/qna_logo.png")),
-                            // Container(
-                            //   padding: const EdgeInsets.all(0.0),
-                            //   height: height * 0.2,
-                            //   width: width * 0.45,
-                            //   child: Image.asset(
-                            //       "assets/images/qna_logo.png"),
-                            // ),
                           ),
-                          // Align(
-                          //   alignment: Alignment.topCenter,
-                          //   child: Container(
-                          //     padding: const EdgeInsets.all(0.0),
-                          //     height: height * 0.16,
-                          //     width: width * 0.30,
-                          //     child: Image.asset(
-                          //         "assets/images/question_mark_logo.png"),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
@@ -341,15 +312,6 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     '/forgotPasswordEmail',
                                     arguments: false
                                 );
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: ForgotPasswordEmail(
-                                //         isFromStudent: false,
-                                //         ),
-                                //   ),
-                                // );
                               },
                               child: Align(
                                 alignment: Alignment.centerRight,
@@ -543,18 +505,6 @@ class TeacherLoginState extends State<TeacherLogin> {
                                   emailController.clear();
                                   passwordController.clear();
                                 });
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: TeacherSelectionPage(
-                                //       userData: userDataModel,
-                                //     ),
-                                //   ),
-                                // ).then((value) {
-                                //   emailController.clear();
-                                //   passwordController.clear();
-                                // });
                               }
                             } else if (loginResponse.code == 400) {
                               Navigator.push(
@@ -621,13 +571,6 @@ class TeacherLoginState extends State<TeacherLogin> {
                           ),
                           onPressed: () {
                             Navigator.pushNamed(context, '/teacherRegistrationPage');
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: const TeacherRegistrationPage(),
-                            //   ),
-                            // );
                           },
                         ),
                         MouseRegion(
@@ -635,13 +578,6 @@ class TeacherLoginState extends State<TeacherLogin> {
                             child: GestureDetector(
                           onTap: () {
                             Navigator.pushNamed(context, '/teacherRegistrationPage');
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: const TeacherRegistrationPage(),
-                            //   ),
-                            // );
                           },
                           child: Text(AppLocalizations.of(context)!.register,
                               style: Theme.of(context)

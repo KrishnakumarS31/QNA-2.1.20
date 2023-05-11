@@ -40,7 +40,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
-      if(value=='Descripitive'){
+      if(value=='Descriptive'){
         showAlertDialogDes(context,height,value);
       }
       else{
@@ -50,7 +50,6 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   }
 
   showAlertDialogDes(BuildContext context, double height,String? value) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -61,7 +60,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -82,7 +82,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //  'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -96,13 +97,11 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
           tempChoiceId.clear();
           questionController.text='';
           _groupValue = value!;
-
           selected?.clear();
         });
         Navigator.pop(context);
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -111,7 +110,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Alert',
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -121,7 +121,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         ],
       ),
       content: Text(
-        'Are you sure you want to clear this Question and Choices?',
+        AppLocalizations.of(context)!.want_to_clear_qn,
+        //'Are you sure you want to clear this Question and Choices?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -133,7 +134,6 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         continueButton,
       ],
     );
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -145,16 +145,13 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   List<int> tempChoiceId = [];
   EditQuestionModel editQuestion =
   EditQuestionModel(editChoices: [], addChoices: [], removeChoices: []);
-
   final List<TextEditingController> chooses = [];
   final List<bool> radioList = [];
   final _formKey = GlobalKey<FormState>();
-
   List<int> editChoiceId = [];
   List<int> addChoiceId = [];
   AddChoice addChoice = AddChoice();
   int tempAddChoiceId = -100;
-
   _onRadioChange(int key) {
     setState(() {
       radioList[key] = !radioList[key];
@@ -233,7 +230,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         editQuestion.advisorUrl = widget.question.advisorUrl;
         editQuestion.advisorText = widget.question.advisorText;
         editQuestion.questionType=widget.question.questionType;
-        if(widget.question.questionType=="Descripitive"){
+        if(widget.question.questionType=="Descriptive"){
           editQuestion.addChoices=[];
           editQuestion.editChoices=[];
         }
@@ -246,7 +243,6 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
   }
 
   showAlertDialog(BuildContext context, double height) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -257,7 +253,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -278,7 +275,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        // 'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -297,7 +295,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             PageTransition(
               type: PageTransitionType.rightToLeft,
               child: CustomDialog(
-                title: "OOPS!",
+                title: AppLocalizations.of(context)!.alert_popup,
+                //"OOPS!",
                 content:
                 statusCode.message!,
                 //'please enter the correct password',
@@ -310,7 +309,6 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         }
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -319,7 +317,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Confirm',
+            AppLocalizations.of(context)!.confirm,
+            // 'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -329,7 +328,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
         ],
       ),
       content: Text(
-        'Are you sure you want to delete this Question?',
+        AppLocalizations.of(context)!.want_to_del_qn,
+        //'Are you sure you want to delete this Question?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -379,7 +379,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            "EDIT QUESTION",
+                            AppLocalizations.of(context)!.edit_qn_caps,
+                            // "EDIT QUESTION",
                             style: TextStyle(
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: height * 0.0225,
@@ -435,7 +436,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 ),
                                 MyRadioOption<String>(
                                   icon: Icons.library_books_sharp,
-                                  value: 'Descripitive',
+                                  value: 'Descriptive',
                                   groupValue: _groupValue,
                                   onChanged: _valueChangedHandler(context,height),
                                   label: 'Descriptive',
@@ -460,7 +461,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                     },
                                   ),
                                   Text(
-                                    "Delete",
+                                    AppLocalizations.of(context)!.delete,
+                                    //"Delete",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.018,
@@ -497,7 +499,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                       },
                                     ),
                                     Text(
-                                      "Clear All",
+                                      AppLocalizations.of(context)!.clear_all,
+                                      //"Clear All",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(28, 78, 80, 1),
                                         fontSize: height * 0.018,
@@ -523,7 +526,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                     child: Row(children: [
                                       SizedBox(width: width * 0.10),
-                                      Text("Subject and Topic",
+                                      Text(
+                                          AppLocalizations.of(context)!.sub_topic,
+                                        //"Subject and Topic",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   255, 255, 255, 1),
@@ -558,7 +563,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               fontWeight: FontWeight.w700,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: "SUBJECT",
+                                            labelText:
+                                            AppLocalizations.of(context)!.sub_caps,
+                                            //"SUBJECT",
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -573,7 +580,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: height * 0.02),
-                                            hintText: "Type Subject Here",
+                                            hintText:
+                                            AppLocalizations.of(context)!.sub_hint_text,
+                                            //"Type Subject Here",
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: const BorderSide(
                                                     color: Color.fromRGBO(
@@ -595,7 +604,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               fontWeight: FontWeight.w700,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: "TOPIC",
+                                            labelText:  AppLocalizations.of(context)!.topic_caps,
+                                            //"TOPIC",
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -610,7 +620,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: height * 0.02),
-                                            hintText: "Type Topic Here",
+                                            hintText:
+                                            AppLocalizations.of(context)!.topic_hint,
+                                            //"Type Topic Here",
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: const BorderSide(
                                                     color: Color.fromRGBO(
@@ -632,7 +644,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               fontWeight: FontWeight.w700,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: 'SEMESTER (Section)',
+                                            labelText:
+                                            AppLocalizations.of(context)!.sub_topic_optional,
+                                            //'SEMESTER (Section)',
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -647,7 +661,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: height * 0.02),
-                                            hintText: 'Type Sub Topic Here',
+                                            hintText: AppLocalizations.of(context)!
+                                                .sub_topic_hint,
+                                            //'Type Sub Topic Here',
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: const BorderSide(
                                                     color: Color.fromRGBO(
@@ -669,7 +685,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               fontWeight: FontWeight.w700,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: "DEGREE (Class)",
+                                            labelText: AppLocalizations.of(context)!
+                                                .class_caps,
+                                            //"DEGREE (Class)",
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -684,7 +702,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: height * 0.02),
-                                            hintText: "Type Here",
+                                            hintText: AppLocalizations.of(context)!
+                                                .type_here,
+                                            //"Type Here",
                                             focusedBorder: OutlineInputBorder(
                                                 borderSide: const BorderSide(
                                                     color: Color.fromRGBO(
@@ -708,7 +728,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                               children: [
                                 Row(children: [
                                   Text(
-                                    "Question",
+                                    AppLocalizations.of(context)!
+                                        .qn_button,
+                                    //"Question",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(82, 165, 160, 1),
                                       fontSize: height * 0.025,
@@ -743,7 +765,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.02),
-                                    hintText: "Type Question Here",
+                                    hintText: AppLocalizations.of(context)!
+                                        .type_qn_here,
+                                    //"Type Question Here",
                                     focusedBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
                                             color: Color.fromRGBO(82, 165, 160, 1)),
@@ -761,7 +785,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                             ),
                           ),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ? const SizedBox(height: 0,)
                               : _groupValue=="Survey"
                               ? Row(
@@ -810,7 +834,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 child: Container(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "Choices",
+                                    AppLocalizations.of(context)!
+                                        .choices,
+                                    //"Choices",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(51, 51, 51, 1),
                                       fontSize: height * 0.016,
@@ -821,7 +847,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                 ),
                               ),
                               Text(
-                                "Correct\nAnswer",
+                                AppLocalizations.of(context)!
+                                    .correct_answer,
+                                //"Correct\nAnswer",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(51, 51, 51, 1),
                                   fontSize: height * 0.016,
@@ -849,7 +877,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                             ],
                           ),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ?
                           const SizedBox(height: 0,)
                               : _groupValue=="Survey"
@@ -881,7 +909,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.02),
-                                              hintText: "Type Option Here",
+                                              hintText: AppLocalizations.of(context)!
+                                                  .type_op_here,
+                                              //"Type Option Here",
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                   BorderRadius.circular(5)),
@@ -999,7 +1029,10 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: height * 0.02),
-                                              hintText: "Type Option Here",
+                                              hintText:
+                                              AppLocalizations.of(context)!
+                                                  .type_op_here,
+                                              //"Type Option Here",
                                               border: OutlineInputBorder(
                                                   borderRadius:
                                                   BorderRadius.circular(5)),
@@ -1138,7 +1171,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                               ],
                             ),
                           ),
-                          _groupValue=="Descripitive"?
+                          _groupValue=="Descriptive"?
                           const SizedBox(height: 0,)
                               :Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -1148,7 +1181,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                     addField();
                                   },
                                   child: Text(
-                                    "Add more choice",
+                                    AppLocalizations.of(context)!
+                                        .add_more_choice,
+                                    //"Add more choice",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(82, 165, 160, 1),
                                       fontSize: height * 0.0225,
@@ -1164,7 +1199,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                       left: width * 0.05, right: width * 0.04),
                                   child: Row(children: [
                                     Text(
-                                      "Advisor",
+                                      AppLocalizations.of(context)!
+                                          .advisor,
+                                      //"Advisor",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                         fontSize: height * 0.025,
@@ -1199,7 +1236,9 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.02),
                               hintText:
-                              "Suggest what to study if answered incorrectly",
+                             AppLocalizations.of(context)!
+                                          .suggest_study,
+                              // "Suggest what to study if answered incorrectly",
                             ),
                             onChanged: (val) {
                               setState(() {
@@ -1228,7 +1267,10 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.02),
-                              hintText: "URL - Any reference (Optional)",
+                              hintText:
+                              AppLocalizations.of(context)!
+                                          .url_reference,
+                              //"URL - Any reference (Optional)",
                             ),
                             onChanged: (val) {
                               setState(() {

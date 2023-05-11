@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 
@@ -17,7 +17,7 @@ class TeacherAssessmentLooqQuestionPreview extends StatefulWidget {
       : super(key: key);
 
   final CreateAssessmentModel assessment;
-  final Question.Question question;
+  final questions.Question question;
   final int index;
   final String? pageName;
   final int quesId;
@@ -346,7 +346,7 @@ class ChooseWidget extends StatefulWidget {
         required this.question})
       : super(key: key);
 
-  final Question.Question question;
+  final questions.Question question;
   final double height;
   final double width;
 

@@ -7,7 +7,7 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class TeacherQuestionBank extends StatefulWidget {
   const TeacherQuestionBank({
@@ -43,8 +43,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
     if (responseEntity.code == 200) {
       questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));
-
-
     }
     else{
         Navigator.push(
@@ -52,10 +50,15 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
           PageTransition(
             type: PageTransitionType.rightToLeft,
             child: CustomDialog(
-              title: 'Alert',
-              content: 'No Questions Found.',
+              title:
+              AppLocalizations.of(context)!.alert_popup,
+              //'Alert',
+              content:
+              AppLocalizations.of(context)!.no_question_found,
+              //'No Questions Found.',
               button:
-              "Retry",
+                AppLocalizations.of(context)!.retry,
+            //"Retry",
             ),
           ),
         );
@@ -96,20 +99,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 color: Colors.white,
               ),
               onPressed: () {
-                // showDialog(
-                //     context: context,
-                //     builder: (context) {
-                //       return const Center(
-                //           child: CircularProgressIndicator(
-                //             color: Color.fromRGBO(48, 145, 139, 1),
-                //           ));
-                //     });
-                // loginData = await SharedPreferences.getInstance();
-                // UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-                // userDataModel =
-                // await QnaService.getUserDataService(loginData?.getInt('userId'));
-                // Navigator.pop(context);
-                // Navigator.pushNamed(context, '/teacherSelectionPage',arguments: userDataModel);
                 Navigator.of(context).pop();
               },
             ),
@@ -119,7 +108,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "MY QUESTIONS",
+                    AppLocalizations.of(context)!.my_qns,
+                    //"MY QUESTIONS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -154,7 +144,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Search Library  (LOOQ)",
+                          AppLocalizations.of(context)!.search_lib,
+                          //"Search Library  (LOOQ)",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.02,
@@ -200,7 +191,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               },
                             ),
                             Text(
-                              'Only My Questions',
+                              AppLocalizations.of(context)!.only_my_qns,
+                              //'Only My Questions',
                               textAlign: TextAlign.left,
                               style: TextStyle(fontSize: height * 0.015),
                             )
@@ -209,7 +201,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       ],
                     ),
                     Text(
-                      "Library Of Online Questions",
+                      AppLocalizations.of(context)!.lib_online_qn,
+                      //"Library Of Online Questions",
                       style: TextStyle(
                         color: const Color.fromRGBO(153, 153, 153, 1),
                         fontSize: height * 0.015,
@@ -258,20 +251,6 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   ).then((value) =>
                                       teacherQuestionBankSearchController
                                           .clear());
-                                  // Navigator.push(
-                                  //         context,
-                                  //         PageTransition(
-                                  //           type:
-                                  //               PageTransitionType.rightToLeft,
-                                  //           child: TeacherLooqQuestionBank(
-                                  //             search:
-                                  //                 teacherQuestionBankSearchController
-                                  //                     .text,
-                                  //           ),
-                                  //         ),
-                                  //       ).then((value) =>
-                                  //         teacherQuestionBankSearchController
-                                  //             .clear());
                                 },
                                 icon: const Icon(Icons.search),
                               )),
@@ -289,12 +268,13 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                     SizedBox(height: height * 0.03),
                     Container(
                       alignment: Alignment.center,
-                      //margin: EdgeInsets.only(left: height * 0.010),
                       child: RichText(
                           textAlign: TextAlign.left,
                           text: TextSpan(children: [
                             TextSpan(
-                              text: "DISCLAIMER:",
+                              text:
+                              AppLocalizations.of(context)!.disclaimer_qn_prepare,
+                          //"DISCLAIMER:",
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontWeight: FontWeight.w500,
@@ -303,7 +283,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             ),
                             TextSpan(
                               text:
-                              "\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
+                              AppLocalizations.of(context)!.disclaimer_content,
+                              //"\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontWeight: FontWeight.w500,
@@ -318,7 +299,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                     ),
                     SizedBox(height: height * 0.01),
                     Text(
-                      "My Question Bank",
+                      AppLocalizations.of(context)!.my_qn_bank,
+                      //"My Question Bank",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         color: const Color.fromRGBO(82, 165, 160, 1),
@@ -345,7 +327,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "View More",
+                                    AppLocalizations.of(context)!.view_more,
+                                    //"View More",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(28, 78, 80, 1),
                                       fontSize: height * 0.0175,
@@ -378,20 +361,13 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                               Provider.of<QuestionPrepareProviderFinal>(context,
                                   listen: false).reSetQuestionList();
                               Navigator.pushNamed(context, '/teacherPrepareQnBank',arguments: [false,null]);
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child: TeacherPrepareQnBank(
-                              //         ),
-                              //   ),
-                              // );
                             },
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Prepare New Questions',
+                                  AppLocalizations.of(context)!.prepare_new_qn,
+                                  //'Prepare New Questions',
                                   style: TextStyle(
                                       fontSize: height * 0.025,
                                       fontFamily: "Inter",
@@ -454,13 +430,6 @@ class QuestionPreview extends StatelessWidget {
                   '/questionEdit',
                   arguments: question
               );
-              // Navigator.push(
-              //   context,
-              //   PageTransition(
-              //     type: PageTransitionType.rightToLeft,
-              //     child: QuestionEdit(question: question,),
-              //   ),
-              // );
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),

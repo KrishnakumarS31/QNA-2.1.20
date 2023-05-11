@@ -51,7 +51,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
       if(chooses.isEmpty){
         setState(() => _groupValue = value!);
       }
-      else if(value=='Descripitive'){
+      else if(value=='Descriptive'){
         showAlertDialog(context,height,value);
       }
       else{
@@ -61,7 +61,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   }
 
   showAlertDialog(BuildContext context, double height,String? value) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -72,7 +71,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!
+            .no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -93,7 +94,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!
+            .yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -111,7 +114,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
         Navigator.pop(context);
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -120,7 +122,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Alert',
+            AppLocalizations.of(context)!
+                .alert_popup,
+            //'Alert',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -130,7 +134,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
         ],
       ),
       content: Text(
-        'Are you sure you want to clear this Question and Choices?',
+        AppLocalizations.of(context)!
+            .want_to_clear_qn,
+        //'Are you sure you want to clear this Question and Choices?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -305,7 +311,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                             ),
                             MyRadioOption<String>(
                               icon: Icons.library_books_sharp,
-                              value: "Descripitive",
+                              value: "Descriptive",
                               //'Descriptive',
                               groupValue: _groupValue,
                               onChanged: _valueChangedHandler(context,height),
@@ -565,7 +571,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     decoration: InputDecoration(
                                       labelText: AppLocalizations.of(context)!
                                           .class_caps,
-                                      //"CLASS",
+                                      //"DEGREE(Class)",
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                       labelStyle: TextStyle(
@@ -643,7 +649,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     borderRadius: BorderRadius.circular(5)),
                               )),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ? const SizedBox(height: 0)
                               :  _groupValue=="Survey"
                               ? Row(
@@ -728,7 +734,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                         ],
                       ),
                     ),
-                    _groupValue=="Descripitive"
+                    _groupValue=="Descriptive"
                         ? const SizedBox(height: 0,)
                         : _groupValue=="Survey"
                         ? Form(
@@ -868,7 +874,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                       ),
                     ),
                     SizedBox(height: height * 0.020),
-                    _groupValue=="Descripitive"?
+                    _groupValue=="Descriptive"?
                     const SizedBox(height: 0,)
                         :Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -998,11 +1004,14 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: CustomDialog(
-                                        title: "Alert",
-                                        //'Wrong password',
+                                        title:
+                                        AppLocalizations.of(context)!
+                                            .alert_popup,
+                                        //"Alert",
                                         content:
-                                        "At least one choice must be added",
-                                        //'please enter the correct password',
+                                        AppLocalizations.of(context)!
+                                            .one_choice_must,
+                                        //"At least one choice must be added",
                                         button: AppLocalizations.of(context)!.retry,
                                       ),
                                     ),
@@ -1011,14 +1020,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 else {
                                   List<Choice> temp = [];
                                   List<Choice> selectedTemp = [];
-                                  // for (int i = 0;
-                                  // i < chooses.length;
-                                  // i++) {
-                                  //   if (radioList[i]) {
-                                  //     //selectedTemp.add(demoQuestionModel.choices![i]);
-                                  //   }
-                                  //   //temp.add(demoQuestionModel.choices![i]);
-                                  // }
                                   demoQuestionModel.subject =
                                       subjectController.text;
                                   demoQuestionModel.topic =
@@ -1038,9 +1039,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                   demoQuestionModel.advisorUrl =
                                       urlController.text;
                                   demoQuestionModel.choices = temp;
-                                  //demoQuestionModel.questionId = ques!.length;
 
-                                  //---------**************Actual API Integration DATA-------------
                                   finalQuestion.question =
                                       questionController.text;
                                   finalQuestion.advisorText =

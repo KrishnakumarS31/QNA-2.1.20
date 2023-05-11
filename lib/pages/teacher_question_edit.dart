@@ -40,7 +40,7 @@ class QuestionEditState extends State<QuestionEdit> {
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
-      if(value=='Descripitive'){
+      if(value=='Descriptive'){
         showAlertDialogDes(context,height,value);
       }
       else{
@@ -61,7 +61,8 @@ class QuestionEditState extends State<QuestionEdit> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -82,7 +83,8 @@ class QuestionEditState extends State<QuestionEdit> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -111,7 +113,8 @@ class QuestionEditState extends State<QuestionEdit> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Alert',
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -121,7 +124,8 @@ class QuestionEditState extends State<QuestionEdit> {
         ],
       ),
       content: Text(
-        'Are you sure you want to clear this Question and Choices?',
+        AppLocalizations.of(context)!.want_to_clear_qn,
+        //'Are you sure you want to clear this Question and Choices?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -233,7 +237,7 @@ class QuestionEditState extends State<QuestionEdit> {
         editQuestion.advisorUrl = widget.question.advisorUrl;
         editQuestion.advisorText = widget.question.advisorText;
         editQuestion.questionType=widget.question.questionType;
-        if(widget.question.questionType=="Descripitive"){
+        if(widget.question.questionType=="Descriptive"){
           editQuestion.addChoices=[];
           editQuestion.editChoices=[];
         }
@@ -257,7 +261,8 @@ class QuestionEditState extends State<QuestionEdit> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -278,7 +283,8 @@ class QuestionEditState extends State<QuestionEdit> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -319,7 +325,8 @@ class QuestionEditState extends State<QuestionEdit> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Confirm',
+            AppLocalizations.of(context)!.confirm,
+            // 'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -329,7 +336,8 @@ class QuestionEditState extends State<QuestionEdit> {
         ],
       ),
       content: Text(
-        'Are you sure you want to delete this Question?',
+        AppLocalizations.of(context)!.want_to_del_qn,
+        //'Are you sure you want to delete this Question?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -382,7 +390,7 @@ class QuestionEditState extends State<QuestionEdit> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            AppLocalizations.of(context)!.edit_en_caps,
+                            AppLocalizations.of(context)!.edit_qn_caps,
                             style: TextStyle(
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: height * 0.0225,
@@ -438,7 +446,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                 ),
                                 MyRadioOption<String>(
                                   icon: Icons.library_books_sharp,
-                                  value: 'Descripitive',
+                                  value: 'Descriptive',
                                   groupValue: _groupValue,
                                   onChanged: _valueChangedHandler(context,height),
                                   label: 'Descriptive',
@@ -462,7 +470,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                       color: Color.fromRGBO(28, 78, 80, 1),
                                     ),
                                     Text(
-                                      "Delete",
+                                      AppLocalizations.of(context)!.delete,
+                                      //"Delete",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(28, 78, 80, 1),
                                         fontSize: height * 0.018,
@@ -596,7 +605,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: "SUBJECT",
+                                            labelText:
+                                            AppLocalizations.of(context)!.sub_caps,
+                                            //"SUBJECT",
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -807,7 +818,7 @@ class QuestionEditState extends State<QuestionEdit> {
                             ),
                           ),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ? const SizedBox(height: 0,)
                               : _groupValue=="Survey"
                               ? Row(
@@ -897,7 +908,7 @@ class QuestionEditState extends State<QuestionEdit> {
                             ],
                           ),
                           SizedBox(height: height * 0.010),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ?
                           const SizedBox(height: 0,)
                               : _groupValue=="Survey"
@@ -1186,7 +1197,7 @@ class QuestionEditState extends State<QuestionEdit> {
                               ],
                             ),
                           ),
-                          _groupValue=="Descripitive"?
+                          _groupValue=="Descriptive"?
                           const SizedBox(height: 0,)
                               :Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -1319,11 +1330,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                         child: CustomDialog(
                                           title: AppLocalizations.of(context)!.alert_popup,
                                           //"Alert",
-                                          //'Wrong password',
                                           content:
                                           AppLocalizations.of(context)!.enter_sub_class,
                                           // "Enter Subject, Class and Question",
-                                          //'please enter the correct password',
                                           button: AppLocalizations.of(context)!.retry,
                                           //"Retry",
                                         ),
@@ -1338,11 +1347,9 @@ class QuestionEditState extends State<QuestionEdit> {
                                         child: CustomDialog(
                                           title: AppLocalizations.of(context)!.alert_popup,
                                           //"Alert",
-                                          //'Wrong password',
                                           content:
                                           AppLocalizations.of(context)!.one_choice_must,
                                           //"At least one choice must be added",
-                                          //'please enter the correct password',
                                           button: AppLocalizations.of(context)!.retry,
                                           //"Retry",
                                         ),

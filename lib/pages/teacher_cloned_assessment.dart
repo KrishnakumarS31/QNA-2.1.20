@@ -3,9 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/EntityModel/CreateAssessmentModel.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherClonedAssessment extends StatefulWidget {
   const TeacherClonedAssessment({
@@ -96,7 +97,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "CLONED",
+                    AppLocalizations.of(context)!.cloned_caps,
+                    //"CLONED",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -105,7 +107,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                     ),
                   ),
                   Text(
-                    "ASSESSMENTS",
+                    AppLocalizations.of(context)!.assessment_caps,
+                    //"ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -138,22 +141,6 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                     SizedBox(
                       height: height * 0.01,
                     ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.end,
-                    //   children: [
-                    //     const Icon(
-                    //       Icons.mail_outline_outlined,
-                    //       color: Color.fromRGBO(82, 165, 160, 1),
-                    //     ),
-                    //     SizedBox(
-                    //       width: width * 0.06,
-                    //     ),
-                    //     const Icon(
-                    //       Icons.print_outlined,
-                    //       color: Color.fromRGBO(82, 165, 160, 1),
-                    //     )
-                    //   ],
-                    // ),
                     SizedBox(
                       height: height * 0.03,
                     ),
@@ -261,7 +248,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         ),
                                       ),
                                       Text(
-                                        "Marks",
+                                        AppLocalizations.of(context)!.marks_qn,
+                                        //"Marks",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -291,7 +279,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         ),
                                       ),
                                       Text(
-                                        "Questions",
+                                        AppLocalizations.of(context)!.qn_button,
+                                        //"Questions",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -317,7 +306,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Assessment ID:",
+                            AppLocalizations.of(context)!.assessment_id_caps,
+                            //"Assessment ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -345,7 +335,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Institute Test ID:",
+                            AppLocalizations.of(context)!.institute_test_id,
+                            //"Institute Test ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -377,7 +368,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Time Permitted:",
+                            AppLocalizations.of(context)!.time_permitted,
+                           // "Time Permitted:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -407,7 +399,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Start Date & Time:",
+                            "${AppLocalizations.of(context)!.start_date_time}:",
+                           // "Start Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -445,7 +438,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "End Date & Time:",
+                            "${AppLocalizations.of(context)!.end_date_time}:",
+                           // "End Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -498,7 +492,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Additional Details",
+                                    AppLocalizations.of(context)!.additional_details,
+                                   // "Additional Details",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -539,7 +534,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Additional Details",
+                                    AppLocalizations.of(context)!.additional_details,
+                                   // "Additional Details",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -576,7 +572,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Category",
+                                      AppLocalizations.of(context)!.category,
+                                     // "Category",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -606,7 +603,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Retries",
+                                      AppLocalizations.of(context)!.retries,
+                                     // "Retries",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -636,7 +634,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Guest",
+                                      AppLocalizations.of(context)!.guest,
+                                    //  "Guest",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -673,7 +672,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Answer Sheet",
+                                      AppLocalizations.of(context)!.answer_sheet,
+                                     // "Answer Sheet",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -710,7 +710,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Advisor",
+                                      AppLocalizations.of(context)!.advisor,
+                                      //"Advisor",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -724,11 +725,13 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     assessment.assessmentSettings!
                                                 .showAdvisorName ==
                                             false
-                                        ? "No"
+                                        ? AppLocalizations.of(context)!.no
+                                    //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorName!
-                                            ? "Yes"
-                                            : "No",
+                                            ? AppLocalizations.of(context)!.yes                                    //"Yes"
+                                            :  AppLocalizations.of(context)!.no,
+                                    //"No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -747,7 +750,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Email",
+                                      AppLocalizations.of(context)!.email_small,
+                                      //"Email",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -761,11 +765,14 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     assessment.assessmentSettings
                                                 ?.showAdvisorEmail ==
                                             false
-                                        ? "No"
+                                        ? AppLocalizations.of(context)!.no
+                                    //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorEmail!
-                                            ? "Yes"
-                                            : "No",
+                                            ? AppLocalizations.of(context)!.yes
+                                    //"Yes"
+                                            : AppLocalizations.of(context)!.no,
+                                    //"No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -784,7 +791,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   SizedBox(
                                     width: width * 0.4,
                                     child: Text(
-                                      "Inactive",
+                                      AppLocalizations.of(context)!.in_active,
+                                      //"Inactive",
                                       style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -796,10 +804,13 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                   ),
                                   Text(
                                       assessment.assessmentSettings?.notAvailable == null
-                                          ? "No"
+                                          ? AppLocalizations.of(context)!.no
+    //"No"
                                           : assessment.assessmentSettings!.notAvailable!
-                                          ? "Yes"
-                                          : "No",
+                                          ? AppLocalizations.of(context)!.yes
+    //"Yes"
+                                          : AppLocalizations.of(context)!.no,
+    //"No",
                                     style: TextStyle(
                                       color:
                                           const Color.fromRGBO(82, 165, 160, 1),
@@ -834,7 +845,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Questions",
+                                  AppLocalizations.of(context)!.qn_button,
+                                    //"Questions",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -875,7 +887,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Questions",
+                                      AppLocalizations.of(context)!.qn_button,
+                                    //"Questions",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -931,7 +944,8 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                             showQuestionDetails();
                           },
                           child: Text(
-                            "  View All Questions  ",
+                              AppLocalizations.of(context)!.view_all_qns,
+                           // "  View All Questions  ",
                             style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
                               fontSize: height * 0.02,
@@ -955,82 +969,6 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                     SizedBox(
                       height: height * 0.02,
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              right: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "WEB",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: height * 0.08,
-                            width: width * 0.3,
-                            child: Center(
-                              child: Text(
-                                "Android App",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: const Color.fromRGBO(153, 153, 153, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "IOS App",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
                     Center(
                       child: SizedBox(
                         width: width * 0.888,
@@ -1047,17 +985,10 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               )),
                           onPressed: () {
                             Navigator.pushNamed(context, '/teacherClonedAssessmentPreview',arguments: widget.assessmentType,);
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: TeacherClonedAssessmentPreview(
-                            //         ),
-                            //   ),
-                            // );
                           },
                           child: Text(
-                            'Edit',
+                            AppLocalizations.of(context)!.edit_button,
+                            //'Edit',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -1082,7 +1013,7 @@ class QuestionWidget extends StatefulWidget {
       : super(key: key);
 
   final double height;
-  Question.Question question;
+  questions.Question question;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -1157,7 +1088,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   Row(
                     children: [
                       Text(
-                        "Marks: ",
+                        AppLocalizations.of(context)!.marks_small,
+                       // "Marks: ",
                         style: TextStyle(
                           color: const Color.fromRGBO(102, 102, 102, 1),
                           fontSize: widget.height * 0.015,

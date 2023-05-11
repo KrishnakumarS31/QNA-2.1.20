@@ -21,7 +21,6 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
 
   @override
   void initState() {
-    //QnaService.sendOtp();
     super.initState();
   }
 
@@ -40,7 +39,6 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                 height: height * 0.26,
                 width: width,
                 decoration: BoxDecoration(
-                  // color: Theme.of(context).primaryColor,
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -63,12 +61,6 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                         padding: const EdgeInsets.all(0.0),
                         height: height * 0.22,
                         width: width * 0.22,
-                        // decoration: BoxDecoration(
-                        //     //color: Colors.yellow[100],
-                        //     border: Border.all(
-                        //       color: Colors.red,
-                        //       width: 1,
-                        //     )),
                         child:
                             Image.asset("assets/images/question_mark_logo.png"),
                       ),
@@ -135,7 +127,8 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                               ),
                               validator: (value) {
                                 if (value!.length < 8) {
-                                  return "New password is required(Password Should be 8 Characters)";
+                                  return AppLocalizations.of(context)!.new_pass_req;
+                                    //"New password is required(Password Should be 8 Characters)";
                                 } else {
                                   return null;
                                 }
@@ -200,7 +193,6 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                         onPressed: () async {
                           bool valid = formKey.currentState!.validate();
                           if (valid) {
-                            //int statusCode=await QnaService.updatePasswordOtp(widget.email,widget.otp, newPassword.text);
                             if (200 == 200) {
                               Navigator.push(
                                 context,
@@ -214,9 +206,10 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: CustomDialog(
-                                    title: 'Incorrect Password',
-                                    content:
-                                        'Your Password has not been changed',
+                                    title: AppLocalizations.of(context)!.incorrect_password,
+                                    //'Incorrect Password',
+                                    content: AppLocalizations.of(context)!.incorrect_password,
+                                        //'Your Password has not been changed',
                                     button: AppLocalizations.of(context)!.retry,
                                   ),
                                 ),
@@ -240,9 +233,7 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
   }
 
   showAlertDialog(BuildContext context) {
-    // set up the button
     double height = MediaQuery.of(context).size.height;
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -255,7 +246,8 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
             width: height * 0.002,
           ),
           Text(
-            "Success",
+              AppLocalizations.of(context)!.success,
+            //"Success",
             style: TextStyle(
                 color: const Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
@@ -265,7 +257,8 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
         ],
       ),
       content: Text(
-        "Your Password has been changed Successfully",
+          AppLocalizations.of(context)!.incorrect_password,
+        //"Your Password has been changed Successfully",
         style: TextStyle(
             color: const Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',
@@ -275,7 +268,8 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
       actions: [
         TextButton(
           child: Text(
-            "OK",
+            AppLocalizations.of(context)!.ok_caps,
+           // "OK",
             style: TextStyle(
                 color: const Color.fromRGBO(48, 145, 139, 1),
                 fontFamily: 'Inter',
@@ -289,7 +283,6 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
       ],
     );
 
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {

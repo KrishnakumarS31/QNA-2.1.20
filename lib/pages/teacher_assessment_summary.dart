@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
-
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
@@ -26,7 +24,7 @@ class TeacherAssessmentSummary extends StatefulWidget {
 class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   bool additionalDetails = true;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  List<Question.Question> questionList = [];
+  List<questions.Question> questionList = [];
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
   int totalQues = 0;
   int totalMark = 0;
@@ -53,7 +51,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -74,7 +73,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        //'Yes',
+        AppLocalizations.of(context)!.yes,
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -83,13 +83,6 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
       ),
       onPressed: () {
         Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAssessmentSettingPublish(),
-        //   ),
-        // );
       },
     );
     // set up the AlertDialog
@@ -102,7 +95,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             size: height * 0.05,
           ),
           Text(
-            'Continue',
+            AppLocalizations.of(context)!.login,
+            //'Continue',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -112,7 +106,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
         ],
       ),
       content: Text(
-        'Do you want to still continue?',
+        AppLocalizations.of(context)!.do_you_want_continue,
+        //'Do you want to still continue?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -144,7 +139,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -165,7 +161,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -174,13 +171,6 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
       ),
       onPressed: () {
         Navigator.pushNamed(context, '/teacherAssessmentSettingPublish');
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAssessmentSettingPublish(),
-        //   ),
-        // );
       },
     );
     // set up the AlertDialog
@@ -193,7 +183,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
             size: height * 0.05,
           ),
           Text(
-            'Marks not filled',
+            AppLocalizations.of(context)!.marks_not_filled,
+            //'Marks not filled',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -203,7 +194,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
         ],
       ),
       content: Text(
-        'Do you want to still continue?',
+        AppLocalizations.of(context)!.do_you_want_continue,
+        //'Do you want to still continue?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -276,7 +268,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "SELECTED QUESTIONS",
+                    AppLocalizations.of(context)!.selected_qns,
+                    // "SELECTED QUESTIONS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -285,7 +278,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                     ),
                   ),
                   Text(
-                    "FOR ASSESSMENTS",
+                    AppLocalizations.of(context)!.for_assessments,
+                    //"FOR ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -873,11 +867,6 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                 loginData =
                                                                 await SharedPreferences
                                                                     .getInstance();
-                                                                // Provider.of<QuestionPrepareProviderFinal>(
-                                                                //     context,
-                                                                //     listen:
-                                                                //     false)
-                                                                //     .reSetQuestionList();
                                                                 assessment
                                                                     .topic =
                                                                     topicController
@@ -943,7 +932,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Edit',
+                                          AppLocalizations.of(context)!.edit_button,
+                                          //'Edit',
                                           style: TextStyle(
                                               fontSize: height * 0.017,
                                               fontFamily: "Inter",
@@ -964,7 +954,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                             ],
                           ),
                           Text(
-                            'Topic: ${assessment.topic}',
+                            "${AppLocalizations.of(context)!.topic_small} ${assessment.topic}",
+                            //'Topic: ${assessment.topic}',
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -975,7 +966,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Semester(Section): ${assessment.subTopic}',
+                                "${AppLocalizations.of(context)!.sub_topic} ${assessment.topic}",
+                                //'Semester(Section): ${assessment.subTopic}',
                                 style: TextStyle(
                                     fontSize: height * 0.015,
                                     fontFamily: "Inter",
@@ -1007,7 +999,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       Row(
                         children: [
                           Text(
-                            'Total Questions: ',
+                            AppLocalizations.of(context)!.total_ques,
+                            //'Total Questions: ',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -1027,7 +1020,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                       Row(
                         children: [
                           Text(
-                            'Total Marks: ',
+                            AppLocalizations.of(context)!.total_marks,
+                           // 'Total Marks: ',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -1068,7 +1062,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                   question: questionList[i],
                                   index: i,
                                   assessment: assessment,
-                                  assessmenType: widget.assessmentType,
+                                  assessmentType: widget.assessmentType,
                                 ),
                             ],
                           ),
@@ -1080,14 +1074,6 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           child: FloatingActionButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,'',widget.assessmentType]);
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child: TeacherAssessmentQuestionBank(
-                              //         ),
-                              //   ),
-                              // );
                             },
                             backgroundColor:
                             const Color.fromRGBO(82, 165, 160, 1),
@@ -1136,17 +1122,10 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
 
                           }
-
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child:  TeacherClonedAssessmentPreview(setLocale: widget.setLocale),
-                          //   ),
-                          // );
                         },
                         child: Text(
-                          'Save Assessment',
+                          AppLocalizations.of(context)!.save_assessments,
+                          //'Save Assessment',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
@@ -1183,7 +1162,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           pros?Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType):showAlert(context, height);
                         },
                         child: Text(
-                          'Continue',
+                          AppLocalizations.of(context)!.login,
+                          //'Continue',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
@@ -1206,15 +1186,15 @@ class QuestionWidget extends StatefulWidget {
         required this.question,
         required this.index,
         required this.assessment,
-        required this.assessmenType
+        required this.assessmentType
       })
       : super(key: key);
 
   final double height;
-  final Question.Question question;
+  final questions.Question question;
   final int index;
   final CreateAssessmentModel assessment;
-  final String assessmenType;
+  final String assessmentType;
 
 
   @override
@@ -1234,7 +1214,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+       // 'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -1255,7 +1236,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -1267,21 +1249,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             .removeQuestion(widget.question.questionId);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeQuestion(widget.question.questionId);
-        //Provider.of<CreateAssessmentProvider>(context, listen: false).addRemoveQuesList(widget.question.questionId);
-        Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentSummary', ModalRoute.withName('/teacherRecentAssessment'),arguments: widget.assessmenType);
-        // assessment.removeQuestions?.add(widget.question.questionId);
-        // Provider.of<CreateAssessmentProvider>(context, listen: false).updateAssessment(assessment);
-        // setState(() {});
-        // Navigator.of(context).pop();
-        //Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment');
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherSelectedQuestionAssessment(
-        //     ),
-        //   ),
-        // );
+        Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentSummary', ModalRoute.withName('/teacherRecentAssessment'),arguments: widget.assessmentType);
       },
     );
     // set up the AlertDialog
@@ -1293,7 +1261,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Confirm',
+            AppLocalizations.of(context)!.confirm,
+            //'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -1303,7 +1272,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         ],
       ),
       content: Text(
-        'Are you sure you want to remove this Question?',
+        AppLocalizations.of(context)!.sure_to_remove_qn,
+        //'Are you sure you want to remove this Question?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -1394,7 +1364,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                               color: Color.fromRGBO(51, 51, 51, 1),
                             ),
                             Text(
-                              ' Remove',
+                              AppLocalizations.of(context)!.remove,
+                              //' Remove',
                               style: TextStyle(
                                   fontSize: widget.height * 0.017,
                                   fontFamily: "Inter",
@@ -1414,17 +1385,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   child: GestureDetector(
                     onTap: () {
                       showQuestionPreview(context);
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: TeacherAssessmentQuestionPreview(
-                      //       setLocale: widget.setLocale,
-                      //       assessment: widget.assessment,
-                      //       question: widget.question,
-                      //       index: widget.index,),
-                      //   ),
-                      // );
                       setState(() {});
                     },
                     child: Align(
@@ -1459,7 +1419,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   Row(
                     children: [
                       Text(
-                        'Marks: ',
+                        AppLocalizations.of(context)!.marks_small,
+                        // 'Marks: ',
                         style: TextStyle(
                             fontSize: widget.height * 0.017,
                             fontFamily: "Inter",
@@ -1498,7 +1459,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           question: widget.question,
           index: widget.index,
           pageName: 'TeacherAssessmentSummary',
-          assessmentType: widget.assessmenType,
+          assessmentType: widget.assessmentType,
         );
       },
     );

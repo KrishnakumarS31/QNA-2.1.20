@@ -9,7 +9,7 @@ import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/question_prepare_provider_final.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherQuesDelete extends StatefulWidget {
   TeacherQuesDelete({
     Key? key,
@@ -637,13 +637,14 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         controller: subtopicController,
                                         keyboardType: TextInputType.text,
                                         style: TextStyle(
-                                            color: const Color.fromRGBO(
+                                            color:  Color.fromRGBO(
                                                 82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w700,
                                             fontSize: height * 0.018),
                                         decoration: InputDecoration(
-                                          labelText: 'SEMESTER (Section)',
+                                          labelText: AppLocalizations.of(context)!.sub_topic_optional,
+                                          //'SEMESTER (Section)',
                                           floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
                                           labelStyle: TextStyle(

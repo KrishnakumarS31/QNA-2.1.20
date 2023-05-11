@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
@@ -78,19 +78,6 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
       loading = false;
       pageLimit++;
     });
-    // if(allQuestion.isEmpty) {
-    //   Navigator.push(
-    //     context,
-    //     PageTransition(
-    //       type: PageTransitionType.rightToLeft,
-    //       child: CustomDialog(
-    //         title: 'Alert',
-    //         content: 'No question found.',
-    //         button: 'Retry',
-    //       ),
-    //     ),
-    //   );
-    // }
   }
 
   loadMore(String searchValue) async {
@@ -118,9 +105,12 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title: 'Alert',
-            content: 'No more question found.',
-            button: 'Retry',
+            title: AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content: AppLocalizations.of(context)!.no_question_found,
+            //'No more question found.',
+            button: AppLocalizations.of(context)!.retry,
+            //'Retry',
           ),
         ),
       );
@@ -155,7 +145,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "LOOQ",
+                    AppLocalizations.of(context)!.looq,
+                    //"LOOQ",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -164,7 +155,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                     ),
                   ),
                   Text(
-                    "SEARCH QUESTIONS",
+                    AppLocalizations.of(context)!.search_qn_caps,
+                   // "SEARCH QUESTIONS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -253,7 +245,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Tap to Review/Edit/Delete",
+                          AppLocalizations.of(context)!.tap_to_review,
+                          //"Tap to Review/Edit/Delete",
                           textAlign: TextAlign.left,
                           style: TextStyle(
                             color: const Color.fromRGBO(153, 153, 153, 1),
@@ -265,7 +258,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                         Row(
                           children: [
                             Text(
-                              "My Questions",
+                              AppLocalizations.of(context)!.my_qns,
+                             // "My Questions",
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: const Color.fromRGBO(0, 0, 0, 1),
@@ -312,7 +306,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                         SizedBox(height: height * 0.04),
                         Center(
                           child: Text(
-                            'NO QUESTIONS FOUND',
+                            AppLocalizations.of(context)!.no_question_found,
+                            //'NO QUESTIONS FOUND',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -337,9 +332,12 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: CustomDialog(
-                                  title: 'Alert',
-                                  content: 'No Question Found.',
-                                  button: 'Retry',
+                                  title: AppLocalizations.of(context)!.alert_popup,
+                                  //'Alert',
+                                  content: AppLocalizations.of(context)!.no_question_found,
+                                  //'No Question Found.',
+                                  button: AppLocalizations.of(context)!.retry,
+                                  //'Retry',
                                 ),
                               ),
                             ):
@@ -349,8 +347,8 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'View More',
-                                // "Load More",
+                                AppLocalizations.of(context)!.view_more,
+                                //'View More',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontSize: height * 0.0175,
@@ -381,10 +379,10 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                         ),
                         onPressed: () {
                           Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
-                          //Navigator.of(context).pop();
                         },
                         child: Text(
-                          'Back to Questions',
+                          AppLocalizations.of(context)!.back_to_qns,
+                          //'Back to Questions',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/pages/teacher_selected_questions_assessment.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
-import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 
@@ -19,7 +18,7 @@ class TeacherAssessmentQuestionPreview extends StatefulWidget {
       : super(key: key);
 
   final CreateAssessmentModel assessment;
-  final Question.Question question;
+  final questions.Question question;
   final int index;
   final String? pageName;
   final String assessmentType;
@@ -388,7 +387,7 @@ class TeacherAssessmentQuestionPreviewState
                                               int.parse(markController.text),
                                               index);
                                           Navigator.of(context).pop();
-List<Question.Question> qt=[];
+                                          List<questions.Question> qt=[];
                                           Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [qt,widget.assessmentType]);
                                         }
                                       },
@@ -422,7 +421,7 @@ class ChooseWidget extends StatefulWidget {
       required this.question})
       : super(key: key);
 
-  final Question.Question question;
+  final questions.Question question;
   final double height;
   final double width;
 

@@ -110,6 +110,11 @@ class QnaService {
     return await QnaRepo.editActiveAssessmentTeacher(assessment, assessmentId);
   }
 
+  static Future<ResponseEntity> makeInactiveAssessmentTeacherService(
+      AssessmentSettings.AssessmentSettings assessment, int assessmentId,String assessmentType,String assessmentStatus) async {
+    return await QnaRepo.makeInactiveAssessmentTeacher(assessment, assessmentId, assessmentType, assessmentStatus);
+  }
+
   static Future<ResponseEntity> getResultDataService(
       int? userId, int pageLimit, int pageNumber) async {
     return await QnaRepo.getResult(userId, pageLimit, pageNumber);

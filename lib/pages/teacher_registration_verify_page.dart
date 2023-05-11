@@ -1,10 +1,7 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
 import 'package:page_transition/page_transition.dart';
-
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
@@ -63,9 +60,10 @@ class TeacherRegistrationOtpPageState
             backgroundColor: Colors.white,
             appBar: AppBar(
               centerTitle: true,
-              title: const Text(
-                "VERIFY OTP",
-                style: TextStyle(
+              title: Text(
+                  AppLocalizations.of(context)!.verify_otp,
+                  //"VERIFY OTP",
+                style: const TextStyle(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   fontSize: 18.0,
                   fontFamily: "Inter",
@@ -110,7 +108,8 @@ class TeacherRegistrationOtpPageState
                             Align(
                               alignment: Alignment.topLeft,
                               child: Text(
-                                "CHECK YOUR EMAIL FOR OTP",
+                                AppLocalizations.of(context)!.check_email_otp,
+                                //"CHECK YOUR EMAIL FOR OTP",
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .bodyLarge
@@ -129,19 +128,21 @@ class TeacherRegistrationOtpPageState
                                 child: TextFormField(
                                   keyboardType: TextInputType.text,
                                   controller: otpController,
-                                  decoration: const InputDecoration(
-                                    helperStyle: TextStyle(
+                                  decoration:  InputDecoration(
+                                    helperStyle: const TextStyle(
                                         color:
                                             Color.fromRGBO(102, 102, 102, 0.3),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16),
-                                    hintText: "Enter OTP",
+                                    hintText: AppLocalizations.of(context)!.enter_otp,
+                                    //"Enter OTP",
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty ||
                                         !RegExp(r'^\d+$').hasMatch(value)) {
-                                      return "Incorrect OTP";
+                                      return AppLocalizations.of(context)!.incorrect_otp;
+                                        //"Incorrect OTP";
                                     } else {
                                       return null;
                                     }
@@ -159,8 +160,10 @@ class TeacherRegistrationOtpPageState
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                const Text("The OTP will be expired in",
-                                    style: TextStyle(
+                                 Text(
+                                     AppLocalizations.of(context)!.otp_expire_in,
+                                  //"The OTP will be expired in",
+                                    style: const TextStyle(
                                         color: Color.fromRGBO(153, 153, 153, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
@@ -184,9 +187,10 @@ class TeacherRegistrationOtpPageState
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                const Text(
-                                  "Don't receive OTP?",
-                                  style: TextStyle(
+                                 Text(
+                                  AppLocalizations.of(context)!.don_receive_otp,
+                                  // "Don't receive OTP?",
+                                  style: const TextStyle(
                                       color: Color.fromRGBO(153, 153, 153, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
@@ -194,8 +198,10 @@ class TeacherRegistrationOtpPageState
                                 ),
                                 TextButton(
                                     onPressed: () {},
-                                    child: const Text("   Resend OTP",
-                                        style: TextStyle(
+                                    child: Text(
+                                        AppLocalizations.of(context)!.resent_otp,
+                                        //"   Resend OTP",
+                                        style: const TextStyle(
                                             color:
                                                 Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
@@ -229,8 +235,11 @@ class TeacherRegistrationOtpPageState
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
                                     child: CustomDialog(
-                                      title: 'Incorrect Otp',
-                                      content: 'Entered OTP does not match',
+                                      title:
+                                      AppLocalizations.of(context)!.incorrect_otp,
+                                      //'Incorrect Otp',
+                                      content: AppLocalizations.of(context)!.entered_otp_not_match,
+                                      //'Entered OTP does not match',
                                       button:
                                           AppLocalizations.of(context)!.retry,
                                     ),
@@ -240,7 +249,8 @@ class TeacherRegistrationOtpPageState
                             }
                           },
                           child: Text(
-                            'Validate',
+                            AppLocalizations.of(context)!.validate,
+                            //'Validate',
                             style: TextStyle(
                                 fontSize: height * 0.024,
                                 fontFamily: "Inter",
@@ -256,9 +266,7 @@ class TeacherRegistrationOtpPageState
   }
 
   showAlertDialog(BuildContext context) {
-    // set up the button
     double height = MediaQuery.of(context).size.height;
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -270,9 +278,10 @@ class TeacherRegistrationOtpPageState
           SizedBox(
             width: height * 0.002,
           ),
-          const Text(
-            "Success!",
-            style: TextStyle(
+          Text(
+            AppLocalizations.of(context)!.success,
+            //"Success!",
+            style: const TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
@@ -280,9 +289,10 @@ class TeacherRegistrationOtpPageState
           ),
         ],
       ),
-      content: const Text(
-        "Your registration has been\nsuccessfully completed.",
-        style: TextStyle(
+      content: Text(
+        AppLocalizations.of(context)!.registration_completed,
+        // "Your registration has been\n successfully completed.",
+        style: const TextStyle(
             color: Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
@@ -290,9 +300,10 @@ class TeacherRegistrationOtpPageState
       ),
       actions: [
         TextButton(
-          child: const Text(
-            "Ok",
-            style: TextStyle(
+          child: Text(
+            AppLocalizations.of(context)!.ok_caps,
+            //"Ok",
+            style: const TextStyle(
                 color: Color.fromRGBO(48, 145, 139, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
@@ -308,7 +319,6 @@ class TeacherRegistrationOtpPageState
       ],
     );
 
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {

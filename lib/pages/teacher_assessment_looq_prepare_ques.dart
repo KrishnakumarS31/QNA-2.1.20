@@ -191,7 +191,7 @@ class TeacherAssessmentLooqPrepareQuesState
                               icon: Icons.library_books_sharp,
                               value:
                               //AppLocalizations.of(context)!.descriptive,
-                              'Descripitive',
+                              'Descriptive',
                               groupValue: _groupValue,
                               onChanged: _valueChangedHandler(),
                               label:
@@ -731,9 +731,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                         i < chooses.length;
                                         i++) {
                                           if (radioList[i]) {
-                                            //selectedTemp.add(demoQuestionModel.choices![i]);
                                           }
-                                          //temp.add(demoQuestionModel.choices![i]);
                                         }
                                         demoQuestionModel.subject =
                                             subjectController.text;
@@ -753,9 +751,6 @@ class TeacherAssessmentLooqPrepareQuesState
                                         demoQuestionModel.advisorUrl =
                                             urlController.text;
                                         demoQuestionModel.choices = temp;
-                                        //demoQuestionModel.questionId = ques!.length;
-
-                                        //---------**************Actual API Integration DATA-------------
                                         finalQuestion.question =
                                             questionController.text;
                                         finalQuestion.advisorText =

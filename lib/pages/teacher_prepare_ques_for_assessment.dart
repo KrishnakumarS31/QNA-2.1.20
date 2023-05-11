@@ -48,7 +48,7 @@ class TeacherPrepareQuesForAssessmentState
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
-      if(value=='Descripitive'){
+      if(value=='Descriptive'){
         if(chooses.isEmpty){
           setState(() => _groupValue = value!);
         }
@@ -63,7 +63,6 @@ class TeacherPrepareQuesForAssessmentState
   }
 
   showAlertDialogDes(BuildContext context, double height,String? value) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -74,7 +73,9 @@ class TeacherPrepareQuesForAssessmentState
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!
+            .no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -95,7 +96,9 @@ class TeacherPrepareQuesForAssessmentState
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!
+            .yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -122,7 +125,9 @@ class TeacherPrepareQuesForAssessmentState
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Alert',
+            AppLocalizations.of(context)!
+                .alert_popup,
+            //'Alert',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -132,7 +137,9 @@ class TeacherPrepareQuesForAssessmentState
         ],
       ),
       content: Text(
-        'Are you sure you want to clear this Question and Choices?',
+        AppLocalizations.of(context)!
+            .want_to_clear_qn,
+        //'Are you sure you want to clear this Question and Choices?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -295,7 +302,7 @@ class TeacherPrepareQuesForAssessmentState
                                   ),
                                   MyRadioOption<String>(
                                     icon: Icons.library_books_sharp,
-                                    value: "Descripitive",
+                                    value: "Descriptive",
                                     //'Descriptive',
                                     groupValue: _groupValue,
                                     onChanged: _valueChangedHandler(context,height),
@@ -645,7 +652,7 @@ class TeacherPrepareQuesForAssessmentState
                                           borderRadius: BorderRadius.circular(5)),
                                     )),
                                 SizedBox(height: height * 0.010),
-                                _groupValue=="Descripitive"
+                                _groupValue=="Descriptive"
                                     ? const SizedBox(height: 0)
                                     : _groupValue=="Survey"
                                     ? Row(
@@ -730,7 +737,7 @@ class TeacherPrepareQuesForAssessmentState
                               ],
                             ),
                           ),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ? const SizedBox(height: 0,)
                               : _groupValue=="Survey"
                               ? Form(
@@ -874,7 +881,7 @@ class TeacherPrepareQuesForAssessmentState
                             ),
                           ),
                           SizedBox(height: height * 0.020),
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ? const SizedBox(height: 0,)
                               :Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -1008,11 +1015,13 @@ class TeacherPrepareQuesForAssessmentState
                                                   PageTransition(
                                                     type: PageTransitionType.rightToLeft,
                                                     child: CustomDialog(
-                                                      title: "Alert",
-                                                      //'Wrong password',
+                                                      title: AppLocalizations.of(context)!
+                                                          .alert_popup,
+                                                      //"Alert",
                                                       content:
-                                                      "At least one choice must be added",
-                                                      //'please enter the correct password',
+                                                      AppLocalizations.of(context)!
+                                                          .one_choice_must,
+                                                      // "At least one choice must be added",
                                                       button: AppLocalizations.of(context)!.retry,
                                                     ),
                                                   ),
@@ -1058,7 +1067,7 @@ class TeacherPrepareQuesForAssessmentState
                                                 tempChoiceList;
                                             finalQuestion.questionType =
                                                 _groupValue;
-                                            if (_groupValue == 'Descripitive') {
+                                            if (_groupValue == 'Descriptive') {
                                               finalQuestion.choices = [];
                                             }
                                             _groupValue == "MCQ"
@@ -1081,11 +1090,14 @@ class TeacherPrepareQuesForAssessmentState
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: CustomDialog(
-                                        title: "Alert",
-                                        //'Wrong password',
+                                        title:
+                                        AppLocalizations.of(context)!
+                                            .alert_popup,
+                                        //"Alert",
                                         content:
-                                        "Enter Subject, Class and Question",
-                                        //'please enter the correct password',
+                                        AppLocalizations.of(context)!
+                                            .enter_sub_class,
+                                        //"Enter Subject, Class and Question",
                                         button: AppLocalizations.of(context)!.retry,
                                       ),
                                     ),
@@ -1097,11 +1109,14 @@ class TeacherPrepareQuesForAssessmentState
                                     PageTransition(
                                       type: PageTransitionType.rightToLeft,
                                       child: CustomDialog(
-                                        title: "Alert",
-                                        //'Wrong password',
+                                        title:
+                                        AppLocalizations.of(context)!
+                                            .alert_popup,
+                                        //"Alert",
                                         content:
-                                        "At least one choice must be added",
-                                        //'please enter the correct password',
+                                        AppLocalizations.of(context)!
+                                            .one_choice_must,
+                                        //"At least one choice must be added",
                                         button: AppLocalizations.of(context)!.retry,
                                       ),
                                     ),
@@ -1147,7 +1162,7 @@ class TeacherPrepareQuesForAssessmentState
                                       tempChoiceList;
                                   finalQuestion.questionType =
                                       _groupValue;
-                                  if (_groupValue == 'Descripitive') {
+                                  if (_groupValue == 'Descriptive') {
                                     finalQuestion.choices = [];
                                   }
                                   _groupValue == "MCQ"

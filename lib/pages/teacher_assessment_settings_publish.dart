@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Providers/new_question_provider.dart';
@@ -13,10 +12,9 @@ import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
-import '../Entity/Teacher/question_entity.dart' as QuestionModel;
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../DataSource/http_url.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:flutter/foundation.dart';
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   TeacherAssessmentSettingPublish({
@@ -52,14 +50,14 @@ class TeacherAssessmentSettingPublishState
   final endTimeController = TextEditingController();
   TextEditingController numOfDaysAfterTestController = TextEditingController();
 
-  bool _value = false;
+  final bool _value = false;
   int val = -1;
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
   TextEditingController retriesController = TextEditingController();
   TextEditingController instituteTestIdcontroller = TextEditingController();
   TextEditingController timePermitHoursController = TextEditingController();
   TextEditingController timePermitMinutesController = TextEditingController();
-  List<QuestionModel.Question> questionListForNxtPage = [];
+  List<questions.Question> questionListForNxtPage = [];
   TextEditingController timeinput = TextEditingController();
   int totalQues = 0;
   int totalMark = 0;
@@ -69,7 +67,7 @@ class TeacherAssessmentSettingPublishState
   DateTime endTime = DateTime.now();
   int hours = 0;
   int minutes = 0;
-  String testTypeBeforChange='';
+  String testTypeBeforeChange='';
   DateTime startDateBeforeChange=DateTime(1890,9,10,0,0,0);
   DateTime endDateBeforeChange=DateTime(1890,9,10,0,0,0);
 
@@ -82,7 +80,7 @@ class TeacherAssessmentSettingPublishState
     timeinput.text = "";
     assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
         .getAssessment;
-    testTypeBeforChange=assessment.assessmentType??'';
+    testTypeBeforeChange=assessment.assessmentType??'';
     for (int i = 0; i < assessment.questions!.length; i++) {
       totalMark = totalMark + assessment.questions![i].questionMarks!;
     }
@@ -98,17 +96,6 @@ class TeacherAssessmentSettingPublishState
     assessment.totalQuestions = totalQues;
     assessment.totalScore = totalMark;
     assessment.assessmentType=='test'?val=1:val=2;
-    // if(assessment.assessmentDuration != null){
-    //   if(assessment.assessmentDuration!>60){
-    //     timePermitHoursController.text= '${(assessment.assessmentDuration! / 60).floor()}';
-    //     timePermitMinutesController.text='${assessment.assessmentDuration! % 60}';
-    //   }
-    //   else{
-    //     timePermitMinutesController.text='${assessment.assessmentDuration!}';
-    //   }
-    // }
-    // else{
-    // }
     assessment.assessmentSettings?.numberOfDaysAfterTestAvailableForPractice==null?numOfDaysAfterTestController.text='':numOfDaysAfterTestController.text=
     '${assessment.assessmentSettings!.numberOfDaysAfterTestAvailableForPractice!}';
 
@@ -1901,7 +1888,6 @@ class TeacherAssessmentSettingPublishState
                                                     BorderRadius.circular(39),
                                                   ),
                                                 ),
-//shape: StadiumBorder(),
                                                 onPressed: () async {
                                                   if (val == 1) {
                                                     assessment.assessmentType =
@@ -2302,6 +2288,24 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity();
                                                   String assessmentCode = '';
                                                   if (widget.assessmentType=='editActive') {
+                                                    if(activeStatus){
+                                                      assessment.assessmentStatus='inactive';
+
+                                                    }
+                                                    else{
+                                                      assessment.assessmentStatus='active';
+                                                    }
+
+                                                    activeStatus?
+                                                    statusCode = await QnaService
+                                                        .makeInactiveAssessmentTeacherService(
+                                                      assessment.assessmentSettings!,
+                                                      assessment
+                                                          .assessmentId!,
+                                                      assessment.assessmentType!,
+                                                      'inactive',
+                                                    )
+                                                        :
                                                     statusCode = await QnaService
                                                         .editActiveAssessmentTeacherService(
                                                         assessment.assessmentSettings!,
@@ -2363,8 +2367,8 @@ class TeacherAssessmentSettingPublishState
                                                   }
                                                 },
                                                 child: Text(
-                                                  'Save changes',
-                                                  //'Publish Now',
+                                                    AppLocalizations.of(context)!.save_changes,
+                                                  //'Save changes',
                                                   style: TextStyle(
                                                       fontSize: height * 0.025,
                                                       fontFamily: "Inter",
@@ -3437,32 +3441,7 @@ class TeacherAssessmentSettingPublishState
                                                                         } else {}
                                                                       },
                                                                     )
-// TextFormField(
-//   decoration: InputDecoration(
-//       hintText: "00:00 AM",
-//       hintStyle: TextStyle(
-//           color: const Color
-//               .fromRGBO(
-//               102,
-//               102,
-//               102,
-//               0.3),
-//           fontFamily:
-//           'Inter',
-//           fontWeight:
-//           FontWeight
-//               .w400,
-//           fontSize: height *
-//               0.020)),
-//   controller:
-//   endTimeController,
-//   keyboardType:
-//   TextInputType
-//       .datetime,
-//   enabled: true,
-//   onChanged: (value) {},
-// ),
-                                                                )),
+                                                   )),
                                                           ],
                                                         ),
                                                       )
@@ -4536,6 +4515,24 @@ class TeacherAssessmentSettingPublishState
                                                   ResponseEntity();
                                                   String assessmentCode = '';
                                                   if (widget.assessmentType=='editActive') {
+                                                    if(activeStatus){
+                                                      assessment.assessmentStatus='inactive';
+
+                                                    }
+                                                    else{
+                                                      assessment.assessmentStatus='active';
+                                                    }
+
+                                                    activeStatus?
+                                                    statusCode = await QnaService
+                                                        .makeInactiveAssessmentTeacherService(
+                                                        assessment.assessmentSettings!,
+                                                      assessment
+                                                          .assessmentId!,
+                                                        assessment.assessmentType!,
+                                                        'inactive',
+                                                        )
+                                                    :
                                                     statusCode = await QnaService
                                                         .editActiveAssessmentTeacherService(
                                                         assessment.assessmentSettings!,

@@ -3,10 +3,8 @@ import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
-
-//import '../Entity/question_paper_model.dart' as QuestionPaperModel;
-import '../Entity/Teacher/question_entity.dart' as QuestionModel;
-
+import '../Entity/Teacher/question_entity.dart' as questions;
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherPublishedAssessment extends StatefulWidget {
   TeacherPublishedAssessment(
       {Key? key,
@@ -14,7 +12,7 @@ class TeacherPublishedAssessment extends StatefulWidget {
       this.questionList})
       : super(key: key);
   String assessmentCode;
-  List<QuestionModel.Question>? questionList;
+  List<questions.Question>? questionList;
 
   @override
   TeacherPublishedAssessmentState createState() =>
@@ -43,22 +41,17 @@ class TeacherPublishedAssessmentState
     super.initState();
     getData();
     Future.delayed(const Duration(seconds: 3), () {
-      //asynchronous delay
       if (mounted) {
-        //checks if widget is still active and not disposed
         setState(() {
-          //tells the widget builder to rebuild again because ui has updated
           _visible =
-              false; //update the variable declare this under your class so its accessible for both your widget build and initState which is located under widget build{}
+              false;
         });
       }
     });
   }
 
   getData() async {
-    //QuestionPaperModel.QuestionPaperModel value = await QnaService.getQuestion(assessmentId: widget.assessmentCode);
     setState(() {
-      //values=value;
       assessmentVal =
           Provider.of<CreateAssessmentProvider>(context, listen: false)
               .getAssessment;
@@ -81,7 +74,6 @@ class TeacherPublishedAssessmentState
             date1.hour,
             date1.minute);
         startDate=DateTime.fromMicrosecondsSinceEpoch(date1.microsecondsSinceEpoch);
-        //question.assessmentStartdate=;
       }else{
         startDate = DateTime.fromMicrosecondsSinceEpoch(
             assessmentVal.assessmentStartdate!);
@@ -104,25 +96,6 @@ class TeacherPublishedAssessmentState
           backgroundColor: Colors.white,
           endDrawer: const EndDrawerMenuTeacher(),
           appBar: AppBar(
-            // leading: IconButton(
-            //   icon: const Icon(
-            //     Icons.chevron_left,
-            //     size: 40.0,
-            //     color: Colors.white,
-            //   ),
-            //   onPressed: () {
-            //     Navigator.of(context).pop();
-            //     //Navigator.pushNamedAndRemoveUntil(context, '/teacherAssessmentLanding',(route) => route.isFirst);
-            //     // Navigator.push(
-            //     //   context,
-            //     //   PageTransition(
-            //     //     type: PageTransitionType.leftToRight,
-            //     //     child:
-            //     //         TeacherAssessmentLanding(),
-            //     //   ),
-            //     // );
-            //   },
-            // ),
             automaticallyImplyLeading: false,
             toolbarHeight: height * 0.100,
             centerTitle: true,
@@ -130,7 +103,8 @@ class TeacherPublishedAssessmentState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "PUBLISHED",
+                    AppLocalizations.of(context)!.published_caps,
+                   //"PUBLISHED",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -139,7 +113,8 @@ class TeacherPublishedAssessmentState
                     ),
                   ),
                   Text(
-                    "ASSESSMENT",
+                    AppLocalizations.of(context)!.assessment_caps,
+                    //"ASSESSMENT",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -180,7 +155,8 @@ class TeacherPublishedAssessmentState
                         ),
                         child: Center(
                           child: Text(
-                            "Assessment Published Successfully",
+                            AppLocalizations.of(context)!.as_published,
+                            //"Assessment Published Successfully",
                             style: TextStyle(
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               fontSize: height * 0.02,
@@ -312,7 +288,8 @@ class TeacherPublishedAssessmentState
                                         ),
                                       ),
                                       Text(
-                                        "Marks",
+                                        AppLocalizations.of(context)!.marks,
+                                        //"Marks",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -342,7 +319,8 @@ class TeacherPublishedAssessmentState
                                         ),
                                       ),
                                       Text(
-                                        "Questions",
+                                        AppLocalizations.of(context)!.qn_button,
+                                        //"Questions",
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -368,7 +346,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Assessment ID:",
+                            AppLocalizations.of(context)!.assessment_id_caps,
+                            //"Assessment ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -396,7 +375,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Institute Test ID:",
+                            AppLocalizations.of(context)!.institute_test_id,
+                            //"Institute Test ID:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -430,7 +410,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Time Permitted:",
+                            AppLocalizations.of(context)!.time_permitted,
+                            //"Time Permitted:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -460,7 +441,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Start Date & Time:",
+                            "${AppLocalizations.of(context)!.start_date_time} : ",
+                            //"Start Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -498,7 +480,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "End Date & Time:",
+                            "${AppLocalizations.of(context)!.end_date_time} : ",
+                            //"End Date & Time:",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -551,7 +534,8 @@ class TeacherPublishedAssessmentState
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Additional Details",
+                                    AppLocalizations.of(context)!.additional_details,
+                                    //"Additional Details",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -592,7 +576,8 @@ class TeacherPublishedAssessmentState
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Additional Details",
+                                    AppLocalizations.of(context)!.additional_details,
+                                    // "Additional Details",
                                     style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
@@ -626,7 +611,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Category",
+                            AppLocalizations.of(context)!.category,
+                            //"Category",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -654,7 +640,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Number of Retries allowed",
+                            AppLocalizations.of(context)!.no_of_retries_allowed,
+                            // "Number of Retries allowed",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -667,8 +654,10 @@ class TeacherPublishedAssessmentState
                           assessmentVal.assessmentSettings
                                       ?.allowedNumberOfTestRetries ==
                                   null
-                              ? "Not Allowed"
-                              : "Allowed (${assessmentVal.assessmentSettings!.allowedNumberOfTestRetries} Times)",
+                              ? AppLocalizations.of(context)!.not_allowed
+                          //"Not Allowed"
+                              : "${AppLocalizations.of(context)!.allowed} (${assessmentVal.assessmentSettings!.allowedNumberOfTestRetries} Times)",
+                          //"Allowed (${assessmentVal.assessmentSettings!.allowedNumberOfTestRetries} Times)",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -686,7 +675,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Allow Guest students",
+                              AppLocalizations.of(context)!.allow_guest_Students,
+                           // "Allow Guest students",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -698,11 +688,14 @@ class TeacherPublishedAssessmentState
                         Text(
                           assessmentVal.assessmentSettings?.allowGuestStudent ==
                                   null
-                              ? "Not Allowed"
+                              ? AppLocalizations.of(context)!.not_allowed
+                          //"Not Allowed"
                               : assessmentVal
                                       .assessmentSettings!.allowGuestStudent!
-                                  ? "Allowed"
-                                  : "Not Allowed",
+                                  ? AppLocalizations.of(context)!.allowed
+                          //"Allowed"
+                                  : AppLocalizations.of(context)!.not_allowed,
+                          //"Not Allowed",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -720,7 +713,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Show answer Sheet after test",
+                              AppLocalizations.of(context)!.show_answersheet_after_test,
+                            //"Show answer Sheet after test",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -733,11 +727,14 @@ class TeacherPublishedAssessmentState
                           assessmentVal.assessmentSettings
                                       ?.showSolvedAnswerSheetInAdvisor ==
                                   null
-                              ? "Not Viewable"
+                              ? AppLocalizations.of(context)!.not_viewable
+    //"Not Viewable"
                               : assessmentVal.assessmentSettings!
                                       .showSolvedAnswerSheetInAdvisor!
-                                  ? "Viewable"
-                                  : "Not Viewable",
+                                  ? AppLocalizations.of(context)!.viewable
+    //"Viewable"
+                                  : AppLocalizations.of(context)!.not_viewable,
+    //"Not Viewable",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -755,7 +752,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Show my name in Advisor",
+                            AppLocalizations.of(context)!.show_my_advisor_name,
+    //"Show my name in Advisor",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -767,11 +765,14 @@ class TeacherPublishedAssessmentState
                         Text(
                           assessmentVal.assessmentSettings?.showAdvisorName ==
                                   null
-                              ? "No"
+                              ? AppLocalizations.of(context)!.no
+    //"No"
                               : assessmentVal
                                       .assessmentSettings!.showAdvisorName!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+    //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+    //"No",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -789,7 +790,8 @@ class TeacherPublishedAssessmentState
                         SizedBox(
                           width: width * 0.4,
                           child: Text(
-                            "Show my Email in Advisor",
+                            AppLocalizations.of(context)!.show_my_email,
+    //"Show my Email in Advisor",
                             style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontSize: height * 0.02,
@@ -801,11 +803,14 @@ class TeacherPublishedAssessmentState
                         Text(
                           assessmentVal.assessmentSettings?.showAdvisorEmail ==
                                   null
-                              ? "No"
+                              ? AppLocalizations.of(context)!.no
+                              //"No"
                               : assessmentVal
                                       .assessmentSettings!.showAdvisorEmail!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+    //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+    //"No",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -826,7 +831,8 @@ class TeacherPublishedAssessmentState
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Inactive",
+                                  AppLocalizations.of(context)!.in_active,
+                                 // "Inactive",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontSize: height * 0.015,
@@ -835,7 +841,8 @@ class TeacherPublishedAssessmentState
                                   ),
                                 ),
                                 Text(
-                                  "Not available for student",
+                                  AppLocalizations.of(context)!.not_available_for_student,
+                                 // "Not available for student",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(
                                         153, 153, 153, 0.8),
@@ -848,10 +855,13 @@ class TeacherPublishedAssessmentState
                         ),
                         Text(
                           assessmentVal.assessmentSettings?.notAvailable == null
-                              ? "No"
+                              ? AppLocalizations.of(context)!.no
+    //"No"
                               : assessmentVal.assessmentSettings!.notAvailable!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+    //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+    //"No",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -872,7 +882,8 @@ class TeacherPublishedAssessmentState
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Allow  Public access ",
+                                  AppLocalizations.of(context)!.allow_public_access,
+                                  //"Allow  Public access ",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontSize: height * 0.015,
@@ -881,7 +892,8 @@ class TeacherPublishedAssessmentState
                                   ),
                                 ),
                                 Text(
-                                  "Available to public for practice",
+                                  AppLocalizations.of(context)!.available_to_public,
+                                //"Available to public for practice",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(
                                         153, 153, 153, 0.8),
@@ -896,11 +908,14 @@ class TeacherPublishedAssessmentState
                           assessmentVal.assessmentSettings
                                       ?.avalabilityForPractice ==
                                   null
-                              ? "No"
+                              ?  AppLocalizations.of(context)!.no
+                              //"No"
                               : assessmentVal.assessmentSettings!
                                       .avalabilityForPractice!
-                                  ? "Yes"
-                                  : "No",
+                                  ? AppLocalizations.of(context)!.yes
+    //"Yes"
+                                  : AppLocalizations.of(context)!.no,
+    //"No",
                           style: TextStyle(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             fontSize: height * 0.0175,
@@ -927,7 +942,8 @@ class TeacherPublishedAssessmentState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Questions",
+                              AppLocalizations.of(context)!.qn_button,
+                              //"Questions",
                               style: TextStyle(
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                                 fontSize: height * 0.02,
@@ -975,7 +991,8 @@ class TeacherPublishedAssessmentState
                       children: [
                         const Expanded(child: Divider()),
                         Text(
-                          "  View All Questions  ",
+                          AppLocalizations.of(context)!.view_all_qns,
+                        // "  View All Questions  ",
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: height * 0.02,
@@ -993,82 +1010,82 @@ class TeacherPublishedAssessmentState
                     SizedBox(
                       height: height * 0.02,
                     ),
-                    Row(
-                      children: [
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              right: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "WEB",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            height: height * 0.08,
-                            width: width * 0.3,
-                            child: Center(
-                              child: Text(
-                                "Android App",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
-                                  color: const Color.fromRGBO(153, 153, 153, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: height * 0.08,
-                          width: width * 0.28,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                width: 1,
-                                color: Color.fromRGBO(232, 232, 232, 1),
-                              ),
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "IOS App",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Container(
+                    //       height: height * 0.08,
+                    //       width: width * 0.28,
+                    //       decoration: const BoxDecoration(
+                    //         border: Border(
+                    //           right: BorderSide(
+                    //             width: 1,
+                    //             color: Color.fromRGBO(232, 232, 232, 1),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "WEB",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             color: const Color.fromRGBO(153, 153, 153, 1),
+                    //             fontSize: height * 0.015,
+                    //             fontFamily: "Inter",
+                    //             fontWeight: FontWeight.w400,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Expanded(
+                    //       child: SizedBox(
+                    //         height: height * 0.08,
+                    //         width: width * 0.3,
+                    //         child: Center(
+                    //           child: Text(
+                    //             "Android App",
+                    //             textAlign: TextAlign.center,
+                    //             style: TextStyle(
+                    //               decoration: TextDecoration.underline,
+                    //               color: const Color.fromRGBO(153, 153, 153, 1),
+                    //               fontSize: height * 0.015,
+                    //               fontFamily: "Inter",
+                    //               fontWeight: FontWeight.w400,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       height: height * 0.08,
+                    //       width: width * 0.28,
+                    //       decoration: const BoxDecoration(
+                    //         border: Border(
+                    //           left: BorderSide(
+                    //             width: 1,
+                    //             color: Color.fromRGBO(232, 232, 232, 1),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       child: Center(
+                    //         child: Text(
+                    //           "IOS App",
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             decoration: TextDecoration.underline,
+                    //             color: const Color.fromRGBO(153, 153, 153, 1),
+                    //             fontSize: height * 0.015,
+                    //             fontFamily: "Inter",
+                    //             fontWeight: FontWeight.w400,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
+                    // SizedBox(
+                    //   height: height * 0.03,
+                    // ),
                     Center(
                       child: SizedBox(
                         width: width * 0.888,
@@ -1083,14 +1100,14 @@ class TeacherPublishedAssessmentState
                               side: const BorderSide(
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               )),
-                          //shape: StadiumBorder(),
                           onPressed: () {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
 
 
                           },
                           child: Text(
-                            'Back to My Assessment',
+                            AppLocalizations.of(context)!.back_to_as,
+                           // 'Back to My Assessment',
                             style: TextStyle(
                                 fontSize: height * 0.025,
                                 fontFamily: "Inter",
@@ -1115,7 +1132,7 @@ class QuestionWidget extends StatefulWidget {
       : super(key: key);
 
   final double height;
-  final QuestionModel.Question question;
+  final questions.Question question;
 
   @override
   State<QuestionWidget> createState() => _QuestionWidgetState();
@@ -1181,7 +1198,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             Row(
               children: [
                 Text(
-                  'Marks : ',
+               AppLocalizations.of(context)!.marks_small,
+                 // 'Marks : ',
                   style: TextStyle(
                     color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: widget.height * 0.015,

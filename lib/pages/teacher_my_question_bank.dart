@@ -26,13 +26,10 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
     quesList = Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
         .getAllQuestion;
     Future.delayed(const Duration(seconds: 3), () {
-      //asynchronous delay
       if (mounted) {
-        //checks if widget is still active and not disposed
         setState(() {
-          //tells the widget builder to rebuild again because ui has updated
           _visible =
-          false; //update the variable declare this under your class so its accessible for both your widget build and initState which is located under widget build{}
+          false;
         });
       }
     });
@@ -89,7 +86,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                       ),
                       child: Center(
                         child: Text(
-                          "Questions Published Successfully",
+                          AppLocalizations.of(context)!.qn_published,
+                          //"Questions Published Successfully",
                           style: TextStyle(
                             color: const Color.fromRGBO(255, 255, 255, 1),
                             fontSize: height * 0.02,
@@ -179,23 +177,11 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                     onPressed: () async {
                       if (widget.assessment != false) {
                         Navigator.pushNamed(context, '/teacherCreateAssessment');
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: TeacherCreateAssessment(
-                        //         ),
-                        //   ),
-                        // );
                       } else {
                         Provider.of<QuestionPrepareProviderFinal>(context,
                             listen: false)
                             .reSetQuestionList();
-                        //GetQuestionModel questionBank=await QnaService.getQuestionBankService(1,1);
-                        //Navigator.pushNamed(context, '/teacherQuestionBank');
                         Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
-
-                        // Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',ModalRoute.withName('/teacherSelectionPage'));
                       }
                     },
                     child: Text(
@@ -247,17 +233,7 @@ class QuestionPreview extends StatelessWidget {
     return MouseRegion(
         cursor: SystemMouseCursors.click,
         child: GestureDetector(
-          onTap: () {
-            // Navigator.pushNamed(
-            //     context,
-            //     '/teacherQuestionPreviewDelete',
-            //     arguments: [
-            //       question,
-            //       index,
-            //       assessment
-            //     ]
-            // );
-          },
+          onTap: () {},
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(

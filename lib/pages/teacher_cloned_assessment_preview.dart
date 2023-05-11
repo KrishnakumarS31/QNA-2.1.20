@@ -3,15 +3,14 @@ import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
-import '../Entity/Teacher/question_entity.dart' as Questions;
-
+import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Entity/Teacher/response_entity.dart';
-import '../EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
+import '../EntityModel/CreateAssessmentModel.dart' as createassessmentmodel;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
     Key? key,required this.assessmentType
@@ -26,9 +25,9 @@ class TeacherClonedAssessmentPreviewState
     extends State<TeacherClonedAssessmentPreview> {
   bool additionalDetails = true;
   GetAssessmentModel assessment = GetAssessmentModel();
-  CreateAssessmentModel.CreateAssessmentModel finalAssessment =
-  CreateAssessmentModel.CreateAssessmentModel(questions: []);
-  List<Questions.Question> quesList = [];
+  createassessmentmodel.CreateAssessmentModel finalAssessment =
+  createassessmentmodel.CreateAssessmentModel(questions: []);
+  List<questions.Question> quesList = [];
 
   int mark = 0;
   int totalQuestion = 0;
@@ -50,7 +49,8 @@ class TeacherClonedAssessmentPreviewState
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -71,7 +71,8 @@ class TeacherClonedAssessmentPreviewState
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -79,15 +80,7 @@ class TeacherClonedAssessmentPreviewState
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        //Provider.of<QuestionsForAssessmentSettingsPublishedProvider>(context, listen: false).addQuestion(widget.questions! as QuestionEntityForAssessmentSettingsPublished);
         Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAssessmentSettingPublish(),
-        //   ),
-        // );
       },
     );
     // set up the AlertDialog
@@ -100,7 +93,8 @@ class TeacherClonedAssessmentPreviewState
             size: height * 0.05,
           ),
           Text(
-            'Marks not filled',
+            AppLocalizations.of(context)!.marks_not_filled,
+            //'Marks not filled',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -110,7 +104,8 @@ class TeacherClonedAssessmentPreviewState
         ],
       ),
       content: Text(
-        'Do you want to still continue?',
+        AppLocalizations.of(context)!.do_you_want_continue,
+        //'Do you want to still continue?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -184,7 +179,8 @@ class TeacherClonedAssessmentPreviewState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "CLONED",
+                    AppLocalizations.of(context)!.cloned_caps,
+                    //"CLONED",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -193,7 +189,8 @@ class TeacherClonedAssessmentPreviewState
                     ),
                   ),
                   Text(
-                    "ASSESSMENTS",
+                    AppLocalizations.of(context)!.assessment_caps,
+                    //"ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -227,7 +224,8 @@ class TeacherClonedAssessmentPreviewState
                       Row(
                         children: [
                           Text(
-                            'Total Questions: ',
+                            AppLocalizations.of(context)!.total_ques,
+                            //'Total Questions: ',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -247,7 +245,8 @@ class TeacherClonedAssessmentPreviewState
                       Row(
                         children: [
                           Text(
-                            'Total Marks: ',
+                            AppLocalizations.of(context)!.total_marks,
+                            //'Total Marks: ',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -301,15 +300,6 @@ class TeacherClonedAssessmentPreviewState
                               Navigator.pushNamed(
                                   context, '/teacherAssessmentLooqQuestionBank',
                                   arguments: false);
-                              // Navigator.push(
-                              //   context,
-                              //   PageTransition(
-                              //     type: PageTransitionType.rightToLeft,
-                              //     child: TeacherAssessmentLooqQuestionBank(
-                              //
-                              //     ),
-                              //   ),
-                              // );
                             },
                             backgroundColor:
                             const Color.fromRGBO(82, 165, 160, 1),
@@ -335,7 +325,6 @@ class TeacherClonedAssessmentPreviewState
                             borderRadius: BorderRadius.circular(39),
                           ),
                         ),
-                        //shape: StadiumBorder(),
                         onPressed: () async {
                           finalAssessment.assessmentStatus = 'inprogress';
                           AssessmentSettings assessmentSettings =
@@ -360,7 +349,8 @@ class TeacherClonedAssessmentPreviewState
                           }
                         },
                         child: Text(
-                          'Save List',
+                          AppLocalizations.of(context)!.save_list,
+                         // 'Save List',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
@@ -387,7 +377,6 @@ class TeacherClonedAssessmentPreviewState
                             side: const BorderSide(
                               color: Color.fromRGBO(82, 165, 160, 1),
                             )),
-                        //shape: StadiumBorder(),
                         onPressed: () {
                           bool markZero = true;
                           for (int i = 0; i < quesList.length; i++) {
@@ -406,20 +395,10 @@ class TeacherClonedAssessmentPreviewState
                                 .updateAssessment(finalAssessment);
                             Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
                           }
-
-                          // Navigator.push(
-                          //   context,
-                          //   PageTransition(
-                          //     type: PageTransitionType.rightToLeft,
-                          //     child: TeacherAssessmentSettingPublish(
-                          //        ),
-                          //   ),
-                          // );
-
-//TeacherPublishedAssessment
                         },
                         child: Text(
-                          'Submit',
+                          AppLocalizations.of(context)!.submit,
+                          //'Submit',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
@@ -450,8 +429,8 @@ class QuestionWidget extends StatefulWidget {
   final double height;
   final int index;
   GetAssessmentModel assessment;
-  Questions.Question question;
-  CreateAssessmentModel.CreateAssessmentModel finalAssessment;
+  questions.Question question;
+  createassessmentmodel.CreateAssessmentModel finalAssessment;
   String assessmentType;
 
 
@@ -471,7 +450,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        // 'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -492,7 +472,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -501,22 +482,11 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       ),
       onPressed: () {
         Navigator.of(context).pop();
-        //widget.assessment.questions!.removeAt(widget.index);
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .deleteQuestionList(widget.index);
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .removeLooqQuestionInAssess(widget.question.questionId);
-
         Navigator.of(context).pushNamedAndRemoveUntil('/teacherClonedAssessmentPreview', ModalRoute.withName('/teacherClonedAssessment'),arguments: widget.assessmentType);
-
-
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherClonedAssessmentPreview(),
-        //   ),
-        // );
       },
     );
     AlertDialog alert = AlertDialog(
@@ -527,7 +497,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Confirm',
+            AppLocalizations.of(context)!.confirm,
+            //'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -537,7 +508,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         ],
       ),
       content: Text(
-        'Are you sure you want to remove this Question?',
+        AppLocalizations.of(context)!.sure_to_remove_qn,
+        //'Are you sure you want to remove this Question?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -620,7 +592,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                             Row(
                               children: [
                                 Text(
-                                  'Marks: ',
+                                  AppLocalizations.of(context)!.marks_small,
+                                  //'Marks: ',
                                   style: TextStyle(
                                       fontSize: widget.height * 0.017,
                                       fontFamily: "Inter",
@@ -651,7 +624,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                                         color: Color.fromRGBO(51, 51, 51, 1),
                                       ),
                                       Text(
-                                        ' Remove',
+                                        AppLocalizations.of(context)!.remove,
+                                        //' Remove',
                                         style: TextStyle(
                                             fontSize: widget.height * 0.017,
                                             fontFamily: "Inter",

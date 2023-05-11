@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qna_test/EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
+import 'package:qna_test/EntityModel/CreateAssessmentModel.dart' as createassessmentmodel;
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
@@ -48,7 +48,7 @@ class TeacherAssessmentQuestionBankState
 
   getData(String search) async {
     ResponseEntity responseEntity = await QnaService.getQuestionBankService(5000, 1, search);
-    CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+    createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     questions = responseEntity.data==null?[]:List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     List<int> tempQueIdList =[];
@@ -73,8 +73,11 @@ class TeacherAssessmentQuestionBankState
       PageTransition(
         type: PageTransitionType.rightToLeft,
         child: CustomDialog(
-          title: 'Alert',
-          content: 'No Questions Found.',
+          title:
+          AppLocalizations.of(context)!.alert_popup,
+          //'Alert',
+          content: AppLocalizations.of(context)!.no_more_assessment,
+          //'No Questions Found.',
           button: AppLocalizations.of(context)!.retry,
         ),
       ),
@@ -246,9 +249,6 @@ class TeacherAssessmentQuestionBankState
                 ),
               ),
             ),
-            // SizedBox(
-            //   height: height * 0.02,
-            // ),
             Center(
               child: SizedBox(
                 width: width * 0.8,
@@ -267,7 +267,7 @@ class TeacherAssessmentQuestionBankState
                     for(int i =0;i<quesList.length && i<otQues.length;i++){
                       quesList[i].questionMark=otQues[i].questionMark;
                     }
-                    CreateAssessmentModel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+                    createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
                     for(int i =0;i<assess.questions!.length;i++){
                       Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
                     }
@@ -346,14 +346,14 @@ class QuestionPreview extends StatefulWidget {
 }
 
 class _QuestionPreviewState extends State<QuestionPreview> {
-  bool? valuefirst = false;
+  bool? valueFirst = false;
 
 
   @override
   void initState() {
     // TODO: implement initState
     if(widget.quesIdList.contains(widget.question.questionId!)){
-      valuefirst=true;
+      valueFirst=true;
     }
     super.initState();
   }
@@ -366,7 +366,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
         Checkbox(
           checkColor: const Color.fromRGBO(255, 255, 255, 1),
           activeColor: const Color.fromRGBO(82, 165, 160, 1),
-          value: valuefirst,
+          value: valueFirst,
           onChanged: (bool? value) {
             setState(() {
 
@@ -377,7 +377,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
               } else {
                 Provider.of<NewQuestionProvider>(context, listen: false).removeQuestion(widget.question.questionId!);
               }
-              valuefirst = value;
+              valueFirst = value;
             });
           },
         ),

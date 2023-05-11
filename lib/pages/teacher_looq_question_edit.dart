@@ -25,7 +25,6 @@ class LooqQuestionEdit extends StatefulWidget {
 }
 
 class LooqQuestionEditState extends State<LooqQuestionEdit> {
-  late int _count;
   String? _groupValue;
   List<Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
@@ -43,7 +42,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
       if(chooses.isEmpty){
         setState(() => _groupValue = value!);
       }
-      else if(value=='Descripitive'){
+      else if(value=='Descriptive'){
         showAlertDialogDes(context,height,value);
       }
       else{
@@ -53,7 +52,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   }
 
   showAlertDialogDes(BuildContext context, double height,String? value) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -64,7 +62,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -84,8 +83,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),
       ),
-      child: Text(
-        'Yes',
+      child: Text(AppLocalizations.of(context)!.yes,
+       // 'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -105,7 +104,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         Navigator.pop(context);
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -113,8 +111,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             Icons.info,
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
-          Text(
-            'Alert',
+          Text(AppLocalizations.of(context)!.alert_popup,
+           // 'Alert',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -124,7 +122,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         ],
       ),
       content: Text(
-        'Are you sure you want to clear this Question and Choices?',
+        AppLocalizations.of(context)!.want_to_clear_qn,
+       // 'Are you sure you want to clear this Question and Choices?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -164,7 +163,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
       widget.question.choices?[key].rightChoice = radioList[key];
     });
   }
-//here
   addField() {
     setState(() {
       widget.question.choices?.add(Choice(choiceText: '', rightChoice: false));
@@ -244,7 +242,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   }
 
   showAlertDialog(BuildContext context, double height) {
-    // set up the buttons
     Widget cancelButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.white,
@@ -254,8 +251,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),
       ),
-      child: Text(
-        'No',
+      child: Text(AppLocalizations.of(context)!.no,
+       // 'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -275,8 +272,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             color: const Color.fromRGBO(48, 145, 139, 1),
             fontWeight: FontWeight.w500),
       ),
-      child: Text(
-        'Yes',
+      child: Text(AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -287,17 +284,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         LoginModel statusCode =
         await QnaService.deleteQuestion(widget.question.questionId!);
         Navigator.pushNamed(context, '/teacherQuestionBank');
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherQuestionBank(
-        //     ),
-        //   ),
-        // );
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -306,7 +294,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Confirm',
+            AppLocalizations.of(context)!.confirm,
+            //'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -316,7 +305,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
         ],
       ),
       content: Text(
-        'Are you sure you want to delete this Question?',
+        AppLocalizations.of(context)!.want_to_del_qn,
+       // 'Are you sure you want to delete this Question?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -341,6 +331,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -367,7 +359,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      "EDIT QUESTION",
+                      AppLocalizations.of(context)!.edit_qn_caps,
+                      //"EDIT QUESTION",
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0225,
@@ -423,7 +416,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           ),
                           MyRadioOption<String>(
                             icon: Icons.library_books_sharp,
-                            value: 'Descripitive',
+                            value: 'Descriptive',
                             groupValue: _groupValue,
                             onChanged: _valueChangedHandler(context,height),
                             label: 'Descriptive',
@@ -435,29 +428,6 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        // Row(
-                        //   children: [
-                        //     IconButton(
-                        //       icon: const Icon(
-                        //         Icons.delete,
-                        //         size: 30,
-                        //         color: Color.fromRGBO(28, 78, 80, 1),
-                        //       ),
-                        //       onPressed: () {
-                        //         showAlertDialog(context, height);
-                        //       },
-                        //     ),
-                        //     Text(
-                        //       "Delete",
-                        //       style: TextStyle(
-                        //         color: const Color.fromRGBO(28, 78, 80, 1),
-                        //         fontSize: height * 0.018,
-                        //         fontFamily: "Inter",
-                        //         fontWeight: FontWeight.w700,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                         GestureDetector(
                           onTap: (){
                             setState(() {
@@ -486,7 +456,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                 ),
                                 Text(
-                                  "Clear All",
+                                  AppLocalizations.of(context)!.clear_all,
+                                  //"Clear All",
                                   style: TextStyle(
                                     color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontSize: height * 0.018,
@@ -513,15 +484,21 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                         Container(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             child: Row(children: [
-                              SizedBox(width: width * 0.10),
-                              Text("Subject and Topic",
+                              constraints.maxWidth > 700
+                                  ? SizedBox(width: width * 0.03)
+                                  : SizedBox(width: width * 0.07),
+                              Text(
+                                  AppLocalizations.of(context)!.subject_topic,
+                                  //"Subject and Topic",
                                   style: TextStyle(
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
                                       fontSize: height * 0.020)),
-                              SizedBox(width: width * 0.25),
+                              constraints.maxWidth > 700
+                                  ? SizedBox(width: width * 0.8)
+                                  : SizedBox(width: width * 0.15),
                               IconButton(
                                 icon: Icon(
                                   showIcon,
@@ -538,15 +515,21 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
-                                SizedBox(width: width * 0.10),
-                                Text("Subject and Topic",
+                                constraints.maxWidth > 700
+                                    ? SizedBox(width: width * 0.03)
+                                    : SizedBox(width: width * 0.07),
+                                Text(
+                                    AppLocalizations.of(context)!.subject_topic,
+                                    //"Subject and Topic",
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             255, 255, 255, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.020)),
-                                SizedBox(width: width * 0.25),
+                                constraints.maxWidth > 700
+                                    ? SizedBox(width: width * 0.8)
+                                    : SizedBox(width: width * 0.15),
                                 IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -784,7 +767,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w400,
                                   fontSize: height * 0.02),
-                              hintText: "Type Question Here",
+                              hintText: AppLocalizations.of(context)!.type_qn_here,
+                              //"Type Question Here",
                               focusedBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
                                       color: Color.fromRGBO(82, 165, 160, 1)),
@@ -802,7 +786,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                       ),
                     ),
                     SizedBox(height: height * 0.010),
-                    _groupValue=="Descripitive"
+                    _groupValue=="Descriptive"
                         ? const SizedBox(height: 0,)
                         : _groupValue=="Survey"
                         ? Row(
@@ -812,7 +796,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           child: Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "Choices",
+                              AppLocalizations.of(context)!.choices,
+                              //"Choices",
                               style: TextStyle(
                                 color:
                                 const Color.fromRGBO(51, 51, 51, 1),
@@ -827,7 +812,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           width: width * 0.02,
                         ),
                         Text(
-                          "Delete",
+                          AppLocalizations.of(context)!.delete,
+                         // "Delete",
                           style: TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontSize: height * 0.016,
@@ -845,7 +831,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           child: Container(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "Choices",
+                              AppLocalizations.of(context)!.choices,
+                             // "Choices",
                               style: TextStyle(
                                 color: const Color.fromRGBO(51, 51, 51, 1),
                                 fontSize: height * 0.016,
@@ -856,7 +843,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           ),
                         ),
                         Text(
-                          "Correct\nAnswer",
+                          AppLocalizations.of(context)!.correct_answer,
+                          //"Correct\nAnswer",
                           style: TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontSize: height * 0.016,
@@ -868,7 +856,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           width: width * 0.03,
                         ),
                         Text(
-                          "Delete",
+                          AppLocalizations.of(context)!.delete,
+                          //"Delete",
                           style: TextStyle(
                             color: const Color.fromRGBO(51, 51, 51, 1),
                             fontSize: height * 0.016,
@@ -882,7 +871,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                       ],
                     ),
                     SizedBox(height: height * 0.010),
-                    _groupValue=="Descripitive"
+                    _groupValue=="Descriptive"
                         ?
                     const SizedBox(height: 0,)
                         : _groupValue=="Survey"
@@ -914,7 +903,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
-                                        hintText: "Type Option Here",
+                                        hintText: AppLocalizations.of(context)!.type_op_here,
+                                        //"Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(5)),
@@ -1028,7 +1018,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
-                                        hintText: "Type Option Here",
+                                        hintText: AppLocalizations.of(context)!.type_op_here,
+                                        //"Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(5)),
@@ -1163,7 +1154,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                         ],
                       ),
                     ),
-                    _groupValue=="Descripitive"?
+                    _groupValue=="Descriptive"?
                     const SizedBox(height: 0,)
                         :Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -1173,7 +1164,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               addField();
                             },
                             child: Text(
-                              "Add more choice",
+                              AppLocalizations.of(context)!.add_more_choice,
+                              //"Add more choice",
                               style: TextStyle(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 fontSize: height * 0.0225,
@@ -1189,7 +1181,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 left: width * 0.05, right: width * 0.04),
                             child: Row(children: [
                               Text(
-                                "Advisor",
+                                AppLocalizations.of(context)!.advisor,
+                                //"Advisor",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   fontSize: height * 0.025,
@@ -1224,7 +1217,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.02),
                         hintText:
-                        "Suggest what to study if answered incorrectly",
+                        AppLocalizations.of(context)!.suggest_study,
+                       // "Suggest what to study if answered incorrectly",
                       ),
                       onChanged: (val) {
                         setState(() {
@@ -1253,7 +1247,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                             fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                             fontSize: height * 0.02),
-                        hintText: "URL - Any reference (Optional)",
+                        hintText: AppLocalizations.of(context)!.url_reference,
+                        //"URL - Any reference (Optional)",
                       ),
                       onChanged: (val) {
                         setState(() {
@@ -1288,12 +1283,12 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: CustomDialog(
-                                            title: "Alert",
-                                            //'Wrong password',
-                                            content:
-                                            "Enter Subject, Class and Question",
-                                            //'please enter the correct password',
-                                            button: "Retry",
+                                            title: AppLocalizations.of(context)!.alert_popup,
+                                            //"Alert",
+                                            content:AppLocalizations.of(context)!.enter_sub_class,
+                                            //"Enter Subject, Class and Question",
+                                            button: AppLocalizations.of(context)!.retry,
+                                            //"Retry",
                                           ),
                                         ),
                                       );
@@ -1304,12 +1299,13 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         PageTransition(
                                           type: PageTransitionType.rightToLeft,
                                           child: CustomDialog(
-                                            title: "Alert",
-                                            //'Wrong password',
+                                            title: AppLocalizations.of(context)!.alert_popup,
+                                            //"Alert",
                                             content:
-                                            "At least one choice must be added",
-                                            //'please enter the correct password',
-                                            button: "Retry",
+                                            AppLocalizations.of(context)!.one_choice_must,
+                                            //"At least one choice must be added",
+                                            button: AppLocalizations.of(context)!.retry,
+                                            //"Retry",
                                           ),
                                         ),
                                       );
@@ -1345,12 +1341,13 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: CustomDialog(
-                                    title: "Alert",
-                                    //'Wrong password',
-                                    content:
-                                    "Enter Subject, Class and Question",
-                                    //'please enter the correct password',
-                                    button: "Retry",
+                                    title:
+                                    AppLocalizations.of(context)!.alert_popup,
+                                    //"Alert",
+                                    content:AppLocalizations.of(context)!.enter_sub_class,
+                                    //"Enter Subject, Class and Question",
+                                    button:  AppLocalizations.of(context)!.retry,
+                                    //"Retry",
                                   ),
                                 ),
                               );
@@ -1361,12 +1358,13 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                 PageTransition(
                                   type: PageTransitionType.rightToLeft,
                                   child: CustomDialog(
-                                    title: "Alert",
-                                    //'Wrong password',
+                                    title: AppLocalizations.of(context)!.alert_popup,
+                                    //"Alert",
                                     content:
-                                    "At least one choice must be added",
-                                    //'please enter the correct password',
-                                    button: "Retry",
+                                    AppLocalizations.of(context)!.one_choice_must,
+                                    //"At least one choice must be added",
+                                    button: AppLocalizations.of(context)!.retry,
+                                    //"Retry",
                                   ),
                                 ),
                               );
@@ -1394,7 +1392,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           }),
                     ),
                   ]),
-                ))));
+                ))));});
   }
 
   changeIcon(IconData pramIcon) {

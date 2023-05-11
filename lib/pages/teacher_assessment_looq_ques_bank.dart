@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -52,19 +50,6 @@ class TeacherAssessmentLooqQuestionBankState
         questionsPresent=false;
       }
     });
-    // if(questions.isEmpty){
-    //   Navigator.push(
-    //   context,
-    //   PageTransition(
-    //     type: PageTransitionType.rightToLeft,
-    //     child: CustomDialog(
-    //       title: 'Alert',
-    //       content: 'No Questions Found.',
-    //       button: AppLocalizations.of(context)!.retry,
-    //     ),
-    //   ),
-    // );
-    // }
   }
 
 
@@ -318,7 +303,7 @@ class QuestionPreview extends StatefulWidget {
 }
 
 class _QuestionPreviewState extends State<QuestionPreview> {
-  bool? valuefirst = false;
+  bool? valueFirst = false;
 
   @override
   Widget build(BuildContext context) {
@@ -332,7 +317,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
         Checkbox(
           checkColor: const Color.fromRGBO(255, 255, 255, 1),
           activeColor: const Color.fromRGBO(82, 165, 160, 1),
-          value: valuefirst,
+          value: valueFirst,
           onChanged: (bool? value) {
             if (value!) {
               if(widget.question.questionType=="MCQ"){
@@ -354,7 +339,7 @@ class _QuestionPreviewState extends State<QuestionPreview> {
                   .removeQuestion(widget.question.questionId);
             }
             setState(() {
-              valuefirst = value;
+              valueFirst = value;
             });
           },
         ),

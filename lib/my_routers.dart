@@ -343,8 +343,8 @@ class MyRoutes{
         return SlideRightRoute(widget: TeacherForgotPassword(email: arguments[0], otp: arguments[1],),settings: settings);
       }
 
-      // case '/teacherInactiveAssessment':
-      //   return SlideRightRoute(widget: const TeacherInactiveAssessment(),settings: settings);
+      case '/teacherInactiveAssessment':
+        return SlideRightRoute(widget: const TeacherInactiveAssessment(),settings: settings);
 
       case '/teacherLooqClonePreview':{
         final question = settings.arguments as QuestionEntity.Question;
