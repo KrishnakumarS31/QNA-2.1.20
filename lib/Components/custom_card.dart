@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../EntityModel/get_result_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class CustomCard extends StatefulWidget {
   const CustomCard({
     Key? key,
@@ -43,7 +43,8 @@ class _CustomCardState extends State<CustomCard> {
         children: [
           ListTile(
             title: Text(
-              'Subject - ${widget.result.subject}',
+              "${AppLocalizations.of(context)!.sub_small} - ${widget.result.subject}",
+//'Subject - ${widget.result.subject}',
               style: TextStyle(
                   color: const Color.fromRGBO(28, 78, 80, 1),
                   fontSize: widget.height * 0.0187,
@@ -86,7 +87,8 @@ class _CustomCardState extends State<CustomCard> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Title - ${widget.result.subject}',
+                "${AppLocalizations.of(context)!.title} - ${widget.result.topic}",
+                //'Title - ${widget.result.subject}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: widget.height * 0.0175,
@@ -101,7 +103,8 @@ class _CustomCardState extends State<CustomCard> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Subtopic ${widget.result.subTopic}',
+                '${AppLocalizations.of(context)!.sub_topic_optional} ${widget.result.subTopic}',
+                //'Semester ${widget.result.subTopic}',
                 style: TextStyle(
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontSize: widget.height * 0.0175,
@@ -115,7 +118,8 @@ class _CustomCardState extends State<CustomCard> {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Class ${widget.result.studentClass}',
+                 "${AppLocalizations.of(context)!.degree_small} - ${widget.result.studentClass}",
+                                        //'Class ${widget.result.studentClass}',
                 style: TextStyle(
                     color: const Color.fromRGBO(102, 102, 102, 1),
                     fontSize: widget.height * 0.0175,

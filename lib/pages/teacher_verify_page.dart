@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:qna_test/Pages/teacher_forgot_password.dart';
-import 'package:qna_test/Pages/teacher_login.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherVerifyOtpPage extends StatefulWidget {
   const TeacherVerifyOtpPage(
@@ -75,7 +74,8 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
               automaticallyImplyLeading: false,
               centerTitle: true,
               title: Text(
-                "VERIFY OTP",
+                AppLocalizations.of(context)!.verify_otp,
+                //"VERIFY OTP",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.025,
@@ -114,7 +114,9 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                               child: RichText(
                                   text: TextSpan(children: [
                                     TextSpan(
-                                      text: "CHECK YOUR EMAIL FOR OTP",
+                                      text:
+                                      AppLocalizations.of(context)!.check_email_otp,
+                                  //"CHECK YOUR EMAIL FOR OTP",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -155,7 +157,9 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                   validator: (value) {
                                     if (value!.isEmpty ||
                                         !RegExp(r'^\d+$').hasMatch(value)) {
-                                      return "Incorrect OTP";
+                                      return
+                                        AppLocalizations.of(context)!.incorrect_otp;
+                                      //"Incorrect OTP";
                                     } else {
                                       return null;
                                     }
@@ -173,8 +177,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                const Text("The OTP will be expired in",
-                                    style: TextStyle(
+                                 Text(
+                                    AppLocalizations.of(context)!.otp_expire_in,
+                                  //"The OTP will be expired in",
+                                    style: const TextStyle(
                                         color: Color.fromRGBO(153, 153, 153, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
@@ -198,9 +204,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                const Text(
-                                  "Don't receive OTP?",
-                                  style: TextStyle(
+                                 Text(
+                                  AppLocalizations.of(context)!.don_receive_otp,
+                                  //"Don't receive OTP?",
+                                  style: const TextStyle(
                                       color: Color.fromRGBO(153, 153, 153, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
@@ -208,8 +215,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                 ),
                                 TextButton(
                                     onPressed: () {},
-                                    child: const Text("   Resend OTP",
-                                        style: TextStyle(
+                                    child: Text(
+                                        AppLocalizations.of(context)!.resent_otp,
+                                      //"   Resend OTP",
+                                        style: const TextStyle(
                                             color:
                                             Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
@@ -233,7 +242,6 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               otp = otpController.text;
-                              //QnaTestRepo.updatePasswordOtp(widget.email, otp, 'password');
                               if (otp != "7089") {
                                 Navigator.push(
                                   context,
@@ -247,20 +255,12 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
                                     '/teacherForgotPassword',
                                     arguments: [widget.email,otp]
                                 );
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //       type: PageTransitionType.fade,
-                                //       child: TeacherForgotPassword(
-                                //         email: widget.email,
-                                //         otp: otp,
-                                //       )),
-                                // );
                               }
                             }
                           },
                           child: Text(
-                            'Validate',
+                            AppLocalizations.of(context)!.validate,
+                            //'Validate',
                             style: TextStyle(
                                 fontSize: height * 0.024,
                                 fontFamily: "Inter",
@@ -285,7 +285,6 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
         .size
         .height;
 
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -297,9 +296,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
           SizedBox(
             width: height * 0.002,
           ),
-          const Text(
-            "Success!",
-            style: TextStyle(
+           Text(
+            AppLocalizations.of(context)!.success,
+            //"Success!",
+            style: const TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
@@ -307,9 +307,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
           ),
         ],
       ),
-      content: const Text(
-        "Your registration has been successfully completed.",
-        style: TextStyle(
+      content: Text(
+        AppLocalizations.of(context)!.registration_completed,
+        //"Your registration has been successfully completed.",
+        style: const TextStyle(
             color: Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
@@ -317,9 +318,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
       ),
       actions: [
         TextButton(
-          child: const Text(
-            "Login",
-            style: TextStyle(
+          child: Text(
+            AppLocalizations.of(context)!.login_loginPage,
+            //"Login",
+            style: const TextStyle(
                 color: Color.fromRGBO(48, 145, 139, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
@@ -327,18 +329,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
           ),
           onPressed: () {
             Navigator.pushNamed(context, '/teacherLoginPage');
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => TeacherLogin(),
-            //   ),
-            // );
           },
         )
       ],
     );
-
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {

@@ -15,7 +15,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
   final DateFormat formatter = DateFormat('dd/MM/yyyy');
   late String formatted = '';
 
-//= formatter.format(pickedDate!);
 
   @override
   void initState() {
@@ -76,7 +75,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                                   child: Padding(
                                     padding: EdgeInsets.only(top: height * 0.01),
                                     child: Text(
-                                      'USER PROFILE',
+                                      AppLocalizations.of(context)!.user_profile,
+                                      //'USER PROFILE',
                                       style: TextStyle(
                                         color: const Color.fromRGBO(255, 255, 255, 1),
                                         fontSize: height * 0.025,
@@ -170,7 +170,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                                   child: Padding(
                                     padding: EdgeInsets.only(top: height * 0.01),
                                     child: Text(
-                                      'USER PROFILE',
+                                      AppLocalizations.of(context)!.user_profile,
+                                      //'USER PROFILE',
                                       style: TextStyle(
                                         color: const Color.fromRGBO(255, 255, 255, 1),
                                         fontSize: height * 0.025,
@@ -233,7 +234,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                             children: [
                               SizedBox(height: height * 0.03),
                               Text(
-                                'Date of Birth',
+                                AppLocalizations.of(context)!.dob_small,
+                                //'Date of Birth',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -255,7 +257,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Gender',
+                                AppLocalizations.of(context)!.gender,
+                                //'Gender',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -268,8 +271,12 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               Text(
                                 widget.userDataModel.data?.gender == "male"
-                                    ? "Male"
-                                    : "Female",
+                                    ?
+                                AppLocalizations.of(context)!.male
+                                //"Male"
+                                    :
+                                AppLocalizations.of(context)!.female,
+                                //"Female",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(48, 145, 139, 1),
                                   fontSize: height * 0.02,
@@ -279,7 +286,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Country Citizen',
+                                AppLocalizations.of(context)!.country_citizen_small,
+                                //'Country Citizen',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -301,7 +309,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Country Resident',
+                                AppLocalizations.of(context)!.country_resident_small,
+                                // 'Country Resident',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -323,7 +332,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Email ID',
+                                  AppLocalizations.of(context)!.email_id,
+                                // 'Email ID',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -345,7 +355,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Registered as Student also',
+                                AppLocalizations.of(context)!.also_teacher,
+                                //'Registered as Student also',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -356,8 +367,10 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               SizedBox(height: height * 0.01),
                               Text(
                                 widget.userDataModel.data!.role.contains("student")
-                                    ? "Yes"
-                                    : "No",
+                                    ? AppLocalizations.of(context)!.yes
+                                //"Yes"
+                                    : AppLocalizations.of(context)!.no,
+                                //"No",
                                 style: TextStyle(
                                   color: const Color.fromRGBO(48, 145, 139, 1),
                                   fontSize: height * 0.02,
@@ -367,7 +380,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'RegistrationID / Roll Number',
+                                AppLocalizations.of(context)!.reg_id_small,
+                                //'RegistrationID / Roll Number',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,
@@ -389,7 +403,8 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                               ),
                               SizedBox(height: height * 0.02),
                               Text(
-                                'Institute / Organization Name',
+                                AppLocalizations.of(context)!.ins_org,
+                                //'Institute / Organization Name',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(102, 102, 102, 1),
                                   fontSize: height * 0.015,

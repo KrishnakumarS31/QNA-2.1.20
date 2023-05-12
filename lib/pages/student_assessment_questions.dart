@@ -13,12 +13,14 @@ class StudQuestion extends StatefulWidget {
       required this.ques,
       required this.userName,
         this.userId,
+        required this.isMember,
       })
       : super(key: key);
   final String assessmentId;
   final QuestionPaperModel ques;
   final String userName;
   int? userId;
+  final bool isMember;
 
 
   @override
@@ -465,20 +467,29 @@ class StudQuestionState extends State<StudQuestion> {
         int d2 = DateTime
             .now()
             .microsecondsSinceEpoch;
-        if(a<d2){
+        if(a<=d2){
           countdownTimer!.cancel();
-          Navigator.pushNamed(
-              context,
-              '/studentReviseQuest',
-              arguments: [
-                values,
-                widget.userName,
-                widget.assessmentId,
-                now.microsecondsSinceEpoch,
-                values.data!.assessmentId!,
-                true,
-                widget.userId
-              ]);
+          bool submitted=Provider.of<Questions>(context, listen: false).assessmentSubmitted;
+          print("question page");
+          print(submitted);
+          if(submitted){
+
+          }else{
+            Navigator.pushNamed(
+                context,
+                '/studentReviseQuest',
+                arguments: [
+                  values,
+                  widget.userName,
+                  widget.assessmentId,
+                  now.microsecondsSinceEpoch,
+                  values.data!.assessmentId!,
+                  true,
+                  widget.userId,
+                  widget.isMember
+                ]);
+          }
+
         }
 
       }
@@ -498,7 +509,8 @@ class StudQuestionState extends State<StudQuestion> {
                 now.microsecondsSinceEpoch,
                 values.data!.assessmentId!,
                 true,
-                widget.userId
+                widget.userId,
+                widget.isMember
               ]);
         }
         myDuration = Duration(seconds: seconds);
@@ -777,7 +789,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                           .questionNum -
                                                       1]
                                                   .questionType ==
-                                              "Descripitive"
+                                              "Descriptive"
                                           ? Card(
                                               color: Colors.white,
                                               child: Padding(
@@ -1164,7 +1176,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
                                                 false,
-                                                widget.userId
+                                                widget.userId,
+                                                widget.isMember
                                               ]);
                                           // Navigator.push(
                                           //   context,
@@ -1513,7 +1526,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                           .questionNum -
                                                       1]
                                                   .questionType ==
-                                              "Descripitive"
+                                              "Descriptive"
                                           ? Card(
                                               color: Colors.white,
                                               child: Padding(
@@ -1899,7 +1912,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 now.microsecondsSinceEpoch,
                                                 values.data!.assessmentId!,
                                                 false,
-                                                widget.userId
+                                                widget.userId,
+                                                widget.isMember
                                               ]);
                                           // Navigator.push(
                                           //   context,

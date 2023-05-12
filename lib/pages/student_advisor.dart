@@ -420,10 +420,15 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     type:
                                     PageTransitionType.rightToLeft,
                                     child: CustomDialog(
-                                      title: 'Alert',
+                                      title:
+                                      AppLocalizations.of(context)!.alert_popup,
+                                      //'Alert',
                                       content:
-                                      'Answersheet are shown only in Practice mode',
-                                      button: "OK",
+                                      AppLocalizations.of(context)!.shown_for_practice,
+                                     // 'Answersheet are shown only in Practice mode',
+                                      button:
+                                      AppLocalizations.of(context)!.ok_caps,
+                                      //"OK",
                                     ),
                                   ),
                                 );
@@ -448,10 +453,15 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       type:
                                       PageTransitionType.rightToLeft,
                                       child:  CustomDialog(
-                                        title: 'Alert',
+                                        title:
+                                        AppLocalizations.of(context)!.alert_popup,
+                                        //'Alert',
                                         content:
-                                        'Answersheet are shown only in Practice mode',
-                                        button: "OK",
+                                        AppLocalizations.of(context)!.shown_for_practice,
+                                        //'Answersheet are shown only in Practice mode',
+                                        button:
+                                        AppLocalizations.of(context)!.ok_caps,
+                                        //"OK",
                                       ),
                                     ),
                                   );
@@ -473,10 +483,15 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     type:
                                     PageTransitionType.rightToLeft,
                                     child:  CustomDialog(
-                                      title: 'Alert',
+                                      title:
+                                      AppLocalizations.of(context)!.alert_popup,
+                                      //'Alert',
                                       content:
-                                      'Answersheet are shown only in Practice mode',
-                                      button: "OK",
+                                      AppLocalizations.of(context)!.shown_for_practice,
+                                      //'Answersheet are shown only in Practice mode',
+                                      button:
+                                      AppLocalizations.of(context)!.ok_caps,
+                                      //"OK",
                                     ),
                                   ),
                                 );
@@ -511,8 +526,11 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           ? "${widget.questions.data!.advisorEmail}"
                                           : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                           ? "${widget.questions.data!.advisorName}"
-                                          : "Not given",
-                                      button: "OK",
+                                          : AppLocalizations.of(context)!.not_given,
+                                      //"Not given",
+                                      button:
+                                      AppLocalizations.of(context)!.ok_caps,
+                                      //"OK",
                                     ),
                                   ),
                                 );
@@ -542,8 +560,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                             ? "${widget.questions.data!.advisorName}"
-                                            : "Not given",
-                                        button: "OK",
+                                            : AppLocalizations.of(context)!.not_given,
+                                        //"Not given",
+                                        button: AppLocalizations.of(context)!.ok_caps,
+                                        //"OK",
                                       ),
                                     ),
                                   );
@@ -570,8 +590,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           ? "${widget.questions.data!.advisorEmail}"
                                           : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                           ? "${widget.questions.data!.advisorName}"
-                                          : "Not given",
-                                      button: "OK",
+                                          : AppLocalizations.of(context)!.not_given,
+                                      //"Not given",
+                                      button: AppLocalizations.of(context)!.ok_caps,
+                                      //"OK",
                                     ),
                                   ),
                                 );
@@ -606,7 +628,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  AppLocalizations.of(context)!.pls_contact,
+                                  "\n \n${AppLocalizations.of(context)!.pls_contact}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: const Color.fromRGBO(
@@ -1001,10 +1023,13 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       type:
                                       PageTransitionType.rightToLeft,
                                       child:  CustomDialog(
-                                        title: 'Alert',
-                                        content:
-                                        'Answersheet are shown only in Practice mode',
-                                        button: "OK",
+                                        title: AppLocalizations.of(context)!.alert_popup,
+                                        //'Alert',
+                                        content: AppLocalizations.of(context)!.shown_for_practice,
+                                        //'Answersheet are shown only in Practice mode',
+                                        button:
+                                        AppLocalizations.of(context)!.ok_caps,
+                                        //"OK",
                                       ),
                                     ),
                                   );
@@ -1029,15 +1054,18 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         type: PageTransitionType
                                             .rightToLeft,
                                         child: CustomDialog(
-                                          title: 'Alert',
-                                          content:
-                                          'Answersheet are shown only in Practice mode',
-                                          button: "OK",
+                                          title: AppLocalizations.of(context)!.alert_popup,
+                                          //'Alert',
+                                          content: AppLocalizations.of(context)!.shown_for_practice,
+                                          //'Answersheet are shown only in Practice mode',
+                                          button:
+                                          AppLocalizations.of(context)!.ok_caps,
+                                          //"OK",
                                         ),
                                       ),
                                     );
                                   }),
-                              const SizedBox(width: 150),
+                              SizedBox(width: localWidth * 0.35),
                               IconButton(
                                 icon: Icon(
                                   Icons.chevron_right,
@@ -1054,10 +1082,13 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       type:
                                       PageTransitionType.rightToLeft,
                                       child:  CustomDialog(
-                                        title: 'Alert',
-                                        content:
-                                        'Answersheet are shown only in Practice mode',
-                                        button: "OK",
+                                        title: AppLocalizations.of(context)!.alert_popup,
+                                        //'Alert',
+                                        content: AppLocalizations.of(context)!.shown_for_practice,
+                                        //'Answersheet are shown only in Practice mode',
+                                        button:
+                                        AppLocalizations.of(context)!.ok_caps,
+                                        //"OK",
                                       ),
                                     ),
                                   );
@@ -1092,8 +1123,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                             ? "${widget.questions.data!.advisorName}"
-                                            : "Not given",
-                                        button: "OK",
+                                            : AppLocalizations.of(context)!.not_given,
+                                        //"Not given",
+                                        button: AppLocalizations.of(context)!.ok_caps,
+                                        //"OK",
                                       ),
                                     ),
                                   );
@@ -1123,13 +1156,15 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               ? "${widget.questions.data!.advisorEmail}"
                                               : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                               ? "${widget.questions.data!.advisorName}"
-                                              : "Not given",
-                                          button: "OK",
+                                              : AppLocalizations.of(context)!.not_given,
+                                          //"Not given",
+                                          button: AppLocalizations.of(context)!.ok_caps,
+                                          //"OK",
                                         ),
                                       ),
                                     );
                                   }),
-                              const SizedBox(width: 140),
+                              SizedBox(width: localWidth * 0.30),
                               IconButton(
                                 icon: Icon(
                                   Icons.chevron_right,
@@ -1151,8 +1186,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                             ? "${widget.questions.data!.advisorName}"
-                                            : "Not given",
-                                        button: "OK",
+                                            : AppLocalizations.of(context)!.not_given,
+                                        //"Not given",
+                                        button: AppLocalizations.of(context)!.ok_caps,
+                                        //"OK",
                                       ),
                                     ),
                                   );
@@ -1180,21 +1217,19 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ),
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.elliptical(
-                                      localWidth / 1.0, localHeight * 0.3)),
+                                      localWidth / 1.0, localHeight * 0.25)),
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
                                       top: localHeight * 0.03,
-                                      left: localHeight * 0.12),
+                                      left: localHeight * 0.05),
                                   child: Column(
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
                                       children: [
-                                        Text(
-                                          AppLocalizations.of(context)!
-                                              .pls_contact,
+                                        Text(AppLocalizations.of(context)!.pls_contact,
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(

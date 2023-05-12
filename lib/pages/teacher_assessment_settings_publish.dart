@@ -1959,6 +1959,10 @@ class TeacherAssessmentSettingPublishState
                                                           .microsecondsSinceEpoch;
                                                   assessment.assessmentDuration =
                                                       (hours * 60) + minutes;
+                                                  int totque=Provider.of<QuestionPrepareProviderFinal>(
+                                                      context,
+                                                      listen: false).getAllQuestion.length;
+                                                  assessment.totalQuestions=totque;
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   if (assessment.assessmentId !=
@@ -2091,6 +2095,10 @@ class TeacherAssessmentSettingPublishState
 
                                                   assessment.assessmentDuration =
                                                       (hours * 60) + minutes;
+                                                  int totque=Provider.of<QuestionPrepareProviderFinal>(
+                                                      context,
+                                                      listen: false).getAllQuestion.length;
+                                                  assessment.totalQuestions=totque;
                                                   showDialog(
                                                       context: context,
                                                       builder: (context) {
@@ -4185,6 +4193,10 @@ class TeacherAssessmentSettingPublishState
                                                           .microsecondsSinceEpoch;
                                                   assessment.assessmentDuration =
                                                       (hours * 60) + minutes;
+                                                  int totque=Provider.of<QuestionPrepareProviderFinal>(
+                                                      context,
+                                                      listen: false).getAllQuestion.length;
+                                                  assessment.totalQuestions=totque;
                                                   ResponseEntity statusCode =
                                                   ResponseEntity();
                                                   if (assessment.assessmentId !=
@@ -4317,6 +4329,10 @@ class TeacherAssessmentSettingPublishState
 
                                                   assessment.assessmentDuration =
                                                       (hours * 60) + minutes;
+                                                  int totque=Provider.of<QuestionPrepareProviderFinal>(
+                                                      context,
+                                                      listen: false).getAllQuestion.length;
+                                                  assessment.totalQuestions=totque;
                                                   showDialog(
                                                       context: context,
                                                       builder: (context) {

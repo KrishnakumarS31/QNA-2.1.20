@@ -22,7 +22,6 @@ class TeacherSubmittedQuestionPreview extends StatefulWidget {
 }
 
 class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestionPreview> {
-  String? _groupValue;
   TextEditingController adviceController = TextEditingController();
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
@@ -44,58 +43,6 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
         child: Scaffold(
             resizeToAvoidBottomInset: true,
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            // appBar: AppBar(
-            //   actions: [
-            //     Padding(
-            //       padding: const EdgeInsets.only(right: 10),
-            //       child: IconButton(
-            //         icon: const Icon(
-            //           Icons.menu,
-            //           size: 40.0,
-            //           color: Colors.white,
-            //         ),
-            //         onPressed: () {
-            //           Navigator.of(context).pop();
-            //         },
-            //       ),
-            //     ),
-            //   ],
-            //   leading: IconButton(
-            //     icon: const Icon(
-            //       Icons.chevron_left,
-            //       size: 40.0,
-            //       color: Colors.white,
-            //     ),
-            //     onPressed: () {
-            //       Navigator.of(context).pop();
-            //     },
-            //   ),
-            //   toolbarHeight: height * 0.100,
-            //   centerTitle: true,
-            //   title: Column(
-            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //       children: [
-            //         Text(
-            //           "PREPARE QUESTION",
-            //           style: TextStyle(
-            //             color: const Color.fromRGBO(255, 255, 255, 1),
-            //             fontSize: height * 0.0225,
-            //             fontFamily: "Inter",
-            //             fontWeight: FontWeight.w400,
-            //           ),
-            //         ),
-            //       ]),
-            //   flexibleSpace: Container(
-            //     decoration: const BoxDecoration(
-            //         gradient: LinearGradient(
-            //             end: Alignment.bottomCenter,
-            //             begin: Alignment.topCenter,
-            //             colors: [
-            //               Color.fromRGBO(0, 106, 100, 1),
-            //               Color.fromRGBO(82, 165, 160, 1),
-            //             ])),
-            //   ),
-            // ),
             body: Center(
               child: SizedBox(
                 height: height * 0.85,
@@ -108,7 +55,6 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                         right: width * 0.030,
                         bottom: height * 0.015,
                         top: height * 0.025),
-                    //padding: const EdgeInsets.all(40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -218,7 +164,9 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                           padding: EdgeInsets.only(left: width * 0.03),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text("Advisor",
+                            child: Text(
+                                AppLocalizations.of(context)!.advisor,
+                              //"Advisor",
                                 style: TextStyle(
                                     color:
                                     const Color.fromRGBO(82, 165, 160, 1),
@@ -236,7 +184,8 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
                                 labelText:
-                                'Suggest what to study if answered incorrectly ',
+                                AppLocalizations.of(context)!.suggest_study,
+                                //'Suggest what to study if answered incorrectly ',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -255,7 +204,9 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                             enabled: false,
                             decoration: InputDecoration(
                                 border: const UnderlineInputBorder(),
-                                labelText: 'URL - Any reference (Optional)',
+                                labelText:
+                                AppLocalizations.of(context)!.url_reference,
+                                //'URL - Any reference (Optional)',
                                 labelStyle: TextStyle(
                                     color: const Color.fromRGBO(0, 0, 0, 0.25),
                                     fontFamily: 'Inter',
@@ -266,31 +217,6 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                         SizedBox(
                           height: height * 0.03,
                         ),
-                        // ElevatedButton(
-                        //   style: ElevatedButton.styleFrom(
-                        //     side: const BorderSide(
-                        //       color: Color.fromRGBO(82, 165, 160, 1),
-                        //     ),
-                        //     backgroundColor:
-                        //     const Color.fromRGBO(255, 255, 255, 1),
-                        //     minimumSize: const Size(280, 48),
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(39),
-                        //     ),
-                        //   ),
-                        //   //shape: StadiumBorder(),
-                        //   onPressed: () {
-                        //     Navigator.of(context).pop();
-                        //   },
-                        //   child: Text(
-                        //     'Edit',
-                        //     style: TextStyle(
-                        //         fontSize: height * 0.025,
-                        //         fontFamily: "Inter",
-                        //         color: const Color.fromRGBO(82, 165, 160, 1),
-                        //         fontWeight: FontWeight.w600),
-                        //   ),
-                        // ),
                         SizedBox(
                           height: height * 0.03,
                         ),
@@ -303,7 +229,6 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                               borderRadius: BorderRadius.circular(39),
                             ),
                           ),
-                          //shape: StadiumBorder(),
                           onPressed: () async {
                             Question question = Question();
                             question.subject = widget.editQuestionModel.subject;
@@ -332,7 +257,6 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
                             await QnaService.editQuestionTeacherService(
                                 widget.editQuestionModel,
                                 widget.question.questionId);
-                            int count = 0;
                             Navigator.pushNamedAndRemoveUntil(context, '/teacherQuestionBank',(route) => route.isFirst);
                           },
                           child: Text(
@@ -370,8 +294,6 @@ class ChooseWidget extends StatefulWidget {
 }
 
 class _ChooseWidgetState extends State<ChooseWidget> {
-  // List<int> tempChoiceList=[];
-  // List<int>
 
   @override
   void initState() {

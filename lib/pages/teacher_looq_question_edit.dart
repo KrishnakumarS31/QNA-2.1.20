@@ -484,9 +484,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                         Container(
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             child: Row(children: [
-                              constraints.maxWidth > 700
-                                  ? SizedBox(width: width * 0.03)
-                                  : SizedBox(width: width * 0.07),
+                              SizedBox(width: width<700?width * 0.02:width * 0.03,),
                               Text(
                                   AppLocalizations.of(context)!.subject_topic,
                                   //"Subject and Topic",
@@ -496,9 +494,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
                                       fontSize: height * 0.020)),
-                              constraints.maxWidth > 700
-                                  ? SizedBox(width: width * 0.8)
-                                  : SizedBox(width: width * 0.15),
+                              SizedBox(width: width<700?width * 0.3:width * 0.70),
                               IconButton(
                                 icon: Icon(
                                   showIcon,
@@ -515,9 +511,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
-                                constraints.maxWidth > 700
-                                    ? SizedBox(width: width * 0.03)
-                                    : SizedBox(width: width * 0.07),
+                                SizedBox( width: width<700?width * 0.02:width * 0.03),
                                 Text(
                                     AppLocalizations.of(context)!.subject_topic,
                                     //"Subject and Topic",
@@ -527,9 +521,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.020)),
-                                constraints.maxWidth > 700
-                                    ? SizedBox(width: width * 0.8)
-                                    : SizedBox(width: width * 0.15),
+                                SizedBox(width: width<700?width * 0.3:width * 0.70),
                                 IconButton(
                                   icon: Icon(
                                     showIcon,

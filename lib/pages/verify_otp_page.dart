@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-
 import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
@@ -56,7 +55,6 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    //double height = MediaQuery.of(context).size.height;
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final minutes = strDigits(myDuration.inMinutes.remainder(60));
     final seconds = strDigits(myDuration.inSeconds.remainder(60));
@@ -80,7 +78,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
               automaticallyImplyLeading: false,
               centerTitle: true,
               title: Text(
-                "VERIFY OTP",
+                  AppLocalizations.of(context)!.verify_otp,
+                //"VERIFY OTP",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.025,
@@ -119,7 +118,9 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                               child: RichText(
                                   text: TextSpan(children: [
                                 TextSpan(
-                                  text: "CHECK YOUR EMAIL FOR OTP",
+                                  text:
+                                  AppLocalizations.of(context)!.check_email_otp,
+                                  //"CHECK YOUR EMAIL FOR OTP",
                                   style: TextStyle(
                                       color: const Color.fromRGBO(
                                           102, 102, 102, 1),
@@ -148,19 +149,23 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                   onChanged: (val) {
                                     formKey.currentState!.validate();
                                   },
-                                  decoration: const InputDecoration(
-                                    helperStyle: TextStyle(
+                                  decoration:  InputDecoration(
+                                    helperStyle: const TextStyle(
                                         color:
                                             Color.fromRGBO(102, 102, 102, 0.3),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: 16),
-                                    hintText: "Enter OTP",
+                                    hintText:
+                                    AppLocalizations.of(context)!.enter_otp
+                                    //"Enter OTP",
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty ||
                                         !RegExp(r'^\d+$').hasMatch(value)) {
-                                      return "Incorrect OTP";
+                                      return
+                                        AppLocalizations.of(context)!.incorrect_otp;
+                                      //"Incorrect OTP";
                                     } else {
                                       return null;
                                     }
@@ -178,8 +183,10 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                const Text("The OTP will be expired in",
-                                    style: TextStyle(
+                                Text(
+                                    AppLocalizations.of(context)!.otp_expire_in,
+                                  //"The OTP will be expired in",
+                                    style: const TextStyle(
                                         color: Color.fromRGBO(153, 153, 153, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
@@ -203,9 +210,10 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 const SizedBox(
                                   width: 4,
                                 ),
-                                const Text(
-                                  "Don't receive OTP?",
-                                  style: TextStyle(
+                                 Text(
+                                    AppLocalizations.of(context)!.don_receive_otp,
+                                  //"Don't receive OTP?",
+                                  style: const TextStyle(
                                       color: Color.fromRGBO(153, 153, 153, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w400,
@@ -220,17 +228,13 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                           widget.email);
                                       if (response.code == 200) {
                                         showResendDialog(context);
-                                        // Navigator.push(
-                                        //   context,
-                                        //   PageTransition(
-                                        //       type: PageTransitionType.rightToLeft,
-                                        //       child: showAlertDialog(context)),
-                                        // );
                                       }
                                     }
                                     : null
                                     ,
-                                    child: Text("   Resend OTP",
+                                    child: Text(
+                                        AppLocalizations.of(context)!.resent_otp,
+                                      //"   Resend OTP",
                                         style: TextStyle(
                                             color: enableResendButton == false ? Colors.grey :
                                                 const Color.fromRGBO(82, 165, 160, 1),
@@ -261,17 +265,16 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                                 showAlertDialog(context, res.message);
                               }
                               else if (res.code != 200 &&
-                                  res.code != null &&
-                                  res.message != null) {
+                                  res.code != null) {
                                 Navigator.push(
                                   context,
                                   PageTransition(
                                     type: PageTransitionType.rightToLeft,
                                     child: CustomDialog(
-                                      title: "Error",
-                                      //'Wrong password',
+                                      title:
+                                      AppLocalizations.of(context)!.alert_popup,
+                                      //"Error",
                                       content: res.message,
-                                      //'please enter the correct password',
                                       button:
                                           AppLocalizations.of(context)!.retry,
                                     ),
@@ -281,7 +284,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                             }
                           },
                           child: Text(
-                            'Validate',
+                              AppLocalizations.of(context)!.validate,
+                            //'Validate',
                             style: TextStyle(
                                 fontSize: height * 0.024,
                                 fontFamily: "Inter",
@@ -300,13 +304,12 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   }
 
   showAlertDialog(BuildContext context, String? msg) {
-    // set up the button
     double height = MediaQuery.of(context).size.height;
-    // set up the AlertDialog
     Widget okButton = TextButton(
-      child: const Text(
-        "OK",
-        style: TextStyle(
+      child: Text(
+          AppLocalizations.of(context)!.ok_caps,
+        //"OK",
+        style: const TextStyle(
             color: Color.fromRGBO(48, 145, 139, 1),
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
@@ -318,16 +321,6 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             '/studentForgotPassword',
             arguments: [widget.email,otp,widget.isFromStudent]
         );
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //       type: PageTransitionType.fade,
-        //       child: StudentForgotPassword(
-        //           email: widget.email,
-        //           otp: otp,
-        //
-        //           isFromStudent: widget.isFromStudent)),
-        // );
       },
     );
     AlertDialog alert = AlertDialog(
@@ -341,9 +334,10 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
           SizedBox(
             width: height * 0.002,
           ),
-          const Text(
-            "Success!",
-            style: TextStyle(
+           Text(
+              AppLocalizations.of(context)!.success,
+            //"Success!",
+            style: const TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
@@ -362,7 +356,6 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       actions: [okButton],
     );
 
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -371,13 +364,13 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     );
   }
 
-  showErorDialog(BuildContext context, String? msg) {
-    // set up the button
+  showErrorDialog(BuildContext context, String? msg) {
     double height = MediaQuery.of(context).size.height;
     Widget okButton = ElevatedButton(
-      child: const Text(
-        "OK",
-        style: TextStyle(
+      child: Text(
+          AppLocalizations.of(context)!.ok_caps,
+        // "OK",
+        style: const TextStyle(
             color: Color.fromRGBO(48, 145, 139, 1),
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
@@ -389,19 +382,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             '/studentForgotPassword',
             arguments: [widget.email,otp,widget.isFromStudent]
         );
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //       type: PageTransitionType.fade,
-        //       child: StudentForgotPassword(
-        //           email: widget.email,
-        //           isFromStudent: widget.isFromStudent,
-        //           otp: otp,
-        //           )),
-        // );
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -413,9 +395,10 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
           SizedBox(
             width: height * 0.002,
           ),
-          const Text(
-            "Success!",
-            style: TextStyle(
+          Text(
+              AppLocalizations.of(context)!.success,
+            //"Success!",
+            style: const TextStyle(
                 color: Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
                 fontWeight: FontWeight.w500,
@@ -444,14 +427,14 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
   }
 
   showResendDialog(BuildContext context) {
-    // set up the button
     double height = MediaQuery.of(context).size.height;
     Widget okButton = ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
       ),
       child: Text(
-        "OK",
+          AppLocalizations.of(context)!.ok_caps,
+        //"OK",
         style: TextStyle(
             color: Colors.white,
             fontFamily: 'Inter',
@@ -470,7 +453,6 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
 
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -483,7 +465,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
             width: height * 0.002,
           ),
           Text(
-            "OTP Sent!",
+              AppLocalizations.of(context)!.otp_sent,
+            //"OTP Sent!",
             style: TextStyle(
                 color: const Color.fromRGBO(51, 51, 51, 1),
                 fontFamily: 'Inter',
@@ -493,7 +476,8 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
         ],
       ),
       content: Text(
-        "If this email ID is registered with us you will receive OTP",
+          AppLocalizations.of(context)!.receive_otp,
+        //"If this email ID is registered with us you will receive OTP",
         style: TextStyle(
             color: const Color.fromRGBO(51, 51, 51, 1),
             fontFamily: 'Inter',

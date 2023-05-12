@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
+import '../EntityModel/user_data_model.dart';
+import '../Providers/question_num_provider.dart';
+import '../Services/qna_service.dart';
 import '../pages/cookie_policy.dart';
 import '../pages/privacy_policy_hamburger.dart';
 import '../pages/terms_of_services.dart';
@@ -21,7 +25,7 @@ class StudentResultPage extends StatefulWidget {
     required this.message,
     required this.endTime,
     required this.givenMark,
-
+    required this.isMember
   })
       : super(key: key);
   final int totalMarks;
@@ -33,7 +37,7 @@ class StudentResultPage extends StatefulWidget {
   final String endTime;
   final String message;
   final int givenMark;
-
+  final bool isMember;
 
   @override
   StudentResultPageState createState() => StudentResultPageState();
@@ -135,6 +139,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500)),
                               onPressed: () async {
+                                Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
                                 showDialog(
                                     context: context,
                                     builder: (context) {
@@ -144,20 +149,28 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 48, 145, 139, 1),
                                           ));
                                     });
-                                // Navigator.pushNamed(
-                                //     context,
-                                //     '/studGuestAssessment',
-                                //     arguments: widget.userName);
-                                // Navigator.of(context).pop();
-                                Navigator.pushNamed(context, '/studentSelectionPage');
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: StudentSelectionPage(
-                                //         ),
-                                //   ),
-                                // );
+
+                                //Navigator.pushNamed(context, '/studentSelectionPage');
+                                if(widget.isMember) {
+                                  print(widget.isMember);
+                                  SharedPreferences loginData = await SharedPreferences.getInstance();
+                                  print(loginData.getInt('userId'));
+                                  UserDataModel userDataModel =
+                                  await QnaService
+                                      .getUserDataService(loginData.getInt('userId'));
+                                  print(userDataModel.toString());
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/studentAssessment',
+                                      arguments: [loginData.getString('email'),userDataModel]);
+                                }
+                                else {
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/studGuestAssessment',
+                                      arguments: widget.userName);
+                                }
+
                               }),
                           SizedBox(width: localHeight * 0.030),
                         ],
@@ -481,7 +494,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 SharedPreferences preferences =
                                                 await SharedPreferences.getInstance();
                                                 await preferences.clear();
-                                                Navigator.pushNamed(context, '/');
+                                                if(context.mounted) {
+                                                  Navigator.pushNamed(
+                                                      context, '/');
+                                                }
                                               }
                                           ),
                                           constraints.maxWidth > 700
@@ -558,7 +574,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 SharedPreferences preferences =
                                                 await SharedPreferences.getInstance();
                                                 await preferences.clear();
-                                                Navigator.pushNamed(context, '/');
+                                                if(context.mounted) {
+                                                  Navigator.pushNamed(
+                                                      context, '/');
+                                                }
                                               }),
                                           SizedBox(width: localHeight * 0.030),
                                         ],
@@ -842,6 +861,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           fontWeight:
                                                           FontWeight.w500)),
                                                   onPressed: () async {
+                                                    Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
                                                     showDialog(
                                                         context: context,
                                                         builder: (context) {
@@ -854,7 +874,25 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                     139, 1),
                                                               ));
                                                         });
-                                                    Navigator.pushNamed(context, '/studentSelectionPage');
+                                                    if(widget.isMember) {
+                                                      print(widget.isMember);
+                                                      SharedPreferences loginData = await SharedPreferences.getInstance();
+                                                      print(loginData.getInt('userId'));
+                                                      UserDataModel userDataModel =
+                                                      await QnaService
+                                                          .getUserDataService(loginData.getInt('userId'));
+                                                      print(userDataModel.toString());
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          '/studentAssessment',
+                                                          arguments: [loginData.getString('email'),userDataModel]);
+                                                    }
+                                                    else {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          '/studGuestAssessment',
+                                                          arguments: widget.userName);
+                                                    }
                                                     // Navigator.pushNamed(
                                                     //     context,
                                                     //     '/studGuestAssessment',
@@ -1096,6 +1134,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       color: Colors.white,
                                       fontWeight: FontWeight.w500)),
                               onPressed: () async {
+                                Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
                                 showDialog(
                                     context: context,
                                     builder: (context) {
@@ -1110,7 +1149,25 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 //     '/studGuestAssessment',
                                 //     arguments: widget.userName);
                                 // Navigator.of(context).pop();
-                                Navigator.pushNamed(context, '/studentSelectionPage');
+                                if(widget.isMember) {
+                                  print(widget.isMember);
+                                  SharedPreferences loginData = await SharedPreferences.getInstance();
+                                  print(loginData.getInt('userId'));
+                                  UserDataModel userDataModel =
+                                  await QnaService
+                                      .getUserDataService(loginData.getInt('userId'));
+                                  print(userDataModel.toString());
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/studentAssessment',
+                                      arguments: [loginData.getString('email'),userDataModel]);
+                                }
+                                else {
+                                  Navigator.pushNamed(
+                                      context,
+                                      '/studGuestAssessment',
+                                      arguments: widget.userName);
+                                }
                                 // Navigator.push(
                                 //   context,
                                 //   PageTransition(
@@ -1433,8 +1490,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 SharedPreferences preferences =
                                                 await SharedPreferences.getInstance();
                                                 await preferences.clear();
-                                                Navigator.pushNamed(context, '/');
-                                              }),
+                                                if(context.mounted) {
+                                                  Navigator.pushNamed(
+                                                      context, '/');
+                                                }}),
                                           SizedBox(width: localHeight * 0.030),
                                         ],
                                       ),
@@ -1720,6 +1779,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                               fontWeight:
                                                               FontWeight.w500)),
                                                       onPressed: () async {
+                                                        Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
                                                         showDialog(
                                                             context: context,
                                                             builder: (context) {
@@ -1738,7 +1798,25 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         //     arguments: widget.userName);
                                                         // Navigator.of(context)
                                                         //     .pop();
-                                                        Navigator.pushNamed(context, '/studentSelectionPage');
+                                                        if(widget.isMember) {
+                                                          print(widget.isMember);
+                                                          SharedPreferences loginData = await SharedPreferences.getInstance();
+                                                          print(loginData.getInt('userId'));
+                                                          UserDataModel userDataModel =
+                                                          await QnaService
+                                                              .getUserDataService(loginData.getInt('userId'));
+                                                          print(userDataModel.toString());
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/studentAssessment',
+                                                              arguments: [loginData.getString('email'),userDataModel]);
+                                                        }
+                                                        else {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              '/studGuestAssessment',
+                                                              arguments: widget.userName);
+                                                        }
                                                         // Navigator.push(
                                                         //   context,
                                                         //   PageTransition(

@@ -50,7 +50,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
               automaticallyImplyLeading: false,
               backgroundColor: Colors.transparent,
             ),
-            endDrawer: EndDrawerMenuTeacher(),
+            endDrawer: const EndDrawerMenuTeacher(),
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
               physics: const ClampingScrollPhysics(),
@@ -85,22 +85,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                                   "assets/images/qna_logo.png"),
                             ),
                           ),
-                          // Text(
-                          //   'QNA',
-                          //   style: TextStyle(
-                          //       color: Colors.white,
-                          //       fontSize: height * 0.055,
-                          //       fontFamily: "Inter",
-                          //       fontWeight: FontWeight.w800),
-                          // ),
-                          // Text(
-                          //   'TEST',
-                          //   style: TextStyle(
-                          //       color: Colors.white,
-                          //       fontSize: height * 0.025,
-                          //       fontFamily: "Inter",
-                          //       fontWeight: FontWeight.w800),
-                          // ),
                         ],
                       ),
                     ),
@@ -147,40 +131,15 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         ),
                       ),
                       onPressed: () async {
-                        // showDialog(
-                        //     context: context,
-                        //     builder: (context) {
-                        //       return const Center(
-                        //           child: CircularProgressIndicator(
-                        //             color: Color.fromRGBO(48, 145, 139, 1),
-                        //           ));
-                        //     });
-                        // ResponseEntity responseEntity=await QnaService.getQuestionBankService(3,1);
-                        // List<Question> questions=[];
-                        // if(responseEntity.data==null){
-                        //
-                        // }
-                        // else{
-                        //   questions=List<Question>.from(responseEntity.data.map((x) => Question.fromJson(x)));
-                        // }
-                        // Navigator.of(context).pop();
                         Provider.of<QuestionPrepareProviderFinal>(context,
                                 listen: false)
                             .reSetQuestionList();
                         Navigator.pushNamed(context, '/teacherQuestionBank');
-                        // Navigator.push(
-                        //   context,
-                        //   PageTransition(
-                        //     type: PageTransitionType.rightToLeft,
-                        //     child: TeacherQuestionBank(
-                        //
-                        //     ),
-                        //   ),
-                        // );
                       },
                       child: Text(
                         AppLocalizations.of(context)!.qn_button,
-                        //'Questions',
+                        //AppLocalizations.of(context)!.qn_button,
+                                          //'Questions',
                         style: TextStyle(
                             fontSize: height * 0.032,
                             fontFamily: "Inter",
@@ -261,7 +220,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                         style: TextStyle(
                             fontSize: height * 0.032,
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w800),
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                     SizedBox(

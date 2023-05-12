@@ -583,25 +583,25 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
 
                         MouseRegion(
                           cursor: SystemMouseCursors.click,
-                          child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: () {
-                                  getQuestionData();
-                                },
-                                child: Text(
-                                  AppLocalizations.of(context)!.view_more,
-                                  //"View More",
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontSize: height * 0.0175,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              )),
+                          child: GestureDetector(
+                            onTap: () {
+                              getQuestionData();
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.view_more,
+                              //"View More",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
                         ),
-                        const Icon(Icons.chevron_right)
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: const Icon(Icons.chevron_right))
                       ],
                     ),
                     SizedBox(

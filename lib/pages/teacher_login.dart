@@ -421,8 +421,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                 style: TextStyle(
                                     fontSize: height * 0.020,
                                     fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.underline,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
@@ -437,10 +436,12 @@ class TeacherLoginState extends State<TeacherLogin> {
                               ),
                               TextSpan(
                                 text: AppLocalizations.of(context)!.services,
+                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                 style: TextStyle(
                                     fontSize: height * 0.020,
                                     fontWeight: FontWeight.w400,
-                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    decoration: TextDecoration.underline,
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
                             ])),

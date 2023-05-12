@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import '../Entity/Teacher/question_entity.dart' as Question;
+import '../Entity/Teacher/question_entity.dart' as qns;
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
-import '../Providers/new_question_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -16,7 +15,7 @@ class TeacherSelectedQuestionAssessment extends StatefulWidget {
       {Key? key, this.questions,required this.assessmentType})
       : super(key: key);
 
-  final List<Question.Question>? questions;
+  final List<qns.Question>? questions;
   final String assessmentType;
 
   @override
@@ -28,7 +27,7 @@ class TeacherSelectedQuestionAssessmentState
     extends State<TeacherSelectedQuestionAssessment> {
   bool additionalDetails = true;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  List<Question.Question> questionList = [];
+  List<qns.Question> questionList = [];
   CreateAssessmentModel assessment = CreateAssessmentModel(questions: []);
   int totalQues = 0;
   int totalMark = 0;
@@ -55,7 +54,8 @@ class TeacherSelectedQuestionAssessmentState
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+        AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -76,7 +76,8 @@ class TeacherSelectedQuestionAssessmentState
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+        AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -84,18 +85,9 @@ class TeacherSelectedQuestionAssessmentState
             fontWeight: FontWeight.w500),
       ),
       onPressed: () {
-        //Provider.of<QuestionsForAssessmentSettingsPublishedProvider>(context, listen: false).addQuestion(widget.questions! as QuestionEntityForAssessmentSettingsPublished);
         Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
-        // Navigator.push(
-        //   context,
-        //   PageTransition(
-        //     type: PageTransitionType.rightToLeft,
-        //     child: TeacherAssessmentSettingPublish(),
-        //   ),
-        // );
       },
     );
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: Row(
         children: [
@@ -105,7 +97,8 @@ class TeacherSelectedQuestionAssessmentState
             size: height * 0.05,
           ),
           Text(
-            'Marks not filled',
+            AppLocalizations.of(context)!.marks_not_filled,
+            //'Marks not filled',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -115,7 +108,8 @@ class TeacherSelectedQuestionAssessmentState
         ],
       ),
       content: Text(
-        'Do you want to still continue?',
+        AppLocalizations.of(context)!.do_you_want_continue,
+        //'Do you want to still continue?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -127,7 +121,6 @@ class TeacherSelectedQuestionAssessmentState
         continueButton,
       ],
     );
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -186,7 +179,8 @@ class TeacherSelectedQuestionAssessmentState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "SELECTED QUESTIONS",
+                    AppLocalizations.of(context)!.selected_qns,
+                    //"SELECTED QUESTIONS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -195,7 +189,8 @@ class TeacherSelectedQuestionAssessmentState
                     ),
                   ),
                   Text(
-                    "FOR ASSESSMENT",
+                    AppLocalizations.of(context)!.for_assessments,
+                    //"FOR ASSESSMENT",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       fontSize: height * 0.0225,
@@ -845,7 +840,8 @@ class TeacherSelectedQuestionAssessmentState
                                 child: Row(
                                   children: [
                                     Text(
-                                      'Edit',
+                                      AppLocalizations.of(context)!.edit_button,
+                                      //'Edit',
                                       style: TextStyle(
                                           fontSize: height * 0.017,
                                           fontFamily: "Inter",
@@ -865,7 +861,8 @@ class TeacherSelectedQuestionAssessmentState
                               )), ],
                           ),
                           Text(
-                            'Topic: ${assessment.topic}',
+                            "${AppLocalizations.of(context)!.topic_small} : ${assessment.topic}",
+                            //'Topic: ${assessment.topic}',
                             style: TextStyle(
                                 fontSize: height * 0.015,
                                 fontFamily: "Inter",
@@ -899,7 +896,8 @@ class TeacherSelectedQuestionAssessmentState
                       Row(
                         children: [
                           Text(
-                            'Total Questions: ',
+                          AppLocalizations.of(context)!.total_ques,
+                            //'Total Questions: ',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -919,7 +917,8 @@ class TeacherSelectedQuestionAssessmentState
                       Row(
                         children: [
                           Text(
-                            'Total Marks: ',
+                          AppLocalizations.of(context)!.total_marks,
+                            //'Total Marks: ',
                             style: TextStyle(
                                 fontSize: height * 0.017,
                                 fontFamily: "Inter",
@@ -1027,7 +1026,8 @@ class TeacherSelectedQuestionAssessmentState
 
                         },
                         child: Text(
-                          'Save Assessment',
+    AppLocalizations.of(context)!.save_assessments,
+    // 'Save Assessment',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
@@ -1072,7 +1072,8 @@ class TeacherSelectedQuestionAssessmentState
 
                         },
                         child: Text(
-                          'Continue',
+    AppLocalizations.of(context)!.login,
+    // 'Continue',
                           style: TextStyle(
                               fontSize: height * 0.025,
                               fontFamily: "Inter",
@@ -1100,7 +1101,7 @@ class QuestionWidget extends StatefulWidget {
       : super(key: key);
 
   final double height;
-  final Question.Question question;
+  final qns.Question question;
   final int index;
   final CreateAssessmentModel assessment;
   final String assessmentType;
@@ -1122,7 +1123,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'No',
+          AppLocalizations.of(context)!.no,
+        //'No',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -1143,7 +1145,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             fontWeight: FontWeight.w500),
       ),
       child: Text(
-        'Yes',
+          AppLocalizations.of(context)!.yes,
+        //'Yes',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -1166,7 +1169,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           }
         Navigator.of(context).pop();
         setState(() {});
-        List<Question.Question> quesListArg=Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
+        List<qns.Question> quesListArg=Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
         Navigator.popAndPushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [quesListArg,widget.assessmentType]);
 
@@ -1180,7 +1183,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             color: Color.fromRGBO(238, 71, 0, 1),
           ),
           Text(
-            'Confirm',
+            AppLocalizations.of(context)!.confirm,
+            // 'Confirm',
             style: TextStyle(
                 fontSize: height * 0.02,
                 fontFamily: "Inter",
@@ -1190,7 +1194,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         ],
       ),
       content: Text(
-        'Are you sure you want to remove this Question?',
+        AppLocalizations.of(context)!.sure_to_remove_qn,
+        //'Are you sure you want to remove this Question?',
         style: TextStyle(
             fontSize: height * 0.02,
             fontFamily: "Inter",
@@ -1202,7 +1207,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         continueButton,
       ],
     );
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1239,10 +1243,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
           onTap: () {
-            // showAlertDialog(
-            //   context,
-            //   widget.height,
-            // );
             Navigator.pushNamed(
                 context,
                 '/teacherAssessmentQuestionPreview',
@@ -1297,7 +1297,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                               color: Color.fromRGBO(51, 51, 51, 1),
                             ),
                             Text(
-                              ' Remove',
+                              AppLocalizations.of(context)!.remove,
+                              //' Remove',
                               style: TextStyle(
                                   fontSize: widget.height * 0.017,
                                   fontFamily: "Inter",
@@ -1321,17 +1322,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                           '/teacherAssessmentQuestionPreview',
                           arguments: [widget.assessment,widget.question, widget.index,'',widget.assessmentType]
                       );
-                      // Navigator.push(
-                      //   context,
-                      //   PageTransition(
-                      //     type: PageTransitionType.rightToLeft,
-                      //     child: TeacherAssessmentQuestionPreview(
-                      //       assessment: widget.assessment,
-                      //       question: widget.question,
-                      //       index: widget.index,
-                      //     ),
-                      //   ),
-                      // );
                     },
                     child: Align(
                       alignment: Alignment.topLeft,
@@ -1365,7 +1355,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                       Row(
                         children: [
                           Text(
-                            'Marks: ',
+                            AppLocalizations.of(context)!.marks_small,
+                            //'Marks: ',
                             style: TextStyle(
                                 fontSize: widget.height * 0.017,
                                 fontFamily: "Inter",

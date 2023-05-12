@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Pages/student_member_login_page.dart';
 import 'package:qna_test/Services/qna_service.dart';
-import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,11 +19,19 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   TextEditingController oldPassword = TextEditingController();
   TextEditingController newPassword = TextEditingController();
   TextEditingController reNewPassword = TextEditingController();
+  late String password;
 
   @override
   void initState() {
-    QnaService.sendOtp('jjk');
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    setState(() {
+      password = loginData.getString("password")!;
+    });
   }
 
   @override
@@ -139,7 +144,12 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                               validator: (value) {
                                 if (value!.length < 8) {
                                   return "Old Password is required";
-                                } else {
+                                }
+                                else if(value != password)
+                                {
+                                  return "Wrong Password Entered";
+                                }
+                                else {
                                   return null;
                                 }
                               },
@@ -197,7 +207,9 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     borderRadius: BorderRadius.circular(15)),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty) {
+
+                                  if(value!.length < 8)
+                                    {
                                   return "New Password is required(Password Should be 8 Characters)";
                                 } else {
                                   return null;
@@ -457,7 +469,9 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                 newPassword.text,
                                 widget.userId,context);
                             if (statusCode.code == 200 && oldPassword.text.isNotEmpty && newPassword.text.isNotEmpty) {
-                              showAlertDialog(context);
+                              if(context.mounted)
+                                {showAlertDialog(context);}
+
                             }
                           }
                         },
@@ -491,8 +505,10 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
-        Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',ModalRoute.withName('/studentSelectionPage'));
-        // Navigator.push(
+        if(context.mounted) {
+          Navigator.pushNamedAndRemoveUntil(context, '/studentMemberLoginPage',
+              ModalRoute.withName('/studentSelectionPage'));
+        }// Navigator.push(
         //   context,
         //   PageTransition(
         //       type: PageTransitionType.fade,

@@ -81,7 +81,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'RESULTS REPORT',
+                      AppLocalizations.of(context)!.results_report_caps,
+                      //'RESULTS REPORT',
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0175,
@@ -90,7 +91,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       ),
                     ),
                     Text(
-                      "SUBMITTED",
+                      AppLocalizations.of(context)!.submitted_caps,
+                      //"SUBMITTED",
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0225,
@@ -177,7 +179,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                               children: [
                                 ListTile(
                                   title: Text(
-                                    'Subject - ${widget.result.subject}',
+                                    "${AppLocalizations.of(context)!.sub_small} - ${widget.result.subject}",
+//'Subject - ${widget.result.subject}',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             28, 78, 80, 1),
@@ -229,7 +232,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Advisor',
+                                           AppLocalizations.of(context)!.advisor,
+                              //'Advisor',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   28, 78, 80, 1),
@@ -262,7 +266,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Title - ${widget.result.topic}',
+                                      "${AppLocalizations.of(context)!.title} - ${widget.result.topic}",
+                                      //'Title - ${widget.result.topic}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),
@@ -296,7 +301,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Class ${widget.result.studentClass}',
+                                       "${AppLocalizations.of(context)!.degree_small} - ${widget.result.studentClass}",
+                                        //'Class ${widget.result.studentClass}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -317,7 +323,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       child: Column(
                                         mainAxisAlignment:
                                         MainAxisAlignment.center,
-                                        //crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             widget.result.assessmentType!,
@@ -331,7 +336,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 FontWeight.w700),
                                           ),
                                           Text(
-                                            'Category',
+                                            AppLocalizations.of(context)!.category,
+    //'Category',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -362,7 +368,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                       child: Column(
                                         mainAxisAlignment:
                                         MainAxisAlignment.center,
-                                        //crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             "${widget.result.totalQuestions!}",
@@ -376,7 +381,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 FontWeight.w700),
                                           ),
                                           Text(
-                                            'Total',
+                                             AppLocalizations.of(context)!.total_small,
+                                                //'Total',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -387,7 +393,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 FontWeight.w400),
                                           ),
                                           Text(
-                                            'Questions',
+                                            AppLocalizations.of(context)!.qn_button,
+                                          //'Questions',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -419,7 +426,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 FontWeight.w700),
                                           ),
                                           Text(
-                                            'Total',
+                                             AppLocalizations.of(context)!.total_small,
+                                                //'Total',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -430,7 +438,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                 FontWeight.w400),
                                           ),
                                           Text(
-                                            'Marks',
+                                            AppLocalizations.of(context)!.marks_small,
+                                            // 'Marks',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -452,7 +461,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Schedule',
+                                         AppLocalizations.of(context)!.schedule_small,
+    //'Schedule',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               28, 78, 80, 1),
@@ -471,7 +481,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Test max. Time permitted: ',
+                                          AppLocalizations.of(context)!.test_time_permitted,
+                                      //'Test max. Time permitted: ',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
@@ -503,7 +514,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Test Opening Date & Time:',
+                                              AppLocalizations.of(context)!.test_opening_time,
+    //'Test Opening Date & Time:',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
@@ -536,7 +548,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Test Closing Date & Time:',
+                                              AppLocalizations.of(context)!.test_closing_time,
+    //'Test Closing Date & Time:',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
@@ -575,7 +588,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Guest\t\t',
+                                             AppLocalizations.of(context)!.guest,
+    //'Guest',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   28, 78, 80, 1),
@@ -588,8 +602,10 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                           widget.result
                                               .guestStudentAllowed ==
                                               true
-                                              ? "Allowed"
-                                              : "Not Allowed",
+                                              ?  AppLocalizations.of(context)!.allowed
+                                          //"Allowed"
+                                              : AppLocalizations.of(context)!.not_allowed,
+                                          //"Not Allowed",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -755,7 +771,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Total Participants List (${widget.submittedArray!.length})',
+                            "${AppLocalizations.of(context)!.total_parti_list} (${widget.submittedArray?.length})",
+                          //'Total Participants List (${widget.submittedArray!.length})',
                           style: TextStyle(
                               fontSize: height * 0.0187,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -769,7 +786,8 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Tap on respective student for details',
+                          AppLocalizations.of(context)!.tap_to_student_details,
+                          //'Tap on respective student for details',
                           style: TextStyle(
                               fontSize: height * 0.0125,
                               color: const Color.fromRGBO(148, 148, 148, 1),

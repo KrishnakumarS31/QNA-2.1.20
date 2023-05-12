@@ -44,6 +44,7 @@ String convertAttemptDuration(int? duration) {
   String assessmentDuration = '';
   if (duration!< 60) {
     if (duration.toString().length == 1) {
+      duration = duration == 0 ?  1 : duration;
       assessmentDuration = "00:0$duration min";
     }
     else if (duration.toString().length == 2)

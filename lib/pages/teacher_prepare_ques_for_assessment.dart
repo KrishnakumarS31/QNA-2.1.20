@@ -368,7 +368,7 @@ class TeacherPrepareQuesForAssessmentState
                                 )
                               ]),
                           SizedBox(height: height * 0.001),
-                          showIcon!=Icons.expand_circle_down_outlined?
+                          showIcon==Icons.expand_circle_down_outlined?
                           Container(
                             margin: const EdgeInsets.all(5),
                             padding: const EdgeInsets.all(5),

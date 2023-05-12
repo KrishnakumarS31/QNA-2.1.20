@@ -562,9 +562,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 ),
                                 //shape: StadiumBorder(),
                                 child: Text(AppLocalizations.of(context)!.start,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontFamily: 'Inter',
-                                        fontSize: 24,
+                                        fontSize: height * 0.032,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600)),
                                 onPressed: () async {
@@ -592,7 +592,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                               assessmentIdController.text,
                                               values,
                                               widget.name,
-                                              null
+                                              null,
+                                              false
                                             ]);
                                         // Navigator.push(
                                         //   context,
@@ -1214,9 +1215,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 ),
                                 //shape: StadiumBorder(),
                                 child: Text(AppLocalizations.of(context)!.start,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontFamily: 'Inter',
-                                        fontSize: 24,
+                                        fontSize: height * 0.032,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600)),
                                 onPressed: () async {
@@ -1232,8 +1233,9 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                               ));
                                         });
                                     values = await QnaService.getQuestionGuest(
-                                        widget.name,
-                                        assessmentIdController.text);
+                                        assessmentIdController.text,
+                                        widget.name);
+                                    print(values.code);
                                     Navigator.of(context).pop();
                                     if (assessmentIdController.text.length >= 8) {
                                       if (values.code == 200) {
@@ -1244,7 +1246,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                               assessmentIdController.text,
                                               values,
                                               widget.name,
-                                              null
+                                              null,
+                                              false
                                             ]);
                                         // Navigator.push(
                                         //   context,

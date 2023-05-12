@@ -7,7 +7,7 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Services/qna_service.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherResultLanding extends StatefulWidget {
   const TeacherResultLanding({
     Key? key,
@@ -93,7 +93,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               0.02,
                         ),
                         Text(
-                          "      Completed Tests",
+                          AppLocalizations.of(context)!.completed_tests,
+                          //"      Completed Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -127,7 +128,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               0.02,
                         ),
                         Text(
-                          "      In Progress Tests",
+                          AppLocalizations.of(context)!.inprogress_results,
+                          //"      In Progress Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -161,7 +163,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                               0.02,
                         ),
                         Text(
-                          "      Not Started Tests",
+                          AppLocalizations.of(context)!.not_started_tests,
+                          //"      Not Started Tests",
                           style: Theme.of(context)
                               .primaryTextTheme
                               .bodyLarge
@@ -230,7 +233,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'RESULTS',
+                      AppLocalizations.of(context)!.results_caps,
+                      //'RESULTS',
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0175,
@@ -239,7 +243,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       ),
                     ),
                     Text(
-                      "MY ASSESSMENTS",
+                      AppLocalizations.of(context)!.my_assessments,
+                      //"MY ASSESSMENTS",
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0225,
@@ -269,28 +274,6 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Row(children: <Widget>[
-                      //   const Expanded(
-                      //       child: Divider(
-                      //     color: Color.fromRGBO(233, 233, 233, 1),
-                      //     thickness: 2,
-                      //   )),
-                      //   Padding(
-                      //     padding: const EdgeInsets.only(right: 10, left: 10),
-                      //     child: Text(
-                      //       'DEC 2022',
-                      //       style: TextStyle(
-                      //           fontSize: height * 0.0187,
-                      //           fontFamily: "Inter",
-                      //           fontWeight: FontWeight.w700),
-                      //     ),
-                      //   ),
-                      //   const Expanded(
-                      //       child: Divider(
-                      //     color: Color.fromRGBO(233, 233, 233, 1),
-                      //     thickness: 2,
-                      //   )),
-                      // ]),
                       SizedBox(
                         height: height * 0.01,
                       ),
@@ -299,7 +282,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         child:
                         results.isEmpty
                             ? Text(
-                          'NO RESULTS FOUND',
+                          AppLocalizations.of(context)!.no_results_found,
+                          //'NO RESULTS FOUND',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: const Color.fromRGBO(28, 78, 80, 1),
@@ -364,7 +348,8 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                   crossAxisAlignment: WrapCrossAlignment.center,
                                   children: [
                                     Text(
-                                        'View More',
+                                        AppLocalizations.of(context)!.view_more,
+                                      //'View More',
                                         style: TextStyle(
                                             color: const Color.fromRGBO(28, 78, 80, 1),
                                             fontSize: height * 0.0187,

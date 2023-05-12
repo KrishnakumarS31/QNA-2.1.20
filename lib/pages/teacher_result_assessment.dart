@@ -86,7 +86,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'RESULTS',
+                      AppLocalizations.of(context)!.results_caps,
+                      //'RESULTS',
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0175,
@@ -142,7 +143,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            'Internal Assessment ID',
+                            AppLocalizations.of(context)!.internal_ass_id,
+                            //'Internal Assessment ID',
                             style: TextStyle(
                                 color: const Color.fromRGBO(102, 102, 102, 1),
                                 fontSize: height * 0.015,
@@ -177,7 +179,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                               children: [
                                 ListTile(
                                   title: Text(
-                                    'Subject - ${widget.result.subject}',
+                                    "${AppLocalizations.of(context)!.sub_small} - ${widget.result.subject}",
+                                    //"${AppLocalizations.of(context)!.sub_small} - ${widget.result.subject}",
+//'Subject - ${widget.result.subject}',
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             28, 78, 80, 1),
@@ -230,7 +234,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Advisor',
+                                          AppLocalizations.of(context)!.advisor,
+                                          // AppLocalizations.of(context)!.advisor,
+                              //'Advisor',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   28, 78, 80, 1),
@@ -263,7 +269,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Title - ${widget.result.topic}',
+                                      "${AppLocalizations.of(context)!.title} - ${widget.result.topic}",
+                                      //"${AppLocalizations.of(context)!.title} - ${widget.result.topic}",
+                                      //'Title - ${widget.result.topic}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),
@@ -280,7 +288,7 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      '${AppLocalizations.of(context)!.sub_topic_optional} ${widget.result.subTopic}',
+                                      '${AppLocalizations.of(context)!.sub_topic_optional} - ${widget.result.subTopic}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               82, 165, 160, 1),
@@ -297,7 +305,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Class ${widget.result.studentClass}',
+                                      "${AppLocalizations.of(context)!.degree_small} - ${widget.result.studentClass}",
+                                        // "${AppLocalizations.of(context)!.degree_small} - ${widget.result.studentClass}",
+                                        //'Class ${widget.result.studentClass}',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               102, 102, 102, 1),
@@ -318,7 +328,6 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                       child: Column(
                                         mainAxisAlignment:
                                         MainAxisAlignment.center,
-                                        //crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             widget.result.assessmentType ?? "",
@@ -332,7 +341,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 FontWeight.w700),
                                           ),
                                           Text(
-                                            'Category',
+    AppLocalizations.of(context)!.category,
+    //AppLocalizations.of(context)!.category,
+    //'Category',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -363,7 +374,6 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                       child: Column(
                                         mainAxisAlignment:
                                         MainAxisAlignment.center,
-                                        //crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Text(
                                             widget.result.totalQuestions != null ? widget.result.totalQuestions.toString() : "0",
@@ -377,7 +387,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 FontWeight.w700),
                                           ),
                                           Text(
-                                            'Total',
+                                                AppLocalizations.of(context)!.total_small,
+                                                // AppLocalizations.of(context)!.total_small,
+                                                //'Total',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -388,7 +400,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 FontWeight.w400),
                                           ),
                                           Text(
-                                            'Questions',
+                                          AppLocalizations.of(context)!.qn_button,
+                                          //AppLocalizations.of(context)!.qn_button,
+                                          //'Questions',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -420,7 +434,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 FontWeight.w700),
                                           ),
                                           Text(
-                                            'Total',
+    AppLocalizations.of(context)!.total_small,
+    // AppLocalizations.of(context)!.total_small,
+                                                //'Total',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -431,7 +447,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                                 FontWeight.w400),
                                           ),
                                           Text(
-                                            'Marks',
+    AppLocalizations.of(context)!.marks,
+    //'Marks',
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -453,7 +470,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                   child: Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'Schedule',
+    AppLocalizations.of(context)!.schedule_small,
+    //'Schedule',
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
                                               28, 78, 80, 1),
@@ -472,7 +490,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Test max. Time permitted: ',
+                                      AppLocalizations.of(context)!.test_time_permitted,
+                                      //AppLocalizations.of(context)!.test_time_permitted,
+                                      //'Test max. Time permitted: ',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
@@ -504,7 +524,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Test Opening Date & Time:',
+    AppLocalizations.of(context)!.test_opening_time,
+    //    AppLocalizations.of(context)!.test_opening_time,
+    //'Test Opening Date & Time:',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
@@ -536,7 +558,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Test Closing Date & Time:',
+    AppLocalizations.of(context)!.test_closing_time,
+    //    AppLocalizations.of(context)!.test_closing_time,
+    //'Test Closing Date & Time:',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   102, 102, 102, 1),
@@ -572,7 +596,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                     child: Row(
                                       children: [
                                         Text(
-                                          'Guest',
+    AppLocalizations.of(context)!.guest,
+    //'Guest',
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   28, 78, 80, 1),
@@ -588,8 +613,10 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                           widget.result
                                               .guestStudentAllowed ==
                                               true
-                                              ? "Allowed"
-                                              : "Not Allowed",
+                                              ? AppLocalizations.of(context)!.allowed
+                                              //"Allowed"
+                                              : AppLocalizations.of(context)!.not_allowed,
+    //"Not Allowed",
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
                                                   82, 165, 160, 1),
@@ -761,7 +788,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         Padding(
                           padding: const EdgeInsets.only(right: 10, left: 10),
                           child: Text(
-                            'Participation statistics',
+    AppLocalizations.of(context)!.participation_statistics,
+    //'Participation statistics',
                             style: TextStyle(
                                 fontSize: height * 0.0187,
                                 color: const Color.fromRGBO(28, 78, 80, 1),
@@ -841,7 +869,9 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         height: height * 0.01,
                                       ),
                                       Text(
-                                        'Total',
+    AppLocalizations.of(context)!.total_small,
+    //  AppLocalizations.of(context)!.total_small,
+                                                //'Total',
                                         style: TextStyle(
                                             fontSize: height * 0.015,
                                             color: const Color.fromRGBO(
@@ -919,7 +949,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         height: height * 0.01,
                                       ),
                                       Text(
-                                        'Submitted',
+    AppLocalizations.of(context)!.submitted_small,
+    //'Submitted',
                                         style: TextStyle(
                                             fontSize: height * 0.015,
                                             color: const Color.fromRGBO(
@@ -998,7 +1029,8 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                                         height: height * 0.01,
                                       ),
                                       Text(
-                                        'In Progress',
+    AppLocalizations.of(context)!.in_progress,
+    //'In Progress',
                                         style: TextStyle(
                                             fontSize: height * 0.015,
                                             color: const Color.fromRGBO(

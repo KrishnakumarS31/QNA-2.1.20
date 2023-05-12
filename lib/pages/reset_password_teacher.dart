@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/Pages/teacher_login.dart';
 import 'package:qna_test/Services/qna_service.dart';
-import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ResetPassword extends StatefulWidget {
-  ResetPassword({
+  const ResetPassword({
     this.userId,
     Key? key,
   }) : super(key: key);
-  int? userId;
+  final int? userId;
   @override
   ResetPasswordState createState() => ResetPasswordState();
 }
@@ -22,10 +19,19 @@ class ResetPasswordState extends State<ResetPassword> {
   TextEditingController oldPassword = TextEditingController();
   TextEditingController newPassword = TextEditingController();
   TextEditingController reNewPassword = TextEditingController();
+  late String password;
 
   @override
-  void initState() {
+ void initState() {
     super.initState();
+    getData();
+  }
+
+  getData() async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    setState(() {
+      password = loginData.getString("password")!;
+    });
   }
 
   @override
@@ -140,7 +146,12 @@ class ResetPasswordState extends State<ResetPassword> {
                               validator: (value) {
                                 if (value!.length < 8) {
                                   return "Old Password is required";
-                                } else {
+                                }
+                                else if(value != password)
+                                  {
+                                    return "Wrong Password Entered";
+                                  }
+                                else {
                                   return null;
                                 }
                               },
@@ -198,7 +209,8 @@ class ResetPasswordState extends State<ResetPassword> {
                                     borderRadius: BorderRadius.circular(15)),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty) {
+                                if(value!.length < 8)
+                                {
                                   return "New Password is required(Password Should be 8 Characters)";
                                 } else {
                                   return null;
@@ -412,15 +424,15 @@ class ResetPasswordState extends State<ResetPassword> {
                         onPressed: () async {
                           bool valid = formKey.currentState!.validate();
                           if (valid) {
-                            SharedPreferences loginData =
-                            await SharedPreferences.getInstance();
                             ResponseEntity statusCode =
                             await QnaService.updatePassword(
                                 oldPassword.text,
                                 newPassword.text,
                                 widget.userId!,context);
                             if (statusCode.code == 200) {
-                              showAlertDialog(context);
+                              if(context.mounted)
+                                {  showAlertDialog(context);}
+
                             }
                           }
                         },
@@ -453,7 +465,9 @@ class ResetPasswordState extends State<ResetPassword> {
       onPressed: () async {
         SharedPreferences preferences = await SharedPreferences.getInstance();
         await preferences.clear();
-        Navigator.popUntil(context, ModalRoute.withName('/teacherLoginPage'));
+        if(context.mounted) {
+          Navigator.popUntil(context, ModalRoute.withName('/teacherLoginPage'));
+        }
         // Navigator.push(
         //   context,
         //   PageTransition(

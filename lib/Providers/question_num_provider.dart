@@ -33,8 +33,15 @@ class QuestionNumProvider extends ChangeNotifier {
 
 class Questions extends ChangeNotifier {
   final Map _quesAns = {};
+  bool _assessmentSubmitted = false;
 
   Map get totalQuestion => _quesAns;
+  bool get assessmentSubmitted => _assessmentSubmitted;
+
+  void updateAssessmentSubmit(bool submitted){
+    _assessmentSubmitted=submitted;
+    notifyListeners();
+  }
 
   void createQuesAns(int totalQuestion) {
     for (int i = 1; i <= totalQuestion; i++) {

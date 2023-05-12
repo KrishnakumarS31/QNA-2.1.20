@@ -347,41 +347,17 @@ class TeacherAddMyQuestionBankForAssessmentState
                         ),
                       ),
                       Positioned(
-                          top: height * 0.52,
+                          top: height * 0.45,
                           left: width * 0.8,
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
-                              child: GestureDetector(
-                                onTap: (){
+                              child: FloatingActionButton(
+                                onPressed: () {
                                   Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   PageTransition(
-                                  //     type: PageTransitionType.rightToLeft,
-                                  //     child: TeacherPrepareQuesForAssessment(
-                                  //         assessment: widget.assessment,
-                                  //         ),
-                                  //   ),
-                                  // );
                                 },
-                                child: FloatingActionButton(
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
-
-                                    // Navigator.push(
-                                    //   context,
-                                    //   PageTransition(
-                                    //     type: PageTransitionType.rightToLeft,
-                                    //     child: TeacherPrepareQuesForAssessment(
-                                    //         assessment: widget.assessment,
-                                    //         ),
-                                    //   ),
-                                    // );
-                                  },
-                                  backgroundColor:
-                                  const Color.fromRGBO(28, 78, 80, 1),
-                                  child:  const Icon(Icons.add),
-                                ),
+                                backgroundColor:
+                                const Color.fromRGBO(28, 78, 80, 1),
+                                child:  const Icon(Icons.add),
                               ))
                       )
                     ],

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class PrivacyPolicyHamburger extends StatefulWidget {
   const PrivacyPolicyHamburger({
@@ -46,7 +47,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "PRIVACY POLICY",
+                AppLocalizations.of(context)!.privacy_policy_caps,
+                //"PRIVACY POLICY",
                 style: TextStyle(
                   color: const Color.fromRGBO(255, 255, 255, 1),
                   fontSize: height * 0.0225,
@@ -85,8 +87,10 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                   alignment: Alignment.topCenter,
                   child: Text(
                     constraints.maxWidth > 700
-                    ? "ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \nteachers / instructors to learn digitally and freely."
-                        : "ITNEducation Inc., builds range of IT in\nEducation products and services that help \nmillions of students / learners  and \nteachers / instructors to learn digitally and freely.",
+                    ? AppLocalizations.of(context)!.privacy_text_web
+                    //"ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \nteachers / instructors to learn digitally and freely."
+                        : AppLocalizations.of(context)!.privacy_text,
+                    //"ITNEducation Inc., builds range of IT in\nEducation products and services that help \nmillions of students / learners  and \nteachers / instructors to learn digitally and freely.",
                     style: TextStyle(
                         fontSize: height * 0.018,
                         fontWeight: FontWeight.w500,
@@ -107,14 +111,17 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                     child: RichText(
                         text: TextSpan(children: [
                       TextSpan(
-                          text: "Read QNATest\t\t",
+                          text: AppLocalizations.of(context)!.read_qna,
+                          //"Read QNATest\t\t",
                           style: TextStyle(
                               color: const Color.fromRGBO(102, 102, 102, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w400,
                               fontSize: height * 0.018)),
                       TextSpan(
-                          text: "Privacy Policy",
+                          text:
+                          AppLocalizations.of(context)!.privacy_policy,
+                          //"Privacy Policy",
                           recognizer: TapGestureRecognizer()..onTap = _launchUrl,
                           style: TextStyle(
                               color: const Color.fromRGBO(0, 107, 232, 1),

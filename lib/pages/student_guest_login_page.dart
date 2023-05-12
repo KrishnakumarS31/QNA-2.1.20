@@ -375,10 +375,8 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 style: TextStyle(
                                                     fontSize: height * 0.025,
                                                     fontWeight: FontWeight.w400,
-                                                    decoration:
-                                                    TextDecoration.underline,
                                                     color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
+                                                        51, 51, 51, 1),
                                                     fontFamily: "Inter"),
                                               ),
                                               TextSpan(
@@ -397,11 +395,14 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!
                                                     .services,
+                                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                                 style: TextStyle(
                                                     fontSize: height * 0.025,
                                                     fontWeight: FontWeight.w400,
+                                                    decoration:
+                                                    TextDecoration.underline,
                                                     color: const Color.fromRGBO(
-                                                        51, 51, 51, 1),
+                                                        82, 165, 160, 1),
                                                     fontFamily: "Inter"),
                                               ),
                                             ])),
@@ -409,101 +410,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     ],
                                   ),
                                   SizedBox(height: height * 0.02),
-                                  // Row(
-                                  //   crossAxisAlignment:
-                                  //       CrossAxisAlignment.start,
-                                  //   children: [
-                                  //     Transform.scale(
-                                  //       scale: 1.5,
-                                  //       child: Checkbox(
-                                  //         activeColor: const Color.fromRGBO(
-                                  //             82, 165, 160, 1),
-                                  //         fillColor: MaterialStateProperty
-                                  //             .resolveWith<Color>((states) {
-                                  //           if (states.contains(
-                                  //               MaterialState.selected)) {
-                                  //             return const Color.fromRGBO(
-                                  //                 82, 165, 160, 1);
-                                  //           }
-                                  //           return const Color.fromRGBO(
-                                  //               82, 165, 160, 1);
-                                  //         }),
-                                  //         value: agree,
-                                  //         onChanged: (val) {
-                                  //           setState(() {
-                                  //             agree = val!;
-                                  //             if (agree) {}
-                                  //           });
-                                  //         },
-                                  //       ),
-                                  //     ),
-                                  //     SizedBox(width: width * 0.05),
-                                  //     RichText(
-                                  //         text: TextSpan(children: [
-                                  //       TextSpan(
-                                  //         text: AppLocalizations.of(context)!
-                                  //             .agree_msg,
-                                  //         style: TextStyle(
-                                  //             fontSize: height * 0.015,
-                                  //             fontWeight: FontWeight.w400,
-                                  //             color: const Color.fromRGBO(
-                                  //                 51, 51, 51, 1),
-                                  //             fontFamily: "Inter"),
-                                  //       ),
-                                  //       TextSpan(
-                                  //         text: AppLocalizations.of(context)!
-                                  //             .privacy_Policy,
-                                  //         style: TextStyle(
-                                  //             fontSize: height * 0.015,
-                                  //             fontWeight: FontWeight.w400,
-                                  //             decoration:
-                                  //                 TextDecoration.underline,
-                                  //             color: const Color.fromRGBO(
-                                  //                 82, 165, 160, 1),
-                                  //             fontFamily: "Inter"),
-                                  //       ),
-                                  //       TextSpan(
-                                  //         text:
-                                  //             AppLocalizations.of(context)!.and,
-                                  //         style: TextStyle(
-                                  //             fontSize: height * 0.015,
-                                  //             fontWeight: FontWeight.w400,
-                                  //             decoration:
-                                  //                 TextDecoration.underline,
-                                  //             color: const Color.fromRGBO(
-                                  //                 82, 165, 160, 1),
-                                  //             fontFamily: "Inter"),
-                                  //       ),
-                                  //       TextSpan(
-                                  //         text: AppLocalizations.of(context)!
-                                  //             .terms,
-                                  //         style: TextStyle(
-                                  //             fontSize: height * 0.015,
-                                  //             fontWeight: FontWeight.w400,
-                                  //             decoration:
-                                  //                 TextDecoration.underline,
-                                  //             color: const Color.fromRGBO(
-                                  //                 82, 165, 160, 1),
-                                  //             fontFamily: "Inter"),
-                                  //       ),
-                                  //       TextSpan(
-                                  //         text: AppLocalizations.of(context)!
-                                  //             .services,
-                                  //         style: TextStyle(
-                                  //             fontSize: height * 0.015,
-                                  //             fontWeight: FontWeight.w400,
-                                  //             color: const Color.fromRGBO(
-                                  //                 51, 51, 51, 1),
-                                  //             fontFamily: "Inter"),
-                                  //       ),
-                                  //     ])),
-                                  //   ],
-                                  // )
                                 ],
                               ),
                             ),
                           ),
-                          // SizedBox(height: height * 0.02),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -521,14 +431,6 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                       context,
                                       '/studGuestAssessment',
                                       arguments: name);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   PageTransition(
-                                  //     type: PageTransitionType.rightToLeft,
-                                  //     child: StudGuestAssessment(
-                                  //         name: name),
-                                  //   ),
-                                  // );
                                   nameController.clear();
                                   rollNumController.clear();
                                 }
@@ -553,7 +455,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               style: TextStyle(
                                   fontSize: height * 0.032,
                                   fontFamily: "Inter",
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           SizedBox(height: height * 0.05),
@@ -864,10 +766,8 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 style: TextStyle(
                                                     fontSize: height * 0.018,
                                                     fontWeight: FontWeight.w400,
-                                                    decoration:
-                                                    TextDecoration.underline,
                                                     color: const Color.fromRGBO(
-                                                        82, 165, 160, 1),
+                                                        51, 51, 51, 1),
                                                     fontFamily: "Inter"),
                                               ),
                                               TextSpan(
@@ -886,11 +786,14 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!
                                                     .services,
+                                                recognizer: TapGestureRecognizer()..onTap = () => _launchUrlTerms(),
                                                 style: TextStyle(
                                                     fontSize: height * 0.018,
                                                     fontWeight: FontWeight.w400,
+                                                    decoration:
+                                                    TextDecoration.underline,
                                                     color: const Color.fromRGBO(
-                                                        51, 51, 51, 1),
+                                                        82, 165, 160, 1),
                                                     fontFamily: "Inter"),
                                               ),
                                             ])),
@@ -944,7 +847,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               style: TextStyle(
                                   fontSize: height * 0.032,
                                   fontFamily: "Inter",
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           SizedBox(height: height * 0.05),

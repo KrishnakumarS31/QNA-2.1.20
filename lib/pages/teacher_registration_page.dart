@@ -10,6 +10,8 @@ import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../Services/qna_service.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/gestures.dart';
 
 class TeacherRegistrationPage extends StatefulWidget {
   const TeacherRegistrationPage({super.key});
@@ -714,7 +716,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.015),
+                                            fontSize: localHeight * 0.014),
                                       ),
                                       TextSpan(
                                           text: "\t*\t",
@@ -1341,6 +1343,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               TextSpan(
                                 text:
                                     AppLocalizations.of(context)!.privacy_Policy,
+                                recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                 style:  TextStyle(
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
@@ -1353,12 +1356,12 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                 style:  TextStyle(
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.underline,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
                                 text: AppLocalizations.of(context)!.terms,
+                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                 style:  TextStyle(
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
@@ -1368,10 +1371,12 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               ),
                               TextSpan(
                                 text: AppLocalizations.of(context)!.services,
+                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                 style:  TextStyle(
                                     fontSize: localHeight * 0.02,
                                     fontWeight: FontWeight.w400,
-                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    decoration: TextDecoration.underline,
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
                             ])),
@@ -1424,7 +1429,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               PageTransition(
                                   type: PageTransitionType.fade,
                                   child: TeacherRegistrationOtpPage(
-                                    email: student.email,
+                                    student: student,
                                   )),
                             );
                           } else {
@@ -1477,4 +1482,18 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
           //)
         ));
   }
-    );}}
+    );}
+  Future<void> _launchUrlTerms() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
+    if (!await launchUrl(url)) {
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
+    }
+  }
+
+  Future<void> _launchUrlPrivacy() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
+    if (!await launchUrl(url)) {
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
+    }
+  }
+}

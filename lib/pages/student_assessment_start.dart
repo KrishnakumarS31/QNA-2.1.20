@@ -246,9 +246,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                 ),
                                 //shape: StadiumBorder(),
                                 child: Text(AppLocalizations.of(context)!.start,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontFamily: 'Inter',
-                                        fontSize: 24,
+                                        fontSize: localHeight * 0.032,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600)),
                                 onPressed: () async {
@@ -275,7 +275,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               assessmentID.text,
                                               values,
                                               widget.usedData!.data!.firstName,
-                                              userId
+                                              userId,
+                                              true
                                             ]);
                                         // Navigator.push(
                                         //   context,
@@ -572,9 +573,9 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                 ),
                                 //shape: StadiumBorder(),
                                 child: Text(AppLocalizations.of(context)!.start,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontFamily: 'Inter',
-                                        fontSize: 24,
+                                        fontSize: localHeight * 0.032,
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600)),
                                 onPressed: () async {
@@ -601,7 +602,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                               assessmentID.text,
                                               values,
                                               widget.usedData!.data!.firstName,
-                                              userId
+                                              userId,
+                                              true
                                             ]);
                                         // Navigator.push(
                                         //   context,

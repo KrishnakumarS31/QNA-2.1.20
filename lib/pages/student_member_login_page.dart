@@ -11,7 +11,6 @@ import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../EntityModel/user_data_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-// import 'package:universal_html/html.dart';
 
 class StudentMemberLoginPage extends StatefulWidget {
   const StudentMemberLoginPage({super.key, });
@@ -441,8 +440,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 style: TextStyle(
                                                     fontSize: localHeight * 0.020,
                                                     fontWeight: FontWeight.w400,
-                                                    decoration: TextDecoration.underline,
-                                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                                    color: const Color.fromRGBO(51, 51, 51, 1),
                                                     fontFamily: "Inter"),
                                               ),
                                               TextSpan(
@@ -457,10 +455,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               ),
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!.services,
+                                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                                 style: TextStyle(
                                                     fontSize: localHeight * 0.020,
                                                     fontWeight: FontWeight.w400,
-                                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                                    decoration: TextDecoration.underline,
+                                                    color: const Color.fromRGBO(82, 165, 160, 1),
                                                     fontFamily: "Inter"),
                                               ),
                                             ])),
@@ -468,94 +468,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     ],
                                   ),
                                 ),
-                                // Row(
-                                //   crossAxisAlignment: CrossAxisAlignment.start,
-                                //   children: [
-                                //     SizedBox(width: localHeight * 0.5),
-                                //     Checkbox(
-                                //       activeColor: const Color.fromRGBO(
-                                //           82, 165, 160, 1),
-                                //       fillColor: MaterialStateProperty
-                                //           .resolveWith<Color>((states) {
-                                //         if (states.contains(
-                                //             MaterialState.selected)) {
-                                //           return const Color.fromRGBO(
-                                //               82, 165, 160, 1);
-                                //         }
-                                //         return const Color.fromRGBO(
-                                //             82, 165, 160, 1);
-                                //       }),
-                                //       value: agree,
-                                //       onChanged: (val) {
-                                //         setState(() {
-                                //           agree = val!;
-                                //           if (agree) {}
-                                //         });
-                                //       },
-                                //     ),
-                                //     SizedBox(width: localWidth * 0.02),
-                                //     RichText(
-                                //         text: TextSpan(children: [
-                                //           TextSpan(
-                                //             text: AppLocalizations.of(context)!
-                                //                 .agree_msg,
-                                //             style: TextStyle(
-                                //                 fontSize: localHeight * 0.017,
-                                //                 fontWeight: FontWeight.w400,
-                                //                 color: const Color.fromRGBO(
-                                //                     51, 51, 51, 1),
-                                //                 fontFamily: "Inter"),
-                                //           ),
-                                //           TextSpan(
-                                //             text: AppLocalizations.of(context)!
-                                //                 .privacy_Policy,
-                                //             recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
-                                //             style: TextStyle(
-                                //                 fontSize: localHeight * 0.017,
-                                //                 fontWeight: FontWeight.w400,
-                                //                 decoration:
-                                //                 TextDecoration.underline,
-                                //                 color: const Color.fromRGBO(
-                                //                     82, 165, 160, 1),
-                                //                 fontFamily: "Inter"),
-                                //           ),
-                                //           TextSpan(
-                                //             text: AppLocalizations.of(context)!.and,
-                                //             style: TextStyle(
-                                //                 fontSize: localHeight * 0.017,
-                                //                 fontWeight: FontWeight.w400,
-                                //                 decoration:
-                                //                 TextDecoration.underline,
-                                //                 color: const Color.fromRGBO(
-                                //                     82, 165, 160, 1),
-                                //                 fontFamily: "Inter"),
-                                //           ),
-                                //           TextSpan(
-                                //             text:
-                                //             AppLocalizations.of(context)!.terms,
-                                //             recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                //             style: TextStyle(
-                                //                 fontSize: localHeight * 0.017,
-                                //                 fontWeight: FontWeight.w400,
-                                //                 decoration:
-                                //                 TextDecoration.underline,
-                                //                 color: const Color.fromRGBO(
-                                //                     82, 165, 160, 1),
-                                //                 fontFamily: "Inter"),
-                                //           ),
-                                //           TextSpan(
-                                //             text: AppLocalizations.of(context)!
-                                //                 .services,
-                                //             style: TextStyle(
-                                //                 fontSize: localHeight * 0.017,
-                                //                 fontWeight: FontWeight.w400,
-                                //                 color: const Color.fromRGBO(
-                                //                     51, 51, 51, 1),
-                                //                 fontFamily: "Inter"),
-                                //           ),
-                                //         ])),
-                                //   ],
-                                // ),
                                 SizedBox(height: localHeight * 0.02),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -576,7 +488,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             AppLocalizations.of(context)!.login_loginPage,
                                             style: TextStyle(
                                                 fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.034,
+                                                fontSize: localHeight * 0.032,
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w600)),
                                         onPressed: () async {
@@ -1080,10 +992,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               style: TextStyle(
                                                   fontSize: localHeight * 0.018,
                                                   fontWeight: FontWeight.w400,
-                                                  decoration:
-                                                  TextDecoration.underline,
                                                   color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
+                                                      51, 51, 51, 1),
                                                   fontFamily: "Inter"),
                                             ),
                                             TextSpan(
@@ -1102,11 +1012,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             TextSpan(
                                               text: AppLocalizations.of(context)!
                                                   .services,
+                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                               style: TextStyle(
                                                   fontSize: localHeight * 0.018,
                                                   fontWeight: FontWeight.w400,
-                                                  color: const Color.fromRGBO(
-                                                      51, 51, 51, 1),
+                                                  decoration: TextDecoration.underline,
+                                                  color: const Color.fromRGBO(82, 165, 160, 1),
                                                   fontFamily: "Inter"),
                                             ),
                                           ])),
@@ -1133,7 +1044,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             AppLocalizations.of(context)!.login_loginPage,
                                             style: TextStyle(
                                                 fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.024,
+                                                fontSize: localHeight * 0.032,
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w600)),
                                         onPressed: () async {

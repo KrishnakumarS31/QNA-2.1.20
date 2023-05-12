@@ -12,18 +12,19 @@ import 'package:intl/intl.dart';
 import '../Services/qna_service.dart';
 
 class StudentReviseQuest extends StatefulWidget {
-  StudentReviseQuest({Key? key,
+  const StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
-    required this.startTime, required this.assessmentid,required this.submit,
-    this.userId
+    required this.startTime, required this.assessmentCode,required this.submit,
+    this.userId,required this.isMember,
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
   final int startTime;
   final String assessmentID;
-  final int assessmentid;
+  final int assessmentCode;
   final bool submit;
-  int? userId;
+  final int? userId;
+  final bool isMember;
 
 
 
@@ -1094,12 +1095,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     )
                 ),
                 onPressed: () async {
+                  Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(true);
                   String message = '';
                   int ansCorrect = 0;
                   int totalMark = 0;
                   int? givenMark = 0;
 
-                  assessment.assessmentId = widget.assessmentid;
+                  assessment.assessmentId = widget.assessmentCode;
                   assessment.assessmentCode = widget.assessmentID;
                   assessment.userId = widget.userId;
                   assessment.statusId = 2;
@@ -1129,7 +1131,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     quesResult.marks = 0;
                     List<dynamic> correctAns = [];
                     if (values.data!.questions![j - 1].questionType ==
-                        "Descripitive") {
+                        "Descriptive") {
                       quesResult.marks = 0;
                       quesResult.statusId = 8;
                       quesResult.descriptiveText = Provider
@@ -1203,14 +1205,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         quesResult.statusId = 7;
                       }
                     }
-
                     assessment.assessmentResults.add(quesResult);
                   }
-                  assessment.attemptScore = totalMark;
-                  values.data!.totalScore = givenMark;
+                  totalMark == 0 ? totalMark = assessment.attemptScore ?? 0 : totalMark = totalMark;
+                  givenMark = values.data!.totalScore ?? 0;
                   double f=0;
                   givenMark==0?f=0:
-                  f = 100/givenMark!;
+                  f = 100/givenMark;
                   double g = totalMark * f;
                   int percent =g.round();
                   assessment.attemptPercentage = percent;
@@ -1260,7 +1261,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           widget.userName,
                           message,
                           endTimeTaken,
-                          givenMark
+                          givenMark,
+                          widget.isMember
                         ]);
                   }
                   else {
@@ -1294,7 +1296,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     int ansCorrect = 0;
     int totalMark = 0;
     int? givenMark = 0;
-    assessment.assessmentId = widget.assessmentid;
+    assessment.assessmentId = widget.assessmentCode;
     assessment.assessmentCode = widget.assessmentID;
     assessment.statusId = 2;
     assessment.attemptStartdate = widget.startTime;
@@ -1325,7 +1327,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       quesResult.marks = 0;
       List<dynamic> correctAns = [];
       if (values.data!.questions![j - 1].questionType ==
-          "Descripitive") {
+          "Descriptive") {
         quesResult.statusId = 8;
         quesResult.marks = 0;
         quesResult.descriptiveText = Provider
@@ -1407,6 +1409,7 @@ if(selectedAns.isEmpty){
     if(ansCorrect==0 || totalMark==0){
       percent=0;
     }
+
     else{
       double f = 100/givenMark!;
       double g = totalMark * f;
@@ -1447,22 +1450,25 @@ if(selectedAns.isEmpty){
             widget.userName,
             message,
             endTimeTaken,
-            givenMark
+            givenMark,
+            widget.isMember
           ]);
     }
     else {
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: CustomDialog(
-            title: 'Answer not Submitted',
-            content: 'please enter the',
-            button: AppLocalizations.of(context)!
-                .retry,
+      if(context.mounted) {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: CustomDialog(
+              title: 'Answer not Submitted',
+              content: 'please enter the',
+              button: AppLocalizations.of(context)!
+                  .retry,
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
   }
 }

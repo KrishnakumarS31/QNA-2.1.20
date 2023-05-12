@@ -27,7 +27,6 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    //getConnectivity();
     Timer(const Duration(seconds: 1), () async {
       AppUser? user = await AppUserRepo().getUserDetail();
       Navigator.push(
@@ -39,20 +38,6 @@ class SplashScreenState extends State<SplashScreen> {
           const WelcomePage(),
         ),
       );
-      //  if (user != null) {
-      //widget.setLocale(Locale.fromSubtags(languageCode: user.locale));
-      //Navigator.of(context).pushReplacementNamed('/');
-      // }
-      // else {
-      //   Navigator.pushNamed(context, '/settingsLanguages');
-      // Navigator.push(
-      //   context,
-      //   PageTransition(
-      //     type: PageTransitionType.rightToLeft,
-      //     child: SettingsLanguages(),
-      //   ),
-      // );
-      // }
     });
   }
 
@@ -94,27 +79,6 @@ class SplashScreenState extends State<SplashScreen> {
               loaderColor: const Color.fromRGBO(82, 165, 160, 1),
               navigator: const WelcomePage(),
             )
-
-            // Container(
-            //   width: width,
-            //   height: height,
-            //   decoration: const BoxDecoration(
-            //     image: DecorationImage(
-            //       fit: BoxFit.fill,
-            //       image: AssetImage("assets/images/sssuhe_splash.png"),
-            //     ),
-            //   ),
-            // )
-            // Container(
-            //   width: width,
-            //   height: height,
-            //   decoration: const BoxDecoration(
-            //     image: DecorationImage(
-            //       fit: BoxFit.fill,
-            //       image: AssetImage("assets/images/sssuhe_splash.png"),
-            //     ),
-            //   ),
-            // )
                 :   EasySplashScreen(
               logoWidth:
               constraints.maxWidth > 700
@@ -127,17 +91,6 @@ class SplashScreenState extends State<SplashScreen> {
               loaderColor: const Color.fromRGBO(82, 165, 160, 1),
               navigator: const WelcomePage(),
             );
-
-          //   Container(
-          //   width: width,
-          //   height: height,
-          //   decoration: const BoxDecoration(
-          //     image: DecorationImage(
-          //       fit: BoxFit.fill,
-          //       image: AssetImage("assets/images/qna_splash_screen.jpg"),
-          //     ),
-          //   ),
-          // );
         }
     );
   }

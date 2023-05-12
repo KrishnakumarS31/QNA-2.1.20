@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../Components/custom_result_new_card.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/get_result_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localization.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {
   const TeacherResultIndividualStudent({
@@ -26,8 +27,6 @@ class TeacherResultIndividualStudentState
     extends State<TeacherResultIndividualStudent> {
   Uint8List? bytes;
   IconData showIcon = Icons.expand_circle_down_outlined;
-  // List<AssessmentResults>? inProgressResults;
-  // List<AssessmentResults>? submittedResults;
   late List<AssessmentResults> totalResults;
 
   @override
@@ -87,7 +86,8 @@ class TeacherResultIndividualStudentState
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'RESULTS REPORT',
+                      AppLocalizations.of(context)!.results_report_caps,
+                      //'RESULTS REPORT',
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0175,
@@ -96,7 +96,8 @@ class TeacherResultIndividualStudentState
                       ),
                     ),
                     Text(
-                      "STUDENT",
+                      AppLocalizations.of(context)!.studentCaps,
+                      //"STUDENT",
                       style: TextStyle(
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         fontSize: height * 0.0225,
@@ -141,23 +142,6 @@ class TeacherResultIndividualStudentState
                               ),
                             ),
                           ),
-                          // Row(
-                          //   children: [
-                          //     const Icon(
-                          //       Icons.drafts_outlined,
-                          //       color: Color.fromRGBO(82, 165, 160, 1),
-                          //     ),
-                          //     SizedBox(
-                          //       width: width * 0.03,
-                          //     ),
-                          //     IconButton(
-                          //         onPressed: () async {},
-                          //         icon: const Icon(
-                          //           Icons.print_outlined,
-                          //           color: Color.fromRGBO(82, 165, 160, 1),
-                          //         ))
-                          //   ],
-                          // )
                         ],
                       ),
                       Padding(
@@ -210,7 +194,8 @@ class TeacherResultIndividualStudentState
                         height: height * 0.02,
                       ),
                       Text(
-                        "*** Incorrect Answered ***",
+                        "*** ${AppLocalizations.of(context)!.incorrectly_answered} ***",
+                        // "*** Incorrect Answered ***",
                         style: TextStyle(
                             color: const Color.fromRGBO(238, 100, 0, 1),
                             fontFamily: 'Inter',
@@ -223,7 +208,8 @@ class TeacherResultIndividualStudentState
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "MCQ",
+                            AppLocalizations.of(context)!.mcq,
+                          //"MCQ",
                           style: TextStyle(
                               fontSize: height * 0.02,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -254,10 +240,6 @@ class TeacherResultIndividualStudentState
                                     ques: totalResults[widget.index]
                                         .questions![index],
                                     quesNum: index,
-                                    // ans: widget
-                                    //     .result
-                                    //     .assessmentResults![0]
-                                    //     .questions,
                                   ),
                                 ))
                                 :const SizedBox(): const SizedBox(),
@@ -267,145 +249,15 @@ class TeacherResultIndividualStudentState
                           ],
                         ),
                       ),
-
-
-                      // widget
-                      //     .result
-                      //     .assessmentResults![0]
-                      //     .questions![0]
-                      //     .questionType! ==
-                      //     "MCQ"
-                      // ? Align(
-                      //   alignment: Alignment.centerLeft,
-                      //   child: Text(
-                      //     "MCQ",
-                      //     style: TextStyle(
-                      //         fontSize: height * 0.02,
-                      //         color: const Color.fromRGBO(28, 78, 80, 1),
-                      //         fontFamily: "Inter",
-                      //         fontWeight: FontWeight.w600),
-                      //   ),
-                      // )
-                      // : const SizedBox(),
-                      //
-                      // widget
-                      //     .result
-                      //     .assessmentResults![0]
-                      //     .questions![0]
-                      //     .questionType! ==
-                      //     "MCQ"
-                      // ? ListView.builder(
-                      //         scrollDirection: Axis.vertical,
-                      //         shrinkWrap: true,
-                      //         itemCount:
-                      //             widget.result.assessmentResults!.length,
-                      //         itemBuilder: (context, index) => Column(
-                      //           children: [
-                      //             widget
-                      //                         .result
-                      //                         .assessmentResults![0]
-                      //                         .questions![index]
-                      //                         .questionType! ==
-                      //                     "MCQ"
-                      //                 ? MouseRegion(
-                      //                     cursor: SystemMouseCursors.click,
-                      //                     child: GestureDetector(
-                      //                     onTap: () {},
-                      //                     child: QuesAndAns(
-                      //                       height: height,
-                      //                       ques: widget
-                      //                           .result
-                      //                           .assessmentResults![0]
-                      //                           .questions!,
-                      //                       // ans: widget
-                      //                       //     .result
-                      //                       //     .assessmentResults![0]
-                      //                       //     .questions,
-                      //                     ),
-                      //                   ))
-                      //                 : const SizedBox(),
-                      //             SizedBox(
-                      //               height: height * 0.02,
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       )
-                      // : const SizedBox(),
-
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(),
                       ),
-
-                      //  widget
-                      //      .result
-                      //      .assessmentResults![0]
-                      //      .questions![0]
-                      //      .questionType! ==
-                      //      "SURVEY"
-                      // ? Align(
-                      //    alignment: Alignment.centerLeft,
-                      //    child: Text(
-                      //      'Survey',
-                      //      style: TextStyle(
-                      //          fontSize: height * 0.02,
-                      //          color: const Color.fromRGBO(28, 78, 80, 1),
-                      //          fontFamily: "Inter",
-                      //          fontWeight: FontWeight.w600),
-                      //    ),
-                      //  )
-                      //  : const SizedBox(),
-
-                      //    widget
-                      //        .result
-                      //        .assessmentResults![0]
-                      //        .questions![0]
-                      //        .questionType! ==
-                      //        "SURVEY"
-                      // ? ListView.builder(
-                      //            scrollDirection: Axis.vertical,
-                      //            shrinkWrap: true,
-                      //            itemCount:
-                      //                widget.result.assessmentResults!.length,
-                      //            itemBuilder: (context, index) => Column(
-                      //              children: [
-                      //                widget
-                      //                            .result
-                      //                            .assessmentResults![0]
-                      //                            .questions![index]
-                      //                            .questionType! ==
-                      //                        "SURVEY"
-                      //                    ? MouseRegion(
-                      //                        cursor: SystemMouseCursors.click,
-                      //                        child: GestureDetector(
-                      //                        onTap: () {},
-                      //                        child: QuesAndAns(
-                      //                          height: height,
-                      //                          ques: widget
-                      //                              .result
-                      //                              .assessmentResults![0]
-                      //                              .questions![index],
-                      //                          quesNum: index,
-                      //                          // ans: widget
-                      //                          //     .result
-                      //                          //     .assessmentResults![0]
-                      //                          //     .questions![0]
-                      //                          //     .descriptiveAnswers!,
-                      //                        )))
-                      //
-                      //                : const SizedBox(),
-                      //                SizedBox(
-                      //                  height: height * 0.02,
-                      //                ),
-                      //              ],
-                      //            ),
-                      //          )
-                      //    : const SizedBox(),
-
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Survey",
+                            AppLocalizations.of(context)!.survey,
+                          //"Survey",
                           style: TextStyle(
                               fontSize: height * 0.02,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -456,7 +308,8 @@ class TeacherResultIndividualStudentState
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Descripitive",
+                            AppLocalizations.of(context)!.descriptive,
+                          //"Descriptive",
                           style: TextStyle(
                               fontSize: height * 0.02,
                               color: const Color.fromRGBO(28, 78, 80, 1),
@@ -474,7 +327,7 @@ class TeacherResultIndividualStudentState
                             totalResults[widget.index]
                                 .questions![index]
                                 .questionType! ==
-                                "Descripitive"
+                                "Descriptive"
                                 ? MouseRegion(
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(
@@ -484,10 +337,6 @@ class TeacherResultIndividualStudentState
                                     ques: totalResults[widget.index]
                                         .questions![index],
                                     quesNum: index,
-                                    // ans: widget
-                                    //     .result
-                                    //     .assessmentResults![0]
-                                    //     .questions,
                                   ),
                                 ))
                                 : const SizedBox(),
@@ -497,73 +346,6 @@ class TeacherResultIndividualStudentState
                           ],
                         ),
                       ),
-
-                      // widget
-                      //     .result
-                      //     .assessmentResults![0]
-                      //     .questions![0]
-                      //     .questionType! ==
-                      //     "descriptive"
-                      // ? Align(
-                      //   alignment: Alignment.centerLeft,
-                      //   child: Text(
-                      //     'DESCRIPTIVE',
-                      //     style: TextStyle(
-                      //         fontSize: height * 0.02,
-                      //         color: const Color.fromRGBO(28, 78, 80, 1),
-                      //         fontFamily: "Inter",
-                      //         fontWeight: FontWeight.w600),
-                      //   ),
-                      // )
-                      // : const SizedBox(),
-
-                      // widget
-                      //     .result
-                      //     .assessmentResults![0]
-                      //     .questions![0]
-                      //     .questionType! ==
-                      //     "descriptive"
-                      //     ?
-                      // ListView.builder(
-                      //         scrollDirection: Axis.vertical,
-                      //         shrinkWrap: true,
-                      //         itemCount:
-                      //             widget.result.assessmentResults!.length,
-                      //         itemBuilder: (context, index) => Column(
-                      //           children: [
-                      //             widget
-                      //                         .result
-                      //                         .assessmentResults![0]
-                      //                         .questions![0]
-                      //                         .questionType! ==
-                      //                     "descriptive"
-                      //                 ? MouseRegion(
-                      //                     cursor: SystemMouseCursors.click,
-                      //                     child: GestureDetector(
-                      //                     onTap: () {},
-                      //                     child: QuesAndAns(
-                      //                       height: height,
-                      //                       ques: widget
-                      //                           .result
-                      //                           .assessmentResults![0]
-                      //                           .questions![index],
-                      //                       quesNum: index,
-                      //                       // ans: widget
-                      //                       //     .result
-                      //                       //     .assessmentResults![0]
-                      //                       //     .questions![0]
-                      //                       //     .descriptiveAnswers!,
-                      //                     ),
-                      //                   ))
-                      //                 : const SizedBox(),
-                      //             SizedBox(
-                      //               height: height * 0.02,
-                      //             ),
-                      //           ],
-                      //         ),
-                      //       )
-                      // : const SizedBox(),
-
                     ]),
               ),
             )));
@@ -647,14 +429,15 @@ class _QuesAndAnsState extends State<QuesAndAns> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Answered:',
+    AppLocalizations.of(context)!.answered_small,
+                //'Answered:',
                 style: TextStyle(
                     fontSize: widget.height * 0.014,
                     color: const Color.fromRGBO(82, 165, 160, 1),
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
-              widget.ques.questionType != "Descripitive" ?
+              widget.ques.questionType != "Descriptive" ?
               Expanded(
                 child: Text(widget.ques.selectedChoices == null ? " " : widget.ques.selectedChoices![0],
                   style: TextStyle(

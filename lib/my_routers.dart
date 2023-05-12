@@ -1,7 +1,5 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:qna_test/Entity/Teacher/question_entity.dart' as QuestionEntity;
+import 'package:qna_test/Entity/Teacher/question_entity.dart' as questions;
 import 'package:qna_test/EntityModel/user_data_model.dart';
 import 'package:qna_test/Pages/welcome_page.dart';
 import 'package:qna_test/pages/about_us.dart';
@@ -47,6 +45,7 @@ import 'package:qna_test/pages/teacher_selection_page.dart';
 import 'package:qna_test/pages/teacher_submitted_question_preview.dart';
 import 'package:qna_test/pages/teacher_user_profile.dart';
 import 'package:qna_test/pages/terms_of_services.dart';
+import 'EntityModel/student_registration_model.dart';
 import 'Pages/forgot_password_email.dart';
 import 'Pages/privacy_policy_hamburger.dart';
 import 'Pages/reset_password_student.dart';
@@ -122,7 +121,7 @@ class MyRoutes{
       }
 
       case '/questionEdit':{
-        final question = settings.arguments as QuestionEntity.Question;
+        final question = settings.arguments as questions.Question;
         return SlideRightRoute(widget: QuestionEdit(question: question,),settings: settings);
       }
 
@@ -167,16 +166,13 @@ class MyRoutes{
       case '/privacyPolicyHamburger':
         return SlideRightRoute(widget: const PrivacyPolicyHamburger(),settings: settings);
 
-      case '/privacyPolicyHamburger':
-        return SlideRightRoute(widget: const PrivacyPolicyHamburger(),settings: settings);
-
       case '/resetPasswordStudent':{
         final userId = settings.arguments as int;
         return SlideRightRoute(widget: ResetPasswordStudent(userId: userId,),settings: settings);
       }
 
       case '/resetPassword':
-        return SlideRightRoute(widget: ResetPassword(),settings: settings);
+        return SlideRightRoute(widget: const ResetPassword(),settings: settings);
 
 
 
@@ -192,7 +188,7 @@ class MyRoutes{
 
       case '/studQuestion':{
         final question = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3]),settings: settings);
+        return SlideRightRoute(widget: StudQuestion(assessmentId: question[0], ques: question[1], userName: question[2], userId: question[3],isMember: question[4]),settings: settings);
       }
 
       case '/studentAssessment':{
@@ -223,8 +219,8 @@ class MyRoutes{
         return SlideRightRoute(widget: const StudentMemberLoginPage(),settings: settings);
 
       case '/studentRegisVerifyOtpPage':{
-        final email = settings.arguments as String;
-        return SlideRightRoute(widget: StudentRegisVerifyOtpPage(email: email,),settings: settings);
+        final search = settings.arguments as StudentRegistrationModel;
+        return SlideRightRoute(widget: StudentRegisVerifyOtpPage(student: search,),settings: settings);
       }
 
       case '/studentRegistrationPage':
@@ -247,6 +243,7 @@ class MyRoutes{
           message: arguments[6],
           endTime: arguments[7],
           givenMark: arguments[8],
+            isMember: arguments[9]
         ),settings: settings);
       }
 
@@ -257,9 +254,10 @@ class MyRoutes{
             userName: arguments[1],
             assessmentID: arguments[2],
             startTime: arguments[3],
-            assessmentid: arguments[4],
+            assessmentCode: arguments[4],
             submit: arguments[5],
-            userId: arguments[6]
+            userId: arguments[6],
+            isMember: arguments[7]
         ),settings: settings);
       }
 
@@ -347,7 +345,7 @@ class MyRoutes{
         return SlideRightRoute(widget: const TeacherInactiveAssessment(),settings: settings);
 
       case '/teacherLooqClonePreview':{
-        final question = settings.arguments as QuestionEntity.Question;
+        final question = settings.arguments as questions.Question;
         return SlideRightRoute(widget: TeacherLooqClonePreview(question: question,),settings: settings);
       }
 
@@ -357,7 +355,7 @@ class MyRoutes{
       }
 
       case '/looqQuestionEdit':{
-        final question = settings.arguments as QuestionEntity.Question;
+        final question = settings.arguments as questions.Question;
         return SlideRightRoute(widget: LooqQuestionEdit(question: question,),settings: settings);
       }
 
@@ -404,8 +402,8 @@ class MyRoutes{
 
       case '/teacherRegistrationOtpPage':
         {
-          final search = settings.arguments as String;
-          return SlideRightRoute(widget: TeacherRegistrationOtpPage(email: search,),settings: settings);
+          final search = settings.arguments as StudentRegistrationModel;
+          return SlideRightRoute(widget: TeacherRegistrationOtpPage(student: search,),settings: settings);
         }
 
       case '/teacherSelectedQuestionAssessment':
@@ -439,7 +437,7 @@ class MyRoutes{
     //Navigator.pushNamed(context, '/teacherAddMyQuestionBank',arguments: [widget.assessment,widget.assessmentStatus]);
 
     return MaterialPageRoute(builder: (context) => const Scaffold(
-      body: Text('no route defiend'),
+      body: Text('no route defined'),
     ));
   }
 }
@@ -447,6 +445,7 @@ class MyRoutes{
 class SlideRightRoute extends PageRouteBuilder {
 
   final Widget widget;
+  @override
   final RouteSettings settings;
   SlideRightRoute({required this.widget,required this.settings})
       : super(

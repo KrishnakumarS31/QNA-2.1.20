@@ -2,16 +2,18 @@ import 'dart:async';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:qna_test/EntityModel/student_registration_model.dart';
 
 import '../Components/custom_incorrect_popup.dart';
+import '../EntityModel/login_entity.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
 
 class StudentRegisVerifyOtpPage extends StatefulWidget {
-  const StudentRegisVerifyOtpPage({Key? key, required this.email})
+  const StudentRegisVerifyOtpPage({Key? key, required this.student})
       : super(key: key);
 
-  final String email;
+  final StudentRegistrationModel student;
 
   @override
   StudentRegisVerifyOtpPageState createState() =>
@@ -25,6 +27,7 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
   bool error = false;
   Timer? countdownTimer;
   Duration myDuration = const Duration(minutes: 5);
+  bool enableResendButton = false;
 
   @override
   void initState() {
@@ -40,6 +43,7 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
       final seconds = myDuration.inSeconds - reduceSecondsBy;
       if (seconds < 0) {
         countdownTimer!.cancel();
+        enableResendButton = true;
       } else {
         myDuration = Duration(seconds: seconds);
       }
@@ -136,14 +140,14 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                         fontSize: 16),
                                     hintText: "Enter OTP",
                                   ),
-                                  // validator: (value) {
-                                  //   if (!value!.isEmpty ||
-                                  //       RegExp(r'^[0-9]+$').hasMatch(value)) {
-                                  //     return "Incorrect OTP";
-                                  //   } else {
-                                  //     return null;
-                                  //   }
-                                  //},
+                                  validator: (value) {
+                                    if (value!.isEmpty ||
+                                        !RegExp(r'^\d+$').hasMatch(value)) {
+                                      return "Incorrect OTP";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
                                 )),
                             SizedBox(height: height * 0.04),
                             Row(
@@ -191,11 +195,28 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                                       fontSize: 14),
                                 ),
                                 TextButton(
-                                    onPressed: () {},
-                                    child: const Text("   Resend OTP",
+                                    onPressed: enableResendButton ?
+                                        () async {
+                                          LoginModel response =
+                                          await QnaService.postUserDetailsService(widget.student);
+                                      if (response.code == 200) {
+                                        if(context.mounted) {
+                                          showResendDialog(context);
+                                        }
+                                        // Navigator.push(
+                                        //   context,
+                                        //   PageTransition(
+                                        //       type: PageTransitionType.rightToLeft,
+                                        //       child: showAlertDialog(context)),
+                                        // );
+                                      }
+                                    }
+                                    : null
+                                    ,
+                                    child: Text("   Resend OTP",
                                         style: TextStyle(
-                                            color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                            color: enableResendButton == false ? Colors.grey :
+                                                const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14)))
@@ -218,22 +239,26 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                             if (formKey.currentState!.validate()) {
                               otp = otpController.text;
                               StaticResponse res =
-                                  await QnaService.verifyOtp(widget.email, otp);
+                                  await QnaService.verifyOtp(widget.student.email, otp);
                               if (res.code == 200) {
-                                showAlertDialog(context);
+                                if(context.mounted) {
+                                  showAlertDialog(context);
+                                }
                               } else {
-                                Navigator.push(
-                                  context,
-                                  PageTransition(
-                                    type: PageTransitionType.rightToLeft,
-                                    child: CustomDialog(
-                                      title: 'Incorrect Otp',
-                                      content: 'Entered OTP does not match',
-                                      button:
-                                          AppLocalizations.of(context)!.retry,
+                                if (context.mounted) {
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: CustomDialog(
+                                        title: 'Incorrect Otp',
+                                        content: 'Entered OTP does not match',
+                                        button:
+                                        AppLocalizations.of(context)!.retry,
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                }
                               }
                             }
                           },
@@ -303,10 +328,7 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
                 fontSize: 15),
           ),
           onPressed: () {
-            int count = 0;
-            Navigator.popUntil(context, (route) {
-              return count++ == 3;
-            });
+           Navigator.popUntil(context, ModalRoute.withName('/studentMemberLoginPage'));
           },
         )
       ],
@@ -320,4 +342,74 @@ class StudentRegisVerifyOtpPageState extends State<StudentRegisVerifyOtpPage> {
       },
     );
   }
+
+  showResendDialog(BuildContext context) {
+    // set up the button
+    double height = MediaQuery.of(context).size.height;
+    Widget okButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color.fromRGBO(48, 145, 139, 1),
+      ),
+      child: Text(
+        "OK",
+        style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      onPressed: () {
+        setState(() {
+          enableResendButton = false;
+          myDuration = const Duration(minutes: 5);
+          countdownTimer =
+              Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+        });
+        Navigator.pop(context);
+
+
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Row(
+        children: [
+          Icon(
+            Icons.check_circle,
+            size: height * 0.04,
+            color: const Color.fromRGBO(66, 194, 0, 1),
+          ),
+          SizedBox(
+            width: height * 0.002,
+          ),
+          Text(
+            "OTP Sent!",
+            style: TextStyle(
+                color: const Color.fromRGBO(51, 51, 51, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+                fontSize: height * 0.02),
+          ),
+        ],
+      ),
+      content: Text(
+        "If this email ID is registered with us you will receive OTP",
+        style: TextStyle(
+            color: const Color.fromRGBO(51, 51, 51, 1),
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            fontSize: height * 0.018),
+      ),
+      actions: [okButton],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
 }

@@ -9,6 +9,9 @@ import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../Services/qna_service.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/gestures.dart';
+
 
 class StudentRegistrationPage extends StatefulWidget {
   const StudentRegistrationPage({super.key});
@@ -1185,6 +1188,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       });
                                     },
                                   )),
+                                  SizedBox(width: localWidth * 0.01),
                                   Flexible(
                                     child: RichText(
                                         text: TextSpan(children: [
@@ -1200,12 +1204,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       TextSpan(
                                         text: AppLocalizations.of(context)!
                                             .privacy_Policy,
+                                        recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                         style: TextStyle(
                                             fontSize: localHeight * 0.02,
                                             fontWeight: FontWeight.w400,
                                             decoration: TextDecoration.underline,
                                             color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                                const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: "Inter"),
                                       ),
                                       TextSpan(
@@ -1213,28 +1218,31 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                         style:  TextStyle(
                                             fontSize: localHeight * 0.02,
                                             fontWeight: FontWeight.w400,
-                                            decoration: TextDecoration.underline,
                                             color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                                const Color.fromRGBO(51, 51, 51, 1),
                                             fontFamily: "Inter"),
                                       ),
                                       TextSpan(
                                         text: AppLocalizations.of(context)!.terms,
+                                        recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                         style:  TextStyle(
                                             fontSize: localHeight * 0.02,
                                             fontWeight: FontWeight.w400,
                                             decoration: TextDecoration.underline,
                                             color:
-                                                Color.fromRGBO(82, 165, 160, 1),
+                                                const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: "Inter"),
                                       ),
                                       TextSpan(
                                         text: AppLocalizations.of(context)!
                                             .services,
+                                        recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                         style:  TextStyle(
                                             fontSize: localHeight * 0.02,
                                             fontWeight: FontWeight.w400,
-                                            color: Color.fromRGBO(51, 51, 51, 1),
+                                            decoration: TextDecoration.underline,
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
                                             fontFamily: "Inter"),
                                       ),
                                     ])),
@@ -1458,10 +1466,12 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                           LoginModel res =
                               await QnaService.postUserDetailsService(student);
                           if (res.code == 200) {
-                            Navigator.pushNamed(
+                            if(context.mounted) {
+                              Navigator.pushNamed(
                                 context,
                                 '/studentRegisVerifyOtpPage',
-                                arguments: studentEmailController.text,);
+                                arguments: student,);
+                            }
                             // Navigator.push(
                             //   context,
                             //   PageTransition(
@@ -1471,17 +1481,19 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             //       )),
                             // );
                           } else {
-                            Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: CustomDialog(
-                                  title: 'Alert',
-                                  content: '${res.message}',
-                                  button: AppLocalizations.of(context)!.retry,
+                            if (context.mounted) {
+                              Navigator.push(
+                                context,
+                                PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: CustomDialog(
+                                    title: 'Alert',
+                                    content: '${res.message}',
+                                    button: AppLocalizations.of(context)!.retry,
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
+                            }
                           }
                         }
                       }
@@ -1517,5 +1529,18 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
           ),
           //)
         ));});
+  }
+  Future<void> _launchUrlTerms() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
+    if (!await launchUrl(url)) {
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
+    }
+  }
+
+  Future<void> _launchUrlPrivacy() async {
+    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
+    if (!await launchUrl(url)) {
+      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
+    }
   }
 }

@@ -27,58 +27,12 @@ class _WelcomePageState extends State<WelcomePage> {
   var isDeviceConnected = false;
   bool isAlertSet = false;
 
-  // Future<bool> checkIfAlreadyLoggedIn(bool teacherClick) async {
-  //   loginData = await SharedPreferences.getInstance();
-  //   newUser = (loginData?.getBool('login') ?? true);
-  //   if (newUser == false && loginData?.getString('role') == 'teacher') {
-  //     showDialog(
-  //         context: context,
-  //         builder: (context) {
-  //           return const Center(
-  //               child: CircularProgressIndicator(
-  //             color: Color.fromRGBO(48, 145, 139, 1),
-  //           ));
-  //         });
-  //     LoginModel loginResponse = await QnaService.logInUser(
-  //         loginData!.getString('email')!,
-  //         loginData!.getString('password')!,
-  //         loginData!.getString('role')!);
-  //     if (loginResponse.code == 200) {
-  //       loginData?.setBool('login', false);
-  //       loginData?.setString('email', loginData!.getString('email')!);
-  //       loginData?.setString('password', loginData!.getString('password')!);
-  //       loginData?.setString('token', loginResponse.data.accessToken);
-  //       loginData?.setInt('userId', loginResponse.data.userId);
-  //     }
-  //     UserDataModel userDataModel = UserDataModel(code: 0, message: '');
-  //     userDataModel =
-  //         await QnaService.getUserDataService(loginData?.getInt('userId'));
-  //     Navigator.pushNamed(
-  //         context,
-  //         '/teacherSelectionPage',
-  //         arguments: userDataModel
-  //     );
-  //     // Navigator.push(
-  //     //   context,
-  //     //   PageTransition(
-  //     //     type: PageTransitionType.rightToLeft,
-  //     //     child: TeacherSelectionPage(
-  //     //       userData: userDataModel,
-  //     //     ),
-  //     //   ),
-  //     // );
-  //     return true;
-  //   }
-  //
-  //   return false;
-  // }
-
   @override
   void initState() {
     super.initState();
-    getConectivity();
+    getConnectivity();
   }
-  getConectivity() {
+  getConnectivity() {
     subscription = _internetChecker.onConnectionChange.listen((connected) async {
       _message = connected == ConnectionStatus.online
           ? 'Connected'
@@ -103,9 +57,10 @@ class _WelcomePageState extends State<WelcomePage> {
 
   showDialogBox() => showCupertinoDialog<String>(
       context: context,
-      builder: (BuildContext context) => const CupertinoAlertDialog(
+      builder: (BuildContext context) =>  CupertinoAlertDialog(
         title: Text(
-          "NO CONNECTION",
+          AppLocalizations.of(context)!.no_connection,
+          //"NO CONNECTION",
           style: TextStyle(
             color: Color.fromRGBO(82, 165, 160, 1),
             fontSize: 25,
@@ -114,7 +69,8 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ),
         content: Text(
-          "Please check your internet connectivity",
+          AppLocalizations.of(context)!.check_internet,
+          //"Please check your internet connectivity",
           style: TextStyle(
             color: Color.fromRGBO(82, 165, 160, 1),
             fontSize: 16,
@@ -202,35 +158,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    // Container(
-                                                    //   padding: EdgeInsets.only(
-                                                    //       left: localWidth / 15,
-                                                    //       right:
-                                                    //           localWidth / 15),
-                                                    //   child: Align(
-                                                    //     alignment: Alignment
-                                                    //         .centerLeft,
-                                                    //     child: Text(
-                                                    //         AppLocalizations.of(
-                                                    //                 context)!
-                                                    //             .learner_applicant,
-                                                    //         style: TextStyle(
-                                                    //             color: const Color
-                                                    //                     .fromRGBO(
-                                                    //                 102,
-                                                    //                 102,
-                                                    //                 102,
-                                                    //                 1),
-                                                    //             fontFamily:
-                                                    //                 'Inter',
-                                                    //             fontWeight:
-                                                    //                 FontWeight
-                                                    //                     .w600,
-                                                    //             fontSize:
-                                                    //                 localHeight *
-                                                    //                     0.024)),
-                                                    //   ),
-                                                    // ),
                                                     SizedBox(
                                                       height:
                                                           localHeight * 0.02,
@@ -281,15 +208,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                 context,
                                                                 '/studentSelectionPage',
                                                             );
-                                                            // Navigator.push(
-                                                            //   context,
-                                                            //   PageTransition(
-                                                            //     type: PageTransitionType
-                                                            //         .rightToLeft,
-                                                            //     child: StudentSelectionPage(
-                                                            //         ),
-                                                            //   ),
-                                                            // );
                                                           },
                                                         ),
                                                       ),
@@ -301,37 +219,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   left: localWidth / 15,
                                                   right: localWidth / 15),
                                               child: Column(children: [
-                                                // Container(
-                                                //   padding: EdgeInsets.only(
-                                                //       left: localWidth / 15,
-                                                //       right: localWidth / 15),
-                                                //   child: Align(
-                                                //     alignment:
-                                                //         Alignment.centerLeft,
-                                                //     child: Text(
-                                                //         AppLocalizations
-                                                //                 .of(context)!
-                                                //             .instructor_examiner,
-                                                //         style: Theme.of(context)
-                                                //             .primaryTextTheme
-                                                //             .bodyLarge
-                                                //             ?.merge(TextStyle(
-                                                //                 color: const Color
-                                                //                         .fromRGBO(
-                                                //                     102,
-                                                //                     102,
-                                                //                     102,
-                                                //                     1),
-                                                //                 fontFamily:
-                                                //                     'Inter',
-                                                //                 fontWeight:
-                                                //                     FontWeight
-                                                //                         .w600,
-                                                //                 fontSize:
-                                                //                     localHeight *
-                                                //                         0.024))),
-                                                //   ),
-                                                // ),
                                                 SizedBox(
                                                   height: localHeight * 0.02,
                                                 ),
@@ -377,20 +264,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                     .white)),
                                                         onPressed: () {
                                                           teacherClick == true;
-                                                          // bool status =
-                                                          //     await checkIfAlreadyLoggedIn(
-                                                          //         teacherClick);
-                                                          //if (status == false) {
                                                             Navigator.pushNamed(context, '/teacherLoginPage');
-                                                            // Navigator.push(
-                                                            //   context,
-                                                            //   MaterialPageRoute(
-                                                            //     builder: (context) =>
-                                                            //         TeacherLogin(
-                                                            //             ),
-                                                            //   ),
-                                                            // );
-                                                          //}
                                                         },
                                                       ),
                                                     )),
@@ -452,7 +326,6 @@ class _WelcomePageState extends State<WelcomePage> {
                               height: MediaQuery.of(context).size.height * 0.04,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                  //fit: BoxFit.fitWidth,
                                   image:
                                       AssetImage('assets/images/itne_logo.png'),
                                 ),
@@ -541,27 +414,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                               left: localWidth / 15,
                                               right: localWidth / 15),
                                           child: Column(children: [
-                                            // Container(
-                                            //   padding: EdgeInsets.only(
-                                            //       left: localWidth / 15,
-                                            //       right: localWidth / 15),
-                                            //   child: Align(
-                                            //     alignment: Alignment.centerLeft,
-                                            //     child: Text(
-                                            //         AppLocalizations.of(
-                                            //                 context)!
-                                            //             .learner_applicant,
-                                            //         style: TextStyle(
-                                            //             color: const Color
-                                            //                     .fromRGBO(
-                                            //                 102, 102, 102, 1),
-                                            //             fontFamily: 'Inter',
-                                            //             fontWeight:
-                                            //                 FontWeight.w600,
-                                            //             fontSize: localHeight *
-                                            //                 0.02)),
-                                            //   ),
-                                            // ),
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
@@ -598,16 +450,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                                           color: Colors.white)),
                                                   onPressed: () async {
                                                     Navigator.pushNamed(context, '/studentSelectionPage');
-                                                    // Navigator.push(
-                                                    //   context,
-                                                    //   PageTransition(
-                                                    //     type: PageTransitionType
-                                                    //         .rightToLeft,
-                                                    //     child:
-                                                    //         StudentSelectionPage(
-                                                    //             ),
-                                                    //   ),
-                                                    // );
                                                   },
                                                 ),
                                               ),
@@ -622,34 +464,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                               left: localWidth / 15,
                                               right: localWidth / 15),
                                           child: Column(children: [
-                                            // Container(
-                                            //   padding: EdgeInsets.only(
-                                            //       left: localWidth / 15,
-                                            //       right: localWidth / 15),
-                                            //   child: Align(
-                                            //     alignment: Alignment.centerLeft,
-                                            //     child: Text(
-                                            //         AppLocalizations
-                                            //                 .of(context)!
-                                            //             .instructor_examiner,
-                                            //         style: Theme.of(context)
-                                            //             .primaryTextTheme
-                                            //             .bodyLarge
-                                            //             ?.merge(TextStyle(
-                                            //                 color: const Color
-                                            //                         .fromRGBO(
-                                            //                     102,
-                                            //                     102,
-                                            //                     102,
-                                            //                     1),
-                                            //                 fontFamily: 'Inter',
-                                            //                 fontWeight:
-                                            //                     FontWeight.w600,
-                                            //                 fontSize:
-                                            //                     localHeight *
-                                            //                         0.02))),
-                                            //   ),
-                                            // ),
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
@@ -687,13 +501,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                 Colors.white)),
                                                     onPressed: () {
                                                       teacherClick == true;
-                                                      // bool status =
-                                                      //     await checkIfAlreadyLoggedIn(
-                                                      //         teacherClick);
-                                                      //if (status == false) {
                                                         Navigator.pushNamed(context, '/teacherLoginPage');
-
-                                                      //}
                                                     },
                                                   ),
                                                 )),

@@ -27,7 +27,6 @@ class TeacherQuesDelete extends StatefulWidget {
 }
 
 class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
-  late int _count;
   String? _groupValue;
   List<Choice>? selected = [];
   TextEditingController subjectController = TextEditingController();
@@ -42,7 +41,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
-      if(value=='Descripitive'){
+      if(value=='Descriptive'){
         showAlertDesDialog(context,height,value);
       }
       else{
@@ -396,7 +395,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                           ),
                           MyRadioOption<String>(
                             icon: Icons.library_books_sharp,
-                            value: 'Descripitive',
+                            value: 'Descriptive',
                             groupValue: _groupValue,
                             onChanged: _valueChangedHandler(context,height),
                             label: 'Descriptive',
@@ -637,7 +636,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         controller: subtopicController,
                                         keyboardType: TextInputType.text,
                                         style: TextStyle(
-                                            color:  Color.fromRGBO(
+                                            color:  const Color.fromRGBO(
                                                 82, 165, 160, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w700,
@@ -773,7 +772,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       ),
                     ),
                     SizedBox(height: height * 0.010),
-                    _groupValue=="Descripitive"
+                    _groupValue=="Descriptive"
                         ? const SizedBox(height: 0)
                         :  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -807,7 +806,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       ],
                     ),
                     SizedBox(height: height * 0.010),
-                    _groupValue=="Descripitive"
+                    _groupValue=="Descriptive"
                         ? const SizedBox(height: 0)
                         :  Form(
                       key: _formKey,
@@ -885,7 +884,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                     Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _groupValue=="Descripitive"
+                          _groupValue=="Descriptive"
                               ? const SizedBox(height: 0)
                               :  TextButton(
                             onPressed: () {
