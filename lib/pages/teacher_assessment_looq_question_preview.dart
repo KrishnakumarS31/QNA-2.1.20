@@ -13,7 +13,7 @@ class TeacherAssessmentLooqQuestionPreview extends StatefulWidget {
         required this.question,
         required this.index,
         this.pageName,
-      required this.quesId})
+        required this.quesId})
       : super(key: key);
 
   final CreateAssessmentModel assessment;
@@ -77,7 +77,7 @@ class TeacherAssessmentLooqQuestionPreviewState
             backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
             body: Center(
               child: SizedBox(
-                height: height * 0.85,
+                height: height * 0.9,
                 width: width * 0.888,
                 child: Card(
                     elevation: 12,

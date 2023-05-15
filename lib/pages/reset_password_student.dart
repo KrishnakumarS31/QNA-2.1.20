@@ -208,8 +208,8 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                               ),
                               validator: (value) {
 
-                                  if(value!.length < 8)
-                                    {
+                                if(value!.length < 8)
+                                {
                                   return "New Password is required(Password Should be 8 Characters)";
                                 } else {
                                   return null;
@@ -269,7 +269,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                     borderRadius: BorderRadius.circular(15)),
                               ),
                               validator: (value) {
-                                if (newPassword.text != oldPassword.text) {
+                                if (newPassword.text != reNewPassword.text) {
                                   return AppLocalizations.of(context)!
                                       .mis_match_password;
                                 } else if (value!.isEmpty) {
@@ -468,9 +468,9 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                                 oldPassword.text,
                                 newPassword.text,
                                 widget.userId,context);
-                            if (statusCode.code == 200 && oldPassword.text.isNotEmpty && newPassword.text.isNotEmpty) {
+                            if (statusCode.code == 200) {
                               if(context.mounted)
-                                {showAlertDialog(context);}
+                              {showAlertDialog(context);}
 
                             }
                           }

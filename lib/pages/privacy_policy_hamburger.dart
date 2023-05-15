@@ -120,7 +120,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                               fontSize: height * 0.018)),
                       TextSpan(
                           text:
-                          AppLocalizations.of(context)!.privacy_policy,
+                          AppLocalizations.of(context)!.privacy_Policy,
                           //"Privacy Policy",
                           recognizer: TapGestureRecognizer()..onTap = _launchUrl,
                           style: TextStyle(

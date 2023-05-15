@@ -8,23 +8,23 @@ String getResultModelToJson(GetResultModel data) => json.encode(data.toJson());
 class GetResultModel {
   GetResultModel(
       {this.assessmentId,
-      this.assessmentCode,
-      this.assessmentType,
-      this.totalScore,
-      this.totalQuestions,
-      this.assessmentStartDate,
-      this.assessmentEndDate,
-      this.assessmentDuration,
-      this.subject,
-      this.topic,
-      this.subTopic,
-      this.studentClass,
-      this.attemptPercentage,
-      this.assessmentResults,
-      this.androidUrl,
-      this.url,
-      this.iosUrl,
-      required this.guestStudentAllowed, this.totalAttempts, this.totalCompletedAttempts, this.totalInprogressAttempts});
+        this.assessmentCode,
+        this.assessmentType,
+        this.totalScore,
+        this.totalQuestions,
+        this.assessmentStartDate,
+        this.assessmentEndDate,
+        this.assessmentDuration,
+        this.subject,
+        this.topic,
+        this.subTopic,
+        this.studentClass,
+        this.attemptPercentage,
+        this.assessmentResults,
+        this.androidUrl,
+        this.url,
+        this.iosUrl,
+        required this.guestStudentAllowed, this.totalAttempts, this.totalCompletedAttempts, this.totalInprogressAttempts});
 
   dynamic assessmentId;
   String? assessmentCode;
@@ -49,55 +49,60 @@ class GetResultModel {
   int? totalCompletedAttempts;
 
   factory GetResultModel.fromJson(Map<String, dynamic> json) => GetResultModel(
-        assessmentId: json["assessment_id"] ?? " ",
-        assessmentType: json["assessment_type"] ?? " " ,
-        assessmentCode: json["assessment_code"] ?? " ",
-        totalScore: json["total_score"] ?? 0,
-        totalQuestions: json["total_questions"] ?? " ",
-        assessmentEndDate: json["assessment_enddate"] ?? " ",
-        assessmentStartDate: json["assessment_startdate"] ?? " ",
-        assessmentDuration: json["assessment_duration"] ?? " ",
-        subject: json["subject"] ?? " ",
-        topic: json["topic"] ?? " ",
-        subTopic: json["sub_topic"] ?? " ",
-        totalAttempts:json["total_attempts"] ?? 0,
-        totalCompletedAttempts: json["total_completed_attempts"] ?? 0,
-        totalInprogressAttempts: json["total_inprogress_attempts"] ?? 0,
-        // url: json["url"] ?? " ",
-        // androidUrl: json["android_app"] ?? " ",
-        // iosUrl: json["ios_app"] ?? " ",
-        studentClass: json["class"] ?? " ",
-        attemptPercentage: json["attempt_percentage"] ?? 0,
-        assessmentResults: json["assessment_results"] == null
-            ? []
-            : List<AssessmentResults>.from(json["assessment_results"]
-                .map((x) => AssessmentResults.fromJson(x))),
-        guestStudentAllowed: json["guest_student_allowed"] ?? " ",
-      );
+    assessmentId: json["assessment_id"] ?? " ",
+    assessmentType: json["assessment_type"] ?? " " ,
+    assessmentCode: json["assessment_code"] ?? " ",
+    totalScore: json["total_score"] ?? 0,
+    totalQuestions: json["total_questions"] ?? " ",
+    assessmentEndDate: json["assessment_enddate"] ?? " ",
+    assessmentStartDate: json["assessment_startdate"] ?? " ",
+    assessmentDuration: json["assessment_duration"] ?? " ",
+    subject: json["subject"] ?? " ",
+    topic: json["topic"] ?? " ",
+    subTopic: json["sub_topic"] ?? " ",
+    totalAttempts:json["total_attempts"] ?? 0,
+    totalCompletedAttempts: json["total_completed_attempts"] ?? 0,
+    totalInprogressAttempts: json["total_inprogress_attempts"] ?? 0,
+    // url: json["url"] ?? " ",
+    // androidUrl: json["android_app"] ?? " ",
+    // iosUrl: json["ios_app"] ?? " ",
+    studentClass: json["class"] ?? " ",
+    attemptPercentage: json["attempt_percentage"] ?? 0,
+    assessmentResults: json["assessment_results"] == null
+        ? []
+        : List<AssessmentResults>.from(json["assessment_results"]
+        .map((x) => AssessmentResults.fromJson(x))),
+    guestStudentAllowed: json["guest_student_allowed"] ?? " ",
+  );
 
   Map<String, dynamic> toJson() => {
-        "assessment_id": assessmentId,
-        "assessment_type": assessmentType,
-        "assessment_code": assessmentCode,
-        "total_score": totalScore,
-        "total_questions": totalQuestions,
-        "assessment_duration": assessmentDuration,
-        "assessment_enddate": assessmentEndDate,
-        "assessment_startdate": assessmentStartDate,
-        "subject": subject,
-        "topic": topic,
-        "sub_topic": subTopic,
-        "class": studentClass,
-        "attempt_percentage":attemptPercentage,
-       "total_attempts":totalAttempts,
-      "total_completed_attempts":totalCompletedAttempts,
-       "total_inprogress_attempts":totalInprogressAttempts,
-        // "url": url,
-        // "android_app": androidUrl,
-        // "ios_app": iosUrl,
-        "assessment_results": assessmentResults,
-        "guest_student_allowed": guestStudentAllowed
-      };
+    "assessment_id": assessmentId,
+    "assessment_type": assessmentType,
+    "assessment_code": assessmentCode,
+    "total_score": totalScore,
+    "total_questions": totalQuestions,
+    "assessment_duration": assessmentDuration,
+    "assessment_enddate": assessmentEndDate,
+    "assessment_startdate": assessmentStartDate,
+    "subject": subject,
+    "topic": topic,
+    "sub_topic": subTopic,
+    "class": studentClass,
+    "attempt_percentage":attemptPercentage,
+    "total_attempts":totalAttempts,
+    "total_completed_attempts":totalCompletedAttempts,
+    "total_inprogress_attempts":totalInprogressAttempts,
+    // "url": url,
+    // "android_app": androidUrl,
+    // "ios_app": iosUrl,
+    "assessment_results": assessmentResults,
+    "guest_student_allowed": guestStudentAllowed
+  };
+
+  @override
+  String toString() {
+    return 'GetResultModel{assessmentId: $assessmentId, assessmentCode: $assessmentCode, assessmentType: $assessmentType, totalScore: $totalScore, totalQuestions: $totalQuestions, assessmentStartDate: $assessmentStartDate, assessmentEndDate: $assessmentEndDate, assessmentDuration: $assessmentDuration, subject: $subject, topic: $topic, subTopic: $subTopic, studentClass: $studentClass, attemptPercentage: $attemptPercentage, url: $url, androidUrl: $androidUrl, iosUrl: $iosUrl, guestStudentAllowed: $guestStudentAllowed, assessmentResults: $assessmentResults, totalAttempts: $totalAttempts, totalInprogressAttempts: $totalInprogressAttempts, totalCompletedAttempts: $totalCompletedAttempts}';
+  }
 }
 
 class AssessmentResults {
@@ -105,16 +110,16 @@ class AssessmentResults {
       {
         this.attemptType,
         this.userId,
-      this.firstName,
-      this.lastName,
-      this.rollNumber,
-      this.organizationName,
-      this.attemptId,
-      this.attemptStartDate,
-      this.attemptEndDate,
-      this.attemptDuration,
-      this.attemptScore,
-      this.questions, this.attemptPercent});
+        this.firstName,
+        this.lastName,
+        this.rollNumber,
+        this.organizationName,
+        this.attemptId,
+        this.attemptStartDate,
+        this.attemptEndDate,
+        this.attemptDuration,
+        this.attemptScore,
+        this.questions, this.attemptPercent});
 
   String? attemptType;
   int? userId;
@@ -146,35 +151,40 @@ class AssessmentResults {
         attemptScore: json["attempt_score"] ?? 0,
         attemptPercent: json["attempt_percentage"],
         questions: json["questions"] == null
-        ? [] :
+            ? [] :
         List<Questions>.from(
             json["questions"].map((x) => Questions.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
     "attempt_type":attemptType,
-        "user_id": userId,
-        "first_name": firstName,
-        "last_name": lastName,
-        "roll_number": rollNumber,
-        "organisation_name": organizationName,
-        "attempt_id": attemptId,
-        "attempt_startdate": attemptStartDate,
-        "attempt_enddate": attemptEndDate,
-        "attempt_duration": attemptDuration,
-        "attempt_score": attemptScore,
-        "attempt_percentage": attemptPercent,
-        "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
-      };
+    "user_id": userId,
+    "first_name": firstName,
+    "last_name": lastName,
+    "roll_number": rollNumber,
+    "organisation_name": organizationName,
+    "attempt_id": attemptId,
+    "attempt_startdate": attemptStartDate,
+    "attempt_enddate": attemptEndDate,
+    "attempt_duration": attemptDuration,
+    "attempt_score": attemptScore,
+    "attempt_percentage": attemptPercent,
+    "questions": List<dynamic>.from(questions!.map((x) => x.toJson())),
+  };
+
+  @override
+  String toString() {
+    return 'AssessmentResults{attemptType: $attemptType, userId: $userId, firstName: $firstName, lastName: $lastName, rollNumber: $rollNumber, organizationName: $organizationName, attemptId: $attemptId, attemptStartDate: $attemptStartDate, attemptEndDate: $attemptEndDate, attemptDuration: $attemptDuration,\n attemptScore: $attemptScore, attemptPercent: $attemptPercent,\n questions: $questions}\n';
+  }
 }
 
 class Questions {
   Questions(
       {this.question,
-      this.questionType,
-      this.selectedChoices,
-      this.descriptiveAnswers,
-      this.status});
+        this.questionType,
+        this.selectedChoices,
+        this.descriptiveAnswers,
+        this.status});
 
   String? question;
   String? questionType;
@@ -183,18 +193,18 @@ class Questions {
   String? status;
 
   factory Questions.fromJson(Map<String, dynamic> json) => Questions(
-        question: json["question"] ?? "",
-        questionType: json["question_type"] ?? "",
-        selectedChoices: json["selected_choices"] ?? [" "],
-        descriptiveAnswers: json["descriptive_answer"] ?? "",
-        status: json["status"] ?? "",
-      );
+    question: json["question"] ?? "",
+    questionType: json["question_type"] ?? "",
+    selectedChoices: json["selected_choices"] ?? [" "],
+    descriptiveAnswers: json["descriptive_answer"] ?? "",
+    status: json["status"] ?? "",
+  );
 
   Map<String, dynamic> toJson() => {
-        "question": question,
-        "question_type": questionType,
-        "selected_choices": selectedChoices,
-        "descriptive_answer": descriptiveAnswers,
-        "status": status
-      };
+    "question": question,
+    "question_type": questionType,
+    "selected_choices": selectedChoices,
+    "descriptive_answer": descriptiveAnswers,
+    "status": status
+  };
 }

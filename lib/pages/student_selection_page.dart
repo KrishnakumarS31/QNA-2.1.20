@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../Components/custom_radio_button.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Pages/welcome_page.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 
 class StudentSelectionPage extends StatefulWidget {
@@ -42,8 +45,8 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
           builder: (context) {
             return const Center(
                 child: CircularProgressIndicator(
-              color: Color.fromRGBO(48, 145, 139, 1),
-            ));
+                  color: Color.fromRGBO(48, 145, 139, 1),
+                ));
           });
       LoginModel loginResponse = await QnaService.logInUser(
           loginData!.getString('email')!,
@@ -58,7 +61,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
       }
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
       userDataModel =
-          await QnaService.getUserDataService(loginData?.getInt('userId'));
+      await QnaService.getUserDataService(loginData?.getInt('userId'));
       Navigator.pushNamed(
           context,
           '/studentAssessment',
@@ -83,6 +86,8 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
 
   @override
   void initState() {
+    UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+    print(userdata.toString());
     super.initState();
   }
 
@@ -154,7 +159,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                 image: DecorationImage(
                                   //fit: BoxFit.fill,
                                   image:
-                                      AssetImage('assets/images/qna_logo.png'),
+                                  AssetImage('assets/images/qna_logo.png'),
                                 ),
                               ),
                             ),
@@ -213,7 +218,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: Size(width * 0.4, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -258,42 +263,42 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           height: height * 0.09,
                         ),
                         Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                          MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/settingsLanguages');
-                            },
-                            child: IconButton(
-                                icon: const Icon(
-                                  Icons.translate,
-                                  color: Color.fromRGBO(141, 167, 167, 1),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/settingsLanguages');
-                                  },
-                              ))),
-                              MouseRegion(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MouseRegion(
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, '/settingsLanguages');
-                                  },
-                                  child: Text(
-                                  AppLocalizations.of(context)!.select_language,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(TextStyle(
-                                          color: const Color.fromRGBO(
-                                              48, 145, 139, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.02)))))
-                            ],
-                          ),
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                    },
+                                    child: IconButton(
+                                      icon: const Icon(
+                                        Icons.translate,
+                                        color: Color.fromRGBO(141, 167, 167, 1),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/settingsLanguages');
+                                      },
+                                    ))),
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                    },
+                                    child: Text(
+                                        AppLocalizations.of(context)!.select_language,
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyLarge
+                                            ?.merge(TextStyle(
+                                            color: const Color.fromRGBO(
+                                                48, 145, 139, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: height * 0.02)))))
+                          ],
+                        ),
                       ],
                     ),
                   ])));
@@ -358,7 +363,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                 image: DecorationImage(
                                   fit: BoxFit.fill,
                                   image:
-                                      AssetImage('assets/images/qna_logo.png'),
+                                  AssetImage('assets/images/qna_logo.png'),
                                 ),
                               ),
                             ),
@@ -414,7 +419,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
+                            const Color.fromRGBO(82, 165, 160, 1),
                             minimumSize: const Size(280, 48),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(39),
@@ -457,43 +462,43 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.09,
                         ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
                             MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.pushNamed(context, '/settingsLanguages');
-                              },
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.translate,
-                                  color: Color.fromRGBO(141, 167, 167, 1),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/settingsLanguages');
-                                },
-                              ))),
-                              MouseRegion(
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(context, '/settingsLanguages');
-                                  },
-                                  child: Text(
-                                  AppLocalizations.of(context)!.select_language,
-                                  style: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyLarge
-                                      ?.merge(TextStyle(
-                                          color: const Color.fromRGBO(
-                                              48, 145, 139, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.023)))))
-                            ],
-                          ),
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                    },
+                                    child: IconButton(
+                                      icon: const Icon(
+                                        Icons.translate,
+                                        color: Color.fromRGBO(141, 167, 167, 1),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/settingsLanguages');
+                                      },
+                                    ))),
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/settingsLanguages');
+                                    },
+                                    child: Text(
+                                        AppLocalizations.of(context)!.select_language,
+                                        style: Theme.of(context)
+                                            .primaryTextTheme
+                                            .bodyLarge
+                                            ?.merge(TextStyle(
+                                            color: const Color.fromRGBO(
+                                                48, 145, 139, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: height * 0.023)))))
+                          ],
+                        ),
                       ],
                     ),
                   ])));

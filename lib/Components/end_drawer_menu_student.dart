@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/reset_password_student.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/pages/student_user_profile.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import '../pages/change_email_student.dart';
 import '../pages/cookie_policy.dart';
@@ -343,7 +346,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: const PrivacyPolicyHamburger(
-                                    ),
+                                ),
                               ),
                             );
                           }),
@@ -368,7 +371,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               PageTransition(
                                 type: PageTransitionType.rightToLeft,
                                 child: const TermsOfServiceHamburger(
-                                    ),
+                                ),
                               ),
                             );
                           }),
@@ -539,6 +542,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                         )
                                     ),
                                     onPressed: () async {
+                                      UserDetails userData=UserDetails();
+                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userData);
                                       SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                       await preferences.clear();
@@ -550,7 +555,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                     : SizedBox(width: width * 0.030),
                               ],
                             )
-                                  : AlertDialog(
+                                : AlertDialog(
                               insetPadding: EdgeInsets.only(
                                   left: width * 0.13, right: width * 0.13),
                               title: Row(children: [
@@ -616,6 +621,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500)),
                                     onPressed: () async {
+                                      UserDetails userData=UserDetails();
+                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userData);
                                       SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                       await preferences.clear();

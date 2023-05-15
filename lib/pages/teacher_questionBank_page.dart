@@ -45,23 +45,23 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
           responseEntity.data.map((x) => Question.fromJson(x)));
     }
     else{
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: CustomDialog(
-              title:
-              AppLocalizations.of(context)!.alert_popup,
-              //'Alert',
-              content:
-              AppLocalizations.of(context)!.no_question_found,
-              //'No Questions Found.',
-              button:
-                AppLocalizations.of(context)!.retry,
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: CustomDialog(
+            title:
+            AppLocalizations.of(context)!.alert_popup,
+            //'Alert',
+            content:
+            AppLocalizations.of(context)!.no_question_found,
+            //'No Questions Found.',
+            button:
+            AppLocalizations.of(context)!.retry,
             //"Retry",
-            ),
           ),
-        );
+        ),
+      );
     }
     setState(() {
       questionList.addAll(questions);
@@ -274,7 +274,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                             TextSpan(
                               text:
                               AppLocalizations.of(context)!.disclaimer_qn_prepare,
-                          //"DISCLAIMER:",
+                              //"DISCLAIMER:",
                               style: TextStyle(
                                   fontSize: height * 0.015,
                                   fontWeight: FontWeight.w500,
@@ -309,6 +309,18 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
+                    SizedBox(height: height * 0.01),
+                    Text(
+                      AppLocalizations.of(context)!.tap_to_review,
+                      //"Tap to Review/Edit/Delete",
+                      style: TextStyle(
+                        color: const Color.fromRGBO(153, 153, 153, 1),
+                        fontSize: height * 0.015,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(height: height * 0.01),
                     Column(children: [
                       for (Question i in questionList)
                         QuestionPreview(

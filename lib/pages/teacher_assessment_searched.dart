@@ -47,7 +47,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   }
 
   initialData() async {
-    Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
+    //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     ResponseEntity response =
     await QnaService.getSearchAssessment(5, pageLimit, widget.search);
     if(response.data != null){
@@ -433,6 +433,9 @@ class CardInfo extends StatelessWidget {
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             onTap: () async {
+              Provider.of<QuestionPrepareProviderFinal>(
+                  context,
+                  listen: false).reSetQuestionList();
               Provider.of<EditAssessmentProvider>(context, listen: false)
                   .updateAssessment(assessment);
 

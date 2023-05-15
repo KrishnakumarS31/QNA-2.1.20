@@ -23,7 +23,7 @@ class CustomCard1 extends StatelessWidget {
         resultIndex.assessmentEndDate!);
     DateTime now = DateTime.now();
     return Container(
-      height: height * 0.1825,
+      height: height * 0.2,
       decoration: BoxDecoration(
           border: Border.all(
             color: const Color.fromRGBO(233, 233, 233, 1),
@@ -94,7 +94,7 @@ class CustomCard1 extends StatelessWidget {
           ),
           Padding(
             padding:
-                EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
+            EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -109,7 +109,7 @@ class CustomCard1 extends StatelessWidget {
           ),
           Padding(
             padding:
-                EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
+            EdgeInsets.only(left: width * 0.03, bottom: height * 0.005),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(

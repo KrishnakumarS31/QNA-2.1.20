@@ -3,7 +3,9 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_num_provider.dart';
 import '../Services/qna_service.dart';
 import '../pages/cookie_policy.dart';
@@ -152,17 +154,18 @@ class StudentResultPageState extends State<StudentResultPage> {
 
                                 //Navigator.pushNamed(context, '/studentSelectionPage');
                                 if(widget.isMember) {
-                                  print(widget.isMember);
+
                                   SharedPreferences loginData = await SharedPreferences.getInstance();
-                                  print(loginData.getInt('userId'));
+
+                                  UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                   UserDataModel userDataModel =
                                   await QnaService
-                                      .getUserDataService(loginData.getInt('userId'));
-                                  print(userDataModel.toString());
+                                      .getUserDataService(userdata.userId);
+
                                   Navigator.pushNamed(
                                       context,
                                       '/studentAssessment',
-                                      arguments: [loginData.getString('email'),userDataModel]);
+                                      arguments: [userdata.email,userDataModel]);
                                 }
                                 else {
                                   Navigator.pushNamed(
@@ -875,17 +878,17 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                               ));
                                                         });
                                                     if(widget.isMember) {
-                                                      print(widget.isMember);
+
                                                       SharedPreferences loginData = await SharedPreferences.getInstance();
-                                                      print(loginData.getInt('userId'));
+                                                      UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                                       UserDataModel userDataModel =
                                                       await QnaService
-                                                          .getUserDataService(loginData.getInt('userId'));
-                                                      print(userDataModel.toString());
+                                                          .getUserDataService(userdata.userId);
+
                                                       Navigator.pushNamed(
                                                           context,
                                                           '/studentAssessment',
-                                                          arguments: [loginData.getString('email'),userDataModel]);
+                                                          arguments: [userdata.email,userDataModel]);
                                                     }
                                                     else {
                                                       Navigator.pushNamed(
@@ -1063,7 +1066,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                       ],
                     ),
                   )));
-        } else {
+        }
+        else {
           return WillPopScope(
               onWillPop: () async {
                 showDialog(
@@ -1150,17 +1154,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 //     arguments: widget.userName);
                                 // Navigator.of(context).pop();
                                 if(widget.isMember) {
-                                  print(widget.isMember);
+                                  UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                   SharedPreferences loginData = await SharedPreferences.getInstance();
-                                  print(loginData.getInt('userId'));
                                   UserDataModel userDataModel =
                                   await QnaService
-                                      .getUserDataService(loginData.getInt('userId'));
-                                  print(userDataModel.toString());
+                                      .getUserDataService(userdata.userId);
                                   Navigator.pushNamed(
                                       context,
                                       '/studentAssessment',
-                                      arguments: [loginData.getString('email'),userDataModel]);
+                                      arguments: [userdata.email,userDataModel]);
                                 }
                                 else {
                                   Navigator.pushNamed(
@@ -1799,17 +1801,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         // Navigator.of(context)
                                                         //     .pop();
                                                         if(widget.isMember) {
-                                                          print(widget.isMember);
                                                           SharedPreferences loginData = await SharedPreferences.getInstance();
-                                                          print(loginData.getInt('userId'));
+                                                          UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                                           UserDataModel userDataModel =
                                                           await QnaService
-                                                              .getUserDataService(loginData.getInt('userId'));
-                                                          print(userDataModel.toString());
+                                                              .getUserDataService(userdata.userId);
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentAssessment',
-                                                              arguments: [loginData.getString('email'),userDataModel]);
+                                                              arguments: [userdata.email,userDataModel]);
                                                         }
                                                         else {
                                                           Navigator.pushNamed(

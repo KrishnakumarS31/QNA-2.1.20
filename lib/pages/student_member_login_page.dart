@@ -2,15 +2,19 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Components/preference.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import '../EntityModel/user_data_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+
+import '../Providers/LanguageChangeProvider.dart';
 
 class StudentMemberLoginPage extends StatefulWidget {
   const StudentMemberLoginPage({super.key, });
@@ -72,7 +76,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
       Navigator.pushNamed(context,
           '/studentAssessment',
           arguments: [regNumber,userDataModel])
-      .then((value) {
+          .then((value) {
         regNumberController.clear();
         passWordController.clear();
       });
@@ -323,36 +327,36 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                          onTap: () {
-                                            Navigator.pushNamed(
-                                                context,
-                                                '/forgotPasswordEmail',
-                                                arguments: true);
-                                            // Navigator.push(
-                                            //   context,
-                                            //   PageTransition(
-                                            //     type: PageTransitionType
-                                            //         .rightToLeft,
-                                            //     child: ForgotPasswordEmail(
-                                            //         isFromStudent: true,
-                                            //         ),
-                                            //   ),
-                                            // );
-                                          },
-                                          child: Text(
-                                              AppLocalizations.of(context)!
-                                                  .forgot_password,
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
-                                                      48, 145, 139, 1),
-                                                  fontFamily: 'Inter',
-                                                  fontWeight: FontWeight.w400,
-                                                  fontStyle: FontStyle.italic,
-                                                  fontSize:
-                                                  localHeight * 0.017)),
-                                        )),
+                                            cursor: SystemMouseCursors.click,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                    context,
+                                                    '/forgotPasswordEmail',
+                                                    arguments: true);
+                                                // Navigator.push(
+                                                //   context,
+                                                //   PageTransition(
+                                                //     type: PageTransitionType
+                                                //         .rightToLeft,
+                                                //     child: ForgotPasswordEmail(
+                                                //         isFromStudent: true,
+                                                //         ),
+                                                //   ),
+                                                // );
+                                              },
+                                              child: Text(
+                                                  AppLocalizations.of(context)!
+                                                      .forgot_password,
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          48, 145, 139, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontStyle: FontStyle.italic,
+                                                      fontSize:
+                                                      localHeight * 0.017)),
+                                            )),
                                       ],
                                     )),
                                 SizedBox(height: localHeight * 0.02),
@@ -517,6 +521,40 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
 
                                               Navigator.of(context).pop();
                                               if (loginResponse.code == 200) {
+                                                UserDetails userDetails=UserDetails();
+                                                userDetails.login=false;
+                                                userDetails.email=regNumber;
+                                                userDetails.password=passWord;
+                                                userDetails.role='student';
+                                                userDetails.firstName=loginResponse.data.firstName;
+                                                userDetails.lastName=loginResponse.data.lastName;
+                                                userDetails.token=loginResponse.data.accessToken;
+                                                userDetails.userId=loginResponse.data.userId;
+                                                Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
+                                                loginData.setBool(
+                                                    'login', false);
+                                                loginData.setString(
+                                                    'email', regNumber);
+                                                loginData.setString(
+                                                    'password', passWord);
+                                                loginData.setString(
+                                                    'role', 'student');
+                                                loginData.setString(
+                                                    'firstName',
+                                                    loginResponse
+                                                        .data.firstName);
+                                                loginData.setString(
+                                                    'lastName',
+                                                    loginResponse
+                                                        .data.lastName);
+                                                loginData.setString(
+                                                    'token',
+                                                    loginResponse
+                                                        .data.accessToken);
+                                                loginData.setInt(
+                                                    'userId',
+                                                    loginResponse
+                                                        .data.userId);
                                                 UserDataModel userDataModel =
                                                 await QnaService
                                                     .getUserDataService(
@@ -872,38 +910,38 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/forgotPasswordEmail',
-                                            arguments: true
-                                        );
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/forgotPasswordEmail',
+                                                arguments: true
+                                            );
 
-                                        // Navigator.push(
-                                        //   context,
-                                        //   PageTransition(
-                                        //     type: PageTransitionType
-                                        //         .rightToLeft,
-                                        //     child: ForgotPasswordEmail(
-                                        //         isFromStudent: true,
-                                        //         ),
-                                        //   ),
-                                        // );
-                                      },
-                                      child: Text(
-                                          AppLocalizations.of(context)!
-                                              .forgot_password,
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  48, 145, 139, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.italic,
-                                              fontSize:
-                                              localHeight * 0.014)),
-                                    )),
+                                            // Navigator.push(
+                                            //   context,
+                                            //   PageTransition(
+                                            //     type: PageTransitionType
+                                            //         .rightToLeft,
+                                            //     child: ForgotPasswordEmail(
+                                            //         isFromStudent: true,
+                                            //         ),
+                                            //   ),
+                                            // );
+                                          },
+                                          child: Text(
+                                              AppLocalizations.of(context)!
+                                                  .forgot_password,
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      48, 145, 139, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontStyle: FontStyle.italic,
+                                                  fontSize:
+                                                  localHeight * 0.014)),
+                                        )),
                                   ],
                                 ),
                                 SizedBox(height: localHeight * 0.03),
@@ -937,29 +975,29 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Transform.scale(
-                                      filterQuality: FilterQuality.high,
-                                      scale: 1.5,
-                                      child: Checkbox(
-                                      activeColor: const Color.fromRGBO(
-                                          82, 165, 160, 1),
-                                      fillColor: MaterialStateProperty
-                                          .resolveWith<Color>((states) {
-                                        if (states.contains(
-                                            MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
-                                      value: agree,
-                                      onChanged: (val) {
-                                        setState(() {
-                                          agree = val!;
-                                          if (agree) {}
-                                        });
-                                      },
-                                    )),
+                                        filterQuality: FilterQuality.high,
+                                        scale: 1.5,
+                                        child: Checkbox(
+                                          activeColor: const Color.fromRGBO(
+                                              82, 165, 160, 1),
+                                          fillColor: MaterialStateProperty
+                                              .resolveWith<Color>((states) {
+                                            if (states.contains(
+                                                MaterialState.selected)) {
+                                              return const Color.fromRGBO(
+                                                  82, 165, 160, 1);
+                                            }
+                                            return const Color.fromRGBO(
+                                                82, 165, 160, 1);
+                                          }),
+                                          value: agree,
+                                          onChanged: (val) {
+                                            setState(() {
+                                              agree = val!;
+                                              if (agree) {}
+                                            });
+                                          },
+                                        )),
                                     SizedBox(width: localWidth * 0.015),
                                     Flexible(
                                       child: RichText(
@@ -1079,7 +1117,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 if (loginResponse.code == 200) {
                                                   //UserDataModel userDataModel = UserDataModel();
                                                   //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
-
+                                                  UserDetails userDetails=UserDetails();
+                                                  userDetails.login=false;
+                                                  userDetails.email=regNumber;
+                                                  userDetails.password=passWord;
+                                                  userDetails.role='student';
+                                                  userDetails.firstName=loginResponse.data.firstName;
+                                                  userDetails.lastName=loginResponse.data.lastName;
+                                                  userDetails.token=loginResponse.data.accessToken;
+                                                  userDetails.userId=loginResponse.data.userId;
+                                                  Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
                                                   loginData.setBool(
                                                       'login', false);
                                                   loginData.setString(

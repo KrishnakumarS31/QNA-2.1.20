@@ -75,7 +75,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       getUserData(userId);
     }
     return userData;
@@ -83,7 +83,7 @@ class QnaRepo {
 
   static Future<StaticResponse> sendOtp(String email) async {
     StaticResponse responses =
-        StaticResponse(code: 0, message: 'Incorrect Email');
+    StaticResponse(code: 0, message: 'Incorrect Email');
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request('POST', Uri.parse(sendOtpUrl));
     request.body = json.encode({"email": email});
@@ -159,10 +159,10 @@ class QnaRepo {
           ),
         ),
       );
-      }
+    }
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity responses =
-        ResponseEntity(code: 0, message: 'Incorrect OTP');
+    ResponseEntity(code: 0, message: 'Incorrect OTP');
     var headers = {
       'Authorization': 'Bearer ${loginData.getString('token')}',
       'Content-Type': 'application/json'
@@ -180,7 +180,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       updatePassword(oldPassword, newPassword, userId,context);
     } else {}
 
@@ -217,7 +217,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       postAssessmentRepo(assessment, questionPaper);
     } else {
       String temp = await response.stream.bytesToString();
@@ -246,7 +246,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       createQuestionTeacher(question);
     } else {
       String temp = await response.stream.bytesToString();
@@ -283,7 +283,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       createAssessmentTeacher(question);
     } else {
       String temp = await response.stream.bytesToString();
@@ -328,7 +328,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       getAllAssessment(pageLimit, pageNumber, search);
     } else {}
     return allAssessment;
@@ -354,7 +354,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       getAllQuestion(pageLimit, pageNumber, search);
     } else {}
     return responseEntity;
@@ -380,7 +380,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       deleteQuestion(questionId);
     } else {
       String temp = await response.stream.bytesToString();
@@ -411,7 +411,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       editQuestionTeacher(question, questionId);
     } else {}
     return loginModel;
@@ -442,7 +442,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       editAssessmentTeacher(assessment, assessmentId);
     } else {
       String temp = await response.stream.bytesToString();
@@ -451,7 +451,7 @@ class QnaRepo {
   }
 
   static Future<ResponseEntity> editActiveAssessmentTeacher(
-      AssessmentSettings.AssessmentSettings assessment, int assessmentId) async {
+      AssessmentSettings.AssessmentSettings assessment, int assessmentId,String assessmentType,String assessmentStatus) async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
     var headers = {
@@ -465,7 +465,7 @@ class QnaRepo {
     assessment.advisorName=loginData.getString('firstName');
     assessment.advisorEmail=loginData.getString('email');
     request.body = assessmentSettingsToJson(assessment);
-    String t="{\"assessment_settings\": ${request.body} }";
+    String t="{\"assessment_type\": \"$assessmentType\", \"assessment_status\": \"$assessmentStatus\",\"assessment_settings\": ${request.body} }";
     request.body=t;
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -477,7 +477,7 @@ class QnaRepo {
       String? pass = loginData.getString('password');
       LoginModel loginModel =
       await logInUser(email!, pass!, loginData.getString('role'));
-      editActiveAssessmentTeacher(assessment, assessmentId);
+      editActiveAssessmentTeacher(assessment, assessmentId,assessmentType,assessmentStatus);
     } else {
       String temp = await response.stream.bytesToString();
     }
@@ -559,7 +559,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       getSearchAssessment(pageLimit, pageNumber, searchVal);
     } else {}
     return allAssessment;
@@ -583,7 +583,7 @@ class QnaRepo {
       String? email = loginData.getString('email');
       String? pass = loginData.getString('password');
       LoginModel loginModel =
-          await logInUser(email!, pass!, loginData.getString('role'));
+      await logInUser(email!, pass!, loginData.getString('role'));
       getSearchQuestion(pageLimit, pageNumber, searchVal);
     } else {
     }

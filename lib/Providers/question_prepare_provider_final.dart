@@ -14,7 +14,7 @@ class QuestionPrepareProviderFinal extends ChangeNotifier {
 
   void reSetQuestionList() {
     _questionList.clear();
-    //notifyListeners();
+    notifyListeners();
   }
 
   void deleteQuestionList(int id) {

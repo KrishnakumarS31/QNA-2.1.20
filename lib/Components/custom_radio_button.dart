@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CustomRadioButton<T> extends StatelessWidget {
@@ -35,12 +36,17 @@ class CustomRadioButton<T> extends StatelessWidget {
       ),
       child: Center(
           child: isSelected
-              ? const Icon(Icons.done, size: 25, color: Colors.white)
+              ? Icon(Icons.done, size:
+          defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS
+          ? 25
+              : 20,
+              color: Colors.white)
               : null),
     );
   }
 
   Widget _buildText() {
+
     return Text(
       text,
       style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(

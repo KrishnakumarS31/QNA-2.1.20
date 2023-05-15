@@ -74,8 +74,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                           icon: Icon(
                             Icons.close,
                             color: const Color.fromRGBO(82, 165, 160, 1),
-                            size: MediaQuery.of(context).copyWith().size.width *
-                                0.07,
+                            size: MediaQuery.of(context).copyWith().size.height * 0.05,
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();

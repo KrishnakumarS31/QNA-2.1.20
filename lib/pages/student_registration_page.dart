@@ -37,7 +37,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
   // bool also = false;
   bool error = true;
   String? gender;
-  final studentDobController = TextEditingController();
+  // final studentDobController = TextEditingController();
   late Response userDetails;
   int n = 244;
   List<String> countryCitizenList = [
@@ -307,7 +307,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
 
   @override
   void dispose() {
-    studentDobController.dispose();
+    // studentDobController.dispose();
     super.dispose();
   }
 
@@ -491,113 +491,113 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             SizedBox(
                               height: localHeight * 0.03,
                             ),
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                              onTap: () async {
-                                var pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1900),
-                                  lastDate: DateTime.now(),
-                                  builder: (context, child) {
-                                    return Theme(
-                                      data: Theme.of(context).copyWith(
-                                        colorScheme: const ColorScheme.light(
-                                          primary:
-                                              Color.fromRGBO(82, 165, 160, 1),
-                                          onPrimary: Colors.white,
-                                          onSurface:
-                                              Colors.black, // <-- SEE HERE
-                                        ),
-                                        textButtonTheme: TextButtonThemeData(
-                                          style: TextButton.styleFrom(
-                                            foregroundColor:
-                                                const Color.fromRGBO(
-                                                    82, 165, 160, 1),
-                                          ),
-                                        ),
-                                      ),
-                                      child: child!,
-                                    );
-                                  },
-                                );
-                                formKey.currentState!.validate();
-                                final DateFormat formatter =
-                                    DateFormat('dd/MM/yyyy');
-                                final String formatted =
-                                    formatter.format(pickedDate!);
-                                d = pickedDate.microsecondsSinceEpoch;
-                                studentDobController.text = formatted;
-                                formKey.currentState!.validate();
-                              },
-                              child: AbsorbPointer(
-                                child: TextFormField(
-                                  controller: studentDobController,
-                                  keyboardType: TextInputType.datetime,
-                                  decoration: InputDecoration(
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.always,
-                                    label: RichText(
-                                        text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .dob_caps,
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.018),
-                                      ),
-                                      TextSpan(
-                                          text: "\t*",
-                                          style: TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  219, 35, 35, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: localHeight * 0.018)),
-                                    ])),
-                                    hintStyle: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 0.3),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: localHeight * 0.016),
-                                    hintText: AppLocalizations.of(context)!
-                                        .dob_format,
-                                    suffixIcon: const Icon(
-                                      Icons.calendar_today_outlined,
-                                      color: Color.fromRGBO(141, 167, 167, 1),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Color.fromRGBO(
-                                                82, 165, 160, 1)),
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                  ),
-                                  onChanged: (value) {
-                                    formKey.currentState!.validate();
-                                  },
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Enter Date Of Birth';
-                                    } else {
-                                      return null;
-                                    }
-                                  },
-                                  enabled: true,
-                                ),
-                              ),
-                            )),
-                            SizedBox(
-                              height: localHeight * 0.03,
-                            ),
+                            // MouseRegion(
+                            //     cursor: SystemMouseCursors.click,
+                            //     child: GestureDetector(
+                            //   onTap: () async {
+                            //     var pickedDate = await showDatePicker(
+                            //       context: context,
+                            //       initialDate: DateTime.now(),
+                            //       firstDate: DateTime(1900),
+                            //       lastDate: DateTime.now(),
+                            //       builder: (context, child) {
+                            //         return Theme(
+                            //           data: Theme.of(context).copyWith(
+                            //             colorScheme: const ColorScheme.light(
+                            //               primary:
+                            //                   Color.fromRGBO(82, 165, 160, 1),
+                            //               onPrimary: Colors.white,
+                            //               onSurface:
+                            //                   Colors.black, // <-- SEE HERE
+                            //             ),
+                            //             textButtonTheme: TextButtonThemeData(
+                            //               style: TextButton.styleFrom(
+                            //                 foregroundColor:
+                            //                     const Color.fromRGBO(
+                            //                         82, 165, 160, 1),
+                            //               ),
+                            //             ),
+                            //           ),
+                            //           child: child!,
+                            //         );
+                            //       },
+                            //     );
+                            //     // formKey.currentState!.validate();
+                            //     // final DateFormat formatter =
+                            //     //     DateFormat('dd/MM/yyyy');
+                            //     // final String formatted =
+                            //     //     formatter.format(pickedDate!);
+                            //     // d = pickedDate.microsecondsSinceEpoch;
+                            //    // studentDobController.text = formatted;
+                            //     //formKey.currentState!.validate();
+                            //   },
+                            //   child: AbsorbPointer(
+                            //     child: TextFormField(
+                            //       controller: studentDobController,
+                            //       keyboardType: TextInputType.datetime,
+                            //       decoration: InputDecoration(
+                            //         floatingLabelBehavior:
+                            //             FloatingLabelBehavior.always,
+                            //         label: RichText(
+                            //             text: TextSpan(children: [
+                            //           TextSpan(
+                            //             text: AppLocalizations.of(context)!
+                            //                 .dob_caps,
+                            //             style: TextStyle(
+                            //                 color: const Color.fromRGBO(
+                            //                     102, 102, 102, 1),
+                            //                 fontFamily: 'Inter',
+                            //                 fontWeight: FontWeight.w600,
+                            //                 fontSize: localHeight * 0.018),
+                            //           ),
+                            //           TextSpan(
+                            //               text: "\t*",
+                            //               style: TextStyle(
+                            //                   color: const Color.fromRGBO(
+                            //                       219, 35, 35, 1),
+                            //                   fontFamily: 'Inter',
+                            //                   fontWeight: FontWeight.w600,
+                            //                   fontSize: localHeight * 0.018)),
+                            //         ])),
+                            //         hintStyle: TextStyle(
+                            //             color: const Color.fromRGBO(
+                            //                 102, 102, 102, 0.3),
+                            //             fontFamily: 'Inter',
+                            //             fontWeight: FontWeight.w400,
+                            //             fontSize: localHeight * 0.016),
+                            //         hintText: AppLocalizations.of(context)!
+                            //             .dob_format,
+                            //         suffixIcon: const Icon(
+                            //           Icons.calendar_today_outlined,
+                            //           color: Color.fromRGBO(141, 167, 167, 1),
+                            //         ),
+                            //         focusedBorder: OutlineInputBorder(
+                            //             borderSide: const BorderSide(
+                            //                 color: Color.fromRGBO(
+                            //                     82, 165, 160, 1)),
+                            //             borderRadius:
+                            //                 BorderRadius.circular(15)),
+                            //         border: OutlineInputBorder(
+                            //             borderRadius:
+                            //                 BorderRadius.circular(15)),
+                            //       ),
+                            //       onChanged: (value) {
+                            //         formKey.currentState!.validate();
+                            //       },
+                            //       validator: (value) {
+                            //         if (value!.isEmpty) {
+                            //           return 'Enter Date Of Birth';
+                            //         } else {
+                            //           return null;
+                            //         }
+                            //       },
+                            //       enabled: true,
+                            //     ),
+                            //   ),
+                            // )),
+                            // SizedBox(
+                            //   height: localHeight * 0.03,
+                            // ),
                             Stack(
                               children: [
                                 Padding(
@@ -1443,7 +1443,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         StudentRegistrationModel(
                             firstName: studentFirstNameController.text,
                             lastName: studentLastNameController.text,
-                            dob: d,
+                            dob: 01010001,
                             gender: gender,
                             countryNationality: selectedCountryCitizen
                                 .dropDownValue?.value,
