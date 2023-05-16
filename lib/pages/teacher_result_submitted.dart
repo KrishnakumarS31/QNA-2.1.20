@@ -57,7 +57,6 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
         widget.result.assessmentEndDate!);
     DateTime now = DateTime.now();
 
-
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -771,7 +770,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                            "${AppLocalizations.of(context)!.total_parti_list} (${widget.submittedArray?.length})",
+                            "${AppLocalizations.of(context)!.completed_parti_list} (${widget.submittedArray?.length})",
                           //'Total Participants List (${widget.submittedArray!.length})',
                           style: TextStyle(
                               fontSize: height * 0.0187,

@@ -72,116 +72,6 @@ class StudentResultPageState extends State<StudentResultPage> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
           return WillPopScope(
-              onWillPop: () async {
-                showDialog(
-                  context: context,
-                  builder: (context) =>
-                      AlertDialog(
-                        insetPadding: EdgeInsets.only(
-                            left: localWidth * 0.13, right: localWidth * 0.13),
-                        title: Row(children: [
-                          SizedBox(width: localHeight * 0.030),
-                          Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color.fromRGBO(82, 165, 160, 1),
-                            ),
-                            height: localHeight * 0.1,
-                            width: localWidth * 0.1,
-                            child: const Icon(
-                              Icons.info_outline_rounded,
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                            ),
-                          ),
-                          SizedBox(width: localHeight * 0.015),
-                          Text(
-                            AppLocalizations.of(context)!.confirm,
-                            style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: localHeight * 0.024,
-                                color: const Color.fromRGBO(0, 106, 100, 1),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ]),
-                        content: const Text("Are you sure you want to exit ?"),
-                        actions: <Widget>[
-                          SizedBox(width: localWidth * 0.020),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              const Color.fromRGBO(255, 255, 255, 1),
-                              minimumSize: const Size(90, 30),
-                              side: const BorderSide(
-                                width: 1.5,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              ),
-                            ),
-                            child: Text(AppLocalizations.of(context)!.no,
-                                style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: localHeight * 0.018,
-                                    color: const Color.fromRGBO(
-                                        82, 165, 160, 1),
-                                    fontWeight: FontWeight.w500)),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          SizedBox(width: localWidth * 0.005),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
-                                minimumSize: const Size(90, 30),
-                              ),
-                              child: Text(AppLocalizations.of(context)!.yes,
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: localHeight * 0.018,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500)),
-                              onPressed: () async {
-                                Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return const Center(
-                                          child: CircularProgressIndicator(
-                                            color: Color.fromRGBO(
-                                                48, 145, 139, 1),
-                                          ));
-                                    });
-
-                                //Navigator.pushNamed(context, '/studentSelectionPage');
-                                if(widget.isMember) {
-
-                                  SharedPreferences loginData = await SharedPreferences.getInstance();
-
-                                  UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                  UserDataModel userDataModel =
-                                  await QnaService
-                                      .getUserDataService(userdata.userId);
-
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/studentAssessment',
-                                      arguments: [userdata.email,userDataModel]);
-                                }
-                                else {
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/studGuestAssessment',
-                                      arguments: widget.userName);
-                                }
-
-                              }),
-                          SizedBox(width: localHeight * 0.030),
-                        ],
-                      ),
-                );
-                return false;
-              },
-              child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
                     endDrawer: Drawer(
@@ -420,9 +310,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   onTap: () async {
                                     showDialog(
                                       context: context,
-                                      builder: (context) =>
-                                      constraints.maxWidth > 700
-                                          ? AlertDialog(
+                                      builder: (context) => AlertDialog(
                                         insetPadding: EdgeInsets.only(
                                             left: localWidth * 0.13, right: localWidth * 0.13),
                                         title: Row(
@@ -451,9 +339,6 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         ),
                                         content: const Text("\t\t\t\tAre you sure you want to logout ??"),
                                         actions: <Widget>[
-                                          // constraints.maxWidth > 700
-                                          //     ? const SizedBox()
-                                          //     :
                                           SizedBox(width: localWidth * 0.030),
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(
@@ -476,9 +361,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               Navigator.of(context).pop();
                                             },
                                           ),
-                                          constraints.maxWidth > 700
-                                              ? SizedBox(width: localWidth * 0.05)
-                                              : SizedBox(width: localWidth * 0.005),
+                                          SizedBox(width: localWidth * 0.05),
                                           ElevatedButton(
                                               style:
                                               ElevatedButton.styleFrom(
@@ -503,88 +386,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 }
                                               }
                                           ),
-                                          constraints.maxWidth > 700
-                                              ? SizedBox(width: localWidth * 0.040)
-                                              : SizedBox(width: localWidth * 0.030),
+                                          SizedBox(width: localWidth * 0.040)
                                         ],
                                       )
-                                          : AlertDialog(
-                                        insetPadding: EdgeInsets.only(
-                                            left: localWidth * 0.13, right: localWidth * 0.13),
-                                        title: Row(children: [
-                                          SizedBox(width: localHeight * 0.030),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: Color.fromRGBO(82, 165, 160, 1),
-                                            ),
-                                            height: localHeight * 0.1,
-                                            width: localWidth * 0.1,
-                                            child: const Icon(
-                                              Icons.info_outline_rounded,
-                                              color: Color.fromRGBO(255, 255, 255, 1),
-                                            ),
-                                          ),
-                                          SizedBox(width: localHeight * 0.015),
-                                          Text(
-                                            AppLocalizations.of(context)!.confirm,
-                                            style: TextStyle(
-                                                fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.024,
-                                                color: const Color.fromRGBO(0, 106, 100, 1),
-                                                fontWeight: FontWeight.w700),
-                                          ),
-                                        ]),
-                                        content:
-                                        const Text("Are you sure you want to logout ??"),
-                                        actions: <Widget>[
-                                          SizedBox(width: localWidth * 0.020),
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                              const Color.fromRGBO(255, 255, 255, 1),
-                                              minimumSize: const Size(90, 30),
-                                              side: const BorderSide(
-                                                width: 1.5,
-                                                color: Color.fromRGBO(82, 165, 160, 1),
-                                              ),
-                                            ),
-                                            child: Text(AppLocalizations.of(context)!.no,
-                                                style: TextStyle(
-                                                    fontFamily: 'Inter',
-                                                    fontSize: localHeight * 0.018,
-                                                    color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontWeight: FontWeight.w500)),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          ),
-                                          SizedBox(width: localWidth * 0.005),
-                                          ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                backgroundColor:
-                                                const Color.fromRGBO(82, 165, 160, 1),
-                                                minimumSize: const Size(90, 30),
-                                              ),
-                                              child: Text(AppLocalizations.of(context)!.yes,
-                                                  style: TextStyle(
-                                                      fontFamily: 'Inter',
-                                                      fontSize: localHeight * 0.018,
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.w500)),
-                                              onPressed: () async {
-                                                SharedPreferences preferences =
-                                                await SharedPreferences.getInstance();
-                                                await preferences.clear();
-                                                if(context.mounted) {
-                                                  Navigator.pushNamed(
-                                                      context, '/');
-                                                }
-                                              }),
-                                          SizedBox(width: localHeight * 0.030),
-                                        ],
-                                      ),
                                     );
                                   },
                                 ),
@@ -775,8 +579,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   color: Color.fromRGBO(
                                                       82, 165, 160, 1),
                                                 ),
-                                                height: localHeight * 0.1,
-                                                width: localWidth * 0.1,
+                                                height: localHeight * 0.05,
+                                                width: localWidth * 0.05,
                                                 child: const Icon(
                                                   Icons
                                                       .info_outline_rounded,
@@ -1065,127 +869,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                         ),
                       ],
                     ),
-                  )));
+                  ));
         }
         else {
           return WillPopScope(
-              onWillPop: () async {
-                showDialog(
-                  context: context,
-                  builder: (context) =>
-                      AlertDialog(
-                        insetPadding: EdgeInsets.only(
-                            left: localWidth * 0.13, right: localWidth * 0.13),
-                        title: Row(children: [
-                          SizedBox(width: localHeight * 0.030),
-                          Container(
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color.fromRGBO(82, 165, 160, 1),
-                            ),
-                            height: localHeight * 0.1,
-                            width: localWidth * 0.1,
-                            child: const Icon(
-                              Icons.info_outline_rounded,
-                              color: Color.fromRGBO(255, 255, 255, 1),
-                            ),
-                          ),
-                          SizedBox(width: localHeight * 0.015),
-                          Text(
-                            AppLocalizations.of(context)!.confirm,
-                            style: TextStyle(
-                                fontFamily: 'Inter',
-                                fontSize: localHeight * 0.024,
-                                color: const Color.fromRGBO(0, 106, 100, 1),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ]),
-                        content: const Text("Are you sure you want to exit ?"),
-                        actions: <Widget>[
-                          SizedBox(width: localWidth * 0.020),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              const Color.fromRGBO(255, 255, 255, 1),
-                              minimumSize: const Size(90, 30),
-                              side: const BorderSide(
-                                width: 1.5,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              ),
-                            ),
-                            child: Text(AppLocalizations.of(context)!.no,
-                                style: TextStyle(
-                                    fontFamily: 'Inter',
-                                    fontSize: localHeight * 0.018,
-                                    color: const Color.fromRGBO(
-                                        82, 165, 160, 1),
-                                    fontWeight: FontWeight.w500)),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                          SizedBox(width: localWidth * 0.005),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                const Color.fromRGBO(82, 165, 160, 1),
-                                minimumSize: const Size(90, 30),
-                              ),
-                              child: Text(AppLocalizations.of(context)!.yes,
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: localHeight * 0.018,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w500)),
-                              onPressed: () async {
-                                Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(false);
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return const Center(
-                                          child: CircularProgressIndicator(
-                                            color: Color.fromRGBO(
-                                                48, 145, 139, 1),
-                                          ));
-                                    });
-                                // Navigator.pushNamed(
-                                //     context,
-                                //     '/studGuestAssessment',
-                                //     arguments: widget.userName);
-                                // Navigator.of(context).pop();
-                                if(widget.isMember) {
-                                  UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-                                  SharedPreferences loginData = await SharedPreferences.getInstance();
-                                  UserDataModel userDataModel =
-                                  await QnaService
-                                      .getUserDataService(userdata.userId);
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/studentAssessment',
-                                      arguments: [userdata.email,userDataModel]);
-                                }
-                                else {
-                                  Navigator.pushNamed(
-                                      context,
-                                      '/studGuestAssessment',
-                                      arguments: widget.userName);
-                                }
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: StudentSelectionPage(
-                                //         ),
-                                //   ),
-                                // );
-                              }),
-                          SizedBox(width: localHeight * 0.030),
-                        ],
-                      ),
-                );
-                return false;
-              },
-              child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
                     endDrawer: Drawer(
@@ -1495,7 +1182,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 if(context.mounted) {
                                                   Navigator.pushNamed(
                                                       context, '/');
-                                                }}),
+                                                }
+                                              }),
                                           SizedBox(width: localHeight * 0.030),
                                         ],
                                       ),
@@ -1685,7 +1373,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     right: localWidth * 0.13),
                                                 title: Row(children: [
                                                   SizedBox(width: localHeight *
-                                                      0.030),
+                                                      0.04),
                                                   Container(
                                                     decoration: const BoxDecoration(
                                                       shape: BoxShape.circle,
@@ -1702,7 +1390,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     ),
                                                   ),
                                                   SizedBox(width: localHeight *
-                                                      0.015),
+                                                      0.018),
                                                   Text(
                                                     AppLocalizations.of(
                                                         context)!
@@ -1980,7 +1668,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                         ),
                       ],
                     ),
-                  )));
+                  ));
         }
       },
     );

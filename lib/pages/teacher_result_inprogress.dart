@@ -764,9 +764,9 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           widget.inProgressArray?.length != null
-                              ? "${AppLocalizations.of(context)!.total_parti_list} (${widget.inProgressArray?.length})"
+                              ? "${AppLocalizations.of(context)!.completed_parti_list} (${widget.inProgressArray?.length})"
                           // 'Total Participants List (${widget.inProgressArray?.length})'
-                              : "${AppLocalizations.of(context)!.total_parti_list} (0)",
+                              : "${AppLocalizations.of(context)!.completed_parti_list} (0)",
                           //'Total Participants List(0)',
                           style: TextStyle(
                               fontSize: height * 0.0187,

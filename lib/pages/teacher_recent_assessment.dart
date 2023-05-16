@@ -87,7 +87,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                     ),
                   ),
                   Text(
-                    AppLocalizations.of(context)!.assessment_id_caps,
+                    AppLocalizations.of(context)!.assessment_caps,
                     //"ASSESSMENTS",
                     style: TextStyle(
                       color: const Color.fromRGBO(255, 255, 255, 1),

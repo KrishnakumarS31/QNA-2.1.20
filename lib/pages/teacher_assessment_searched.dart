@@ -525,6 +525,49 @@ class CardInfo extends StatelessWidget {
                               ),
                             ),
                             Text(
+                              " | ${assessment.topic}",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.circle_rounded,
+                          color: assessment.assessmentStatus == 'inprogress'
+                              ? const Color.fromRGBO(255, 166, 0, 1)
+                              : assessment.assessmentType == 'practice'
+                              ? const Color.fromRGBO(42, 36, 186, 1)
+                              : assessment.assessmentStatus == 'active' && assessment.assessmentType == 'test'
+                              ? const Color.fromRGBO(60, 176, 0, 1)
+                              : assessment.assessmentStatus == 'inactive' && assessment.assessmentType == 'test'
+                              ? const Color.fromRGBO(136, 136, 136, 1)
+                              : const Color.fromRGBO(136, 136, 136, 1),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              assessment.subTopic!,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
                               " | ${assessment.getAssessmentModelClass}",
                               style: TextStyle(
                                 color: const Color.fromRGBO(28, 78, 80, 1),
@@ -535,86 +578,157 @@ class CardInfo extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Icon(
-                          Icons.circle_rounded,
-                          color: assessment.assessmentStatus == 'inprogress'
-                              ? const Color.fromRGBO(255, 166, 0, 1)
-                              : assessment.assessmentStatus == 'active'
-                              ? const Color.fromRGBO(60, 176, 0, 1)
-                              : const Color.fromRGBO(136, 136, 136, 1),
-                        )
                       ],
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: width * 0.02),
+                    padding: EdgeInsets.only(left: width * 0.02, right: width * 0.02),
                     child: Row(
-                      children: [
-                        // Text(
-                        //   AppLocalizations.of(context)!.assessment_id_caps,
-                        //   //"Assessment ID: ",
-                        //   style: TextStyle(
-                        //     color: const Color.fromRGBO(102, 102, 102, 1),
-                        //     fontSize: height * 0.015,
-                        //     fontFamily: "Inter",
-                        //     fontWeight: FontWeight.w400,
-                        //   ),
-                        // ),
-                        Text(
-                          " ${assessment.assessmentCode}",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Text("${assessment.assessmentCode}",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],),
+                          Text(
+                            assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Row(
-                        //   children: [
-                        //     Text(
-                        //       AppLocalizations.of(context)!.institute_test_id,
-                        //       // "Institute Test ID: ",
-                        //       style: TextStyle(
-                        //         color: const Color.fromRGBO(102, 102, 102, 1),
-                        //         fontSize: height * 0.015,
-                        //         fontFamily: "Inter",
-                        //         fontWeight: FontWeight.w400,
-                        //       ),
-                        //     ),
-                        //     Text(
-                        //       " ----------",
-                        //       style: TextStyle(
-                        //         color: const Color.fromRGBO(82, 165, 160, 1),
-                        //         fontSize: height * 0.015,
-                        //         fontFamily: "Inter",
-                        //         fontWeight: FontWeight.w500,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
-                        Text(
-                          assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        ]),),
                 ],
               ),
+              // child: Column(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Padding(
+              //       padding:
+              //       EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Row(
+              //             children: [
+              //               Text(
+              //                 assessment.subject!,
+              //                 style: TextStyle(
+              //                   color: const Color.fromRGBO(28, 78, 80, 1),
+              //                   fontSize: height * 0.0175,
+              //                   fontFamily: "Inter",
+              //                   fontWeight: FontWeight.w600,
+              //                 ),
+              //               ),
+              //               Text(
+              //                 " | ${assessment.getAssessmentModelClass}",
+              //                 style: TextStyle(
+              //                   color: const Color.fromRGBO(28, 78, 80, 1),
+              //                   fontSize: height * 0.0175,
+              //                   fontFamily: "Inter",
+              //                   fontWeight: FontWeight.w400,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //           Icon(
+              //             Icons.circle_rounded,
+              //             color: assessment.assessmentStatus == 'inprogress'
+              //                 ? const Color.fromRGBO(255, 166, 0, 1)
+              //                 : assessment.assessmentStatus == 'active'
+              //                 ? const Color.fromRGBO(60, 176, 0, 1)
+              //                 : const Color.fromRGBO(136, 136, 136, 1),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: EdgeInsets.only(left: width * 0.02),
+              //       child: Row(
+              //         children: [
+              //           // Text(
+              //           //   AppLocalizations.of(context)!.assessment_id_caps,
+              //           //   //"Assessment ID: ",
+              //           //   style: TextStyle(
+              //           //     color: const Color.fromRGBO(102, 102, 102, 1),
+              //           //     fontSize: height * 0.015,
+              //           //     fontFamily: "Inter",
+              //           //     fontWeight: FontWeight.w400,
+              //           //   ),
+              //           // ),
+              //           Text(
+              //             " ${assessment.assessmentCode}",
+              //             style: TextStyle(
+              //               color: const Color.fromRGBO(82, 165, 160, 1),
+              //               fontSize: height * 0.015,
+              //               fontFamily: "Inter",
+              //               fontWeight: FontWeight.w500,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding:
+              //       EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+              //       child: Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           // Row(
+              //           //   children: [
+              //           //     Text(
+              //           //       AppLocalizations.of(context)!.institute_test_id,
+              //           //       // "Institute Test ID: ",
+              //           //       style: TextStyle(
+              //           //         color: const Color.fromRGBO(102, 102, 102, 1),
+              //           //         fontSize: height * 0.015,
+              //           //         fontFamily: "Inter",
+              //           //         fontWeight: FontWeight.w400,
+              //           //       ),
+              //           //     ),
+              //           //     Text(
+              //           //       " ----------",
+              //           //       style: TextStyle(
+              //           //         color: const Color.fromRGBO(82, 165, 160, 1),
+              //           //         fontSize: height * 0.015,
+              //           //         fontFamily: "Inter",
+              //           //         fontWeight: FontWeight.w500,
+              //           //       ),
+              //           //     ),
+              //           //   ],
+              //           // ),
+              //           Text(
+              //             assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
+              //             style: TextStyle(
+              //               color: const Color.fromRGBO(28, 78, 80, 1),
+              //               fontSize: height * 0.015,
+              //               fontFamily: "Inter",
+              //               fontWeight: FontWeight.w400,
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ),
           )),
     );
