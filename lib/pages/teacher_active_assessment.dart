@@ -745,7 +745,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                       //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorName!
-                                            ? AppLocalizations.of(context)!.yes
+                                            ? assessment.assessmentSettings!.advisorName??''
                                               //"Yes"
                                             :  AppLocalizations.of(context)!.no,
                                               //"No",
@@ -786,8 +786,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                           //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorEmail!
-                                            ?  AppLocalizations.of(context)!.yes
-                                                //"Yes"
+                                            ?  assessment.assessmentSettings!.advisorEmail??''
                                             : AppLocalizations.of(context)!.no,
                                               //"No",
                                     style: TextStyle(

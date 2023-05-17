@@ -15,6 +15,7 @@ import '../Services/qna_service.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../DataSource/http_url.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherAssessmentSettingPublish extends StatefulWidget {
   TeacherAssessmentSettingPublish({
@@ -70,10 +71,21 @@ class TeacherAssessmentSettingPublishState
   String testTypeBeforeChange='';
   DateTime startDateBeforeChange=DateTime(1890,9,10,0,0,0);
   DateTime endDateBeforeChange=DateTime(1890,9,10,0,0,0);
+  String advisorName='';
+  String advisorEmail='';
+
+  getData()async{
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    setState(() {
+      advisorEmail=loginData.getString('email')!;
+      advisorName=loginData.getString('firstName')!;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    getData();
     questionListForNxtPage =
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion;
@@ -119,8 +131,6 @@ class TeacherAssessmentSettingPublishState
       endDateController.text=convertDate(assessment.assessmentEnddate!);
       endTimeController.text=convertTime(assessment.assessmentEnddate!);
     }
-
-
     assessment.assessmentSettings?.allowGuestStudent==null?allowedGuestStatus=false:allowedGuestStatus=assessment.assessmentSettings!.allowGuestStudent!;
     assessment.assessmentSettings?.showSolvedAnswerSheetInAdvisor==null?showAnsAfterTest=false:showAnsAfterTest=assessment.assessmentSettings!.showSolvedAnswerSheetInAdvisor!;
     assessment.assessmentSettings?.showAnswerSheetDuringPractice==null?showAnsDuringPractice=false:showAnsDuringPractice=assessment.assessmentSettings!.showAnswerSheetDuringPractice!;
@@ -682,7 +692,7 @@ class TeacherAssessmentSettingPublishState
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                          width: width * 0.4),
+                                                          width: width * 0.2),
                                                       SizedBox(
                                                         width: width * 0.1,
                                                         child: TextField(
@@ -916,9 +926,7 @@ class TeacherAssessmentSettingPublishState
                                                           ],
                                                         ),
                                                       ),
-                                                      SizedBox(
-                                                          width:
-                                                          width * 0.25),
+                                                      SizedBox(width: width * 0.16),
                                                       SizedBox(
                                                         height: height * 0.12,
                                                         width: height * 0.10,
@@ -1131,7 +1139,7 @@ class TeacherAssessmentSettingPublishState
                                                       ),
                                                       SizedBox(
                                                           width:
-                                                          width * 0.25),
+                                                          width * 0.16),
                                                       SizedBox(
                                                         height: height * 0.12,
                                                         width: height * 0.10,
@@ -1692,6 +1700,8 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ]),
                                                     SizedBox(height: height * 0.01),
+                                                    widget.assessmentType=='new'?SizedBox(height: height * 0.01):
+
                                                     Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment
@@ -1937,6 +1947,8 @@ class TeacherAssessmentSettingPublishState
                                                   assessmentSettings
                                                       .avalabilityForPractice =
                                                       publicAccessStatus;
+                                                  showNameStatus?assessmentSettings.advisorName=advisorName:assessmentSettings.advisorName=null;
+                                                  showEmailStatus?assessmentSettings.advisorEmail=advisorEmail:assessmentSettings.advisorEmail=null;
                                                   assessment.assessmentSettings =
                                                       assessmentSettings;
                                                   startDate = DateTime(
@@ -2064,14 +2076,18 @@ class TeacherAssessmentSettingPublishState
                                                   assessmentSettings
                                                       .showAdvisorName =
                                                       showNameStatus;
+
                                                   assessmentSettings
                                                       .showAdvisorEmail =
                                                       showEmailStatus;
+                                                  showNameStatus?assessmentSettings.advisorName=advisorName:assessmentSettings.advisorName=null;
+                                                  showEmailStatus?assessmentSettings.advisorEmail=advisorEmail:assessmentSettings.advisorEmail=null;
                                                   assessmentSettings.notAvailable =
                                                       activeStatus;
                                                   assessmentSettings
                                                       .avalabilityForPractice =
                                                       publicAccessStatus;
+
                                                   assessment.assessmentSettings =
                                                       assessmentSettings;
                                                   startDate = DateTime(
@@ -2259,6 +2275,8 @@ class TeacherAssessmentSettingPublishState
                                                   assessmentSettings
                                                       .avalabilityForPractice =
                                                       publicAccessStatus;
+                                                  showNameStatus?assessmentSettings.advisorName=advisorName:assessmentSettings.advisorName=null;
+                                                  showEmailStatus?assessmentSettings.advisorEmail=advisorEmail:assessmentSettings.advisorEmail=null;
                                                   assessment.assessmentSettings =
                                                       assessmentSettings;
                                                   startDate = DateTime(
@@ -3925,6 +3943,7 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ]),
                                                     SizedBox(height: height * 0.01),
+                                                    widget.assessmentType=='new'?SizedBox(height: height * 0.00):
                                                     Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment
@@ -4171,6 +4190,8 @@ class TeacherAssessmentSettingPublishState
                                                   assessmentSettings
                                                       .avalabilityForPractice =
                                                       publicAccessStatus;
+                                                  showNameStatus?assessmentSettings.advisorName=advisorName:assessmentSettings.advisorName=null;
+                                                  showEmailStatus?assessmentSettings.advisorEmail=advisorEmail:assessmentSettings.advisorEmail=null;
                                                   assessment.assessmentSettings =
                                                       assessmentSettings;
                                                   startDate = DateTime(
@@ -4306,6 +4327,8 @@ class TeacherAssessmentSettingPublishState
                                                   assessmentSettings
                                                       .avalabilityForPractice =
                                                       publicAccessStatus;
+                                                  showNameStatus?assessmentSettings.advisorName=advisorName:assessmentSettings.advisorName=null;
+                                                  showEmailStatus?assessmentSettings.advisorEmail=advisorEmail:assessmentSettings.advisorEmail=null;
                                                   assessment.assessmentSettings =
                                                       assessmentSettings;
                                                   startDate = DateTime(
@@ -4514,6 +4537,8 @@ class TeacherAssessmentSettingPublishState
                                                   assessmentSettings
                                                       .avalabilityForPractice =
                                                       publicAccessStatus;
+                                                  showNameStatus?assessmentSettings.advisorName=advisorName:assessmentSettings.advisorName=null;
+                                                  showEmailStatus?assessmentSettings.advisorEmail=advisorEmail:assessmentSettings.advisorEmail=null;
                                                   assessment.assessmentSettings =
                                                       assessmentSettings;
                                                   startDate = DateTime(

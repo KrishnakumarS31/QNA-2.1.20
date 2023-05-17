@@ -323,7 +323,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         ),
                                       ]),
                                       content:
-                                      const Text("Are you sure you want to logout ??"),
+                                      const Text("Are you sure you want to logout ?"),
                                       actions: <Widget>[
                                         SizedBox(width: width * 0.020),
                                         ElevatedButton(
@@ -435,12 +435,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               alignment: Alignment.center,
                               child: Text(
                                 AppLocalizations.of(context)!.welcome,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: -0.02,
-                                    fontSize: 24),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: height * 0.04),
                               ),
                             ),
                             SizedBox(
@@ -453,12 +452,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               style: Theme.of(context)
                                   .primaryTextTheme
                                   .bodyLarge
-                                  ?.merge(const TextStyle(
-                                  color: Color.fromRGBO(28, 78, 80, 1),
+                                  ?.merge(TextStyle(
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontFamily: 'Inter',
                                   fontWeight: FontWeight.w600,
-                                  letterSpacing: -0.02,
-                                  fontSize: 24)),
+                                  fontSize: height * 0.035)),
                             ),
                             SizedBox(
                               height: height * 0.03,
@@ -975,7 +973,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         ),
                                       ]),
                                       content:
-                                      const Text("Are you sure you want to logout ??"),
+                                      const Text("Are you sure you want to logout ?"),
                                       actions: <Widget>[
                                         SizedBox(width: width * 0.020),
                                         ElevatedButton(
@@ -1087,12 +1085,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               alignment: Alignment.center,
                               child: Text(
                                 AppLocalizations.of(context)!.welcome,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: -0.02,
-                                    fontSize: 24),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: height * 0.035),
                               ),
                             ),
                             SizedBox(
@@ -1105,12 +1102,11 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   style: Theme.of(context)
                                       .primaryTextTheme
                                       .bodyLarge
-                                      ?.merge(const TextStyle(
-                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                      ?.merge(TextStyle(
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
-                                      letterSpacing: -0.02,
-                                      fontSize: 24)),
+                                      fontSize: height * 0.03)),
                                 )),
                             SizedBox(
                               height: height * 0.03,

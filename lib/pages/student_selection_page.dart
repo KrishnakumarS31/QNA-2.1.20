@@ -176,9 +176,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         Text(
                           AppLocalizations.of(context)!.studentCaps,
                           style: TextStyle(
-                              fontSize: height * 0.04,
+                              fontSize: height * 0.05,
                               fontFamily: "Inter",
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w600,
                               color: const Color.fromRGBO(28, 78, 80, 1)),
                         ),
                         SizedBox(
@@ -256,7 +256,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                             style: TextStyle(
                                 fontSize: height * 0.03,
                                 fontFamily: "Inter",
-                                fontWeight: FontWeight.w800),
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                         SizedBox(
@@ -380,9 +380,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         Text(
                           AppLocalizations.of(context)!.studentCaps,
                           style: TextStyle(
-                              fontSize: height * 0.04,
+                              fontSize: height * 0.035,
                               fontFamily: "Inter",
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w600,
                               color: const Color.fromRGBO(28, 78, 80, 1)),
                         ),
                         SizedBox(
@@ -456,7 +456,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                             style: TextStyle(
                                 fontSize: height * 0.03,
                                 fontFamily: "Inter",
-                                fontWeight: FontWeight.w800),
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                         SizedBox(

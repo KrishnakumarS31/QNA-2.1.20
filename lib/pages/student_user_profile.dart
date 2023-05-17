@@ -114,7 +114,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                       '${widget.userDataModel.data?.firstName}',
                                       style: TextStyle(
                                         color: const Color.fromRGBO(255, 255, 255, 1),
-                                        fontSize: height * 0.03,
+                                        fontSize: height * 0.02,
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -124,9 +124,9 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                       AppLocalizations.of(context)!.student,
                                       style: TextStyle(
                                         color: const Color.fromRGBO(255, 255, 255, 1),
-                                        fontSize: height * 0.03,
+                                        fontSize: height * 0.016,
                                         fontFamily: "Inter",
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     ),
                                   ],

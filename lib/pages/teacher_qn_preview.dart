@@ -167,7 +167,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      AppLocalizations.of(context)!.sub_topic_hint,
+                                      AppLocalizations.of(context)!.advisor,
                                       //"Advisor",
                                       style: TextStyle(
                                           color:
@@ -429,7 +429,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                      AppLocalizations.of(context)!.sub_topic_hint,
+                                      AppLocalizations.of(context)!.advisor,
                                       //"Advisor",
                                       style: TextStyle(
                                           color:

@@ -1,3 +1,4 @@
+import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -148,10 +149,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         SizedBox(height: localHeight * 0.03),
                         Text(
                           AppLocalizations.of(context)!.member_student,
-                          style: const TextStyle(
-                            fontSize: 32.0,
+                          style: TextStyle(
+                            fontSize: localHeight * 0.05,
+                            color: const Color.fromRGBO(
+                                28, 78, 80, 1),
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         SizedBox(height: localHeight * 0.06),
@@ -210,6 +213,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .hint_regId,
+                                              hintStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: localHeight * 0.02),
                                               prefixIcon: Icon(
                                                   Icons.account_box_outlined,
                                                   size: localHeight * 0.05,
@@ -286,6 +295,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               hintText:
                                               AppLocalizations.of(context)!
                                                   .your_password,
+                                              hintStyle: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      102, 102, 102, 0.3),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: localHeight * 0.02),
                                               suffixIcon: IconButton(
                                                   icon: Icon(
                                                     _isObscure
@@ -416,7 +431,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           },
                                         ),
                                       ),
-                                      SizedBox(width: localWidth * 0.015),
+                                      //SizedBox(width: localWidth * 0.015),
                                       Flexible(
                                         child: RichText(
                                             text: TextSpan(children: [
@@ -492,7 +507,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             AppLocalizations.of(context)!.login_loginPage,
                                             style: TextStyle(
                                                 fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.032,
+                                                fontSize: localHeight * 0.03,
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w600)),
                                         onPressed: () async {
@@ -650,16 +665,29 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
                                       children: [
-                                        IconButton(
-                                          icon: const Icon(
-                                            Icons.edit_calendar_sharp,
-                                            color: Color.fromRGBO(
-                                                141, 167, 167, 1),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pushNamed(context, '/studentRegistrationPage');
-                                          },
-                                        ),
+                                        MouseRegion(
+                                            cursor: SystemMouseCursors.click,
+                                            child:GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pushNamed(context, '/studentRegistrationPage');
+                                                },
+                                                child:
+                                                DecoratedIcon(
+                                                  Icons.app_registration,
+                                                  color: const Color.fromRGBO(141, 167, 167, 1),
+                                                  size: localHeight * 0.034,
+                                                ))),
+                                        SizedBox(width: localWidth * 0.005),
+                                        // IconButton(
+                                        //   icon: const Icon(
+                                        //     Icons.edit_calendar_sharp,
+                                        //     color: Color.fromRGBO(
+                                        //         141, 167, 167, 1),
+                                        //   ),
+                                        //   onPressed: () {
+                                        //     Navigator.pushNamed(context, '/studentRegistrationPage');
+                                        //   },
+                                        // ),
                                         Text(
                                             AppLocalizations.of(context)!
                                                 .register,
@@ -738,10 +766,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         SizedBox(height: localHeight * 0.03),
                         Text(
                           AppLocalizations.of(context)!.member_student,
-                          style: const TextStyle(
-                            fontSize: 32.0,
+                          style: TextStyle(
+                            fontSize: localHeight * 0.035,
+                            color: const Color.fromRGBO(
+                                28, 78, 80, 1),
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w800,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                         SizedBox(height: localHeight * 0.06),
@@ -803,6 +833,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             hintText:
                                             AppLocalizations.of(context)!
                                                 .hint_regId,
+                                            hintStyle: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: localHeight * 0.02),
                                             prefixIcon: Icon(
                                                 Icons.account_box_outlined,
                                                 size: localHeight * 0.04,
@@ -872,6 +908,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             hintText:
                                             AppLocalizations.of(context)!
                                                 .your_password,
+                                            hintStyle: TextStyle(
+                                                color: const Color.fromRGBO(
+                                                    102, 102, 102, 0.3),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: localHeight * 0.02),
                                             suffixIcon: IconButton(
                                                 icon: Icon(
                                                   _isObscure
@@ -998,7 +1040,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             });
                                           },
                                         )),
-                                    SizedBox(width: localWidth * 0.015),
+                                    //SizedBox(width: localWidth * 0.015),
                                     Flexible(
                                       child: RichText(
                                           text: TextSpan(children: [
@@ -1082,7 +1124,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             AppLocalizations.of(context)!.login_loginPage,
                                             style: TextStyle(
                                                 fontFamily: 'Inter',
-                                                fontSize: localHeight * 0.032,
+                                                fontSize: localHeight * 0.03,
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w600)),
                                         onPressed: () async {
@@ -1274,16 +1316,29 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,
                                       children: [
-                                        IconButton(
-                                          icon: const Icon(
-                                            Icons.edit_calendar_sharp,
-                                            color: Color.fromRGBO(
-                                                141, 167, 167, 1),
-                                          ),
-                                          onPressed: () {
-                                            Navigator.pushNamed(context, '/studentRegistrationPage');
-                                          },
-                                        ),
+                                        MouseRegion(
+                                            cursor: SystemMouseCursors.click,
+                                            child:GestureDetector(
+                                                onTap: () {
+                                                  Navigator.pushNamed(context, '/studentRegistrationPage');
+                                                },
+                                                child:
+                                                DecoratedIcon(
+                                                  Icons.app_registration,
+                                                  color: const Color.fromRGBO(141, 167, 167, 1),
+                                                  size: localHeight * 0.034,
+                                                ))),
+                                        SizedBox(width: localWidth * 0.005),
+                                        // IconButton(
+                                        //   icon: const Icon(
+                                        //     Icons.edit_calendar_sharp,
+                                        //     color: Color.fromRGBO(
+                                        //         141, 167, 167, 1),
+                                        //   ),
+                                        //   onPressed: () {
+                                        //     Navigator.pushNamed(context, '/studentRegistrationPage');
+                                        //   },
+                                        // ),
                                         Text(
                                             AppLocalizations.of(context)!
                                                 .register,

@@ -119,12 +119,12 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               alignment: Alignment.center,
                               child: Text(
                                 AppLocalizations.of(context)!.welcome,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: -0.02,
-                                    fontSize: 24),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: localHeight * 0.04,
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -445,12 +445,11 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               alignment: Alignment.center,
                               child: Text(
                                 AppLocalizations.of(context)!.welcome,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(28, 78, 80, 1),
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
                                     fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: -0.02,
-                                    fontSize: 24),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: localHeight * 0.035),
                               ),
                             ),
                             SizedBox(

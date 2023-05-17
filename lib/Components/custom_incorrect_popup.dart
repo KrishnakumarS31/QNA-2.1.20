@@ -6,10 +6,12 @@ class CustomDialog extends StatefulWidget {
       required this.title,
       required this.content,
       required this.button,
-      this.numberOfScreenBack})
+      this.numberOfScreenBack,
+        this.subContent,})
       : super(key: key);
   final String title;
   final String content;
+  String? subContent;
   final String button;
   int? numberOfScreenBack;
 
@@ -43,7 +45,7 @@ class _CustomDialogState extends State<CustomDialog> {
             ],
           ),
           margin: const EdgeInsets.all(5.0),
-          height: height * 0.1625,
+          height: height * 0.1925,
           width: width * 0.88,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -60,8 +62,20 @@ class _CustomDialogState extends State<CustomDialog> {
                         fontWeight: FontWeight.w500,
                         fontSize: 15)),
               ),
+              SizedBox(
+                height: height * 0.015,
+              ),
               Text(
                 widget.content,
+                style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                    const TextStyle(
+                        color: Color.fromRGBO(51, 51, 51, 1),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15)),
+              ),
+              Text(
+                widget.subContent??'',
                 style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
                     const TextStyle(
                         color: Color.fromRGBO(51, 51, 51, 1),
@@ -94,7 +108,7 @@ class _CustomDialogState extends State<CustomDialog> {
           ),
         ),
         Positioned(
-            top: height * 0.385,
+            top: height * 0.365,
             left: width * 0.10,
             child: CircleAvatar(
               backgroundColor: Colors.transparent,

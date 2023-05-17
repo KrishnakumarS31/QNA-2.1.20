@@ -488,7 +488,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                       ),),
                                   ]
                               ),
-                              content: const Text("\t\t\t\tAre you sure you want to logout ??"),
+                              content: const Text("\t\t\t\tAre you sure you want to logout ?"),
                               actions: <Widget>[
                                 // constraints.maxWidth > 700
                                 //     ? const SizedBox()
@@ -572,7 +572,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 ),
                               ]),
                               content:
-                              const Text("Are you sure you want to logout ??"),
+                              const Text("Are you sure you want to logout ?"),
                               actions: <Widget>[
                                 SizedBox(width: width * 0.020),
                                 ElevatedButton(

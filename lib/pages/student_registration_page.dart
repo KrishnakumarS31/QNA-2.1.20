@@ -602,17 +602,17 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 5, top: 7),
+                                      const EdgeInsets.only(left: 2, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
-                                      borderRadius: BorderRadius.circular(17),
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 20, right: 20),
+                                          left: 30, right: 30),
                                       child: DropdownButtonHideUnderline(
                                         child: Row(
                                           mainAxisAlignment:
@@ -723,7 +723,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 5, top: 7),
+                                      const EdgeInsets.only(left: 2, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       //background color of dropdown button
@@ -731,7 +731,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
                                       borderRadius: BorderRadius.circular(
-                                          17), //border radius of dropdown button
+                                          10), //border radius of dropdown button
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -823,7 +823,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 5, top: 7),
+                                      const EdgeInsets.only(left: 2, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       //background color of dropdown button
@@ -831,7 +831,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
                                       borderRadius: BorderRadius.circular(
-                                          17), //border radius of dropdown button
+                                          10), //border radius of dropdown button
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(

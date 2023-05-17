@@ -12,15 +12,15 @@ class TeacherUserProfile extends StatefulWidget {
 
 class TeacherUserProfileState extends State<TeacherUserProfile> {
   DateTime date = DateTime.now();
-  final DateFormat formatter = DateFormat('dd/MM/yyyy');
+  // final DateFormat formatter = DateFormat('dd/MM/yyyy');
   late String formatted = '';
 
 
   @override
   void initState() {
     super.initState();
-    date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
-    formatted = formatter.format(date);
+    // date = DateTime.fromMicrosecondsSinceEpoch(widget.userDataModel.data!.dob);
+    // formatted = formatter.format(date);
   }
 
   @override
@@ -232,29 +232,29 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: height * 0.03),
-                              Text(
-                                AppLocalizations.of(context)!.dob_small,
-                                //'Date of Birth',
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(102, 102, 102, 1),
-                                  fontSize: height * 0.015,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Text(
-                                formatted,
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(48, 145, 139, 1),
-                                  fontSize: height * 0.02,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
+                              // SizedBox(height: height * 0.03),
+                              // Text(
+                              //   AppLocalizations.of(context)!.dob_small,
+                              //   //'Date of Birth',
+                              //   style: TextStyle(
+                              //     color: const Color.fromRGBO(102, 102, 102, 1),
+                              //     fontSize: height * 0.015,
+                              //     fontFamily: "Inter",
+                              //     fontWeight: FontWeight.w400,
+                              //   ),
+                              // ),
+                              // SizedBox(
+                              //   height: height * 0.01,
+                              // ),
+                              // Text(
+                              //   formatted,
+                              //   style: TextStyle(
+                              //     color: const Color.fromRGBO(48, 145, 139, 1),
+                              //     fontSize: height * 0.02,
+                              //     fontFamily: "Inter",
+                              //     fontWeight: FontWeight.w600,
+                              //   ),
+                              // ),
                               SizedBox(height: height * 0.02),
                               Text(
                                 AppLocalizations.of(context)!.gender,

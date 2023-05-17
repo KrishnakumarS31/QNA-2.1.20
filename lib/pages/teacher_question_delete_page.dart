@@ -36,8 +36,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   TextEditingController subtopicController = TextEditingController();
   TextEditingController classRoomController = TextEditingController();
   TextEditingController questionController = TextEditingController();
-  IconData showIcon = Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.arrow_circle_up_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
+  List<Choice> tempChoiceList = [];
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
@@ -148,11 +149,13 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
   _onRadioChange(int key) {
     setState(() {
       radioList[key] = !radioList[key];
+      tempChoiceList[key].rightChoice = radioList[key];
     });
   }
 
   addField() {
     setState(() {
+      tempChoiceList.add(Choice(choiceText: '', rightChoice: false));
       chooses.add(TextEditingController());
       radioList.add(false);
     });
@@ -162,6 +165,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
     setState(() {
       chooses.removeAt(i);
       radioList.removeAt(i);
+      tempChoiceList.removeAt(i);
     });
   }
 
@@ -407,62 +411,89 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(
-                                  Icons.delete,
-                                  size: 30,
-                                  color: Color.fromRGBO(28, 78, 80, 1),
-                                ),
-                                onPressed: () {
-                                  showAlertDialog(context, height);
-                                },
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: (){
+                                showAlertDialog(context, height);
+                              },
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: const Icon(
+                                      Icons.delete,
+                                      size: 30,
+                                      color: Color.fromRGBO(28, 78, 80, 1),
+                                    ),
+                                    onPressed: () {
+                                      showAlertDialog(context, height);
+                                    },
+                                  ),
+                                  Text(
+                                    "Delete",
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      fontSize: height * 0.018,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Delete",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.018,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: Icon(
-                                  Icons.clear_sharp,
-                                  size: height * 0.028,
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                ),
-                                onPressed: () {
-                                  setState(() {
-                                    subjectController.text = '';
-                                    topicController.text = '';
-                                    subtopicController.text = '';
-                                    classRoomController.text = '';
-                                    questionController.text = '';
-                                    urlController.text = '';
-                                    adviceController.text = '';
-                                    radioList.clear();
-                                    chooses.clear();
-                                    //selected='';
-                                  });
-                                },
+                          MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: (){
+                                setState(() {
+                                  subjectController.text = '';
+                                  topicController.text = '';
+                                  subtopicController.text = '';
+                                  classRoomController.text = '';
+                                  questionController.text = '';
+                                  urlController.text = '';
+                                  adviceController.text = '';
+                                  radioList.clear();
+                                  chooses.clear();
+                                  //selected='';
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  IconButton(
+                                    icon: Icon(
+                                      Icons.clear_sharp,
+                                      size: height * 0.028,
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        subjectController.text = '';
+                                        topicController.text = '';
+                                        subtopicController.text = '';
+                                        classRoomController.text = '';
+                                        questionController.text = '';
+                                        urlController.text = '';
+                                        adviceController.text = '';
+                                        radioList.clear();
+                                        chooses.clear();
+                                        //selected='';
+                                      });
+                                    },
+                                  ),
+                                  Text(
+                                    "Clear All",
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      fontSize: height * 0.018,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Clear All",
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(28, 78, 80, 1),
-                                  fontSize: height * 0.018,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ],
+                            ),
                           )
                         ]),
                     SizedBox(height: height * 0.001),
@@ -477,12 +508,12 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child:
-                        showIcon!=Icons.expand_circle_down_outlined?
+                        showIcon==Icons.expand_circle_down_outlined?
                         Container(
                           //height: height * 0.060,
                             color: const Color.fromRGBO(82, 165, 160, 1),
                             child: Row(children: [
-                              SizedBox(width: width * 0.10),
+                              //SizedBox(width: width * 0.10),
                               Text("Subject and Topic",
                                   style: TextStyle(
                                       color: const Color.fromRGBO(
@@ -490,8 +521,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
                                       fontSize: height * 0.020)),
-                              SizedBox(width: width * 0.25),
-                              //SizedBox(width: height * 0.025),
+                              SizedBox(width: width >700?width * 0.85:width * 0.25),
                               IconButton(
                                 icon: Icon(
                                   showIcon,
@@ -503,16 +533,6 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                   changeIcon(showIcon);
                                 },
                               )
-                              // IconButton(
-                              //   icon: const Icon(
-                              //     Icons.arrow_circle_up_sharp,
-                              //     size: 30,
-                              //     color: Color.fromRGBO(255, 255, 255, 1),
-                              //   ),
-                              //   onPressed: () {
-                              //     changeIcon(showIcon);
-                              //   },
-                              // ),
                             ])):
                         Column(
                           //crossAxisAlignment: CrossAxisAlignment.start,
@@ -521,7 +541,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 //height: height * 0.060,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   child: Row(children: [
-                                    SizedBox(width: width * 0.10),
+                                    //SizedBox(width: width * 0.10),
                                     Text("Subject and Topic",
                                         style: TextStyle(
                                             color: const Color.fromRGBO(
@@ -529,8 +549,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
                                             fontSize: height * 0.020)),
-                                    SizedBox(width: width * 0.25),
-                                    //SizedBox(width: height * 0.025),
+                                    SizedBox(width: width >700?width * 0.85:width * 0.25),
                                     IconButton(
                                       icon: Icon(
                                         showIcon,
@@ -542,16 +561,6 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         changeIcon(showIcon);
                                       },
                                     )
-                                    // IconButton(
-                                    //   icon: const Icon(
-                                    //     Icons.arrow_circle_up_sharp,
-                                    //     size: 30,
-                                    //     color: Color.fromRGBO(255, 255, 255, 1),
-                                    //   ),
-                                    //   onPressed: () {
-                                    //     changeIcon(showIcon);
-                                    //   },
-                                    // ),
                                   ])),
                               SizedBox(height: height * 0.010),
                               Container(
@@ -772,43 +781,111 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                       ),
                     ),
                     SizedBox(height: height * 0.010),
+
+
                     _groupValue=="Descriptive"
                         ? const SizedBox(height: 0)
-                        :  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // Row(
-                        //   children: [
-                        Text(
-                          "Add Choices",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(51, 51, 51, 1),
-                            fontSize: height * 0.018,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
+                        : _groupValue=="Survey"
+                        ? Container(
+                      margin: EdgeInsets.only(
+                          left: width * 0.05, right: width * 0.04),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                AppLocalizations.of(context)!.choices,
+                                //"Choices",
+                                style: TextStyle(
+                                  color:
+                                  const Color.fromRGBO(51, 51, 51, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   children: [
-                        _groupValue=="Survey"
-                            ? const SizedBox(height: 0)
-                            :  Text(
-                          "Correct Answer",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(51, 51, 51, 1),
-                            fontSize: height * 0.018,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
+                          SizedBox(
+                            width: width * 0.02,
                           ),
-                        ),
-                      ],
+                          Text(
+                            AppLocalizations.of(context)!.delete,
+                            //"Delete",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(51, 51, 51, 1),
+                              fontSize: height * 0.016,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                        :Container(
+                      margin: EdgeInsets.only(
+                          left: width * 0.05, right: width * 0.04),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                AppLocalizations.of(context)!.choices,
+                                //"Choices",
+                                style: TextStyle(
+                                  color:
+                                  const Color.fromRGBO(51, 51, 51, 1),
+                                  fontSize: height * 0.016,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: width * 0.1,
+                            child: Text(
+                              AppLocalizations.of(context)!.correct_answer,
+                              textAlign: TextAlign.center,
+                              //"Correct\nAnswer",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontSize: height * 0.016,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: width * 0.1,
+                            child: Text(
+                              AppLocalizations.of(context)!.delete,
+                              textAlign: TextAlign.center,
+                              //"Delete",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontSize: height * 0.016,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+
+
                     SizedBox(height: height * 0.010),
+
+
                     _groupValue=="Descriptive"
-                        ? const SizedBox(height: 0)
-                        :  Form(
+                        ? const SizedBox(height: 0,)
+                        : _groupValue=="Survey"
+                        ? Form(
                       key: _formKey,
                       child: Column(
                         children: [
@@ -821,10 +898,9 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                     child: TextFormField(
                                       controller: chooses[i],
                                       style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              82, 165, 160, 1),
+                                          color: Colors.black,
                                           fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w400,
                                           fontSize: height * 0.018),
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
@@ -836,43 +912,106 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w400,
                                             fontSize: height * 0.02),
-                                        hintText: "Type Option Here",
+                                        hintText: AppLocalizations.of(context)!
+                                            .type_op_here,
+                                        //"Type Option Here",
                                         border: OutlineInputBorder(
                                             borderRadius:
                                             BorderRadius.circular(5)),
                                       ),
+                                      onChanged: (val) {
+                                        tempChoiceList[i].choiceText = val;
+                                      },
                                     ),
                                   ),
                                   SizedBox(
-                                    width: width * 0.03,
-                                  ),
-                                  _groupValue=="Survey"
-                                      ? const SizedBox(height: 0)
-                                      :  IconButton(
-                                    onPressed: () {
-                                      _onRadioChange(i);
-                                    },
-                                    icon: Icon(
-                                      //radioIcon,
-                                      radioList[i]
-                                          ? Icons.radio_button_checked_outlined
-                                          : Icons
-                                          .radio_button_unchecked_outlined,
-                                      color:
-                                      const Color.fromRGBO(82, 165, 160, 1),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: width * 0.03,
+                                    width: width * 0.01,
                                   ),
                                   IconButton(
                                     onPressed: () {
                                       removeItem(i);
                                     },
                                     icon: const Icon(
-                                      //radioIcon,
                                       Icons.delete_outline,
                                       color: Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                  ),
+                                  width > 700
+                                      ?  SizedBox(
+                                    width: width * 0.02,
+                                  )
+                                      : const SizedBox(),
+                                ],
+                              ),
+                            )
+                        ],
+                      ),
+                    )
+                        : Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          for (int i = 0; i < chooses.length; i++)
+                            Padding(
+                              padding: EdgeInsets.only(bottom: height * 0.02,left: width * 0.04, right: width * 0.04),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: TextFormField(
+                                      controller: chooses[i],
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: height * 0.018),
+                                      keyboardType: TextInputType.text,
+                                      decoration: InputDecoration(
+                                        floatingLabelBehavior:
+                                        FloatingLabelBehavior.always,
+                                        hintStyle: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                102, 102, 102, 0.3),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: height * 0.02),
+                                        hintText: AppLocalizations.of(context)!
+                                            .type_op_here,
+                                        //"Type Option Here",
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(5)),
+                                      ),
+                                      onChanged: (val) {
+                                        tempChoiceList[i].choiceText = val;
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                    width: width * 0.1,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _onRadioChange(i);
+                                      },
+                                      icon: Icon(
+                                        radioList[i]
+                                            ? Icons.radio_button_checked_outlined
+                                            : Icons
+                                            .radio_button_unchecked_outlined,
+                                        color:
+                                        const Color.fromRGBO(82, 165, 160, 1),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: width * 0.1,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        removeItem(i);
+                                      },
+                                      icon: const Icon(
+                                        Icons.delete_outline,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -881,6 +1020,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         ],
                       ),
                     ),
+
+
                     Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

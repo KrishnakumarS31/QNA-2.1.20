@@ -337,7 +337,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 ),),
                                             ]
                                         ),
-                                        content: const Text("\t\t\t\tAre you sure you want to logout ??"),
+                                        content: const Text("\t\t\t\tAre you sure you want to logout ?"),
                                         actions: <Widget>[
                                           SizedBox(width: localWidth * 0.030),
                                           ElevatedButton(
@@ -1138,7 +1138,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           ),
                                         ]),
                                         content:
-                                        const Text("Are you sure you want to logout ??"),
+                                        const Text("Are you sure you want to logout ?"),
                                         actions: <Widget>[
                                           SizedBox(width: localWidth * 0.020),
                                           ElevatedButton(

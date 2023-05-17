@@ -44,7 +44,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
   TextEditingController questionController = TextEditingController();
   bool? x;
   late List<Map<String, dynamic>> _values;
-  IconData showIcon = Icons.expand_circle_down_outlined;
+  IconData showIcon = Icons.arrow_circle_up_outlined;
 
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
@@ -390,7 +390,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child:
-                              showIcon!=Icons.expand_circle_down_outlined
+                              showIcon==Icons.expand_circle_down_outlined
                                   ?Container(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   child: Row(
@@ -1256,7 +1256,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                 borderRadius: BorderRadius.circular(5),
                               ),
                               child:
-                              showIcon!=Icons.expand_circle_down_outlined
+                              showIcon==Icons.expand_circle_down_outlined
                                   ?Container(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
                                   child: Row(

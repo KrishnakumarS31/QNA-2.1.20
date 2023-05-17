@@ -1,3 +1,4 @@
+import 'package:decorated_icon/decorated_icon.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -148,12 +149,17 @@ class TeacherLoginState extends State<TeacherLogin> {
                     Text(
                       AppLocalizations.of(context)!.teacher_caps,
                       style: TextStyle(
-                        fontSize: height * 0.03,
+                        fontSize:
+                        constraints.maxWidth > 700
+                        ? height * 0.05
+                            : height * 0.035,
+                          color: const Color.fromRGBO(
+                          28, 78, 80, 1),
                         fontFamily: "Inter",
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: height * 0.07),
+                    SizedBox(height: height * 0.04),
                     SizedBox(
                       width: width * 0.8,
                       child: Form(
@@ -393,7 +399,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                               },
                             ),
                           ),
-                          SizedBox(width: width * 0.02),
+                          //SizedBox(width: width * 0.02),
                           Flexible(
                             child: RichText(
                                 text: TextSpan(children: [
@@ -554,26 +560,40 @@ class TeacherLoginState extends State<TeacherLogin> {
                       child: Text(
                         AppLocalizations.of(context)!.login_loginPage,
                         style: TextStyle(
-                            fontSize: height * 0.027,
+                            fontSize: height * 0.03,
                             fontFamily: "Inter",
-                            fontWeight: FontWeight.w800),
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
-                    SizedBox(height: height * 0.01),
+                    SizedBox(
+                      height: height * 0.02,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        //SizedBox(width: width * 0.3),
-                        IconButton(
-                          icon: Icon(
-                            Icons.edit_calendar_sharp,
-                            color: const Color.fromRGBO(141, 167, 167, 1),
-                            size: height * 0.034,
-                          ),
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/teacherRegistrationPage');
-                          },
-                        ),
+                        MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child:GestureDetector(
+                            onTap: () {
+                             Navigator.pushNamed(context, '/teacherRegistrationPage');
+                                       },
+                                   child:
+                            DecoratedIcon(
+                          Icons.app_registration,
+                          color: const Color.fromRGBO(141, 167, 167, 1),
+                          size: height * 0.034,
+                        ))),
+                        SizedBox(width: width * 0.005),
+                        // IconButton(
+                        //   icon: Icon(
+                        //     Icons.edit_calendar_sharp,
+                        //     color: const Color.fromRGBO(141, 167, 167, 1),
+                        //     size: height * 0.034,
+                        //   ),
+                        //   onPressed: () {
+                        //     Navigator.pushNamed(context, '/teacherRegistrationPage');
+                        //   },
+                        // ),
                         MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(

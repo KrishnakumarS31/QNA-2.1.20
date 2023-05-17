@@ -616,18 +616,17 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 5, top: 7),
+                                      const EdgeInsets.only(left: 2, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
-                                      borderRadius: BorderRadius.circular(
-                                          17), //border radius of dropdown button
+                                      borderRadius: BorderRadius.circular(10), //border radius of dropdown button
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 20, right: 20),
+                                          left: 30, right: 30),
                                       child: DropdownButtonHideUnderline(
                                         child: Row(
                                           mainAxisAlignment:
@@ -716,7 +715,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.014),
+                                            fontSize: localHeight * 0.018),
                                       ),
                                       TextSpan(
                                           text: "\t*\t",
@@ -738,7 +737,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 5, top: 7),
+                                      const EdgeInsets.only(left: 2, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       //background color of dropdown button
@@ -746,7 +745,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
                                       borderRadius: BorderRadius.circular(
-                                          17), //border radius of dropdown button
+                                          10), //border radius of dropdown button
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -826,7 +825,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.014),
+                                            fontSize: localHeight * 0.018),
                                       ),
                                       TextSpan(
                                           text: "\t*\t",
@@ -848,7 +847,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(left: 5, top: 7),
+                                      const EdgeInsets.only(left: 2, top: 7),
                                   child: DecoratedBox(
                                     decoration: BoxDecoration(
                                       //background color of dropdown button
@@ -856,7 +855,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           color: Colors.black38,
                                           width: 1), //border of dropdown button
                                       borderRadius: BorderRadius.circular(
-                                          17), //border radius of dropdown button
+                                          10), //border radius of dropdown button
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -941,7 +940,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                                 102, 102, 102, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            fontSize: localHeight * 0.014),
+                                            fontSize: localHeight * 0.018),
                                       ),
                                       TextSpan(
                                           text: "\t*",

@@ -5,6 +5,7 @@ import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 class TeacherPublishedAssessment extends StatefulWidget {
   TeacherPublishedAssessment(
       {Key? key,
@@ -30,6 +31,8 @@ class TeacherPublishedAssessmentState
   CreateAssessmentModel assessmentVal =
   CreateAssessmentModel(questions: [], removeQuestions: []);
   bool questionShirnk = true;
+  String advisorName='';
+  String advisorEmail='';
 
   showAdditionalDetails() {
     setState(() {
@@ -58,6 +61,7 @@ class TeacherPublishedAssessmentState
   }
 
   getData() async {
+    SharedPreferences loginData = await SharedPreferences.getInstance();
     setState(() {
       assessmentVal =
           Provider.of<CreateAssessmentProvider>(context, listen: false)
@@ -89,6 +93,8 @@ class TeacherPublishedAssessmentState
           assessmentVal.assessmentEnddate == null
               ? 0
               : assessmentVal.assessmentEnddate!);
+      advisorEmail=loginData.getString('email')!;
+      advisorName=loginData.getString('firstName')!;
     });
   }
 
@@ -153,22 +159,24 @@ class TeacherPublishedAssessmentState
                   children: [
                     Visibility(
                       visible: _visible,
-                      child: Container(
-                        height: height * 0.06,
-                        width: width * 0.9,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                          color: Color.fromRGBO(28, 78, 80, 1),
-                        ),
-                        child: Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.as_published,
-                            //"Assessment Published Successfully",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontSize: height * 0.02,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
+                      child: Center(
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.9,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            color: Color.fromRGBO(28, 78, 80, 1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.as_published,
+                              //"Assessment Published Successfully",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -779,7 +787,7 @@ class TeacherPublishedAssessmentState
                               //"No"
                                   : assessmentVal
                                   .assessmentSettings!.showAdvisorName!
-                                  ? AppLocalizations.of(context)!.yes
+                                  ? advisorName
                               //"Yes"
                                   : AppLocalizations.of(context)!.no,
                               //"No",
@@ -817,7 +825,7 @@ class TeacherPublishedAssessmentState
                               //"No"
                                   : assessmentVal
                                   .assessmentSettings!.showAdvisorEmail!
-                                  ? AppLocalizations.of(context)!.yes
+                                  ? advisorEmail
                               //"Yes"
                                   : AppLocalizations.of(context)!.no,
                               //"No",
@@ -1036,7 +1044,7 @@ class TeacherPublishedAssessmentState
                       height: height * 0.4,
                       child: ListView.builder(
                           padding: EdgeInsets.zero,
-                          itemCount: widget.questionList!.length,
+                          itemCount: widget.questionList==null?0:widget.questionList!.length,
                           itemBuilder: (context, index) =>
                               QuestionWidget(
                                 height: height,
@@ -1226,6 +1234,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         correctAns = '${widget.question.choices![i].choiceText!},$correctAns';
       }
     }
+    correctAns=correctAns.substring(0,correctAns.length-1);
     super.initState();
   }
 

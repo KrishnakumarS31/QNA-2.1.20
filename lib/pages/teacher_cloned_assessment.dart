@@ -729,7 +729,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorName!
-                                            ? AppLocalizations.of(context)!.yes                                    //"Yes"
+                                            ? assessment.assessmentSettings!.advisorName??''                                  //"Yes"
                                             :  AppLocalizations.of(context)!.no,
                                     //"No",
                                     style: TextStyle(
@@ -769,7 +769,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     //"No"
                                         : assessment.assessmentSettings!
                                                 .showAdvisorEmail!
-                                            ? AppLocalizations.of(context)!.yes
+                                            ? assessment.assessmentSettings!.advisorEmail??''
                                     //"Yes"
                                             : AppLocalizations.of(context)!.no,
                                     //"No",

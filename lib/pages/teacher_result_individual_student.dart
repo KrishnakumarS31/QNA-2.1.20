@@ -242,9 +242,9 @@ class TeacherResultIndividualStudentState
                                     quesNum: index,
                                   ),
                                 ))
-                                :const SizedBox(): const SizedBox(),
+                                :SizedBox(height: height * 0.0,):  SizedBox(height: height * 0.00,),
                             SizedBox(
-                              height: height * 0.02,
+                              height: height * 0.00,
                             ),
                           ],
                         ),

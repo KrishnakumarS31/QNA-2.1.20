@@ -39,7 +39,7 @@ class CustomRadioButton<T> extends StatelessWidget {
               ? Icon(Icons.done, size:
           defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS
           ? 25
-              : 20,
+              : 15,
               color: Colors.white)
               : null),
     );
@@ -50,11 +50,11 @@ class CustomRadioButton<T> extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-          const TextStyle(
-              color: Color.fromRGBO(82, 165, 160, 1),
+          TextStyle(
+              color: const Color.fromRGBO(82, 165, 160, 1),
               fontFamily: 'Inter',
               fontWeight: FontWeight.w600,
-              fontSize: 22)),
+              fontSize: height * 0.03)),
     );
   }
 

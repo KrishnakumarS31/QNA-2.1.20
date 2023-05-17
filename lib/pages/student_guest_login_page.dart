@@ -128,7 +128,9 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                             style: TextStyle(
                               fontSize: height * 0.05,
                               fontFamily: "Inter",
-                              fontWeight: FontWeight.w800,
+                              color: const Color.fromRGBO(
+                                  28, 78, 80, 1),
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(height: height * 0.04),
@@ -351,7 +353,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 text: AppLocalizations.of(context)!
                                                     .agree_msg,
                                                 style: TextStyle(
-                                                    fontSize: height * 0.025,
+                                                    fontSize: height * 0.020,
                                                     fontWeight: FontWeight.w400,
                                                     color: const Color.fromRGBO(
                                                         51, 51, 51, 1),
@@ -362,7 +364,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                     .privacy_Policy,
                                                   recognizer: TapGestureRecognizer()..onTap = _launchUrlPrivacy,
                                                 style: TextStyle(
-                                                    fontSize: height * 0.025,
+                                                    fontSize: height * 0.020,
                                                     fontWeight: FontWeight.w400,
                                                     decoration:
                                                     TextDecoration.underline,
@@ -373,7 +375,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!.and,
                                                 style: TextStyle(
-                                                    fontSize: height * 0.025,
+                                                    fontSize: height * 0.020,
                                                     fontWeight: FontWeight.w400,
                                                     color: const Color.fromRGBO(
                                                         51, 51, 51, 1),
@@ -384,7 +386,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 AppLocalizations.of(context)!.terms,
                                                 recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                                 style: TextStyle(
-                                                    fontSize: height * 0.025,
+                                                    fontSize: height * 0.020,
                                                     fontWeight: FontWeight.w400,
                                                     decoration:
                                                     TextDecoration.underline,
@@ -397,7 +399,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                     .services,
                                                 recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                                 style: TextStyle(
-                                                    fontSize: height * 0.025,
+                                                    fontSize: height * 0.020,
                                                     fontWeight: FontWeight.w400,
                                                     decoration:
                                                     TextDecoration.underline,
@@ -453,7 +455,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                             child: Text(
                               AppLocalizations.of(context)!.login,
                               style: TextStyle(
-                                  fontSize: height * 0.032,
+                                  fontSize: height * 0.03,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600),
                             ),
@@ -528,9 +530,11 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           Text(
                             '${AppLocalizations.of(context)!.guestCaps} ${AppLocalizations.of(context)!.studentCaps}',
                             style: TextStyle(
-                              fontSize: height * 0.03,
+                              fontSize: height * 0.035,
+                              color: const Color.fromRGBO(
+                                  28, 78, 80, 1),
                               fontFamily: "Inter",
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                           SizedBox(height: height * 0.07),
@@ -845,7 +849,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                             child: Text(
                               AppLocalizations.of(context)!.login,
                               style: TextStyle(
-                                  fontSize: height * 0.032,
+                                  fontSize: height * 0.03,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600),
                             ),

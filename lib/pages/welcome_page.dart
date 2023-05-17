@@ -61,7 +61,7 @@ class _WelcomePageState extends State<WelcomePage> {
         title: Text(
           AppLocalizations.of(context)!.no_connection,
           //"NO CONNECTION",
-          style: TextStyle(
+          style: const TextStyle(
             color: Color.fromRGBO(82, 165, 160, 1),
             fontSize: 25,
             fontFamily: "Inter",
@@ -71,7 +71,7 @@ class _WelcomePageState extends State<WelcomePage> {
         content: Text(
           AppLocalizations.of(context)!.check_internet,
           //"Please check your internet connectivity",
-          style: TextStyle(
+          style: const TextStyle(
             color: Color.fromRGBO(82, 165, 160, 1),
             fontSize: 16,
             fontFamily: "Inter",
@@ -141,8 +141,8 @@ class _WelcomePageState extends State<WelcomePage> {
                                                 color: const Color.fromRGBO(
                                                     28, 78, 80, 1),
                                                 fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: localHeight * 0.050)),
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: localHeight * 0.05)),
                                         SizedBox(
                                           height: localHeight * 0.03,
                                         ),
@@ -198,9 +198,10 @@ class _WelcomePageState extends State<WelcomePage> {
                                                               style: TextStyle(
                                                                   fontFamily:
                                                                       'Inter',
+                                                                  fontWeight: FontWeight.w600,
                                                                   fontSize:
                                                                       localHeight *
-                                                                          0.044,
+                                                                          0.03,
                                                                   color: Colors
                                                                       .white)),
                                                           onPressed: () async {
@@ -257,9 +258,10 @@ class _WelcomePageState extends State<WelcomePage> {
                                                             style: TextStyle(
                                                                 fontFamily:
                                                                     'Inter',
+                                                                fontWeight: FontWeight.w600,
                                                                 fontSize:
                                                                     localHeight *
-                                                                        0.044,
+                                                                        0.03,
                                                                 color: Colors
                                                                     .white)),
                                                         onPressed: () {
@@ -404,7 +406,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                 color: const Color.fromRGBO(
                                                     28, 78, 80, 1),
                                                 fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
+                                                fontWeight: FontWeight.w600,
                                                 fontSize: localHeight * 0.035)),
                                         SizedBox(
                                           height: localHeight * 0.03,
@@ -447,6 +449,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                           fontSize:
                                                               localHeight *
                                                                   0.03,
+                                                          fontWeight: FontWeight.w600,
                                                           color: Colors.white)),
                                                   onPressed: () async {
                                                     Navigator.pushNamed(context, '/studentSelectionPage');
@@ -494,6 +497,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                                             .teacher,
                                                         style: TextStyle(
                                                             fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w600,
                                                             fontSize:
                                                                 localHeight *
                                                                     0.03,

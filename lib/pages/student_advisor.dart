@@ -521,15 +521,15 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       title: AppLocalizations.of(context)!.advisor_contact,
                                       content:
                                       widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
+                                          ? "${widget.questions.data!.advisorName}"
                                           :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
                                           ? "${widget.questions.data!.advisorEmail}"
                                           : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
                                           ? "${widget.questions.data!.advisorName}"
                                           : AppLocalizations.of(context)!.not_given,
                                       //"Not given",
-                                      button:
-                                      AppLocalizations.of(context)!.ok_caps,
+                                      button: AppLocalizations.of(context)!.ok_caps,
+                                      subContent: "${widget.questions.data!.advisorEmail}",
                                       //"OK",
                                     ),
                                   ),
@@ -555,7 +555,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         title: AppLocalizations.of(context)!.advisor_contact,
                                         content:
                                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorName}"
                                             :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
                                             ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
@@ -563,6 +563,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             : AppLocalizations.of(context)!.not_given,
                                         //"Not given",
                                         button: AppLocalizations.of(context)!.ok_caps,
+                                        subContent: "${widget.questions.data!.advisorEmail}",
                                         //"OK",
                                       ),
                                     ),
@@ -585,7 +586,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                       title: AppLocalizations.of(context)!.advisor_contact,
                                       content:
                                       widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                          ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
+                                          ? "${widget.questions.data!.advisorName}"
                                           :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
                                           ? "${widget.questions.data!.advisorEmail}"
                                           : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
@@ -593,6 +594,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           : AppLocalizations.of(context)!.not_given,
                                       //"Not given",
                                       button: AppLocalizations.of(context)!.ok_caps,
+                                      subContent: "${widget.questions.data!.advisorEmail}",
                                       //"OK",
                                     ),
                                   ),
@@ -1118,7 +1120,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         title: AppLocalizations.of(context)!.advisor_contact,
                                         content:
                                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorName}"
                                             :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
                                             ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
@@ -1126,6 +1128,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             : AppLocalizations.of(context)!.not_given,
                                         //"Not given",
                                         button: AppLocalizations.of(context)!.ok_caps,
+                                        subContent: "${widget.questions.data!.advisorEmail}",
                                         //"OK",
                                       ),
                                     ),
@@ -1145,13 +1148,13 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                     Navigator.push(
                                       context,
                                       PageTransition(
-                                        type: PageTransitionType
-                                            .rightToLeft,
+                                        type:
+                                        PageTransitionType.rightToLeft,
                                         child: CustomDialog(
                                           title: AppLocalizations.of(context)!.advisor_contact,
                                           content:
                                           widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                              ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
+                                              ? "${widget.questions.data!.advisorName}"
                                               :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
                                               ? "${widget.questions.data!.advisorEmail}"
                                               : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
@@ -1159,6 +1162,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                               : AppLocalizations.of(context)!.not_given,
                                           //"Not given",
                                           button: AppLocalizations.of(context)!.ok_caps,
+                                          subContent: "${widget.questions.data!.advisorEmail}",
                                           //"OK",
                                         ),
                                       ),
@@ -1181,7 +1185,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                         title: AppLocalizations.of(context)!.advisor_contact,
                                         content:
                                         widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null || widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
-                                            ? "${widget.questions.data!.advisorName}\n${widget.questions.data!.advisorEmail}"
+                                            ? "${widget.questions.data!.advisorName}"
                                             :  widget.questions.data!.assessmentSettings!.showAdvisorEmail == true && widget.questions.data!.advisorEmail != null
                                             ? "${widget.questions.data!.advisorEmail}"
                                             : widget.questions.data!.assessmentSettings!.showAdvisorName == true && widget.questions.data!.advisorName != null
@@ -1189,6 +1193,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                             : AppLocalizations.of(context)!.not_given,
                                         //"Not given",
                                         button: AppLocalizations.of(context)!.ok_caps,
+                                        subContent: "${widget.questions.data!.advisorEmail}",
                                         //"OK",
                                       ),
                                     ),

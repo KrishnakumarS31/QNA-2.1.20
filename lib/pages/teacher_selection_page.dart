@@ -41,7 +41,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
             extendBodyBehindAppBar: true,
@@ -92,7 +94,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     Text(
                       AppLocalizations.of(context)!.welcome,
                       style: TextStyle(
-                        fontSize: height * 0.037,
+                        fontSize: constraints.maxWidth > 700
+                            ? height * 0.05
+                            : height * 0.035,
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w400,
@@ -227,6 +231,6 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       height: height * 0.025,
                     ),
                   ]),
-            )));
+            )));});
   }
 }
