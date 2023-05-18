@@ -192,7 +192,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
     getData();
   }
 
-  getData() async {
+  Future<int> getData() async {
     ResponseEntity response =
     await QnaService.getResultDataService(widget.userId, 5, pageLimit);
     //widget.userId
@@ -205,6 +205,10 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
         pageLimit++;
       });
     }
+    else{
+      return 400;
+    }
+    return response.code!;
   }
 
   @override
@@ -282,17 +286,24 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                         height: height * 0.7,
                         child:
                         results.isEmpty
-                            ? Text(
+                            ? Column(
+                              children: [
+                                SizedBox(height: height * 0.3,),
+                                Center(
+                                  child: Text(
                           AppLocalizations.of(context)!.no_results_found,
                           //'NO RESULTS FOUND',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: const Color.fromRGBO(28, 78, 80, 1),
-                            fontSize: height * 0.0175,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w700,
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
                           ),
-                        )
+                        ),
+                                ),
+                              ],
+                            )
                             : ListView.builder(
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -336,14 +347,47 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       SizedBox(
                         height: height * 0.03,
                       ),
+                      results.isEmpty?
                       Align(
+                        alignment: Alignment.centerRight,
+                        child:
+                        Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Text(
+                                AppLocalizations.of(context)!.view_more,
+                                //'View More',
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontSize: height * 0.0187,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600)),
+                            Icon(Icons.chevron_right,
+                              color: const Color.fromRGBO(141, 167, 167, 1),
+                              size: height * 0.034,),
+                          ],
+                        ),
+                      )
+                          :Align(
                         alignment: Alignment.centerRight,
                         child:
                         MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
-                                onTap: () {
-                                  getData();
+                                onTap: () async {
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return const Center(
+                                            child: CircularProgressIndicator(
+                                              color: Color.fromRGBO(48, 145, 139, 1),
+                                            ));
+                                      });
+                                  int res= await getData();
+                                  if(res == 200){
+                                    Navigator.of(context).pop();
+                                  }
                                 },
                                 child: Wrap(
                                   crossAxisAlignment: WrapCrossAlignment.center,

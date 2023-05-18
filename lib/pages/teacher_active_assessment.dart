@@ -1037,15 +1037,15 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                             ),
                           ),
                         )),
-                        IconButton(
-                          onPressed: () {
-                            showQuestionDetails();
-                          },
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: Color.fromRGBO(28, 78, 80, 1),
-                          ),
-                        ),
+                        // IconButton(
+                        //   onPressed: () {
+                        //     showQuestionDetails();
+                        //   },
+                        //   icon: const Icon(
+                        //     Icons.keyboard_arrow_down_sharp,
+                        //     color: Color.fromRGBO(28, 78, 80, 1),
+                        //   ),
+                        // ),
                         const Expanded(child: Divider()),
                       ],
                     ),

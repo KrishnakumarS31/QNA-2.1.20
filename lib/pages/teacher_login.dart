@@ -431,7 +431,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     fontFamily: "Inter"),
                               ),
                               TextSpan(
-                                text: AppLocalizations.of(context)!.terms,
+                                text: AppLocalizations.of(context)!.terms_of_services,
                                 recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                 style: TextStyle(
                                     fontSize: height * 0.020,
@@ -440,16 +440,16 @@ class TeacherLoginState extends State<TeacherLogin> {
                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                     fontFamily: "Inter"),
                               ),
-                              TextSpan(
-                                text: AppLocalizations.of(context)!.services,
-                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                style: TextStyle(
-                                    fontSize: height * 0.020,
-                                    fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.underline,
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                    fontFamily: "Inter"),
-                              ),
+                              // TextSpan(
+                              //   text: AppLocalizations.of(context)!.services,
+                              //   recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                              //   style: TextStyle(
+                              //       fontSize: height * 0.020,
+                              //       fontWeight: FontWeight.w400,
+                              //       decoration: TextDecoration.underline,
+                              //       color: const Color.fromRGBO(82, 165, 160, 1),
+                              //       fontFamily: "Inter"),
+                              // ),
                             ])),
                           ),
                         ],

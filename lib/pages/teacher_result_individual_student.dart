@@ -217,37 +217,40 @@ class TeacherResultIndividualStudentState
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-                      ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount:
-                        totalResults[widget.index].questions!.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            totalResults[widget.index]
-                                .questions![index]
-                                .questionType! ==
-                                "MCQ"
-                                ?
-                            (totalResults[widget.index]
-                                .questions![index].status=="Incorrect")?
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () {},
-                                  child: QuesAndAns(
-                                    height: height,
-                                    ques: totalResults[widget.index]
-                                        .questions![index],
-                                    quesNum: index,
-                                  ),
-                                ))
-                                :SizedBox(height: height * 0.0,):  SizedBox(height: height * 0.00,),
-                            SizedBox(
-                              height: height * 0.00,
-                            ),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          for(int i=0;i<totalResults[widget.index].questions!.length;i++)
+                            Column(
+                              children: [
+                                totalResults[widget.index]
+                                    .questions![i]
+                                    .questionType! ==
+                                    "MCQ"
+                                    ?
+                                (totalResults[widget.index]
+                                    .questions![i].status=="Incorrect")?
+                                MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: QuesAndAns(
+                                        height: height,
+                                        ques: totalResults[widget.index]
+                                            .questions![i],
+                                        quesNum: i,
+                                        // ans: widget
+                                        //     .result
+                                        //     .assessmentResults![0]
+                                        //     .questions,
+                                      ),
+                                    ))
+                                    :const SizedBox(): const SizedBox(),
+                                SizedBox(
+                                  height: height * 0.0,
+                                ),
+                              ],
+                            )
+                        ],
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -265,38 +268,37 @@ class TeacherResultIndividualStudentState
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-                      ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount:
-                        totalResults[widget.index].questions!.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            totalResults[widget.index]
-                                .questions![index]
-                                .questionType! ==
-                                "Survey"
-                                ? MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () {},
-                                  child: QuesAndAns(
-                                    height: height,
-                                    ques: totalResults[widget.index]
-                                        .questions![index],
-                                    quesNum: index,
-                                    // ans: widget
-                                    //     .result
-                                    //     .assessmentResults![0]
-                                    //     .questions,
-                                  ),
-                                ))
-                                : const SizedBox(),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          for(int i=0;i<totalResults[widget.index].questions!.length;i++)
+                            Column(
+                              children: [
+                                totalResults[widget.index]
+                                    .questions![i]
+                                    .questionType! ==
+                                    "Survey"
+                                    ? MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: QuesAndAns(
+                                        height: height,
+                                        ques: totalResults[widget.index]
+                                            .questions![i],
+                                        quesNum: i,
+                                        // ans: widget
+                                        //     .result
+                                        //     .assessmentResults![0]
+                                        //     .questions,
+                                      ),
+                                    ))
+                                    : const SizedBox(),
+                                SizedBox(
+                                  height: height * 0.0,
+                                ),
+                              ],
+                            )
+                        ],
                       ),
 
 
@@ -317,34 +319,77 @@ class TeacherResultIndividualStudentState
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-                      ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemCount:
-                        totalResults[widget.index].questions!.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            totalResults[widget.index]
-                                .questions![index]
-                                .questionType! ==
-                                "Descriptive"
-                                ? MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () {},
-                                  child: QuesAndAns(
-                                    height: height,
-                                    ques: totalResults[widget.index]
-                                        .questions![index],
-                                    quesNum: index,
-                                  ),
-                                ))
-                                : const SizedBox(),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          for(int i=0;i<totalResults[widget.index].questions!.length;i++)
+                            Column(
+                              children: [
+                                totalResults[widget.index]
+                                    .questions![i]
+                                    .questionType! ==
+                                    "Descripitive"
+                                    ? MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {},
+                                      child: QuesAndAns(
+                                        height: height,
+                                        ques: totalResults[widget.index]
+                                            .questions![i],
+                                        quesNum: i,
+                                        // ans: widget
+                                        //     .result
+                                        //     .assessmentResults![0]
+                                        //     .questions,
+                                      ),
+                                    ))
+                                    : const SizedBox(),
+                                SizedBox(
+                                  height: height * 0.0,
+                                ),
+                              ],
+                            )
+                        ],
+                      ),
+                      // Container(
+                      //   height: height * 0.3,
+                      //   child: ListView.builder(
+                      //     scrollDirection: Axis.vertical,
+                      //     shrinkWrap: true,
+                      //     itemCount:
+                      //     totalResults[widget.index].questions!.length,
+                      //     itemBuilder: (context, index) =>
+                      //         Column(
+                      //       children: [
+                      //         totalResults[widget.index]
+                      //             .questions![index]
+                      //             .questionType! ==
+                      //             "Descripitive"
+                      //             ? MouseRegion(
+                      //             cursor: SystemMouseCursors.click,
+                      //             child: GestureDetector(
+                      //               onTap: () {},
+                      //               child: QuesAndAns(
+                      //                 height: height,
+                      //                 ques: totalResults[widget.index]
+                      //                     .questions![index],
+                      //                 quesNum: index,
+                      //                 // ans: widget
+                      //                 //     .result
+                      //                 //     .assessmentResults![0]
+                      //                 //     .questions,
+                      //               ),
+                      //             ))
+                      //             : const SizedBox(),
+                      //         SizedBox(
+                      //           height: height * 0.02,
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
+                      SizedBox(
+                        height: height * 0.05,
                       ),
                     ]),
               ),
@@ -437,7 +482,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w400),
               ),
-              widget.ques.questionType != "Descriptive" ?
+              widget.ques.questionType != "Descripitive" ?
               Expanded(
                 child: Text(widget.ques.selectedChoices == null ? " " : widget.ques.selectedChoices![0],
                   style: TextStyle(

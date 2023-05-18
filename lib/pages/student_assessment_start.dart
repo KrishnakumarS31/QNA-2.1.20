@@ -112,7 +112,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                           ),
                         ),
                         Container(
-                          width: 149,
+                          width: localWidth,
                           margin: const EdgeInsets.all(15),
                           child: Column(children: [
                             Align(
@@ -120,10 +120,10 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               child: Text(
                                 AppLocalizations.of(context)!.welcome,
                                 style: TextStyle(
-                                    color: const Color.fromRGBO(28, 78, 80, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: localHeight * 0.04,
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: localHeight * 0.04,
                                 ),
                               ),
                             ),

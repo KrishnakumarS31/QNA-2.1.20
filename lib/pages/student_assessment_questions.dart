@@ -1066,7 +1066,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                   .skipToEnd(tilecount.length);
                                             },
                                             child: Container(
-                                              height: height * 0.0475,
+                                              height: height * 0.05,
                                               width: width * 0.3,
                                               decoration: BoxDecoration(
                                                 borderRadius:
@@ -1107,7 +1107,7 @@ class StudQuestionState extends State<StudQuestion> {
                                                             fontWeight:
                                                                 FontWeight.w500,
                                                             fontSize: height *
-                                                                0.015)),
+                                                                0.03)),
                                                   ),
                                                 ],
                                               ),
@@ -2108,7 +2108,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                   right: widget.width * 0.05),
               child: Container(
                   width: widget.width * 0.744,
-                  height: widget.height * 0.0512,
+                  //height: widget.height * 0.0512,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(5)),
                     border: Border.all(
@@ -2131,37 +2131,34 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                         SizedBox(
                           width: widget.width * 0.02,
                         ),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Text(
-                              widget.question
-                                  .data!
-                                  .questions![context
-                                          .watch<QuestionNumProvider>()
-                                          .questionNum -
-                                      1]
-                                  .choices![j - 1]
-                                  .choiceText!,
-                              style: TextStyle(
-                                color: (widget.selected.contains(widget.question
-                                        .data!
-                                        .questions![
-                                            Provider.of<QuestionNumProvider>(
-                                                        context,
-                                                        listen: false)
-                                                    .questionNum -
-                                                1]
-                                        .choices![j - 1]
-                                        .choiceText))
-                                    ? const Color.fromRGBO(255, 255, 255, 1)
-                                    : const Color.fromRGBO(102, 102, 102, 1),
-                                fontSize: widget.width >= 700
-                                    ? widget.height * 0.0262
-                                    : widget.height * 0.0162,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w700,
-                              ),
+                        Flexible(
+                          child: Text(
+                            widget.question
+                                .data!
+                                .questions![context
+                                        .watch<QuestionNumProvider>()
+                                        .questionNum -
+                                    1]
+                                .choices![j - 1]
+                                .choiceText!,
+                            style: TextStyle(
+                              color: (widget.selected.contains(widget.question
+                                      .data!
+                                      .questions![
+                                          Provider.of<QuestionNumProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .questionNum -
+                                              1]
+                                      .choices![j - 1]
+                                      .choiceText))
+                                  ? const Color.fromRGBO(255, 255, 255, 1)
+                                  : const Color.fromRGBO(102, 102, 102, 1),
+                              fontSize: widget.width >= 700
+                                  ? widget.height * 0.0262
+                                  : widget.height * 0.0162,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),

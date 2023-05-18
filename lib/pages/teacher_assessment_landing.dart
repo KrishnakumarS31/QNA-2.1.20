@@ -758,14 +758,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                     .always,
                                                                 //labelText: "${AppLocalizations.of(context)!.sub_caps} *",
                                                                 label: SizedBox(
-                                                                  width:
-                                                                  constraints
-                                                                      .maxWidth >
-                                                                      700
-                                                                      ? width *
-                                                                      0.045
-                                                                      : width *
-                                                                      0.185,
+                                                                  width: width *
+                                                                      0.045,
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -898,14 +892,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                     .always,
                                                                 //labelText: "${AppLocalizations.of(context)!.class_caps} *",
                                                                 label: SizedBox(
-                                                                  width:
-                                                                  constraints
-                                                                      .maxWidth >
-                                                                      700
-                                                                      ? width *
-                                                                      0.065
-                                                                      : width *
-                                                                      0.28,
+                                                                  width: width * 0.065,
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -1781,16 +1768,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
                                                                   .always,
-                                                              //labelText: "${AppLocalizations.of(context)!.sub_caps} *",
                                                               label: SizedBox(
-                                                                width:
-                                                                constraints
-                                                                    .maxWidth >
-                                                                    700
-                                                                    ? width *
-                                                                    0.045
-                                                                    : width *
-                                                                    0.185,
+                                                                width: width * 0.185,
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
@@ -1918,14 +1897,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                   .always,
                                                               //labelText: "${AppLocalizations.of(context)!.class_caps} *",
                                                               label: SizedBox(
-                                                                width:
-                                                                constraints
-                                                                    .maxWidth >
-                                                                    700
-                                                                    ? width *
-                                                                    0.065
-                                                                    : width *
-                                                                    0.28,
+                                                                width: width * 0.28,
                                                                 child: Row(
                                                                   children: [
                                                                     Text(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_assessment_question_preview.dart';
+import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Entity/Teacher/response_entity.dart';
@@ -245,6 +247,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -449,8 +453,10 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                 FloatingLabelBehavior
                                                                     .always,
                                                                 label: SizedBox(
-                                                                  width: width *
-                                                                      0.18,
+                                                                  width:
+                                                                  constraints.maxWidth > 700
+                                                                      ? width * 0.04
+                                                                      : width * 0.185,
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -575,8 +581,9 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                 FloatingLabelBehavior
                                                                     .always,
                                                                 label: SizedBox(
-                                                                  width: width *
-                                                                      0.15,
+                                                                  width: constraints.maxWidth > 700
+                                                                  ? width * 0.06
+                                                                      : width * 0.28,
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -893,7 +900,9 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                     false)
                                                                     .updateAssessment(
                                                                     assessment);
+                                                                setState(() {
 
+                                                                });
                                                                 Navigator.pop(context);
                                                               }
                                                             },
@@ -1153,13 +1162,38 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               color: Color.fromRGBO(82, 165, 160, 1),
                             )),
                         onPressed: () {
-                          bool pros=true;
-                          for(int i=0;i<assessment.questions!.length;i++){
-                            if(questionList[i].questionType=="MCQ" && questionList[i].questionMark==0){
-                              pros=false;
-                            }
+                          if(assessment.questions!.isEmpty){
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: AppLocalizations.of(context)!.alert_popup,
+                                  //'Wrong password',
+                                  content:
+                                  "Question list is empty",
+                                  //'please enter the correct password',
+                                  button: AppLocalizations.of(context)!.retry,
+                                ),
+                              ),
+                            );
                           }
-                          pros?Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType):showAlert(context, height);
+                          else{
+                            bool pros = true;
+                            for (int i = 0;
+                                i < assessment.questions!.length;
+                                i++) {
+                              if (questionList[i].questionType == "MCQ" &&
+                                  questionList[i].questionMark == 0) {
+                                pros = false;
+                              }
+                            }
+                            pros
+                                ? Navigator.pushNamed(
+                                    context, '/teacherAssessmentSettingPublish',
+                                    arguments: widget.assessmentType)
+                                : showAlert(context, height);
+                          }
                         },
                         child: Text(
                           AppLocalizations.of(context)!.login,
@@ -1175,7 +1209,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                   ),
                 ],
               )),
-        ));
+        ));});
   }
 }
 

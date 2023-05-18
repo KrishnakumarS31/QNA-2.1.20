@@ -431,7 +431,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                           },
                                         ),
                                       ),
-                                      //SizedBox(width: localWidth * 0.015),
+                                      SizedBox(width: localWidth * 0.005),
                                       Flexible(
                                         child: RichText(
                                             text: TextSpan(children: [
@@ -463,7 +463,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     fontFamily: "Inter"),
                                               ),
                                               TextSpan(
-                                                text: AppLocalizations.of(context)!.terms,
+                                                text: AppLocalizations.of(context)!.terms_of_services,
                                                 recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                                 style: TextStyle(
                                                     fontSize: localHeight * 0.020,
@@ -472,16 +472,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                                     fontFamily: "Inter"),
                                               ),
-                                              TextSpan(
-                                                text: AppLocalizations.of(context)!.services,
-                                                recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                                style: TextStyle(
-                                                    fontSize: localHeight * 0.020,
-                                                    fontWeight: FontWeight.w400,
-                                                    decoration: TextDecoration.underline,
-                                                    color: const Color.fromRGBO(82, 165, 160, 1),
-                                                    fontFamily: "Inter"),
-                                              ),
+                                              // TextSpan(
+                                              //   text: AppLocalizations.of(context)!.services,
+                                              //   recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                                              //   style: TextStyle(
+                                              //       fontSize: localHeight * 0.020,
+                                              //       fontWeight: FontWeight.w400,
+                                              //       decoration: TextDecoration.underline,
+                                              //       color: const Color.fromRGBO(82, 165, 160, 1),
+                                              //       fontFamily: "Inter"),
+                                              // ),
                                             ])),
                                       ),
                                     ],
@@ -1040,7 +1040,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             });
                                           },
                                         )),
-                                    //SizedBox(width: localWidth * 0.015),
+                                    SizedBox(width: localWidth * 0.05),
                                     Flexible(
                                       child: RichText(
                                           text: TextSpan(children: [
@@ -1078,7 +1078,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             ),
                                             TextSpan(
                                               text:
-                                              AppLocalizations.of(context)!.terms,
+                                              AppLocalizations.of(context)!.terms_of_services,
                                               recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
                                               style: TextStyle(
                                                   fontSize: localHeight * 0.018,
@@ -1089,17 +1089,17 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       82, 165, 160, 1),
                                                   fontFamily: "Inter"),
                                             ),
-                                            TextSpan(
-                                              text: AppLocalizations.of(context)!
-                                                  .services,
-                                              recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
-                                              style: TextStyle(
-                                                  fontSize: localHeight * 0.018,
-                                                  fontWeight: FontWeight.w400,
-                                                  decoration: TextDecoration.underline,
-                                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                                  fontFamily: "Inter"),
-                                            ),
+                                            // TextSpan(
+                                            //   text: AppLocalizations.of(context)!
+                                            //       .services,
+                                            //   recognizer: TapGestureRecognizer()..onTap = _launchUrlTerms,
+                                            //   style: TextStyle(
+                                            //       fontSize: localHeight * 0.018,
+                                            //       fontWeight: FontWeight.w400,
+                                            //       decoration: TextDecoration.underline,
+                                            //       color: const Color.fromRGBO(82, 165, 160, 1),
+                                            //       fontFamily: "Inter"),
+                                            // ),
                                           ])),
                                     ),
                                   ],

@@ -131,6 +131,13 @@ class TeacherAssessmentSettingPublishState
       endDateController.text=convertDate(assessment.assessmentEnddate!);
       endTimeController.text=convertTime(assessment.assessmentEnddate!);
     }
+    if(assessment.assessmentDuration!=null){
+      timePermitHoursController.text="${assessment.assessmentDuration! ~/ 60}";
+      timePermitMinutesController.text= "${assessment.assessmentDuration! % 60}";
+      hours=assessment.assessmentDuration! ~/ 60;
+      minutes=assessment.assessmentDuration! % 60;
+    }
+
     assessment.assessmentSettings?.allowGuestStudent==null?allowedGuestStatus=false:allowedGuestStatus=assessment.assessmentSettings!.allowGuestStudent!;
     assessment.assessmentSettings?.showSolvedAnswerSheetInAdvisor==null?showAnsAfterTest=false:showAnsAfterTest=assessment.assessmentSettings!.showSolvedAnswerSheetInAdvisor!;
     assessment.assessmentSettings?.showAnswerSheetDuringPractice==null?showAnsDuringPractice=false:showAnsDuringPractice=assessment.assessmentSettings!.showAnswerSheetDuringPractice!;
@@ -1700,7 +1707,7 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ]),
                                                     SizedBox(height: height * 0.01),
-                                                    widget.assessmentType=='new'?SizedBox(height: height * 0.01):
+                                                    (widget.assessmentType=='new' || widget.assessmentType=='inprogress')?SizedBox(height: height * 0.01):
 
                                                     Row(
                                                         mainAxisAlignment:
@@ -1902,9 +1909,11 @@ class TeacherAssessmentSettingPublishState
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
+                                                    assessment.assessmentDuration =
+                                                        (hours * 60) + minutes;
                                                   } else {
-                                                    assessment.assessmentType =
-                                                    'practice';
+                                                    assessment.assessmentType = 'practice';
+                                                    assessment.assessmentDuration =0;
                                                   }
                                                   assessment.assessmentStatus =
                                                   'inprogress';
@@ -1969,8 +1978,7 @@ class TeacherAssessmentSettingPublishState
                                                   assessment.assessmentEnddate =
                                                       endDate
                                                           .microsecondsSinceEpoch;
-                                                  assessment.assessmentDuration =
-                                                      (hours * 60) + minutes;
+
                                                   int totque=Provider.of<QuestionPrepareProviderFinal>(
                                                       context,
                                                       listen: false).getAllQuestion.length;
@@ -2039,9 +2047,12 @@ class TeacherAssessmentSettingPublishState
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
+                                                    assessment.assessmentDuration =
+                                                        (hours * 60) + minutes;
                                                   } else {
                                                     assessment.assessmentType =
                                                     'practice';
+                                                    assessment.assessmentDuration = 0;
                                                   }
                                                   assessment.assessmentStatus =
                                                   'active';
@@ -2108,9 +2119,6 @@ class TeacherAssessmentSettingPublishState
                                                   assessment.assessmentEnddate =
                                                       endDate
                                                           .microsecondsSinceEpoch;
-
-                                                  assessment.assessmentDuration =
-                                                      (hours * 60) + minutes;
                                                   int totque=Provider.of<QuestionPrepareProviderFinal>(
                                                       context,
                                                       listen: false).getAllQuestion.length;
@@ -3943,7 +3951,7 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ]),
                                                     SizedBox(height: height * 0.01),
-                                                    widget.assessmentType=='new'?SizedBox(height: height * 0.00):
+                                                    (widget.assessmentType=='new' || widget.assessmentType=='inprogress')?SizedBox(height: height * 0.00):
                                                     Row(
                                                         mainAxisAlignment:
                                                         MainAxisAlignment
@@ -4145,9 +4153,12 @@ class TeacherAssessmentSettingPublishState
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
+                                                    assessment.assessmentDuration =
+                                                        (hours * 60) + minutes;
                                                   } else {
                                                     assessment.assessmentType =
                                                     'practice';
+                                                    assessment.assessmentDuration =0;
                                                   }
                                                   assessment.assessmentStatus =
                                                   'inprogress';
@@ -4212,8 +4223,7 @@ class TeacherAssessmentSettingPublishState
                                                   assessment.assessmentEnddate =
                                                       endDate
                                                           .microsecondsSinceEpoch;
-                                                  assessment.assessmentDuration =
-                                                      (hours * 60) + minutes;
+
                                                   int totque=Provider.of<QuestionPrepareProviderFinal>(
                                                       context,
                                                       listen: false).getAllQuestion.length;
@@ -4282,9 +4292,12 @@ class TeacherAssessmentSettingPublishState
                                                   if (val == 1) {
                                                     assessment.assessmentType =
                                                     'test';
+                                                    assessment.assessmentDuration =
+                                                        (hours * 60) + minutes;
                                                   } else {
                                                     assessment.assessmentType =
                                                     'practice';
+                                                    assessment.assessmentDuration =0;
                                                   }
                                                   assessment.assessmentStatus =
                                                   'active';
@@ -4349,9 +4362,6 @@ class TeacherAssessmentSettingPublishState
                                                   assessment.assessmentEnddate =
                                                       endDate
                                                           .microsecondsSinceEpoch;
-
-                                                  assessment.assessmentDuration =
-                                                      (hours * 60) + minutes;
                                                   int totque=Provider.of<QuestionPrepareProviderFinal>(
                                                       context,
                                                       listen: false).getAllQuestion.length;

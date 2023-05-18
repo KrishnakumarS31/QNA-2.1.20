@@ -926,10 +926,10 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            color: Color.fromRGBO(28, 78, 80, 1),
-                          ),
+                          // const Icon(
+                          //   Icons.keyboard_arrow_down_sharp,
+                          //   color: Color.fromRGBO(28, 78, 80, 1),
+                          // ),
                           const Expanded(child: Divider()),
                         ],
                       ),

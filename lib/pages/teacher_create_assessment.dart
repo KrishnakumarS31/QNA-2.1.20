@@ -62,6 +62,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
     double height = MediaQuery.of(context).size.height;
     TextEditingController createAssessmentSearchController =
         TextEditingController();
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -268,8 +270,10 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                   FloatingLabelBehavior
                                                                       .always,
                                                               label: SizedBox(
-                                                                width: width *
-                                                                    0.18,
+                                                                width:
+                                                                constraints.maxWidth > 700
+                                                                    ? width * 0.04
+                                                                    : width * 0.18,
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
@@ -394,8 +398,10 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                   FloatingLabelBehavior
                                                                       .always,
                                                               label: SizedBox(
-                                                                width: width *
-                                                                    0.15,
+                                                                width:
+                                                                constraints.maxWidth > 700
+                                                                    ? width * 0.06
+                                                                    : width * 0.28,
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
@@ -1073,7 +1079,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                   ],
                 )),
           ),
-        ));
+        ));});
   }
 }
 

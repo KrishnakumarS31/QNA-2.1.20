@@ -101,6 +101,7 @@ class TeacherAssessmentQuestionBankState
             color: Colors.white,
           ),
           onPressed: () {
+            widget.assessmentType=='inprogress'?Navigator.of(context).pop():
             Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
           },
         ),

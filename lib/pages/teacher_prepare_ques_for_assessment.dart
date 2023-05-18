@@ -1684,7 +1684,7 @@ class TeacherPrepareQuesForAssessmentState
                                       ),
                                     ),
                                     Container(
-                                      width: width * 0.1,
+                                      width: width * 0.15,
                                       child: Text(
                                         AppLocalizations.of(context)!.correct_answer,
                                         textAlign: TextAlign.center,
@@ -1698,7 +1698,7 @@ class TeacherPrepareQuesForAssessmentState
                                       ),
                                     ),
                                     Container(
-                                      width: width * 0.1,
+                                      width: width * 0.15,
                                       child: Text(
                                         AppLocalizations.of(context)!.delete,
                                         textAlign: TextAlign.center,
@@ -1822,7 +1822,7 @@ class TeacherPrepareQuesForAssessmentState
                                           ),
                                         ),
                                         Container(
-                                          width: width * 0.1,
+                                          width: width * 0.15,
                                           child: IconButton(
                                             onPressed: () {
                                               _onRadioChange(i);
@@ -1838,7 +1838,7 @@ class TeacherPrepareQuesForAssessmentState
                                           ),
                                         ),
                                         Container(
-                                          width: width * 0.1,
+                                          width: width * 0.15,
                                           child: IconButton(
                                             onPressed: () {
                                               removeItem(i);

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/response_entity.dart';
@@ -507,11 +505,12 @@ class QuestionPreview extends StatelessWidget {
                                   fontWeight: FontWeight.w400),
                             ),
                             SizedBox(
-                              width: width * 0.01,
+                              width: width * 0.005,
                             ),
-                            const Icon(
+                            Icon(
                               Icons.mode_edit_outline_outlined,
-                              color: Color.fromRGBO(28, 78, 80, 1),
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              size: height * 0.022
                             ),
                           ],
                         ),
