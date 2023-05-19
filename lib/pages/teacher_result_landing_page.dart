@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_result_assessment.dart';
 import '../Components/custom_card.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/get_result_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 class TeacherResultLanding extends StatefulWidget {
@@ -32,7 +35,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   late List<AssessmentResults> submittedResults;
   late GetResultModel inProgress;
   late GetResultModel submitted;
-
+  UserDetails userDetails=UserDetails();
   @override
   void initState() {
     super.initState();
@@ -189,12 +192,13 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
             );
           });
     });
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getData();
   }
 
   Future<int> getData() async {
     ResponseEntity response =
-    await QnaService.getResultDataService(widget.userId, 5, pageLimit);
+    await QnaService.getResultDataService(widget.userId, 5, pageLimit,userDetails);
     //widget.userId
     if(response.code == 200) {
       allResults = List<GetResultModel>.from(

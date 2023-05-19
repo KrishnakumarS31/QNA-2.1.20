@@ -35,11 +35,12 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
 
   SharedPreferences? loginData;
   late bool newUser;
+  UserDetails userdata=UserDetails();
 
   Future<bool> checkIfAlreadyLoggedIn() async {
     loginData = await SharedPreferences.getInstance();
-    newUser = (loginData?.getBool('login') ?? true);
-    if (newUser == false && loginData?.getString('role') == 'student') {
+    newUser = (userdata.login ?? true);
+    if (newUser == false && userdata.role == 'student') {
       showDialog(
           context: context,
           builder: (context) {
@@ -49,19 +50,19 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                 ));
           });
       LoginModel loginResponse = await QnaService.logInUser(
-          loginData!.getString('email')!,
-          loginData!.getString('password')!,
-          loginData!.getString('role')!);
+          userdata.email!,
+          userdata.password!,
+          userdata.role!);
       if (loginResponse.code == 200) {
         loginData?.setBool('login', false);
-        loginData?.setString('email', loginData!.getString('email')!);
-        loginData?.setString('password', loginData!.getString('password')!);
+        loginData?.setString('email', userdata.email!);
+        loginData?.setString('password', userdata.password!);
         loginData?.setString('token', loginResponse.data.accessToken);
         loginData?.setInt('userId', loginResponse.data.userId);
       }
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
       userDataModel =
-      await QnaService.getUserDataService(loginData?.getInt('userId'));
+      await QnaService.getUserDataService(userdata.userId,userdata);
       Navigator.pushNamed(
           context,
           '/studentAssessment',
@@ -86,8 +87,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
 
   @override
   void initState() {
-    UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-    print(userdata.toString());
+    userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     super.initState();
   }
 

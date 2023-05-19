@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/choice_entity.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -8,7 +9,9 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 
 class QuestionEdit extends StatefulWidget {
@@ -37,7 +40,7 @@ class QuestionEditState extends State<QuestionEdit> {
   TextEditingController questionController = TextEditingController();
   IconData showIcon = Icons.arrow_circle_up_outlined;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-
+  UserDetails userDetails=UserDetails();
   ValueChanged<String?> _valueChangedHandler(BuildContext context,double height) {
     return (value) {
       if(value=='Descriptive'){
@@ -203,6 +206,7 @@ class QuestionEditState extends State<QuestionEdit> {
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     _groupValue = widget.question.questionType;
     subjectController.text = widget.question.subject!;
     topicController.text = widget.question.topic!;
@@ -293,7 +297,7 @@ class QuestionEditState extends State<QuestionEdit> {
       ),
       onPressed: () async {
         LoginModel statusCode =
-        await QnaService.deleteQuestion(widget.question.questionId!);
+        await QnaService.deleteQuestion(widget.question.questionId!,userDetails);
         if (statusCode.code == 200) {
           Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
         }

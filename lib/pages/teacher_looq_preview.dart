@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/EntityModel/create_question_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 class TeacherLooqPreview extends StatefulWidget {
   const TeacherLooqPreview({
@@ -26,12 +29,13 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
   List<dynamic> selected = [];
-
+  UserDetails userDetails=UserDetails();
   @override
   void initState() {
-    super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     adviceController.text = widget.question.advisorText!;
     urlController.text = widget.question.advisorUrl!;
+    super.initState();
   }
 
   @override
@@ -275,13 +279,11 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
                             CreateQuestionModel createQuestion =
                             CreateQuestionModel(questions: []);
                             createQuestion.questions?.add(question);
-                            SharedPreferences loginData =
-                            await SharedPreferences.getInstance();
                             createQuestion.authorId =
-                                loginData.getInt('userId');
+                                userDetails.userId;
                             ResponseEntity statusCode =
                             await QnaService.createQuestionTeacherService(
-                                createQuestion);
+                                createQuestion,userDetails);
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
                           },
                           child: Text(

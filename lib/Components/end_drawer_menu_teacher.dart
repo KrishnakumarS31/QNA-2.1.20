@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/pages/reset_password_teacher.dart';
 import 'package:qna_test/pages/settings_languages.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import '../pages/cookie_policy.dart';
 import '../pages/privacy_policy_hamburger.dart';
@@ -26,6 +29,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
   String name = '';
   String email = '';
   int userId = 0;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
@@ -34,11 +38,11 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
   }
 
   getData() async {
-    SharedPreferences loginData = await SharedPreferences.getInstance();
     setState(() {
-      name = loginData.getString("firstName")!;
-      email = loginData.getString("email")!;
-      userId = loginData.getInt("userId")!;
+      userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+      name = userDetails.firstName!;
+      email = userDetails.email!;
+      userId = userDetails.userId!;
     });
   }
 
@@ -230,7 +234,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             UserDataModel userDataModel =
-                            await QnaService.getUserDataService(userId);
+                            await QnaService.getUserDataService(userId,userDetails);
                             Navigator.push(
                               context,
                               PageTransition(
@@ -533,6 +537,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                         )
                                     ),
                                     onPressed: () async {
+                                      UserDetails userData=UserDetails();
+                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userData);
                                       SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                       await preferences.clear();
@@ -610,6 +616,8 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500)),
                                     onPressed: () async {
+                                      UserDetails userData=UserDetails();
+                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userData);
                                       SharedPreferences preferences =
                                       await SharedPreferences.getInstance();
                                       await preferences.clear();

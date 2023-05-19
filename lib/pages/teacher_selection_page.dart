@@ -4,10 +4,11 @@ import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qna_test/pages/teacher_result_landing_page.dart';
 
+import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Components/end_drawer_menu_teacher.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage(
@@ -24,6 +25,7 @@ class TeacherSelectionPage extends StatefulWidget {
 
 class TeacherSelectionPageState extends State<TeacherSelectionPage> {
   UserDataModel userDataModel = UserDataModel(code: 0, message: '');
+  UserDetails userdata= UserDetails();
   int userId=0;
   @override
   void initState() {
@@ -32,9 +34,9 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
   }
 
   getData() async {
-    SharedPreferences loginData = await SharedPreferences.getInstance();
+    userdata=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     setState(() {
-      userId=loginData.getInt('userId')!;
+      userId=userdata.userId!;
     });
   }
   @override

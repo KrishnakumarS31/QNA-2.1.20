@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
@@ -30,16 +32,18 @@ class TeacherAssessmentLooqQuestionBankState
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<Question> questions = [];
   bool questionsPresent = false;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getData('');
   }
 
   getData(String search) async {
     ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(100000, 1, search);
+    await QnaService.getQuestionBankService(100000, 1, search,userDetails);
     setState(() {
       responseEntity.data==null?[]:questions = List<Question>.from(
           responseEntity.data.map((x) => Question.fromJson(x)));

@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/post_assessment_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_num_provider.dart';
 import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
@@ -36,7 +38,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   late QuestionPaperModel values;
   List<List<dynamic>> options = [];
   PostAssessmentModel assessment = PostAssessmentModel(assessmentResults: []);
-
+  UserDetails userDetails=UserDetails();
   getData(){
     submit();
   }
@@ -44,6 +46,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     values = widget.questions;
     for (int j = 1; j <= Provider
         .of<Questions>(context, listen: false)
@@ -1247,7 +1250,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   ));
                             });
                         LoginModel loginResponse = await QnaService
-                            .postAssessmentService(assessment, values);
+                            .postAssessmentService(assessment, values,userDetails);
                         Navigator.of(context).pop();
                         if (loginResponse.code == 200) {
                           Navigator.pushNamed(
@@ -1438,7 +1441,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     final String formatted = formatter.format(now);
     final String time = timeFormatter.format(now);
     LoginModel loginResponse = await QnaService
-        .postAssessmentService(assessment, values);
+        .postAssessmentService(assessment, values,userDetails);
     if (loginResponse.code == 200) {
       Navigator.pushNamed(
           context,

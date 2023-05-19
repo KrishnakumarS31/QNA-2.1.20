@@ -5,7 +5,9 @@ import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart' as createassessmentmodel;
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
@@ -28,7 +30,7 @@ class TeacherClonedAssessmentPreviewState
   createassessmentmodel.CreateAssessmentModel finalAssessment =
   createassessmentmodel.CreateAssessmentModel(questions: []);
   List<questions.Question> quesList = [];
-
+  UserDetails userDetails=UserDetails();
   int mark = 0;
   int totalQuestion = 0;
 
@@ -134,6 +136,7 @@ class TeacherClonedAssessmentPreviewState
 
   getData() {
     setState(() {
+      userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
       assessment = Provider.of<EditAssessmentProvider>(context, listen: false)
           .getAssessment;
 
@@ -343,7 +346,7 @@ class TeacherClonedAssessmentPreviewState
                                   .microsecondsSinceEpoch;
                           ResponseEntity statusCode =
                           await QnaService.createAssessmentTeacherService(
-                              finalAssessment);
+                              finalAssessment,userDetails);
                           if (statusCode.code == 200) {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
                           }

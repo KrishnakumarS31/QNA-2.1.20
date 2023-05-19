@@ -8,7 +8,9 @@ import 'package:qna_test/Providers/new_question_provider.dart';
 import '../Components/today_date.dart';
 import '../Entity/Teacher/assessment_settings_model.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
@@ -73,10 +75,12 @@ class TeacherAssessmentSettingPublishState
   DateTime endDateBeforeChange=DateTime(1890,9,10,0,0,0);
   String advisorName='';
   String advisorEmail='';
+  UserDetails userDetails=UserDetails();
 
   getData()async{
     SharedPreferences loginData = await SharedPreferences.getInstance();
     setState(() {
+      userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
       advisorEmail=loginData.getString('email')!;
       advisorName=loginData.getString('firstName')!;
     });
@@ -1991,11 +1995,11 @@ class TeacherAssessmentSettingPublishState
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
-                                                            .assessmentId!);
+                                                            .assessmentId!,userDetails);
                                                   } else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
-                                                        assessment);
+                                                        assessment,userDetails);
                                                   }
                                                   Provider.of<NewQuestionProvider>(
                                                       context,
@@ -2141,7 +2145,7 @@ class TeacherAssessmentSettingPublishState
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
-                                                            .assessmentId!);
+                                                            .assessmentId!,userDetails);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -2159,7 +2163,7 @@ class TeacherAssessmentSettingPublishState
                                                   else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
-                                                        assessment);
+                                                        assessment,userDetails);
 
                                                     if (statusCode.code == 200) {
                                                       assessmentCode = statusCode
@@ -2337,14 +2341,14 @@ class TeacherAssessmentSettingPublishState
                                                       assessment
                                                           .assessmentId!,
                                                       assessment.assessmentType!,
-                                                      'inactive',
+                                                      'inactive',userDetails,
                                                     )
                                                         :
                                                     statusCode = await QnaService
                                                         .editActiveAssessmentTeacherService(
                                                         assessment.assessmentSettings!,
                                                         assessment
-                                                            .assessmentId!,assessment.assessmentType!,'active');
+                                                            .assessmentId!,assessment.assessmentType!,'active',userDetails);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -2362,7 +2366,7 @@ class TeacherAssessmentSettingPublishState
                                                   else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
-                                                        assessment);
+                                                        assessment,userDetails);
 
                                                     if (statusCode.code == 200) {
                                                       assessmentCode = statusCode
@@ -4236,11 +4240,11 @@ class TeacherAssessmentSettingPublishState
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
-                                                            .assessmentId!);
+                                                            .assessmentId!,userDetails);
                                                   } else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
-                                                        assessment);
+                                                        assessment,userDetails);
                                                   }
                                                   Provider.of<NewQuestionProvider>(
                                                       context,
@@ -4384,7 +4388,7 @@ class TeacherAssessmentSettingPublishState
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
-                                                            .assessmentId!);
+                                                            .assessmentId!,userDetails);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -4404,7 +4408,7 @@ class TeacherAssessmentSettingPublishState
                                                         .editAssessmentTeacherService(
                                                         assessment,
                                                         assessment
-                                                            .assessmentId!);
+                                                            .assessmentId!,userDetails);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -4422,7 +4426,7 @@ class TeacherAssessmentSettingPublishState
                                                   else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
-                                                        assessment);
+                                                        assessment,userDetails);
 
                                                     if (statusCode.code == 200) {
                                                       assessmentCode = statusCode
@@ -4601,14 +4605,14 @@ class TeacherAssessmentSettingPublishState
                                                       assessment
                                                           .assessmentId!,
                                                       assessment.assessmentType!,
-                                                      'inactive',
+                                                      'inactive',userDetails,
                                                     )
                                                         :
                                                     statusCode = await QnaService
                                                         .editActiveAssessmentTeacherService(
                                                         assessment.assessmentSettings!,
                                                         assessment
-                                                            .assessmentId!,assessment.assessmentType!,'active');
+                                                            .assessmentId!,assessment.assessmentType!,'active',userDetails);
                                                     assessmentCode =
                                                     assessment.assessmentCode!;
                                                     Navigator.of(context).pop();
@@ -4626,7 +4630,7 @@ class TeacherAssessmentSettingPublishState
                                                   else {
                                                     statusCode = await QnaService
                                                         .createAssessmentTeacherService(
-                                                        assessment);
+                                                        assessment,userDetails);
 
                                                     if (statusCode.code == 200) {
                                                       assessmentCode = statusCode

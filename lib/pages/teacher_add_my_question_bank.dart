@@ -4,6 +4,8 @@ import 'package:qna_test/Entity/Teacher/response_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
@@ -21,6 +23,7 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
 
 
 
+
   @override
   TeacherAddMyQuestionBankState createState() =>
       TeacherAddMyQuestionBankState();
@@ -28,6 +31,7 @@ class TeacherAddMyQuestionBank extends StatefulWidget {
 
 class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   List<Question> finalQuesList = [];
+  UserDetails userDetails=UserDetails();
 
   showAlertDialog(BuildContext context, double height) {
     // set up the buttons
@@ -87,7 +91,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         SharedPreferences loginData = await SharedPreferences.getInstance();
         createQuestionModel.authorId = loginData.getInt('userId');
         ResponseEntity statusCode =
-        await QnaService.createQuestionTeacherService(createQuestionModel);
+        await QnaService.createQuestionTeacherService(createQuestionModel,userDetails);
         Navigator.of(context).pop();
         if (statusCode.code == 200) {
           Navigator.pushNamed(
@@ -136,7 +140,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
   @override
   void initState() {
     super.initState();
-
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     finalQuesList.addAll(
         Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
             .getAllQuestion);

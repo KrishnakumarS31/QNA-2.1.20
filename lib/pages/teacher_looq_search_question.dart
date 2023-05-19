@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 
 class TeacherLooqQuestionBank extends StatefulWidget {
@@ -30,9 +33,11 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
   TextEditingController teacherQuestionBankSearchController =
   TextEditingController();
   bool questionsPresent= false;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     teacherQuestionBankSearchController.text = widget.search;
     initialData();
     super.initState();
@@ -40,7 +45,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
 
   initialData() async {
     ResponseEntity response =
-    await QnaService.getSearchQuestion(10, pageLimit, widget.search);
+    await QnaService.getSearchQuestion(10, pageLimit, widget.search,userDetails);
     allQuestion =
     List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     setState(() {
@@ -63,7 +68,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         });
     pageLimit = 1;
     ResponseEntity response =
-    await QnaService.getSearchQuestion(100, pageLimit, searchVal);
+    await QnaService.getSearchQuestion(100, pageLimit, searchVal,userDetails);
     if (response.data == null) {
       allQuestion = [];
     } else {
@@ -90,7 +95,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
               ));
         });
     ResponseEntity response =
-    await QnaService.getSearchQuestion(10, pageLimit, searchValue);
+    await QnaService.getSearchQuestion(10, pageLimit, searchValue,userDetails);
     allQuestion =
     List<Question>.from(response.data.map((x) => Question.fromJson(x)));
     Navigator.of(context).pop();

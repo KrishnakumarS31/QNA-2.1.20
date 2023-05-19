@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,6 +36,7 @@ class TeacherLoginState extends State<TeacherLogin> {
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   SharedPreferences? loginData;
   late bool newUser;
+  UserDetails userDetails=UserDetails();
 
   Future<void> _launchUrlTerms() async {
     final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
@@ -50,13 +54,14 @@ class TeacherLoginState extends State<TeacherLogin> {
 
   @override
   void initState() {
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     super.initState();
   }
 
   void checkLogin() async {
     loginData = await SharedPreferences.getInstance();
-    newUser = (loginData?.getBool('login') ?? true);
-    if (newUser == false && loginData?.getString('role') == 'teacher') {
+    newUser = (userDetails.login ?? true);
+    if (newUser == false && userDetails.role == 'teacher') {
       showDialog(
           context: context,
           builder: (context) {
@@ -67,7 +72,7 @@ class TeacherLoginState extends State<TeacherLogin> {
           });
       UserDataModel userDataModel = UserDataModel(code: 0, message: '');
       userDataModel =
-          await QnaService.getUserDataService(loginData?.getInt('userId'));
+          await QnaService.getUserDataService(userDetails.userId,userDetails);
       Navigator.pushNamed(
           context,
           '/teacherSelectionPage',
@@ -485,6 +490,16 @@ class TeacherLoginState extends State<TeacherLogin> {
                             Navigator.of(context).pop();
 
                             if (loginResponse.code == 200) {
+                              UserDetails userDetails=UserDetails();
+                              userDetails.login=false;
+                              userDetails.email=regNumber;
+                              userDetails.password=passWord;
+                              userDetails.role='teacher';
+                              userDetails.firstName=loginResponse.data.firstName;
+                              userDetails.lastName=loginResponse.data.lastName;
+                              userDetails.token=loginResponse.data.accessToken;
+                              userDetails.userId=loginResponse.data.userId;
+                              Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
                               final SharedPreferences loginData =await SharedPreferences.getInstance();
                               loginData.setBool('login', false);
                               loginData.setString('email', regNumber);
@@ -501,7 +516,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                               UserDataModel userDataModel = UserDataModel();
                               userDataModel =
                                   await QnaService.getUserDataService(
-                                      loginResponse.data.userId);
+                                      loginResponse.data.userId,userDetails);
                               if (userDataModel.data!.role
                                   .contains("teacher")) {
                                 Navigator.pushNamed(

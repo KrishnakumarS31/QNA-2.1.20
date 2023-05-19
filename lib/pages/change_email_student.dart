@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ChangeEmailStudent extends StatefulWidget {
@@ -20,10 +23,13 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
   TextEditingController oldEmail = TextEditingController();
   TextEditingController newEmail = TextEditingController();
   TextEditingController reNewEmail = TextEditingController();
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
     QnaService.sendOtp('jjk');
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+
     super.initState();
   }
 
@@ -266,7 +272,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                           if (valid || newEmail.text == reNewEmail.text) {
                             ResponseEntity response =
                             await QnaService.updatePassword(oldEmail.text,
-                                newEmail.text, widget.userId,context);
+                                newEmail.text, widget.userId,context,userDetails);
                             if (response.code == 200) {
                               Navigator.push(
                                 context,

@@ -6,6 +6,8 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/new_question_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
@@ -37,9 +39,10 @@ class TeacherAssessmentQuestionBankState
   int pageNumber = 1;
   List<int> quesIdList=[];
   List<Question> otQues=[];
-
+  UserDetails userDetails=UserDetails();
   @override
   void initState() {
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     Provider.of<NewQuestionProvider>(context, listen: false).reSetQuestionList();
     widget.searchText==null?teacherQuestionBankSearchController.text='':teacherQuestionBankSearchController.text=widget.searchText!;
     getData(widget.searchText==null?'':widget.searchText!);
@@ -47,7 +50,7 @@ class TeacherAssessmentQuestionBankState
   }
 
   getData(String search) async {
-    ResponseEntity responseEntity = await QnaService.getQuestionBankService(5000, 1, search);
+    ResponseEntity responseEntity = await QnaService.getQuestionBankService(1000, 1, search,userDetails);
     createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
     questions = responseEntity.data==null?[]:List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));

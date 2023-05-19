@@ -6,7 +6,9 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
@@ -35,7 +37,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   TextEditingController topicController = TextEditingController();
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
+  UserDetails userDetails=UserDetails();
   showAdditionalDetails() {
     setState(() {
       !additionalDetails;
@@ -221,6 +223,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getData();
   }
 
@@ -1126,7 +1129,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                           ResponseEntity statusCode = ResponseEntity();
                           statusCode =
                           await QnaService.editAssessmentTeacherService(
-                              assessment, assessment.assessmentId!);
+                              assessment, assessment.assessmentId!,userDetails);
                           if (statusCode.code == 200) {
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
 

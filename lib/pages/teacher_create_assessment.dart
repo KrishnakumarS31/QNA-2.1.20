@@ -7,7 +7,9 @@ import 'package:qna_test/pages/teacher_published_assessment.dart' as published;
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -36,7 +38,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   TextEditingController subTopicController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   List<questions.Question> newQuestions =[];
-
+  UserDetails userDetails=UserDetails();
   @override
   void initState() {
     super.initState();
@@ -45,7 +47,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
 
   getData(){
     setState(() {
-    assessmentVal =
+      userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+      assessmentVal =
         Provider.of<CreateAssessmentProvider>(context, listen: false)
             .getAssessment;
     subjectController.text = assessmentVal.subject!;
@@ -1045,7 +1048,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 });
                             ResponseEntity statusCode =
                                 await QnaService.createAssessmentTeacherService(
-                                    assessmentVal);
+                                    assessmentVal,userDetails);
                             if (statusCode.code == 200) {
                               String assessmentCode = statusCode.data
                                   .toString()
@@ -1058,7 +1061,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                               Navigator.pushNamed(
                                   context,
                                   '/teacherPublishedAssessment',
-                                  arguments: [assessmentCode,null]
+                                  arguments: [assessmentCode,newQuestions]
                               );
 
                             }

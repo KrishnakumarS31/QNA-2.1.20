@@ -6,7 +6,9 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
@@ -38,10 +40,12 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   TextEditingController teacherQuestionBankSearchController =
   TextEditingController();
   bool assessmentPresent= false;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
     teacherQuestionBankSearchController.text = widget.search;
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     initialData();
     super.initState();
   }
@@ -49,7 +53,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   initialData() async {
     //Provider.of<QuestionPrepareProviderFinal>(context, listen: false).reSetQuestionList();
     ResponseEntity response =
-    await QnaService.getSearchAssessment(5, pageLimit, widget.search);
+    await QnaService.getSearchAssessment(5, pageLimit, widget.search,userDetails);
     if(response.data != null){
       allAssessment = List<GetAssessmentModel>.from(
           response.data.map((x) => GetAssessmentModel.fromJson(x)));
@@ -75,7 +79,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
     pageLimit = 1;
 
     ResponseEntity response =
-    await QnaService.getSearchAssessment(5, pageLimit, searchVal);
+    await QnaService.getSearchAssessment(5, pageLimit, searchVal,userDetails);
     if(response.data==null){
       Navigator.of(context).pop();
       // Navigator.push(
@@ -117,7 +121,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
               ));
         });
     ResponseEntity response =
-    await QnaService.getSearchAssessment(5, pageLimit, searchValue);
+    await QnaService.getSearchAssessment(5, pageLimit, searchValue,userDetails);
     allAssessment = List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
     Navigator.of(context).pop();

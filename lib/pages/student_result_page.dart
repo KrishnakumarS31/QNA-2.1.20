@@ -50,10 +50,12 @@ class StudentResultPageState extends State<StudentResultPage> {
   var formKey = GlobalKey<FormState>();
   bool autoValidate = false;
   late QuestionPaperModel values;
+  UserDetails userdata=UserDetails();
 
   @override
   void initState() {
     super.initState();
+    userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     values = widget.questions;
   }
 
@@ -683,11 +685,10 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         });
                                                     if(widget.isMember) {
 
-                                                      SharedPreferences loginData = await SharedPreferences.getInstance();
-                                                      UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+                                                      //SharedPreferences loginData = await SharedPreferences.getInstance();
                                                       UserDataModel userDataModel =
                                                       await QnaService
-                                                          .getUserDataService(userdata.userId);
+                                                          .getUserDataService(userdata.userId,userdata);
 
                                                       Navigator.pushNamed(
                                                           context,
@@ -1493,7 +1494,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
                                                           UserDataModel userDataModel =
                                                           await QnaService
-                                                              .getUserDataService(userdata.userId);
+                                                              .getUserDataService(userdata.userId,userdata);
                                                           Navigator.pushNamed(
                                                               context,
                                                               '/studentAssessment',

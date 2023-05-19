@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Entity/Teacher/response_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 
 class ResetPasswordStudent extends StatefulWidget {
   const ResetPasswordStudent({Key? key, required this.userId})
@@ -20,6 +24,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   TextEditingController newPassword = TextEditingController();
   TextEditingController reNewPassword = TextEditingController();
   late String password;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
@@ -28,9 +33,9 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
   }
 
   getData() async {
-    SharedPreferences loginData = await SharedPreferences.getInstance();
     setState(() {
-      password = loginData.getString("password")!;
+      userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+      password = userDetails.password!;
     });
   }
 
@@ -467,7 +472,7 @@ class ResetPasswordStudentState extends State<ResetPasswordStudent> {
                             await QnaService.updatePassword(
                                 oldPassword.text,
                                 newPassword.text,
-                                widget.userId,context);
+                                widget.userId,context,userDetails);
                             if (statusCode.code == 200) {
                               if(context.mounted)
                               {showAlertDialog(context);}

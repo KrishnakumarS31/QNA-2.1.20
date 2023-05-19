@@ -95,7 +95,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
         setState(() {
           chooses.clear();
           radioList.clear();
-          //tempChoiceList.clear();
+          tempChoiceList.clear();
           questionController.text='';
           _groupValue = value!;
         });
@@ -309,8 +309,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
       chooses.add(TextEditingController());
       chooses[i].text = widget.finalQuestion.choices![i].choiceText!;
       radioList.add(false);
+      tempChoiceList.add(widget.finalQuestion.choices![i]);
       if (widget.finalQuestion.choices![i].rightChoice!) {
         radioList[i] = true;
+        widget.finalQuestion.choices![i].rightChoice=true;
       }
     }
   }
@@ -847,7 +849,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             ),
                           ),
                           Container(
-                            width: width * 0.1,
+                            width: width * 0.15,
                             child: Text(
                               AppLocalizations.of(context)!.correct_answer,
                               textAlign: TextAlign.center,
@@ -861,7 +863,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                             ),
                           ),
                           Container(
-                            width: width * 0.1,
+                            width: width * 0.12,
                             child: Text(
                               AppLocalizations.of(context)!.delete,
                               textAlign: TextAlign.center,
@@ -987,7 +989,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                     ),
                                   ),
                                   Container(
-                                    width: width * 0.1,
+                                    width: width * 0.15,
                                     child: IconButton(
                                       onPressed: () {
                                         _onRadioChange(i);
@@ -1003,7 +1005,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                     ),
                                   ),
                                   Container(
-                                    width: width * 0.1,
+                                    width: width * 0.12,
                                     child: IconButton(
                                       onPressed: () {
                                         removeItem(i);

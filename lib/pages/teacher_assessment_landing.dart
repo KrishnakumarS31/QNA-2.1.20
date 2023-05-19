@@ -7,7 +7,9 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Providers/edit_assessment_provider.dart';
@@ -46,10 +48,11 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   String searchVal = '';
   SharedPreferences? loginData;
   bool assessmentPresent= false;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
-    super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     Future.delayed(const Duration(seconds: 0)).then((_) {
       showModalBottomSheet(
           shape: const RoundedRectangleBorder(
@@ -240,11 +243,12 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
           });
     });
     getData('');
+    super.initState();
   }
 
   getQuestionData() async {
     ResponseEntity response =
-    await QnaService.getAllAssessment(10, pageLimit, searchVal);
+    await QnaService.getAllAssessment(10, pageLimit, searchVal,userDetails);
     if(response.data!=null){
       allAssessment = List<GetAssessmentModel>.from(
           response.data.map((x) => GetAssessmentModel.fromJson(x)));
@@ -273,7 +277,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
 
   getData(String search) async {
     ResponseEntity response =
-    await QnaService.getAllAssessment(10, pageLimit, search);
+    await QnaService.getAllAssessment(10, pageLimit, search,userDetails);
     allAssessment = response.data==null?[]:List<GetAssessmentModel>.from(
         response.data.map((x) => GetAssessmentModel.fromJson(x)));
 

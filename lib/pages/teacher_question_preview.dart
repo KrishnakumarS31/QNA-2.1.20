@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qna_test/Entity/Teacher/edit_question_model.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:qna_test/EntityModel/create_question_model.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -26,10 +29,11 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
   TextEditingController urlController = TextEditingController();
   IconData showIcon = Icons.expand_circle_down_outlined;
   List<dynamic> selected = [];
-
+  UserDetails userDetails=UserDetails();
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     adviceController.text = widget.question.advisorText!;
     urlController.text = widget.question.advisorUrl!;
   }
@@ -282,7 +286,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                             ResponseEntity statusCode =
                                 await QnaService.editQuestionTeacherService(
                                     widget.editQuestionModel,
-                                    widget.question.questionId);
+                                    widget.question.questionId,userDetails);
                             Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'));
                           },
                           child: Text(

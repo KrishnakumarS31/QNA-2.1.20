@@ -38,6 +38,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   late SharedPreferences loginData;
   late bool newUser;
   final PrefService _prefService = PrefService();
+  UserDetails userDetails=UserDetails();
 
   Future<void> _launchUrlTerms() async {
     final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
@@ -61,9 +62,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   }
 
   void checkIfAlreadyLoggedIn() async {
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     loginData = await SharedPreferences.getInstance();
-    newUser = (loginData.getBool('login') ?? true);
-    if (newUser == false && loginData.getString('role') == 'student') {
+    newUser = (userDetails.login ?? true);
+    if (newUser == false && userDetails.role == 'student') {
       showDialog(
           context: context,
           builder: (context) {
@@ -73,7 +75,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 ));
           });
       UserDataModel userDataModel =
-      await QnaService.getUserDataService(loginData.getInt('userId'));
+      await QnaService.getUserDataService(userDetails.userId!,userDetails);
       Navigator.pushNamed(context,
           '/studentAssessment',
           arguments: [regNumber,userDataModel])
@@ -574,7 +576,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 await QnaService
                                                     .getUserDataService(
                                                     loginResponse
-                                                        .data!.userId);
+                                                        .data!.userId,userDetails);
                                                 Navigator.pushNamed(context,
                                                     '/studentAssessment',
                                                     arguments: [regNumber,userDataModel])
@@ -1198,7 +1200,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       .getUserDataService(
                                                       loginResponse
                                                           .data!
-                                                          .userId);
+                                                          .userId,userDetails);
                                                   if (userDataModel.data!.role
                                                       .contains("student")) {
                                                     Navigator.pushNamed(context,

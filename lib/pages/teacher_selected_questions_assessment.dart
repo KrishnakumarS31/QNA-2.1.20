@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/question_entity.dart' as qns;
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/CreateAssessmentModel.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
@@ -25,6 +27,7 @@ class TeacherSelectedQuestionAssessment extends StatefulWidget {
 
 class TeacherSelectedQuestionAssessmentState
     extends State<TeacherSelectedQuestionAssessment> {
+  UserDetails userDetails=UserDetails();
   bool additionalDetails = true;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
   List<qns.Question> questionList = [];
@@ -140,7 +143,8 @@ class TeacherSelectedQuestionAssessmentState
   }
 
   getData() {
-      questionList.addAll(
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+    questionList.addAll(
           Provider.of<QuestionPrepareProviderFinal>(context, listen: false)
               .getAllQuestion);
       assessment = Provider.of<CreateAssessmentProvider>(context, listen: false)
@@ -1105,7 +1109,7 @@ class TeacherSelectedQuestionAssessmentState
                                           .microsecondsSinceEpoch;
                                   statusCode =
                                   await QnaService.editAssessmentTeacherService(
-                                      assessment, assessment.assessmentId!);
+                                      assessment, assessment.assessmentId!,userDetails);
                                 } else {
                                   assessment.assessmentStatus = 'inprogress';
                                   assessment.assessmentType = 'practice';
@@ -1113,7 +1117,7 @@ class TeacherSelectedQuestionAssessmentState
                                   statusCode =
                                   await QnaService
                                       .createAssessmentTeacherService(
-                                      assessment);
+                                      assessment,userDetails);
                                 }
                                 Navigator.of(context).pushNamedAndRemoveUntil(
                                     '/teacherAssessmentLanding',

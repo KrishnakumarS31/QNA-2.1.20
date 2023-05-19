@@ -35,7 +35,7 @@ class EndDrawerMenuStudent extends StatefulWidget {
 
 class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   int userId = 0;
-
+  UserDetails userDetails=UserDetails();
   @override
   void initState() {
     super.initState();
@@ -46,6 +46,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
   getData() async {
     SharedPreferences loginData = await SharedPreferences.getInstance();
     setState(() {
+      userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
       userId = loginData.getInt("userId")!;
     });
   }
@@ -238,7 +239,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                               color: Color.fromRGBO(153, 153, 153, 1)),
                           onTap: () async {
                             UserDataModel userDataModel =
-                            await QnaService.getUserDataService(widget.userId);
+                            await QnaService.getUserDataService(widget.userId,userDetails);
                             Navigator.push(
                               context,
                               PageTransition(

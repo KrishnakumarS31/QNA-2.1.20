@@ -5,6 +5,8 @@ import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/Teacher/response_entity.dart';
+import '../Entity/user_details.dart';
+import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -29,16 +31,18 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
   TextEditingController teacherQuestionBankSearchController =
   TextEditingController();
   SharedPreferences? loginData;
+  UserDetails userDetails=UserDetails();
 
   @override
   void initState() {
     super.initState();
+    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getData('');
   }
 
   getData(String search) async {
     ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(5, pageNumber, search);
+    await QnaService.getQuestionBankService(5, pageNumber, search,userDetails);
     List<Question> questions = [];
     if (responseEntity.code == 200) {
       questions = List<Question>.from(
@@ -72,7 +76,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 
   getQuestionData() async {
     ResponseEntity responseEntity =
-    await QnaService.getQuestionBankService(5, pageNumber, searchVal);
+    await QnaService.getQuestionBankService(5, pageNumber, searchVal,userDetails);
     List<Question> questions = List<Question>.from(
         responseEntity.data.map((x) => Question.fromJson(x)));
     setState(() {
