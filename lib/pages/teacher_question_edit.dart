@@ -609,9 +609,52 @@ class QuestionEditState extends State<QuestionEdit> {
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText:
-                                            AppLocalizations.of(context)!.sub_caps,
-                                            //"SUBJECT",
+                                            label: SizedBox(
+                                              width:
+                                              constraints.maxWidth > 700
+                                             ? width * 0.05
+                                              : width * 0.2,
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    AppLocalizations
+                                                        .of(
+                                                        context)!
+                                                        .sub_caps,
+                                                    //'SUBJECT',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                        height *
+                                                            0.018,
+                                                        fontFamily:
+                                                        "Inter",
+                                                        color: const Color
+                                                            .fromRGBO(
+                                                            51,
+                                                            51,
+                                                            51,
+                                                            1),
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w600),
+                                                  ),
+                                                  Text(
+                                                    '\t*',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                        height *
+                                                            0.015,
+                                                        fontFamily:
+                                                        "Inter",
+                                                        color: Colors
+                                                            .red,
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w600),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(
@@ -725,8 +768,52 @@ class QuestionEditState extends State<QuestionEdit> {
                                               fontWeight: FontWeight.w400,
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
-                                            labelText: AppLocalizations.of(context)!.class_caps,
-                                            //"CLASS",
+                                            label: SizedBox(
+                                              width:
+                                              constraints.maxWidth > 700
+                                              ? width * 0.07
+                                              : width * 0.3,
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    AppLocalizations
+                                                        .of(
+                                                        context)!
+                                                        .class_caps,
+                                                    // 'CLASS',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                        height *
+                                                            0.018,
+                                                        fontFamily:
+                                                        "Inter",
+                                                        color: const Color
+                                                            .fromRGBO(
+                                                            51,
+                                                            51,
+                                                            51,
+                                                            1),
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w600),
+                                                  ),
+                                                  Text(
+                                                    '\t*',
+                                                    style: TextStyle(
+                                                        fontSize:
+                                                        height *
+                                                            0.015,
+                                                        fontFamily:
+                                                        "Inter",
+                                                        color: Colors
+                                                            .red,
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w600),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             floatingLabelBehavior:
                                             FloatingLabelBehavior.always,
                                             labelStyle: TextStyle(

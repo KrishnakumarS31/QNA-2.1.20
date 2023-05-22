@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-enum DialogAction { Ok, CANCEL }
+enum DialogAction { ok, cancel }
 
 class CustomAlertDialog {
   static Future<DialogAction> customDialog(
@@ -95,7 +95,7 @@ class CustomAlertDialog {
                             if (buttonText1 != null)
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop(DialogAction.Ok);
+                                  Navigator.of(context).pop(DialogAction.ok);
                                 },
                                 child: Text(
                                   buttonText1,
@@ -115,7 +115,7 @@ class CustomAlertDialog {
                                 ),
                                 onPressed: () {
                                   Navigator.of(context)
-                                      .pop(DialogAction.CANCEL);
+                                      .pop(DialogAction.cancel);
                                 },
                                 child: Text(
                                   buttonText2,

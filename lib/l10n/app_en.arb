@@ -385,5 +385,6 @@
   "read_qna": "Read QNATest\t\t",
   "shown_for_practice": "Answersheet are shown only in Practice mode",
   "not_given": "Not given",
-  "completed_parti_list": "Completed Participants List "
+  "completed_parti_list": "Completed Participants List ",
+  "already_registered_user": "User already Registered Please login directly"
 }

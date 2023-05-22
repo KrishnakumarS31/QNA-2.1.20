@@ -1431,7 +1431,22 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                     student: student,
                                   )),
                             );
-                          } else {
+                          }
+                          else if (res.code == 409) {
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: AppLocalizations.of(context)!.alert_popup,
+                                  //'Incorrect Data',
+                                  content: AppLocalizations.of(context)!.already_registered_user,
+                                  button: AppLocalizations.of(context)!.ok_caps,
+                                ),
+                              ),
+                            );
+                          }
+                          else {
                             Navigator.push(
                               context,
                               PageTransition(

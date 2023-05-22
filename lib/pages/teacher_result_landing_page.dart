@@ -353,7 +353,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       ),
                       results.isEmpty?
                       Align(
-                        alignment: Alignment.centerRight,
+                        alignment: Alignment.center,
                         child:
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
@@ -366,14 +366,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                     fontSize: height * 0.0187,
                                     fontFamily: "Inter",
                                     fontWeight: FontWeight.w600)),
-                            Icon(Icons.chevron_right,
+                            Icon(Icons.keyboard_arrow_down,
                               color: const Color.fromRGBO(141, 167, 167, 1),
                               size: height * 0.034,),
                           ],
                         ),
                       )
                           :Align(
-                        alignment: Alignment.centerRight,
+                        alignment: Alignment.center,
                         child:
                         MouseRegion(
                             cursor: SystemMouseCursors.click,
@@ -404,7 +404,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                             fontSize: height * 0.0187,
                                             fontFamily: "Inter",
                                             fontWeight: FontWeight.w600)),
-                                    Icon(Icons.chevron_right,
+                                    Icon(Icons.keyboard_arrow_down,
                                       color: const Color.fromRGBO(141, 167, 167, 1),
                                       size: height * 0.034,),
                                   ],

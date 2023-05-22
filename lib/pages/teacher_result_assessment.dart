@@ -96,15 +96,15 @@ class TeacherResultAssessmentState extends State<TeacherResultAssessment> {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
-                      widget.result.assessmentCode!,
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.0225,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    // Text(
+                    //   widget.result.assessmentCode!,
+                    //   style: TextStyle(
+                    //     color: const Color.fromRGBO(255, 255, 255, 1),
+                    //     fontSize: height * 0.0225,
+                    //     fontFamily: "Inter",
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // ),
                   ]),
               flexibleSpace: Container(
                 decoration: const BoxDecoration(

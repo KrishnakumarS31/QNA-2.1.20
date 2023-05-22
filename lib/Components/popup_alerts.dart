@@ -12,6 +12,6 @@ class CustomPopupAlerts {
         "Retry", //"OK",
         null,
         Icons.info_outline_rounded);
-    return action == DialogAction.Ok ? true : false;
+    return action == DialogAction.ok ? true : false;
   }
 }

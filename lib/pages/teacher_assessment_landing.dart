@@ -607,14 +607,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                 height: height * 0.02,
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            right: width * 0.05),
-                                        child: const Divider(),
-                                      )),
-
                                   MouseRegion(
                                     cursor: SystemMouseCursors.click,
                                     child: GestureDetector(
@@ -636,7 +630,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                   ),
                                   MouseRegion(
                                       cursor: SystemMouseCursors.click,
-                                      child: const Icon(Icons.chevron_right))
+                                      child: const Icon(Icons.keyboard_arrow_down))
                                 ],
                               ),
                               SizedBox(
@@ -762,8 +756,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                     .always,
                                                                 //labelText: "${AppLocalizations.of(context)!.sub_caps} *",
                                                                 label: SizedBox(
-                                                                  width: width *
-                                                                      0.045,
+                                                                  width: width * 0.05,
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -896,7 +889,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                     .always,
                                                                 //labelText: "${AppLocalizations.of(context)!.class_caps} *",
                                                                 label: SizedBox(
-                                                                  width: width * 0.065,
+                                                                  width: width * 0.07,
                                                                   child: Row(
                                                                     children: [
                                                                       Text(
@@ -1627,13 +1620,14 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               height: height * 0.02,
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          right: width * 0.05),
-                                      child: const Divider(),
-                                    )),
+                                // Expanded(
+                                //     child: Padding(
+                                //       padding: EdgeInsets.only(
+                                //           right: width * 0.05),
+                                //       child: const Divider(),
+                                //     )),
 
                                 MouseRegion(
                                   cursor: SystemMouseCursors.click,
@@ -1773,7 +1767,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                               FloatingLabelBehavior
                                                                   .always,
                                                               label: SizedBox(
-                                                                width: width * 0.185,
+                                                                width: width * 0.2,
                                                                 child: Row(
                                                                   children: [
                                                                     Text(
@@ -1901,7 +1895,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                   .always,
                                                               //labelText: "${AppLocalizations.of(context)!.class_caps} *",
                                                               label: SizedBox(
-                                                                width: width * 0.28,
+                                                                width: width * 0.3,
                                                                 child: Row(
                                                                   children: [
                                                                     Text(

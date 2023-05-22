@@ -84,7 +84,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
     double localWidth = MediaQuery.of(context).size.width;
-    const iconAsset = "assets/images/bg.png";
+    // const iconAsset = "assets/images/bg.png";
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 700) {
@@ -114,21 +114,20 @@ class _WelcomePageState extends State<WelcomePage> {
                                     width: localWidth,
                                     child: Column(
                                       children: [
-                                        Center(
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                2.5,
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                fit: BoxFit.fill,
-                                                image: AssetImage(iconAsset),
-                                              ),
+                                        Container(
+                                          height: localHeight * 0.43,
+                                          width: localWidth,
+                                          decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                              colors: [
+                                                Color.fromRGBO(0, 106, 100, 1),
+                                                Color.fromRGBO(82, 165, 160, 1)
+                                              ],
                                             ),
+                                            borderRadius: BorderRadius.vertical(
+                                                bottom: Radius.elliptical(localWidth, localHeight * 0.40)),
                                           ),
                                         ),
                                         SizedBox(
@@ -338,11 +337,11 @@ class _WelcomePageState extends State<WelcomePage> {
                             left: localWidth * 0.25,
                             top: localHeight * 0.15,
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              height: MediaQuery.of(context).size.height * 0.2,
+                              width: localWidth * 0.5,
+                              height: localHeight * 0.2,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                  //fit: BoxFit.fill,
+                                  fit: BoxFit.contain,
                                   image:
                                       AssetImage('assets/images/qna_logo.png'),
                                 ),
@@ -379,21 +378,40 @@ class _WelcomePageState extends State<WelcomePage> {
                                     width: localWidth,
                                     child: Column(
                                       children: [
-                                        Center(
-                                          child: Container(
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                2.5,
-                                            decoration: const BoxDecoration(
-                                              image: DecorationImage(
-                                                fit: BoxFit.fill,
-                                                image: AssetImage(iconAsset),
-                                              ),
+                                        Container(
+                                          height: localHeight * 0.43,
+                                          width: localWidth,
+                                          decoration: BoxDecoration(
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
+                                              colors: [
+                                                Color.fromRGBO(0, 106, 100, 1),
+                                                Color.fromRGBO(82, 165, 160, 1)
+                                              ],
                                             ),
+                                            borderRadius: BorderRadius.vertical(
+                                                bottom: Radius.elliptical(localWidth, localHeight * 0.40)),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(height: localHeight * 0.15),
+                                              // Align(
+                                              //   alignment: Alignment.center,
+                                              //   child: Container(
+                                              //     width: localWidth * 0.50,
+                                              //     height: localHeight * 0.20,
+                                              //     decoration: const BoxDecoration(
+                                              //       image: DecorationImage(
+                                              //         fit: BoxFit.fill,
+                                              //         image:
+                                              //         AssetImage('assets/images/qna_logo.png'),
+                                              //       ),
+                                              //     ),
+                                              //   ),
+                                              // ),
+                                              SizedBox(height: localHeight * 0.01),
+                                            ],
                                           ),
                                         ),
                                         SizedBox(
@@ -573,12 +591,11 @@ class _WelcomePageState extends State<WelcomePage> {
                             left: localWidth * 0.25,
                             top: localHeight * 0.15,
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              height:
-                                  MediaQuery.of(context).size.height * 0.135,
+                              width: localWidth * 0.5,
+                              height: localHeight * 0.135,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.fitHeight,
                                   image:
                                       AssetImage('assets/images/qna_logo.png'),
                                 ),

@@ -1028,8 +1028,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                 insetPadding: EdgeInsets.only(
                     left: localWidth * 0.13, right: localWidth * 0.13),
                 title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(width: localHeight * 0.030),
+                      //SizedBox(width: localHeight * 0.030),
                       Container(
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
@@ -1041,9 +1042,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           color: Color.fromRGBO(255, 255, 255, 1),
                         ),
                       ),
-                      constraints.maxWidth > 700
-                          ? SizedBox(width: localHeight * 0.005)
-                          : SizedBox(width: localHeight * 0.03),
+                      // constraints.maxWidth > 700
+                      //     ? SizedBox(width: localHeight * 0.004)
+                      //     : SizedBox(width: localHeight * 0.01),
                       Text(AppLocalizations.of(context)!.confirm,
                         style: TextStyle(
                             fontFamily: 'Inter',
@@ -1051,6 +1052,9 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                             color: const Color.fromRGBO(0, 106, 100, 1),
                             fontWeight: FontWeight.w700
                         ),),
+                      constraints.maxWidth > 700
+                          ? SizedBox(width: localHeight * 0.1)
+                          : SizedBox(width: localHeight * 0.01),
                     ]
                 ),
                 content:

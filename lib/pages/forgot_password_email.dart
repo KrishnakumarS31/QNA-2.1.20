@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/platform/platform.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/Pages/verify_otp_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
@@ -200,29 +201,37 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                 onTap: () {
                   Navigator.of(context).pop();
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.chevron_left,
-                        color: Color.fromRGBO(82, 165, 160, 1),
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+                    child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          IconButton(
+                            //iconSize: GetPlatform.isWeb ?  height * 0.04 : height * 0.03,
+                            icon: const Icon(
+                              Icons.chevron_left,
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          Text(AppLocalizations.of(context)!.back,
+                              style: Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyLarge
+                                  ?.merge(const TextStyle(
+                                  color: Color.fromRGBO(48, 145, 139, 1),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize:  16 ))),
+                        ]
                     ),
-                    Text(AppLocalizations.of(context)!.back,
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(const TextStyle(
-                                color: Color.fromRGBO(48, 145, 139, 1),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16))),
-                  ],
-                ),
+                // child: Row(
+                //   //mainAxisAlignment: MainAxisAlignment.center,
+                //   mainAxisSize: MainAxisSize.min,
+                //   children: [
+                //
+                //   ],
+                // ),
               ),
               )])));
   }

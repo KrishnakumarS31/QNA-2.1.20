@@ -343,7 +343,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     getQuestionData();
                                   },
                                   child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           AppLocalizations.of(context)!.view_more,
@@ -356,7 +356,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           ),
                                         ),
                                         const Icon(
-                                          Icons.chevron_right,
+                                          Icons.keyboard_arrow_down,
                                           color: Color.fromRGBO(28, 78, 80, 1),
                                         ),
                                       ]),
@@ -410,7 +410,9 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                       )),
                 ),
               ));
-        } else {
+        }
+
+        else {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -661,7 +663,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                     getQuestionData();
                                   },
                                   child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           AppLocalizations.of(context)!.view_more,
@@ -674,7 +676,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           ),
                                         ),
                                         const Icon(
-                                          Icons.chevron_right,
+                                          Icons.keyboard_arrow_down,
                                           color: Color.fromRGBO(28, 78, 80, 1),
                                         ),
                                       ]),

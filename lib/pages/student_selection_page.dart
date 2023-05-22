@@ -114,14 +114,13 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        print("INSIDE ONPRESSED");
                         // Navigator.popUntil(context, ModalRoute.withName('/'));
                         // Navigator.pushNamed(context, ('/'));
                         Navigator.push(
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: WelcomePage(),
+                            child: const WelcomePage(),
                           ),
                         );
                         // Navigator.of(context).pop();
@@ -319,14 +318,13 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        print("INSIDE ONPRESSED");
                         // Navigator.popUntil(context, ModalRoute.withName('/'));
                         // Navigator.pushNamed(context, ('/'));
                         Navigator.push(
                           context,
                           PageTransition(
                             type: PageTransitionType.rightToLeft,
-                            child: WelcomePage(),
+                            child: const WelcomePage(),
                           ),
                         );
                       },
