@@ -35,8 +35,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   final formKey = GlobalKey<FormState>();
   bool agree = false;
   Color textColor = const Color.fromRGBO(48, 145, 139, 1);
-  late SharedPreferences loginData;
-  late bool newUser;
+  //late SharedPreferences loginData;
+  //late bool newUser;
   final PrefService _prefService = PrefService();
   UserDetails userDetails=UserDetails();
 
@@ -57,34 +57,34 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
   @override
   void initState() {
     super.initState();
-    checkIfAlreadyLoggedIn();
+    //checkIfAlreadyLoggedIn();
     //getData();
   }
 
-  void checkIfAlreadyLoggedIn() async {
-    userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
-    loginData = await SharedPreferences.getInstance();
-    newUser = (userDetails.login ?? true);
-    if (newUser == false && userDetails.role == 'student') {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return const Center(
-                child: CircularProgressIndicator(
-                  color: Color.fromRGBO(48, 145, 139, 1),
-                ));
-          });
-      UserDataModel userDataModel =
-      await QnaService.getUserDataService(userDetails.userId!,userDetails);
-      Navigator.pushNamed(context,
-          '/studentAssessment',
-          arguments: [regNumber,userDataModel])
-          .then((value) {
-        regNumberController.clear();
-        passWordController.clear();
-      });
-    }
-  }
+  // void checkIfAlreadyLoggedIn() async {
+  //   userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+  //   loginData = await SharedPreferences.getInstance();
+  //   newUser = (userDetails.login ?? true);
+  //   if (newUser == false && userDetails.role == 'student') {
+  //     showDialog(
+  //         context: context,
+  //         builder: (context) {
+  //           return const Center(
+  //               child: CircularProgressIndicator(
+  //                 color: Color.fromRGBO(48, 145, 139, 1),
+  //               ));
+  //         });
+  //     UserDataModel userDataModel =
+  //     await QnaService.getUserDataService(userDetails.userId!,userDetails);
+  //     Navigator.pushNamed(context,
+  //         '/studentAssessment',
+  //         arguments: [regNumber,userDataModel])
+  //         .then((value) {
+  //       regNumberController.clear();
+  //       passWordController.clear();
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -548,30 +548,30 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 userDetails.token=loginResponse.data.accessToken;
                                                 userDetails.userId=loginResponse.data.userId;
                                                 Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
-                                                loginData.setBool(
-                                                    'login', false);
-                                                loginData.setString(
-                                                    'email', regNumber);
-                                                loginData.setString(
-                                                    'password', passWord);
-                                                loginData.setString(
-                                                    'role', 'student');
-                                                loginData.setString(
-                                                    'firstName',
-                                                    loginResponse
-                                                        .data.firstName);
-                                                loginData.setString(
-                                                    'lastName',
-                                                    loginResponse
-                                                        .data.lastName);
-                                                loginData.setString(
-                                                    'token',
-                                                    loginResponse
-                                                        .data.accessToken);
-                                                loginData.setInt(
-                                                    'userId',
-                                                    loginResponse
-                                                        .data.userId);
+                                                // loginData.setBool(
+                                                //     'login', false);
+                                                // loginData.setString(
+                                                //     'email', regNumber);
+                                                // loginData.setString(
+                                                //     'password', passWord);
+                                                // loginData.setString(
+                                                //     'role', 'student');
+                                                // loginData.setString(
+                                                //     'firstName',
+                                                //     loginResponse
+                                                //         .data.firstName);
+                                                // loginData.setString(
+                                                //     'lastName',
+                                                //     loginResponse
+                                                //         .data.lastName);
+                                                // loginData.setString(
+                                                //     'token',
+                                                //     loginResponse
+                                                //         .data.accessToken);
+                                                // loginData.setInt(
+                                                //     'userId',
+                                                //     loginResponse
+                                                //         .data.userId);
                                                 UserDataModel userDataModel =
                                                 await QnaService
                                                     .getUserDataService(
@@ -1171,30 +1171,30 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   userDetails.token=loginResponse.data.accessToken;
                                                   userDetails.userId=loginResponse.data.userId;
                                                   Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
-                                                  loginData.setBool(
-                                                      'login', false);
-                                                  loginData.setString(
-                                                      'email', regNumber);
-                                                  loginData.setString(
-                                                      'password', passWord);
-                                                  loginData.setString(
-                                                      'role', 'student');
-                                                  loginData.setString(
-                                                      'firstName',
-                                                      loginResponse
-                                                          .data.firstName);
-                                                  loginData.setString(
-                                                      'lastName',
-                                                      loginResponse
-                                                          .data.lastName);
-                                                  loginData.setString(
-                                                      'token',
-                                                      loginResponse
-                                                          .data.accessToken);
-                                                  loginData.setInt(
-                                                      'userId',
-                                                      loginResponse
-                                                          .data.userId);
+                                                  // loginData.setBool(
+                                                  //     'login', false);
+                                                  // loginData.setString(
+                                                  //     'email', regNumber);
+                                                  // loginData.setString(
+                                                  //     'password', passWord);
+                                                  // loginData.setString(
+                                                  //     'role', 'student');
+                                                  // loginData.setString(
+                                                  //     'firstName',
+                                                  //     loginResponse
+                                                  //         .data.firstName);
+                                                  // loginData.setString(
+                                                  //     'lastName',
+                                                  //     loginResponse
+                                                  //         .data.lastName);
+                                                  // loginData.setString(
+                                                  //     'token',
+                                                  //     loginResponse
+                                                  //         .data.accessToken);
+                                                  // loginData.setInt(
+                                                  //     'userId',
+                                                  //     loginResponse
+                                                  //         .data.userId);
                                                   UserDataModel userDataModel =
                                                   await QnaService
                                                       .getUserDataService(

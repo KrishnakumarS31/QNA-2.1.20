@@ -74,7 +74,7 @@ class SplashScreenState extends State<SplashScreen> {
                   : width * 0.3,
               logo: Image.asset(
                   "assets/images/SSSUHE.png"),
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.black,
               showLoader: true,
               loaderColor: const Color.fromRGBO(82, 165, 160, 1),
               navigator: const WelcomePage(),

@@ -79,7 +79,7 @@ class StudQuestionState extends State<StudQuestion> {
                     Padding(
                       padding: EdgeInsets.only(
                           right: MediaQuery.of(context).copyWith().size.width *
-                              0.055),
+                              0.045),
                       child: Align(
                         alignment: Alignment.topRight,
                         child: IconButton(
@@ -96,155 +96,186 @@ class StudQuestionState extends State<StudQuestion> {
                       ),
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                const Icon(
-                                  Icons.mode_comment_outlined,
-                                  color: Color.fromRGBO(255, 153, 0, 1),
-                                ),
-                                Positioned(
-                                    left: MediaQuery.of(context)
-                                            .copyWith()
-                                            .size
-                                            .width *
-                                        0.006,
-                                    top: MediaQuery.of(context)
-                                            .copyWith()
-                                            .size
-                                            .height *
-                                        0.005,
-                                    child: Icon(
-                                      Icons.question_mark,
-                                      color:
-                                          const Color.fromRGBO(255, 153, 0, 1),
-                                      size: MediaQuery.of(context)
+                        Container(
+                          width: MediaQuery.of(context).copyWith().size.width * 0.3,
+                          child: Row(
+                            children: [
+                              Stack(
+                                children: [
+                                  const Icon(
+                                    Icons.mode_comment_outlined,
+                                    color: Color.fromRGBO(255, 153, 0, 1),
+                                  ),
+                                  Positioned(
+                                      left: MediaQuery.of(context)
+                                              .copyWith()
+                                              .size
+                                              .width *
+                                          0.006,
+                                      top: MediaQuery.of(context)
                                               .copyWith()
                                               .size
                                               .height *
-                                          0.02,
-                                    ))
-                              ],
-                            ),
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).copyWith().size.width *
-                                      0.02,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.not_sure_flag,
-                              // "Not Sure Flag: Press Flag to re-check later",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.merge(TextStyle(
-                                      color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: MediaQuery.of(context)
-                                              .copyWith()
-                                              .size
-                                              .height *
-                                          0.026)),
-                            ),
-                          ],
+                                          0.005,
+                                      child: Icon(
+                                        Icons.question_mark,
+                                        color:
+                                            const Color.fromRGBO(255, 153, 0, 1),
+                                        size: MediaQuery.of(context)
+                                                .copyWith()
+                                                .size
+                                                .height *
+                                            0.018,
+                                      ))
+                                ],
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).copyWith().size.width *
+                                        0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.not_sure_flag,
+                                // "Not Sure Flag: Press Flag to re-check later",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                        color:
+                                            const Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: MediaQuery.of(context)
+                                                .copyWith()
+                                                .size
+                                                .height *
+                                            0.026)),
+                              ),
+                            ],
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.skip_next_outlined,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              size: MediaQuery.of(context)
-                                      .copyWith()
-                                      .size
-                                      .height *
-                                  0.046,
-                            ),
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).copyWith().size.width *
-                                      0.02,
-                            ),
-                            Text(
-                              AppLocalizations.of(context)!.skip_to_end,
-                              //"Skip to End of question paper",
-                              style: Theme.of(context)
-                                  .primaryTextTheme
-                                  .bodyLarge
-                                  ?.merge(TextStyle(
-                                      color:
-                                          const Color.fromRGBO(51, 51, 51, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: MediaQuery.of(context)
-                                              .copyWith()
-                                              .size
-                                              .height *
-                                          0.026)),
-                            ),
-                          ],
+                        Container(
+                          width: MediaQuery.of(context).copyWith().size.width * 0.3,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.skip_next_outlined,
+                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                size: MediaQuery.of(context)
+                                        .copyWith()
+                                        .size
+                                        .height *
+                                    0.046,
+                              ),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).copyWith().size.width *
+                                        0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.skip_to_end,
+                                //"Skip to End of question paper",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                        color:
+                                            const Color.fromRGBO(51, 51, 51, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: MediaQuery.of(context)
+                                                .copyWith()
+                                                .size
+                                                .height *
+                                            0.026)),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                     const Divider(color: Color.fromRGBO(224, 224, 224, 1)),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
-                          Icons.square,
-                          color: const Color.fromRGBO(188, 191, 8, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.03,
+                        Container(
+                          width: MediaQuery.of(context).copyWith().size.width * 0.3,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.square,
+                                color: const Color.fromRGBO(188, 191, 8, 1),
+                                // size: MediaQuery.of(context).copyWith().size.height *
+                                //     0.03,
+                              ),
+                              SizedBox(
+                                width:
+                                MediaQuery.of(context).copyWith().size.width *
+                                    0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.test_qn_page,
+                                // "  Test",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: MediaQuery.of(context)
+                                        .copyWith()
+                                        .size
+                                        .height *
+                                        0.026)),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.test_qn_page,
-                          // "  Test",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.026)),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width *
-                              0.1,
-                        ),
+
+                        // SizedBox(
+                        //   width: MediaQuery.of(context).copyWith().size.width *
+                        //       0.1,
+                        // ),
                         //Image.asset("assets/images/testIcon.png"),
                         // SvgPicture.asset('assets/icons/test.svg'),
-                        Icon(
-                          Icons.square,
-                          color: const Color.fromRGBO(255, 157, 77, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.03,
+                        Container(
+                          width: MediaQuery.of(context).copyWith().size.width * 0.3,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.square,
+                                color: const Color.fromRGBO(255, 157, 77, 1),
+                                // size: MediaQuery.of(context).copyWith().size.height *
+                                //     0.03,
+                              ),
+                              SizedBox(
+                                width:
+                                MediaQuery.of(context).copyWith().size.width *
+                                    0.02,
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.practice_qn_page,
+                                //"  Practice",
+                                style: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyLarge
+                                    ?.merge(TextStyle(
+                                    color: const Color.fromRGBO(51, 51, 51, 1),
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: MediaQuery.of(context)
+                                        .copyWith()
+                                        .size
+                                        .height *
+                                        0.026)),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(
-                          AppLocalizations.of(context)!.practice_qn_page,
-                          //"  Practice",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                                  color: const Color.fromRGBO(51, 51, 51, 1),
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: MediaQuery.of(context)
-                                          .copyWith()
-                                          .size
-                                          .height *
-                                      0.026)),
-                        ),
+
                       ],
                     ),
                   ],

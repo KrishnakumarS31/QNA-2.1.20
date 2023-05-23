@@ -268,29 +268,29 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               ),
                             );
                           }),
-                      ListTile(
-                          leading: const Icon(Icons.mail_outline_sharp,
-                              color: Color.fromRGBO(141, 167, 167, 1)),
-                          title: Text(
-                            AppLocalizations.of(context)!.change_emailId,
-                            style: TextStyle(
-                                color: textColor,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
-                                fontSize: 16),
-                          ),
-                          trailing: const Icon(Icons.navigate_next,
-                              color: Color.fromRGBO(153, 153, 153, 1)),
-                          onTap: () {
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
-                            //   ),
-                            // );
-                          }),
+                      // ListTile(
+                      //     leading: const Icon(Icons.mail_outline_sharp,
+                      //         color: Color.fromRGBO(141, 167, 167, 1)),
+                      //     title: Text(
+                      //       AppLocalizations.of(context)!.change_emailId,
+                      //       style: TextStyle(
+                      //           color: textColor,
+                      //           fontFamily: 'Inter',
+                      //           fontWeight: FontWeight.w500,
+                      //           letterSpacing: -0.02,
+                      //           fontSize: 16),
+                      //     ),
+                      //     trailing: const Icon(Icons.navigate_next,
+                      //         color: Color.fromRGBO(153, 153, 153, 1)),
+                      //     onTap: () {
+                      //       // Navigator.push(
+                      //       //   context,
+                      //       //   PageTransition(
+                      //       //     type: PageTransitionType.rightToLeft,
+                      //       //     child:  ChangeEmailTeacher(userId: userDataModel.data!.id),
+                      //       //   ),
+                      //       // );
+                      //     }),
                       const Divider(
                         thickness: 2,
                       ),

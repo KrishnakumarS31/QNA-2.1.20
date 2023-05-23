@@ -397,7 +397,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       Icon(
                                         Icons.chevron_right,
                                         color: const Color.fromRGBO(255, 255, 255, 1),
-                                        size: height * 0.03,
+                                        size: height * 0.04,
                                       )
                                     ],
                                   ),
@@ -717,7 +717,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       Icon(
                                         Icons.chevron_right,
                                         color: const Color.fromRGBO(255, 255, 255, 1),
-                                        size: height * 0.03,
+                                        size: height * 0.04,
                                       )
                                     ],
                                   ),
@@ -831,13 +831,17 @@ class QuestionPreview extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          '${question.questionType}',
-                          style: TextStyle(
-                              fontSize: height * 0.02,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontWeight: FontWeight.w600),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              right: width * 0.02, left: width * 0.02),
+                          child: Text(
+                            '${question.questionType}',
+                            style: TextStyle(
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -845,13 +849,17 @@ class QuestionPreview extends StatelessWidget {
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          question.question!,
-                          style: TextStyle(
-                              fontSize: height * 0.0175,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontWeight: FontWeight.w400),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              right: width * 0.02, left: width * 0.02),
+                          child: Text(
+                            question.question!,
+                            style: TextStyle(
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ),
                       SizedBox(

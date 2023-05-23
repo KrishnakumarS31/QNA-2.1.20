@@ -143,7 +143,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: width * 0.6,
                                     child: Column(
                                       children: [
                                         Align(
@@ -219,7 +219,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   ),
                                   SizedBox(height: height * 0.06),
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: width * 0.6,
                                     child: Column(
                                       children: [
                                         Align(
@@ -292,7 +292,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   SizedBox(height: height * 0.03),
                                   Row(
                                       children: [
-                                        SizedBox(width: height * 0.4),
+                                        SizedBox(width: width * 0.1),
                                         RichText(
                                             text: TextSpan(children: [
                                               TextSpan(
@@ -320,7 +320,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      SizedBox(width: height * 0.4),
+                                      SizedBox(width: width * 0.1),
                                       Transform.scale(
                                           filterQuality: FilterQuality.high,
                                           scale: 1.2,

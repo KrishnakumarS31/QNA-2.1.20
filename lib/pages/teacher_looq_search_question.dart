@@ -263,7 +263,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                         Row(
                           children: [
                             Text(
-                              AppLocalizations.of(context)!.my_qns,
+                              AppLocalizations.of(context)!.qn_button,
                              // "My Questions",
                               textAlign: TextAlign.left,
                               style: TextStyle(
@@ -274,7 +274,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                               ),
                             ),
                             SizedBox(
-                              width: width * 0.02,
+                              width: width * 0.01,
                             ),
                             const Icon(
                               Icons.circle_rounded,
@@ -356,7 +356,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                 //'View More',
                                 style: TextStyle(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontSize: height * 0.0175,
+                                  fontSize: height * 0.019,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -437,7 +437,7 @@ class QuestionPreview extends StatelessWidget {
               children: [
                 Container(
                   height: height * 0.04,
-                  width: width * 0.9,
+                  width: width * 0.95,
                   color: const Color.fromRGBO(82, 165, 160, 1),
                   child: Padding(
                     padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
@@ -479,34 +479,40 @@ class QuestionPreview extends StatelessWidget {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: width * 0.03),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      question.questionType!,
-                      style: TextStyle(
-                          fontSize: height * 0.015,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(28, 78, 80, 1),
-                          fontWeight: FontWeight.w600),
+                Container(
+                  width: width * 0.95,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        question.questionType!,
+                        style: TextStyle(
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: width * 0.03),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      question.question!,
-                      style: TextStyle(
-                          fontSize: height * 0.0175,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(51, 51, 51, 1),
-                          fontWeight: FontWeight.w400),
+                Container(
+                  width: width * 0.95,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        question.question!,
+                        style: TextStyle(
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            color: const Color.fromRGBO(51, 51, 51, 1),
+                            fontWeight: FontWeight.w400),
+                      ),
                     ),
                   ),
                 ),

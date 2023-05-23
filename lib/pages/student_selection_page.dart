@@ -183,33 +183,25 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.030,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: width * 0.4),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CustomRadioButton<String>(
-                                  value: '1',
-                                  groupValue: _groupValue,
-                                  onChanged: _valueChangedHandler(),
-                                  label: '1',
-                                  text: AppLocalizations.of(context)!.guest,
-                                  height: height,
-                                  width: width,
-                                  context: context,
-                                ),
-                                CustomRadioButton<String>(
-                                  value: '2',
-                                  groupValue: _groupValue,
-                                  onChanged: _valueChangedHandler(),
-                                  label: '2',
-                                  text: AppLocalizations.of(context)!.member,
-                                  height: height,
-                                  width: width,
-                                  context: context,
-                                ),
-                              ]),
+                        CustomRadioButton<String>(
+                          value: '1',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: '1',
+                          text: AppLocalizations.of(context)!.guest,
+                          height: height,
+                          width: width,
+                          context: context,
+                        ),
+                        CustomRadioButton<String>(
+                          value: '2',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: '2',
+                          text: AppLocalizations.of(context)!.member,
+                          height: height,
+                          width: width,
+                          context: context,
                         ),
                         SizedBox(
                           height: height * 0.05,
@@ -225,8 +217,8 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           ),
                           onPressed: () async {
                             if (_groupValue == '2') {
-                              bool status = await checkIfAlreadyLoggedIn();
-                              if (status == false) {
+                              //bool status = await checkIfAlreadyLoggedIn();
+                              //if (status == false) {
                                 Navigator.pushNamed(context, '/studentMemberLoginPage');
                                 // Navigator.push(
                                 //   context,
@@ -236,9 +228,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                                 //             ),
                                 //   ),
                                 // );
-                              }
-                            } else {
-
+                              //}
+                            }
+                            else {
                               Navigator.pushNamed(context, '/studentGuestLogin');
                               // Navigator.push(
                               //   context,
@@ -386,30 +378,25 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                         SizedBox(
                           height: height * 0.030,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: width * 0.21),
-                          child: Column(children: [
-                            CustomRadioButton<String>(
-                              value: '1',
-                              groupValue: _groupValue,
-                              onChanged: _valueChangedHandler(),
-                              label: '1',
-                              text: AppLocalizations.of(context)!.guest,
-                              height: height,
-                              width: width,
-                              context: context,
-                            ),
-                            CustomRadioButton<String>(
-                              value: '2',
-                              groupValue: _groupValue,
-                              onChanged: _valueChangedHandler(),
-                              label: '2',
-                              text: AppLocalizations.of(context)!.member,
-                              height: height,
-                              width: width,
-                              context: context,
-                            ),
-                          ]),
+                        CustomRadioButton<String>(
+                          value: '1',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: '1',
+                          text: AppLocalizations.of(context)!.guest,
+                          height: height,
+                          width: width,
+                          context: context,
+                        ),
+                        CustomRadioButton<String>(
+                          value: '2',
+                          groupValue: _groupValue,
+                          onChanged: _valueChangedHandler(),
+                          label: '2',
+                          text: AppLocalizations.of(context)!.member,
+                          height: height,
+                          width: width,
+                          context: context,
                         ),
                         SizedBox(
                           height: height * 0.05,

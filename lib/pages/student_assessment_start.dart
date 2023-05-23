@@ -377,7 +377,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                         //   height: localHeight * 0.03,
                         // ),
                       ]))));
-        } else {
+        }
+        else {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(

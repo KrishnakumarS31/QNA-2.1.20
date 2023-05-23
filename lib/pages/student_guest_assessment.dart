@@ -428,7 +428,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                           ),
                         ),
                         Container(
-                          width: 149,
+                          width: width,
                           margin: const EdgeInsets.all(15),
                           child: Column(children: [
                             Align(

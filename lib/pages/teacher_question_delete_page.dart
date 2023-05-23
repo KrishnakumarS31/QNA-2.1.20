@@ -420,11 +420,12 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 showAlertDialog(context, height);
                               },
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   IconButton(
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.delete,
-                                      size: 30,
+                                      size: height * 0.028,
                                       color: Color.fromRGBO(28, 78, 80, 1),
                                     ),
                                     onPressed: () {
@@ -514,16 +515,21 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                         Container(
                           //height: height * 0.060,
                             color: const Color.fromRGBO(82, 165, 160, 1),
-                            child: Row(children: [
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
                               //SizedBox(width: width * 0.10),
-                              Text("Subject and Topic",
-                                  style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          255, 255, 255, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: height * 0.020)),
-                              SizedBox(width: width >700?width * 0.85:width * 0.25),
+                              Padding(
+                                padding: EdgeInsets.only(right: width * 0.02,left: width * 0.02),
+                                child: Text("Subject and Topic",
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            255, 255, 255, 1),
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: height * 0.020)),
+                              ),
+                              //SizedBox(width: width >700?width * 0.85:width * 0.25),
                               IconButton(
                                 icon: Icon(
                                   showIcon,
@@ -542,16 +548,21 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                               Container(
                                 //height: height * 0.060,
                                   color: const Color.fromRGBO(82, 165, 160, 1),
-                                  child: Row(children: [
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
                                     //SizedBox(width: width * 0.10),
-                                    Text("Subject and Topic",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                255, 255, 255, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.020)),
-                                    SizedBox(width: width >700?width * 0.85:width * 0.25),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: width * 0.02,left: width * 0.02),
+                                      child: Text("Subject and Topic",
+                                          style: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  255, 255, 255, 1),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: height * 0.020)),
+                                    ),
+                                    //SizedBox(width: width >700?width * 0.85:width * 0.25),
                                     IconButton(
                                       icon: Icon(
                                         showIcon,

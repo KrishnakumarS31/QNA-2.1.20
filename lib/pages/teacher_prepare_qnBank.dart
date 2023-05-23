@@ -331,17 +331,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    IconButton(
-                                      icon: const Icon(
+                                    const Icon(
                                         Icons.delete,
                                         size: 30,
                                         color: Color.fromRGBO(209, 209, 209, 1),
                                       ),
-                                      onPressed: () {
-                                        //Navigator.of(context).pop();
-                                      },
-                                    ),
                                     Text(
                                       AppLocalizations.of(context)!.delete,
                                       //"Delete",
@@ -355,17 +351,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                   ],
                                 ),
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    IconButton(
-                                      icon: const Icon(
+                                    const Icon(
                                         Icons.close_outlined,
                                         size: 30,
                                         color: Color.fromRGBO(209, 209, 209, 1),
                                       ),
-                                      onPressed: () {
-                                        //Navigator.of(context).pop();
-                                      },
-                                    ),
                                     Text(
                                       AppLocalizations.of(context)!.clear_all,
                                       //"Clear All",
@@ -393,41 +385,12 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               showIcon==Icons.expand_circle_down_outlined
                                   ?Container(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
-                                  child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(width: width<700?width * 0.02:width * 0.03,),
-                                        Text(
-                                            AppLocalizations.of(context)!.subject_topic,
-                                            //"Subject and Topic",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    255, 255, 255, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.020)),
-                                        // SizedBox(width: width * 0.25),
-                                        SizedBox(width: width<700?width * 0.3:width * 0.70),
-                                        IconButton(
-                                          icon: Icon(
-                                            showIcon,
-                                            color:
-                                            const Color.fromRGBO(255, 255, 255, 1),
-                                            size: height * 0.03,
-                                          ),
-                                          onPressed: () {
-                                            changeIcon(showIcon);
-                                          },
-                                        )
-                                      ])):
-                              Column(children: [
-                                Container(
-                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: width * 0.02,left: width * 0.02),
                                     child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-
-                                          SizedBox( width: width<700?width * 0.02:width * 0.03),
+                                          // SizedBox(width: width<700?width * 0.02:width * 0.03,),
                                           Text(
                                               AppLocalizations.of(context)!.subject_topic,
                                               //"Subject and Topic",
@@ -437,7 +400,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: height * 0.020)),
-                                          SizedBox(width: width<700?width * 0.3:width * 0.70),
+                                          // SizedBox(width: width * 0.25),
+                                          // SizedBox(width: width<700?width * 0.3:width * 0.70),
                                           IconButton(
                                             icon: Icon(
                                               showIcon,
@@ -449,7 +413,41 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               changeIcon(showIcon);
                                             },
                                           )
-                                        ])),
+                                        ]),
+                                  )):
+                              Column(children: [
+                                Container(
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(right: width * 0.02,left: width * 0.02),
+                                      child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+
+                                            //SizedBox( width: width<700?width * 0.02:width * 0.03),
+                                            Text(
+                                                AppLocalizations.of(context)!.subject_topic,
+                                                //"Subject and Topic",
+                                                style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        255, 255, 255, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: height * 0.020)),
+                                            //SizedBox(width: width<700?width * 0.3:width * 0.70),
+                                            IconButton(
+                                              icon: Icon(
+                                                showIcon,
+                                                color:
+                                                const Color.fromRGBO(255, 255, 255, 1),
+                                                size: height * 0.03,
+                                              ),
+                                              onPressed: () {
+                                                changeIcon(showIcon);
+                                              },
+                                            )
+                                          ]),
+                                    )),
                                 SizedBox(height: height * 0.010),
                                 Container(
                                     margin: const EdgeInsets.only(
@@ -710,7 +708,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018),
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.multiline,
                                     decoration: InputDecoration(
                                       floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
@@ -1277,17 +1275,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    IconButton(
-                                      icon: const Icon(
+                                    const Icon(
                                         Icons.delete,
                                         size: 30,
                                         color: Color.fromRGBO(209, 209, 209, 1),
                                       ),
-                                      onPressed: () {
-                                        //Navigator.of(context).pop();
-                                      },
-                                    ),
                                     Text(
                                       AppLocalizations.of(context)!.delete,
                                       //"Delete",
@@ -1301,17 +1295,13 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                   ],
                                 ),
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    IconButton(
-                                      icon: const Icon(
+                                    const Icon(
                                         Icons.close_outlined,
                                         size: 30,
                                         color: Color.fromRGBO(209, 209, 209, 1),
                                       ),
-                                      onPressed: () {
-                                        //Navigator.of(context).pop();
-                                      },
-                                    ),
                                     Text(
                                       AppLocalizations.of(context)!.clear_all,
                                       //"Clear All",
@@ -1339,33 +1329,36 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               showIcon==Icons.expand_circle_down_outlined
                                   ?Container(
                                   color: const Color.fromRGBO(82, 165, 160, 1),
-                                  child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        SizedBox(width: width<700?width * 0.02:width * 0.03,),
-                                        Text(
-                                            AppLocalizations.of(context)!.subject_topic,
-                                            //"Subject and Topic",
-                                            style: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    255, 255, 255, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.020)),
-                                        // SizedBox(width: width * 0.25),
-                                        SizedBox(width: width<700?width * 0.3:width * 0.70),
-                                        IconButton(
-                                          icon: Icon(
-                                            showIcon,
-                                            color:
-                                            const Color.fromRGBO(255, 255, 255, 1),
-                                            size: height * 0.03,
-                                          ),
-                                          onPressed: () {
-                                            changeIcon(showIcon);
-                                          },
-                                        )
-                                      ])):
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: width * 0.02,left: width * 0.02),
+                                    child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          // SizedBox(width: width<700?width * 0.02:width * 0.03,),
+                                          Text(
+                                              AppLocalizations.of(context)!.subject_topic,
+                                              //"Subject and Topic",
+                                              style: TextStyle(
+                                                  color: const Color.fromRGBO(
+                                                      255, 255, 255, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: height * 0.020)),
+                                          // SizedBox(width: width * 0.25),
+                                          // SizedBox(width: width<700?width * 0.3:width * 0.70),
+                                          IconButton(
+                                            icon: Icon(
+                                              showIcon,
+                                              color:
+                                              const Color.fromRGBO(255, 255, 255, 1),
+                                              size: height * 0.03,
+                                            ),
+                                            onPressed: () {
+                                              changeIcon(showIcon);
+                                            },
+                                          )
+                                        ]),
+                                  )):
                               Column(children: [
                                 Container(
                                     color: const Color.fromRGBO(82, 165, 160, 1),

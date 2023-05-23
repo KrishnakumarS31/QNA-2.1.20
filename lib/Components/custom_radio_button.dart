@@ -25,7 +25,7 @@ class CustomRadioButton<T> extends StatelessWidget {
   Widget _buildLabel() {
     final bool isSelected = value == groupValue;
     return Container(
-      width: width * 0.07,
+      width: width>700?width * 0.05:width * 0.07,
       height: height * 0.04,
       decoration: ShapeDecoration(
         shape: const CircleBorder(
@@ -47,36 +47,35 @@ class CustomRadioButton<T> extends StatelessWidget {
 
   Widget _buildText() {
 
-    return Text(
-      text,
-      style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-          TextStyle(
-              color: const Color.fromRGBO(82, 165, 160, 1),
-              fontFamily: 'Inter',
-              fontWeight: FontWeight.w600,
-              fontSize: height * 0.03)),
+    return Container(
+      width: width>700?width * 0.1:width * 0.2,
+      child: Text(
+        text,
+        style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+            TextStyle(
+                color: const Color.fromRGBO(82, 165, 160, 1),
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w600,
+                fontSize: height * 0.03)),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
     return Container(
       margin: EdgeInsets.only(
-          left: height * 0.068, bottom: height * 0.008, top: height * 0.008),
+           bottom: height * 0.008, top: height * 0.008),
       child: InkWell(
         onTap: () => onChanged(value),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildLabel(),
-            constraints.maxWidth > 700
-            ? const SizedBox()
-            : SizedBox(width: width * 0.05),
+            SizedBox(
+              width: width>700?0:width * 0.03,),
             _buildText(),
           ],
         ),
       ),
-    );
-  }
     );}}

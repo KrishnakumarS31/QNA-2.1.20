@@ -1306,7 +1306,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                   255, 255, 255, 1),
                                               fontWeight: FontWeight.w600),
                                         ),
-                                        const Icon(Icons.chevron_right)
+                                        Icon(Icons.chevron_right,size: height * 0.04,)
                                       ],
                                     ),
                                   ),
@@ -2296,7 +2296,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                 255, 255, 255, 1),
                                             fontWeight: FontWeight.w600),
                                       ),
-                                      const Icon(Icons.chevron_right)
+                                      Icon(Icons.chevron_right,size: height * 0.04,)
                                     ],
                                   ),
                                 ),

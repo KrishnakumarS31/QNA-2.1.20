@@ -768,7 +768,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                         AppLocalizations.of(context)!.edit_button,
                                         //'Edit',
                                         style: TextStyle(
-                                            fontSize: height * 0.017,
+                                            fontSize: height * 0.02,
                                             fontFamily: "Inter",
                                             color: const Color.fromRGBO(
                                                 28, 78, 80, 1),
@@ -777,8 +777,9 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                       SizedBox(
                                         width: width * 0.01,
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.edit_outlined,
+                                        size: width * 0.014,
                                         color: Color.fromRGBO(28, 78, 80, 1),
                                       )
                                     ],
