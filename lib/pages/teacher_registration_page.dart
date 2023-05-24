@@ -1412,9 +1412,9 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                             countryResident:
                             selectedCountryResident
                                 .dropDownValue?.value,
-                            role:
+                            role: ["teacher"]
                             //also == true ?
-                            ["teacher","student"]
+                            //["teacher","student"]
                                // : ["teacher"]
                         );
                         if (pPCheck) {

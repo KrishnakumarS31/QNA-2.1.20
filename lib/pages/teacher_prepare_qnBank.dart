@@ -463,7 +463,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
                                             label: SizedBox(
-                                              width: width * 0.05,
+                                              width: width<1200?width * 0.08:width * 0.05,
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -611,7 +611,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               fontSize: height * 0.018),
                                           decoration: InputDecoration(
                                             label: SizedBox(
-                                              width: width * 0.07,
+                                              width: width<1200?width * 0.13:width * 0.07,
                                               child: Row(
                                                 children: [
                                                   Text(

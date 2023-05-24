@@ -80,12 +80,12 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                   child: Image.asset("assets/images/help.png"),
                 ),
                 SizedBox(height: height * 0.03),
-                Padding(
-                  padding: EdgeInsets.only(left:
-                  constraints.maxWidth > 700
-                  ? height * 0.9
-                          : height * 0.03
-                  ),
+                Center(
+                  // padding: EdgeInsets.only(left:
+                  // constraints.maxWidth > 700
+                  // ? height * 0.9
+                  // : height * 0.03
+                  // ),
                   child: Text(
                     AppLocalizations.of(context)!.can_help,
                     //"How can we help you ?",
@@ -97,11 +97,11 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                   ),
                 ),
                 SizedBox(height: height * 0.02),
-                Padding(
-                    padding: EdgeInsets.only(left:
-                    constraints.maxWidth > 700
-                        ? height * 0.7
-                    : height * 0.03),
+                Center(
+                    // padding: EdgeInsets.only(left:
+                    // constraints.maxWidth > 700
+                    //     ? height * 0.7
+                    // : height * 0.03),
                     child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(

@@ -3,7 +3,6 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:intl/intl.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
@@ -1455,9 +1454,9 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                             countryResident:
                             selectedCountryResident
                                 .dropDownValue?.value,
-                            role:
+                            role: ["student"]
                             //also == true?
-                            ["student","teacher"]
+                            //["student","teacher"]
                                 //: ["student"]
                         );
                         if (pPCheck) {
@@ -1487,7 +1486,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                               );
                             }
                           } else {
-                            if (context.mounted) {
                               Navigator.push(
                                 context,
                                 PageTransition(
@@ -1499,7 +1497,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                   ),
                                 ),
                               );
-                            }
                           }
                         }
                       }
