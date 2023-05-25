@@ -87,7 +87,7 @@ class _WelcomePageState extends State<WelcomePage> {
     // const iconAsset = "assets/images/bg.png";
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 700) {
+        if (constraints.maxWidth > 400) {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -103,20 +103,19 @@ class _WelcomePageState extends State<WelcomePage> {
                   endDrawer: const EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
-                      child: Stack(
-                        clipBehavior: Clip.none,
+                      child: Column(
                         children: [
                           Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(
                                     height: localHeight,
-                                    width: localWidth,
+                                    width: 400,
                                     child: Column(
                                       children: [
                                         Container(
                                           height: localHeight * 0.43,
-                                          width: localWidth,
+                                          width: 400,
                                           decoration: BoxDecoration(
                                             gradient: const LinearGradient(
                                               begin: Alignment.topLeft,
@@ -127,7 +126,42 @@ class _WelcomePageState extends State<WelcomePage> {
                                               ],
                                             ),
                                             borderRadius: BorderRadius.vertical(
-                                                bottom: Radius.elliptical(localWidth, localHeight * 0.40)),
+                                                bottom: Radius.elliptical(400, localHeight * 0.40)),
+                                          ),
+                                          child: Column(
+                                            children: [
+                                              SizedBox(height: localHeight * 0.05),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(width: localWidth * 0.04),
+                                                  Container(
+                                                    width: 400 * 0.3,
+                                                    height: MediaQuery.of(context).size.height * 0.04,
+                                                    decoration: const BoxDecoration(
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.fill,
+                                                        image:
+                                                        AssetImage('assets/images/itne_logo.png'),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(height: localHeight * 0.08),
+                                              Container(
+                                                width: 400 * 0.53,
+                                                height: localHeight * 0.135,
+                                                decoration: const BoxDecoration(
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.fitHeight,
+                                                    image:
+                                                    AssetImage('assets/images/qna_logo.png'),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(height: localHeight * 0.01),
+                                            ],
                                           ),
                                         ),
                                         SizedBox(
@@ -141,140 +175,109 @@ class _WelcomePageState extends State<WelcomePage> {
                                                     28, 78, 80, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: localHeight * 0.05)),
+                                                fontSize: localHeight * 0.035)),
                                         SizedBox(
                                           height: localHeight * 0.03,
                                         ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 400 / 15,
+                                              right: 400 / 15),
+                                          child: Column(children: [
+                                            SizedBox(
+                                              height: localHeight * 0.02,
+                                            ),
                                             Container(
                                               padding: EdgeInsets.only(
-                                                  left: localWidth / 15,
-                                                  right: localWidth / 15),
-                                              child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  children: [
-                                                    SizedBox(
-                                                      height:
-                                                          localHeight * 0.02,
+                                                  left: 400 / 15,
+                                                  right: 400 / 15),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: ElevatedButton(
+                                                  style:
+                                                  ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                    const Color.fromRGBO(
+                                                        82, 165, 160, 1),
+                                                    minimumSize:
+                                                    const Size(280, 48),
+                                                    shape:
+                                                    RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          39),
                                                     ),
-                                                    Container(
-                                                      padding: EdgeInsets.only(
-                                                          left: localWidth / 15,
-                                                          right:
-                                                              localWidth / 15),
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                            backgroundColor:
-                                                                const Color
-                                                                        .fromRGBO(
-                                                                    82,
-                                                                    165,
-                                                                    160,
-                                                                    1),
-                                                            minimumSize:
-                                                                const Size(
-                                                                    280, 48),
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          39),
-                                                            ),
-                                                          ),
-                                                          child: Text(
-                                                              AppLocalizations.of(
-                                                                      context)!
-                                                                  .student,
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Inter',
-                                                                  fontWeight: FontWeight.w600,
-                                                                  fontSize:
-                                                                      localHeight *
-                                                                          0.03,
-                                                                  color: Colors
-                                                                      .white)),
-                                                          onPressed: () async {
-                                                            Navigator.pushNamed(
-                                                                context,
-                                                                '/studentSelectionPage',
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ]),
-                                            ),
-                                            Container(
-                                              padding: EdgeInsets.only(
-                                                  left: localWidth / 15,
-                                                  right: localWidth / 15),
-                                              child: Column(children: [
-                                                SizedBox(
-                                                  height: localHeight * 0.02,
+                                                  ),
+                                                  child: Text(
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .student,
+                                                      style: TextStyle(
+                                                          fontFamily: 'Inter',
+                                                          fontSize:
+                                                          localHeight *
+                                                              0.03,
+                                                          fontWeight: FontWeight.w600,
+                                                          color: Colors.white)),
+                                                  onPressed: () async {
+                                                    Navigator.pushNamed(context, '/studentSelectionPage');
+                                                  },
                                                 ),
-                                                Container(
-                                                    padding: EdgeInsets.only(
-                                                        left: localWidth / 15,
-                                                        right: localWidth / 15),
-                                                    child: Align(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                          backgroundColor:
-                                                              const Color
-                                                                      .fromRGBO(
-                                                                  82,
-                                                                  165,
-                                                                  160,
-                                                                  1),
-                                                          minimumSize:
-                                                              const Size(
-                                                                  280, 48),
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        39),
-                                                          ),
-                                                        ),
-                                                        child: Text(
-                                                            AppLocalizations.of(
-                                                                    context)!
-                                                                .teacher,
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                    'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize:
-                                                                    localHeight *
-                                                                        0.03,
-                                                                color: Colors
-                                                                    .white)),
-                                                        onPressed: () {
-                                                          teacherClick == true;
-                                                            Navigator.pushNamed(context, '/teacherLoginPage');
-                                                        },
-                                                      ),
-                                                    )),
-                                              ]),
-                                            ),
-                                          ],
+                                              ),
+                                            )
+                                          ]),
                                         ),
                                         SizedBox(
                                           height: localHeight * 0.07,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 400 / 15,
+                                              right: 400 / 15),
+                                          child: Column(children: [
+                                            SizedBox(
+                                              height: localHeight * 0.02,
+                                            ),
+                                            Container(
+                                                padding: EdgeInsets.only(
+                                                    left: 400 / 15,
+                                                    right: 400 / 15),
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: ElevatedButton(
+                                                    style: ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                      const Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      minimumSize:
+                                                      const Size(280, 48),
+                                                      shape:
+                                                      RoundedRectangleBorder(
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(39),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                        AppLocalizations.of(
+                                                            context)!
+                                                            .teacher,
+                                                        style: TextStyle(
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize:
+                                                            localHeight *
+                                                                0.03,
+                                                            color:
+                                                            Colors.white)),
+                                                    onPressed: () {
+                                                      teacherClick == true;
+                                                      Navigator.pushNamed(context, '/teacherLoginPage');
+                                                    },
+                                                  ),
+                                                )),
+                                          ]),
                                         ),
                                         SizedBox(
                                           height: localHeight * 0.05,
@@ -313,41 +316,12 @@ class _WelcomePageState extends State<WelcomePage> {
                                                                 48, 145, 139, 1),
                                                             fontFamily: 'Inter',
                                                             fontWeight: FontWeight.w500,
-                                                            fontSize: localHeight * 0.02)))))
+                                                            fontSize: localHeight * 0.023)))))
                                           ],
                                         ),
                                       ],
                                     ))
                               ]),
-                          Positioned(
-                            left: localWidth * 0.04,
-                            top: localHeight * 0.055,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width * 0.1,
-                              height: MediaQuery.of(context).size.height * 0.04,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/images/itne_logo.png'),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            left: localWidth * 0.25,
-                            top: localHeight * 0.15,
-                            child: Container(
-                              width: localWidth * 0.5,
-                              height: localHeight * 0.2,
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.contain,
-                                  image:
-                                      AssetImage('assets/images/qna_logo.png'),
-                                ),
-                              ),
-                            ),
-                          ),
                         ],
                       ))));
         }

@@ -24,8 +24,9 @@ class CustomRadioButton<T> extends StatelessWidget {
 
   Widget _buildLabel() {
     final bool isSelected = value == groupValue;
+    print(width);
     return Container(
-      width: width>700?width * 0.05:width * 0.07,
+      width: width>900?width * 0.05:width>500?width * 0.05:width * 0.09,
       height: height * 0.04,
       decoration: ShapeDecoration(
         shape: const CircleBorder(
@@ -48,7 +49,7 @@ class CustomRadioButton<T> extends StatelessWidget {
   Widget _buildText() {
 
     return Container(
-      width: width>700?width * 0.1:width * 0.2,
+      width: width>900?width * 0.1:width>500?width * 0.35:width * 0.3,
       child: Text(
         text,
         style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(

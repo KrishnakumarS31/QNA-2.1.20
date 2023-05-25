@@ -92,7 +92,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         .height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 700) {
+        if (constraints.maxWidth > 400) {
           return WillPopScope(
               onWillPop: () async => false, child: Scaffold(
               resizeToAvoidBottomInset: true,
@@ -103,8 +103,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                     Column(
                         children: [
                           Container(
-                            height: localHeight * 0.27,
-                            width: localWidth * 1,
+                            height: localHeight * 0.25,
+                            width: 400 * 1,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 begin: Alignment.topLeft,
@@ -116,13 +116,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               ),
                               borderRadius: BorderRadius.vertical(
                                   bottom: Radius.elliptical(
-                                      localWidth * 2.0,
+                                      400 * 2.0,
                                       localHeight * 0.6)
                               ),
                             ),
                             child: Column(
                               children: [
-                                SizedBox(height: localHeight * 0.020),
+                                SizedBox(height: localHeight * 0.060),
                                 Align(
                                   alignment: Alignment.topLeft,
                                   child: Row(
@@ -130,11 +130,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         IconButton(
                                           tooltip: AppLocalizations.of(context)!
                                               .revise,
-                                          icon:const Icon(
+                                          icon: const Icon(
                                             Icons.chevron_left,
+                                            size: 30,
                                             color: Colors.white,
                                           ),
-                                          iconSize: localHeight * 0.06,
                                           onPressed: () {
                                             context.read<QuestionNumProvider>()
                                                 .skipQuestionNum(1);
@@ -142,26 +142,27 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                           },
                                         ),
                                         MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: MouseRegion(
+                                            cursor: SystemMouseCursors.click,
+                                            child: MouseRegion(
                                               cursor: SystemMouseCursors.click,
                                               child: GestureDetector(
-                                                  onTap: () {
-                                                    context.read<QuestionNumProvider>()
-                                                        .skipQuestionNum(1);
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child:  Text(
-                                                      AppLocalizations.of(context)!
-                                                          .revise,
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: localHeight * 0.024))
-                                              )),
-                                        )
-                                      ]),
+                                                onTap: () {
+                                                  context.read<QuestionNumProvider>()
+                                                      .skipQuestionNum(1);
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: Text(
+                                                  AppLocalizations.of(context)!.revise,
+                                                  style: TextStyle(
+                                                    color: const Color.fromRGBO(
+                                                        255, 255, 255, 1),
+                                                    fontSize: localHeight * 0.018,
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ),
+                                            ))]),
                                 ),
                                 Align(
                                   alignment: Alignment.topCenter,
@@ -173,7 +174,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               255, 255, 255, 1),
-                                          fontSize: localHeight * 0.030,
+                                          fontSize: localHeight * 0.020,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -184,7 +185,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               255, 255, 255, 1),
-                                          fontSize: localHeight * 0.030,
+                                          fontSize: localHeight * 0.020,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -197,7 +198,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         style: TextStyle(
                                           color: const Color.fromRGBO(
                                               255, 255, 255, 1),
-                                          fontSize: localHeight * 0.026,
+                                          fontSize: localHeight * 0.016,
                                           fontFamily: "Inter",
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -206,7 +207,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                   ),
                                 ),
                                 SizedBox(height: localHeight * 0.025),
-
                               ],
                             ),
                           ),
@@ -214,418 +214,200 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           Text(widget.userName,
                             style: const TextStyle(
                               color: Color.fromRGBO(82, 165, 160, 1),
-                              fontSize: 28.0,
+                              fontSize: 18.0,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600,
                             ),),
                           SizedBox(height: localHeight * 0.030),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Column(
-                                  children: [
-                                    for (int index = 1; index <= context
-                                        .watch<Questions>()
-                                        .totalQuestion
-                                        .length; index = index + 2)
-                                      MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                            onTap: () {},
-                                            child: Container(
-                                                width: localWidth * 0.4,
-                                                margin: const EdgeInsets.all(5),
-                                                padding: const EdgeInsets.all(5),
-                                                child:
-                                                ListTile(
-                                                  tileColor: const Color.fromRGBO(
-                                                      82, 165, 160, 0.03),
-                                                  title: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment
-                                                          .start,
-                                                      children: [
-                                                        Row(children: [
-                                                          Text("${AppLocalizations
-                                                              .of(context)!
-                                                              .ques}$index",
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      82, 165, 160,
-                                                                      1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w700,
-                                                                  fontSize: localHeight *
-                                                                      0.022)),
-                                                          SizedBox(
-                                                              width: localHeight *
-                                                                  0.010),
-                                                          Text(
-                                                            "(${values.data!
-                                                                .questions![index -
-                                                                1]
-                                                                .questionMarks} ${AppLocalizations
-                                                                .of(context)!
-                                                                .marks})",
-                                                            style: TextStyle(
+                          Column(
+                              children: [
+                                for (int index = 1; index <= context
+                                    .watch<Questions>()
+                                    .totalQuestion
+                                    .length; index++)
+                                  MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () {},
+                                        child: Container(
+                                          width: 400,
+                                            margin: const EdgeInsets.all(5),
+                                            padding: const EdgeInsets.all(5),
+                                            child:
+                                            ListTile(
+                                              tileColor:
+                                              Provider
+                                                  .of<Questions>(
+                                                  context, listen: false)
+                                                  .totalQuestion['$index'][1] ==
+                                                  const Color(0xff52a5a0)
+                                                  ? const Color.fromRGBO(
+                                                  82, 165, 160, 0.03)
+                                                  : const Color.fromRGBO(
+                                                  250, 250, 250, 1),
+                                              title: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment
+                                                      .start,
+                                                  children: [
+                                                    Row(children: [
+                                                      Text("${AppLocalizations.of(
+                                                          context)!.ques}$index",
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  82, 165, 160, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight
+                                                                  .w700,
+                                                              fontSize: localHeight *
+                                                                  0.012)),
+                                                      SizedBox(width: localHeight *
+                                                          0.010),
+                                                      Text(
+                                                        "(${values.data!
+                                                            .questions![index - 1]
+                                                            .questionMarks} ${AppLocalizations
+                                                            .of(context)!.marks})",
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                179, 179, 179, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w500,
+                                                            fontSize: localHeight *
+                                                                0.012),
+                                                      ),
+                                                      SizedBox(width: localHeight *
+                                                          0.010),
+                                                      Provider
+                                                          .of<Questions>(
+                                                          context, listen: false)
+                                                          .totalQuestion["$index"][2] ==
+                                                          true
+                                                          ? Stack(
+                                                        children: [
+                                                          Icon(
+                                                              Icons
+                                                                  .mode_comment_outlined,
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  255, 153, 0, 1),
+                                                              size: localHeight *
+                                                                  0.025),
+                                                          Positioned(
+                                                              left: MediaQuery
+                                                                  .of(context)
+                                                                  .copyWith()
+                                                                  .size
+                                                                  .width * 0.008,
+                                                              top: MediaQuery
+                                                                  .of(context)
+                                                                  .copyWith()
+                                                                  .size
+                                                                  .height * 0.004,
+                                                              child: Icon(
+                                                                Icons.question_mark,
                                                                 color: const Color
                                                                     .fromRGBO(
-                                                                    179, 179, 179,
-                                                                    1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w500,
-                                                                fontSize: localHeight *
-                                                                    0.022),
-                                                          ),
-                                                          SizedBox(
-                                                              width: localHeight *
-                                                                  0.010),
+                                                                    255, 153, 0, 1),
+                                                                size: MediaQuery
+                                                                    .of(context)
+                                                                    .copyWith()
+                                                                    .size
+                                                                    .height *
+                                                                    0.016,))
+                                                        ],
+                                                      )
+                                                          : SizedBox(
+                                                          width: localHeight *
+                                                              0.010),
+                                                    ]),
+                                                    SizedBox(height: localHeight *
+                                                        0.010),
+                                                    Text(values.data!
+                                                        .questions![index - 1]
+                                                        .question!,
+                                                      textAlign: TextAlign.start,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              51, 51, 51, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight
+                                                              .w400,
+                                                          fontSize: localHeight *
+                                                              0.013),
+                                                    ),
+                                                    SizedBox(height: localHeight *
+                                                        0.015),
+                                                  ]),
+                                              subtitle:
+                                              Column(
+                                                  children: [
+                                                    Align(
+                                                      alignment: Alignment.topLeft,
+                                                      child:
+                                                      Text(
                                                           Provider
                                                               .of<Questions>(
                                                               context,
                                                               listen: false)
-                                                              .totalQuestion["$index"][2] ==
-                                                              true
-                                                              ? Stack(
-                                                            children: [
-                                                              Icon(
-                                                                  Icons
-                                                                      .mode_comment_outlined,
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      255, 153, 0,
-                                                                      1),
-                                                                  size: localHeight *
-                                                                      0.025),
-                                                              Positioned(
-                                                                  left: MediaQuery
-                                                                      .of(context)
-                                                                      .copyWith()
-                                                                      .size
-                                                                      .width *
-                                                                      0.002,
-                                                                  top: MediaQuery
-                                                                      .of(context)
-                                                                      .copyWith()
-                                                                      .size
-                                                                      .height *
-                                                                      0.003,
-                                                                  child: Icon(Icons
-                                                                      .question_mark,
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        255, 153, 0,
-                                                                        1),
-                                                                    size: MediaQuery
-                                                                        .of(context)
-                                                                        .copyWith()
-                                                                        .size
-                                                                        .height *
-                                                                        0.016,))
-                                                            ],
-                                                          )
-                                                              : SizedBox(
-                                                              width: localHeight *
-                                                                  0.010),
-                                                        ]),
-                                                        SizedBox(
-                                                            height: localHeight *
-                                                                0.010),
-                                                        Text(values.data!
-                                                            .questions![index - 1]
-                                                            .question!,
-                                                          textAlign: TextAlign
-                                                              .start,
-                                                          style: TextStyle(
-                                                              color: const Color
-                                                                  .fromRGBO(
-                                                                  51, 51, 51, 1),
-                                                              fontFamily: 'Inter',
-                                                              fontWeight: FontWeight
-                                                                  .w400,
-                                                              fontSize: localHeight *
-                                                                  0.023),
-                                                        ),
-                                                        SizedBox(
-                                                            height: localHeight *
-                                                                0.015),
-                                                      ]),
-                                                  subtitle:
-                                                  Column(
-                                                      children: [
-                                                        Align(
-                                                          alignment: Alignment
-                                                              .topLeft,
-                                                          child:
-                                                          Text(
-                                                              Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][1] ==
-                                                                  const Color(
-                                                                      0xffdb2323)
-                                                                  ? AppLocalizations
-                                                                  .of(context)!
-                                                                  .not_answered
-                                                                  : Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][0]
-                                                                  .toString()
-                                                                  .substring(
-                                                                  1, Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][0]
-                                                                  .toString()
-                                                                  .length - 1),
-                                                              style:
-                                                              Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][1] ==
-                                                                  const Color(
-                                                                      0xffdb2323)
-                                                                  ?
-                                                              TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      238, 71, 0,
-                                                                      1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.024)
-                                                                  : TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      82, 165, 160,
-                                                                      1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.024)
-                                                          ),
-                                                        ),
-                                                        const Divider(
-                                                          thickness: 2,
-                                                        ),
-                                                      ]),
-                                                )
-                                            ),
-                                          ))
-                                  ]),
-                              Column(
-                                  children: [
-                                    for (int index = 2; index <= context
-                                        .watch<Questions>()
-                                        .totalQuestion
-                                        .length; index = index + 2)
-                                      MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: GestureDetector(
-                                            onTap: () {},
-                                            child: Container(
-                                                margin: const EdgeInsets.all(5),
-                                                padding: const EdgeInsets.all(5),
-                                                width: localWidth * 0.4,
-                                                child:
-                                                ListTile(
-                                                  tileColor: const Color.fromRGBO(
-                                                      82, 165, 160, 0.03),
-                                                  title: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment
-                                                          .start,
-                                                      children: [
-                                                        Row(children: [
-                                                          Text("${AppLocalizations
-                                                              .of(context)!
-                                                              .ques}$index",
-                                                              style: TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      82, 165, 160,
-                                                                      1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w700,
-                                                                  fontSize: localHeight *
-                                                                      0.022)),
-                                                          SizedBox(
-                                                              width: localHeight *
-                                                                  0.010),
-                                                          Text(
-                                                            "(${values.data!
-                                                                .questions![index -
-                                                                1]
-                                                                .questionMarks} ${AppLocalizations
-                                                                .of(context)!
-                                                                .marks})",
-                                                            style: TextStyle(
-                                                                color: const Color
-                                                                    .fromRGBO(
-                                                                    179, 179, 179,
-                                                                    1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight
-                                                                    .w500,
-                                                                fontSize: localHeight *
-                                                                    0.022),
-                                                          ),
-                                                          SizedBox(
-                                                              width: localHeight *
-                                                                  0.010),
+                                                              .totalQuestion['$index'][1] ==
+                                                              const Color(
+                                                                  0xffdb2323)
+                                                              ? AppLocalizations.of(
+                                                              context)!.not_answered
+                                                              : Provider
+                                                              .of<Questions>(
+                                                              context,
+                                                              listen: false)
+                                                              .totalQuestion['$index'][0]
+                                                              .toString()
+                                                              .substring(1, Provider
+                                                              .of<Questions>(
+                                                              context,
+                                                              listen: false)
+                                                              .totalQuestion['$index'][0]
+                                                              .toString()
+                                                              .length - 1),
+                                                          style:
                                                           Provider
                                                               .of<Questions>(
                                                               context,
                                                               listen: false)
-                                                              .totalQuestion["$index"][2] ==
-                                                              true
-                                                              ? Stack(
-                                                            children: [
-                                                              Icon(
-                                                                  Icons
-                                                                      .mode_comment_outlined,
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      255, 153, 0,
-                                                                      1),
-                                                                  size: localHeight *
-                                                                      0.025),
-                                                              Positioned(
-                                                                  left: MediaQuery
-                                                                      .of(context)
-                                                                      .copyWith()
-                                                                      .size
-                                                                      .width *
-                                                                      0.002,
-                                                                  top: MediaQuery
-                                                                      .of(context)
-                                                                      .copyWith()
-                                                                      .size
-                                                                      .height *
-                                                                      0.003,
-                                                                  child: Icon(Icons
-                                                                      .question_mark,
-                                                                    color: const Color
-                                                                        .fromRGBO(
-                                                                        255, 153, 0,
-                                                                        1),
-                                                                    size: MediaQuery
-                                                                        .of(context)
-                                                                        .copyWith()
-                                                                        .size
-                                                                        .height *
-                                                                        0.016,))
-                                                            ],
-                                                          )
-                                                              : SizedBox(
-                                                              width: localHeight *
-                                                                  0.010),
-                                                        ]),
-                                                        SizedBox(
-                                                            height: localHeight *
-                                                                0.010),
-                                                        Text(values.data!
-                                                            .questions![index - 1]
-                                                            .question!,
-                                                          textAlign: TextAlign
-                                                              .start,
-                                                          style: TextStyle(
+                                                              .totalQuestion['$index'][1] ==
+                                                              const Color(
+                                                                  0xffdb2323)
+                                                              ?
+                                                          TextStyle(
                                                               color: const Color
                                                                   .fromRGBO(
-                                                                  51, 51, 51, 1),
+                                                                  238, 71, 0, 1),
                                                               fontFamily: 'Inter',
                                                               fontWeight: FontWeight
-                                                                  .w400,
+                                                                  .w600,
                                                               fontSize: localHeight *
-                                                                  0.023),
-                                                        ),
-                                                        SizedBox(
-                                                            height: localHeight *
-                                                                0.015),
-                                                      ]),
-                                                  subtitle:
-                                                  Column(
-                                                      children: [
-                                                        Align(
-                                                          alignment: Alignment
-                                                              .topLeft,
-                                                          child:
-                                                          Text(
-                                                              Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][1] ==
-                                                                  const Color(
-                                                                      0xffdb2323)
-                                                                  ? AppLocalizations
-                                                                  .of(context)!
-                                                                  .not_answered
-                                                                  : Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][0]
-                                                                  .toString()
-                                                                  .substring(
-                                                                  1, Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][0]
-                                                                  .toString()
-                                                                  .length - 1),
-                                                              style:
-                                                              Provider
-                                                                  .of<Questions>(
-                                                                  context,
-                                                                  listen: false)
-                                                                  .totalQuestion['$index'][1] ==
-                                                                  const Color(
-                                                                      0xffdb2323)
-                                                                  ?
-                                                              TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      238, 71, 0,
-                                                                      1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.024)
-                                                                  : TextStyle(
-                                                                  color: const Color
-                                                                      .fromRGBO(
-                                                                      82, 165, 160,
-                                                                      1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight
-                                                                      .w600,
-                                                                  fontSize: localHeight *
-                                                                      0.024)
-                                                          ),
-                                                        ),
-                                                        const Divider(
-                                                          thickness: 2,
-                                                        ),
-                                                      ]),
-                                                )
-                                            ),
-                                          ))
-                                  ]),
-                            ],
-                          ),
+                                                                  0.014)
+                                                              : TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  82, 165, 160, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight
+                                                                  .w600,
+                                                              fontSize: localHeight *
+                                                                  0.014)
+                                                      ),
+                                                    ),
+                                                    const Divider(
+                                                      thickness: 2,
+                                                    ),
+                                                  ]),
+                                            )
+                                        ),
+                                      ))
+                              ]),
                           Column(
                             children: [
                               Align(alignment: Alignment.center,
@@ -1017,7 +799,11 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     double localWidth = MediaQuery
         .of(context)
         .size
+        .width > 400 ? 400 : MediaQuery
+        .of(context)
+        .size
         .width;
+
     return showDialog<void>(
         context: context,
         barrierDismissible: false,
