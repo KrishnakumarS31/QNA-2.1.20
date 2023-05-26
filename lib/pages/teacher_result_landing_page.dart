@@ -219,7 +219,14 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      if (constraints.maxWidth > 500) {
+    return
+      Center(
+    child: SizedBox(
+          width: 400,
+      child: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
             resizeToAvoidBottomInset: true,
@@ -416,6 +423,206 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                       ),
                     ]),
               ),
-            )));
+            )))));
   }
-}
+  else {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.white,
+                endDrawer: const EndDrawerMenuTeacher(),
+                appBar: AppBar(
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40.0,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.results_caps,
+                          //'RESULTS',
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.0175,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.my_assessments,
+                          //"MY ASSESSMENTS",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.0225,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ]),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            end: Alignment.bottomCenter,
+                            begin: Alignment.topCenter,
+                            colors: [
+                              Color.fromRGBO(0, 106, 100, 1),
+                              Color.fromRGBO(82, 165, 160, 1),
+                            ])),
+                  ),
+                ),
+                body: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: height * 0.023,
+                        left: height * 0.023,
+                        right: height * 0.023),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          SizedBox(
+                            height: height * 0.7,
+                            child:
+                            results.isEmpty
+                                ? Column(
+                              children: [
+                                SizedBox(height: height * 0.3,),
+                                Center(
+                                  child: Text(
+                                    AppLocalizations.of(context)!.no_results_found,
+                                    //'NO RESULTS FOUND',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(28, 78, 80, 1),
+                                      fontSize: height * 0.0175,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                                : ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: results.length,
+                              itemBuilder: (context, index) => Column(
+                                children: [
+                                  MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          inProgressResults = results[index].assessmentResults!.where((o) => o.attemptType == "InProgress").toList();
+                                          submittedResults = results[index].assessmentResults!.where((o) => o.attemptType == "Completed").toList();
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: TeacherResultAssessment(
+                                                  inProgressResults: inProgressResults,
+                                                  submittedResults: submittedResults,
+                                                  result: results[index],
+                                                  userId: widget.userId,
+                                                  advisorName: widget.advisorName),
+                                            ),
+                                          );
+                                        },
+                                        child: CustomCard(
+                                            height: height,
+                                            width: width,
+                                            //subject: results[index].subject,
+                                            result: results[index]
+                                        ),
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          results.isEmpty?
+                          Align(
+                            alignment: Alignment.center,
+                            child:
+                            Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Text(
+                                    AppLocalizations.of(context)!.view_more,
+                                    //'View More',
+                                    style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontSize: height * 0.0187,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600)),
+                                Icon(Icons.keyboard_arrow_down,
+                                  color: const Color.fromRGBO(141, 167, 167, 1),
+                                  size: height * 0.034,),
+                              ],
+                            ),
+                          )
+                              :Align(
+                            alignment: Alignment.center,
+                            child:
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                    onTap: () async {
+                                      showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return const Center(
+                                                child: CircularProgressIndicator(
+                                                  color: Color.fromRGBO(48, 145, 139, 1),
+                                                ));
+                                          });
+                                      int res= await getData();
+                                      if(res == 200){
+                                        Navigator.of(context).pop();
+                                      }
+                                    },
+                                    child: Wrap(
+                                      crossAxisAlignment: WrapCrossAlignment.center,
+                                      children: [
+                                        Text(
+                                            AppLocalizations.of(context)!.view_more,
+                                            //'View More',
+                                            style: TextStyle(
+                                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                                fontSize: height * 0.0187,
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w600)),
+                                        Icon(Icons.keyboard_arrow_down,
+                                          color: const Color.fromRGBO(141, 167, 167, 1),
+                                          size: height * 0.034,),
+                                      ],
+                                    )
+                                )),
+                          ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
+                        ]),
+                  ),
+                )));
+  }
+  });}}
