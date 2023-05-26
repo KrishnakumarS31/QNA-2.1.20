@@ -386,5 +386,15 @@
   "shown_for_practice": "Answersheet are shown only in Practice mode",
   "not_given": "Not given",
   "completed_parti_list": "Completed Participants List ",
-  "already_registered_user": "User already Registered Please login directly"
+  "already_registered_user": "User already Registered Please login directly",
+  "new_email_id_caps": "NEW EMAIL ID",
+  "new_email_id": "New Email Id",
+  "confirm_new_mail_caps": "CONFIRM NEW EMAIL ID",
+  "confirm_new_mail": "Confirm New Email Id",
+  "reenter_email": "Re-Enter Email correctly",
+  "otp_sent_to_new": "OTP will be sent to new EMAIL ID",
+  "password_unchanged": "Password will remain unchanged.",
+  "incorrect_email": "Incorrect Email",
+  "email_changed": "Your Email has not been changed",
+  "update_email": "Update Email ID"
 }
