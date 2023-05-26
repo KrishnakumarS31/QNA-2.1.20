@@ -159,261 +159,786 @@ class TeacherClonedAssessmentPreviewState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.white,
-          endDrawer: const EndDrawerMenuTeacher(),
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.chevron_left,
-                size: 40.0,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            toolbarHeight: height * 0.100,
-            centerTitle: true,
-            title: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.cloned_caps,
-                    //"CLONED",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.assessment_caps,
-                    //"ASSESSMENTS",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ]),
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: Alignment.bottomCenter,
-                      begin: Alignment.topCenter,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ])),
-            ),
-          ),
-          body: Padding(
-              padding: EdgeInsets.only(
-                  top: height * 0.023,
-                  left: height * 0.023,
-                  right: height * 0.023),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.total_ques,
-                            //'Total Questions: ',
-                            style: TextStyle(
-                                fontSize: height * 0.017,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(0, 0, 0, 1),
-                                fontWeight: FontWeight.w400),
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          // if (constraints.maxWidth > 900) {
+          //   return WillPopScope(
+          //       onWillPop: () async => false,
+          //       child: Scaffold(
+          //         resizeToAvoidBottomInset: true,
+          //         backgroundColor: Colors.white,
+          //         endDrawer: const EndDrawerMenuTeacher(),
+          //         appBar: AppBar(
+          //           leading: IconButton(
+          //             icon: const Icon(
+          //               Icons.chevron_left,
+          //               size: 40.0,
+          //               color: Colors.white,
+          //             ),
+          //             onPressed: () {
+          //               Navigator.of(context).pop();
+          //             },
+          //           ),
+          //           toolbarHeight: height * 0.100,
+          //           centerTitle: true,
+          //           title: Column(
+          //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //               children: [
+          //                 Text(
+          //                   AppLocalizations.of(context)!.cloned_caps,
+          //                   //"CLONED",
+          //                   style: TextStyle(
+          //                     color: const Color.fromRGBO(255, 255, 255, 1),
+          //                     fontSize: height * 0.0225,
+          //                     fontFamily: "Inter",
+          //                     fontWeight: FontWeight.w400,
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   AppLocalizations.of(context)!.assessment_caps,
+          //                   //"ASSESSMENTS",
+          //                   style: TextStyle(
+          //                     color: const Color.fromRGBO(255, 255, 255, 1),
+          //                     fontSize: height * 0.0225,
+          //                     fontFamily: "Inter",
+          //                     fontWeight: FontWeight.w400,
+          //                   ),
+          //                 ),
+          //               ]),
+          //           flexibleSpace: Container(
+          //             decoration: const BoxDecoration(
+          //                 gradient: LinearGradient(
+          //                     end: Alignment.bottomCenter,
+          //                     begin: Alignment.topCenter,
+          //                     colors: [
+          //                       Color.fromRGBO(0, 106, 100, 1),
+          //                       Color.fromRGBO(82, 165, 160, 1),
+          //                     ])),
+          //           ),
+          //         ),
+          //         body: Padding(
+          //             padding: EdgeInsets.only(
+          //                 top: height * 0.023,
+          //                 left: height * 0.023,
+          //                 right: height * 0.023),
+          //             child: Column(
+          //               mainAxisAlignment: MainAxisAlignment.start,
+          //               children: [
+          //                 Row(
+          //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                   children: [
+          //                     Row(
+          //                       children: [
+          //                         Text(
+          //                           AppLocalizations.of(context)!.total_ques,
+          //                           //'Total Questions: ',
+          //                           style: TextStyle(
+          //                               fontSize: height * 0.017,
+          //                               fontFamily: "Inter",
+          //                               color: const Color.fromRGBO(0, 0, 0, 1),
+          //                               fontWeight: FontWeight.w400),
+          //                         ),
+          //                         Text(
+          //                           '${quesList.length}',
+          //                           style: TextStyle(
+          //                               fontSize: height * 0.017,
+          //                               fontFamily: "Inter",
+          //                               color: const Color.fromRGBO(82, 165, 160, 1),
+          //                               fontWeight: FontWeight.w700),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                     Row(
+          //                       children: [
+          //                         Text(
+          //                           AppLocalizations.of(context)!.total_marks,
+          //                           //'Total Marks: ',
+          //                           style: TextStyle(
+          //                               fontSize: height * 0.017,
+          //                               fontFamily: "Inter",
+          //                               color: const Color.fromRGBO(0, 0, 0, 1),
+          //                               fontWeight: FontWeight.w400),
+          //                         ),
+          //                         Text(
+          //                           '$mark',
+          //                           style: TextStyle(
+          //                               fontSize: height * 0.017,
+          //                               fontFamily: "Inter",
+          //                               color: const Color.fromRGBO(234, 9, 9, 1.0),
+          //                               fontWeight: FontWeight.w700),
+          //                         ),
+          //                       ],
+          //                     )
+          //                   ],
+          //                 ),
+          //                 SizedBox(
+          //                   height: height * 0.02,
+          //                 ),
+          //                 Stack(
+          //                   clipBehavior: Clip.none,
+          //                   children: [
+          //                     SizedBox(
+          //                       height: height * 0.6,
+          //                       width: width * 0.9,
+          //                       child: SingleChildScrollView(
+          //                         scrollDirection: Axis.vertical,
+          //                         child: Column(
+          //                           mainAxisSize: MainAxisSize.min,
+          //                           children: [
+          //                             for (int i = 0; i < quesList.length; i++)
+          //                               QuestionWidget(
+          //                                 height: height,
+          //                                 index: i,
+          //                                 assessment: assessment,
+          //                                 question: quesList[i],
+          //                                 finalAssessment: finalAssessment,
+          //                                 assessmentType: widget.assessmentType,
+          //                               ),
+          //                           ],
+          //                         ),
+          //                       ),
+          //                     ),
+          //                     Positioned(
+          //                         top: height * 0.5,
+          //                         left: width * 0.78,
+          //                         child: FloatingActionButton(
+          //                           onPressed: () {
+          //                             Navigator.pushNamed(
+          //                                 context, '/teacherAssessmentLooqQuestionBank',
+          //                                 arguments: false);
+          //                           },
+          //                           backgroundColor:
+          //                           const Color.fromRGBO(82, 165, 160, 1),
+          //                           child: const Icon(Icons.add),
+          //                         ))
+          //                   ],
+          //                 ),
+          //                 SizedBox(
+          //                   height: height * 0.03,
+          //                 ),
+          //                 Center(
+          //                   child: SizedBox(
+          //                     width: width * 0.888,
+          //                     child: ElevatedButton(
+          //                       style: ElevatedButton.styleFrom(
+          //                         side: const BorderSide(
+          //                           color: Color.fromRGBO(82, 165, 160, 1),
+          //                         ),
+          //                         backgroundColor:
+          //                         const Color.fromRGBO(255, 255, 255, 1),
+          //                         minimumSize: const Size(280, 48),
+          //                         shape: RoundedRectangleBorder(
+          //                           borderRadius: BorderRadius.circular(39),
+          //                         ),
+          //                       ),
+          //                       onPressed: () async {
+          //                         finalAssessment.assessmentStatus = 'inprogress';
+          //                         AssessmentSettings assessmentSettings =
+          //                         AssessmentSettings();
+          //                         finalAssessment.assessmentSettings =
+          //                             assessmentSettings;
+          //                         DateTime startDate=DateTime.now();
+          //                         startDate = DateTime(
+          //                             startDate.year,
+          //                             startDate.month,
+          //                             startDate.day,
+          //                             startDate.hour,
+          //                             startDate.minute);
+          //                         finalAssessment.assessmentStartdate =
+          //                             startDate
+          //                                 .microsecondsSinceEpoch;
+          //                         ResponseEntity statusCode =
+          //                         await QnaService.createAssessmentTeacherService(
+          //                             finalAssessment,userDetails);
+          //                         if (statusCode.code == 200) {
+          //                           Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+          //                         }
+          //                       },
+          //                       child: Text(
+          //                         AppLocalizations.of(context)!.save_list,
+          //                         // 'Save List',
+          //                         style: TextStyle(
+          //                             fontSize: height * 0.025,
+          //                             fontFamily: "Inter",
+          //                             color: const Color.fromRGBO(82, 165, 160, 1),
+          //                             fontWeight: FontWeight.w600),
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //                 SizedBox(
+          //                   height: height * 0.01,
+          //                 ),
+          //                 Center(
+          //                   child: SizedBox(
+          //                     width: width * 0.888,
+          //                     child: ElevatedButton(
+          //                       style: ElevatedButton.styleFrom(
+          //                           backgroundColor:
+          //                           const Color.fromRGBO(82, 165, 160, 1),
+          //                           minimumSize: const Size(280, 48),
+          //                           shape: RoundedRectangleBorder(
+          //                             borderRadius: BorderRadius.circular(39),
+          //                           ),
+          //                           side: const BorderSide(
+          //                             color: Color.fromRGBO(82, 165, 160, 1),
+          //                           )),
+          //                       onPressed: () {
+          //                         bool markZero = true;
+          //                         for (int i = 0; i < quesList.length; i++) {
+          //                           if(quesList[i].questionMark != 0){
+          //                             markZero = false;
+          //                           }
+          //                           else{
+          //                             markZero = true;
+          //                           }
+          //                         }
+          //                         if(markZero){
+          //                           showAlertDialog(context, height);
+          //                         }else{
+          //                           finalAssessment.assessmentId=null;
+          //                           Provider.of<CreateAssessmentProvider>(context, listen: false)
+          //                               .updateAssessment(finalAssessment);
+          //                           Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
+          //                         }
+          //                       },
+          //                       child: Text(
+          //                         AppLocalizations.of(context)!.submit,
+          //                         //'Submit',
+          //                         style: TextStyle(
+          //                             fontSize: height * 0.025,
+          //                             fontFamily: "Inter",
+          //                             color: const Color.fromRGBO(255, 255, 255, 1),
+          //                             fontWeight: FontWeight.w600),
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //               ],
+          //             )),
+          //       ));
+          // }
+          if(constraints.maxWidth > 500) {
+            return Center(
+              child: WillPopScope(
+                  onWillPop: () async => false,
+                  child: Container(
+                    width: 400.0,
+                    child: Scaffold(
+                      resizeToAvoidBottomInset: true,
+                      backgroundColor: Colors.white,
+                      endDrawer: const EndDrawerMenuTeacher(),
+                      appBar: AppBar(
+                        leading: IconButton(
+                          icon: const Icon(
+                            Icons.chevron_left,
+                            size: 40.0,
+                            color: Colors.white,
                           ),
-                          Text(
-                            '${quesList.length}',
-                            style: TextStyle(
-                                fontSize: height * 0.017,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(82, 165, 160, 1),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.total_marks,
-                            //'Total Marks: ',
-                            style: TextStyle(
-                                fontSize: height * 0.017,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(0, 0, 0, 1),
-                                fontWeight: FontWeight.w400),
-                          ),
-                          Text(
-                            '$mark',
-                            style: TextStyle(
-                                fontSize: height * 0.017,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(234, 9, 9, 1.0),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      SizedBox(
-                        height: height * 0.6,
-                        width: width * 0.9,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        toolbarHeight: height * 0.100,
+                        centerTitle: true,
+                        title: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              for (int i = 0; i < quesList.length; i++)
-                                QuestionWidget(
-                                  height: height,
-                                  index: i,
-                                  assessment: assessment,
-                                  question: quesList[i],
-                                  finalAssessment: finalAssessment,
-                                  assessmentType: widget.assessmentType,
+                              Text(
+                                AppLocalizations.of(context)!.cloned_caps,
+                                //"CLONED",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontSize: height * 0.0225,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
                                 ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.assessment_caps,
+                                //"ASSESSMENTS",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontSize: height * 0.0225,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ]),
+                        flexibleSpace: Container(
+                          decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                  end: Alignment.bottomCenter,
+                                  begin: Alignment.topCenter,
+                                  colors: [
+                                    Color.fromRGBO(0, 106, 100, 1),
+                                    Color.fromRGBO(82, 165, 160, 1),
+                                  ])),
+                        ),
+                      ),
+                      body: Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.023,
+                              left: height * 0.023,
+                              right: height * 0.023),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.total_ques,
+                                        //'Total Questions: ',
+                                        style: TextStyle(
+                                            fontSize: height * 0.017,
+                                            fontFamily: "Inter",
+                                            color: const Color.fromRGBO(0, 0, 0, 1),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        '${quesList.length}',
+                                        style: TextStyle(
+                                            fontSize: height * 0.017,
+                                            fontFamily: "Inter",
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.total_marks,
+                                        //'Total Marks: ',
+                                        style: TextStyle(
+                                            fontSize: height * 0.017,
+                                            fontFamily: "Inter",
+                                            color: const Color.fromRGBO(0, 0, 0, 1),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        '$mark',
+                                        style: TextStyle(
+                                            fontSize: height * 0.017,
+                                            fontFamily: "Inter",
+                                            color: const Color.fromRGBO(234, 9, 9, 1.0),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.6,
+                                    width: width * 0.9,
+                                    child: SingleChildScrollView(
+                                      scrollDirection: Axis.vertical,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          for (int i = 0; i < quesList.length; i++)
+                                            QuestionWidget(
+                                              height: height,
+                                              index: i,
+                                              assessment: assessment,
+                                              question: quesList[i],
+                                              finalAssessment: finalAssessment,
+                                              assessmentType: widget.assessmentType,
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                      top: height * 0.5,
+                                      left: width * 0.78,
+                                      child: FloatingActionButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, '/teacherAssessmentLooqQuestionBank',
+                                              arguments: false);
+                                        },
+                                        backgroundColor:
+                                        const Color.fromRGBO(82, 165, 160, 1),
+                                        child: const Icon(Icons.add),
+                                      ))
+                                ],
+                              ),
+                              SizedBox(
+                                height: height * 0.03,
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: width * 0.888,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      side: const BorderSide(
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      ),
+                                      backgroundColor:
+                                      const Color.fromRGBO(255, 255, 255, 1),
+                                      minimumSize: const Size(280, 48),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(39),
+                                      ),
+                                    ),
+                                    onPressed: () async {
+                                      finalAssessment.assessmentStatus = 'inprogress';
+                                      AssessmentSettings assessmentSettings =
+                                      AssessmentSettings();
+                                      finalAssessment.assessmentSettings =
+                                          assessmentSettings;
+                                      DateTime startDate=DateTime.now();
+                                      startDate = DateTime(
+                                          startDate.year,
+                                          startDate.month,
+                                          startDate.day,
+                                          startDate.hour,
+                                          startDate.minute);
+                                      finalAssessment.assessmentStartdate =
+                                          startDate
+                                              .microsecondsSinceEpoch;
+                                      ResponseEntity statusCode =
+                                      await QnaService.createAssessmentTeacherService(
+                                          finalAssessment,userDetails);
+                                      if (statusCode.code == 200) {
+                                        Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+                                      }
+                                    },
+                                    child: Text(
+                                      AppLocalizations.of(context)!.save_list,
+                                      // 'Save List',
+                                      style: TextStyle(
+                                          fontSize: height * 0.025,
+                                          fontFamily: "Inter",
+                                          color: const Color.fromRGBO(82, 165, 160, 1),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.01,
+                              ),
+                              Center(
+                                child: SizedBox(
+                                  width: width * 0.888,
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                        const Color.fromRGBO(82, 165, 160, 1),
+                                        minimumSize: const Size(280, 48),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(39),
+                                        ),
+                                        side: const BorderSide(
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                        )),
+                                    onPressed: () {
+                                      bool markZero = true;
+                                      for (int i = 0; i < quesList.length; i++) {
+                                        if(quesList[i].questionMark != 0){
+                                          markZero = false;
+                                        }
+                                        else{
+                                          markZero = true;
+                                        }
+                                      }
+                                      if(markZero){
+                                        showAlertDialog(context, height);
+                                      }else{
+                                        finalAssessment.assessmentId=null;
+                                        Provider.of<CreateAssessmentProvider>(context, listen: false)
+                                            .updateAssessment(finalAssessment);
+                                        Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
+                                      }
+                                    },
+                                    child: Text(
+                                      AppLocalizations.of(context)!.submit,
+                                      //'Submit',
+                                      style: TextStyle(
+                                          fontSize: height * 0.025,
+                                          fontFamily: "Inter",
+                                          color: const Color.fromRGBO(255, 255, 255, 1),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
+                    ),
+                  )),
+            );
+          }
+          else {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                  resizeToAvoidBottomInset: true,
+                  backgroundColor: Colors.white,
+                  endDrawer: const EndDrawerMenuTeacher(),
+                  appBar: AppBar(
+                    leading: IconButton(
+                      icon: const Icon(
+                        Icons.chevron_left,
+                        size: 40.0,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    toolbarHeight: height * 0.100,
+                    centerTitle: true,
+                    title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.cloned_caps,
+                            //"CLONED",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontSize: height * 0.0225,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.assessment_caps,
+                            //"ASSESSMENTS",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontSize: height * 0.0225,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ]),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              end: Alignment.bottomCenter,
+                              begin: Alignment.topCenter,
+                              colors: [
+                                Color.fromRGBO(0, 106, 100, 1),
+                                Color.fromRGBO(82, 165, 160, 1),
+                              ])),
+                    ),
+                  ),
+                  body: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.023,
+                          left: height * 0.023,
+                          right: height * 0.023),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!.total_ques,
+                                    //'Total Questions: ',
+                                    style: TextStyle(
+                                        fontSize: height * 0.017,
+                                        fontFamily: "Inter",
+                                        color: const Color.fromRGBO(0, 0, 0, 1),
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Text(
+                                    '${quesList.length}',
+                                    style: TextStyle(
+                                        fontSize: height * 0.017,
+                                        fontFamily: "Inter",
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!.total_marks,
+                                    //'Total Marks: ',
+                                    style: TextStyle(
+                                        fontSize: height * 0.017,
+                                        fontFamily: "Inter",
+                                        color: const Color.fromRGBO(0, 0, 0, 1),
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Text(
+                                    '$mark',
+                                    style: TextStyle(
+                                        fontSize: height * 0.017,
+                                        fontFamily: "Inter",
+                                        color: const Color.fromRGBO(234, 9, 9, 1.0),
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ],
+                              )
                             ],
                           ),
-                        ),
-                      ),
-                      Positioned(
-                          top: height * 0.5,
-                          left: width * 0.78,
-                          child: FloatingActionButton(
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, '/teacherAssessmentLooqQuestionBank',
-                                  arguments: false);
-                            },
-                            backgroundColor:
-                            const Color.fromRGBO(82, 165, 160, 1),
-                            child: const Icon(Icons.add),
-                          ))
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * 0.03,
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: width * 0.888,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          side: const BorderSide(
-                            color: Color.fromRGBO(82, 165, 160, 1),
+                          SizedBox(
+                            height: height * 0.02,
                           ),
-                          backgroundColor:
-                          const Color.fromRGBO(255, 255, 255, 1),
-                          minimumSize: const Size(280, 48),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(39),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              SizedBox(
+                                height: height * 0.6,
+                                width: width * 0.9,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.vertical,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      for (int i = 0; i < quesList.length; i++)
+                                        QuestionWidget(
+                                          height: height,
+                                          index: i,
+                                          assessment: assessment,
+                                          question: quesList[i],
+                                          finalAssessment: finalAssessment,
+                                          assessmentType: widget.assessmentType,
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                  top: height * 0.5,
+                                  left: width * 0.78,
+                                  child: FloatingActionButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(
+                                          context, '/teacherAssessmentLooqQuestionBank',
+                                          arguments: false);
+                                    },
+                                    backgroundColor:
+                                    const Color.fromRGBO(82, 165, 160, 1),
+                                    child: const Icon(Icons.add),
+                                  ))
+                            ],
                           ),
-                        ),
-                        onPressed: () async {
-                          finalAssessment.assessmentStatus = 'inprogress';
-                          AssessmentSettings assessmentSettings =
-                          AssessmentSettings();
-                          finalAssessment.assessmentSettings =
-                              assessmentSettings;
-                          DateTime startDate=DateTime.now();
-                          startDate = DateTime(
-                              startDate.year,
-                              startDate.month,
-                              startDate.day,
-                              startDate.hour,
-                              startDate.minute);
-                          finalAssessment.assessmentStartdate =
-                              startDate
-                                  .microsecondsSinceEpoch;
-                          ResponseEntity statusCode =
-                          await QnaService.createAssessmentTeacherService(
-                              finalAssessment,userDetails);
-                          if (statusCode.code == 200) {
-                            Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-                          }
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.save_list,
-                         // 'Save List',
-                          style: TextStyle(
-                              fontSize: height * 0.025,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  Center(
-                    child: SizedBox(
-                      width: width * 0.888,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                            const Color.fromRGBO(82, 165, 160, 1),
-                            minimumSize: const Size(280, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(39),
+                          SizedBox(
+                            height: height * 0.03,
+                          ),
+                          Center(
+                            child: SizedBox(
+                              width: width * 0.888,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  side: const BorderSide(
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                  ),
+                                  backgroundColor:
+                                  const Color.fromRGBO(255, 255, 255, 1),
+                                  minimumSize: const Size(280, 48),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(39),
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  finalAssessment.assessmentStatus = 'inprogress';
+                                  AssessmentSettings assessmentSettings =
+                                  AssessmentSettings();
+                                  finalAssessment.assessmentSettings =
+                                      assessmentSettings;
+                                  DateTime startDate=DateTime.now();
+                                  startDate = DateTime(
+                                      startDate.year,
+                                      startDate.month,
+                                      startDate.day,
+                                      startDate.hour,
+                                      startDate.minute);
+                                  finalAssessment.assessmentStartdate =
+                                      startDate
+                                          .microsecondsSinceEpoch;
+                                  ResponseEntity statusCode =
+                                  await QnaService.createAssessmentTeacherService(
+                                      finalAssessment,userDetails);
+                                  if (statusCode.code == 200) {
+                                    Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+                                  }
+                                },
+                                child: Text(
+                                  AppLocalizations.of(context)!.save_list,
+                                  // 'Save List',
+                                  style: TextStyle(
+                                      fontSize: height * 0.025,
+                                      fontFamily: "Inter",
+                                      color: const Color.fromRGBO(82, 165, 160, 1),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
                             ),
-                            side: const BorderSide(
-                              color: Color.fromRGBO(82, 165, 160, 1),
-                            )),
-                        onPressed: () {
-                          bool markZero = true;
-                          for (int i = 0; i < quesList.length; i++) {
-                            if(quesList[i].questionMark != 0){
-                              markZero = false;
-                            }
-                            else{
-                              markZero = true;
-                            }
-                          }
-                          if(markZero){
-                            showAlertDialog(context, height);
-                          }else{
-                            finalAssessment.assessmentId=null;
-                            Provider.of<CreateAssessmentProvider>(context, listen: false)
-                                .updateAssessment(finalAssessment);
-                            Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
-                          }
-                        },
-                        child: Text(
-                          AppLocalizations.of(context)!.submit,
-                          //'Submit',
-                          style: TextStyle(
-                              fontSize: height * 0.025,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(255, 255, 255, 1),
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              )),
-        ));
+                          ),
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          Center(
+                            child: SizedBox(
+                              width: width * 0.888,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                    const Color.fromRGBO(82, 165, 160, 1),
+                                    minimumSize: const Size(280, 48),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(39),
+                                    ),
+                                    side: const BorderSide(
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    )),
+                                onPressed: () {
+                                  bool markZero = true;
+                                  for (int i = 0; i < quesList.length; i++) {
+                                    if(quesList[i].questionMark != 0){
+                                      markZero = false;
+                                    }
+                                    else{
+                                      markZero = true;
+                                    }
+                                  }
+                                  if(markZero){
+                                    showAlertDialog(context, height);
+                                  }else{
+                                    finalAssessment.assessmentId=null;
+                                    Provider.of<CreateAssessmentProvider>(context, listen: false)
+                                        .updateAssessment(finalAssessment);
+                                    Navigator.pushNamed(context, '/teacherAssessmentSettingPublish',arguments: widget.assessmentType);
+                                  }
+                                },
+                                child: Text(
+                                  AppLocalizations.of(context)!.submit,
+                                  //'Submit',
+                                  style: TextStyle(
+                                      fontSize: height * 0.025,
+                                      fontFamily: "Inter",
+                                      color: const Color.fromRGBO(255, 255, 255, 1),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )),
+                ));
+          }
+        },);
+
   }
 }
 

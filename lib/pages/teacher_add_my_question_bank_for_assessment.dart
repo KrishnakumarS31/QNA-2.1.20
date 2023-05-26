@@ -156,238 +156,714 @@ class TeacherAddMyQuestionBankForAssessmentState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            appBar: AppBar(
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          // if (constraints.maxWidth > 900) {return WillPopScope(
+          //     onWillPop: () async => false,
+          //     child: Scaffold(
+          //         resizeToAvoidBottomInset: true,
+          //         backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+          //         appBar: AppBar(
+          //
+          //           automaticallyImplyLeading: false,
+          //           toolbarHeight: height * 0.100,
+          //           centerTitle: true,
+          //           title: Column(
+          //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //               children: [
+          //                 Text(
+          //                   AppLocalizations.of(context)!.add,
+          //                   //'ADD',
+          //                   style: TextStyle(
+          //                     color: const Color.fromRGBO(255, 255, 255, 1),
+          //                     fontSize: height * 0.0225,
+          //                     fontFamily: "Inter",
+          //                     fontWeight: FontWeight.w400,
+          //                   ),
+          //                 ),
+          //                 Text(
+          //                   AppLocalizations.of(context)!.add_my_qn,
+          //                   //"MY QUESTION",
+          //                   style: TextStyle(
+          //                     color: const Color.fromRGBO(255, 255, 255, 1),
+          //                     fontSize: height * 0.0225,
+          //                     fontFamily: "Inter",
+          //                     fontWeight: FontWeight.w400,
+          //                   ),
+          //                 ),
+          //               ]),
+          //           flexibleSpace: Container(
+          //             decoration: const BoxDecoration(
+          //                 gradient: LinearGradient(
+          //                     end: Alignment.bottomCenter,
+          //                     begin: Alignment.topCenter,
+          //                     colors: [
+          //                       Color.fromRGBO(0, 106, 100, 1),
+          //                       Color.fromRGBO(82, 165, 160, 1),
+          //                     ])),
+          //           ),
+          //         ),
+          //         body: Container(
+          //           color: Colors.white,
+          //           child: Column(
+          //             mainAxisAlignment: MainAxisAlignment.start,
+          //             children: [
+          //               Padding(
+          //                 padding: EdgeInsets.only(
+          //                     top: height * 0.0375,
+          //                     left: width * 0.055,
+          //                     right: width * 0.055),
+          //                 child: Container(
+          //                   height: height * 0.1412,
+          //                   decoration: BoxDecoration(
+          //                       color: const Color.fromRGBO(82, 165, 160, 0.08),
+          //                       border: Border.all(
+          //                         color: const Color.fromRGBO(28, 78, 80, 0.08),
+          //                       ),
+          //                       borderRadius:
+          //                       const BorderRadius.all(Radius.circular(20))),
+          //                   child: Column(
+          //                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //                     children: [
+          //                       Padding(
+          //                         padding: EdgeInsets.only(
+          //                             left: width * 0.02, right: width * 0.02),
+          //                         child: Row(
+          //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //                           children: [
+          //                             Text(
+          //                               finalQuesList.isEmpty?'':finalQuesList[0].subject!,
+          //                               style: TextStyle(
+          //                                   fontSize: height * 0.02,
+          //                                   fontFamily: "Inter",
+          //                                   color:
+          //                                   const Color.fromRGBO(28, 78, 80, 1),
+          //                                   fontWeight: FontWeight.w700),
+          //                             ),
+          //                             Text(
+          //                               todayDate(),
+          //                               style: TextStyle(
+          //                                   fontSize: height * 0.015,
+          //                                   fontFamily: "Inter",
+          //                                   color:
+          //                                   const Color.fromRGBO(82, 165, 160, 1),
+          //                                   fontWeight: FontWeight.w600),
+          //                             ),
+          //                           ],
+          //                         ),
+          //                       ),
+          //                       Padding(
+          //                         padding: EdgeInsets.only(
+          //                             left: width * 0.02, right: width * 0.02),
+          //                         child: const Divider(),
+          //                       ),
+          //                       Padding(
+          //                         padding: EdgeInsets.only(left: width * 0.02),
+          //                         child: Row(
+          //                           children: [
+          //                             Text(
+          //                               finalQuesList.isEmpty?'':finalQuesList[0].topic!,
+          //                               style: TextStyle(
+          //                                   fontSize: height * 0.0175,
+          //                                   fontFamily: "Inter",
+          //                                   color:
+          //                                   const Color.fromRGBO(82, 165, 160, 1),
+          //                                   fontWeight: FontWeight.w700),
+          //                             ),
+          //                             SizedBox(
+          //                               width: width * 0.01,
+          //                             ),
+          //                             Text(
+          //                               '|',
+          //                               style: TextStyle(
+          //                                   fontSize: height * 0.0175,
+          //                                   fontFamily: "Inter",
+          //                                   color:
+          //                                   const Color.fromRGBO(82, 165, 160, 1),
+          //                                   fontWeight: FontWeight.w700),
+          //                             ),
+          //                             SizedBox(
+          //                               width: width * 0.01,
+          //                             ),
+          //                             Text(
+          //                               finalQuesList.isEmpty?'':finalQuesList[0].subTopic!,
+          //                               style: TextStyle(
+          //                                   fontSize: height * 0.0175,
+          //                                   fontFamily: "Inter",
+          //                                   color:
+          //                                   const Color.fromRGBO(82, 165, 160, 1),
+          //                                   fontWeight: FontWeight.w700),
+          //                             ),
+          //                           ],
+          //                         ),
+          //                       ),
+          //                       Padding(
+          //                         padding: EdgeInsets.only(left: width * 0.02),
+          //                         child: Align(
+          //                           alignment: Alignment.centerLeft,
+          //                           child: Text(
+          //                             finalQuesList.isEmpty?'':finalQuesList[0].datumClass!,
+          //                             style: TextStyle(
+          //                                 fontSize: height * 0.015,
+          //                                 fontFamily: "Inter",
+          //                                 color:
+          //                                 const Color.fromRGBO(102, 102, 102, 1),
+          //                                 fontWeight: FontWeight.w400),
+          //                           ),
+          //                         ),
+          //                       ),
+          //                     ],
+          //                   ),
+          //                 ),
+          //               ),
+          //               SizedBox(
+          //                 height: height * 0.02,
+          //               ),
+          //               Stack(
+          //                 clipBehavior: Clip.none,
+          //                 children: [
+          //                   Container(
+          //                     padding: EdgeInsets.only(
+          //                         left: width * 0.055, right: width * 0.055),
+          //                     height: height * 0.55,
+          //                     child: SingleChildScrollView(
+          //                       scrollDirection: Axis.vertical,
+          //                       child: Column(
+          //                         mainAxisSize: MainAxisSize.min,
+          //                         children: [
+          //                           // ListView.builder(
+          //                           //   itemCount: quesList.length,
+          //                           //     itemBuilder: (context, index){
+          //                           //     return
+          //                           //     }),
+          //                           for (int i = 0; i < finalQuesList.length; i++)
+          //                             QuestionPreview(
+          //                               height: height,
+          //                               assessment: widget.assessment,
+          //                               width: width,
+          //                               question: finalQuesList[i],
+          //                               quesNum: i,
+          //                             ),
+          //                         ],
+          //                       ),
+          //                     ),
+          //                   ),
+          //                   Positioned(
+          //                       top: height * 0.45,
+          //                       left: width * 0.8,
+          //                       child: MouseRegion(
+          //                           cursor: SystemMouseCursors.click,
+          //                           child: FloatingActionButton(
+          //                             onPressed: () {
+          //                               Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+          //                             },
+          //                             backgroundColor:
+          //                             const Color.fromRGBO(28, 78, 80, 1),
+          //                             child:  const Icon(Icons.add),
+          //                           ))
+          //                   )
+          //                 ],
+          //               ),
+          //               SizedBox(height: height * 0.02),
+          //               ElevatedButton(
+          //                 style: ElevatedButton.styleFrom(
+          //                   backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+          //                   minimumSize: const Size(280, 48),
+          //                   shape: RoundedRectangleBorder(
+          //                     borderRadius: BorderRadius.circular(39),
+          //                   ),
+          //                 ),
+          //                 //shape: StadiumBorder(),
+          //                 onPressed: () {
+          //                   showAlertDialog(context, height);
+          //                 },
+          //                 child: Text(
+          //                   AppLocalizations.of(context)!.submit,
+          //                   //'Submit',
+          //                   style: TextStyle(
+          //                       fontSize: height * 0.025,
+          //                       fontFamily: "Inter",
+          //                       color: const Color.fromRGBO(255, 255, 255, 1),
+          //                       fontWeight: FontWeight.w600),
+          //                 ),
+          //               ),
+          //             ],
+          //           ),
+          //         )));}
+          if(constraints.maxWidth > 500) {
+            return
+            Center(
+              child: WillPopScope(
+                onWillPop: () async => false,
+                child: Container(
+                  width: 400.0,
+                  child: Scaffold(
+                      resizeToAvoidBottomInset: true,
+                      backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+                      appBar: AppBar(
 
-              automaticallyImplyLeading: false,
-              toolbarHeight: height * 0.100,
-              centerTitle: true,
-              title: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.add,
-                      //'ADD',
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.0225,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.add_my_qn,
-                      //"MY QUESTION",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(255, 255, 255, 1),
-                        fontSize: height * 0.0225,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ]),
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        end: Alignment.bottomCenter,
-                        begin: Alignment.topCenter,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ])),
-              ),
-            ),
-            body: Container(
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                        top: height * 0.0375,
-                        left: width * 0.055,
-                        right: width * 0.055),
-                    child: Container(
-                      height: height * 0.1412,
-                      decoration: BoxDecoration(
-                          color: const Color.fromRGBO(82, 165, 160, 0.08),
-                          border: Border.all(
-                            color: const Color.fromRGBO(28, 78, 80, 0.08),
-                          ),
-                          borderRadius:
-                          const BorderRadius.all(Radius.circular(20))),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: width * 0.02, right: width * 0.02),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  finalQuesList.isEmpty?'':finalQuesList[0].subject!,
-                                  style: TextStyle(
-                                      fontSize: height * 0.02,
-                                      fontFamily: "Inter",
-                                      color:
-                                      const Color.fromRGBO(28, 78, 80, 1),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                Text(
-                                  todayDate(),
-                                  style: TextStyle(
-                                      fontSize: height * 0.015,
-                                      fontFamily: "Inter",
-                                      color:
-                                      const Color.fromRGBO(82, 165, 160, 1),
-                                      fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: width * 0.02, right: width * 0.02),
-                            child: const Divider(),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: width * 0.02),
-                            child: Row(
-                              children: [
-                                Text(
-                                  finalQuesList.isEmpty?'':finalQuesList[0].topic!,
-                                  style: TextStyle(
-                                      fontSize: height * 0.0175,
-                                      fontFamily: "Inter",
-                                      color:
-                                      const Color.fromRGBO(82, 165, 160, 1),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                Text(
-                                  '|',
-                                  style: TextStyle(
-                                      fontSize: height * 0.0175,
-                                      fontFamily: "Inter",
-                                      color:
-                                      const Color.fromRGBO(82, 165, 160, 1),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                                SizedBox(
-                                  width: width * 0.01,
-                                ),
-                                Text(
-                                  finalQuesList.isEmpty?'':finalQuesList[0].subTopic!,
-                                  style: TextStyle(
-                                      fontSize: height * 0.0175,
-                                      fontFamily: "Inter",
-                                      color:
-                                      const Color.fromRGBO(82, 165, 160, 1),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: width * 0.02),
-                            child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                finalQuesList.isEmpty?'':finalQuesList[0].datumClass!,
-                                style: TextStyle(
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    color:
-                                    const Color.fromRGBO(102, 102, 102, 1),
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
-                  Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(
-                            left: width * 0.055, right: width * 0.055),
-                        height: height * 0.55,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                        automaticallyImplyLeading: false,
+                        toolbarHeight: height * 0.100,
+                        centerTitle: true,
+                        title: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              // ListView.builder(
-                              //   itemCount: quesList.length,
-                              //     itemBuilder: (context, index){
-                              //     return
-                              //     }),
-                              for (int i = 0; i < finalQuesList.length; i++)
-                                QuestionPreview(
-                                  height: height,
-                                  assessment: widget.assessment,
-                                  width: width,
-                                  question: finalQuesList[i],
-                                  quesNum: i,
+                              Text(
+                                AppLocalizations.of(context)!.add,
+                                //'ADD',
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontSize: height * 0.0225,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
                                 ),
-                            ],
-                          ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.add_my_qn,
+                                //"MY QUESTION",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontSize: height * 0.0225,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ]),
+                        flexibleSpace: Container(
+                          decoration: const BoxDecoration(
+                              gradient: LinearGradient(
+                                  end: Alignment.bottomCenter,
+                                  begin: Alignment.topCenter,
+                                  colors: [
+                                    Color.fromRGBO(0, 106, 100, 1),
+                                    Color.fromRGBO(82, 165, 160, 1),
+                                  ])),
                         ),
                       ),
-                      Positioned(
-                          top: height * 0.45,
-                          left: width * 0.8,
-                          child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: FloatingActionButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
-                                },
-                                backgroundColor:
-                                const Color.fromRGBO(28, 78, 80, 1),
-                                child:  const Icon(Icons.add),
-                              ))
-                      )
-                    ],
-                  ),
-                  SizedBox(height: height * 0.02),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      minimumSize: const Size(280, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
-                      ),
+                      body: Container(
+                        color: Colors.white,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: height * 0.0375,
+                                  left: width * 0.055,
+                                  right: width * 0.055),
+                              child: Container(
+                                height: height * 0.1412,
+                                decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(82, 165, 160, 0.08),
+                                    border: Border.all(
+                                      color: const Color.fromRGBO(28, 78, 80, 0.08),
+                                    ),
+                                    borderRadius:
+                                    const BorderRadius.all(Radius.circular(20))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: width * 0.02, right: width * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            finalQuesList.isEmpty?'':finalQuesList[0].subject!,
+                                            style: TextStyle(
+                                                fontSize: height * 0.02,
+                                                fontFamily: "Inter",
+                                                color:
+                                                const Color.fromRGBO(28, 78, 80, 1),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          Text(
+                                            todayDate(),
+                                            style: TextStyle(
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                color:
+                                                const Color.fromRGBO(82, 165, 160, 1),
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: width * 0.02, right: width * 0.02),
+                                      child: const Divider(),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            finalQuesList.isEmpty?'':finalQuesList[0].topic!,
+                                            style: TextStyle(
+                                                fontSize: height * 0.0175,
+                                                fontFamily: "Inter",
+                                                color:
+                                                const Color.fromRGBO(82, 165, 160, 1),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.01,
+                                          ),
+                                          Text(
+                                            '|',
+                                            style: TextStyle(
+                                                fontSize: height * 0.0175,
+                                                fontFamily: "Inter",
+                                                color:
+                                                const Color.fromRGBO(82, 165, 160, 1),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.01,
+                                          ),
+                                          Text(
+                                            finalQuesList.isEmpty?'':finalQuesList[0].subTopic!,
+                                            style: TextStyle(
+                                                fontSize: height * 0.0175,
+                                                fontFamily: "Inter",
+                                                color:
+                                                const Color.fromRGBO(82, 165, 160, 1),
+                                                fontWeight: FontWeight.w700),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          finalQuesList.isEmpty?'':finalQuesList[0].datumClass!,
+                                          style: TextStyle(
+                                              fontSize: height * 0.015,
+                                              fontFamily: "Inter",
+                                              color:
+                                              const Color.fromRGBO(102, 102, 102, 1),
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.055, right: width * 0.055),
+                                  height: height * 0.55,
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.vertical,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        // ListView.builder(
+                                        //   itemCount: quesList.length,
+                                        //     itemBuilder: (context, index){
+                                        //     return
+                                        //     }),
+                                        for (int i = 0; i < finalQuesList.length; i++)
+                                          QuestionPreview(
+                                            height: height,
+                                            assessment: widget.assessment,
+                                            width: width,
+                                            question: finalQuesList[i],
+                                            quesNum: i,
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                    top: height * 0.45,
+                                    left: width * 0.8,
+                                    child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+                                          },
+                                          backgroundColor:
+                                          const Color.fromRGBO(28, 78, 80, 1),
+                                          child:  const Icon(Icons.add),
+                                        ))
+                                )
+                              ],
+                            ),
+                            SizedBox(height: height * 0.02),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                                minimumSize: const Size(280, 48),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(39),
+                                ),
+                              ),
+                              //shape: StadiumBorder(),
+                              onPressed: () {
+                                showAlertDialog(context, height);
+                              },
+                              child: Text(
+                                AppLocalizations.of(context)!.submit,
+                                //'Submit',
+                                style: TextStyle(
+                                    fontSize: height * 0.025,
+                                    fontFamily: "Inter",
+                                    color: const Color.fromRGBO(255, 255, 255, 1),
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                )),
+            );}
+          else {return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  resizeToAvoidBottomInset: true,
+                  backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+                  appBar: AppBar(
+
+                    automaticallyImplyLeading: false,
+                    toolbarHeight: height * 0.100,
+                    centerTitle: true,
+                    title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.add,
+                            //'ADD',
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontSize: height * 0.0225,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.add_my_qn,
+                            //"MY QUESTION",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontSize: height * 0.0225,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ]),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              end: Alignment.bottomCenter,
+                              begin: Alignment.topCenter,
+                              colors: [
+                                Color.fromRGBO(0, 106, 100, 1),
+                                Color.fromRGBO(82, 165, 160, 1),
+                              ])),
                     ),
-                    //shape: StadiumBorder(),
-                    onPressed: () {
-                      showAlertDialog(context, height);
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.submit,
-                      //'Submit',
-                      style: TextStyle(
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
                   ),
-                ],
-              ),
-            )));
+                  body: Container(
+                    color: Colors.white,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.0375,
+                              left: width * 0.055,
+                              right: width * 0.055),
+                          child: Container(
+                            height: height * 0.1412,
+                            decoration: BoxDecoration(
+                                color: const Color.fromRGBO(82, 165, 160, 0.08),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(28, 78, 80, 0.08),
+                                ),
+                                borderRadius:
+                                const BorderRadius.all(Radius.circular(20))),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.02, right: width * 0.02),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        finalQuesList.isEmpty?'':finalQuesList[0].subject!,
+                                        style: TextStyle(
+                                            fontSize: height * 0.02,
+                                            fontFamily: "Inter",
+                                            color:
+                                            const Color.fromRGBO(28, 78, 80, 1),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Text(
+                                        todayDate(),
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            fontFamily: "Inter",
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.02, right: width * 0.02),
+                                  child: const Divider(),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        finalQuesList.isEmpty?'':finalQuesList[0].topic!,
+                                        style: TextStyle(
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
+                                      Text(
+                                        '|',
+                                        style: TextStyle(
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
+                                      Text(
+                                        finalQuesList.isEmpty?'':finalQuesList[0].subTopic!,
+                                        style: TextStyle(
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      finalQuesList.isEmpty?'':finalQuesList[0].datumClass!,
+                                      style: TextStyle(
+                                          fontSize: height * 0.015,
+                                          fontFamily: "Inter",
+                                          color:
+                                          const Color.fromRGBO(102, 102, 102, 1),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                  left: width * 0.055, right: width * 0.055),
+                              height: height * 0.55,
+                              child: SingleChildScrollView(
+                                scrollDirection: Axis.vertical,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    // ListView.builder(
+                                    //   itemCount: quesList.length,
+                                    //     itemBuilder: (context, index){
+                                    //     return
+                                    //     }),
+                                    for (int i = 0; i < finalQuesList.length; i++)
+                                      QuestionPreview(
+                                        height: height,
+                                        assessment: widget.assessment,
+                                        width: width,
+                                        question: finalQuesList[i],
+                                        quesNum: i,
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                                top: height * 0.45,
+                                left: width * 0.8,
+                                child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: FloatingActionButton(
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, '/teacherPrepareQuesForAssessment',arguments: widget.assessment,);
+                                      },
+                                      backgroundColor:
+                                      const Color.fromRGBO(28, 78, 80, 1),
+                                      child:  const Icon(Icons.add),
+                                    ))
+                            )
+                          ],
+                        ),
+                        SizedBox(height: height * 0.02),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                          ),
+                          //shape: StadiumBorder(),
+                          onPressed: () {
+                            showAlertDialog(context, height);
+                          },
+                          child: Text(
+                            AppLocalizations.of(context)!.submit,
+                            //'Submit',
+                            style: TextStyle(
+                                fontSize: height * 0.025,
+                                fontFamily: "Inter",
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )));}
+        },
+    );
+
   }
 }
 

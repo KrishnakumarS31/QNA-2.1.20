@@ -153,265 +153,803 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // if(constraints.maxWidth > 900)
+        // {
+        //   print("INSIDE WEB");
+        //   print(constraints.maxWidth);
+        //   return WillPopScope(
+        //       onWillPop: () async => false,
+        //       child: Scaffold(
+        //         resizeToAvoidBottomInset: true,
+        //         backgroundColor: Colors.white,
+        //         endDrawer: const EndDrawerMenuTeacher(),
+        //         appBar: AppBar(
+        //           leading: IconButton(
+        //             icon: const Icon(
+        //               Icons.chevron_left,
+        //               size: 40.0,
+        //               color: Colors.white,
+        //             ),
+        //             onPressed: () {
+        //               Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+        //
+        //               //Navigator.of(context).pop();
+        //             },
+        //           ),
+        //           toolbarHeight: height * 0.100,
+        //           centerTitle: true,
+        //           title: Column(
+        //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        //               children: [
+        //                 Text(
+        //                   AppLocalizations.of(context)!.assessment_caps,
+        //                   // "ASSESSMENTS",
+        //                   style: TextStyle(
+        //                     color: const Color.fromRGBO(255, 255, 255, 1),
+        //                     fontSize: height * 0.0225,
+        //                     fontFamily: "Inter",
+        //                     fontWeight: FontWeight.w400,
+        //                   ),
+        //                 ),
+        //                 Text(
+        //                   AppLocalizations.of(context)!.search_results_caps,
+        //                   //"SEARCH RESULTS",
+        //                   style: TextStyle(
+        //                     color: const Color.fromRGBO(255, 255, 255, 1),
+        //                     fontSize: height * 0.0225,
+        //                     fontFamily: "Inter",
+        //                     fontWeight: FontWeight.w400,
+        //                   ),
+        //                 ),
+        //               ]),
+        //           flexibleSpace: Container(
+        //             decoration: const BoxDecoration(
+        //                 gradient: LinearGradient(
+        //                     end: Alignment.bottomCenter,
+        //                     begin: Alignment.topCenter,
+        //                     colors: [
+        //                       Color.fromRGBO(0, 106, 100, 1),
+        //                       Color.fromRGBO(82, 165, 160, 1),
+        //                     ])),
+        //           ),
+        //         ),
+        //         body: SingleChildScrollView(
+        //           scrollDirection: Axis.vertical,
+        //           child: Padding(
+        //               padding: EdgeInsets.only(
+        //                   top: height * 0.023,
+        //                   left: height * 0.023,
+        //                   right: height * 0.023),
+        //               child: Column(
+        //                 crossAxisAlignment: CrossAxisAlignment.start,
+        //                 children: [
+        //                   Text(
+        //                     AppLocalizations.of(context)!.search,
+        //                     //"Search",
+        //                     style: TextStyle(
+        //                       color: const Color.fromRGBO(82, 165, 160, 1),
+        //                       fontSize: height * 0.02,
+        //                       fontFamily: "Inter",
+        //                       fontWeight: FontWeight.w700,
+        //                     ),
+        //                   ),
+        //                   Row(
+        //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //                     children: [
+        //                       Text(
+        //                         AppLocalizations.of(context)!.lib_of_assessments,
+        //                         //"Library of Assessments",
+        //                         style: TextStyle(
+        //                           color: const Color.fromRGBO(153, 153, 153, 1),
+        //                           fontSize: height * 0.015,
+        //                           fontFamily: "Inter",
+        //                           fontWeight: FontWeight.w400,
+        //                         ),
+        //                       ),
+        //                     ],
+        //                   ),
+        //                   SizedBox(height: height * 0.02),
+        //                   TextField(
+        //                     controller: teacherQuestionBankSearchController,
+        //                     keyboardType: TextInputType.text,
+        //                     decoration: InputDecoration(
+        //                       floatingLabelBehavior: FloatingLabelBehavior.always,
+        //                       hintStyle: TextStyle(
+        //                           color: const Color.fromRGBO(102, 102, 102, 0.3),
+        //                           fontFamily: 'Inter',
+        //                           fontWeight: FontWeight.w400,
+        //                           fontSize: height * 0.016),
+        //                       hintText:  AppLocalizations.of(context)!.sub_hint_text,
+        //                       //"Maths, 10th, 2022, CBSE, Science",
+        //                       suffixIcon: Column(children: [
+        //                         Container(
+        //                             height: height * 0.073,
+        //                             width: width * 0.13,
+        //                             decoration: const BoxDecoration(
+        //                               borderRadius:
+        //                               BorderRadius.all(Radius.circular(8.0)),
+        //                               color: Color.fromRGBO(82, 165, 160, 1),
+        //                             ),
+        //                             child: IconButton(
+        //                               iconSize: height * 0.04,
+        //                               color: const Color.fromRGBO(255, 255, 255, 1),
+        //                               onPressed: () {
+        //                                 setState(() {
+        //                                   assessments = [];
+        //                                 });
+        //                                 getData(
+        //                                     teacherQuestionBankSearchController.text);
+        //                               },
+        //                               icon: const Icon(Icons.search),
+        //                             )),
+        //                       ]),
+        //                       focusedBorder: OutlineInputBorder(
+        //                           borderSide: const BorderSide(
+        //                               color: Color.fromRGBO(82, 165, 160, 1)),
+        //                           borderRadius: BorderRadius.circular(15)),
+        //                       border: OutlineInputBorder(
+        //                           borderRadius: BorderRadius.circular(15)),
+        //                     ),
+        //                     enabled: true,
+        //                     onChanged: (val) {
+        //                       setState(() {
+        //                         assessments = [];
+        //                       });
+        //                     },
+        //                     onSubmitted: (value) {
+        //                       setState(() {
+        //                         assessments = [];
+        //                       });
+        //                       getData(value);
+        //                     },
+        //                   ),
+        //                   SizedBox(height: height * 0.04),
+        //                   Text(
+        //                     AppLocalizations.of(context)!.search_results_small,
+        //                     //"Search Results",
+        //                     style: TextStyle(
+        //                       color: const Color.fromRGBO(82, 165, 160, 1),
+        //                       fontSize: height * 0.02,
+        //                       fontFamily: "Inter",
+        //                       fontWeight: FontWeight.w700,
+        //                     ),
+        //                   ),
+        //                   Text(
+        //                     AppLocalizations.of(context)!.tap_to_see,
+        //                     //"Tap to See Details/Clone",
+        //                     style: TextStyle(
+        //                       color: const Color.fromRGBO(153, 153, 153, 1),
+        //                       fontSize: height * 0.015,
+        //                       fontFamily: "Inter",
+        //                       fontWeight: FontWeight.w400,
+        //                     ),
+        //                   ),
+        //                   SizedBox(
+        //                     height: height * 0.02,
+        //                   ),
+        //                   assessmentPresent?
+        //                   SizedBox(
+        //                     height: height * 0.45,
+        //                     child: ListView.builder(
+        //                       itemCount: assessments.length,
+        //                       itemBuilder: (context, index) => Column(
+        //                         children: [
+        //                           CardInfo(
+        //                             height: height,
+        //                             width: width,
+        //                             status: 'Active',
+        //                             assessment: assessments[index],
+        //                           ),
+        //                           SizedBox(
+        //                             height: height * 0.02,
+        //                           ),
+        //                         ],
+        //                       ),
+        //                     ),
+        //                   ):
+        //                   Column(
+        //                     children: [
+        //                       SizedBox(height: height * 0.04),
+        //                       Center(
+        //                         child: Text(
+        //                           AppLocalizations.of(context)!.no_assessment_found_caps,
+        //                           //'NO ASSESSMENT FOUND',
+        //                           textAlign: TextAlign.center,
+        //                           style: TextStyle(
+        //                             color: const Color.fromRGBO(28, 78, 80, 1),
+        //                             fontSize: height * 0.0175,
+        //                             fontFamily: "Inter",
+        //                             fontWeight: FontWeight.w700,
+        //                           ),
+        //                         ),
+        //                       ),
+        //                     ],
+        //                   ),
+        //                   SizedBox(
+        //                     height: height * 0.02,
+        //                   ),
+        //                   MouseRegion(
+        //                       cursor: SystemMouseCursors.click,
+        //                       child: GestureDetector(
+        //                         onTap: () {
+        //                           assessments.isEmpty?Navigator.push(
+        //                             context,
+        //                             PageTransition(
+        //                               type: PageTransitionType.rightToLeft,
+        //                               child: CustomDialog(
+        //                                 title:
+        //                                 AppLocalizations.of(context)!.alert_popup,
+        //                                 //'Alert',
+        //                                 content: AppLocalizations.of(context)!.no_more_assessment,
+        //                                 //'No Assessment Found.',
+        //                                 button: AppLocalizations.of(context)!.retry,
+        //                               ),
+        //                             ),
+        //                           ):
+        //                           loadMore(teacherQuestionBankSearchController.text);
+        //                         },
+        //                         child: Row(
+        //                           mainAxisAlignment: MainAxisAlignment.center,
+        //                           children: [
+        //                             Text(
+        //                               AppLocalizations.of(context)!.load_more,
+        //                               // "Load More",
+        //                               style: TextStyle(
+        //                                 color: const Color.fromRGBO(82, 165, 160, 1),
+        //                                 fontSize: height * 0.0175,
+        //                                 fontFamily: "Inter",
+        //                                 fontWeight: FontWeight.w600,
+        //                               ),
+        //                             ),
+        //                             const Icon(
+        //                               Icons.expand_more_outlined,
+        //                               color: Color.fromRGBO(82, 165, 160, 1),
+        //                             )
+        //                           ],
+        //                         ),
+        //                       )),
+        //                   SizedBox(
+        //                     height: height * 0.02,
+        //                   ),
+        //                 ],
+        //               )),
+        //         ),
+        //       ));
+        // }
+        if(constraints.maxWidth > 500)
+        {
+          print("INSIDE TABLET");
+          print(constraints.maxWidth);
+          return Center(
+            child: WillPopScope(
+                onWillPop: () async => false,
+                child: Container(
+                  width: 400.0,
+                  child: Scaffold(
+                    resizeToAvoidBottomInset: true,
+                    backgroundColor: Colors.white,
+                    endDrawer: const EndDrawerMenuTeacher(),
+                    appBar: AppBar(
+                      leading: IconButton(
+                        icon: const Icon(
+                          Icons.chevron_left,
+                          size: 40.0,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
 
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.white,
-          endDrawer: const EndDrawerMenuTeacher(),
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.chevron_left,
-                size: 40.0,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
-
-                //Navigator.of(context).pop();
-              },
-            ),
-            toolbarHeight: height * 0.100,
-            centerTitle: true,
-            title: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.assessment_caps,
-                    // "ASSESSMENTS",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.search_results_caps,
-                    //"SEARCH RESULTS",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ]),
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: Alignment.bottomCenter,
-                      begin: Alignment.topCenter,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ])),
-            ),
-          ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Padding(
-                padding: EdgeInsets.only(
-                    top: height * 0.023,
-                    left: height * 0.023,
-                    right: height * 0.023),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.search,
-                      //"Search",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.02,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
+                          //Navigator.of(context).pop();
+                        },
+                      ),
+                      toolbarHeight: height * 0.100,
+                      centerTitle: true,
+                      title: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.assessment_caps,
+                              // "ASSESSMENTS",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: height * 0.0225,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              AppLocalizations.of(context)!.search_results_caps,
+                              //"SEARCH RESULTS",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: height * 0.0225,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ]),
+                      flexibleSpace: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                end: Alignment.bottomCenter,
+                                begin: Alignment.topCenter,
+                                colors: [
+                                  Color.fromRGBO(0, 106, 100, 1),
+                                  Color.fromRGBO(82, 165, 160, 1),
+                                ])),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    body: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.023,
+                              left: height * 0.023,
+                              right: height * 0.023),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.search,
+                                //"Search",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.02,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(context)!.lib_of_assessments,
+                                    //"Library of Assessments",
+                                    style: TextStyle(
+                                      color: const Color.fromRGBO(153, 153, 153, 1),
+                                      fontSize: height * 0.015,
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: height * 0.02),
+                              TextField(
+                                controller: teacherQuestionBankSearchController,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                                  hintStyle: TextStyle(
+                                      color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: height * 0.016),
+                                  hintText:  AppLocalizations.of(context)!.sub_hint_text,
+                                  //"Maths, 10th, 2022, CBSE, Science",
+                                  suffixIcon: Column(children: [
+                                    Container(
+                                        height: height * 0.073,
+                                        width: width * 0.13,
+                                        decoration: const BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.all(Radius.circular(8.0)),
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                        ),
+                                        child: IconButton(
+                                          iconSize: height * 0.04,
+                                          color: const Color.fromRGBO(255, 255, 255, 1),
+                                          onPressed: () {
+                                            setState(() {
+                                              assessments = [];
+                                            });
+                                            getData(
+                                                teacherQuestionBankSearchController.text);
+                                          },
+                                          icon: const Icon(Icons.search),
+                                        )),
+                                  ]),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Color.fromRGBO(82, 165, 160, 1)),
+                                      borderRadius: BorderRadius.circular(15)),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                ),
+                                enabled: true,
+                                onChanged: (val) {
+                                  setState(() {
+                                    assessments = [];
+                                  });
+                                },
+                                onSubmitted: (value) {
+                                  setState(() {
+                                    assessments = [];
+                                  });
+                                  getData(value);
+                                },
+                              ),
+                              SizedBox(height: height * 0.04),
+                              Text(
+                                AppLocalizations.of(context)!.search_results_small,
+                                //"Search Results",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.02,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                AppLocalizations.of(context)!.tap_to_see,
+                                //"Tap to See Details/Clone",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(153, 153, 153, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              assessmentPresent?
+                              SizedBox(
+                                height: height * 0.45,
+                                child: ListView.builder(
+                                  itemCount: assessments.length,
+                                  itemBuilder: (context, index) => Column(
+                                    children: [
+                                      CardInfo(
+                                        height: height,
+                                        width: width,
+                                        status: 'Active',
+                                        assessment: assessments[index],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ):
+                              Column(
+                                children: [
+                                  SizedBox(height: height * 0.04),
+                                  Center(
+                                    child: Text(
+                                      AppLocalizations.of(context)!.no_assessment_found_caps,
+                                      //'NO ASSESSMENT FOUND',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(28, 78, 80, 1),
+                                        fontSize: height * 0.0175,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      assessments.isEmpty?Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: CustomDialog(
+                                            title:
+                                            AppLocalizations.of(context)!.alert_popup,
+                                            //'Alert',
+                                            content: AppLocalizations.of(context)!.no_more_assessment,
+                                            //'No Assessment Found.',
+                                            button: AppLocalizations.of(context)!.retry,
+                                          ),
+                                        ),
+                                      ):
+                                      loadMore(teacherQuestionBankSearchController.text);
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          AppLocalizations.of(context)!.load_more,
+                                          // "Load More",
+                                          style: TextStyle(
+                                            color: const Color.fromRGBO(82, 165, 160, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.expand_more_outlined,
+                                          color: Color.fromRGBO(82, 165, 160, 1),
+                                        )
+                                      ],
+                                    ),
+                                  )),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                            ],
+                          )),
+                    ),
+                  ),
+                )),
+          );
+        }
+        else {
+          print("INSIDE MOBILE");
+          print(constraints.maxWidth);
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: Colors.white,
+                endDrawer: const EndDrawerMenuTeacher(),
+                appBar: AppBar(
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40.0,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pushNamedAndRemoveUntil('/teacherAssessmentLanding', ModalRoute.withName('/teacherSelectionPage'));
+
+                      //Navigator.of(context).pop();
+                    },
+                  ),
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          AppLocalizations.of(context)!.lib_of_assessments,
-                          //"Library of Assessments",
+                          AppLocalizations.of(context)!.assessment_caps,
+                          // "ASSESSMENTS",
                           style: TextStyle(
-                            color: const Color.fromRGBO(153, 153, 153, 1),
-                            fontSize: height * 0.015,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.0225,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: height * 0.02),
-                    TextField(
-                      controller: teacherQuestionBankSearchController,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        hintStyle: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                            fontFamily: 'Inter',
+                        Text(
+                          AppLocalizations.of(context)!.search_results_caps,
+                          //"SEARCH RESULTS",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontSize: height * 0.0225,
+                            fontFamily: "Inter",
                             fontWeight: FontWeight.w400,
-                            fontSize: height * 0.016),
-                        hintText:  AppLocalizations.of(context)!.sub_hint_text,
-                        //"Maths, 10th, 2022, CBSE, Science",
-                        suffixIcon: Column(children: [
-                          Container(
-                              height: height * 0.073,
-                              width: width * 0.13,
-                              decoration: const BoxDecoration(
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(8.0)),
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              ),
-                              child: IconButton(
-                                iconSize: height * 0.04,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                onPressed: () {
-                                  setState(() {
-                                    assessments = [];
-                                  });
-                                  getData(
-                                      teacherQuestionBankSearchController.text);
-                                },
-                                icon: const Icon(Icons.search),
-                              )),
-                        ]),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color.fromRGBO(82, 165, 160, 1)),
-                            borderRadius: BorderRadius.circular(15)),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                      ),
-                      enabled: true,
-                      onChanged: (val) {
-                        setState(() {
-                          assessments = [];
-                        });
-                      },
-                      onSubmitted: (value) {
-                        setState(() {
-                          assessments = [];
-                        });
-                        getData(value);
-                      },
-                    ),
-                    SizedBox(height: height * 0.04),
-                    Text(
-                      AppLocalizations.of(context)!.search_results_small,
-                      //"Search Results",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(82, 165, 160, 1),
-                        fontSize: height * 0.02,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      AppLocalizations.of(context)!.tap_to_see,
-                      //"Tap to See Details/Clone",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(153, 153, 153, 1),
-                        fontSize: height * 0.015,
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    assessmentPresent?
-                    SizedBox(
-                      height: height * 0.45,
-                      child: ListView.builder(
-                        itemCount: assessments.length,
-                        itemBuilder: (context, index) => Column(
-                          children: [
-                            CardInfo(
-                              height: height,
-                              width: width,
-                              status: 'Active',
-                              assessment: assessments[index],
-                            ),
-                            SizedBox(
-                              height: height * 0.02,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ):
-                    Column(
-                      children: [
-                        SizedBox(height: height * 0.04),
-                        Center(
-                          child: Text(
-                            AppLocalizations.of(context)!.no_assessment_found_caps,
-                            //'NO ASSESSMENT FOUND',
-                            textAlign: TextAlign.center,
+                      ]),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            end: Alignment.bottomCenter,
+                            begin: Alignment.topCenter,
+                            colors: [
+                              Color.fromRGBO(0, 106, 100, 1),
+                              Color.fromRGBO(82, 165, 160, 1),
+                            ])),
+                  ),
+                ),
+                body: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.023,
+                          left: height * 0.023,
+                          right: height * 0.023),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.search,
+                            //"Search",
                             style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: height * 0.0175,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontSize: height * 0.02,
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () {
-                            assessments.isEmpty?Navigator.push(
-                              context,
-                              PageTransition(
-                                type: PageTransitionType.rightToLeft,
-                                child: CustomDialog(
-                                  title:
-                                  AppLocalizations.of(context)!.alert_popup,
-                                  //'Alert',
-                                  content: AppLocalizations.of(context)!.no_more_assessment,
-                                  //'No Assessment Found.',
-                                  button: AppLocalizations.of(context)!.retry,
-                                ),
-                              ),
-                            ):
-                            loadMore(teacherQuestionBankSearchController.text);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                AppLocalizations.of(context)!.load_more,
-                                // "Load More",
+                                AppLocalizations.of(context)!.lib_of_assessments,
+                                //"Library of Assessments",
                                 style: TextStyle(
-                                  color: const Color.fromRGBO(82, 165, 160, 1),
-                                  fontSize: height * 0.0175,
+                                  color: const Color.fromRGBO(153, 153, 153, 1),
+                                  fontSize: height * 0.015,
                                   fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              const Icon(
-                                Icons.expand_more_outlined,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              )
                             ],
                           ),
-                        )),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                  ],
-                )),
-          ),
-        ));
+                          SizedBox(height: height * 0.02),
+                          TextField(
+                            controller: teacherQuestionBankSearchController,
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              floatingLabelBehavior: FloatingLabelBehavior.always,
+                              hintStyle: TextStyle(
+                                  color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: height * 0.016),
+                              hintText:  AppLocalizations.of(context)!.sub_hint_text,
+                              //"Maths, 10th, 2022, CBSE, Science",
+                              suffixIcon: Column(children: [
+                                Container(
+                                    height: height * 0.073,
+                                    width: width * 0.13,
+                                    decoration: const BoxDecoration(
+                                      borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    ),
+                                    child: IconButton(
+                                      iconSize: height * 0.04,
+                                      color: const Color.fromRGBO(255, 255, 255, 1),
+                                      onPressed: () {
+                                        setState(() {
+                                          assessments = [];
+                                        });
+                                        getData(
+                                            teacherQuestionBankSearchController.text);
+                                      },
+                                      icon: const Icon(Icons.search),
+                                    )),
+                              ]),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
+                                      color: Color.fromRGBO(82, 165, 160, 1)),
+                                  borderRadius: BorderRadius.circular(15)),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15)),
+                            ),
+                            enabled: true,
+                            onChanged: (val) {
+                              setState(() {
+                                assessments = [];
+                              });
+                            },
+                            onSubmitted: (value) {
+                              setState(() {
+                                assessments = [];
+                              });
+                              getData(value);
+                            },
+                          ),
+                          SizedBox(height: height * 0.04),
+                          Text(
+                            AppLocalizations.of(context)!.search_results_small,
+                            //"Search Results",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontSize: height * 0.02,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.tap_to_see,
+                            //"Tap to See Details/Clone",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(153, 153, 153, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
+                          assessmentPresent?
+                          SizedBox(
+                            height: height * 0.45,
+                            child: ListView.builder(
+                              itemCount: assessments.length,
+                              itemBuilder: (context, index) => Column(
+                                children: [
+                                  CardInfo(
+                                    height: height,
+                                    width: width,
+                                    status: 'Active',
+                                    assessment: assessments[index],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.02,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ):
+                          Column(
+                            children: [
+                              SizedBox(height: height * 0.04),
+                              Center(
+                                child: Text(
+                                  AppLocalizations.of(context)!.no_assessment_found_caps,
+                                  //'NO ASSESSMENT FOUND',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontSize: height * 0.0175,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
+                          MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  assessments.isEmpty?Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: CustomDialog(
+                                        title:
+                                        AppLocalizations.of(context)!.alert_popup,
+                                        //'Alert',
+                                        content: AppLocalizations.of(context)!.no_more_assessment,
+                                        //'No Assessment Found.',
+                                        button: AppLocalizations.of(context)!.retry,
+                                      ),
+                                    ),
+                                  ):
+                                  loadMore(teacherQuestionBankSearchController.text);
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!.load_more,
+                                      // "Load More",
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(82, 165, 160, 1),
+                                        fontSize: height * 0.0175,
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.expand_more_outlined,
+                                      color: Color.fromRGBO(82, 165, 160, 1),
+                                    )
+                                  ],
+                                ),
+                              )),
+                          SizedBox(
+                            height: height * 0.02,
+                          ),
+                        ],
+                      )),
+                ),
+              ));
+        }
+      },);
+
   }
 }
 
