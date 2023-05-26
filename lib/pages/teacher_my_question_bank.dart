@@ -38,165 +38,351 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-            resizeToAvoidBottomInset: true,
-            backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              toolbarHeight: height * 0.100,
-              centerTitle: true,
-              title: Text(
-                AppLocalizations.of(context)!.my_qn_bank_caps,
-                //"MY QUESTION BANK",
-                style: TextStyle(
-                  color: const Color.fromRGBO(255, 255, 255, 1),
-                  fontSize: height * 0.0225,
-                  fontFamily: "Inter",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                        end: Alignment.bottomCenter,
-                        begin: Alignment.topCenter,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ])),
-              ),
-            ),
-            body: Container(
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Visibility(
-                    visible: _visible,
-                    child: Container(
-                      height: height * 0.06,
-                      width: width * 0.9,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                        color: Color.fromRGBO(28, 78, 80, 1),
+    double width = MediaQuery
+        .of(context)
+        .size
+        .width;
+    double height = MediaQuery
+        .of(context)
+        .size
+        .height;
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      if (constraints.maxWidth > 400) {
+          width=400;
+        return Center(
+          child: Container(
+            width: width,
+            child: WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    resizeToAvoidBottomInset: true,
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+                    appBar: AppBar(
+                      automaticallyImplyLeading: false,
+                      toolbarHeight: height * 0.100,
+                      centerTitle: true,
+                      title: Text(
+                        AppLocalizations.of(context)!.my_qn_bank_caps,
+                        //"MY QUESTION BANK",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: height * 0.0225,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                      child: Center(
-                        child: Text(
-                          AppLocalizations.of(context)!.qn_published,
-                          //"Questions Published Successfully",
-                          style: TextStyle(
-                            color: const Color.fromRGBO(255, 255, 255, 1),
-                            fontSize: height * 0.02,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
+                      flexibleSpace: Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                                end: Alignment.bottomCenter,
+                                begin: Alignment.topCenter,
+                                colors: [
+                                  Color.fromRGBO(0, 106, 100, 1),
+                                  Color.fromRGBO(82, 165, 160, 1),
+                                ])),
+                      ),
+                    ),
+                    body: Container(
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Visibility(
+                            visible: _visible,
+                            child: Container(
+                              height: height * 0.06,
+                              width: width * 0.9,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                                color: Color.fromRGBO(28, 78, 80, 1),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  AppLocalizations.of(context)!.qn_published,
+                                  //"Questions Published Successfully",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(255, 255, 255, 1),
+                                    fontSize: height * 0.02,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.01,
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                                left: width * 0.055, right: width * 0.055),
+                            height: height * 0.65,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SizedBox(
+                                    height: height * 0.03,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.tap_to_review,
+                                        //'Tap to Review/Edit/Delete',
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            fontFamily: "Inter",
+                                            color:
+                                            const Color.fromRGBO(153, 153, 153, 1),
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            AppLocalizations.of(context)!.my_qns_small,
+                                            // 'My Questions',
+                                            style: TextStyle(
+                                                fontSize: height * 0.015,
+                                                fontFamily: "Inter",
+                                                color: const Color.fromRGBO(0, 0, 0, 1),
+                                                fontWeight: FontWeight.w400),
+                                          ),
+                                          SizedBox(
+                                            width: width * 0.02,
+                                          ),
+                                          const Icon(
+                                            Icons.circle,
+                                            color: Color.fromRGBO(82, 165, 160, 1),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: height * 0.03,
+                                  ),
+                                  for (int i = 0; i < quesList.length; i++)
+                                    QuestionPreview(
+                                      height: height,
+                                      width: width,
+                                      question: quesList[i],
+                                      index: i,
+                                      assessment: widget.assessment,
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: height * 0.05,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                              minimumSize: const Size(280, 48),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(39),
+                              ),
+                            ),
+                            onPressed: () async {
+                              if (widget.assessment != false) {
+                                Navigator.pushNamed(
+                                    context, '/teacherCreateAssessment');
+                              } else {
+                                Provider.of<QuestionPrepareProviderFinal>(context,
+                                    listen: false)
+                                    .reSetQuestionList();
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    '/teacherQuestionBank',
+                                    ModalRoute.withName('/teacherSelectionPage'),
+                                    arguments: widget.assessment);
+                              }
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)!.back_to_qns,
+                              //'Back to Questions',
+                              style: TextStyle(
+                                  fontSize: height * 0.025,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(255, 255, 255, 1),
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ))),
+          ),
+        );
+      }
+      else{
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: true,
+                backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
+                appBar: AppBar(
+                  automaticallyImplyLeading: false,
+                  toolbarHeight: height * 0.100,
+                  centerTitle: true,
+                  title: Text(
+                    AppLocalizations.of(context)!.my_qn_bank_caps,
+                    //"MY QUESTION BANK",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      fontSize: height * 0.0225,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  flexibleSpace: Container(
+                    decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            end: Alignment.bottomCenter,
+                            begin: Alignment.topCenter,
+                            colors: [
+                              Color.fromRGBO(0, 106, 100, 1),
+                              Color.fromRGBO(82, 165, 160, 1),
+                            ])),
+                  ),
+                ),
+                body: Container(
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Visibility(
+                        visible: _visible,
+                        child: Container(
+                          height: height * 0.06,
+                          width: width * 0.9,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            color: Color.fromRGBO(28, 78, 80, 1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              AppLocalizations.of(context)!.qn_published,
+                              //"Questions Published Successfully",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(
-                        left: width * 0.055, right: width * 0.055),
-                    height: height * 0.65,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.vertical,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            height: height * 0.03,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: width * 0.055, right: width * 0.055),
+                        height: height * 0.65,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Text(
-                                AppLocalizations.of(context)!.tap_to_review,
-                                //'Tap to Review/Edit/Delete',
-                                style: TextStyle(
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    color:
-                                    const Color.fromRGBO(153, 153, 153, 1),
-                                    fontWeight: FontWeight.w600),
+                              SizedBox(
+                                height: height * 0.03,
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    AppLocalizations.of(context)!.my_qns_small,
-                                    // 'My Questions',
+                                    AppLocalizations.of(context)!.tap_to_review,
+                                    //'Tap to Review/Edit/Delete',
                                     style: TextStyle(
                                         fontSize: height * 0.015,
                                         fontFamily: "Inter",
-                                        color: const Color.fromRGBO(0, 0, 0, 1),
-                                        fontWeight: FontWeight.w400),
+                                        color:
+                                        const Color.fromRGBO(153, 153, 153, 1),
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                  SizedBox(
-                                    width: width * 0.02,
-                                  ),
-                                  const Icon(
-                                    Icons.circle,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        AppLocalizations.of(context)!.my_qns_small,
+                                        // 'My Questions',
+                                        style: TextStyle(
+                                            fontSize: height * 0.015,
+                                            fontFamily: "Inter",
+                                            color: const Color.fromRGBO(0, 0, 0, 1),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.02,
+                                      ),
+                                      const Icon(
+                                        Icons.circle,
+                                        color: Color.fromRGBO(82, 165, 160, 1),
+                                      )
+                                    ],
                                   )
                                 ],
-                              )
+                              ),
+                              SizedBox(
+                                height: height * 0.03,
+                              ),
+                              for (int i = 0; i < quesList.length; i++)
+                                QuestionPreview(
+                                  height: height,
+                                  width: width,
+                                  question: quesList[i],
+                                  index: i,
+                                  assessment: widget.assessment,
+                                ),
                             ],
                           ),
-                          SizedBox(
-                            height: height * 0.03,
+                        ),
+                      ),
+                      SizedBox(
+                        height: height * 0.05,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                          minimumSize: const Size(280, 48),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(39),
                           ),
-                          for (int i = 0; i < quesList.length; i++)
-                            QuestionPreview(
-                              height: height,
-                              width: width,
-                              question: quesList[i],
-                              index: i,
-                              assessment: widget.assessment,
-                            ),
-                        ],
+                        ),
+                        onPressed: () async {
+                          if (widget.assessment != false) {
+                            Navigator.pushNamed(
+                                context, '/teacherCreateAssessment');
+                          } else {
+                            Provider.of<QuestionPrepareProviderFinal>(context,
+                                listen: false)
+                                .reSetQuestionList();
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                                '/teacherQuestionBank',
+                                ModalRoute.withName('/teacherSelectionPage'),
+                                arguments: widget.assessment);
+                          }
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.back_to_qns,
+                          //'Back to Questions',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(
-                    height: height * 0.05,
-                  ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                      minimumSize: const Size(280, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(39),
-                      ),
-                    ),
-                    onPressed: () async {
-                      if (widget.assessment != false) {
-                        Navigator.pushNamed(context, '/teacherCreateAssessment');
-                      } else {
-                        Provider.of<QuestionPrepareProviderFinal>(context,
-                            listen: false)
-                            .reSetQuestionList();
-                        Navigator.of(context).pushNamedAndRemoveUntil('/teacherQuestionBank', ModalRoute.withName('/teacherSelectionPage'),arguments: widget.assessment);
-                      }
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.back_to_qns,
-                      //'Back to Questions',
-                      style: TextStyle(
-                          fontSize: height * 0.025,
-                          fontFamily: "Inter",
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
-            )));
+                )));
+      }
+
+  }
+  );
   }
 }
 

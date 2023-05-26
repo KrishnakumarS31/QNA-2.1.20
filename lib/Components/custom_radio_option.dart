@@ -24,9 +24,10 @@ class MyRadioOption<T> extends StatefulWidget {
 class _MyRadioOptionState<T> extends State<MyRadioOption<T>> {
   Widget _buildLabel() {
     final bool isSelected = widget.value == widget.groupValue;
+    double width = MediaQuery.of(context).size.height;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      width: height * 0.1381,
+      width: widget.value=='MCQ'?width * 0.09381:widget.value=='Survey'?width * 0.09381:width * 0.1381,
       height: height * 0.06,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(8.0)),
