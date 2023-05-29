@@ -53,7 +53,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 400) {
           return Center(
-            child: Container(
+            child: SizedBox(
               width: 400,
               child: WillPopScope(
                   onWillPop: () async => false,

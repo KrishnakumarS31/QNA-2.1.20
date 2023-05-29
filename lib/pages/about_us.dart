@@ -95,13 +95,8 @@ class AboutUsState extends State<AboutUs> {
                     SizedBox(height: height * 0.03),
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Text(
-                        constraints.maxWidth > 700
-                            ? AppLocalizations.of(context)!
-                            .about_us_description_web
-                            : AppLocalizations.of(context)!
-                            .about_us_description,
-                        // "ITNEducation Inc., builds range of IT in\nEducation products and services that help\n millions of students / learners  and\n teachers / instructors to learn digitally and\n freely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\n platform, which is:",
+                      child: Text(AppLocalizations.of(context)!
+                          .about_us_description,
                         style: TextStyle(
                             fontSize: height * 0.018,
                             fontWeight: FontWeight.w400,
@@ -110,12 +105,8 @@ class AboutUsState extends State<AboutUs> {
                       ),
                     ),
                     SizedBox(height: height * 0.03),
-                    Padding(
-                      padding: EdgeInsets.only(left:
-                      constraints.maxWidth > 700
-                          ? height * 0.9
-                          : height * 0.065
-                      ),
+                    Align(
+                      alignment: Alignment.topCenter,
                       child: Column(
                         children: str.map((list) {
                           return Row(children: [
@@ -209,11 +200,7 @@ class AboutUsState extends State<AboutUs> {
                     SizedBox(height: height * 0.03),
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Text(
-                        constraints.maxWidth > 700
-                            ? AppLocalizations.of(context)!
-                            .about_us_description_web
-                            : AppLocalizations.of(context)!
+                      child: Text(AppLocalizations.of(context)!
                             .about_us_description,
                         // "ITNEducation Inc., builds range of IT in\nEducation products and services that help\n millions of students / learners  and\n teachers / instructors to learn digitally and\n freely. QNATest is an Intelligent Learning\nEvaluation, Assessment & Advisor\n platform, which is:",
                         style: TextStyle(
@@ -225,10 +212,7 @@ class AboutUsState extends State<AboutUs> {
                     ),
                     SizedBox(height: height * 0.03),
                     Padding(
-                      padding: EdgeInsets.only(left:
-                      constraints.maxWidth > 700
-                          ? height * 0.9
-                          : height * 0.065
+                      padding: EdgeInsets.only(left: height * 0.065
                       ),
                       child: Column(
                         children: str.map((list) {

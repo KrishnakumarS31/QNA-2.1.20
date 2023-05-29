@@ -97,10 +97,9 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 400) {
-          print("student selection page");
+        if (constraints.maxWidth > 500) {
           return Center(
-            child: Container(
+            child: SizedBox(
               width: 400,
               child: WillPopScope(
                   onWillPop: () async => false,

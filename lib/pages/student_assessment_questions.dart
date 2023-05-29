@@ -53,7 +53,7 @@ class StudQuestionState extends State<StudQuestion> {
     Future.delayed(const Duration(seconds: 0)).then((_) {
       if (MediaQuery.of(context).copyWith().size.width > 400){
         showModalBottomSheet(
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 400
           ),
             shape: const RoundedRectangleBorder(
@@ -74,7 +74,7 @@ class StudQuestionState extends State<StudQuestion> {
                         topRight: Radius.circular(20))),
                 height: MediaQuery.of(context).copyWith().size.height * 0.3025,
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left:
                       400 * 0.10),
                   child: Column(
@@ -84,16 +84,16 @@ class StudQuestionState extends State<StudQuestion> {
                             0.026,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             right:
                             400 *
                                 0.055),
                         child: Align(
                           alignment: Alignment.topRight,
                           child: IconButton(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.close,
-                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              color: Color.fromRGBO(82, 165, 160, 1),
                               size:
                               400 *
                                   0.055,
@@ -201,7 +201,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     .height *
                                     0.016)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width:
                             400 *
                                 0.052,
@@ -441,7 +441,7 @@ class StudQuestionState extends State<StudQuestion> {
 
   void countDownSetState(){
     // setState(() {
-      myDuration = Duration(seconds: 0);
+      myDuration = const Duration(seconds: 0);
     //});
   }
 
@@ -457,8 +457,6 @@ class StudQuestionState extends State<StudQuestion> {
         if(a<=d2){
           countdownTimer!.cancel();
           bool submitted=Provider.of<Questions>(context, listen: false).assessmentSubmitted;
-          print("question page");
-          print(submitted);
           if(submitted){
 
           }else{
@@ -536,7 +534,7 @@ class StudQuestionState extends State<StudQuestion> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 400) {
           return Center(
-            child: Container(
+            child: SizedBox(
               width: 400,
               child: WillPopScope(
                   onWillPop: () async => false,
@@ -548,6 +546,7 @@ class StudQuestionState extends State<StudQuestion> {
                         centerTitle: true,
                         title: Column(
                           children:[
+                            SizedBox(height: height * 0.010),
                             Text(
                               widget.assessmentId,
                               style: TextStyle(
@@ -865,7 +864,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         alignment: Alignment.bottomRight,
                                         child: Padding(
                                           padding:
-                                          EdgeInsets.only(right: 400 * 0.05),
+                                          const EdgeInsets.only(right: 400 * 0.05),
                                           child: Column(
                                             mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -1177,23 +1176,6 @@ class StudQuestionState extends State<StudQuestion> {
                                               widget.userId,
                                               widget.isMember
                                             ]);
-                                        // Navigator.push(
-                                        //   context,
-                                        //   PageTransition(
-                                        //     type: PageTransitionType
-                                        //         .rightToLeft,
-                                        //     child: StudentReviseQuest(
-                                        //         questions: values,
-                                        //         assessmentid: values
-                                        //             .data!.assessmentId!,
-                                        //         userName: widget.userName,
-                                        //         startTime: now
-                                        //             .microsecondsSinceEpoch,
-                                        //
-                                        //         assessmentID:
-                                        //             widget.assessmentId),
-                                        //   ),
-                                        // );
                                       },
                                     )
                                         : IconButton(
@@ -1285,6 +1267,7 @@ class StudQuestionState extends State<StudQuestion> {
                     centerTitle: true,
                     title: Column(
                       children:[
+                        SizedBox(height: height * 0.010),
                         Text(
                           widget.assessmentId,
                           style: TextStyle(
@@ -1914,23 +1897,6 @@ class StudQuestionState extends State<StudQuestion> {
                                                 widget.userId,
                                                 widget.isMember
                                               ]);
-                                          // Navigator.push(
-                                          //   context,
-                                          //   PageTransition(
-                                          //     type: PageTransitionType
-                                          //         .rightToLeft,
-                                          //     child: StudentReviseQuest(
-                                          //         questions: values,
-                                          //         assessmentid: values
-                                          //             .data!.assessmentId!,
-                                          //         userName: widget.userName,
-                                          //         startTime: now
-                                          //             .microsecondsSinceEpoch,
-                                          //
-                                          //         assessmentID:
-                                          //             widget.assessmentId),
-                                          //   ),
-                                          // );
                                         },
                                       )
                                     : IconButton(
@@ -2187,14 +2153,13 @@ class NotSureDisabled extends StatelessWidget {
         Icon(Icons.mode_comment_outlined,
             color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
-            left: width >= 700 ? width * 0.005 : width * 0.018,
-            top: width >= 700 ? height * 0.005 : height * 0.008,
+            left: 7,
+            top: 4,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 153, 0, 1),
-              size: width >= 700 ? height * 0.02 : height * 0.016,
-            ))
-      ],
+              size: height * 0.02)
+        )],
     );
   }
 }
@@ -2216,12 +2181,12 @@ class NotSureEnabled extends StatelessWidget {
         Icon(Icons.mode_comment_sharp,
             color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
-            left: width >= 700 ? width * 0.005 : width * 0.018,
-            top: width >= 700 ? height * 0.005 : height * 0.008,
+            left: 7,
+            top: 4,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 255, 255, 1),
-              size: width >= 700 ? height * 0.02 : height * 0.016,
+              size: height * 0.02,
             ))
       ],
     );

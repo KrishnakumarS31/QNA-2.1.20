@@ -2125,6 +2125,22 @@ class TeacherPrepareQuesForAssessmentState
                                                   ),
                                                 );
                                               }
+                                              else if(_groupValue == 'MCQ' && radioList.contains(true) == false) {
+                                                Navigator.push(
+                                                  context,
+                                                  PageTransition(
+                                                    type: PageTransitionType.rightToLeft,
+                                                    child: CustomDialog(
+                                                      title: "Alert",
+                                                      //'Wrong password',
+                                                      content:
+                                                      "Select Atlease One Correct Choice",
+                                                      //'please enter the correct password',
+                                                      button: AppLocalizations.of(context)!.retry,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
                                               else{
                                                 List<Choice> temp = [];
                                                 List<Choice> selectedTemp = [];
@@ -3222,6 +3238,22 @@ class TeacherPrepareQuesForAssessmentState
                                             AppLocalizations.of(context)!
                                                 .one_choice_must,
                                             //"At least one choice must be added",
+                                            button: AppLocalizations.of(context)!.retry,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    else if(_groupValue == 'MCQ' && radioList.contains(true) == false) {
+                                      Navigator.push(
+                                        context,
+                                        PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: CustomDialog(
+                                            title: "Alert",
+                                            //'Wrong password',
+                                            content:
+                                            "Select Atlease One Correct Choice",
+                                            //'please enter the correct password',
                                             button: AppLocalizations.of(context)!.retry,
                                           ),
                                         ),

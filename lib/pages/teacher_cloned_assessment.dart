@@ -24,6 +24,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
   bool questionShirnk = true;
   var startDate;
   var endDate;
+  double webWidth = 400.0;
   GetAssessmentModel assessment = GetAssessmentModel();
   CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
   int mark = 0;
@@ -1021,7 +1022,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width:400.0,
+                  width:webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -1101,7 +1102,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                     color: Colors.white,
                                   ),
                                   height: height * 0.1675,
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -1114,7 +1115,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                           color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.only(left: width * 0.02),
+                                          padding: EdgeInsets.only(left: webWidth * 0.02),
                                           child: Row(
                                             children: [
                                               Text(
@@ -1145,7 +1146,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(left: width * 0.02),
+                                            padding: EdgeInsets.only(left: webWidth * 0.02),
                                             child: Text(
                                               "${assessment.topic!} - ${assessment.subTopic!}",
                                               style: TextStyle(
@@ -1158,7 +1159,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(right: width * 0.02),
+                                            padding: EdgeInsets.only(right: webWidth * 0.02),
                                             child: const Icon(
                                               Icons.circle,
                                               color: Color.fromRGBO(60, 176, 0, 1),
@@ -1177,7 +1178,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                               ),
                                               color: Colors.white,
                                             ),
-                                            width: width * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1208,7 +1209,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: width * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1250,7 +1251,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.assessment_id_caps,
                                       //"Assessment ID:",
@@ -1279,7 +1280,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.institute_test_id,
                                       //"Institute Test ID:",
@@ -1312,7 +1313,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.time_permitted,
                                      // "Time Permitted:",
@@ -1343,7 +1344,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "${AppLocalizations.of(context)!.start_date_time}:",
                                      // "Start Date & Time:",
@@ -1382,7 +1383,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width:  webWidth * 0.4,
                                     child: Text(
                                       "${AppLocalizations.of(context)!.end_date_time}:",
                                      // "End Date & Time:",
@@ -1424,6 +1425,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               ),
                               additionalDetails
                                   ? Container(
+                                width: webWidth,
                                       height: height * 0.05,
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -1432,7 +1434,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -1450,7 +1452,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                             ),
                                             Padding(
                                               padding:
-                                                  EdgeInsets.only(right: width * 0.02),
+                                                  EdgeInsets.only(right: webWidth * 0.02),
                                               child: IconButton(
                                                 icon: const Icon(
                                                   Icons.arrow_circle_up_outlined,
@@ -1466,6 +1468,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                       ),
                                     )
                                   : Container(
+                                width: webWidth,
                                       height: height * 0.05,
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -1474,7 +1477,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -1516,7 +1519,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.category,
                                                // "Category",
@@ -1547,7 +1550,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.retries,
                                                // "Retries",
@@ -1578,7 +1581,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.guest,
                                               //  "Guest",
@@ -1616,7 +1619,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.answer_sheet,
                                                // "Answer Sheet",
@@ -1654,7 +1657,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.advisor,
                                                 //"Advisor",
@@ -1694,7 +1697,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.email_small,
                                                 //"Email",
@@ -1735,7 +1738,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.in_active,
                                                 //"Inactive",
@@ -1777,6 +1780,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               ),
                               questionShirnk
                                   ? Container(
+                                width: webWidth,
                                       height: height * 0.05,
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -1785,7 +1789,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -1803,7 +1807,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                             ),
                                             Padding(
                                               padding:
-                                                  EdgeInsets.only(right: width * 0.02),
+                                                  EdgeInsets.only(right: webWidth * 0.02),
                                               child: IconButton(
                                                 onPressed: () {
                                                   showQuestionDetails();
@@ -1819,6 +1823,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                       ),
                                     )
                                   : Container(
+                                width: webWidth,
                                       height: height * 0.05,
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -1827,7 +1832,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -1845,7 +1850,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                             ),
                                             Padding(
                                               padding:
-                                                  EdgeInsets.only(right: width * 0.02),
+                                                  EdgeInsets.only(right: webWidth * 0.02),
                                               child: IconButton(
                                                 onPressed: () {
                                                   showQuestionDetails();
@@ -1917,7 +1922,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:

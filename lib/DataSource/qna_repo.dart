@@ -445,7 +445,7 @@ class QnaRepo {
     return loginModel;
   }
 
-  static Future<ResponseEntity> editActiveAssessmentTeacher(
+  static Future<ResponseEntity> editActiveAssessmentTeacher( CreateAssessmentModel assessmentModel,
       AssessmentSettings.AssessmentSettings assessment, int assessmentId,String assessmentType,String assessmentStatus,UserDetails userDetails) async {
     //SharedPreferences loginData = await SharedPreferences.getInstance();
     ResponseEntity loginModel = ResponseEntity(code: 0, message: 'message');
@@ -457,10 +457,20 @@ class QnaRepo {
         'PUT',
         Uri.parse(
             '$assessmentDomain/$assessmentId?user_id=${userDetails.userId}'));
+    int? assessmentStartDate = assessmentModel.assessmentStartdate;
+    int? assessmentEndDate = assessmentModel.assessmentEnddate;
+    int? assessmentDuration = assessmentModel.assessmentDuration;
+    print("ASSESSMENT DURATION");
+    print(assessmentDuration);
+    print("ASSESSMENT START DATE");
+    print(assessmentStartDate);
+    print("ASSESSMENT END DATE");
+    print(assessmentEndDate);
     assessment.advisorName=userDetails.firstName;
     assessment.advisorEmail=userDetails.email;
     request.body = assessmentSettingsToJson(assessment);
-    String t="{\"assessment_type\": \"$assessmentType\", \"assessment_status\": \"$assessmentStatus\",\"assessment_settings\": ${request.body} }";
+    String t="{\"assessment_type\": \"$assessmentType\", \"assessment_status\": \"$assessmentStatus\",\"assessment_settings\": ${request.body}, \"assessment_startdate\": $assessmentStartDate,\"assessment_enddate\": $assessmentEndDate,\"assessment_duration\": $assessmentDuration }";
+    print(t);
     request.body=t;
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
@@ -472,7 +482,7 @@ class QnaRepo {
       String? pass = userDetails.password;
       LoginModel loginModel =
       await logInUser(email!, pass!, userDetails.role);
-      editActiveAssessmentTeacher(assessment, assessmentId,assessmentType,assessmentStatus,userDetails);
+      editActiveAssessmentTeacher(assessmentModel,assessment, assessmentId,assessmentType,assessmentStatus,userDetails);
     } else {
       String temp = await response.stream.bytesToString();
     }

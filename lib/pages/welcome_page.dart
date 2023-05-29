@@ -88,7 +88,10 @@ class _WelcomePageState extends State<WelcomePage> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 400) {
-          return WillPopScope(
+          return Center(
+              child: SizedBox(
+              width: 400,
+              child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
                   extendBodyBehindAppBar: true,
@@ -154,7 +157,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                                 height: localHeight * 0.135,
                                                 decoration: const BoxDecoration(
                                                   image: DecorationImage(
-                                                    fit: BoxFit.fitHeight,
                                                     image:
                                                     AssetImage('assets/images/qna_logo.png'),
                                                   ),
@@ -323,7 +325,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                     ))
                               ]),
                         ],
-                      ))));
+                      ))))));
         }
         else {
           return WillPopScope(

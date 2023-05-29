@@ -25,7 +25,9 @@ class CustomRadioButton<T> extends StatelessWidget {
   Widget _buildLabel() {
     final bool isSelected = value == groupValue;
     return Container(
-      width: width>400?400 * 0.05:width * 0.09,
+      width: width > 400
+          ? 400 * 0.05
+          :width * 0.09,
       height: height * 0.04,
       decoration: ShapeDecoration(
         shape: const CircleBorder(
@@ -36,9 +38,8 @@ class CustomRadioButton<T> extends StatelessWidget {
       ),
       child: Center(
           child: isSelected
-              ? Icon(Icons.done, size:
-          defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS
-          ? 25
+              ? Icon(Icons.done, size: width> 500
+              ? 25
               : 15,
               color: Colors.white)
               : null),
@@ -47,8 +48,10 @@ class CustomRadioButton<T> extends StatelessWidget {
 
   Widget _buildText() {
 
-    return Container(
-      width: width>900?width * 0.1:width>500?width * 0.35:width * 0.3,
+    return SizedBox(
+      width: width > 500
+          ? width * 0.35
+          : width * 0.3,
       child: Text(
         text,
         style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
@@ -73,7 +76,9 @@ class CustomRadioButton<T> extends StatelessWidget {
           children: [
             _buildLabel(),
             SizedBox(
-              width: width>700?0:width * 0.03,),
+              width: width> 500
+                  ? 0
+                  : width * 0.03),
             _buildText(),
           ],
         ),

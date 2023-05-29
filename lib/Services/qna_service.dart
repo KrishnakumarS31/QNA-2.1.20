@@ -106,9 +106,9 @@ class QnaService {
     return await QnaRepo.editAssessmentTeacher(assessment, assessmentId,userDetails);
   }
 
-  static Future<ResponseEntity> editActiveAssessmentTeacherService(
+  static Future<ResponseEntity> editActiveAssessmentTeacherService( CreateAssessmentModel assessmentModel,
       AssessmentSettings.AssessmentSettings assessment, int assessmentId,String assessmentType,String assessmentStatus,UserDetails userDetails) async {
-    return await QnaRepo.editActiveAssessmentTeacher(assessment, assessmentId,assessmentType,assessmentStatus,userDetails);
+    return await QnaRepo.editActiveAssessmentTeacher(assessmentModel,assessment, assessmentId,assessmentType,assessmentStatus,userDetails);
   }
 
   static Future<ResponseEntity> makeInactiveAssessmentTeacherService(

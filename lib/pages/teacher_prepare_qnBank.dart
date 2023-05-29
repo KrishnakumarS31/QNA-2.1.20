@@ -227,7 +227,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-       if (constraints.maxWidth > 400) {
+       if (constraints.maxWidth > 500) {
           return Center(
             child: Container(
                 width: 400,
@@ -1078,6 +1078,8 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           //"Preview"
                                         ),
                                         onPressed: () {
+                                          print(radioList);
+                                          print(radioList.contains(true));
                                           if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
                                             Navigator.push(
                                               context,
@@ -1094,7 +1096,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               ),
                                             );
                                           }
-                                          else if(_groupValue=='MCQ' && tempChoiceList.isEmpty){
+                                          else if(_groupValue=='MCQ' && tempChoiceList.isEmpty ){
                                             Navigator.push(
                                               context,
                                               PageTransition(
@@ -1108,6 +1110,22 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                   AppLocalizations.of(context)!
                                                       .one_choice_must,
                                                   //"At least one choice must be added",
+                                                  button: AppLocalizations.of(context)!.retry,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          else if(_groupValue == 'MCQ' && radioList.contains(true) == false) {
+                                            Navigator.push(
+                                              context,
+                                              PageTransition(
+                                                type: PageTransitionType.rightToLeft,
+                                                child: CustomDialog(
+                                                  title: "Alert",
+                                                  //'Wrong password',
+                                                  content:
+                                                  "Select Atlease One Correct Choice",
+                                                  //'please enter the correct password',
                                                   button: AppLocalizations.of(context)!.retry,
                                                 ),
                                               ),
@@ -2018,6 +2036,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       //"Preview"
                                     ),
                                     onPressed: () {
+                                      print(radioList);
                                       if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
                                         Navigator.push(
                                           context,
@@ -2034,7 +2053,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           ),
                                         );
                                       }
-                                      else if(_groupValue=='MCQ' && tempChoiceList.isEmpty){
+                                      else if(_groupValue=='MCQ' && tempChoiceList.isEmpty ){
                                         Navigator.push(
                                           context,
                                           PageTransition(
@@ -2053,6 +2072,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           ),
                                         );
                                       }
+                                      if(radioList.isEmpty)
+                                        {
+                                          print("INSIDE RADIO EMPTY");
+                                        }
                                       else {
                                         List<Choice> temp = [];
                                         List<Choice> selectedTemp = [];

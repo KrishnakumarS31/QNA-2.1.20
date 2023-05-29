@@ -48,7 +48,6 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return LayoutBuilder(
@@ -56,86 +55,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
           return Drawer(
             child: Column(
               children: [
-                constraints.maxWidth > 700
-                    ? Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [
-                          Color.fromRGBO(0, 106, 100, 1),
-                          Color.fromRGBO(82, 165, 160, 1),
-                        ],
-                      )),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //SizedBox(height: height * 0.050),
-                      SizedBox(
-                        height: height / 6,
-                        child: Row(
-                            children: [
-                              SizedBox(width: width * 0.015),
-                              CircleAvatar(
-                                backgroundColor:
-                                const Color.fromRGBO(0, 106, 100, 0),
-                                radius: MediaQuery.of(context).size.width * 0.05,
-                                child: Image.asset(
-                                  "assets/images/ProfilePic_Avatar.png",
-                                ),
-                              ),
-                              SizedBox(width: width * 0.03),
-                              Text(
-                                name,
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(const TextStyle(
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: -0.02,
-                                    fontSize: 16)),
-                              ),
-                            ]),
-                      ),
-                      const SizedBox(height: 0.022),
-                      Column(
-                        children: [
-                          Container(
-                              padding: EdgeInsets.only(left: width * 0.09),
-                              child: Text(
-                                AppLocalizations.of(context)!.teacher,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(221, 221, 221, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 12),
-                              )),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                              padding: EdgeInsets.only(left: width * 0.09),
-                              child: Text(
-                                email,
-                                style: const TextStyle(
-                                    color: Color.fromRGBO(221, 221, 221, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
-                                    fontSize: 12),
-                              )),
-                        ],
-                      ),
-                      //    )
-                    ],
-                  ),
-                )
-                    : Container(
+                Container(
                   decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
@@ -150,64 +70,54 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                     children: [
                       SizedBox(height: height * 0.050),
                       Container(
-                        alignment: Alignment.center,
+                        alignment: Alignment.topLeft,
                         height: height / 6,
                         child: Row(children: [
+                          const SizedBox(width: 10),
                           CircleAvatar(
                             backgroundColor:
                             const Color.fromRGBO(0, 106, 100, 0),
-                            radius: MediaQuery.of(context).size.width * 0.15,
                             child: Image.asset(
                               "assets/images/ProfilePic_Avatar.png",
                             ),
                           ),
-                          const SizedBox(height: 2.0),
+                          const SizedBox(width: 20),
                           Text(
                             name,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyLarge
-                                ?.merge(const TextStyle(
+                            style: const TextStyle(
                                 color: Color.fromRGBO(255, 255, 255, 1),
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w600,
-                                letterSpacing: -0.02,
-                                fontSize: 16)),
+                                fontSize: 16),
                           ),
                         ]),
                       ),
-                      const SizedBox(height: 0.022),
                       Column(
                         children: [
                           Container(
-                              padding: EdgeInsets.only(left: width * 0.09),
+                              padding: const EdgeInsets.only(left: 15),
                               child: Text(
                                 AppLocalizations.of(context)!.teacher,
                                 style: const TextStyle(
                                     color: Color.fromRGBO(221, 221, 221, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
+
                                     fontSize: 12),
                               )),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
                           Container(
-                              padding: EdgeInsets.only(left: width * 0.09),
+                              padding: const EdgeInsets.only(left: 15),
                               child: Text(
                                 email,
                                 style: const TextStyle(
                                     color: Color.fromRGBO(221, 221, 221, 1),
                                     fontFamily: 'Inter',
                                     fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.02,
                                     fontSize: 12),
                               )),
                         ],
                       ),
+                      SizedBox(height: height * 0.020),
                       //    )
                     ],
                   ),
@@ -220,15 +130,12 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(141, 167, 167, 1)),
                           title: Text(
                             AppLocalizations.of(context)!.user_profile,
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .bodyLarge
-                                ?.merge(TextStyle(
+                            style: TextStyle(
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
-                                fontSize: 16)),
+                                
+                                fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
                               color: Color.fromRGBO(153, 153, 153, 1)),
@@ -254,7 +161,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -277,7 +184,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                       //           color: textColor,
                       //           fontFamily: 'Inter',
                       //           fontWeight: FontWeight.w500,
-                      //           letterSpacing: -0.02,
+                      //           
                       //           fontSize: 16),
                       //     ),
                       //     trailing: const Icon(Icons.navigate_next,
@@ -303,7 +210,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -330,7 +237,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -354,7 +261,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -378,7 +285,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -407,7 +314,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16)),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -430,7 +337,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                 color: textColor,
                                 fontFamily: 'Inter',
                                 fontWeight: FontWeight.w500,
-                                letterSpacing: -0.02,
+                                
                                 fontSize: 16),
                           ),
                           trailing: const Icon(Icons.navigate_next,
@@ -457,17 +364,16 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(226, 68, 0, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
+                              
                               fontSize: 16),
                         ),
                         onTap: () async {
                           showDialog(
                             context: context,
                             builder: (context) =>
-                            constraints.maxWidth > 700
-                                ? AlertDialog(
-                              insetPadding: EdgeInsets.only(
-                                  left: width * 0.13, right: width * 0.13),
+                                AlertDialog(
+                              insetPadding: const EdgeInsets.only(
+                                  left: 25, right: 25),
                               title: Row(
                                   children: [
                                     SizedBox(width: height * 0.030),
@@ -477,12 +383,12 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       height: height * 0.1,
-                                      width: width * 0.1,
+                                      width: 40,
                                       child: const Icon(Icons.info_outline_rounded,
                                         color: Color.fromRGBO(255, 255, 255, 1),
                                       ),
                                     ),
-                                    SizedBox(width: height * 0.003),
+                                    SizedBox(width: height * 0.015),
                                     Text(AppLocalizations.of(context)!.confirm,
                                       style: TextStyle(
                                           fontFamily: 'Inter',
@@ -492,12 +398,9 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                       ),),
                                   ]
                               ),
-                              content: const Text("\t\t\t\tAre you sure you want to logout ?"),
+                              content: const Text("Are you sure you want to logout ?"),
                               actions: <Widget>[
-                                // constraints.maxWidth > 700
-                                //     ? const SizedBox()
-                                //     :
-                                SizedBox(width: width * 0.030),
+                                const SizedBox(width: 30),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -519,9 +422,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                     Navigator.of(context).pop();
                                   },
                                 ),
-                                constraints.maxWidth > 700
-                                    ? SizedBox(width: width * 0.05)
-                                    : SizedBox(width: width * 0.005),
+                                const SizedBox(width: 5),
                                 ElevatedButton(
                                     style:
                                     ElevatedButton.styleFrom(
@@ -545,84 +446,6 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                                       Navigator.pushNamed(context, '/');
                                     }
                                 ),
-                                constraints.maxWidth > 700
-                                    ? SizedBox(width: width * 0.040)
-                                    : SizedBox(width: width * 0.030),
-                              ],
-                            )
-                                : AlertDialog(
-                              insetPadding: EdgeInsets.only(
-                                  left: width * 0.13, right: width * 0.13),
-                              title: Row(children: [
-                                SizedBox(width: height * 0.030),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  ),
-                                  height: height * 0.1,
-                                  width: width * 0.1,
-                                  child: const Icon(
-                                    Icons.info_outline_rounded,
-                                    color: Color.fromRGBO(255, 255, 255, 1),
-                                  ),
-                                ),
-                                SizedBox(width: height * 0.015),
-                                Text(
-                                  AppLocalizations.of(context)!.confirm,
-                                  style: TextStyle(
-                                      fontFamily: 'Inter',
-                                      fontSize: height * 0.024,
-                                      color: const Color.fromRGBO(0, 106, 100, 1),
-                                      fontWeight: FontWeight.w700),
-                                ),
-                              ]),
-                              content:
-                              const Text("Are you sure you want to logout ?"),
-                              actions: <Widget>[
-                                SizedBox(width: width * 0.020),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                    const Color.fromRGBO(255, 255, 255, 1),
-                                    minimumSize: const Size(90, 30),
-                                    side: const BorderSide(
-                                      width: 1.5,
-                                      color: Color.fromRGBO(82, 165, 160, 1),
-                                    ),
-                                  ),
-                                  child: Text(AppLocalizations.of(context)!.no,
-                                      style: TextStyle(
-                                          fontFamily: 'Inter',
-                                          fontSize: height * 0.018,
-                                          color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                          fontWeight: FontWeight.w500)),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                SizedBox(width: width * 0.005),
-                                ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                      const Color.fromRGBO(82, 165, 160, 1),
-                                      minimumSize: const Size(90, 30),
-                                    ),
-                                    child: Text(AppLocalizations.of(context)!.yes,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize: height * 0.018,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500)),
-                                    onPressed: () async {
-                                      UserDetails userData=UserDetails();
-                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userData);
-                                      SharedPreferences preferences =
-                                      await SharedPreferences.getInstance();
-                                      await preferences.clear();
-                                      Navigator.pushNamed(context, '/');
-                                    }),
                                 SizedBox(width: height * 0.030),
                               ],
                             ),
@@ -638,7 +461,7 @@ class _EndDrawerMenuTeacherState extends State<EndDrawerMenuTeacher> {
                               color: Color.fromRGBO(180, 180, 180, 1),
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
+                              
                               fontSize: 16),
                         ),
                       ),

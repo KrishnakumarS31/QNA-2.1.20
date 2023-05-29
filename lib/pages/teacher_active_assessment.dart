@@ -77,6 +77,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double webWidth = 400.0;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // if(constraints.maxWidth > 900)
@@ -1229,7 +1230,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
               child: WillPopScope(
                 onWillPop: () async => false,
                 child: SizedBox(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -1309,7 +1310,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                     color: Colors.white,
                                   ),
                                   height: height * 0.1675,
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -1322,7 +1323,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                           color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.only(left: width * 0.02),
+                                          padding: EdgeInsets.only(left:  webWidth * 0.02),
                                           child: Row(
                                             children: [
                                               Text(
@@ -1353,7 +1354,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(right: width * 0.02),
+                                            padding: EdgeInsets.only(right: webWidth * 0.02),
                                             child: const Icon(
                                               Icons.circle,
                                               color: Colors.white,
@@ -1389,7 +1390,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                               ),
                                               color: Colors.white,
                                             ),
-                                            width: width * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1421,7 +1422,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: width * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1463,7 +1464,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.assessment_id_caps,
                                       //"Assessment ID:",
@@ -1492,7 +1493,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!
                                           .institute_test_id,
@@ -1526,7 +1527,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.time_permitted,
                                       //"Time Permitted:",
@@ -1557,7 +1558,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.start_date_time,
                                       //"Start Date & Time:",
@@ -1596,7 +1597,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.end_date_time,
                                       //"End Date & Time:",
@@ -1646,7 +1647,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -1688,7 +1689,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -1706,7 +1707,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                             ),
                                             Padding(
                                               padding:
-                                                  EdgeInsets.only(right: width * 0.02),
+                                                  EdgeInsets.only(right: webWidth * 0.02),
                                               child: IconButton(
                                                 icon: const Icon(
                                                   Icons.arrow_circle_down_outlined,
@@ -1730,7 +1731,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.category,
                                                 //"Category",
@@ -1761,7 +1762,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.no_of_retries_allowed,
                                                 //"Number of Retries allowed",
@@ -1793,7 +1794,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.allow_guest_Students,
                                                 //"Allow Guest students",
@@ -1834,7 +1835,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                                   AppLocalizations.of(context)!.show_answersheet_after_test,
                                                 //"Show answer Sheet after test",
@@ -1875,7 +1876,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                               AppLocalizations.of(context)!.show_my_advisor_name,
                                               //"Show my name in Advisor",
@@ -1916,7 +1917,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Text(
                                               AppLocalizations.of(context)!.show_my_email,
                                               //"Show my Email in Advisor",
@@ -1956,7 +1957,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         Row(
                                           children: [
                                             SizedBox(
-                                              width: width * 0.4,
+                                              width: webWidth * 0.4,
                                               child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -2008,7 +2009,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         ),
                                         Row(children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Column(
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
@@ -2076,7 +2077,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -2094,7 +2095,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                             ),
                                             Padding(
                                               padding:
-                                                  EdgeInsets.only(right: width * 0.02),
+                                                  EdgeInsets.only(right: webWidth * 0.02),
                                               child: IconButton(
                                                 onPressed: () {
                                                   showQuestionDetails();
@@ -2118,7 +2119,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         color: Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.only(left: width * 0.02),
+                                        padding: EdgeInsets.only(left: webWidth * 0.02),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -2284,7 +2285,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                               widget.assessmentType=='myAssessment'?
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -2320,7 +2321,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
 
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:

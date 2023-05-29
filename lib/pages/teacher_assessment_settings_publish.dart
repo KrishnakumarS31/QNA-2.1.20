@@ -4640,6 +4640,7 @@ class TeacherAssessmentSettingPublishState
                                                           :
                                                       statusCode = await QnaService
                                                           .editActiveAssessmentTeacherService(
+                                                        assessment,
                                                           assessment.assessmentSettings!,
                                                           assessment
                                                               .assessmentId!,assessment.assessmentType!,'active',userDetails);
@@ -6905,6 +6906,7 @@ class TeacherAssessmentSettingPublishState
                                                         :
                                                     statusCode = await QnaService
                                                         .editActiveAssessmentTeacherService(
+                                                      assessment,
                                                         assessment.assessmentSettings!,
                                                         assessment
                                                             .assessmentId!,assessment.assessmentType!,'active',userDetails);

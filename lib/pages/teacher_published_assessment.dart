@@ -3460,22 +3460,16 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   void initState() {
 
     if(widget.question.questionType=='MCQ') {
-      print("true");
-      print(widget.question.toString());
       for (int i = 0; i < widget.question.choices!.length; i++) {
-        print(widget.question.choices![i]);
         if (widget.question.choices![i].rightChoice!) {
-          print("true ch");
           correctAns = '${widget.question.choices![i].choiceText!},$correctAns';
         }
       }
       correctAns = correctAns.substring(0, correctAns.length - 1);
     }
     else{
-      print("false");
       correctAns='';
     }
-    print("pass 1");
     super.initState();
   }
 

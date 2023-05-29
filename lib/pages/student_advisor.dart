@@ -1231,9 +1231,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 child: Row(
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          top: localHeight * 0.03,
-                                          left: localHeight * 0.05),
+                                      padding: const EdgeInsets.only(
+                                          top: 35,
+                                          left: 75),
                                       child: Column(
                                           mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -1857,9 +1857,9 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                             child: Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(
-                                      top: localHeight * 0.03,
-                                      left: localHeight * 0.05),
+                                  padding: const EdgeInsets.only(
+                                      top: 35,
+                                      left: 75),
                                   child: Column(
                                       mainAxisAlignment:
                                       MainAxisAlignment.center,

@@ -90,11 +90,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         Align(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            constraints.maxWidth > 700
-                                ? AppLocalizations.of(context)!.privacy_text_web
+                            AppLocalizations.of(context)!.privacy_text_web,
                             //"ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \n teachers / instructors to learn digitally and freely."
-                                : AppLocalizations.of(context)!.privacy_text,
-                            //"ITNEducation Inc., builds range of IT in\nEducation products and services that help \n millions of students / learners  and \n teachers / instructors to learn digitally and freely.",
                             style: TextStyle(
                                 fontSize: height * 0.018,
                                 fontWeight: FontWeight.w500,
@@ -103,11 +100,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                           ),
                         ),
                         SizedBox(height: height * 0.05),
-                        Padding(
-                          padding: EdgeInsets.only(left:
-                          constraints.maxWidth > 700
-                              ? height * 0.9
-                              : height * 0.03),
+                        Align(
+                         alignment: Alignment.topLeft,
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
@@ -206,11 +200,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         SizedBox(height: height * 0.03),
                         Align(
                           alignment: Alignment.topCenter,
-                          child: Text(
-                            constraints.maxWidth > 700
-                                ? AppLocalizations.of(context)!.privacy_text_web
-                            //"ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \n teachers / instructors to learn digitally and freely."
-                                : AppLocalizations.of(context)!.privacy_text,
+                          child: Text(AppLocalizations.of(context)!.privacy_text,
                             //"ITNEducation Inc., builds range of IT in\nEducation products and services that help \n millions of students / learners  and \n teachers / instructors to learn digitally and freely.",
                             style: TextStyle(
                                 fontSize: height * 0.018,
@@ -220,11 +210,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                           ),
                         ),
                         SizedBox(height: height * 0.05),
-                        Padding(
-                          padding: EdgeInsets.only(left:
-                          constraints.maxWidth > 700
-                              ? height * 0.9
-                              : height * 0.03),
+                        Align(
+                          alignment: Alignment.topLeft,
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(

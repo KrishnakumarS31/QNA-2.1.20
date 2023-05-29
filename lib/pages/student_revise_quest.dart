@@ -82,10 +82,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
   @override
   Widget build(BuildContext context) {
-    double localWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    // double localWidth = MediaQuery
+    //     .of(context)
+    //     .size
+    //     .width;
     double localHeight = MediaQuery
         .of(context)
         .size
@@ -452,7 +452,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         children: [
                           Container(
                             height: localHeight * 0.25,
-                            width: localWidth * 1,
+                            width: 20,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 begin: Alignment.topLeft,
@@ -463,9 +463,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 ],
                               ),
                               borderRadius: BorderRadius.vertical(
-                                  bottom: Radius.elliptical(
-                                      localWidth * 2.0,
-                                      localHeight * 0.6)
+                                  bottom: Radius.elliptical(5, localHeight * 0.6)
                               ),
                             ),
                             child: Column(
@@ -811,44 +809,37 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
           return LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
               return AlertDialog(
-                insetPadding: EdgeInsets.only(
-                    left: localWidth * 0.13, right: localWidth * 0.13),
+                insetPadding: const EdgeInsets.only(
+                    left: 25, right: 25),
                 title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      //SizedBox(width: localHeight * 0.030),
-                      Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(82, 165, 160, 1),
-                        ),
-                        height: localHeight * 0.1,
-                        width: localWidth * 0.1,
-                        child: const Icon(Icons.info_outline_rounded,
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                        ),
-                      ),
-                      // constraints.maxWidth > 700
-                      //     ? SizedBox(width: localHeight * 0.004)
-                      //     : SizedBox(width: localHeight * 0.01),
-                      Text(AppLocalizations.of(context)!.confirm,
-                        style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: localHeight * 0.024,
-                            color: const Color.fromRGBO(0, 106, 100, 1),
-                            fontWeight: FontWeight.w700
-                        ),),
-                      constraints.maxWidth > 700
-                          ? SizedBox(width: localHeight * 0.1)
-                          : SizedBox(width: localHeight * 0.01),
-                    ]
-                ),
+                  const SizedBox(width: 90),
+                  Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color.fromRGBO(82, 165, 160, 1),
+                    ),
+                    height: localHeight * 0.1,
+                    width: 40,
+                    child: const Icon(
+                      Icons.info_outline_rounded,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Text(
+                    AppLocalizations.of(context)!.confirm,
+                    style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: localHeight * 0.024,
+                        color: const Color.fromRGBO(
+                            0, 106, 100, 1),
+                        fontWeight: FontWeight.w700),
+                  ),
+                ]),
                 content:
-                Text(AppLocalizations.of(context)!.sure_to_submit,),
+                Text(AppLocalizations.of(context)!.sure_to_submit),
                 actions: <Widget>[
-                  constraints.maxWidth > 700
-                      ? const SizedBox()
-                      : SizedBox(width: localWidth * 0.020),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -870,9 +861,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                       Navigator.of(context).pop();
                     },
                   ),
-                  constraints.maxWidth > 700
-                      ? SizedBox(width: localWidth * 0.05)
-                      : SizedBox(width: localWidth * 0.005),
+                  const SizedBox(width: 5),
                   ElevatedButton(
                       style:
                       ElevatedButton.styleFrom(
@@ -1075,9 +1064,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         }
                       }
                   ),
-                  constraints.maxWidth > 700
-                      ? SizedBox(width: localWidth * 0.040)
-                      : SizedBox(width: localWidth * 0.030),
+                  SizedBox(width: localHeight * 0.030),
                 ],
               );
             },
