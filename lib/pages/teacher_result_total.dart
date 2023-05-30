@@ -58,7 +58,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
     DateTime now = DateTime.now();
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > 400) {
         return
           Center(
             child: SizedBox(

@@ -93,11 +93,11 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    //double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > 400) {
           return Center(
             child: SizedBox(
               width: 400,
@@ -311,7 +311,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                       icon: const Icon(
                         Icons.chevron_left,
                         size: 30,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         // Navigator.popUntil(context, ModalRoute.withName('/'));
@@ -332,7 +332,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                   body: Column(children: [
                     Container(
                       height: height * 0.43,
-                      width: width,
+                      width: 400,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
@@ -343,7 +343,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           ],
                         ),
                         borderRadius: BorderRadius.vertical(
-                            bottom: Radius.elliptical(width, height * 0.40)),
+                            bottom: Radius.elliptical(400, height * 0.40)),
                       ),
                       child: Column(
                         children: [
@@ -351,7 +351,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           Align(
                             alignment: Alignment.center,
                             child: Container(
-                              width: width * 0.50,
+                              width: 400 * 0.50,
                               height: height * 0.20,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
@@ -389,7 +389,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           label: '1',
                           text: AppLocalizations.of(context)!.guest,
                           height: height,
-                          width: width,
+                          width: 400,
                           context: context,
                         ),
                         CustomRadioButton<String>(
@@ -399,7 +399,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                           label: '2',
                           text: AppLocalizations.of(context)!.member,
                           height: height,
-                          width: width,
+                          width: 400,
                           context: context,
                         ),
                         SizedBox(

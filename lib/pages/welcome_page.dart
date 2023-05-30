@@ -137,7 +137,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  SizedBox(width: localWidth * 0.04),
+                                                  const SizedBox(width: 400 * 0.04),
                                                   Container(
                                                     width: 400 * 0.3,
                                                     height: MediaQuery.of(context).size.height * 0.04,
@@ -182,7 +182,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           height: localHeight * 0.03,
                                         ),
                                         Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 400 / 15,
                                               right: 400 / 15),
                                           child: Column(children: [
@@ -190,7 +190,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               height: localHeight * 0.02,
                                             ),
                                             Container(
-                                              padding: EdgeInsets.only(
+                                              padding: const EdgeInsets.only(
                                                   left: 400 / 15,
                                                   right: 400 / 15),
                                               child: Align(
@@ -233,7 +233,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           height: localHeight * 0.07,
                                         ),
                                         Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 400 / 15,
                                               right: 400 / 15),
                                           child: Column(children: [
@@ -241,7 +241,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               height: localHeight * 0.02,
                                             ),
                                             Container(
-                                                padding: EdgeInsets.only(
+                                                padding: const EdgeInsets.only(
                                                     left: 400 / 15,
                                                     right: 400 / 15),
                                                 child: Align(
@@ -552,7 +552,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             left: localWidth * 0.04,
                             top: localHeight * 0.055,
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.3,
+                              width: 400 * 0.3,
                               height: MediaQuery.of(context).size.height * 0.04,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(

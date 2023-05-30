@@ -1267,7 +1267,7 @@ class TeacherPrepareQuesForAssessmentState
         //                 ]),
         //               ))));
         // }
-        if(constraints.maxWidth > 500) {
+        if(constraints.maxWidth > 400) {
           return Center(
           child: WillPopScope(
               onWillPop: () async => false,
@@ -1762,7 +1762,7 @@ class TeacherPrepareQuesForAssessmentState
                                             style: TextStyle(
                                               color:
                                               const Color.fromRGBO(51, 51, 51, 1),
-                                              fontSize: widthForWeb * 0.016,
+                                              fontSize: height * 0.016,
                                               fontFamily: "Inter",
                                               fontWeight: FontWeight.w500,
                                             ),

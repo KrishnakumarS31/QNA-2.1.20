@@ -58,7 +58,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
       return Drawer(
         child: Column(
           children: [
-            constraints.maxWidth > 500
+            constraints.maxWidth > 400
                 ? Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(

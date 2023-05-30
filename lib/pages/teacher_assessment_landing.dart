@@ -54,193 +54,499 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   void initState() {
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      showModalBottomSheet(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0)),
-          ),
-          context: context,
-          builder: (builder) {
-            return Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              height: MediaQuery.of(context).copyWith().size.height * 0.245,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).copyWith().size.width * 0.10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height:
-                      MediaQuery.of(context).copyWith().size.height * 0.026,
+      if (MediaQuery.of(context).copyWith().size.width > 400) {
+        showModalBottomSheet(
+            constraints: const BoxConstraints(
+                maxWidth: 400
+            ),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0)),
+            ),
+            context: context,
+            builder: (builder) {
+              return Container(
+                width: 400.0,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).copyWith().size.width *
-                              0.055),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.close,
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            size: MediaQuery.of(context).copyWith().size.height * 0.05,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                height: MediaQuery
+                    .of(context)
+                    .copyWith()
+                    .size
+                    .height * 0.245,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: 400.0 * 0.10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .height * 0.026,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            right:400.0 *
+                                0.055),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.close,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              size: MediaQuery
+                                  .of(context)
+                                  .copyWith()
+                                  .size
+                                  .height * 0.05,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
                           ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
                         ),
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        AppLocalizations.of(context)!.legend,
-                        //"Legend",
-                        style: Theme.of(context)
-                            .primaryTextTheme
-                            .bodyLarge
-                            ?.merge(TextStyle(
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w700,
-                            fontSize: MediaQuery.of(context)
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          AppLocalizations.of(context)!.legend,
+                          //"Legend",
+                          style: Theme
+                              .of(context)
+                              .primaryTextTheme
+                              .bodyLarge
+                              ?.merge(TextStyle(
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w700,
+                              fontSize: MediaQuery
+                                  .of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.02)),
+                        ),
+                      ),
+                      SizedBox(
+                     width: 400.0 * 0.052,
+                      ),
+                      SizedBox(
+                        height:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .height * 0.019,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(60, 176, 0, 1),
+                            size: MediaQuery
+                                .of(context)
                                 .copyWith()
                                 .size
                                 .height *
-                                0.02)),
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.active,
+                            //"  Active",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                          SizedBox(
+                            width:400.0 *
+                                0.165,
+                          ),
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(255, 166, 0, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.in_progress,
+                            //"  In progress",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      width:
-                      MediaQuery.of(context).copyWith().size.width * 0.052,
-                    ),
-                    SizedBox(
-                      height:
-                      MediaQuery.of(context).copyWith().size.height * 0.019,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(60, 176, 0, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.active,
-                          //"  Active",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width *
-                              0.165,
-                        ),
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(255, 166, 0, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.in_progress,
-                          //"  In progress",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height:
-                      MediaQuery.of(context).copyWith().size.height * 0.019,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(136, 136, 136, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.in_active,
-                          //"  Inactive",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width *
-                              0.16,
-                        ),
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(42, 36, 186, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.practice,
-                          //"  Practice",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                      ],
-                    ),
-                  ],
+                      SizedBox(
+                        height:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .height * 0.019,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(136, 136, 136, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.in_active,
+                            //"  Inactive",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                          SizedBox(
+                            width: 400.0 *
+                                0.16,
+                          ),
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(42, 36, 186, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.practice,
+                            //"  Practice",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          });
+              );
+            });
+      }
+      else {
+        showModalBottomSheet(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0)),
+            ),
+            context: context,
+            builder: (builder) {
+              return Container(
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.white,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                height: MediaQuery
+                    .of(context)
+                    .copyWith()
+                    .size
+                    .height * 0.245,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: MediaQuery
+                          .of(context)
+                          .copyWith()
+                          .size
+                          .width * 0.10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .height * 0.026,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            right: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .width *
+                                0.055),
+                        child: Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.close,
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              size: MediaQuery
+                                  .of(context)
+                                  .copyWith()
+                                  .size
+                                  .height * 0.05,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          AppLocalizations.of(context)!.legend,
+                          //"Legend",
+                          style: Theme
+                              .of(context)
+                              .primaryTextTheme
+                              .bodyLarge
+                              ?.merge(TextStyle(
+                              color: const Color.fromRGBO(82, 165, 160, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w700,
+                              fontSize: MediaQuery
+                                  .of(context)
+                                  .copyWith()
+                                  .size
+                                  .height *
+                                  0.02)),
+                        ),
+                      ),
+                      SizedBox(
+                        width:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .width * 0.052,
+                      ),
+                      SizedBox(
+                        height:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .height * 0.019,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(60, 176, 0, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.active,
+                            //"  Active",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                          SizedBox(
+                            width: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .width *
+                                0.165,
+                          ),
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(255, 166, 0, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.in_progress,
+                            //"  In progress",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height:
+                        MediaQuery
+                            .of(context)
+                            .copyWith()
+                            .size
+                            .height * 0.019,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(136, 136, 136, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.in_active,
+                            //"  Inactive",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                          SizedBox(
+                            width: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .width *
+                                0.16,
+                          ),
+                          Icon(
+                            Icons.circle,
+                            color: const Color.fromRGBO(42, 36, 186, 1),
+                            size: MediaQuery
+                                .of(context)
+                                .copyWith()
+                                .size
+                                .height *
+                                0.02,
+                          ),
+                          Text(
+                            AppLocalizations.of(context)!.practice,
+                            //"  Practice",
+                            style: Theme
+                                .of(context)
+                                .primaryTextTheme
+                                .bodyLarge
+                                ?.merge(TextStyle(
+                                color: const Color.fromRGBO(51, 51, 51, 1),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: MediaQuery
+                                    .of(context)
+                                    .copyWith()
+                                    .size
+                                    .height *
+                                    0.016)),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            });
+      }
     });
     getData('');
     super.initState();
@@ -302,7 +608,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         //       child: ListView.builder(...)
         //   ),
         // );
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > 400) {
           print("INSIDE WEB");
           print(constraints.maxWidth);
           return
@@ -1334,7 +1640,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             //   onWillPop: () async => false,
             //  );
         }
-        // else if(constraints.maxWidth > 500) {
+        // else if(constraints.maxWidth > 400) {
         //   print("INSIDE TAB");
         //   print(constraints.maxWidth);
         //   return WillPopScope(

@@ -1087,7 +1087,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
           //         ),
           //       ));
           // }
-          if(constraints.maxWidth > 500) {
+          if(constraints.maxWidth > 400) {
             print("INSIDE TABLET");
             return Center(
               child: WillPopScope(

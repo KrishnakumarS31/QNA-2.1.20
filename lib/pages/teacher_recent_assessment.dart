@@ -1054,7 +1054,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
           //           ),
           //         ));
           //   }
-          if(constraints.maxWidth > 500)
+          if(constraints.maxWidth > 400)
             {
               return Center(
                 child: WillPopScope(

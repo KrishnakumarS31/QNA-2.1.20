@@ -407,7 +407,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: height * 0.02),
+                              SizedBox(height: height * 0.04),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
@@ -453,7 +453,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                       fontWeight: FontWeight.w600),
                                 ),
                               ),
-                              SizedBox(height: height * 0.05),
+                              SizedBox(height: height * 0.03),
                             ]),
                       ))),
             ),
@@ -803,7 +803,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               ),
                             ),
                           ),
-                          SizedBox(height: height * 0.02),
+                          SizedBox(height: height * 0.04),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -849,7 +849,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   fontWeight: FontWeight.w600),
                             ),
                           ),
-                          SizedBox(height: height * 0.05),
+                          SizedBox(height: height * 0.03),
                         ]),
                   )));
         }

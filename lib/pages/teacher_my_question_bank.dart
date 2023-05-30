@@ -49,9 +49,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth > 400) {
-          width=400;
         return Center(
-          child: Container(
+          child: SizedBox(
             width: width,
             child: WillPopScope(
                 onWillPop: () async => false,

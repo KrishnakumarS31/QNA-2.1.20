@@ -112,11 +112,7 @@ class StudQuestionState extends State<StudQuestion> {
                               color: Color.fromRGBO(255, 153, 0, 1),
                             ),
                             Positioned(
-                                left: MediaQuery.of(context)
-                                    .copyWith()
-                                    .size
-                                    .width *
-                                    0.009,
+                                left: 7,
                                 top: MediaQuery.of(context)
                                     .copyWith()
                                     .size
@@ -506,7 +502,7 @@ class StudQuestionState extends State<StudQuestion> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    //double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     String strDigits(int n) => n.toString().padLeft(2, '0');
     final hours = strDigits(myDuration.inHours.remainder(24));
@@ -546,7 +542,7 @@ class StudQuestionState extends State<StudQuestion> {
                         centerTitle: true,
                         title: Column(
                           children:[
-                            SizedBox(height: height * 0.010),
+                            const SizedBox(height: 25),
                             Text(
                               widget.assessmentId,
                               style: TextStyle(
@@ -616,7 +612,7 @@ class StudQuestionState extends State<StudQuestion> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(right: height * 0.025),
-                                    child: Text("$hours:$minutes:$seconds",
+                                    child: Text(values.data!.assessmentType == "test" ? "$hours:$minutes:$seconds" : "" ,
                                         style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Inter',
@@ -1267,7 +1263,7 @@ class StudQuestionState extends State<StudQuestion> {
                     centerTitle: true,
                     title: Column(
                       children:[
-                        SizedBox(height: height * 0.010),
+                        const SizedBox(height: 25),
                         Text(
                           widget.assessmentId,
                           style: TextStyle(
@@ -1337,7 +1333,7 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(right: height * 0.025),
-                                child: Text("$hours:$minutes:$seconds",
+                                child: Text(values.data!.assessmentType == 'test' ? "$hours:$minutes:$seconds" : "",
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontFamily: 'Inter',
@@ -1360,7 +1356,7 @@ class StudQuestionState extends State<StudQuestion> {
                           ),
                           Container(
                             height: height * 0.6675,
-                            width: width * 0.855,
+                            width: 400 * 0.855,
                             decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -1384,7 +1380,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     children: [
                                       SizedBox(
                                         height: height * 0.0625,
-                                        width: width * 0.2277,
+                                        width: 400 * 0.2277,
                                         child: Center(
                                           child: Text(
                                             "${context.watch<QuestionNumProvider>().questionNum}",
@@ -1408,7 +1404,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           color: Color.fromRGBO(28, 78, 80, 1),
                                         ),
                                         height: height * 0.0625,
-                                        width: width * 0.2277,
+                                        width: 400 * 0.2277,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -1470,7 +1466,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         bottom: height * 0.025),
                                     child: SizedBox(
                                       height: height * 0.16,
-                                      width: width * 0.744,
+                                      width: 400 * 0.744,
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.vertical,
                                         child: Text(
@@ -1578,14 +1574,14 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: width),
+                                              width: 400),
                                     ),
                                   ),
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: Padding(
                                       padding:
-                                          EdgeInsets.only(right: width * 0.05),
+                                          const EdgeInsets.only(right: 400 * 0.05),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -1654,11 +1650,11 @@ class StudQuestionState extends State<StudQuestion> {
                                                     '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
                                                 ? NotSureEnabled(
                                                     height: height,
-                                                    width: width,
+                                                    width: 400,
                                                   )
                                                 : NotSureDisabled(
                                                     height: height,
-                                                    width: width,
+                                                    width: 400,
                                                   ),
                                           )),
                                           Text(
@@ -1786,7 +1782,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             },
                                             child: Container(
                                               height: height * 0.0475,
-                                              width: width * 0.3,
+                                              width: 400 * 0.3,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     const BorderRadius.all(
@@ -2154,7 +2150,7 @@ class NotSureDisabled extends StatelessWidget {
             color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
             left: 7,
-            top: 4,
+            top: 6,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 153, 0, 1),
@@ -2182,7 +2178,7 @@ class NotSureEnabled extends StatelessWidget {
             color: const Color.fromRGBO(255, 153, 0, 1), size: height * 0.04),
         Positioned(
             left: 7,
-            top: 4,
+            top: 6,
             child: Icon(
               Icons.question_mark,
               color: const Color.fromRGBO(255, 255, 255, 1),

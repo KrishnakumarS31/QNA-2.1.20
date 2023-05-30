@@ -452,7 +452,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         children: [
                           Container(
                             height: localHeight * 0.25,
-                            width: 20,
+                            width: 400  * 1,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 begin: Alignment.topLeft,

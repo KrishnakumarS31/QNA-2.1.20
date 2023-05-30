@@ -413,7 +413,7 @@ class TeacherAssessmentQuestionPreviewState
           //                     ))),
           //           ),
           //         ))); }
-          if(constraints.maxWidth > 500) { return Center(
+          if(constraints.maxWidth > 400) { return Center(
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(

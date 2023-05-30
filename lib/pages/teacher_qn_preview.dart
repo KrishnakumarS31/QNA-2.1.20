@@ -41,7 +41,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 400) {
           return Center(
-            child: Container(
+            child: SizedBox(
               width: 400,
               child: WillPopScope(
                   onWillPop: () async => false,
@@ -166,7 +166,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                     height: height * 0.03,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 400 * 0.03),
+                                    padding: const EdgeInsets.only(left: 400 * 0.03),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -181,7 +181,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 400 * 0.03, right: 400 * 0.03),
                                     child: TextFormField(
                                       controller: adviceController,
@@ -202,7 +202,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                     height: height * 0.03,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 400 * 0.03, right: 400 * 0.03),
                                     child: TextFormField(
                                       controller: urlController,

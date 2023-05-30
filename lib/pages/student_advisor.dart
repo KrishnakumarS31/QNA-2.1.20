@@ -675,7 +675,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
         // }
         if (constraints.maxWidth > 400) {
           return Center(
-            child: Container(
+            child: SizedBox(
                 width: 400,
               child: WillPopScope(
                   onWillPop: () async => false,
@@ -733,7 +733,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               Row(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 400 * 0.3,
                                         top: 400 * 0.056),
                                     child: Text(
@@ -1071,7 +1071,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           ),
                                         );
                                       }),
-                                  SizedBox(width: 400 * 0.35),
+                                  const SizedBox(width: 400 * 0.35),
                                   IconButton(
                                     icon: Icon(
                                       Icons.chevron_right,
@@ -1172,7 +1172,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           ),
                                         );
                                       }),
-                                  SizedBox(width: 400 * 0.30),
+                                  const SizedBox(width: 400 * 0.30),
                                   IconButton(
                                     icon: Icon(
                                       Icons.chevron_right,
@@ -1226,7 +1226,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       top: Radius.elliptical(
-                                          localWidth / 1.0, localHeight * 0.25)),
+                                          400 / 1.0, localHeight * 0.25)),
                                 ),
                                 child: Row(
                                   children: [
@@ -1852,7 +1852,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ),
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.elliptical(
-                                      localWidth / 1.0, localHeight * 0.25)),
+                                      400 / 1.0, localHeight * 0.25)),
                             ),
                             child: Row(
                               children: [

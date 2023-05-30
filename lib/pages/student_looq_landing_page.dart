@@ -22,222 +22,451 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return WillPopScope(
-        onWillPop: () async => false,
-        child: Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.chevron_left,
-                size: 40.0,
-                color: Colors.white,
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints)
+    {
+      if (constraints.maxWidth > 400) {
+        return Center(
+            child: SizedBox(
+            width: 400,
+            child:  WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.chevron_left,
+                    size: 40.0,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                toolbarHeight: height * 0.100,
+                centerTitle: true,
+                title: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "PRACTICE",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: height * 0.0225,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Text(
+                        "ASSESSMENTS",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: height * 0.0225,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ]),
+                flexibleSpace: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          end: Alignment.bottomCenter,
+                          begin: Alignment.topCenter,
+                          colors: [
+                            Color.fromRGBO(0, 106, 100, 1),
+                            Color.fromRGBO(82, 165, 160, 1),
+                          ])),
+                ),
               ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            toolbarHeight: height * 0.100,
-            centerTitle: true,
-            title: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    "PRACTICE",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    "ASSESSMENTS",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ]),
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: Alignment.bottomCenter,
-                      begin: Alignment.topCenter,
-                      colors: [
-                    Color.fromRGBO(0, 106, 100, 1),
-                    Color.fromRGBO(82, 165, 160, 1),
-                  ])),
-            ),
-          ),
-          body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Padding(
-                padding: EdgeInsets.only(
-                    top: height * 0.023,
-                    left: height * 0.023,
-                    right: height * 0.023),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    TextField(
-                      controller: searchController,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        hintStyle: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.016),
-                        hintText: "Maths, 10th, CBSE, Assessment ID",
-                        suffixIcon: Column(children: [
-                          Container(
-                              height: height * 0.073,
-                              width: width * 0.13,
-                              decoration: const BoxDecoration(
-                                borderRadius:
+              body: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        top: height * 0.023,
+                        left: height * 0.023,
+                        right: height * 0.023),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        TextField(
+                          controller: searchController,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            hintStyle: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.016),
+                            hintText: "Maths, 10th, CBSE, Assessment ID",
+                            suffixIcon: Column(children: [
+                              Container(
+                                  height: height * 0.073,
+                                  width: width * 0.13,
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
                                     BorderRadius.all(Radius.circular(8.0)),
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                  ),
+                                  child: IconButton(
+                                    iconSize: height * 0.04,
+                                    color: const Color.fromRGBO(
+                                        255, 255, 255, 1),
+                                    onPressed: () {
+                                      // Navigator.push(
+                                      //   context,
+                                      //   PageTransition(
+                                      //     type: PageTransitionType.rightToLeft,
+                                      //     child:  TeacherLooqQuestionBank(),
+                                      //   ),
+                                      // );
+                                    },
+                                    icon: const Icon(Icons.search),
+                                  )),
+                            ]),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Color.fromRGBO(82, 165, 160, 1)),
+                                borderRadius: BorderRadius.circular(15)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          enabled: true,
+                          onChanged: (value) {},
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(
+                          "Showing results of Maths | 10th",
+                          style: TextStyle(
+                              color: const Color.fromRGBO(153, 153, 153, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: height * 0.015),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'In progress',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'In progress',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Active',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'In progress',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Inactive',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Active',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Inactive',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              side: const BorderSide(
+                                width: 1.0,
                                 color: Color.fromRGBO(82, 165, 160, 1),
                               ),
-                              child: IconButton(
-                                iconSize: height * 0.04,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   PageTransition(
-                                  //     type: PageTransitionType.rightToLeft,
-                                  //     child:  TeacherLooqQuestionBank(),
-                                  //   ),
-                                  // );
-                                },
-                                icon: const Icon(Icons.search),
-                              )),
-                        ]),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color.fromRGBO(82, 165, 160, 1)),
-                            borderRadius: BorderRadius.circular(15)),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                      ),
-                      enabled: true,
-                      onChanged: (value) {},
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Text(
-                      "Showing results of Maths | 10th",
-                      style: TextStyle(
-                          color: const Color.fromRGBO(153, 153, 153, 1),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w400,
-                          fontSize: height * 0.015),
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'In progress',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'In progress',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'Active',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'In progress',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'Inactive',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'Active',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    CardInfo(
-                        height: height,
-                        width: width,
-                        status: 'Inactive',
-                        ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Center(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          side: const BorderSide(
-                            width: 1.0,
-                            color: Color.fromRGBO(82, 165, 160, 1),
-                          ),
-                          backgroundColor:
+                              backgroundColor:
                               const Color.fromRGBO(255, 255, 255, 1),
-                          minimumSize: const Size(280, 48),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(39),
+                              minimumSize: const Size(280, 48),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(39),
+                              ),
+                            ),
+                            //shape: StadiumBorder(),
+                            onPressed: () {},
+                            child: Text(
+                              'Load More',
+                              style: TextStyle(
+                                  fontSize: height * 0.025,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
-                        //shape: StadiumBorder(),
-                        onPressed: () {},
-                        child: Text(
-                          'Load More',
-                          style: TextStyle(
-                              fontSize: height * 0.025,
-                              fontFamily: "Inter",
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontWeight: FontWeight.w600),
+                        SizedBox(
+                          height: height * 0.03,
+                        ),
+                      ],
+                    )),
+              ),
+            ))));
+      }
+      else
+      {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.chevron_left,
+                    size: 40.0,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                toolbarHeight: height * 0.100,
+                centerTitle: true,
+                title: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "PRACTICE",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: height * 0.0225,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
-                  ],
-                )),
-          ),
-        ));
-  }
+                      Text(
+                        "ASSESSMENTS",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: height * 0.0225,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ]),
+                flexibleSpace: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          end: Alignment.bottomCenter,
+                          begin: Alignment.topCenter,
+                          colors: [
+                            Color.fromRGBO(0, 106, 100, 1),
+                            Color.fromRGBO(82, 165, 160, 1),
+                          ])),
+                ),
+              ),
+              body: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        top: height * 0.023,
+                        left: height * 0.023,
+                        right: height * 0.023),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        TextField(
+                          controller: searchController,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            hintStyle: TextStyle(
+                                color: const Color.fromRGBO(102, 102, 102, 0.3),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.016),
+                            hintText: "Maths, 10th, CBSE, Assessment ID",
+                            suffixIcon: Column(children: [
+                              Container(
+                                  height: height * 0.073,
+                                  width: width * 0.13,
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                  ),
+                                  child: IconButton(
+                                    iconSize: height * 0.04,
+                                    color: const Color.fromRGBO(
+                                        255, 255, 255, 1),
+                                    onPressed: () {
+                                      // Navigator.push(
+                                      //   context,
+                                      //   PageTransition(
+                                      //     type: PageTransitionType.rightToLeft,
+                                      //     child:  TeacherLooqQuestionBank(),
+                                      //   ),
+                                      // );
+                                    },
+                                    icon: const Icon(Icons.search),
+                                  )),
+                            ]),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Color.fromRGBO(82, 165, 160, 1)),
+                                borderRadius: BorderRadius.circular(15)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          enabled: true,
+                          onChanged: (value) {},
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(
+                          "Showing results of Maths | 10th",
+                          style: TextStyle(
+                              color: const Color.fromRGBO(153, 153, 153, 1),
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              fontSize: height * 0.015),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'In progress',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'In progress',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Active',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'In progress',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Inactive',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Active',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        CardInfo(
+                          height: height,
+                          width: width,
+                          status: 'Inactive',
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              side: const BorderSide(
+                                width: 1.0,
+                                color: Color.fromRGBO(82, 165, 160, 1),
+                              ),
+                              backgroundColor:
+                              const Color.fromRGBO(255, 255, 255, 1),
+                              minimumSize: const Size(280, 48),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(39),
+                              ),
+                            ),
+                            //shape: StadiumBorder(),
+                            onPressed: () {},
+                            child: Text(
+                              'Load More',
+                              style: TextStyle(
+                                  fontSize: height * 0.025,
+                                  fontFamily: "Inter",
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.03,
+                        ),
+                      ],
+                    )),
+              ),
+            ));
+      }
+    }
+    );}
 }
 
 class CardInfo extends StatelessWidget {

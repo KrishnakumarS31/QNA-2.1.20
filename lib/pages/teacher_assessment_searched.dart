@@ -418,7 +418,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
         //         ),
         //       ));
         // }
-        if(constraints.maxWidth > 500)
+        if(constraints.maxWidth > 400)
         {
           print("INSIDE TABLET");
           print(constraints.maxWidth);

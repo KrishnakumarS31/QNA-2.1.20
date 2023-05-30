@@ -92,7 +92,7 @@ class TeacherLoginState extends State<TeacherLogin> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > 400) {
         return Center(
             child: SizedBox(
             width: 400,

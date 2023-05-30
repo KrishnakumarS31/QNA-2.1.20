@@ -40,158 +40,322 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      showModalBottomSheet(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0)),
-          ),
-          context: context,
-          builder: (builder) {
-            return Container(
-              decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                  ),
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              height: MediaQuery.of(context).copyWith().size.height * 0.245,
-              child: Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).copyWith().size.width * 0.10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height:
-                      MediaQuery.of(context).copyWith().size.height * 0.026,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: MediaQuery.of(context).copyWith().size.width *
-                              0.055),
-                      child: Align(
-                        alignment: Alignment.topRight,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.close,
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            size: MediaQuery.of(context).copyWith().size.height * 0.05,
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(66, 194, 0, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.completed_tests,
-                          //"      Completed Tests",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width *
-                              0.052,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height:
-                      MediaQuery.of(context).copyWith().size.height * 0.026,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(255, 157, 77, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.inprogress_results,
-                          //"      In Progress Tests",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width *
-                              0.052,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height:
-                      MediaQuery.of(context).copyWith().size.height * 0.026,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.circle,
-                          color: const Color.fromRGBO(179, 179, 179, 1),
-                          size: MediaQuery.of(context).copyWith().size.height *
-                              0.02,
-                        ),
-                        Text(
-                          AppLocalizations.of(context)!.not_started_tests,
-                          //"      Not Started Tests",
-                          style: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyLarge
-                              ?.merge(TextStyle(
-                              color: const Color.fromRGBO(51, 51, 51, 1),
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w400,
-                              fontSize: MediaQuery.of(context)
-                                  .copyWith()
-                                  .size
-                                  .height *
-                                  0.016)),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).copyWith().size.width *
-                              0.052,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            );
-          });
-    });
+     if(MediaQuery.of(context).size.width > 500)
+       {
+         showModalBottomSheet(
+             constraints: BoxConstraints(
+               maxWidth: 400.0,
+             ),
+             shape: const RoundedRectangleBorder(
+               borderRadius: BorderRadius.only(
+                   topLeft: Radius.circular(25.0),
+                   topRight: Radius.circular(25.0)),
+             ),
+             context: context,
+             builder: (builder) {
+               return Container(
+                 decoration: BoxDecoration(
+                     border: Border.all(
+                       color: Colors.white,
+                     ),
+                     borderRadius: const BorderRadius.only(
+                         topLeft: Radius.circular(20),
+                         topRight: Radius.circular(20))),
+                 height: MediaQuery.of(context).copyWith().size.height * 0.245,
+                 child: Padding(
+                   padding: EdgeInsets.only(
+                       left: 400.0 * 0.10),
+                   child: Column(
+                     crossAxisAlignment: CrossAxisAlignment.center,
+                     children: [
+                       SizedBox(
+                         height:
+                         MediaQuery.of(context).copyWith().size.height * 0.026,
+                       ),
+                       Padding(
+                         padding: EdgeInsets.only(
+                             right: 400.0 *
+                                 0.055),
+                         child: Align(
+                           alignment: Alignment.topRight,
+                           child: IconButton(
+                             icon: Icon(
+                               Icons.close,
+                               color: const Color.fromRGBO(82, 165, 160, 1),
+                               size: MediaQuery.of(context).copyWith().size.height * 0.05,
+                             ),
+                             onPressed: () {
+                               Navigator.of(context).pop();
+                             },
+                           ),
+                         ),
+                       ),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           Icon(
+                             Icons.circle,
+                             color: const Color.fromRGBO(66, 194, 0, 1),
+                             size: MediaQuery.of(context).copyWith().size.height *
+                                 0.02,
+                           ),
+                           Text(
+                             AppLocalizations.of(context)!.completed_tests,
+                             //"      Completed Tests",
+                             style: Theme.of(context)
+                                 .primaryTextTheme
+                                 .bodyLarge
+                                 ?.merge(TextStyle(
+                                 color: const Color.fromRGBO(51, 51, 51, 1),
+                                 fontFamily: 'Inter',
+                                 fontWeight: FontWeight.w400,
+                                 fontSize: MediaQuery.of(context)
+                                     .copyWith()
+                                     .size
+                                     .height *
+                                     0.016)),
+                           ),
+                           SizedBox(
+                             width: 400.0 *
+                                 0.052,
+                           ),
+                         ],
+                       ),
+                       SizedBox(
+                         height:
+                         MediaQuery.of(context).copyWith().size.height * 0.026,
+                       ),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           Icon(
+                             Icons.circle,
+                             color: const Color.fromRGBO(255, 157, 77, 1),
+                             size: MediaQuery.of(context).copyWith().size.height *
+                                 0.02,
+                           ),
+                           Text(
+                             AppLocalizations.of(context)!.inprogress_results,
+                             //"      In Progress Tests",
+                             style: Theme.of(context)
+                                 .primaryTextTheme
+                                 .bodyLarge
+                                 ?.merge(TextStyle(
+                                 color: const Color.fromRGBO(51, 51, 51, 1),
+                                 fontFamily: 'Inter',
+                                 fontWeight: FontWeight.w400,
+                                 fontSize: MediaQuery.of(context)
+                                     .copyWith()
+                                     .size
+                                     .height *
+                                     0.016)),
+                           ),
+                           SizedBox(
+                             width: 400.0 *
+                                 0.052,
+                           ),
+                         ],
+                       ),
+                       SizedBox(
+                         height:
+                         MediaQuery.of(context).copyWith().size.height * 0.026,
+                       ),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           Icon(
+                             Icons.circle,
+                             color: const Color.fromRGBO(179, 179, 179, 1),
+                             size: MediaQuery.of(context).copyWith().size.height *
+                                 0.02,
+                           ),
+                           Text(
+                             AppLocalizations.of(context)!.not_started_tests,
+                             //"      Not Started Tests",
+                             style: Theme.of(context)
+                                 .primaryTextTheme
+                                 .bodyLarge
+                                 ?.merge(TextStyle(
+                                 color: const Color.fromRGBO(51, 51, 51, 1),
+                                 fontFamily: 'Inter',
+                                 fontWeight: FontWeight.w400,
+                                 fontSize: MediaQuery.of(context)
+                                     .copyWith()
+                                     .size
+                                     .height *
+                                     0.016)),
+                           ),
+                           SizedBox(
+                             width: 400.0 *
+                                 0.052,
+                           ),
+                         ],
+                       ),
+                     ],
+                   ),
+                 ),
+               );
+             });
+       }
+     else{
+       showModalBottomSheet(
+           constraints: BoxConstraints(
+             maxWidth:  MediaQuery.of(context).size.width > 500 ?  500.0 : MediaQuery.of(context).size.width,
+           ),
+           shape: const RoundedRectangleBorder(
+             borderRadius: BorderRadius.only(
+                 topLeft: Radius.circular(25.0),
+                 topRight: Radius.circular(25.0)),
+           ),
+           context: context,
+           builder: (builder) {
+             return Container(
+               decoration: BoxDecoration(
+                   border: Border.all(
+                     color: Colors.white,
+                   ),
+                   borderRadius: const BorderRadius.only(
+                       topLeft: Radius.circular(20),
+                       topRight: Radius.circular(20))),
+               height: MediaQuery.of(context).copyWith().size.height * 0.245,
+               child: Padding(
+                 padding: EdgeInsets.only(
+                     left: MediaQuery.of(context).copyWith().size.width * 0.10),
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.center,
+                   children: [
+                     SizedBox(
+                       height:
+                       MediaQuery.of(context).copyWith().size.height * 0.026,
+                     ),
+                     Padding(
+                       padding: EdgeInsets.only(
+                           right: MediaQuery.of(context).copyWith().size.width *
+                               0.055),
+                       child: Align(
+                         alignment: Alignment.topRight,
+                         child: IconButton(
+                           icon: Icon(
+                             Icons.close,
+                             color: const Color.fromRGBO(82, 165, 160, 1),
+                             size: MediaQuery.of(context).copyWith().size.height * 0.05,
+                           ),
+                           onPressed: () {
+                             Navigator.of(context).pop();
+                           },
+                         ),
+                       ),
+                     ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Icon(
+                           Icons.circle,
+                           color: const Color.fromRGBO(66, 194, 0, 1),
+                           size: MediaQuery.of(context).copyWith().size.height *
+                               0.02,
+                         ),
+                         Text(
+                           AppLocalizations.of(context)!.completed_tests,
+                           //"      Completed Tests",
+                           style: Theme.of(context)
+                               .primaryTextTheme
+                               .bodyLarge
+                               ?.merge(TextStyle(
+                               color: const Color.fromRGBO(51, 51, 51, 1),
+                               fontFamily: 'Inter',
+                               fontWeight: FontWeight.w400,
+                               fontSize: MediaQuery.of(context)
+                                   .copyWith()
+                                   .size
+                                   .height *
+                                   0.016)),
+                         ),
+                         SizedBox(
+                           width: MediaQuery.of(context).copyWith().size.width *
+                               0.052,
+                         ),
+                       ],
+                     ),
+                     SizedBox(
+                       height:
+                       MediaQuery.of(context).copyWith().size.height * 0.026,
+                     ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Icon(
+                           Icons.circle,
+                           color: const Color.fromRGBO(255, 157, 77, 1),
+                           size: MediaQuery.of(context).copyWith().size.height *
+                               0.02,
+                         ),
+                         Text(
+                           AppLocalizations.of(context)!.inprogress_results,
+                           //"      In Progress Tests",
+                           style: Theme.of(context)
+                               .primaryTextTheme
+                               .bodyLarge
+                               ?.merge(TextStyle(
+                               color: const Color.fromRGBO(51, 51, 51, 1),
+                               fontFamily: 'Inter',
+                               fontWeight: FontWeight.w400,
+                               fontSize: MediaQuery.of(context)
+                                   .copyWith()
+                                   .size
+                                   .height *
+                                   0.016)),
+                         ),
+                         SizedBox(
+                           width: MediaQuery.of(context).copyWith().size.width *
+                               0.052,
+                         ),
+                       ],
+                     ),
+                     SizedBox(
+                       height:
+                       MediaQuery.of(context).copyWith().size.height * 0.026,
+                     ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         Icon(
+                           Icons.circle,
+                           color: const Color.fromRGBO(179, 179, 179, 1),
+                           size: MediaQuery.of(context).copyWith().size.height *
+                               0.02,
+                         ),
+                         Text(
+                           AppLocalizations.of(context)!.not_started_tests,
+                           //"      Not Started Tests",
+                           style: Theme.of(context)
+                               .primaryTextTheme
+                               .bodyLarge
+                               ?.merge(TextStyle(
+                               color: const Color.fromRGBO(51, 51, 51, 1),
+                               fontFamily: 'Inter',
+                               fontWeight: FontWeight.w400,
+                               fontSize: MediaQuery.of(context)
+                                   .copyWith()
+                                   .size
+                                   .height *
+                                   0.016)),
+                         ),
+                         SizedBox(
+                           width: MediaQuery.of(context).copyWith().size.width *
+                               0.052,
+                         ),
+                       ],
+                     ),
+                   ],
+                 ),
+               ),
+             );
+           });
+     }
+    }
+
+    );
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     getData();
   }
@@ -221,7 +385,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > 400) {
     return
       Center(
     child: SizedBox(

@@ -332,7 +332,7 @@ class TeacherAssessmentQuestionBankState
           //     ),
           //   ), onWillPop: () async => false);
           // }
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > 400) {
             return  Center(
               child: WillPopScope(child: Container(
                 width:400.0,

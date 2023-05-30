@@ -227,9 +227,9 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-       if (constraints.maxWidth > 500) {
+       if (constraints.maxWidth > 400) {
           return Center(
-            child: Container(
+            child: SizedBox(
                 width: 400,
               child: WillPopScope(
                   onWillPop: () async => false,
@@ -389,7 +389,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       ?Container(
                                       color: const Color.fromRGBO(82, 165, 160, 1),
                                       child: Padding(
-                                        padding: EdgeInsets.only(right: 400 * 0.02,left: 400 * 0.02),
+                                        padding: const EdgeInsets.only(right: 400 * 0.02,left: 400 * 0.02),
                                         child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -422,7 +422,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     Container(
                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                         child: Padding(
-                                          padding: EdgeInsets.only(right: 400 * 0.02,left: 400 * 0.02),
+                                          padding: const EdgeInsets.only(right: 400 * 0.02,left: 400 * 0.02),
                                           child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
@@ -684,7 +684,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               ),
                               Container(
                                 alignment: Alignment.centerLeft,
-                                margin: EdgeInsets.only(
+                                margin: const EdgeInsets.only(
                                     left: 400 * 0.04, right: 400 * 0.04),
                                 child: Column(
                                   children: [
@@ -699,7 +699,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      SizedBox(width: 400 * 0.03),
+                                      const SizedBox(width: 400 * 0.03),
                                       const Expanded(child: Divider()),
                                     ]),
                                     SizedBox(height: height * 0.010),
@@ -756,7 +756,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             ),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 400 * 0.02,
                                         ),
                                         Text(
@@ -790,7 +790,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: 400 * 0.13,
                                           child: Text(
                                             textAlign: TextAlign.center,
@@ -804,7 +804,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: 400 * 0.11,
                                           child: Text(
                                             AppLocalizations.of(context)!.delete,
@@ -869,7 +869,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                 },
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 400 * 0.01,
                                             ),
                                             IconButton(
@@ -881,7 +881,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                 color: Color.fromRGBO(82, 165, 160, 1),
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               width: 400 * 0.04,
                                             ),
                                           ],
@@ -931,7 +931,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                 },
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
 
                                               width: 400 * 0.13,
                                               child: IconButton(
@@ -948,7 +948,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                 ),
                                               ),
                                             ),
-                                            Container(
+                                            SizedBox(
                                               width: 400 * 0.11,
                                               child: IconButton(
                                                 onPressed: () {
@@ -992,7 +992,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     SizedBox(height: height * 0.020),
                                     Container(
                                       alignment: Alignment.centerLeft,
-                                      margin: EdgeInsets.only(
+                                      margin: const EdgeInsets.only(
                                           left: 400 * 0.05, right: 400 * 0.04),
                                       child: Row(children: [
                                         Text(
@@ -1005,7 +1005,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        SizedBox(width: 400 * 0.03),
+                                        const SizedBox(width: 400 * 0.03),
                                         const Expanded(child: Divider()),
                                       ]),
                                     )
@@ -1078,8 +1078,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           //"Preview"
                                         ),
                                         onPressed: () {
-                                          print(radioList);
-                                          print(radioList.contains(true));
                                           if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
                                             Navigator.push(
                                               context,
@@ -1124,7 +1122,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                   title: "Alert",
                                                   //'Wrong password',
                                                   content:
-                                                  "Select Atlease One Correct Choice",
+                                                  "Select At-least One Correct Choice",
                                                   //'please enter the correct password',
                                                   button: AppLocalizations.of(context)!.retry,
                                                 ),
@@ -1748,7 +1746,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: width * 0.13,
                                       child: Text(
                                         textAlign: TextAlign.center,
@@ -1762,7 +1760,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                         ),
                                       ),
                                     ),
-                                    Container(
+                                    SizedBox(
                                       width: width * 0.11,
                                       child: Text(
                                         AppLocalizations.of(context)!.delete,
@@ -1889,7 +1887,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             },
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
 
                                           width: width * 0.13,
                                           child: IconButton(
@@ -1906,7 +1904,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             ),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           width: width * 0.11,
                                           child: IconButton(
                                             onPressed: () {
@@ -2036,7 +2034,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       //"Preview"
                                     ),
                                     onPressed: () {
-                                      print(radioList);
                                       if(questionController.text=='' || subjectController.text=='' || classRoomController.text==''){
                                         Navigator.push(
                                           context,
@@ -2074,7 +2071,6 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       }
                                       if(radioList.isEmpty)
                                         {
-                                          print("INSIDE RADIO EMPTY");
                                         }
                                       else {
                                         List<Choice> temp = [];

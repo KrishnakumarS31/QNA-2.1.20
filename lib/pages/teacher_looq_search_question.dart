@@ -136,7 +136,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         builder: (BuildContext context, BoxConstraints constraints) {
     if(constraints.maxWidth >400){
       return Center(
-        child: Container(
+        child: SizedBox(
           width: 400,
           child: WillPopScope(
               onWillPop: () async => false,
@@ -286,7 +286,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 400 * 0.01,
                                   ),
                                   const Icon(
@@ -783,7 +783,7 @@ class QuestionPreview extends StatelessWidget {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Container(
+                SizedBox(
                   width: width * 0.95,
                   child: Padding(
                     padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
@@ -803,7 +803,7 @@ class QuestionPreview extends StatelessWidget {
                 SizedBox(
                   height: height * 0.01,
                 ),
-                Container(
+                SizedBox(
                   width: width * 0.95,
                   child: Padding(
                     padding: EdgeInsets.only(right: width * 0.02, left: width * 0.02),
