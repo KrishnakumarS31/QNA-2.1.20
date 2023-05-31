@@ -72,7 +72,7 @@ class StudentResultPageState extends State<StudentResultPage> {
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 400) {
+        if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
               width: 400,

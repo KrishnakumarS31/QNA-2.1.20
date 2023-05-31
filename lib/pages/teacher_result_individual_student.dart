@@ -65,7 +65,7 @@ class TeacherResultIndividualStudentState
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 400) {
+      if (constraints.maxWidth > 500) {
         return
           Center(
             child: SizedBox(
@@ -791,7 +791,7 @@ class _QuesAndAnsState extends State<QuesAndAns> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 400) {
+      if (constraints.maxWidth > 500) {
         return
           Center(
             child: SizedBox(

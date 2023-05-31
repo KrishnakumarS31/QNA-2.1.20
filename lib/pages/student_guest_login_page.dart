@@ -59,7 +59,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 400) {
+        if (constraints.maxWidth > 500) {
           print("yes its true");
           return Center(
             child: Container(

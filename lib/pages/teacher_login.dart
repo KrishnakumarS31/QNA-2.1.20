@@ -92,7 +92,7 @@ class TeacherLoginState extends State<TeacherLogin> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 400) {
+      if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
             width: 400,
@@ -126,7 +126,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                       children: [
                         Container(
                           height: height * 0.35,
-                          width: width,
+                          width: 400.0,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
                               begin: Alignment.topLeft,
@@ -168,7 +168,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                         ),
                         SizedBox(height: height * 0.04),
                         SizedBox(
-                          width: width * 0.8,
+                          width: 400.0 * 0.8,
                           child: Form(
                             key: formKey,
                             child: Column(
@@ -623,7 +623,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           141, 167, 167, 1),
                                       size: height * 0.034,
                                     ))),
-                            SizedBox(width: width * 0.005),
+                            SizedBox(width: 400.0 * 0.005),
                             MouseRegion(
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(

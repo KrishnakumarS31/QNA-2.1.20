@@ -26,7 +26,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
     double width = MediaQuery.of(context).size.width;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 400) {
+      if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
             width: 400,

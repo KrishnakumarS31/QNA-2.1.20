@@ -673,7 +673,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
         //                 ),
         //               ]))));
         // }
-        if (constraints.maxWidth > 400) {
+        if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
                 width: 400,

@@ -1014,7 +1014,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
         //         ),
         //       ));
         // }
-        if(constraints.maxWidth > 400)
+        if(constraints.maxWidth > 500)
         {
           print("INSIDE TABLET");
           print(constraints.maxWidth);

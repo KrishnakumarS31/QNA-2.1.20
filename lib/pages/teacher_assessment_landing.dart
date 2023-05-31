@@ -608,7 +608,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         //       child: ListView.builder(...)
         //   ),
         // );
-        if (constraints.maxWidth > 400) {
+        if (constraints.maxWidth > 500) {
           print("INSIDE WEB");
           print(constraints.maxWidth);
           return
@@ -1640,7 +1640,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             //   onWillPop: () async => false,
             //  );
         }
-        // else if(constraints.maxWidth > 400) {
+        // else if(constraints.maxWidth > 500) {
         //   print("INSIDE TAB");
         //   print(constraints.maxWidth);
         //   return WillPopScope(

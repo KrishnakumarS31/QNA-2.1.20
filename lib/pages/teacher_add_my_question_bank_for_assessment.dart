@@ -390,7 +390,7 @@ class TeacherAddMyQuestionBankForAssessmentState
           //             ],
           //           ),
           //         )));}
-          if(constraints.maxWidth > 400) {
+          if(constraints.maxWidth > 500) {
             return
             Center(
               child: WillPopScope(

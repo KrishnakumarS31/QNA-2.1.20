@@ -528,7 +528,7 @@ class StudQuestionState extends State<StudQuestion> {
     // });
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 400) {
+        if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
               width: 400,
@@ -542,7 +542,7 @@ class StudQuestionState extends State<StudQuestion> {
                         centerTitle: true,
                         title: Column(
                           children:[
-                            const SizedBox(height: 25),
+                            const SizedBox(height: 20),
                             Text(
                               widget.assessmentId,
                               style: TextStyle(
@@ -1263,7 +1263,7 @@ class StudQuestionState extends State<StudQuestion> {
                     centerTitle: true,
                     title: Column(
                       children:[
-                        const SizedBox(height: 25),
+                        const SizedBox(height: 20),
                         Text(
                           widget.assessmentId,
                           style: TextStyle(
