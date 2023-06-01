@@ -94,8 +94,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 500) {
           return Center(
-            child: Container(
-              width: 400,
+            child: SizedBox(
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -133,7 +133,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        400, localHeight * 0.35)),
+                                        500, localHeight * 0.35)),
                               ),
                               child: Column(
                                 children: [
@@ -142,7 +142,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     alignment: Alignment.topCenter,
                                     child: SizedBox(
                                       height: localHeight * 0.20,
-                                      width: 400 * 0.30,
+                                      width: 500 * 0.30,
                                       child: Image.asset(
                                           "assets/images/question_mark_logo.png"),
                                     ),
@@ -164,7 +164,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             ),
                             SizedBox(height: localHeight * 0.06),
                             SizedBox(
-                              width: 400 * 0.8,
+                              width: 500 * 0.8,
                               child: Form(
                                 key: formKey,
                                 child: Column(
@@ -292,7 +292,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 0.3),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: 400 * 0.016),
+                                                    fontSize: 500 * 0.016),
                                                 hintText:
                                                 AppLocalizations.of(context)!
                                                     .your_password,
@@ -428,7 +428,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 });
                                               },
                                             )),
-                                        const SizedBox(width: 400 * 0.05),
+                                        const SizedBox(width: 500 * 0.05),
                                         Flexible(
                                           child: RichText(
                                               text: TextSpan(children: [
@@ -716,7 +716,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       color: const Color.fromRGBO(141, 167, 167, 1),
                                                       size: localHeight * 0.034,
                                                     ))),
-                                            SizedBox(width: 400 * 0.005),
+                                            SizedBox(width: 500 * 0.005),
                                             // IconButton(
                                             //   icon: const Icon(
                                             //     Icons.edit_calendar_sharp,

@@ -9,6 +9,7 @@ import '../EntityModel/user_data_model.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherSelectionPage extends StatefulWidget {
   const TeacherSelectionPage(
@@ -48,7 +49,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
       if (constraints.maxWidth > 500) {
         return Center(
               child: SizedBox(
-                  width: 400,
+                  width: webWidth,
                   child: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -67,7 +68,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                   children: [
                     Container(
                       height: height * 0.3625,
-                      width: width,
+                      width: webWidth,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           begin: Alignment.topLeft,
@@ -78,7 +79,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                           ],
                         ),
                         borderRadius: BorderRadius.vertical(
-                            bottom: Radius.elliptical(width, height * 0.40)),
+                            bottom: Radius.elliptical(webWidth, height * 0.40)),
                       ),
                       child: Column(
                         children: [

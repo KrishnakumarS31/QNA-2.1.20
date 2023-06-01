@@ -137,7 +137,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
     if(constraints.maxWidth > 500){
       return Center(
         child: SizedBox(
-          width: 400,
+          width: 500,
           child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -219,7 +219,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                               suffixIcon: Column(children: [
                                 Container(
                                     height: height * 0.073,
-                                    width: 400 * 0.13,
+                                    width: 500 * 0.13,
                                     decoration: const BoxDecoration(
                                       borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
@@ -287,7 +287,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 400 * 0.01,
+                                    width: 500 * 0.01,
                                   ),
                                   const Icon(
                                     Icons.circle_rounded,
@@ -314,7 +314,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                         },
                                         child: QuestionPreview(
                                           height: height,
-                                          width: 400,
+                                          width: 500,
                                           question: i,
                                         ))),
                             ],

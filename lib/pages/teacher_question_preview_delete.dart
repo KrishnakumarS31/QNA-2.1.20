@@ -48,7 +48,7 @@ class TeacherQuestionPreviewDeleteState
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -57,7 +57,7 @@ class TeacherQuestionPreviewDeleteState
                 body: Center(
                   child: SizedBox(
                     height: height * 0.85,
-                    width: width * 0.888,
+                    width: 500 * 0.888,
                     child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -65,8 +65,8 @@ class TeacherQuestionPreviewDeleteState
                         elevation: 12,
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         margin: EdgeInsets.only(
-                            left: width * 0.030,
-                            right: width * 0.030,
+                            left: 500 * 0.030,
+                            right: 500 * 0.030,
                             bottom: height * 0.015,
                             top: height * 0.025),
                         child: Column(
@@ -74,7 +74,7 @@ class TeacherQuestionPreviewDeleteState
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: width * 0.03, top: height * 0.02),
+                                  left: 500 * 0.03, top: height * 0.02),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment
                                     .spaceBetween,
@@ -99,7 +99,7 @@ class TeacherQuestionPreviewDeleteState
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: width * 0.03, top: height * 0.02),
+                                  left: 500 * 0.03, top: height * 0.02),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text('${widget.question.question}',
@@ -125,14 +125,14 @@ class TeacherQuestionPreviewDeleteState
                                     question: widget.question,
                                     selected: selected,
                                     height: height,
-                                    width: width),
+                                    width: 500),
                               ),
                             ),
                             SizedBox(
                               height: height * 0.03,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: width * 0.03),
+                              padding: EdgeInsets.only(left: 500 * 0.03),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -148,7 +148,7 @@ class TeacherQuestionPreviewDeleteState
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: width * 0.03, right: width * 0.03),
+                                  left: 500 * 0.03, right: 500 * 0.03),
                               child: TextFormField(
                                 controller: adviceController,
                                 enabled: false,
@@ -170,7 +170,7 @@ class TeacherQuestionPreviewDeleteState
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: width * 0.03, right: width * 0.03),
+                                  left: 500 * 0.03, right: 500 * 0.03),
                               child: TextFormField(
                                 controller: urlController,
                                 enabled: false,

@@ -64,7 +64,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -115,7 +115,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: width * 0.8,
+                            width: 500 * 0.8,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [

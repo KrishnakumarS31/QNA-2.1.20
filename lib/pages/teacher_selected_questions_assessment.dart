@@ -11,6 +11,7 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherSelectedQuestionAssessment extends StatefulWidget {
   const TeacherSelectedQuestionAssessment(
@@ -1192,7 +1193,7 @@ class TeacherSelectedQuestionAssessmentState
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -1261,7 +1262,7 @@ class TeacherSelectedQuestionAssessmentState
                               ),
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    right: width * 0.03, left: width * 0.03),
+                                    right: webWidth * 0.03, left: webWidth * 0.03),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1327,9 +1328,9 @@ class TeacherSelectedQuestionAssessmentState
                                                             child: Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                  left: width *
+                                                                  left: webWidth *
                                                                       0.02,
-                                                                  right: width *
+                                                                  right: webWidth *
                                                                       0.02,
                                                                   top: height *
                                                                       0.02,
@@ -1414,13 +1415,8 @@ class TeacherSelectedQuestionAssessmentState
                                                                               .always,
                                                                           label: SizedBox(
                                                                             width:
-                                                                            constraints
-                                                                                .maxWidth >
-                                                                                700
-                                                                                ? width *
-                                                                                0.04
-                                                                                : width *
-                                                                                0.185,
+                                                                           width *
+                                                                                0.04,
                                                                             child: Row(
                                                                               children: [
                                                                                 Text(
@@ -1558,13 +1554,8 @@ class TeacherSelectedQuestionAssessmentState
                                                                               .always,
                                                                           label: SizedBox(
                                                                             width:
-                                                                            constraints
-                                                                                .maxWidth >
-                                                                                700
-                                                                                ? width *
-                                                                                0.06
-                                                                                : width *
-                                                                                0.28,
+                                                                           webWidth *
+                                                                                0.06,
                                                                             child: Row(
                                                                               children: [
                                                                                 Text(
@@ -2064,7 +2055,7 @@ class TeacherSelectedQuestionAssessmentState
                               children: [
                                 SizedBox(
                                   height: height * 0.48,
-                                  width: width * 0.9,
+                                  width: webWidth * 0.9,
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.vertical,
                                     child: Column(
@@ -2075,7 +2066,7 @@ class TeacherSelectedQuestionAssessmentState
                                         i++)
                                           QuestionWidget(
                                             height: height,
-                                            width: width,
+                                            width: webWidth,
                                             question: questionList[i],
                                             index: i,
                                             assessment: assessment,
@@ -2087,7 +2078,7 @@ class TeacherSelectedQuestionAssessmentState
                                 ),
                                 Positioned(
                                     top: height * 0.4,
-                                    left: width * 0.78,
+                                    left: webWidth * 0.78,
                                     child: FloatingActionButton(
                                       onPressed: () {
                                         Navigator.pushNamed(context,
@@ -2109,7 +2100,7 @@ class TeacherSelectedQuestionAssessmentState
                             ),
                             Center(
                               child: SizedBox(
-                                width: width * 0.888,
+                                width: webWidth * 0.888,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     side: const BorderSide(
@@ -2171,7 +2162,7 @@ class TeacherSelectedQuestionAssessmentState
                             ),
                             Center(
                               child: SizedBox(
-                                width: width * 0.888,
+                                width: webWidth * 0.888,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor:

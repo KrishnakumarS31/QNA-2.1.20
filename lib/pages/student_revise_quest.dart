@@ -82,18 +82,15 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
 
   @override
   Widget build(BuildContext context) {
-    // double localWidth = MediaQuery
-    //     .of(context)
-    //     .size
-    //     .width;
-    double localHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double localHeight = MediaQuery.of(context).size.height;
+    double localWidth = MediaQuery.of(context).size.width;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 500) {
-          return WillPopScope(
+          return Center(
+              child: SizedBox(
+              width: 500,
+              child: WillPopScope(
               onWillPop: () async => false, child: Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
@@ -438,7 +435,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           ),
                           SizedBox(height: localHeight * 0.030),
                         ])
-                  ]))));
+                  ]))))));
         }
         else {
           return WillPopScope(
@@ -452,7 +449,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         children: [
                           Container(
                             height: localHeight * 0.25,
-                            width: 400  * 1,
+                            width: localWidth  * 1,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 begin: Alignment.topLeft,
@@ -794,13 +791,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
         .of(context)
         .size
         .height;
-    double localWidth = MediaQuery
-        .of(context)
-        .size
-        .width > 400 ? 400 : MediaQuery
-        .of(context)
-        .size
-        .width;
 
     return showDialog<void>(
         context: context,

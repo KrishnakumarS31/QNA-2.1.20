@@ -11,6 +11,7 @@ import '../EntityModel/get_result_model.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 class TeacherResultLanding extends StatefulWidget {
   const TeacherResultLanding({
     Key? key,
@@ -44,7 +45,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
        {
          showModalBottomSheet(
              constraints: BoxConstraints(
-               maxWidth: 400.0,
+               maxWidth: webWidth,
              ),
              shape: const RoundedRectangleBorder(
                borderRadius: BorderRadius.only(
@@ -64,7 +65,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                  height: MediaQuery.of(context).copyWith().size.height * 0.245,
                  child: Padding(
                    padding: EdgeInsets.only(
-                       left: 400.0 * 0.10),
+                       left: webWidth * 0.10),
                    child: Column(
                      crossAxisAlignment: CrossAxisAlignment.center,
                      children: [
@@ -74,7 +75,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                        ),
                        Padding(
                          padding: EdgeInsets.only(
-                             right: 400.0 *
+                             right: webWidth *
                                  0.055),
                          child: Align(
                            alignment: Alignment.topRight,
@@ -116,7 +117,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                      0.016)),
                            ),
                            SizedBox(
-                             width: 400.0 *
+                             width: webWidth *
                                  0.052,
                            ),
                          ],
@@ -151,7 +152,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                      0.016)),
                            ),
                            SizedBox(
-                             width: 400.0 *
+                             width: webWidth *
                                  0.052,
                            ),
                          ],
@@ -186,7 +187,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                      0.016)),
                            ),
                            SizedBox(
-                             width: 400.0 *
+                             width: webWidth *
                                  0.052,
                            ),
                          ],
@@ -389,7 +390,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
     return
       Center(
     child: SizedBox(
-          width: 400,
+          width: webWidth,
       child: WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -506,7 +507,7 @@ class TeacherResultLandingState extends State<TeacherResultLanding> {
                                     },
                                     child: CustomCard(
                                         height: height,
-                                        width: width,
+                                        width: webWidth,
                                         //subject: results[index].subject,
                                         result: results[index]
                                     ),

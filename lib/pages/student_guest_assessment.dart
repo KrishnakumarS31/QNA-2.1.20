@@ -44,8 +44,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 500) {
           return Center(
-            child: Container(
-              width: 400,
+            child: SizedBox(
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -83,16 +83,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     height: height / 6,
                                     child: Row(
                                         children: [
-                                          SizedBox(width: 400 * 0.015),
+                                          const SizedBox(width: 500 * 0.1),
                                           CircleAvatar(
                                             backgroundColor:
                                             const Color.fromRGBO(0, 106, 100, 0),
-                                            radius: 400 * 0.05,
+                                            radius: 500 * 0.05,
                                             child: Image.asset(
                                               "assets/images/ProfilePic_Avatar.png",
                                             ),
                                           ),
-                                          const SizedBox(width: 400 * 0.03),
+                                          const SizedBox(width: 500 * 0.03),
                                           Text(
                                             widget.name,
                                             style: Theme.of(context)
@@ -111,7 +111,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   Column(
                                     children: [
                                       Container(
-                                          padding: EdgeInsets.only(left: 400 * 0.09),
+                                          padding: const EdgeInsets.only(left: 500 * 0.09),
                                           child: Text(
                                             AppLocalizations.of(context)!.student,
                                             style: const TextStyle(
@@ -299,8 +299,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
-                                          insetPadding: EdgeInsets.only(
-                                              left: 400 * 0.13, right: 400 * 0.13),
+                                          insetPadding: const EdgeInsets.only(
+                                              left: 500 * 0.13, right: 500 * 0.13),
                                           title: Row(children: [
                                             SizedBox(width: height * 0.030),
                                             Container(
@@ -309,7 +309,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                 color: Color.fromRGBO(82, 165, 160, 1),
                                               ),
                                               height: height * 0.1,
-                                              width: 400 * 0.1,
+                                              width: 500 * 0.1,
                                               child: const Icon(
                                                 Icons.info_outline_rounded,
                                                 color: Color.fromRGBO(255, 255, 255, 1),
@@ -328,7 +328,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           content:
                                           const Text("Are you sure you want to logout ?"),
                                           actions: <Widget>[
-                                            SizedBox(width: 400 * 0.020),
+                                            const SizedBox(width: 500 * 0.020),
                                             ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
@@ -350,7 +350,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                 Navigator.of(context).pop();
                                               },
                                             ),
-                                            SizedBox(width: 400 * 0.005),
+                                            const SizedBox(width: 500 * 0.005),
                                             ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:
@@ -410,7 +410,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        400, height * 0.35)),
+                                        500, height * 0.35)),
                               ),
                               child: Column(
                                 //crossAxisAlignment: CrossAxisAlignment.center,
@@ -421,7 +421,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     child: Container(
                                       padding: const EdgeInsets.all(0.0),
                                       height: height * 0.20,
-                                      width: 400 * 0.30,
+                                      width: 500 * 0.30,
                                       child: Image.asset(
                                           "assets/images/question_mark_logo.png"),
                                     ),
@@ -431,7 +431,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               ),
                             ),
                             Container(
-                              width: 400,
+                              width: 500,
                               margin: const EdgeInsets.all(15),
                               child: Column(children: [
                                 Align(
@@ -584,7 +584,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         values = await QnaService.getQuestionGuest(
                                             assessmentIdController.text,
                                             widget.name);
-                                        print(values.code);
                                         Navigator.of(context).pop();
                                         if (assessmentIdController.text.length >= 8) {
                                           if (values.code == 200) {
@@ -1242,7 +1241,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     values = await QnaService.getQuestionGuest(
                                         assessmentIdController.text,
                                         widget.name);
-                                    print(values.code);
                                     Navigator.of(context).pop();
                                     if (assessmentIdController.text.length >= 8) {
                                       if (values.code == 200) {

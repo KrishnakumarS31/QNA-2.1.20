@@ -4,6 +4,7 @@ import 'package:qna_test/Providers/new_question_provider.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherQnPreviewAssessment extends StatefulWidget {
   TeacherQnPreviewAssessment(
@@ -246,14 +247,14 @@ class TeacherQnPreviewAssessmentState
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: SizedBox(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                       body: Center(
                         child: SizedBox(
                           height: height * 0.81,
-                          width: width * 0.888,
+                          width: webWidth * 0.888,
                           child: Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -272,7 +273,7 @@ class TeacherQnPreviewAssessmentState
                                   //ChooseWidget(question: question, selected: selected, height: height, width: width),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: width * 0.03, top: height * 0.02),
+                                        left: webWidth * 0.03, top: height * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('${widget.finalQuestion.questionType}',
@@ -286,7 +287,7 @@ class TeacherQnPreviewAssessmentState
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: width * 0.03, top: height * 0.02),
+                                        left: webWidth * 0.03, top: height * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('${widget.finalQuestion.question}',
@@ -307,7 +308,7 @@ class TeacherQnPreviewAssessmentState
                                       child: ChooseWidget(
                                         selected: selected,
                                         height: height,
-                                        width: width,
+                                        width: webWidth,
                                         finalQuestion: widget.finalQuestion,
                                       ),
                                     ),
@@ -316,7 +317,7 @@ class TeacherQnPreviewAssessmentState
                                     height: height * 0.03,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: width * 0.03),
+                                    padding: EdgeInsets.only(left: webWidth * 0.03),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -332,7 +333,7 @@ class TeacherQnPreviewAssessmentState
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: width * 0.03, right: width * 0.03),
+                                        left: webWidth * 0.03, right: webWidth * 0.03),
                                     child: TextFormField(
                                       controller: adviceController,
                                       enabled: false,
@@ -353,7 +354,7 @@ class TeacherQnPreviewAssessmentState
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: width * 0.03, right: width * 0.03),
+                                        left: webWidth * 0.03, right: webWidth * 0.03),
                                     child: TextFormField(
                                       controller: urlController,
                                       enabled: false,

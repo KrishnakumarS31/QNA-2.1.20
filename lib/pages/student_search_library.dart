@@ -29,7 +29,7 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

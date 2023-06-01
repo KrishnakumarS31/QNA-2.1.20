@@ -14,6 +14,8 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qna_test/DataSource/http_url.dart';
+
 class TeacherAssessmentSummary extends StatefulWidget {
   const TeacherAssessmentSummary({
     Key? key,required this.assessmentType
@@ -1220,7 +1222,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Container(
-                    width: 400.0,
+                    width: webWidth,
                     child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: Colors.white,
@@ -1289,7 +1291,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.only(
-                                      right: width * 0.03, left: width * 0.03),
+                                      right: webWidth * 0.03, left: webWidth * 0.03),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1334,7 +1336,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                             scrollDirection: Axis.vertical,
                                                             child: Container(
                                                               height: height * 0.7,
-                                                              width: width * 0.88,
+                                                              width: webWidth * 0.88,
                                                               decoration: BoxDecoration(
                                                                 border: Border.all(
                                                                     color: Colors.black38,
@@ -1344,8 +1346,8 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                               ),
                                                               child: Padding(
                                                                 padding: EdgeInsets.only(
-                                                                    left: width * 0.02,
-                                                                    right: width * 0.02,
+                                                                    left: webWidth * 0.02,
+                                                                    right: webWidth * 0.02,
                                                                     top: height * 0.02,
                                                                     bottom: height * 0.02),
                                                                 child: Form(
@@ -1424,9 +1426,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                                                 .always,
                                                                             label: SizedBox(
                                                                               width:
-                                                                              constraints.maxWidth > 700
-                                                                                  ? width * 0.04
-                                                                                  : width * 0.185,
+                                                                              webWidth * 0.04,
                                                                               child: Row(
                                                                                 children: [
                                                                                   Text(
@@ -1921,7 +1921,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                                           fontWeight: FontWeight.w400),
                                                     ),
                                                     SizedBox(
-                                                      width: width * 0.01,
+                                                      width: webWidth * 0.01,
                                                     ),
                                                     const Icon(
                                                       Icons.edit_outlined,
@@ -2027,7 +2027,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                 children: [
                                   SizedBox(
                                     height: height * 0.48,
-                                    width: width * 0.9,
+                                    width: webWidth * 0.9,
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.vertical,
                                       child: Column(
@@ -2049,7 +2049,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                                   ),
                                   Positioned(
                                       top: height * 0.4,
-                                      left: width * 0.78,
+                                      left: webWidth * 0.78,
                                       child: FloatingActionButton(
                                         onPressed: () {
                                           Navigator.pushNamed(context, '/teacherAssessmentQuestionBank',arguments: [null,'',widget.assessmentType]);
@@ -2065,7 +2065,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
@@ -2119,7 +2119,7 @@ class TeacherAssessmentSummaryState extends State<TeacherAssessmentSummary> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:

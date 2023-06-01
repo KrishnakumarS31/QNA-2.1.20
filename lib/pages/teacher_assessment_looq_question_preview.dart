@@ -5,6 +5,7 @@ import '../EntityModel/CreateAssessmentModel.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherAssessmentLooqQuestionPreview extends StatefulWidget {
   const TeacherAssessmentLooqQuestionPreview(
@@ -343,29 +344,29 @@ class TeacherAssessmentLooqQuestionPreviewState
               child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                       body: Center(
                         child: SizedBox(
                           height: height * 0.9,
-                          width: width * 0.888,
+                          width: webWidth * 0.888,
                           child: Card(
                               elevation: 12,
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               margin: EdgeInsets.only(
-                                  left: width * 0.030,
-                                  right: width * 0.030,
+                                  left: webWidth * 0.030,
+                                  right: webWidth * 0.030,
                                   bottom: height * 0.015,
                                   top: height * 0.025),
                               //padding: const EdgeInsets.all(40),
                               child: Padding(
                                   padding: EdgeInsets.only(
-                                      right: width * 0.03,
-                                      left: width * 0.03,
-                                      top: width * 0.03,
-                                      bottom: width * 0.03),
+                                      right: webWidth * 0.03,
+                                      left: webWidth * 0.03,
+                                      top: webWidth * 0.03,
+                                      bottom: webWidth * 0.03),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -385,7 +386,7 @@ class TeacherAssessmentLooqQuestionPreviewState
                                                     fontWeight: FontWeight.w700),
                                               ),
                                               SizedBox(
-                                                width: width * 0.02,
+                                                width: webWidth * 0.02,
                                               ),
                                               Text(
                                                 '${widget.index + 1}',
@@ -412,10 +413,10 @@ class TeacherAssessmentLooqQuestionPreviewState
                                                     fontWeight: FontWeight.w700),
                                               ),
                                               SizedBox(
-                                                width: width * 0.02,
+                                                width: webWidth * 0.02,
                                               ),
                                               SizedBox(
-                                                width: width * 0.05,
+                                                width: webWidth * 0.05,
                                                 child: TextField(
                                                   enabled: widget.question.questionType=='MCQ',
                                                   controller: markController,
@@ -458,7 +459,7 @@ class TeacherAssessmentLooqQuestionPreviewState
                                       ),
                                       ChooseWidget(
                                         height: height,
-                                        width: width,
+                                        width: webWidth,
                                         question: widget.question,
                                       ),
                                       SizedBox(
@@ -506,7 +507,7 @@ class TeacherAssessmentLooqQuestionPreviewState
                                       ),
                                       Center(
                                         child: SizedBox(
-                                          width: width * 0.888,
+                                          width: webWidth * 0.888,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               side: const BorderSide(
@@ -541,7 +542,7 @@ class TeacherAssessmentLooqQuestionPreviewState
                                       ),
                                       Center(
                                         child: SizedBox(
-                                          width: width * 0.888,
+                                          width: webWidth * 0.888,
                                           child: ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor:

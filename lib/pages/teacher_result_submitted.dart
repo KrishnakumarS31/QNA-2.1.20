@@ -7,6 +7,8 @@ import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
+
 class TeacherResultSubmitted extends StatefulWidget {
   TeacherResultSubmitted({
     Key? key,
@@ -62,7 +64,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
         return
           Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -168,7 +170,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                               showIcon == Icons.expand_circle_down_outlined
                                   ? CustomCard1(
                                 height: height,
-                                width: 400,
+                                width: webWidth,
                                 resultIndex: widget.result,
                               )
                                   : Container(
@@ -224,7 +226,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
@@ -233,13 +235,13 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          right: width * 0.02,
-                                          left: width * 0.02),
+                                          right: webWidth * 0.02,
+                                          left: webWidth * 0.02),
                                       child: const Divider(),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.015,
                                           top: height * 0.002),
                                       child: Align(
@@ -259,7 +261,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                                   FontWeight.w700),
                                             ),
                                             SizedBox(
-                                              width: width * 0.01,
+                                              width: webWidth * 0.01,
                                             ),
                                             Text(
                                               widget.advisorName!,
@@ -277,7 +279,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.005),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -296,7 +298,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.005),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -315,7 +317,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.004),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -466,7 +468,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     const Divider(),
                                     Padding(
                                       padding:
-                                      EdgeInsets.only(left: width * 0.03),
+                                      EdgeInsets.only(left: webWidth * 0.03),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
@@ -484,7 +486,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           top: height * 0.007),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -521,7 +523,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           top: height * 0.007),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -560,7 +562,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           top: height * 0.007),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -604,7 +606,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.015,
                                           top: height * 0.002),
                                       child: Align(
@@ -779,7 +781,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                     Icons.expand_circle_down_outlined
                                     ? height * 0.158
                                     : height * 0.661,
-                                right: width * 0.07,
+                                right: webWidth * 0.07,
                                 child: IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -858,7 +860,7 @@ class TeacherResultSubmittedState extends State<TeacherResultSubmitted> {
                                               },
                                               child: ResultSubmitCard(
                                                   height: height,
-                                                  width: 400,
+                                                  width: webWidth,
                                                   submittedArray: widget
                                                       .submittedArray,
                                                   results: widget.result,

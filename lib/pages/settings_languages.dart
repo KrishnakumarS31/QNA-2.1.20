@@ -95,8 +95,8 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
         builder: (BuildContext context, BoxConstraints constraints) {
     if(constraints.maxWidth > 500){
       return Center(
-        child: Container(
-          width: 400,
+        child: SizedBox(
+          width: 500,
           child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -138,7 +138,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                   ),
                   body: Padding(
                     padding: EdgeInsets.only(
-                        right: width * 0.08, left: width * 0.08, top: height * 0.035),
+                        right: 500 * 0.08, left: 500 * 0.08, top: height * 0.035),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -240,7 +240,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                                         color: Color.fromRGBO(
                                                             0, 0, 0, 0.15)),
                                                   )),
-                                              width: width * 0.833,
+                                              width: 500 * 0.833,
                                               height: height * 0.0775,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,

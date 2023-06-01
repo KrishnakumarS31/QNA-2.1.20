@@ -158,6 +158,7 @@ class TeacherAssessmentSettingPublishState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double webWidth = 500.0;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
 //           if (constraints.maxWidth > 900) {
@@ -2429,12 +2430,12 @@ class TeacherAssessmentSettingPublishState
 //                   ),
 //                 ));
 //           }
-          if(constraints.maxWidth > 500) {
+          if(constraints.maxWidth > webWidth) {
             return Center(
               child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width:400.0,
+                  width:webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -2500,7 +2501,7 @@ class TeacherAssessmentSettingPublishState
                         Center(
                           child: Container(
                             height: height * 0.1087,
-                            width: width * 0.888,
+                            width: webWidth * 0.888,
                             decoration: BoxDecoration(
                               borderRadius:
                               const BorderRadius.all(Radius.circular(8.0)),
@@ -2515,7 +2516,7 @@ class TeacherAssessmentSettingPublishState
                               children: [
                                 Padding(
                                   padding: EdgeInsets.only(
-                                      left: width * 0.02, right: width * 0.02),
+                                      left: webWidth * 0.02, right: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -2541,7 +2542,7 @@ class TeacherAssessmentSettingPublishState
                                   ),
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.only(left: width * 0.02),
+                                    padding: EdgeInsets.only(left: width * 0.01),
                                     child: Row(children: [
                                       RichText(
                                           textAlign: TextAlign.left,
@@ -2603,7 +2604,7 @@ class TeacherAssessmentSettingPublishState
                                           ])),
                                     ])),
                                 Padding(
-                                    padding: EdgeInsets.only(left: width * 0.02),
+                                    padding: EdgeInsets.only(left: webWidth * 0.02),
                                     child: Row(children: [
                                       RichText(
                                           textAlign: TextAlign.left,
@@ -2630,7 +2631,7 @@ class TeacherAssessmentSettingPublishState
                                                   fontFamily: "Inter"),
                                             ),
                                           ])),
-                                      SizedBox(width: width * 0.1),
+                                      SizedBox(width: webWidth * 0.1),
                                       RichText(
                                           textAlign: TextAlign.left,
                                           text: TextSpan(children: [
@@ -2667,6 +2668,7 @@ class TeacherAssessmentSettingPublishState
                           child: SingleChildScrollView(
                             child: Container(
 // color: Colors.red,
+                            width:webWidth,
                               padding: const EdgeInsets.all(20.0),
                               child: Column(
                                 children: <Widget>[
@@ -2680,9 +2682,9 @@ class TeacherAssessmentSettingPublishState
                                           ),
                                           Center(
                                             child: Container(
-                                              width: 400.0,
+                                              width: webWidth,
                                               padding:
-                                              const EdgeInsets.only(left: 10),
+                                              EdgeInsets.only(left: webWidth * 0.01),
                                               decoration: BoxDecoration(
                                                 borderRadius: const BorderRadius.all(
                                                     Radius.circular(8.0)),
@@ -2724,7 +2726,7 @@ class TeacherAssessmentSettingPublishState
                                                         children: [
                                                           Row(children: [
                                                             SizedBox(
-                                                              width: 400.0 * 0.4,
+                                                              width: webWidth * 0.4,
                                                               child: Text(
                                                                 AppLocalizations.of(
                                                                     context)!
@@ -2762,7 +2764,7 @@ class TeacherAssessmentSettingPublishState
                                                       ),
                                                       Row(children: [
                                                         SizedBox(
-                                                          width: 400.0 * 0.4,
+                                                          width: webWidth * 0.4,
                                                           child: Text(AppLocalizations.of(context)!.practice_qn_page,
                                                             // "Practice",
                                                             style: TextStyle(
@@ -2885,7 +2887,7 @@ class TeacherAssessmentSettingPublishState
                                           ),
                                           Center(
                                             child: Container(
-                                                width:400.0,
+                                                width:500.0,
                                               padding:
                                               const EdgeInsets.only(left: 10),
                                               decoration: BoxDecoration(
@@ -2968,9 +2970,9 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                            width: 400.0 * 0.38),
+                                                            width: webWidth * 0.27),
                                                         SizedBox(
-                                                          width: 400.0 * 0.1,
+                                                          width: webWidth * 0.1,
                                                           child: TextField(
                                                             controller:
                                                             timePermitHoursController,
@@ -3034,7 +3036,7 @@ class TeacherAssessmentSettingPublishState
                                                           ),
                                                         ),
                                                         SizedBox(
-                                                          width: 400.0 * 0.1,
+                                                          width: webWidth * 0.1,
                                                           child: TextField(
                                                             onChanged: (val) {
                                                               setState(() {
@@ -3092,7 +3094,7 @@ class TeacherAssessmentSettingPublishState
                                                       Row(children: [
                                                         SizedBox(
                                                           height: height * 0.12,
-                                                          width: 400.0 * 0.23,
+                                                          width: webWidth * 0.23,
                                                           child: Column(
                                                             crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -3201,10 +3203,10 @@ class TeacherAssessmentSettingPublishState
                                                         ),
                                                         SizedBox(
                                                             width:
-                                                            400.0 * 0.2),
+                                                            webWidth * 0.2),
                                                         SizedBox(
                                                           height: height * 0.12,
-                                                          width: 400.0 * 0.18,
+                                                          width: webWidth * 0.23,
                                                           child: Column(
                                                             crossAxisAlignment:
                                                             CrossAxisAlignment.start,
@@ -3304,7 +3306,7 @@ class TeacherAssessmentSettingPublishState
 
                                                         SizedBox(
                                                           height: height * 0.12,
-                                                          width: 400.0 * 0.23,
+                                                          width: webWidth * 0.23,
                                                           child: Column(
                                                             crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -3415,10 +3417,10 @@ class TeacherAssessmentSettingPublishState
                                                         ),
                                                         SizedBox(
                                                             width:
-                                                            400.0 * 0.2),
+                                                            webWidth * 0.2),
                                                         SizedBox(
                                                           height: height * 0.12,
-                                                          width: 400.0 * 0.18,
+                                                          width: webWidth * 0.18,
                                                           child: Column(
                                                             crossAxisAlignment:
                                                             CrossAxisAlignment
@@ -3524,7 +3526,7 @@ class TeacherAssessmentSettingPublishState
                                           ),
                                           Center(
                                             child: Container(
-                                                width:400.0,
+                                                width:webWidth,
                                               padding:
                                               const EdgeInsets.only(left: 10),
                                               decoration: BoxDecoration(
@@ -3596,9 +3598,9 @@ class TeacherAssessmentSettingPublishState
                                                             FontWeight.w600,
                                                           ),
                                                         ),
-                                                        SizedBox(width: 400.0 * 0.15),
+                                                        SizedBox(width: 500.0 * 0.15),
                                                         SizedBox(
-                                                          width: 400.0 * 0.35,
+                                                          width: 500.0 * 0.35,
                                                           child: TextField(
                                                             controller:
                                                             instituteTestIdcontroller,
@@ -3638,7 +3640,7 @@ class TeacherAssessmentSettingPublishState
                                           ),
                                           Center(
                                             child: Container(
-                                                width:400.0,
+                                                width:500.0,
                                               padding: const EdgeInsets.only(
                                                   left: 10, right: 10),
                                               decoration: BoxDecoration(
@@ -3699,7 +3701,7 @@ class TeacherAssessmentSettingPublishState
                                                             ),
 //SizedBox(width: width * 0.2),
                                                             SizedBox(
-                                                              width: 400.0 * 0.1,
+                                                              width: 500.0 * 0.1,
                                                               child: TextField(
                                                                 controller:
                                                                 retriesController,
@@ -4166,7 +4168,7 @@ class TeacherAssessmentSettingPublishState
                                             const SizedBox(height: 0)
                                                 :Center(
                                               child: SizedBox(
-                                                width: 400.0 * 0.6,
+                                                //width: webWidth  * 0.6,
                                                 child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(
                                                     side: const BorderSide(
@@ -4306,7 +4308,7 @@ class TeacherAssessmentSettingPublishState
                                             const SizedBox(height: 0)
                                                 :Center(
                                               child: SizedBox(
-                                                width: 400.0 * 0.6,
+                                                //width: 500.0 * 0.6,
                                                 child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(
                                                       backgroundColor:
@@ -4516,7 +4518,7 @@ class TeacherAssessmentSettingPublishState
                                             const SizedBox(height: 0)
                                                 :Center(
                                               child: SizedBox(
-                                                width: 400.0 * 0.6,
+                                                width: 500.0 * 0.6,
                                                 child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(
                                                       backgroundColor:

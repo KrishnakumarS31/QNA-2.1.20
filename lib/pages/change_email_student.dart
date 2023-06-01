@@ -48,7 +48,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
           if (constraints.maxWidth > 500) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: 500,
                 child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -267,7 +267,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                   backgroundColor:
                                   const Color.fromRGBO(82, 165, 160, 1),
                                   minimumSize: Size(
-                                      width * 0.77, height * 0.06),
+                                      400 * 0.77, height * 0.06),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(39),
                                   ),

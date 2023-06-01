@@ -6,6 +6,7 @@ import '../Entity/Teacher/question_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
@@ -927,7 +928,7 @@ class TeacherAssessmentLooqPrepareQuesState
               child: WillPopScope(
                 onWillPop: () async => false,
                 child: SizedBox(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: Colors.white,
@@ -1092,7 +1093,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                     Container(
                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                         child: Row(children: [
-                                          SizedBox(width: width * 0.10),
+                                          SizedBox(width: webWidth * 0.10),
                                           Text(
                                               AppLocalizations.of(context)!.subject_topic,
                                               //"Subject and Topic",
@@ -1102,7 +1103,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: height * 0.020)),
-                                          SizedBox(width: width * 0.25),
+                                          SizedBox(width: webWidth * 0.25),
                                           IconButton(
                                             icon: Icon(
                                               showIcon,
@@ -1133,10 +1134,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                                 //     .sub_caps,
                                                 //"SUBJECT",
                                                 label: SizedBox(
-                                                  width:
-                                                  constraints.maxWidth > 700
-                                                      ? width * 0.05
-                                                      : width * 0.2,
+                                                  width: webWidth * 0.05,
                                                   child: Row(
                                                     children: [
                                                       Text(
@@ -1284,9 +1282,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                               decoration: InputDecoration(
                                                 label: SizedBox(
                                                   width:
-                                                  constraints.maxWidth > 700
-                                                      ? width * 0.07
-                                                      : width * 0.3,
+                                                  webWidth * 0.07,
                                                   child: Row(
                                                     children: [
                                                       Text(
@@ -1357,7 +1353,7 @@ class TeacherAssessmentLooqPrepareQuesState
                               Container(
                                 alignment: Alignment.centerLeft,
                                 margin: EdgeInsets.only(
-                                    left: width * 0.04, right: width * 0.04),
+                                    left: webWidth * 0.04, right: webWidth * 0.04),
                                 child: Column(
                                   children: [
                                     Row(children: [
@@ -1371,7 +1367,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      SizedBox(width: width * 0.03),
+                                      SizedBox(width: webWidth * 0.03),
                                       const Expanded(child: Divider()),
                                     ]),
                                     SizedBox(height: height * 0.010),
@@ -1435,7 +1431,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                           ),
                                         ),
                                         SizedBox(
-                                          width: width * 0.02,
+                                          width: webWidth * 0.02,
                                         ),
                                         Text(
                                           AppLocalizations.of(context)!.delete,
@@ -1493,7 +1489,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                               ),
                                             ),
                                             SizedBox(
-                                              width: width * 0.03,
+                                              width: webWidth * 0.03,
                                             ),
                                             IconButton(
                                               onPressed: () {
@@ -1509,7 +1505,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                               ),
                                             ),
                                             SizedBox(
-                                              width: width * 0.03,
+                                              width: webWidth * 0.03,
                                             ),
                                             IconButton(
                                               onPressed: () {
@@ -1549,7 +1545,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                     Container(
                                       alignment: Alignment.centerLeft,
                                       margin: EdgeInsets.only(
-                                          left: width * 0.05, right: width * 0.04),
+                                          left: webWidth * 0.05, right: webWidth * 0.04),
                                       child: Row(children: [
                                         Text(
                                           AppLocalizations.of(context)!.advisor,
@@ -1561,7 +1557,7 @@ class TeacherAssessmentLooqPrepareQuesState
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        SizedBox(width: width * 0.03),
+                                        SizedBox(width: webWidth * 0.03),
                                         const Expanded(child: Divider()),
                                       ]),
                                     )

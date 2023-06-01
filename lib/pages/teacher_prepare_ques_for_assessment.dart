@@ -8,6 +8,7 @@ import '../Entity/Teacher/question_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 Color textColor = const Color.fromRGBO(48, 145, 139, 1);
 
@@ -213,7 +214,6 @@ class TeacherPrepareQuesForAssessmentState
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double widthForWeb = 400.0;
     print("Width");
     print(width);
     double height = MediaQuery.of(context).size.height;
@@ -1804,7 +1804,7 @@ class TeacherPrepareQuesForAssessmentState
                                         ),
                                       ),
                                       Container(
-                                        width: widthForWeb * 0.15,
+                                        width: webWidth * 0.15,
                                         child: Text(
                                           AppLocalizations.of(context)!.correct_answer,
                                           textAlign: TextAlign.center,
@@ -1818,7 +1818,7 @@ class TeacherPrepareQuesForAssessmentState
                                         ),
                                       ),
                                       Container(
-                                        width: widthForWeb * 0.15,
+                                        width: webWidth * 0.15,
                                         child: Text(
                                           AppLocalizations.of(context)!.delete,
                                           textAlign: TextAlign.center,
@@ -1880,7 +1880,7 @@ class TeacherPrepareQuesForAssessmentState
                                             ),
                                           ),
                                           SizedBox(
-                                            width: width * 0.01,
+                                            width: webWidth * 0.01,
                                           ),
                                           IconButton(
                                             onPressed: () {
@@ -1891,11 +1891,8 @@ class TeacherPrepareQuesForAssessmentState
                                               color: Color.fromRGBO(82, 165, 160, 1),
                                             ),
                                           ),
-                                          constraints.maxWidth > 700
-                                              ?  SizedBox(
-                                            width: width * 0.02,
-                                          )
-                                              : const SizedBox(),
+                                          SizedBox(
+                                            width: width * 0.02),
                                         ],
                                       ),
                                     )
@@ -1942,7 +1939,7 @@ class TeacherPrepareQuesForAssessmentState
                                             ),
                                           ),
                                           Container(
-                                            width: widthForWeb * 0.15,
+                                            width: webWidth * 0.15,
                                             child: IconButton(
                                               onPressed: () {
                                                 _onRadioChange(i);
@@ -1958,7 +1955,7 @@ class TeacherPrepareQuesForAssessmentState
                                             ),
                                           ),
                                           Container(
-                                            width: widthForWeb * 0.15,
+                                            width: webWidth * 0.15,
                                             child: IconButton(
                                               onPressed: () {
                                                 removeItem(i);
@@ -2001,7 +1998,7 @@ class TeacherPrepareQuesForAssessmentState
                                   SizedBox(height: height * 0.020),
                                   Container(
                                     alignment: Alignment.centerLeft,
-                                    width: widthForWeb,
+                                    width: webWidth,
                                     margin: EdgeInsets.only(
                                         left: width * 0.05, right: width * 0.04),
                                     child: Row(children: [

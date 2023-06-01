@@ -54,7 +54,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
         if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
-              width: 400,
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -94,7 +94,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        400, localHeight * 0.35)),
+                                        500, localHeight * 0.35)),
                               ),
                               child: Column(
                                 //crossAxisAlignment: CrossAxisAlignment.center,
@@ -115,7 +115,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               ),
                             ),
                             Container(
-                              width: 400,
+                              width: 500,
                               margin: const EdgeInsets.all(15),
                               child: Column(children: [
                                 Align(
@@ -300,8 +300,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                 type:
                                                 PageTransitionType.rightToLeft,
                                                 child: CustomDialog(
-                                                  title: '${values.message}',
-                                                  content: '',
+                                                  title: AppLocalizations.of(context)!.alert_popup,
+                                                  content: '${values.message}',
                                                   button:
                                                   AppLocalizations.of(context)!
                                                       .retry,

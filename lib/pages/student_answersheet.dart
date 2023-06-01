@@ -65,8 +65,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 500) {
           return Center(
-            child: Container(
-              width: 400,
+            child: SizedBox(
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false, child: Scaffold(
                   appBar: AppBar(

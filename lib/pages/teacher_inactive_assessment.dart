@@ -8,6 +8,8 @@ import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/create_assessment_provider.dart';
 import '../Entity/Teacher/question_entity.dart' as Questions;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
+
 class TeacherInactiveAssessment extends StatefulWidget {
   const TeacherInactiveAssessment({
     Key? key,
@@ -1188,7 +1190,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -1266,7 +1268,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                     color: Colors.white,
                                   ),
                                   height: height * 0.1675,
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -1279,7 +1281,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                           color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.only(left: width * 0.02),
+                                          padding: EdgeInsets.only(left: webWidth * 0.02),
                                           child: Row(
                                             children: [
                                               Text(
@@ -1310,7 +1312,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(right: width * 0.02),
+                                            padding: EdgeInsets.only(right: webWidth * 0.02),
                                             child: const Icon(
                                               Icons.circle,
                                               color: Colors.white,
@@ -1327,7 +1329,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(right: width * 0.02),
+                                            padding: EdgeInsets.only(right: webWidth * 0.02),
                                             child: const Icon(
                                               Icons.circle,
                                               color: Color.fromRGBO(102, 102, 102, 1),
@@ -1346,7 +1348,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                               ),
                                               color: Colors.white,
                                             ),
-                                            width: width * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1376,7 +1378,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: width * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1417,7 +1419,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "Assessment ID:",
                                       style: TextStyle(
@@ -1445,7 +1447,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "Institute Test ID:",
                                       style: TextStyle(
@@ -1477,7 +1479,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "Time Permitted:",
                                       style: TextStyle(
@@ -1505,7 +1507,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "Start Date & Time:",
                                       style: TextStyle(
@@ -1544,7 +1546,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: width * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "End Date & Time:",
                                       style: TextStyle(
@@ -1593,7 +1595,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -1610,7 +1612,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                       ),
                                       Padding(
                                         padding:
-                                        EdgeInsets.only(right: width * 0.02),
+                                        EdgeInsets.only(right: webWidth * 0.02),
                                         child: IconButton(
                                           icon: const Icon(
                                             Icons.arrow_circle_up_outlined,
@@ -1634,7 +1636,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -1651,7 +1653,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                       ),
                                       Padding(
                                         padding:
-                                        EdgeInsets.only(right: width * 0.02),
+                                        EdgeInsets.only(right: webWidth * 0.02),
                                         child: IconButton(
                                           icon: const Icon(
                                             Icons.arrow_circle_down_outlined,
@@ -1672,7 +1674,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.category,
                                           //"Category",
@@ -1703,7 +1705,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.no_of_retries_allowed,
                                           //"Number of Retries allowed",
@@ -1735,7 +1737,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.allow_guest_Students,
                                           //"Allow Guest students",
@@ -1776,7 +1778,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.show_answersheet_after_test,
                                           //"Show answer Sheet after test",
@@ -1817,7 +1819,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.show_my_advisor_name,
                                           //"Show my name in Advisor",
@@ -1830,24 +1832,27 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                           ),
                                         ),
                                       ),
-                                      Text(
-                                        assessment.assessmentSettings!
-                                            .showAdvisorName ==
-                                            false
-                                            ? AppLocalizations.of(context)!.no
-                                        //"No"
-                                            : assessment.assessmentSettings!
-                                            .showAdvisorName!
-                                            ? AppLocalizations.of(context)!.yes
-                                        //"Yes"
-                                            :  AppLocalizations.of(context)!.no,
-                                        //"No",
-                                        style: TextStyle(
-                                          color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                          fontSize: height * 0.0175,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700,
+                                      SizedBox(
+                                        width: webWidth * 0.5,
+                                        child: Text(
+                                          assessment.assessmentSettings!
+                                              .showAdvisorName ==
+                                              false
+                                              ? AppLocalizations.of(context)!.no
+                                          //"No"
+                                              : assessment.assessmentSettings!
+                                              .showAdvisorName!
+                                              ? AppLocalizations.of(context)!.yes
+                                          //"Yes"
+                                              :  AppLocalizations.of(context)!.no,
+                                          //"No",
+                                          style: TextStyle(
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -1871,24 +1876,27 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                           ),
                                         ),
                                       ),
-                                      Text(
-                                        assessment.assessmentSettings
-                                            ?.showAdvisorEmail ==
-                                            false
-                                            ? AppLocalizations.of(context)!.no
-                                        //"No"
-                                            : assessment.assessmentSettings!
-                                            .showAdvisorEmail!
-                                            ?  AppLocalizations.of(context)!.yes
-                                        //"Yes"
-                                            : AppLocalizations.of(context)!.no,
-                                        //"No",
-                                        style: TextStyle(
-                                          color:
-                                          const Color.fromRGBO(82, 165, 160, 1),
-                                          fontSize: height * 0.0175,
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w700,
+                                      SizedBox(
+                                        width: webWidth * 0.5,
+                                        child: Text(
+                                          assessment.assessmentSettings
+                                              ?.showAdvisorEmail ==
+                                              false
+                                              ? AppLocalizations.of(context)!.no
+                                          //"No"
+                                              : assessment.assessmentSettings!
+                                              .showAdvisorEmail!
+                                              ?  AppLocalizations.of(context)!.yes
+                                          //"Yes"
+                                              : AppLocalizations.of(context)!.no,
+                                          //"No",
+                                          style: TextStyle(
+                                            color:
+                                            const Color.fromRGBO(82, 165, 160, 1),
+                                            fontSize: height * 0.0175,
+                                            fontFamily: "Inter",
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -1899,7 +1907,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Column(
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -1950,7 +1958,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   ),
                                   Row(children: [
                                     SizedBox(
-                                      width: width * 0.4,
+                                      width: webWidth * 0.4,
                                       child: Column(
                                           crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -2013,7 +2021,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -2052,7 +2060,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: width * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -2070,7 +2078,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                                       ),
                                       Padding(
                                         padding:
-                                        EdgeInsets.only(right: width * 0.02),
+                                        EdgeInsets.only(right: webWidth * 0.02),
                                         child: IconButton(
                                           onPressed: () {
                                             showQuestionDetails();
@@ -2211,7 +2219,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -2251,7 +2259,7 @@ class TeacherInactiveAssessmentState extends State<TeacherInactiveAssessment> {
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:

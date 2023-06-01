@@ -4,6 +4,7 @@ import '../Components/custom_result_new_card.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherResultIndividualStudent extends StatefulWidget {
   const TeacherResultIndividualStudent({
@@ -69,7 +70,7 @@ class TeacherResultIndividualStudentState
         return
           Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -197,7 +198,7 @@ class TeacherResultIndividualStudentState
                           ),
                           ResultCardNew(
                               height: height,
-                              width: 400,
+                              width: webWidth,
                               index: widget.index,
                               assessmentResults: totalResults,
                               results: widget.result),

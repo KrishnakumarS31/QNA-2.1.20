@@ -139,12 +139,12 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: localHeight * 0.050),
+                        SizedBox(height: localHeight * 0.1),
                         Container(
                           alignment: Alignment.topLeft,
                           height: localHeight / 6,
                           child: Row(children: [
-                            const SizedBox(width: 10),
+                            const SizedBox(width: 40),
                             CircleAvatar(
                               backgroundColor:
                                   const Color.fromRGBO(0, 106, 100, 0),

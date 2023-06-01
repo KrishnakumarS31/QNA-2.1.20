@@ -163,7 +163,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
       if (constraints.maxWidth > 500) {
         return Center(
           child: SizedBox(
-            width: 400,
+            width: 500,
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -227,8 +227,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           Padding(
                             padding: EdgeInsets.only(
                                 top: height * 0.0375,
-                                left: 400 * 0.055,
-                                right: 400 * 0.055),
+                                left: 500 * 0.055,
+                                right: 500 * 0.055),
                             child: Container(
                               height: height * 0.1412,
                               decoration: BoxDecoration(
@@ -242,8 +242,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 400 * 0.02, right: 400 * 0.02),
+                                    padding: const EdgeInsets.only(
+                                        left: 500 * 0.02, right: 500 * 0.02),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -269,13 +269,13 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
+                                  const Padding(
                                     padding: EdgeInsets.only(
-                                        left: 400 * 0.02, right: 400 * 0.02),
-                                    child: const Divider(),
+                                        left: 500 * 0.02, right: 500 * 0.02),
+                                    child: Divider(),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 400 * 0.02),
+                                    padding: const EdgeInsets.only(left: 500 * 0.02),
                                     child: Row(
                                       children: [
                                         Text(
@@ -288,8 +288,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                               const Color.fromRGBO(82, 165, 160, 1),
                                               fontWeight: FontWeight.w700),
                                         ),
-                                        SizedBox(
-                                          width: 400 * 0.01,
+                                        const SizedBox(
+                                          width: 500 * 0.01,
                                         ),
                                         Text(
                                           '|',
@@ -300,8 +300,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                               const Color.fromRGBO(82, 165, 160, 1),
                                               fontWeight: FontWeight.w700),
                                         ),
-                                        SizedBox(
-                                          width: 400 * 0.01,
+                                        const SizedBox(
+                                          width: 500 * 0.01,
                                         ),
                                         Text(
                                           finalQuesList.isEmpty ? '' : finalQuesList[0]
@@ -317,7 +317,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 400 * 0.02),
+                                    padding: const EdgeInsets.only(left: 500 * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -343,8 +343,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             clipBehavior: Clip.none,
                             children: [
                               Container(
-                                padding: EdgeInsets.only(
-                                    left: 400 * 0.055, right: 400 * 0.055),
+                                padding: const EdgeInsets.only(
+                                    left: 500 * 0.055, right: 500 * 0.055),
                                 height: height * 0.55,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
@@ -359,7 +359,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       for (int i = 0; i < finalQuesList.length; i++)
                                         QuestionPreview(
                                           height: height,
-                                          width: 400,
+                                          width: 500,
                                           question: finalQuesList[i],
                                           quesNum: i,
                                         ),
@@ -369,7 +369,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               ),
                               Positioned(
                                   top: height * 0.47,
-                                  left: 400 * 0.8,
+                                  left: 500 * 0.8,
                                   child: MouseRegion(
                                       cursor: SystemMouseCursors.click,
                                       child: GestureDetector(

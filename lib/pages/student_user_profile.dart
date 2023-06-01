@@ -40,7 +40,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -48,7 +48,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                 backgroundColor: Colors.white,
                 body: Column(
                   children: [
-                    constraints.maxWidth > 700
+                    constraints.maxWidth > 500
                         ?
                     Container(
                       height: height * 0.3,
@@ -68,7 +68,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           Row(
                             children: [
                               SizedBox(
-                                width: width * 0.3,
+                                width: 500 * 0.3,
                                 child: IconButton(
                                   alignment: Alignment.centerLeft,
                                   icon: const Icon(
@@ -82,7 +82,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 ),
                               ),
                               Container(
-                                width: width * 0.4,
+                                width: 500 * 0.4,
                                 alignment: Alignment.center,
                                 child: Padding(
                                   padding: EdgeInsets.only(top: height * 0.01),
@@ -105,16 +105,16 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           ),
                           Row(
                             children: [
-                              SizedBox(width: width * 0.025),
-                              Icon(
+                              const SizedBox(width: 500 * 0.025),
+                              const Icon(
                                 Icons.account_circle_outlined,
-                                size: width * 0.06,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
+                                size: 500 * 0.06,
+                                color: Color.fromRGBO(255, 255, 255, 1),
                               ),
-                              SizedBox(width: width * 0.010),
+                              const SizedBox(width: 500 * 0.010),
                               Column(
                                 children: [
-                                  SizedBox(width: width * 0.02),
+                                  const SizedBox(width: 500 * 0.02),
                                   Text(
                                     '${widget.userDataModel.data?.firstName}',
                                     style: TextStyle(
@@ -147,8 +147,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                         ],
                       ),
                     )
-                        :
-                    Container(
+                        : Container(
                       height: height * 0.25,
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(
@@ -470,7 +469,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                 backgroundColor: Colors.white,
                 body: Column(
                   children: [
-                    constraints.maxWidth > 700
+                    constraints.maxWidth > 500
                         ?
                     Container(
                       height: height * 0.3,

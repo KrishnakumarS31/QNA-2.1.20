@@ -90,7 +90,7 @@ class _WelcomePageState extends State<WelcomePage> {
         if (constraints.maxWidth > 500) {
           return Center(
               child: SizedBox(
-              width: 400,
+              width: 500,
               child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -113,12 +113,12 @@ class _WelcomePageState extends State<WelcomePage> {
                               children: [
                                 SizedBox(
                                     height: localHeight,
-                                    width: 400,
+                                    width: 500,
                                     child: Column(
                                       children: [
                                         Container(
                                           height: localHeight * 0.43,
-                                          width: 400,
+                                          width: 500,
                                           decoration: BoxDecoration(
                                             gradient: const LinearGradient(
                                               begin: Alignment.topLeft,
@@ -129,7 +129,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               ],
                                             ),
                                             borderRadius: BorderRadius.vertical(
-                                                bottom: Radius.elliptical(400, localHeight * 0.40)),
+                                                bottom: Radius.elliptical(500, localHeight * 0.40)),
                                           ),
                                           child: Column(
                                             children: [
@@ -137,9 +137,9 @@ class _WelcomePageState extends State<WelcomePage> {
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  const SizedBox(width: 400 * 0.04),
+                                                  const SizedBox(width: 500 * 0.04),
                                                   Container(
-                                                    width: 400 * 0.3,
+                                                    width: 500 * 0.3,
                                                     height: MediaQuery.of(context).size.height * 0.04,
                                                     decoration: const BoxDecoration(
                                                       image: DecorationImage(
@@ -153,7 +153,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               ),
                                               SizedBox(height: localHeight * 0.08),
                                               Container(
-                                                width: 400 * 0.53,
+                                                width: 500 * 0.53,
                                                 height: localHeight * 0.135,
                                                 decoration: const BoxDecoration(
                                                   image: DecorationImage(
@@ -183,16 +183,16 @@ class _WelcomePageState extends State<WelcomePage> {
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(
-                                              left: 400 / 15,
-                                              right: 400 / 15),
+                                              left: 500 / 15,
+                                              right: 500 / 15),
                                           child: Column(children: [
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
                                             Container(
                                               padding: const EdgeInsets.only(
-                                                  left: 400 / 15,
-                                                  right: 400 / 15),
+                                                  left: 500 / 15,
+                                                  right: 500 / 15),
                                               child: Align(
                                                 alignment: Alignment.center,
                                                 child: ElevatedButton(
@@ -234,16 +234,16 @@ class _WelcomePageState extends State<WelcomePage> {
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(
-                                              left: 400 / 15,
-                                              right: 400 / 15),
+                                              left: 500 / 15,
+                                              right: 500 / 15),
                                           child: Column(children: [
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
                                             Container(
                                                 padding: const EdgeInsets.only(
-                                                    left: 400 / 15,
-                                                    right: 400 / 15),
+                                                    left: 500 / 15,
+                                                    right: 500 / 15),
                                                 child: Align(
                                                   alignment: Alignment.center,
                                                   child: ElevatedButton(
@@ -369,29 +369,9 @@ class _WelcomePageState extends State<WelcomePage> {
                                             borderRadius: BorderRadius.vertical(
                                                 bottom: Radius.elliptical(localWidth, localHeight * 0.40)),
                                           ),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(height: localHeight * 0.15),
-                                              // Align(
-                                              //   alignment: Alignment.center,
-                                              //   child: Container(
-                                              //     width: localWidth * 0.50,
-                                              //     height: localHeight * 0.20,
-                                              //     decoration: const BoxDecoration(
-                                              //       image: DecorationImage(
-                                              //         fit: BoxFit.fill,
-                                              //         image:
-                                              //         AssetImage('assets/images/qna_logo.png'),
-                                              //       ),
-                                              //     ),
-                                              //   ),
-                                              // ),
-                                              SizedBox(height: localHeight * 0.01),
-                                            ],
-                                          ),
                                         ),
                                         SizedBox(
-                                          height: localHeight * 0.06,
+                                          height: localHeight * 0.16,
                                         ),
                                         Text(
                                             AppLocalizations.of(context)!
@@ -552,7 +532,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             left: localWidth * 0.04,
                             top: localHeight * 0.055,
                             child: Container(
-                              width: 400 * 0.3,
+                              width: localWidth * 0.3,
                               height: MediaQuery.of(context).size.height * 0.04,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(

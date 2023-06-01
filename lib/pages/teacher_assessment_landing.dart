@@ -16,6 +16,7 @@ import 'package:qna_test/Providers/edit_assessment_provider.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
@@ -54,10 +55,10 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   void initState() {
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if (MediaQuery.of(context).copyWith().size.width > 400) {
+      if (MediaQuery.of(context).copyWith().size.width > 500) {
         showModalBottomSheet(
             constraints: const BoxConstraints(
-                maxWidth: 400
+                maxWidth: 500.0
             ),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -67,7 +68,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
             context: context,
             builder: (builder) {
               return Container(
-                width: 400.0,
+                width: 500.0,
                 decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -82,7 +83,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     .height * 0.245,
                 child: Padding(
                   padding: EdgeInsets.only(
-                      left: 400.0 * 0.10),
+                      left: 500.0 * 0.10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -96,7 +97,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                            right:400.0 *
+                            right:500.0 *
                                 0.055),
                         child: Align(
                           alignment: Alignment.topRight,
@@ -138,7 +139,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         ),
                       ),
                       SizedBox(
-                     width: 400.0 * 0.052,
+                     width: 500.0 * 0.052,
                       ),
                       SizedBox(
                         height:
@@ -180,7 +181,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     0.016)),
                           ),
                           SizedBox(
-                            width:400.0 *
+                            width:500.0 *
                                 0.165,
                           ),
                           Icon(
@@ -253,7 +254,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     0.016)),
                           ),
                           SizedBox(
-                            width: 400.0 *
+                            width: 500.0 *
                                 0.16,
                           ),
                           Icon(
@@ -614,7 +615,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
           return
             Center (child:
             WillPopScope(onWillPop: () async => false ,
-            child:SizedBox(width: 400.0 ,
+            child:SizedBox(width: 500.0 ,
             child: Scaffold(
                 resizeToAvoidBottomInset: true,
                 backgroundColor: Colors.white,
@@ -986,7 +987,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                             scrollDirection: Axis.vertical,
                                             child: Container(
                                               height: height * 0.7,
-                                              width: 400.0,
+                                              width: webWidth,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
                                                     color: Colors.black38,

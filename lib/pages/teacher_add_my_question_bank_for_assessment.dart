@@ -7,6 +7,7 @@ import '../EntityModel/CreateAssessmentModel.dart' as CreateAssessmentModel;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherAddMyQuestionBankForAssessment extends StatefulWidget {
   const TeacherAddMyQuestionBankForAssessment({
@@ -396,12 +397,11 @@ class TeacherAddMyQuestionBankForAssessmentState
               child: WillPopScope(
                 onWillPop: () async => false,
                 child: SizedBox(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
                       appBar: AppBar(
-
                         automaticallyImplyLeading: false,
                         toolbarHeight: height * 0.100,
                         centerTitle: true,
@@ -430,6 +430,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                               ),
                             ]),
                         flexibleSpace: Container(
+                          width: webWidth,
                           decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                   end: Alignment.bottomCenter,
@@ -441,6 +442,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                         ),
                       ),
                       body: Container(
+                        width: webWidth,
                         color: Colors.white,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -448,8 +450,8 @@ class TeacherAddMyQuestionBankForAssessmentState
                             Padding(
                               padding: EdgeInsets.only(
                                   top: height * 0.0375,
-                                  left: width * 0.055,
-                                  right: width * 0.055),
+                                  left: webWidth * 0.055,
+                                  right: webWidth * 0.055),
                               child: Container(
                                 height: height * 0.1412,
                                 decoration: BoxDecoration(
@@ -464,7 +466,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.02, right: width * 0.02),
+                                          left: webWidth * 0.02, right: webWidth * 0.02),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -491,11 +493,11 @@ class TeacherAddMyQuestionBankForAssessmentState
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.02, right: width * 0.02),
+                                          left: webWidth * 0.02, right: webWidth * 0.02),
                                       child: const Divider(),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      padding: EdgeInsets.only(left: webWidth * 0.02),
                                       child: Row(
                                         children: [
                                           Text(
@@ -508,7 +510,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           SizedBox(
-                                            width: width * 0.01,
+                                            width: webWidth * 0.01,
                                           ),
                                           Text(
                                             '|',
@@ -520,7 +522,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           SizedBox(
-                                            width: width * 0.01,
+                                            width: webWidth * 0.01,
                                           ),
                                           Text(
                                             finalQuesList.isEmpty?'':finalQuesList[0].subTopic!,
@@ -535,7 +537,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      padding: EdgeInsets.only(left: webWidth * 0.02),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
@@ -561,7 +563,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                               children: [
                                 Container(
                                   padding: EdgeInsets.only(
-                                      left: width * 0.055, right: width * 0.055),
+                                      left: webWidth * 0.055, right: webWidth * 0.055),
                                   height: height * 0.55,
                                   child: SingleChildScrollView(
                                     scrollDirection: Axis.vertical,
@@ -577,7 +579,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                           QuestionPreview(
                                             height: height,
                                             assessment: widget.assessment,
-                                            width: width,
+                                            width: webWidth,
                                             question: finalQuesList[i],
                                             quesNum: i,
                                           ),
@@ -587,7 +589,7 @@ class TeacherAddMyQuestionBankForAssessmentState
                                 ),
                                 Positioned(
                                     top: height * 0.45,
-                                    left: width * 0.8,
+                                    left: webWidth * 0.8,
                                     child: MouseRegion(
                                         cursor: SystemMouseCursors.click,
                                         child: FloatingActionButton(

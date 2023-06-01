@@ -30,7 +30,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
           if (constraints.maxWidth > 500) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: 500,
                 child: Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,

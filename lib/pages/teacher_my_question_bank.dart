@@ -51,7 +51,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
       if (constraints.maxWidth > 500) {
         return Center(
           child: SizedBox(
-            width: width,
+            width: 500,
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -91,7 +91,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                             visible: _visible,
                             child: Container(
                               height: height * 0.06,
-                              width: width * 0.9,
+                              width: 500 * 0.9,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(28, 78, 80, 1),
@@ -114,8 +114,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                             height: height * 0.01,
                           ),
                           Container(
-                            padding: EdgeInsets.only(
-                                left: width * 0.055, right: width * 0.055),
+                            padding: const EdgeInsets.only(
+                                left: 500 * 0.055, right: 500 * 0.055),
                             height: height * 0.65,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
@@ -149,8 +149,8 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                                 color: const Color.fromRGBO(0, 0, 0, 1),
                                                 fontWeight: FontWeight.w400),
                                           ),
-                                          SizedBox(
-                                            width: width * 0.02,
+                                          const SizedBox(
+                                            width: 500 * 0.02,
                                           ),
                                           const Icon(
                                             Icons.circle,
@@ -166,7 +166,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                   for (int i = 0; i < quesList.length; i++)
                                     QuestionPreview(
                                       height: height,
-                                      width: width,
+                                      width: 500,
                                       question: quesList[i],
                                       index: i,
                                       assessment: widget.assessment,

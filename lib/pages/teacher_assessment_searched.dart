@@ -16,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Services/qna_service.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherAssessmentSearched extends StatefulWidget {
   TeacherAssessmentSearched(
@@ -426,7 +427,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -604,7 +605,7 @@ class TeacherAssessmentSearchedState extends State<TeacherAssessmentSearched> {
                                     children: [
                                       CardInfo(
                                         height: height,
-                                        width: width,
+                                        width: webWidth,
                                         status: 'Active',
                                         assessment: assessments[index],
                                       ),

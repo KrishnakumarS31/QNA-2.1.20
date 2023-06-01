@@ -29,7 +29,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    //double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
@@ -37,7 +37,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -158,7 +158,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                               const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: Size(width * 0.77, height * 0.06),
+                              minimumSize: Size(500 * 0.77, height * 0.06),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(39),
                               ),
@@ -369,7 +369,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                               const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: Size(width * 0.77, height * 0.06),
+                              minimumSize: Size(500 * 0.77, height * 0.06),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(39),
                               ),

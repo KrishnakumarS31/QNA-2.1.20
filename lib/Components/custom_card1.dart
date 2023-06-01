@@ -72,7 +72,7 @@ class CustomCard1 extends StatelessWidget {
                   style: TextStyle(
                       color: const Color.fromRGBO(
                           102, 102, 102, 1),
-                      fontSize: height * 0.015,
+                      fontSize: height * 0.013,
                       fontFamily: "Inter",
                       fontWeight:
                       FontWeight.w600),

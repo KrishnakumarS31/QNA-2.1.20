@@ -77,7 +77,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    double webWidth = 400.0;
+    double webWidth = 500.0;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         // if(constraints.maxWidth > 900)
@@ -1638,7 +1638,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                 height: height * 0.01,
                               ),
                               additionalDetails
-                                  ? Container(
+                                  ?
+                              Container(
                                       height: height * 0.05,
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -1680,7 +1681,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                         ),
                                       ),
                                     )
-                                  : Container(
+                                  :
+                              Container(
                                       height: height * 0.05,
                                       decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
@@ -1726,7 +1728,8 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                 height: height * 0.02,
                               ),
                               additionalDetails
-                                  ? Column(
+                                  ?
+                              Column(
                                       children: [
                                         Row(
                                           children: [
@@ -1744,6 +1747,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: webWidth * 0.02),
                                             Text(
                                               "${finalAssessment.assessmentType}",
                                               style: TextStyle(
@@ -1775,6 +1779,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: webWidth * 0.02),
                                             Text(
                                               //"Allowed "
                                                   "${AppLocalizations.of(context)!.allowed} (${finalAssessment.assessmentSettings?.allowedNumberOfTestRetries ?? "0"} Times)",
@@ -1807,6 +1812,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: webWidth * 0.02),
                                             Text(
                                               finalAssessment.assessmentSettings
                                                           ?.allowGuestStudent ==
@@ -1848,6 +1854,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                 ),
                                               ),
                                             ),
+                                            SizedBox(width: webWidth * 0.02),
                                             Text(
                                               finalAssessment.assessmentSettings
                                                           ?.showSolvedAnswerSheetInAdvisor ==
@@ -1889,24 +1896,29 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                 ),
                                               ),
                                             ),
-                                            Text(
-                                              assessment.assessmentSettings!
-                                                          .showAdvisorName ==
-                                                      false
-                                                  ? AppLocalizations.of(context)!.no
-                                                //"No"
-                                                  : assessment.assessmentSettings!
-                                                          .showAdvisorName!
-                                                      ? assessment.assessmentSettings!.advisorName??''
-                                                        //"Yes"
-                                                      :  AppLocalizations.of(context)!.no,
-                                                        //"No",
-                                              style: TextStyle(
-                                                color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(width: webWidth * 0.02),
+
+                                            SizedBox(
+                                              width: webWidth * 0.4,
+                                              child: Text(
+                                                assessment.assessmentSettings!
+                                                            .showAdvisorName ==
+                                                        false
+                                                    ? AppLocalizations.of(context)!.no
+                                                  //"No"
+                                                    : assessment.assessmentSettings!
+                                                            .showAdvisorName!
+                                                        ? assessment.assessmentSettings!.advisorName??''
+                                                          //"Yes"
+                                                        :  AppLocalizations.of(context)!.no,
+                                                          //"No",
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.0175,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -1930,23 +1942,28 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                 ),
                                               ),
                                             ),
-                                            Text(
-                                              assessment.assessmentSettings
-                                                          ?.showAdvisorEmail ==
-                                                      false
-                                                  ? AppLocalizations.of(context)!.no
-                                                    //"No"
-                                                  : assessment.assessmentSettings!
-                                                          .showAdvisorEmail!
-                                                      ?  assessment.assessmentSettings!.advisorEmail??''
-                                                      : AppLocalizations.of(context)!.no,
-                                                        //"No",
-                                              style: TextStyle(
-                                                color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(width: webWidth * 0.02),
+                                            SizedBox(
+                                              width: webWidth * 0.4,
+                                              child: Text(
+                                                assessment.assessmentSettings
+                                                            ?.showAdvisorEmail ==
+                                                        false
+                                                    ? AppLocalizations.of(context)!.no
+                                                      //"No"
+                                                    : assessment.assessmentSettings!
+                                                            .showAdvisorEmail!
+                                                        ?
+                                                assessment.assessmentSettings!.advisorEmail??''
+                                                        : AppLocalizations.of(context)!.no,
+                                                          //"No",
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.0175,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -1986,6 +2003,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                     ),
                                                   ]),
                                             ),
+                                            SizedBox(width: webWidth * 0.02),
                                             Text(
                                               assessment.assessmentSettings
                                                           ?.notAvailable ==
@@ -2038,6 +2056,7 @@ class TeacherActiveAssessmentState extends State<TeacherActiveAssessment> {
                                                   ),
                                                 ]),
                                           ),
+                                          SizedBox(width: webWidth * 0.02),
                                           Text(
                                             finalAssessment.assessmentSettings
                                                         ?.avalabilityForPractice ==

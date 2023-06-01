@@ -94,8 +94,8 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 500) {
           return Center(
-            child: Container(
-              width: 400,
+            child: SizedBox(
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -204,7 +204,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                         AppLocalizations.of(context)!.only_my_qns,
                                         //'Only My Questions',
                                         textAlign: TextAlign.left,
-                                        style: TextStyle(fontSize: 400 * 0.03),
+                                        style: const TextStyle(fontSize: 500 * 0.03),
                                       )
                                     ],
                                   )
@@ -235,7 +235,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   suffixIcon: Column(children: [
                                     Container(
                                         height: height * 0.073,
-                                        width: 400 * 0.13,
+                                        width: 500 * 0.13,
                                         decoration: const BoxDecoration(
                                           borderRadius:
                                           BorderRadius.all(Radius.circular(8.0)),
@@ -294,7 +294,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                       TextSpan(
                                         text:
                                         AppLocalizations.of(context)!.disclaimer_content,
-                                        //"\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
+                                        //"\t ITNEducation is not responsible for\n the content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
                                         style: TextStyle(
                                             fontSize: height * 0.015,
                                             fontWeight: FontWeight.w500,
@@ -335,7 +335,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 for (Question i in questionList)
                                   QuestionPreview(
                                     height: height,
-                                    width: 400,
+                                    width: 500,
                                     question: i,
                                   ),
                                 SizedBox(height: height * 0.02),
@@ -367,7 +367,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 SizedBox(height: height * 0.02),
                                 Center(
                                   child: SizedBox(
-                                    width: 400 * 0.8,
+                                    width: 500 * 0.8,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
@@ -390,17 +390,17 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           Text(
                                             AppLocalizations.of(context)!.prepare_new_qn,
                                             //'Prepare New Questions',
-                                            style: TextStyle(
-                                                fontSize: 400 * 0.06,
+                                            style: const TextStyle(
+                                                fontSize: 500 * 0.06,
                                                 fontFamily: "Inter",
-                                                color: const Color.fromRGBO(
+                                                color: Color.fromRGBO(
                                                     255, 255, 255, 1),
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          Icon(
+                                          const Icon(
                                             Icons.chevron_right,
-                                            color: const Color.fromRGBO(255, 255, 255, 1),
-                                            size: 400 * 0.06,
+                                            color: Color.fromRGBO(255, 255, 255, 1),
+                                            size: 500 * 0.06,
                                           )
                                         ],
                                       ),
@@ -615,7 +615,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   TextSpan(
                                     text:
                                     AppLocalizations.of(context)!.disclaimer_content,
-                                    //"\t ITNEducation is not responsible for\nthe content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
+                                    //"\t ITNEducation is not responsible for\n the content and accuracy of the Questions & Answer \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t available in the Library.",
                                     style: TextStyle(
                                         fontSize: height * 0.015,
                                         fontWeight: FontWeight.w500,

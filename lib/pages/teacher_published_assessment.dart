@@ -102,6 +102,7 @@ class TeacherPublishedAssessmentState
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double webWidth = 500.0;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           // if (constraints.maxWidth > 900) {  return WillPopScope(
@@ -1217,7 +1218,7 @@ class TeacherPublishedAssessmentState
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Container(
-                  width: 400.0,
+                  width: webWidth,
                   child: Scaffold(
                     resizeToAvoidBottomInset: true,
                     backgroundColor: Colors.white,
@@ -1251,7 +1252,7 @@ class TeacherPublishedAssessmentState
                             ),
                           ]),
                       flexibleSpace: Container(
-                        width:400.0,
+                        width:webWidth,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(
                                 end: Alignment.bottomCenter,
@@ -1277,7 +1278,7 @@ class TeacherPublishedAssessmentState
                                 child: Center(
                                   child: Container(
                                     height: height * 0.06,
-                                    width: 400.0 * 0.9,
+                                    width: webWidth * 0.9,
                                     decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                       color: Color.fromRGBO(28, 78, 80, 1),
@@ -1311,12 +1312,12 @@ class TeacherPublishedAssessmentState
                                     color: Colors.white,
                                   ),
                                   height: height * 0.1675,
-                                  width: 400.0 * 0.888,
+                                  width: webWidth * 0.888,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
-                                        width: 400.0,
+                                        width: webWidth,
                                         height: height * 0.037,
                                         decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.only(
@@ -1325,7 +1326,7 @@ class TeacherPublishedAssessmentState
                                           color: Color.fromRGBO(82, 165, 160, 1),
                                         ),
                                         child: Padding(
-                                          padding: EdgeInsets.only(left: 400.0 * 0.02),
+                                          padding: EdgeInsets.only(left: webWidth * 0.02),
                                           child: Row(
                                             children: [
                                               Text(
@@ -1356,7 +1357,7 @@ class TeacherPublishedAssessmentState
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Padding(
-                                            padding: EdgeInsets.only(left: 400.0 * 0.02),
+                                            padding: EdgeInsets.only(left: webWidth * 0.02),
                                             child: Text(
                                               "${assessmentVal.topic} - ${assessmentVal.subTopic}",
                                               style: TextStyle(
@@ -1369,7 +1370,7 @@ class TeacherPublishedAssessmentState
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(right: 400.0 * 0.02),
+                                            padding: EdgeInsets.only(right: webWidth * 0.02),
                                             child: assessmentVal.assessmentStatus ==
                                                 'active'
                                                 ? const Icon(
@@ -1402,7 +1403,7 @@ class TeacherPublishedAssessmentState
                                               ),
                                               color: Colors.white,
                                             ),
-                                            width: 400.0 * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1433,7 +1434,7 @@ class TeacherPublishedAssessmentState
                                             ),
                                           ),
                                           SizedBox(
-                                            width: 400.0 * 0.44,
+                                            width: webWidth * 0.44,
                                             height: height * 0.0875,
                                             child: Column(
                                               mainAxisAlignment:
@@ -1475,7 +1476,7 @@ class TeacherPublishedAssessmentState
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 400.0 * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.assessment_id_caps,
                                       //"Assessment ID:",
@@ -1504,7 +1505,7 @@ class TeacherPublishedAssessmentState
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 400.0 * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.institute_test_id,
                                       //"Institute Test ID:",
@@ -1539,7 +1540,7 @@ class TeacherPublishedAssessmentState
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 400.0 * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       AppLocalizations.of(context)!.time_permitted,
                                       //"Time Permitted:",
@@ -1570,7 +1571,7 @@ class TeacherPublishedAssessmentState
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 400.0 * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "${AppLocalizations.of(context)!.start_date_time} : ",
                                       //"Start Date & Time:",
@@ -1609,7 +1610,7 @@ class TeacherPublishedAssessmentState
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: 400.0 * 0.4,
+                                    width: webWidth * 0.4,
                                     child: Text(
                                       "${AppLocalizations.of(context)!.end_date_time} : ",
                                       //"End Date & Time:",
@@ -1701,7 +1702,7 @@ class TeacherPublishedAssessmentState
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 400.0 * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -1743,7 +1744,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.category,
                                           //"Category",
@@ -1772,7 +1773,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.no_of_retries_allowed,
                                           // "Number of Retries allowed",
@@ -1807,7 +1808,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.allow_guest_Students,
                                           // "Allow Guest students",
@@ -1845,7 +1846,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.show_answersheet_after_test,
                                           //"Show answer Sheet after test",
@@ -1884,7 +1885,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.show_my_advisor_name,
                                           //"Show my name in Advisor",
@@ -1922,7 +1923,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.show_my_email,
                                           //"Show my Email in Advisor",
@@ -1960,7 +1961,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
@@ -2011,7 +2012,7 @@ class TeacherPublishedAssessmentState
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: 400.0 * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
@@ -2077,7 +2078,7 @@ class TeacherPublishedAssessmentState
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 400.0 * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -2095,7 +2096,7 @@ class TeacherPublishedAssessmentState
                                       ),
                                       Padding(
                                         padding:
-                                        EdgeInsets.only(right: 400.0 * 0.02),
+                                        EdgeInsets.only(right: webWidth * 0.02),
                                         child: IconButton(
                                           onPressed: () {
                                             showQuestionDetails();
@@ -2119,7 +2120,7 @@ class TeacherPublishedAssessmentState
                                   color: Color.fromRGBO(82, 165, 160, 1),
                                 ),
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 400.0 * 0.02),
+                                  padding: EdgeInsets.only(left: webWidth * 0.02),
                                   child: Row(
                                     mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -2137,7 +2138,7 @@ class TeacherPublishedAssessmentState
                                       ),
                                       Padding(
                                         padding:
-                                        EdgeInsets.only(right: 400.0 * 0.02),
+                                        EdgeInsets.only(right: webWidth * 0.02),
                                         child: IconButton(
                                           onPressed: () {
                                             showQuestionDetails();
@@ -2290,7 +2291,7 @@ class TeacherPublishedAssessmentState
                               // ),
                               Center(
                                 child: SizedBox(
-                                  width: 400.0 * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:

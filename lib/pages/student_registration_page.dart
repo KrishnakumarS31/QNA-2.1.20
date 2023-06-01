@@ -319,7 +319,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
           if (constraints.maxWidth > 500) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: 500,
                 child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -363,7 +363,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: localWidth * 0.8,
+                            width: 500 * 0.8,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -726,10 +726,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.02,
+                                          left: 500 * 0.009,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -845,10 +842,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: 500 * 0.009,
+
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -970,10 +965,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: 500 * 0.009,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -1306,7 +1298,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                   });
                                                 },
                                               )),
-                                          SizedBox(width: localWidth * 0.01),
+                                          SizedBox(width: 500 * 0.01),
                                           Flexible(
                                             child: RichText(
                                                 text: TextSpan(children: [

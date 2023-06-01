@@ -111,13 +111,15 @@ class ResultTotalCard extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
-                      '$percent%',
-                      style: TextStyle(
-                          fontSize: height * 0.04,
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w700),
+                    SizedBox(
+                      child: Text(
+                        '$percent%',
+                        style: TextStyle(
+                            fontSize: height * 0.04,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(right: 30, left: 20),
@@ -126,13 +128,15 @@ class ResultTotalCard extends StatelessWidget {
                         thickness: 2,
                       ),
                     ),
-                    Text(
-                      '$securedMark/$totalMark',
-                      style: TextStyle(
-                          fontSize: height * 0.02,
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w700),
+                    SizedBox(
+                      child: Text(
+                        '$securedMark/$totalMark',
+                        style: TextStyle(
+                            fontSize: height * 0.02,
+                            color: const Color.fromRGBO(255, 255, 255, 1),
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
                   ],
                 ),

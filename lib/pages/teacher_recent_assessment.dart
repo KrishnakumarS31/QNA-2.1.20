@@ -6,6 +6,8 @@ import '../Entity/Teacher/question_entity.dart' as questions;
 import '../EntityModel/CreateAssessmentModel.dart';
 import '../Providers/edit_assessment_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
+
 class TeacherRecentAssessment extends StatefulWidget {
   TeacherRecentAssessment(
       {Key? key, required this.finalAssessment,required this.assessmentType})
@@ -1060,7 +1062,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                 child: WillPopScope(
                     onWillPop: () async => false,
                     child: Container(
-                      width: 400.0,
+                      width: webWidth,
                       child: Scaffold(
                         extendBodyBehindAppBar: true,
                         endDrawer: const EndDrawerMenuTeacher(),
@@ -1136,7 +1138,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                         ),
                                         color: Colors.white,
                                       ),
-                                      width: width * 0.888,
+                                      width: webWidth * 0.888,
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -1148,7 +1150,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                               color: Color.fromRGBO(82, 165, 160, 1),
                                             ),
                                             child: Padding(
-                                              padding: EdgeInsets.only(left: width * 0.02),
+                                              padding: EdgeInsets.only(left: webWidth * 0.02),
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -1179,7 +1181,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsets.only(right: width * 0.02),
+                                                padding: EdgeInsets.only(right: webWidth * 0.02),
                                                 child: const Icon(
                                                   Icons.circle,
                                                   color: Colors.white,
@@ -1196,7 +1198,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsets.only(right: width * 0.02),
+                                                padding: EdgeInsets.only(right: webWidth * 0.02),
                                                 child: const Icon(
                                                   Icons.circle,
                                                   color: Color.fromRGBO(255, 166, 0, 1),
@@ -1210,7 +1212,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                                 decoration: const BoxDecoration(
                                                   color: Colors.white,
                                                 ),
-                                                width: width * 0.44,
+                                                width: webWidth * 0.44,
                                                 height: height * 0.0875,
                                                 child: Column(
                                                   mainAxisAlignment:
@@ -1246,7 +1248,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                                       color:
                                                       Color.fromRGBO(204, 204, 204, 1))),
                                               SizedBox(
-                                                width: width * 0.4,
+                                                width: webWidth * 0.4,
                                                 height: height * 0.0875,
                                                 child: Column(
                                                   mainAxisAlignment:
@@ -1288,7 +1290,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.assessment_id_caps,
                                           //"Assessment ID:",
@@ -1317,7 +1319,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.institute_test_id_small,
                                           //"Institute Test ID:",
@@ -1350,7 +1352,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           AppLocalizations.of(context)!.time_permitted,
                                           //"Time Permitted:",
@@ -1381,7 +1383,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           "${AppLocalizations.of(context)!.start_date_time} : ",
                                           //"Start Date & Time:",
@@ -1420,7 +1422,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   Row(
                                     children: [
                                       SizedBox(
-                                        width: width * 0.4,
+                                        width: webWidth * 0.4,
                                         child: Text(
                                           "${AppLocalizations.of(context)!.end_date_time} : ",
                                           style: TextStyle(
@@ -1459,7 +1461,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      padding: EdgeInsets.only(left: webWidth * 0.02),
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1477,7 +1479,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                           ),
                                           Padding(
                                             padding:
-                                            EdgeInsets.only(right: width * 0.02),
+                                            EdgeInsets.only(right: webWidth * 0.02),
                                             child: IconButton(
                                               icon: const Icon(
                                                 Icons.arrow_circle_up_outlined,
@@ -1501,7 +1503,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      padding: EdgeInsets.only(left: webWidth * 0.02),
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1519,7 +1521,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                           ),
                                           Padding(
                                             padding:
-                                            EdgeInsets.only(right: width * 0.02),
+                                            EdgeInsets.only(right: webWidth * 0.02),
                                             child: IconButton(
                                               icon: const Icon(
                                                 Icons.arrow_circle_down_outlined,
@@ -1543,7 +1545,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Text(
                                               AppLocalizations.of(context)!.category,
                                               //"Category",
@@ -1574,7 +1576,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Text(
                                               AppLocalizations.of(context)!.retries,
                                               // "Retries",
@@ -1611,7 +1613,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Text(
                                               AppLocalizations.of(context)!.guest,
                                               // "Guest",
@@ -1692,7 +1694,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Text(
                                               AppLocalizations.of(context)!.advisor,
                                               //"Advisor",
@@ -1732,7 +1734,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Text(
                                               AppLocalizations.of(context)!.email_small,
                                               //"Email",
@@ -1772,7 +1774,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       Row(
                                         children: [
                                           SizedBox(
-                                            width: width * 0.4,
+                                            width: webWidth * 0.4,
                                             child: Text(
                                               AppLocalizations.of(context)!.in_active,
                                               //"Inactive",
@@ -1822,7 +1824,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      padding: EdgeInsets.only(left: webWidth * 0.02),
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1840,7 +1842,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                           ),
                                           Padding(
                                             padding:
-                                            EdgeInsets.only(right: width * 0.02),
+                                            EdgeInsets.only(right: webWidth * 0.02),
                                             child: IconButton(
                                               onPressed: () {
                                                 showQuestionDetails();
@@ -1864,7 +1866,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                       color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.only(left: width * 0.02),
+                                      padding: EdgeInsets.only(left: webWidth * 0.02),
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -1882,7 +1884,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                           ),
                                           Padding(
                                             padding:
-                                            EdgeInsets.only(right: width * 0.02),
+                                            EdgeInsets.only(right: webWidth * 0.02),
                                             child: IconButton(
                                               onPressed: () {
                                                 showQuestionDetails();
@@ -2022,7 +2024,7 @@ class TeacherRecentAssessmentState extends State<TeacherRecentAssessment> {
                                   // ),
                                   Center(
                                     child: SizedBox(
-                                      width: width * 0.888,
+                                      width: webWidth * 0.888,
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor:

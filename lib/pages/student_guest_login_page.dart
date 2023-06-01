@@ -60,10 +60,9 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth > 500) {
-          print("yes its true");
           return Center(
-            child: Container(
-              width: 400,
+            child: SizedBox(
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -94,7 +93,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                             children: [
                               Container(
                                 height: height * 0.3,
-                                width: 400,
+                                width: 500,
                                 decoration: BoxDecoration(
                                   gradient: const LinearGradient(
                                     begin: Alignment.topLeft,
@@ -106,7 +105,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       bottom:
-                                      Radius.elliptical(400, height * 0.30)),
+                                      Radius.elliptical(500, height * 0.30)),
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,13 +114,13 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     Center(
                                       child: SizedBox(
                                         height: height * 0.25,
-                                        width: 400 * 0.22,
+                                        width: 500 * 0.22,
                                         child: Image.asset(
                                             "assets/images/question_mark_logo.png"),
                                       ),
                                     ),
                                     Container(
-                                      width: 400 * 0.03,
+                                      width: 500 * 0.03,
                                     )
                                   ],
                                 ),
@@ -139,7 +138,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               ),
                               SizedBox(height: height * 0.07),
                               SizedBox(
-                                width: 400 * 0.8,
+                                width: 500 * 0.8,
                                 child: Form(
                                   key: formKey,
                                   child: Column(
@@ -337,7 +336,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               },
                                             ),
                                           ),
-                                          SizedBox(width: 400 * 0.05),
+                                          const SizedBox(width: 500 * 0.05),
                                           Flexible(
                                             child: RichText(
                                                 text: TextSpan(children: [

@@ -51,10 +51,10 @@ class StudQuestionState extends State<StudQuestion> {
   void initState() {
     setTime();
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if (MediaQuery.of(context).copyWith().size.width > 400){
+      if (MediaQuery.of(context).copyWith().size.width > 500){
         showModalBottomSheet(
           constraints: const BoxConstraints(
-            maxWidth: 400
+            maxWidth: 500
           ),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -64,7 +64,7 @@ class StudQuestionState extends State<StudQuestion> {
             context: context,
             builder: (builder) {
               return Container(
-                width: 400,
+                width: 500,
                 decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -76,7 +76,7 @@ class StudQuestionState extends State<StudQuestion> {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left:
-                      400 * 0.10),
+                      500 * 0.10),
                   child: Column(
                     children: [
                       SizedBox(
@@ -86,7 +86,7 @@ class StudQuestionState extends State<StudQuestion> {
                       Padding(
                         padding: const EdgeInsets.only(
                             right:
-                            400 *
+                            500 *
                                 0.055),
                         child: Align(
                           alignment: Alignment.topRight,
@@ -95,7 +95,7 @@ class StudQuestionState extends State<StudQuestion> {
                               Icons.close,
                               color: Color.fromRGBO(82, 165, 160, 1),
                               size:
-                              400 *
+                              500 *
                                   0.055,
                             ),
                             onPressed: () {
@@ -199,7 +199,7 @@ class StudQuestionState extends State<StudQuestion> {
                           ),
                           const SizedBox(
                             width:
-                            400 *
+                            500 *
                                 0.052,
                           ),
                           //Image.asset("assets/images/testIcon.png"),
@@ -531,7 +531,7 @@ class StudQuestionState extends State<StudQuestion> {
         if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
-              width: 400,
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -635,7 +635,7 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               Container(
                                 height: height * 0.6675,
-                                width: 400 * 0.855,
+                                width: 500 * 0.855,
                                 decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -659,7 +659,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         children: [
                                           SizedBox(
                                             height: height * 0.0625,
-                                            width: 400 * 0.2277,
+                                            width: 500 * 0.2277,
                                             child: Center(
                                               child: Text(
                                                 "${context.watch<QuestionNumProvider>().questionNum}",
@@ -683,7 +683,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               color: Color.fromRGBO(28, 78, 80, 1),
                                             ),
                                             height: height * 0.0625,
-                                            width: 400 * 0.2277,
+                                            width: 500 * 0.2277,
                                             child: Row(
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -745,7 +745,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             bottom: height * 0.025),
                                         child: SizedBox(
                                           height: height * 0.16,
-                                          width: 400 * 0.744,
+                                          width: 500 * 0.744,
                                           child: SingleChildScrollView(
                                             scrollDirection: Axis.vertical,
                                             child: Text(
@@ -853,14 +853,14 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: 400),
+                                              width: 500),
                                         ),
                                       ),
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.only(right: 400 * 0.05),
+                                          const EdgeInsets.only(right: 500 * 0.05),
                                           child: Column(
                                             mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -929,11 +929,11 @@ class StudQuestionState extends State<StudQuestion> {
                                                     '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
                                                         ? NotSureEnabled(
                                                       height: height,
-                                                      width: 400,
+                                                      width: 500,
                                                     )
                                                         : NotSureDisabled(
                                                       height: height,
-                                                      width: 400,
+                                                      width: 500,
                                                     ),
                                                   )),
                                               Text(
@@ -1061,7 +1061,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           },
                                           child: Container(
                                             height: height * 0.0475,
-                                            width: 400 * 0.3,
+                                            width: 500 * 0.3,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                               const BorderRadius.all(
@@ -1356,7 +1356,7 @@ class StudQuestionState extends State<StudQuestion> {
                           ),
                           Container(
                             height: height * 0.6675,
-                            width: 400 * 0.855,
+                            width: 500 * 0.855,
                             decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -1380,7 +1380,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     children: [
                                       SizedBox(
                                         height: height * 0.0625,
-                                        width: 400 * 0.2277,
+                                        width: 500 * 0.2277,
                                         child: Center(
                                           child: Text(
                                             "${context.watch<QuestionNumProvider>().questionNum}",
@@ -1404,7 +1404,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           color: Color.fromRGBO(28, 78, 80, 1),
                                         ),
                                         height: height * 0.0625,
-                                        width: 400 * 0.2277,
+                                        width: 500 * 0.2277,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -1466,7 +1466,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         bottom: height * 0.025),
                                     child: SizedBox(
                                       height: height * 0.16,
-                                      width: 400 * 0.744,
+                                      width: 500 * 0.744,
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.vertical,
                                         child: Text(
@@ -1574,14 +1574,14 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: 400),
+                                              width: 500),
                                     ),
                                   ),
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: Padding(
                                       padding:
-                                          const EdgeInsets.only(right: 400 * 0.05),
+                                          const EdgeInsets.only(right: 500 * 0.05),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -1650,11 +1650,11 @@ class StudQuestionState extends State<StudQuestion> {
                                                     '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
                                                 ? NotSureEnabled(
                                                     height: height,
-                                                    width: 400,
+                                                    width: 500,
                                                   )
                                                 : NotSureDisabled(
                                                     height: height,
-                                                    width: 400,
+                                                    width: 500,
                                                   ),
                                           )),
                                           Text(
@@ -1782,7 +1782,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             },
                                             child: Container(
                                               height: height * 0.0475,
-                                              width: 400 * 0.3,
+                                              width: 500 * 0.3,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     const BorderRadius.all(

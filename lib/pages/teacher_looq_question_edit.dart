@@ -341,7 +341,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
           if (constraints.maxWidth > 500) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: 500,
                 child:   WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(
@@ -493,7 +493,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                           Container(
                               color: const Color.fromRGBO(82, 165, 160, 1),
                               child: Row(children: [
-                                SizedBox(width: width<700?width * 0.02:width * 0.03,),
+                                const SizedBox(width: 500 * 0.02),
                                 Text(
                                     AppLocalizations.of(context)!.subject_topic,
                                     //"Subject and Topic",
@@ -503,7 +503,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w600,
                                         fontSize: height * 0.020)),
-                                SizedBox(width: width<700?width * 0.3:width * 0.70),
+                                const SizedBox(width: 500 * 0.3),
                                 IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -520,7 +520,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                             Container(
                                 color: const Color.fromRGBO(82, 165, 160, 1),
                                 child: Row(children: [
-                                  SizedBox( width: width<700?width * 0.02:width * 0.03),
+                                  const SizedBox( width: 500 * 0.02),
                                   Text(
                                       AppLocalizations.of(context)!.subject_topic,
                                       //"Subject and Topic",
@@ -530,7 +530,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
                                           fontSize: height * 0.020)),
-                                  SizedBox(width: width<700?width * 0.3:width * 0.70),
+                                  const SizedBox(width: 500 * 0.3),
                                   IconButton(
                                     icon: Icon(
                                       showIcon,
@@ -559,10 +559,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontSize: height * 0.018),
                                       decoration: InputDecoration(
                                         label: SizedBox(
-                                          width:
-                                          constraints.maxWidth > 700
-                                              ? width * 0.185
-                                              : width * 0.15,
+                                          width: 500 * 0.185,
                                           child: Row(
                                             children: [
                                               Text(
@@ -733,10 +730,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                           fontSize: height * 0.018),
                                       decoration: InputDecoration(
                                         label: SizedBox(
-                                          width:
-                                          constraints.maxWidth > 700
-                                              ? width * 0.28
-                                              : width * 0.3,
+                                          width: 500 * 0.28,
                                           child: Row(
                                             children: [
                                               Text(
@@ -813,8 +807,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                       ),
                       Container(
                         alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.only(
-                            left: width * 0.05, right: width * 0.04),
+                        margin: const EdgeInsets.only(
+                            left: 500 * 0.05, right: 500 * 0.04),
                         child: Column(
                           children: [
                             Row(children: [
@@ -827,7 +821,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              SizedBox(width: width * 0.03),
+                              const SizedBox(width: 500 * 0.03),
                               const Expanded(child: Divider()),
                             ]),
                             SizedBox(height: height * 0.010),
@@ -895,8 +889,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            width: width * 0.02,
+                          const SizedBox(
+                            width: 500 * 0.02,
                           ),
                           Text(
                             AppLocalizations.of(context)!.delete,
@@ -939,8 +933,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
-                            width: width * 0.03,
+                          const SizedBox(
+                            width: 500 * 0.03,
                           ),
                           Text(
                             AppLocalizations.of(context)!.delete,
@@ -952,8 +946,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          SizedBox(
-                            width: width * 0.01,
+                          const SizedBox(
+                            width: 500 * 0.01,
                           ),
                         ],
                       ),
@@ -1058,8 +1052,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: width * 0.03,
+                                    const SizedBox(
+                                      width: 500 * 0.03,
                                     ),
                                     IconButton(
                                       onPressed: () {
@@ -1173,8 +1167,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         },
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: width * 0.03,
+                                    const SizedBox(
+                                      width: 500 * 0.03,
                                     ),
                                     IconButton(
                                       onPressed: () {
@@ -1222,8 +1216,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                         const Color.fromRGBO(82, 165, 160, 1),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: width * 0.03,
+                                    const SizedBox(
+                                      width: 500 * 0.03,
                                     ),
                                     IconButton(
                                       onPressed: () {
@@ -1264,8 +1258,8 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                             SizedBox(height: height * 0.020),
                             Container(
                               alignment: Alignment.centerLeft,
-                              margin: EdgeInsets.only(
-                                  left: width * 0.05, right: width * 0.04),
+                              margin: const EdgeInsets.only(
+                                  left: 500 * 0.05, right: 500 * 0.04),
                               child: Row(children: [
                                 Text(
                                   AppLocalizations.of(context)!.advisor,
@@ -1277,7 +1271,7 @@ class LooqQuestionEditState extends State<LooqQuestionEdit> {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                SizedBox(width: width * 0.03),
+                                const SizedBox(width: 500 * 0.03),
                                 const Expanded(child: Divider()),
                               ]),
                             )

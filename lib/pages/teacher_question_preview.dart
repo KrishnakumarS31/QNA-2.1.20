@@ -51,7 +51,10 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
     if(constraints.maxWidth > 500){
-      return WillPopScope(
+      return Center(
+          child: SizedBox(
+          width : 500,
+          child:  WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(
               resizeToAvoidBottomInset: true,
@@ -59,13 +62,13 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
               body: Center(
                 child: SizedBox(
                   height: height * 0.85,
-                  width: 400 * 0.888,
+                  width: 500 * 0.888,
                   child: Card(
                       elevation: 12,
                       color: const Color.fromRGBO(255, 255, 255, 1),
                       margin: EdgeInsets.only(
-                          left: 400 * 0.030,
-                          right: 400 * 0.030,
+                          left: 500 * 0.030,
+                          right: 500 * 0.030,
                           bottom: height * 0.015,
                           top: height * 0.025),
                       child: Column(
@@ -75,8 +78,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                             height: height * 0.06,
                             color: const Color.fromRGBO(82, 165, 160, 0.1),
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  right: 400 * 0.02, left: 400 * 0.02),
+                              padding: const EdgeInsets.only(
+                                  right: 500 * 0.02, left: 500 * 0.02),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -120,8 +123,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                                left: 400 * 0.03, right: 400 * 0.03),
+                            padding: const EdgeInsets.only(
+                                left: 500 * 0.03, right: 500 * 0.03),
                             child: Row(children: <Widget>[
                               const Expanded(
                                   child: Divider(
@@ -148,7 +151,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                                left: 400 * 0.03, top: height * 0.02),
+                                left: 500 * 0.03, top: height * 0.02),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(widget.question.question!,
@@ -170,13 +173,13 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                                     question: widget.question,
                                     selected: selected,
                                     height: height,
-                                    width: 400)),
+                                    width: 500)),
                           ),
                           SizedBox(
                             height: height * 0.03,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 400 * 0.03),
+                            padding: const EdgeInsets.only(left: 500 * 0.03),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -191,8 +194,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                                left: 400 * 0.03, right: 400 * 0.03),
+                            padding: const EdgeInsets.only(
+                                left: 500 * 0.03, right: 500 * 0.03),
                             child: TextFormField(
                               controller: adviceController,
                               enabled: false,
@@ -212,8 +215,8 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                             height: height * 0.03,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                                left: 400 * 0.03, right: 400 * 0.03),
+                            padding: const EdgeInsets.only(
+                                left: 500 * 0.03, right: 500 * 0.03),
                             child: TextFormField(
                               controller: urlController,
                               enabled: false,
@@ -316,7 +319,7 @@ class TeacherQuestionPreviewState extends State<TeacherQuestionPreview> {
                         ],
                       )),
                 ),
-              )));
+              )))));
     }
     else{
       return WillPopScope(

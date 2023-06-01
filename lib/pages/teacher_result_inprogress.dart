@@ -7,6 +7,8 @@ import '../Components/end_drawer_menu_teacher.dart';
 import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
+
 class TeacherResultInProgress extends StatefulWidget {
   TeacherResultInProgress({
     Key? key,
@@ -61,7 +63,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
         return
           Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -153,7 +155,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                               showIcon == Icons.expand_circle_down_outlined
                                   ? CustomCard1(
                                 height: height,
-                                width: 400,
+                                width: webWidth,
                                 resultIndex: widget.result,
                               )
                                   : Container(
@@ -219,13 +221,13 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          right: width * 0.02,
-                                          left: width * 0.02),
+                                          right: webWidth * 0.02,
+                                          left: webWidth * 0.02),
                                       child: const Divider(),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.015,
                                           top: height * 0.002),
                                       child: Align(
@@ -261,7 +263,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.005),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -281,7 +283,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.005),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -300,7 +302,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.004),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -856,7 +858,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                               },
                                               child: ResultInProgressCard(
                                                 height: height,
-                                                width: 400,
+                                                width: webWidth,
                                                 inProgressArray: widget
                                                     .inProgressArray,
                                                 results: widget.result,
@@ -1024,7 +1026,7 @@ class TeacherResultInProgressState extends State<TeacherResultInProgress> {
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),

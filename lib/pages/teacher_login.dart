@@ -14,6 +14,7 @@ import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key,});
@@ -90,12 +91,13 @@ class TeacherLoginState extends State<TeacherLogin> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -126,7 +128,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                       children: [
                         Container(
                           height: height * 0.35,
-                          width: 400.0,
+                          width: webWidth,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
                               begin: Alignment.topLeft,
@@ -168,7 +170,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                         ),
                         SizedBox(height: height * 0.04),
                         SizedBox(
-                          width: 400.0 * 0.8,
+                          width: webWidth * 0.8,
                           child: Form(
                             key: formKey,
                             child: Column(
@@ -359,30 +361,30 @@ class TeacherLoginState extends State<TeacherLogin> {
                             ),
                           ),
                         ),
-                       Align(
-                            alignment: Alignment.topLeft,
-                            child: RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!.certify,
-                                    //"CERTIFY",
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            102, 102, 102, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017),
-                                  ),
-                                  TextSpan(
-                                      text: "\t *",
+                       SizedBox(
+                         width:webWidth * 0.8,
+                         child: RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text: AppLocalizations.of(context)!.certify,
+                                      //"CERTIFY",
                                       style: TextStyle(
                                           color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
+                                              102, 102, 102, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                ])),
-                          ),
+                                          fontSize: height * 0.017),
+                                    ),
+                                    TextSpan(
+                                        text: "\t *",
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                219, 35, 35, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: height * 0.017)),
+                                  ])),
+                       ),
                         SizedBox(height: height * 0.01),
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -623,7 +625,7 @@ class TeacherLoginState extends State<TeacherLogin> {
                                           141, 167, 167, 1),
                                       size: height * 0.034,
                                     ))),
-                            SizedBox(width: 400.0 * 0.005),
+                            SizedBox(width: webWidth * 0.005),
                             MouseRegion(
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(

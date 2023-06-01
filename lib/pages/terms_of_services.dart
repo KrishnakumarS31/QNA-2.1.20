@@ -30,7 +30,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
           if (constraints.maxWidth > 500) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: 500,
                 child: Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
@@ -105,14 +105,9 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018)),
                                 TextSpan(
-                                    text:
-                                    constraints.maxWidth > 700
-                                        ? AppLocalizations.of(context)!
-                                        .terms_page_web
+                                    text: AppLocalizations.of(context)!
+                                        .terms_page_web,
                                     //" \t\t defines ITNEDCUATION relationship with you as you interact with QNATEST app services"
-                                        : AppLocalizations.of(context)!
-                                        .terms_page,
-                                    //" \t\t defines ITNEDCUATION \n relationship with you as you interact with \nQNATEST app services",
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
@@ -201,12 +196,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                                         fontWeight: FontWeight.w400,
                                         fontSize: height * 0.018)),
                                 TextSpan(
-                                    text:
-                                    constraints.maxWidth > 700
-                                        ? AppLocalizations.of(context)!
-                                        .terms_page_web
-                                    //" \t\t defines ITNEDCUATION relationship with you as you interact with QNATEST app services"
-                                        : AppLocalizations.of(context)!
+                                    text: AppLocalizations.of(context)!
                                         .terms_page,
                                     //" \t\t defines ITNEDCUATION \n relationship with you as you interact with \nQNATEST app services",
                                     style: TextStyle(

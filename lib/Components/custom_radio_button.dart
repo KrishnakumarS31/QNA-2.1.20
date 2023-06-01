@@ -38,9 +38,7 @@ class CustomRadioButton<T> extends StatelessWidget {
       ),
       child: Center(
           child: isSelected
-              ? Icon(Icons.done, size: width> 500
-              ? 25
-              : 15,
+              ? const Icon(Icons.done, size: 25,
               color: Colors.white)
               : null),
     );

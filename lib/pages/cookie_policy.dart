@@ -28,7 +28,7 @@ class CookiePolicyState extends State<CookiePolicy> {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child:   Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
@@ -100,12 +100,8 @@ class CookiePolicyState extends State<CookiePolicy> {
                     SizedBox(height: height * 0.03),
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Text(
-                        constraints.maxWidth > 700
-                            ? AppLocalizations.of(context)!
-                            .cookie_policy_description_web
-                            : AppLocalizations.of(context)!
-                            .cookie_policy_description,
+                      child: Text(AppLocalizations.of(context)!
+                            .cookie_policy_description_web,
                         //"QNATest apps will not request cookies to\nbe set on your device. We do not use\n cookies, when you visit QNATEST web\n site or deploy the app.  There are no\n settings related to cookie preferences.",
                         style: TextStyle(
                             fontSize: height * 0.018,
@@ -193,7 +189,7 @@ class CookiePolicyState extends State<CookiePolicy> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        constraints.maxWidth > 700
+                        constraints.maxWidth > 500
                             ? AppLocalizations.of(context)!
                             .cookie_policy_description_web
                             : AppLocalizations.of(context)!

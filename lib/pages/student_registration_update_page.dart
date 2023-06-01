@@ -360,7 +360,7 @@ class StudentRegistrationUpdatePageState
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -404,7 +404,7 @@ class StudentRegistrationUpdatePageState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: localWidth * 0.8,
+                        width: 500 * 0.8,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -752,7 +752,7 @@ class StudentRegistrationUpdatePageState
                                       ),
                                     ),
                                     Positioned(
-                                      left: localWidth * 0.038,
+                                      left: 500 * 0.038,
                                       child: Container(
                                         color: Colors.white,
                                         child: RichText(
@@ -860,7 +860,7 @@ class StudentRegistrationUpdatePageState
                                       ),
                                     ),
                                     Positioned(
-                                      left: localWidth * 0.038,
+                                      left: 500 * 0.038,
                                       child: Container(
                                         color: Colors.white,
                                         child: RichText(
@@ -974,7 +974,7 @@ class StudentRegistrationUpdatePageState
                                       ),
                                     ),
                                     Positioned(
-                                      left: localWidth * 0.038,
+                                      left: 500 * 0.038,
                                       child: Container(
                                         color: Colors.white,
                                         child: RichText(

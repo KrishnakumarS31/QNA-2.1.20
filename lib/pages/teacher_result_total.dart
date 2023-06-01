@@ -7,6 +7,7 @@ import '../Components/today_date.dart';
 import '../EntityModel/get_result_model.dart';
 import '../Components/custom_card1.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherResultTotal extends StatefulWidget {
   const TeacherResultTotal({
@@ -62,7 +63,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
         return
           Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -169,7 +170,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                               showIcon == Icons.expand_circle_down_outlined
                                   ? CustomCard1(
                                 height: height,
-                                width: width,
+                                width: webWidth,
                                 resultIndex: widget.result,
                               )
                                   : Container(
@@ -226,22 +227,22 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                             style: TextStyle(
                                                 color: const Color.fromRGBO(
                                                     102, 102, 102, 1),
-                                                fontSize: height * 0.015,
+                                                fontSize: height * 0.013,
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],
                                       ),
                                     ),
-                                    Padding(
+                                    const Padding(
                                       padding: EdgeInsets.only(
-                                          right: width * 0.02,
-                                          left: width * 0.02),
-                                      child: const Divider(),
+                                          right: webWidth * 0.02,
+                                          left: webWidth * 0.02),
+                                      child: Divider(),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.015,
                                           top: height * 0.002),
                                       child: Align(
@@ -260,8 +261,8 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                                   fontWeight:
                                                   FontWeight.w700),
                                             ),
-                                            SizedBox(
-                                              width: width * 0.01,
+                                            const SizedBox(
+                                              width: webWidth * 0.01,
                                             ),
                                             Text(
                                               widget.advisorName!,
@@ -279,7 +280,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.005),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -298,7 +299,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.005),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -317,7 +318,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.004),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -336,139 +337,141 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                       ),
                                     ),
                                     const Divider(),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        SizedBox(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget.result.assessmentType!,
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.02,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w700),
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .category,
-                                                //'Category',
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                            ],
+                                    Padding(
+                                      padding: EdgeInsets.only(left: webWidth * 0.02,right: webWidth * 0.02),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  widget.result.assessmentType!,
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      fontSize: height * 0.02,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w700),
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .category,
+                                                  //'Category',
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontSize: height * 0.015,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "${widget.result
-                                                    .totalQuestions!}",
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.02,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w700),
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .total_small,
-                                                //'Total',
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .qn_button,
-                                                //'Questions',
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                            ],
+                                          SizedBox(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "${widget.result
+                                                      .totalQuestions!}",
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      fontSize: height * 0.02,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w700),
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .total_small,
+                                                  //'Total',
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontSize: height * 0.015,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .qn_button,
+                                                  //'Questions',
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontSize: height * 0.015,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          child: Column(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                "${widget.result.totalScore!}",
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        82, 165, 160, 1),
-                                                    fontSize: height * 0.02,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w700),
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .total_small,
-                                                //'Total',
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                              Text(
-                                                AppLocalizations.of(context)!
-                                                    .marks_small,
-                                                //'Marks',
-                                                style: TextStyle(
-                                                    color:
-                                                    const Color.fromRGBO(
-                                                        102, 102, 102, 1),
-                                                    fontSize: height * 0.015,
-                                                    fontFamily: "Inter",
-                                                    fontWeight:
-                                                    FontWeight.w400),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
+                                          SizedBox(
+                                            child: Column(
+                                              mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "${widget.result.totalScore!}",
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          82, 165, 160, 1),
+                                                      fontSize: height * 0.02,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w700),
+                                                ),
+                                                Text(
+                                                  AppLocalizations.of(context)!
+                                                      .total_small,
+                                                  //'Total',
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontSize: height * 0.015,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w400),
+                                                ),
+                                                Text(
+                                                  "Marks",
+                                                  //'Marks',
+                                                  style: TextStyle(
+                                                      color:
+                                                      const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontSize: height * 0.015,
+                                                      fontFamily: "Inter",
+                                                      fontWeight:
+                                                      FontWeight.w400),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     const Divider(),
                                     Padding(
                                       padding:
-                                      EdgeInsets.only(left: width * 0.03),
+                                      const EdgeInsets.only(left: webWidth * 0.03),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
@@ -486,7 +489,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           top: height * 0.007),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -523,7 +526,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           top: height * 0.007),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -560,7 +563,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           top: height * 0.007),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
@@ -602,7 +605,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          left: width * 0.03,
+                                          left: webWidth * 0.03,
                                           bottom: height * 0.015,
                                           top: height * 0.002),
                                       child: Align(
@@ -780,7 +783,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                     Icons.expand_circle_down_outlined
                                     ? height * 0.158
                                     : height * 0.661,
-                                right: width * 0.07,
+                                right: webWidth * 0.07,
                                 child: IconButton(
                                   icon: Icon(
                                     showIcon,
@@ -866,7 +869,7 @@ class TeacherResultTotalState extends State<TeacherResultTotal> {
                                               },
                                               child: ResultTotalCard(
                                                   height: height,
-                                                  width: 400,
+                                                  width: webWidth,
                                                   results: widget.result,
                                                   index: index),
                                             )),

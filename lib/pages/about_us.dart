@@ -36,7 +36,7 @@ class AboutUsState extends State<AboutUs> {
       if (constraints.maxWidth > 500) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: 500,
             child:  Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,

@@ -75,7 +75,7 @@ class StudentResultPageState extends State<StudentResultPage> {
         if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
-              width: 400,
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -83,7 +83,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                       child: Column(
                         children: [
                           Container(
-                            width: 400,
+                            width: 500,
                             decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.topLeft,
@@ -128,7 +128,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 Column(
                                   children: [
                                     Container(
-                                        padding: EdgeInsets.only(left: 400 * 0.09),
+                                        padding: const EdgeInsets.only(left: 500 * 0.09),
                                         child: Text(
                                           AppLocalizations.of(context)!.student,
                                           style: const TextStyle(
@@ -316,8 +316,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
-                                        insetPadding: EdgeInsets.only(
-                                            left: 400 * 0.13, right: 400 * 0.13),
+                                        insetPadding: const EdgeInsets.only(
+                                            left: 500 * 0.13, right: 500 * 0.13),
                                         title: Row(children: [
                                           SizedBox(width: localHeight * 0.030),
                                           Container(
@@ -326,7 +326,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               color: Color.fromRGBO(82, 165, 160, 1),
                                             ),
                                             height: localHeight * 0.1,
-                                            width: 400 * 0.1,
+                                            width: 500 * 0.1,
                                             child: const Icon(
                                               Icons.info_outline_rounded,
                                               color: Color.fromRGBO(255, 255, 255, 1),
@@ -345,7 +345,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         content:
                                         const Text("Are you sure you want to logout ?"),
                                         actions: <Widget>[
-                                          SizedBox(width: 400 * 0.020),
+                                          const SizedBox(width: 500 * 0.020),
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
@@ -367,7 +367,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               Navigator.of(context).pop();
                                             },
                                           ),
-                                          SizedBox(width: 400 * 0.005),
+                                          const SizedBox(width: 500 * 0.005),
                                           ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
@@ -450,7 +450,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       bottom: Radius.elliptical(
-                                          400, localHeight * 0.35)),
+                                          500, localHeight * 0.35)),
                                 ),
                                 child: Column(
                                   children: [
@@ -460,7 +460,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       child: Container(
                                           padding: const EdgeInsets.all(0.0),
                                           height: localHeight * 0.20,
-                                          width: 400 * 0.30,
+                                          width: 500 * 0.30,
                                           child: Column(
                                             children: [
                                               Text(
@@ -573,9 +573,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           context: context,
                                           builder: (context) =>
                                               AlertDialog(
-                                                insetPadding: EdgeInsets.only(
-                                                    left: 400 * 0.13,
-                                                    right: 400 * 0.13),
+                                                insetPadding: const EdgeInsets.only(
+                                                    left: 500 * 0.13,
+                                                    right: 500 * 0.13),
                                                 title: Row(children: [
                                                   SizedBox(width: localHeight *
                                                       0.04),
@@ -586,7 +586,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           82, 165, 160, 1),
                                                     ),
                                                     height: localHeight * 0.1,
-                                                    width: 400 * 0.1,
+                                                    width: 500 * 0.1,
                                                     child: const Icon(
                                                       Icons
                                                           .info_outline_rounded,
@@ -614,7 +614,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 content: const Text(
                                                     "Are you sure you want to exit ?"),
                                                 actions: <Widget>[
-                                                  SizedBox(width: 400 *
+                                                  const SizedBox(width: 500 *
                                                       0.020),
                                                   ElevatedButton(
                                                     style: ElevatedButton
@@ -649,7 +649,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           .pop();
                                                     },
                                                   ),
-                                                  SizedBox(width: 400 *
+                                                  const SizedBox(width: 500 *
                                                       0.005),
                                                   ElevatedButton(
                                                       style: ElevatedButton
@@ -737,7 +737,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                           right: localHeight * 0.010,
                           child: SizedBox(
                             height: localHeight * 0.60,
-                            width: 400 * 1.5,
+                            width: 500 * 1.5,
                             child: Card(
                               elevation: 12,
                               child: Column(children: [
@@ -775,9 +775,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   children: [
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
-                                          width: 400 * 0.25,
+                                          width: 500 * 0.25,
                                           child: Center(
                                             child: Text(
                                                     AppLocalizations.of(context)!
@@ -790,9 +790,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                         fontSize: localHeight * 0.020)),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                             height: localHeight * 0.07,
-                                            width: 400 * 0.25,
+                                            width: 500 * 0.25,
                                           child:Center(
                                             child: Text(widget.date,
                                                 style: TextStyle(
@@ -807,9 +807,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     ),
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
-                                          width: 400 * 0.25,
+                                          width: 500 * 0.25,
                                           child: Center(
                                             child: Text(
                                                 AppLocalizations.of(context)!
@@ -822,9 +822,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.020)),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                             height: localHeight * 0.07,
-                                            width: 400 * 0.25,
+                                            width: 500 * 0.25,
                                           child:Center(
                                             child: Text(widget.time,
                                                 style: TextStyle(
@@ -839,9 +839,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     ),
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
-                                          width: 400 * 0.25,
+                                          width: 500 * 0.25,
                                           child: Center(
                                             child: Text(
                                                 AppLocalizations.of(context)!
@@ -854,9 +854,9 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.020)),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                             height: localHeight * 0.07,
-                                            width: 400 * 0.25,
+                                            width: 500 * 0.25,
                                           child:Center(
                                             child: Text(widget.endTime.substring(0, 7),
                                                 style: TextStyle(
@@ -953,7 +953,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       ),
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.elliptical(
-                                              400 / 1.0,
+                                              500 / 1.0,
                                               localHeight * 0.3)),
                                     ),
                                     child: Row(
@@ -1745,7 +1745,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   children: [
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
                                           width: localWidth * 0.25,
                                           child: Center(
@@ -1760,7 +1760,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.020)),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
                                           width: localWidth * 0.25,
                                           child:Center(
@@ -1777,7 +1777,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     ),
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
                                           width: localWidth * 0.25,
                                           child: Center(
@@ -1792,7 +1792,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.020)),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
                                           width: localWidth * 0.25,
                                           child:Center(
@@ -1809,7 +1809,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     ),
                                     Column(
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
                                           width: localWidth * 0.25,
                                           child: Center(
@@ -1824,7 +1824,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     fontSize: localHeight * 0.020)),
                                           ),
                                         ),
-                                        Container(
+                                        SizedBox(
                                           height: localHeight * 0.07,
                                           width: localWidth * 0.25,
                                           child:Center(

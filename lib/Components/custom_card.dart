@@ -69,7 +69,7 @@ class _CustomCardState extends State<CustomCard> {
                   startDate,
                   style: TextStyle(
                       color: const Color.fromRGBO(102, 102, 102, 0.7),
-                      fontSize: widget.height * 0.02,
+                      fontSize: widget.height * 0.013,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400),
                 ),

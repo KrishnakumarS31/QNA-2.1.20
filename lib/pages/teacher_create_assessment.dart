@@ -16,6 +16,7 @@ import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Services/qna_service.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherCreateAssessment extends StatefulWidget {
   const TeacherCreateAssessment({
@@ -1093,7 +1094,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Container(
-                    width: 400.0,
+                    width: webWidth,
                     child: Scaffold(
                       resizeToAvoidBottomInset: false,
                       backgroundColor: Colors.white,
@@ -1164,7 +1165,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        right: width * 0.03, left: width * 0.03),
+                                        right: webWidth * 0.03, left: webWidth * 0.03),
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1209,7 +1210,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                               scrollDirection: Axis.vertical,
                                                               child: Container(
                                                                 height: height * 0.7,
-                                                                width: width * 0.88,
+                                                                width: webWidth * 0.88,
                                                                 decoration: BoxDecoration(
                                                                   border: Border.all(
                                                                       color: Colors.black38,
@@ -1219,8 +1220,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                 ),
                                                                 child: Padding(
                                                                   padding: EdgeInsets.only(
-                                                                      left: width * 0.02,
-                                                                      right: width * 0.02,
+                                                                      left: webWidth * 0.02,
+                                                                      right: webWidth * 0.02,
                                                                       top: height * 0.02,
                                                                       bottom: height * 0.02),
                                                                   child: Form(
@@ -1299,9 +1300,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                                   .always,
                                                                               label: SizedBox(
                                                                                 width:
-                                                                                constraints.maxWidth > 700
-                                                                                    ? width * 0.04
-                                                                                    : width * 0.18,
+                                                                                width * 0.04,
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Text(
@@ -1426,10 +1425,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                                               FloatingLabelBehavior
                                                                                   .always,
                                                                               label: SizedBox(
-                                                                                width:
-                                                                                constraints.maxWidth > 700
-                                                                                    ? width * 0.06
-                                                                                    : width * 0.28,
+                                                                                width:webWidth * 0.06,
                                                                                 child: Row(
                                                                                   children: [
                                                                                     Text(
@@ -1800,11 +1796,11 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                                             fontWeight: FontWeight.w400),
                                                       ),
                                                       SizedBox(
-                                                        width: width * 0.01,
+                                                        width: webWidth * 0.01,
                                                       ),
                                                       Icon(
                                                         Icons.edit_outlined,
-                                                        size: width * 0.014,
+                                                        size: webWidth * 0.050,
                                                         color: Color.fromRGBO(28, 78, 80, 1),
                                                       )
                                                     ],
@@ -1893,7 +1889,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                     suffixIcon: Column(children: [
                                       Container(
                                           height: height * 0.073,
-                                          width: width * 0.13,
+                                          width: webWidth * 0.13,
                                           decoration: const BoxDecoration(
                                             borderRadius:
                                             BorderRadius.all(Radius.circular(8.0)),
@@ -1959,7 +1955,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 SizedBox(height: height * 0.08),
                                 Center(
                                   child: SizedBox(
-                                    width: width * 0.888,
+                                    width: webWidth * 0.888,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         side: const BorderSide(
@@ -1995,7 +1991,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 SizedBox(height: height * 0.01),
                                 Center(
                                   child: SizedBox(
-                                    width: width * 0.888,
+                                    width: webWidth * 0.888,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         side: const BorderSide(
@@ -2048,7 +2044,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 SizedBox(height: height * 0.01),
                                 Center(
                                   child: SizedBox(
-                                    width: width * 0.888,
+                                    width: webWidth * 0.888,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:

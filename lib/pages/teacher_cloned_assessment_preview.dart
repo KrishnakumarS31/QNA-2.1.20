@@ -13,6 +13,7 @@ import '../Providers/edit_assessment_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 class TeacherClonedAssessmentPreview extends StatefulWidget {
   const TeacherClonedAssessmentPreview({
     Key? key,required this.assessmentType
@@ -423,7 +424,7 @@ class TeacherClonedAssessmentPreviewState
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Container(
-                    width: 400.0,
+                    width: webWidth,
                     child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: Colors.white,
@@ -539,7 +540,7 @@ class TeacherClonedAssessmentPreviewState
                                 children: [
                                   SizedBox(
                                     height: height * 0.6,
-                                    width: width * 0.9,
+                                    width: webWidth * 0.9,
                                     child: SingleChildScrollView(
                                       scrollDirection: Axis.vertical,
                                       child: Column(
@@ -560,7 +561,7 @@ class TeacherClonedAssessmentPreviewState
                                   ),
                                   Positioned(
                                       top: height * 0.5,
-                                      left: width * 0.78,
+                                      left: webWidth * 0.78,
                                       child: FloatingActionButton(
                                         onPressed: () {
                                           Navigator.pushNamed(
@@ -578,7 +579,7 @@ class TeacherClonedAssessmentPreviewState
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                       side: const BorderSide(
@@ -631,7 +632,7 @@ class TeacherClonedAssessmentPreviewState
                               ),
                               Center(
                                 child: SizedBox(
-                                  width: width * 0.888,
+                                  width: webWidth * 0.888,
                                   child: ElevatedButton(
                                     style: ElevatedButton.styleFrom(
                                         backgroundColor:

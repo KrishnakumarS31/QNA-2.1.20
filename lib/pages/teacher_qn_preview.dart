@@ -42,68 +42,16 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
         if (constraints.maxWidth > 500) {
           return Center(
             child: SizedBox(
-              width: 400,
+              width: 500,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: const Color.fromRGBO(0, 0, 0, 0.7),
-                      // appBar: AppBar(
-                      //   actions: [
-                      //     Padding(
-                      //       padding: const EdgeInsets.only(right: 10),
-                      //       child: IconButton(
-                      //         icon: const Icon(
-                      //           Icons.menu,
-                      //           size: 40.0,
-                      //           color: Colors.white,
-                      //         ),
-                      //         onPressed: () {
-                      //           Navigator.of(context).pop();
-                      //         },
-                      //       ),
-                      //     ),
-                      //   ],
-                      //   leading: IconButton(
-                      //     icon: const Icon(
-                      //       Icons.chevron_left,
-                      //       size: 40.0,
-                      //       color: Colors.white,
-                      //     ),
-                      //     onPressed: () {
-                      //       Navigator.of(context).pop();
-                      //     },
-                      //   ),
-                      //   toolbarHeight: height * 0.100,
-                      //   centerTitle: true,
-                      //   title: Column(
-                      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      //       children: [
-                      //         Text(
-                      //           "PREPARE QUESTION",
-                      //           style: TextStyle(
-                      //             color: const Color.fromRGBO(255, 255, 255, 1),
-                      //             fontSize: height * 0.0225,
-                      //             fontFamily: "Inter",
-                      //             fontWeight: FontWeight.w400,
-                      //           ),
-                      //         ),
-                      //       ]),
-                      //   flexibleSpace: Container(
-                      //     decoration: const BoxDecoration(
-                      //         gradient: LinearGradient(
-                      //             end: Alignment.bottomCenter,
-                      //             begin: Alignment.topCenter,
-                      //             colors: [
-                      //               Color.fromRGBO(0, 106, 100, 1),
-                      //               Color.fromRGBO(82, 165, 160, 1),
-                      //             ])),
-                      //   ),
-                      // ),
                       body: Center(
                         child: SizedBox(
                           height: height * 0.81,
-                          width: 400 * 0.888,
+                          width: 500 * 0.888,
                           child: Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -111,8 +59,8 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                               elevation: 12,
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               margin: EdgeInsets.only(
-                                  left: 400 * 0.030,
-                                  right: 400 * 0.030,
+                                  left: 500 * 0.030,
+                                  right: 500 * 0.030,
                                   bottom: height * 0.015,
                                   top: height * 0.025),
                               //padding: const EdgeInsets.all(40),
@@ -122,7 +70,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   //ChooseWidget(question: question, selected: selected, height: height, width: width),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 400 * 0.03, top: height * 0.02),
+                                        left: 500 * 0.03, top: height * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('${widget.finalQuestion.questionType}',
@@ -136,7 +84,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 400 * 0.03, top: height * 0.02),
+                                        left: 500 * 0.03, top: height * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('${widget.finalQuestion.question}',
@@ -157,7 +105,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                       child: ChooseWidget(
                                         selected: selected,
                                         height: height,
-                                        width: 400,
+                                        width: 500,
                                         finalQuestion: widget.finalQuestion,
                                       ),
                                     ),
@@ -166,7 +114,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                     height: height * 0.03,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 400 * 0.03),
+                                    padding: const EdgeInsets.only(left: 500 * 0.03),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -182,7 +130,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 400 * 0.03, right: 400 * 0.03),
+                                        left: 500 * 0.03, right: 500 * 0.03),
                                     child: TextFormField(
                                       controller: adviceController,
                                       enabled: false,
@@ -203,7 +151,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 400 * 0.03, right: 400 * 0.03),
+                                        left: 500 * 0.03, right: 500 * 0.03),
                                     child: TextFormField(
                                       controller: urlController,
                                       enabled: false,

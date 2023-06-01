@@ -363,7 +363,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
           if (constraints.maxWidth > 500) {
             return Center(
                 child: SizedBox(
-                width: width,
+                width: 500,
                 child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -541,7 +541,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                       color: const Color.fromRGBO(
                                           82, 165, 160, 1),
                                       child: Row(children: [
-                                        SizedBox(width: width * 0.10),
+                                        SizedBox(width: 500 * 0.10),
                                         Text(
                                             AppLocalizations.of(context)!
                                                 .sub_topic,
@@ -552,7 +552,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: height * 0.020)),
-                                        SizedBox(width: width * 0.25),
+                                        SizedBox(width: 500 * 0.25),
                                         IconButton(
                                           icon: Icon(
                                             showIcon,
@@ -585,10 +585,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontSize: height * 0.018),
                                             decoration: InputDecoration(
                                               label: SizedBox(
-                                                width:
-                                                constraints.maxWidth > 700
-                                                    ? width * 0.05
-                                                    : width * 0.15,
+                                                width: 500 * 0.05,
                                                 child: Row(
                                                   children: [
                                                     Text(
@@ -755,10 +752,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                 fontSize: height * 0.018),
                                             decoration: InputDecoration(
                                               label: SizedBox(
-                                                width:
-                                                constraints.maxWidth > 700
-                                                    ? width * 0.07
-                                                    : width * 0.22,
+                                                width: 500 * 0.07,
                                                 child: Row(
                                                   children: [
                                                     Text(
@@ -837,7 +831,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                             Container(
                               alignment: Alignment.centerLeft,
                               margin: EdgeInsets.only(
-                                  left: width * 0.05, right: width * 0.04),
+                                  left: 500 * 0.05, right: 500 * 0.04),
                               child: Column(
                                 children: [
                                   Row(children: [
@@ -853,7 +847,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    SizedBox(width: width * 0.03),
+                                    SizedBox(width: 500 * 0.03),
                                     const Expanded(child: Divider()),
                                   ]),
                                   SizedBox(height: height * 0.010),
@@ -929,7 +923,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: width * 0.02,
+                                  width: 500 * 0.02,
                                 ),
                                 Text(
                                   AppLocalizations.of(context)!.delete,
@@ -941,11 +935,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                constraints.maxWidth > 700
-                                    ? SizedBox(
-                                  width: width * 0.02,
-                                )
-                                    : const SizedBox(),
+                                SizedBox(width: 500 * 0.02),
                               ],
                             )
                                 : Row(
@@ -980,7 +970,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: width * 0.02,
+                                  width: 500 * 0.02,
                                 ),
                                 Text(
                                   AppLocalizations.of(context)!.delete,
@@ -991,11 +981,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                constraints.maxWidth > 700
-                                    ? SizedBox(
-                                    width: width * 0.06
-                                )
-                                    : const SizedBox(),
+                                SizedBox(width: 500 * 0.06),
                               ],
                             ),
                             SizedBox(height: height * 0.010),
@@ -1146,9 +1132,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                               },
                                             ),
                                           ),
-                                          SizedBox(
-                                            width: width * 0.03,
-                                          ),
+                                          SizedBox(width: 500 * 0.03),
                                           IconButton(
                                             onPressed: () {
                                               removeItem(i);
@@ -1159,11 +1143,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                   82, 165, 160, 1),
                                             ),
                                           ),
-                                          constraints.maxWidth > 700
-                                              ? SizedBox(
-                                            width: width * 0.02,
-                                          )
-                                              : const SizedBox(),
+                                          SizedBox(width: 500 * 0.02),
                                         ],
                                       ),
                                     )
@@ -1314,7 +1294,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: width * 0.03,
+                                            width: 500 * 0.03,
                                           ),
                                           IconButton(
                                             onPressed: () {
@@ -1377,7 +1357,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                             ),
                                           ),
                                           SizedBox(
-                                            width: width * 0.03,
+                                            width: 500 * 0.03,
                                           ),
                                           IconButton(
                                             onPressed: () {
@@ -1389,11 +1369,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                                   82, 165, 160, 1),
                                             ),
                                           ),
-                                          constraints.maxWidth > 700
-                                              ? SizedBox(
-                                            width: width * 0.05,
-                                          )
-                                              : const SizedBox(),
+                                           SizedBox(
+                                            width: 500 * 0.05,),
                                         ],
                                       ),
                                     )
@@ -1426,8 +1403,8 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                   Container(
                                     alignment: Alignment.centerLeft,
                                     margin: EdgeInsets.only(
-                                        left: width * 0.05,
-                                        right: width * 0.04),
+                                        left: 500 * 0.05,
+                                        right: 500 * 0.04),
                                     child: Row(children: [
                                       Text(
                                         AppLocalizations.of(context)!
@@ -1441,7 +1418,7 @@ class PreparePreviewQnBankState extends State<PreparePreviewQnBank> {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      SizedBox(width: width * 0.03),
+                                      SizedBox(width: 500 * 0.03),
                                       const Expanded(child: Divider()),
                                     ]),
                                   )

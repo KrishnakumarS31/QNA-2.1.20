@@ -7,6 +7,7 @@ import '../Entity/Teacher/question_entity.dart' as questions;
 import '../Providers/create_assessment_provider.dart';
 import '../Providers/edit_assessment_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherClonedAssessment extends StatefulWidget {
   const TeacherClonedAssessment({
@@ -24,7 +25,6 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
   bool questionShirnk = true;
   var startDate;
   var endDate;
-  double webWidth = 400.0;
   GetAssessmentModel assessment = GetAssessmentModel();
   CreateAssessmentModel finalAssessment = CreateAssessmentModel(questions: []);
   int mark = 0;
@@ -1344,7 +1344,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                               Row(
                                 children: [
                                   SizedBox(
-                                    width: webWidth * 0.4,
+                                    width: webWidth * 0.41,
                                     child: Text(
                                       "${AppLocalizations.of(context)!.start_date_time}:",
                                      // "Start Date & Time:",
@@ -1670,23 +1670,26 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                                 ),
                                               ),
                                             ),
-                                            Text(
-                                              assessment.assessmentSettings!
-                                                          .showAdvisorName ==
-                                                      false
-                                                  ? AppLocalizations.of(context)!.no
-                                              //"No"
-                                                  : assessment.assessmentSettings!
-                                                          .showAdvisorName!
-                                                      ? assessment.assessmentSettings!.advisorName??''                                  //"Yes"
-                                                      :  AppLocalizations.of(context)!.no,
-                                              //"No",
-                                              style: TextStyle(
-                                                color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              width: webWidth * 0.4,
+                                              child: Text(
+                                                assessment.assessmentSettings!
+                                                            .showAdvisorName ==
+                                                        false
+                                                    ? AppLocalizations.of(context)!.no
+                                                //"No"
+                                                    : assessment.assessmentSettings!
+                                                            .showAdvisorName!
+                                                        ? assessment.assessmentSettings!.advisorName??''                                  //"Yes"
+                                                        :  AppLocalizations.of(context)!.no,
+                                                //"No",
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.0175,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -1710,24 +1713,27 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                                 ),
                                               ),
                                             ),
-                                            Text(
-                                              assessment.assessmentSettings
-                                                          ?.showAdvisorEmail ==
-                                                      false
-                                                  ? AppLocalizations.of(context)!.no
-                                              //"No"
-                                                  : assessment.assessmentSettings!
-                                                          .showAdvisorEmail!
-                                                      ? assessment.assessmentSettings!.advisorEmail??''
-                                              //"Yes"
-                                                      : AppLocalizations.of(context)!.no,
-                                              //"No",
-                                              style: TextStyle(
-                                                color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700,
+                                            SizedBox(
+                                              width: webWidth * 0.4,
+                                              child: Text(
+                                                assessment.assessmentSettings
+                                                            ?.showAdvisorEmail ==
+                                                        false
+                                                    ? AppLocalizations.of(context)!.no
+                                                //"No"
+                                                    : assessment.assessmentSettings!
+                                                            .showAdvisorEmail!
+                                                        ? assessment.assessmentSettings!.advisorEmail??''
+                                                //"Yes"
+                                                        : AppLocalizations.of(context)!.no,
+                                                //"No",
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.0175,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -1741,7 +1747,7 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                               width: webWidth * 0.4,
                                               child: Text(
                                                 AppLocalizations.of(context)!.in_active,
-                                                //"Inactive",
+                                                //"Email",
                                                 style: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 1),
@@ -1751,21 +1757,24 @@ class TeacherClonedAssessmentState extends State<TeacherClonedAssessment> {
                                                 ),
                                               ),
                                             ),
-                                            Text(
-                                                assessment.assessmentSettings?.notAvailable == null
-                                                    ? AppLocalizations.of(context)!.no
+                                            SizedBox(
+                                              width: webWidth * 0.4,
+                                              child: Text(
+                                                  assessment.assessmentSettings?.notAvailable == null
+                                                      ? AppLocalizations.of(context)!.no
             //"No"
-                                                    : assessment.assessmentSettings!.notAvailable!
-                                                    ? AppLocalizations.of(context)!.yes
+                                                      : assessment.assessmentSettings!.notAvailable!
+                                                      ? AppLocalizations.of(context)!.yes
             //"Yes"
-                                                    : AppLocalizations.of(context)!.no,
+                                                      : AppLocalizations.of(context)!.no,
             //"No",
-                                              style: TextStyle(
-                                                color:
-                                                    const Color.fromRGBO(82, 165, 160, 1),
-                                                fontSize: height * 0.0175,
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w700,
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontSize: height * 0.0175,
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w700,
+                                                ),
                                               ),
                                             ),
                                           ],

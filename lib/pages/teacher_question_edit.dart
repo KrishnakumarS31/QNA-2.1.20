@@ -370,8 +370,8 @@ class QuestionEditState extends State<QuestionEdit> {
         builder: (BuildContext context, BoxConstraints constraints) {
           if(constraints.maxWidth > 500){
             return Center(
-              child: Container(
-                  width : 400,
+              child: SizedBox(
+                  width : 500,
                 child: WillPopScope(
                     onWillPop: () async => false,
                     child: Scaffold(
@@ -543,7 +543,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     Container(
                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                         child: Row(children: [
-                                              SizedBox(width: 400 * 0.07),
+                                              const SizedBox(width: 500 * 0.07),
                                           Text(AppLocalizations.of(context)!.subject_topic,
                                               style: TextStyle(
                                                   color: const Color.fromRGBO(
@@ -551,7 +551,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: height * 0.020)),
-                                          SizedBox(width: 400 * 0.15),
+                                          const SizedBox(width:  500 * 0.15),
                                           IconButton(
                                             icon: Icon(
                                               showIcon,
@@ -568,7 +568,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                       Container(
                                           color: const Color.fromRGBO(82, 165, 160, 1),
                                           child: Row(children: [
-                                            const SizedBox(width: 400 * 0.07),
+                                            const SizedBox(width: 500 * 0.07),
                                             Text(
                                                 AppLocalizations.of(context)!.subject_topic,
                                                 //"Subject and Topic",
@@ -578,7 +578,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: height * 0.020)),
-                                            SizedBox(width: 400 * 0.15),
+                                            const SizedBox(width: 500 * 0.15),
                                             IconButton(
                                               icon: Icon(
                                                 showIcon,
@@ -607,7 +607,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                 decoration: InputDecoration(
                                                   label: SizedBox(
                                                     width:
-                                                    400 * 0.22,
+                                                    500 * 0.22,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -764,7 +764,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                 decoration: InputDecoration(
                                                   label: SizedBox(
                                                     width:
-                                                    400 * 0.33,
+                                                    500 * 0.33,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -839,8 +839,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                 ),
                                 Container(
                                   alignment: Alignment.centerLeft,
-                                  margin: EdgeInsets.only(
-                                      left: 400 * 0.05, right: 400 * 0.04),
+                                  margin: const EdgeInsets.only(
+                                      left: 500 * 0.05, right: 500 * 0.04),
                                   child: Column(
                                     children: [
                                       Row(children: [
@@ -854,7 +854,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        SizedBox(width: 400 * 0.03),
+                                        const SizedBox(width: 500 * 0.03),
                                         const Expanded(child: Divider()),
                                       ]),
                                       SizedBox(height: height * 0.010),
@@ -923,8 +923,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 400 * 0.02,
+                                    const SizedBox(
+                                      width: 500 * 0.02,
                                     ),
                                     Text(
                                       AppLocalizations.of(context)!.delete,
@@ -936,8 +936,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 400 * 0.02,
+                                    const SizedBox(
+                                      width: 500 * 0.02,
                                     )
                                   ],
                                 )
@@ -969,8 +969,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 400 * 0.02,
+                                    const SizedBox(
+                                      width: 500 * 0.02,
                                     ),
                                     Text(
                                       AppLocalizations.of(context)!.delete,
@@ -981,8 +981,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                    SizedBox(
-                                        width: 400 * 0.06
+                                    const SizedBox(
+                                        width: 500 * 0.06
                                     )
                                   ],
                                 ),
@@ -1086,8 +1086,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                                   },
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 400 * 0.03,
+                                              const SizedBox(
+                                                width: 500 * 0.03,
                                               ),
                                               IconButton(
                                                 onPressed: () {
@@ -1098,8 +1098,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                                   color: Color.fromRGBO(82, 165, 160, 1),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 400 * 0.02,
+                                              const SizedBox(
+                                                width: 500 * 0.02,
                                               )
                                             ],
                                           ),
@@ -1202,8 +1202,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                                   },
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 400 * 0.03,
+                                              const SizedBox(
+                                                width: 500 * 0.03,
                                               ),
                                               IconButton(
                                                 onPressed: () {
@@ -1251,8 +1251,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                                   const Color.fromRGBO(82, 165, 160, 1),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 400 * 0.03,
+                                              const SizedBox(
+                                                width: 500 * 0.03,
                                               ),
                                               IconButton(
                                                 onPressed: () {
@@ -1263,8 +1263,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                                   color: Color.fromRGBO(82, 165, 160, 1),
                                                 ),
                                               ),
-                                              SizedBox(
-                                                width: 400 * 0.05,
+                                              const SizedBox(
+                                                width: 500 * 0.05,
                                               )
                                             ],
                                           ),
@@ -1295,8 +1295,8 @@ class QuestionEditState extends State<QuestionEdit> {
                                       SizedBox(height: height * 0.020),
                                       Container(
                                         alignment: Alignment.centerLeft,
-                                        margin: EdgeInsets.only(
-                                            left: 400 * 0.05, right: 400 * 0.04),
+                                        margin: const EdgeInsets.only(
+                                            left: 500 * 0.05, right: 500 * 0.04),
                                         child: Row(children: [
                                           Text(
                                             AppLocalizations.of(context)!.advisor,
@@ -1308,7 +1308,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
-                                          SizedBox(width: 400 * 0.03),
+                                          const SizedBox(width: 500 * 0.03),
                                           const Expanded(child: Divider()),
                                         ]),
                                       )
@@ -1630,9 +1630,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                 Container(
                                     color: const Color.fromRGBO(82, 165, 160, 1),
                                     child: Row(children: [
-                                      constraints.maxWidth > 700
-                                          ? SizedBox(width: width * 0.03)
-                                          : SizedBox(width: width * 0.07),
+                                      SizedBox(width: width * 0.07),
                                       Text(AppLocalizations.of(context)!.subject_topic,
                                           style: TextStyle(
                                               color: const Color.fromRGBO(
@@ -1640,9 +1638,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
                                               fontSize: height * 0.020)),
-                                      constraints.maxWidth > 700
-                                          ? SizedBox(width: width * 0.8)
-                                          : SizedBox(width: width * 0.15),
+                                      SizedBox(width: width * 0.15),
                                       IconButton(
                                         icon: Icon(
                                           showIcon,
@@ -1659,9 +1655,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                   Container(
                                       color: const Color.fromRGBO(82, 165, 160, 1),
                                       child: Row(children: [
-                                        constraints.maxWidth > 700
-                                            ? SizedBox(width: width * 0.03)
-                                            : SizedBox(width: width * 0.07),
+                                       SizedBox(width: width * 0.07),
                                         Text(
                                             AppLocalizations.of(context)!.subject_topic,
                                             //"Subject and Topic",
@@ -1671,9 +1665,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: height * 0.020)),
-                                        constraints.maxWidth > 700
-                                            ? SizedBox(width: width * 0.8)
-                                            : SizedBox(width: width * 0.15),
+                                        SizedBox(width: width * 0.15),
                                         IconButton(
                                           icon: Icon(
                                             showIcon,
@@ -1701,10 +1693,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                 fontSize: height * 0.018),
                                             decoration: InputDecoration(
                                               label: SizedBox(
-                                                width:
-                                                constraints.maxWidth > 700
-                                                    ? width * 0.05
-                                                    : width * 0.2,
+                                                width: width * 0.2,
                                                 child: Row(
                                                   children: [
                                                     Text(
@@ -1860,10 +1849,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                                 fontSize: height * 0.018),
                                             decoration: InputDecoration(
                                               label: SizedBox(
-                                                width:
-                                                constraints.maxWidth > 700
-                                                    ? width * 0.07
-                                                    : width * 0.3,
+                                                width: width * 0.3,
                                                 child: Row(
                                                   children: [
                                                     Text(
@@ -2035,11 +2021,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                constraints.maxWidth > 700
-                                    ?  SizedBox(
-                                  width: width * 0.02,
-                                )
-                                    : const SizedBox(),
+                               const SizedBox(),
                               ],
                             )
                                 : Row(
@@ -2082,11 +2064,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                constraints.maxWidth > 700
-                                    ?  SizedBox(
-                                    width: width * 0.06
-                                )
-                                    : const SizedBox(),
+                                const SizedBox(),
                               ],
                             ),
                             SizedBox(height: height * 0.010),
@@ -2201,11 +2179,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                               color: Color.fromRGBO(82, 165, 160, 1),
                                             ),
                                           ),
-                                          constraints.maxWidth > 700
-                                              ?  SizedBox(
-                                            width: width * 0.02,
-                                          )
-                                              : const SizedBox(),
+                                          const SizedBox(),
                                         ],
                                       ),
                                     )
@@ -2368,11 +2342,7 @@ class QuestionEditState extends State<QuestionEdit> {
                                               color: Color.fromRGBO(82, 165, 160, 1),
                                             ),
                                           ),
-                                          constraints.maxWidth > 700
-                                              ?  SizedBox(
-                                            width: width * 0.05,
-                                          )
-                                              : const SizedBox(),
+                                          const SizedBox(),
                                         ],
                                       ),
                                     )

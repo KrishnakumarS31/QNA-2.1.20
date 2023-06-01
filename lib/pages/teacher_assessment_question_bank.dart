@@ -13,6 +13,7 @@ import '../Providers/new_question_provider.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherAssessmentQuestionBank extends StatefulWidget {
   TeacherAssessmentQuestionBank(
@@ -335,7 +336,7 @@ class TeacherAssessmentQuestionBankState
           if (constraints.maxWidth > 500) {
             return  Center(
               child: WillPopScope(child: Container(
-                width:400.0,
+                width:webWidth,
                 child: Scaffold(
                   resizeToAvoidBottomInset: false,
                   backgroundColor: Colors.white,
@@ -389,7 +390,7 @@ class TeacherAssessmentQuestionBankState
                     ),
                   ),
                   body: Padding(
-                    padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
+                    padding: EdgeInsets.only(left: webWidth * 0.025, right: webWidth * 0.025),
                     child: Column(
                       children: [
                         SizedBox(
@@ -410,7 +411,7 @@ class TeacherAssessmentQuestionBankState
                             suffixIcon: Column(children: [
                               Container(
                                   height: height * 0.073,
-                                  width: width * 0.13,
+                                  width: webWidth * 0.13,
                                   decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                     color: Color.fromRGBO(82, 165, 160, 1),
@@ -466,7 +467,7 @@ class TeacherAssessmentQuestionBankState
                                   ),
                                 ),
                                 SizedBox(
-                                  width: width * 0.02,
+                                  width: webWidth * 0.02,
                                 ),
                                 const Icon(
                                   Icons.circle_rounded,
@@ -481,7 +482,7 @@ class TeacherAssessmentQuestionBankState
                         ),
                         SizedBox(
                           height: height * 0.6,
-                          width: width * 0.9,
+                          width: webWidth * 0.9,
                           child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
                             child: Column(
@@ -489,7 +490,7 @@ class TeacherAssessmentQuestionBankState
                                 for (Question i in questions)
                                   QuestionPreview(
                                     height: height,
-                                    width: width,
+                                    width: webWidth,
                                     question: i,
                                     quesIdList: quesIdList,
                                   ),
@@ -497,9 +498,12 @@ class TeacherAssessmentQuestionBankState
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: height * 0.05,
+                        ),
                         Center(
                           child: SizedBox(
-                            width: width * 0.8,
+                            width: webWidth * 0.8,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
