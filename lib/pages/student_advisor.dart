@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-
+import '../DataSource/http_url.dart';
 class StudMemAdvisor extends StatefulWidget {
   const StudMemAdvisor(
       {Key? key, required this.questions, required this.assessmentId})
@@ -70,10 +70,10 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-                width: 500,
+                width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -131,8 +131,8 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 400 * 0.3,
-                                        top: 400 * 0.056),
+                                        left: webWidth * 0.3,
+                                        top: webWidth * 0.056),
                                     child: Text(
                                       AppLocalizations.of(context)!
                                           .incorrectly_answered,
@@ -468,7 +468,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           ),
                                         );
                                       }),
-                                  const SizedBox(width: 400 * 0.35),
+                                  const SizedBox(width: webWidth * 0.35),
                                   IconButton(
                                     icon: Icon(
                                       Icons.chevron_right,
@@ -569,7 +569,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           ),
                                         );
                                       }),
-                                  const SizedBox(width: 400 * 0.30),
+                                  const SizedBox(width: webWidth * 0.30),
                                   IconButton(
                                     icon: Icon(
                                       Icons.chevron_right,
@@ -623,7 +623,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       top: Radius.elliptical(
-                                          400 / 1.0, localHeight * 0.25)),
+                                          webWidth / 1.0, localHeight * 0.25)),
                                 ),
                                 child: Row(
                                   children: [
@@ -637,12 +637,12 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                           children: [
                                             Text(AppLocalizations.of(context)!.pls_contact,
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: const Color.fromRGBO(
+                                              style: const TextStyle(
+                                                  color: Color.fromRGBO(
                                                       255, 255, 255, 1),
                                                   fontFamily: 'Inter',
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: localHeight * 0.020),
+                                                  fontSize: 20),
                                             ),
                                             SizedBox(height: localHeight * 0.010),
                                             RichText(
@@ -663,15 +663,14 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                                                       text: AppLocalizations.of(
                                                           context)!
                                                           .retry_msg,
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                           color:
-                                                          const Color.fromRGBO(
+                                                          Color.fromRGBO(
                                                               255, 255, 255, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight:
                                                           FontWeight.w400,
-                                                          fontSize:
-                                                          localHeight * 0.015)),
+                                                          fontSize: 15)),
                                                   TextSpan(
                                                       text: ' ” ',
                                                       style: TextStyle(
@@ -1249,7 +1248,7 @@ class StudMemAdvisorState extends State<StudMemAdvisor> {
                               ),
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.elliptical(
-                                      400 / 1.0, localHeight * 0.25)),
+                                      webWidth / 1.0, localHeight * 0.25)),
                             ),
                             child: Row(
                               children: [

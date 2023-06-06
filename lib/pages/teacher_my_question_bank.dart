@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherMyQuestionBank extends StatefulWidget {
   const TeacherMyQuestionBank(
       {Key? key, this.assessment, })
@@ -48,10 +48,10 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
           child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -91,7 +91,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                             visible: _visible,
                             child: Container(
                               height: height * 0.06,
-                              width: 500 * 0.9,
+                              width: webWidth * 0.9,
                               decoration: const BoxDecoration(
                                 borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                 color: Color.fromRGBO(28, 78, 80, 1),
@@ -115,7 +115,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                           ),
                           Container(
                             padding: const EdgeInsets.only(
-                                left: 500 * 0.055, right: 500 * 0.055),
+                                left: webWidth * 0.055, right: webWidth * 0.055),
                             height: height * 0.65,
                             child: SingleChildScrollView(
                               scrollDirection: Axis.vertical,
@@ -150,7 +150,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                                 fontWeight: FontWeight.w400),
                                           ),
                                           const SizedBox(
-                                            width: 500 * 0.02,
+                                            width: webWidth * 0.02,
                                           ),
                                           const Icon(
                                             Icons.circle,
@@ -166,7 +166,7 @@ class TeacherMyQuestionBankState extends State<TeacherMyQuestionBank> {
                                   for (int i = 0; i < quesList.length; i++)
                                     QuestionPreview(
                                       height: height,
-                                      width: 500,
+                                      width: webWidth,
                                       question: quesList[i],
                                       index: i,
                                       assessment: widget.assessment,

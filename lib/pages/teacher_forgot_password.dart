@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/custom_incorrect_popup.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherForgotPassword extends StatefulWidget {
   const TeacherForgotPassword({Key? key, required this.email, required this.otp})
       : super(key: key);
@@ -31,10 +31,10 @@ class TeacherForgotPasswordState extends State<TeacherForgotPassword> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

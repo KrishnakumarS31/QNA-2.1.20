@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import '../Entity/Teacher/response_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import '../DataSource/http_url.dart';
 import '../Entity/user_details.dart';
 import '../Providers/LanguageChangeProvider.dart';
 
@@ -47,10 +47,10 @@ class ResetPasswordState extends State<ResetPassword> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -439,7 +439,7 @@ class ResetPasswordState extends State<ResetPassword> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                               const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: Size(500 * 0.77, height * 0.06),
+                              minimumSize: Size(webWidth * 0.77, height * 0.06),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(39),
                               ),

@@ -8,9 +8,8 @@ import '../Components/custom_radio_button.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/user_data_model.dart';
-
+import '../DataSource/http_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../Pages/welcome_page.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
@@ -97,10 +96,10 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -135,7 +134,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                       body: Column(children: [
                         Container(
                           height: height * 0.43,
-                          width: 500,
+                          width: webWidth,
                           decoration: BoxDecoration(
                             gradient: const LinearGradient(
                               begin: Alignment.topLeft,
@@ -154,7 +153,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                               Align(
                                 alignment: Alignment.center,
                                 child: Container(
-                                  width: 500 * 0.50,
+                                  width: webWidth * 0.50,
                                   height: height * 0.20,
                                   decoration: const BoxDecoration(
                                     image: DecorationImage(
@@ -192,7 +191,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                               label: '1',
                               text: AppLocalizations.of(context)!.guest,
                               height: height,
-                              width: 500,
+                              width: webWidth,
                               context: context,
                             ),
                             CustomRadioButton<String>(
@@ -202,7 +201,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                               label: '2',
                               text: AppLocalizations.of(context)!.member,
                               height: height,
-                              width: 500,
+                              width: webWidth,
                               context: context,
                             ),
                             SizedBox(
@@ -311,7 +310,7 @@ class StudentSelectionPageState extends State<StudentSelectionPage> {
                       icon: const Icon(
                         Icons.chevron_left,
                         size: 30,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                       onPressed: () {
                         // Navigator.popUntil(context, ModalRoute.withName('/'));

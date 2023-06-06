@@ -46,7 +46,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
               child: SizedBox(
                   width: webWidth,
@@ -101,9 +101,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                     Text(
                       AppLocalizations.of(context)!.welcome,
                       style: TextStyle(
-                        fontSize: constraints.maxWidth > 700
-                            ? height * 0.05
-                            : height * 0.035,
+                        fontSize: height * 0.05,
                         color: const Color.fromRGBO(28, 78, 80, 1),
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w400,
@@ -291,9 +289,7 @@ class TeacherSelectionPageState extends State<TeacherSelectionPage> {
                       Text(
                         AppLocalizations.of(context)!.welcome,
                         style: TextStyle(
-                          fontSize: constraints.maxWidth > 700
-                              ? height * 0.05
-                              : height * 0.035,
+                          fontSize: height * 0.035,
                           color: const Color.fromRGBO(28, 78, 80, 1),
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,

@@ -6,6 +6,7 @@ import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:universal_internet_checker/universal_internet_checker.dart';
 import "package:shared_preferences/shared_preferences.dart";
+import '../DataSource/http_url.dart';
 
 class WelcomePage extends StatefulWidget {
   static const String id = 'welcome_page';
@@ -30,23 +31,23 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   void initState() {
     super.initState();
-    getConnectivity();
+   // getConnectivity();
   }
-  getConnectivity() {
-    subscription = _internetChecker.onConnectionChange.listen((connected) async {
-      _message = connected == ConnectionStatus.online
-          ? 'Connected'
-          : 'Not Connected';
-      if (_message=='Not Connected') {
-        setState(() {
-          isAlertSet=true;
-        });
-        showDialogBox();
-      } else {
-          isAlertSet?Navigator.of(context).pop():print("");
-      }
-    });
-  }
+  // getConnectivity() {
+  //   subscription = _internetChecker.onConnectionChange.listen((connected) async {
+  //     _message = connected == ConnectionStatus.online
+  //         ? 'Connected'
+  //         : 'Not Connected';
+  //     if (_message=='Not Connected') {
+  //       setState(() {
+  //         isAlertSet=true;
+  //       });
+  //       showDialogBox();
+  //     } else {
+  //         isAlertSet?Navigator.of(context).pop():print("");
+  //     }
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -55,30 +56,30 @@ class _WelcomePageState extends State<WelcomePage> {
     super.dispose();
   }
 
-  showDialogBox() => showCupertinoDialog<String>(
-      context: context,
-      builder: (BuildContext context) =>  CupertinoAlertDialog(
-        title: Text(
-          AppLocalizations.of(context)!.no_connection,
-          //"NO CONNECTION",
-          style: const TextStyle(
-            color: Color.fromRGBO(82, 165, 160, 1),
-            fontSize: 25,
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        content: Text(
-          AppLocalizations.of(context)!.check_internet,
-          //"Please check your internet connectivity",
-          style: const TextStyle(
-            color: Color.fromRGBO(82, 165, 160, 1),
-            fontSize: 16,
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ));
+  // showDialogBox() => showCupertinoDialog<String>(
+  //     context: context,
+  //     builder: (BuildContext context) =>  CupertinoAlertDialog(
+  //       title: Text(
+  //         AppLocalizations.of(context)!.no_connection,
+  //         //"NO CONNECTION",
+  //         style: const TextStyle(
+  //           color: Color.fromRGBO(82, 165, 160, 1),
+  //           fontSize: 25,
+  //           fontFamily: "Inter",
+  //           fontWeight: FontWeight.w600,
+  //         ),
+  //       ),
+  //       content: Text(
+  //         AppLocalizations.of(context)!.check_internet,
+  //         //"Please check your internet connectivity",
+  //         style: const TextStyle(
+  //           color: Color.fromRGBO(82, 165, 160, 1),
+  //           fontSize: 16,
+  //           fontFamily: "Inter",
+  //           fontWeight: FontWeight.w600,
+  //         ),
+  //       ),
+  //     ));
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +88,10 @@ class _WelcomePageState extends State<WelcomePage> {
     // const iconAsset = "assets/images/bg.png";
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
               child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -113,12 +114,12 @@ class _WelcomePageState extends State<WelcomePage> {
                               children: [
                                 SizedBox(
                                     height: localHeight,
-                                    width: 500,
+                                    width: webWidth,
                                     child: Column(
                                       children: [
                                         Container(
                                           height: localHeight * 0.43,
-                                          width: 500,
+                                          width: webWidth,
                                           decoration: BoxDecoration(
                                             gradient: const LinearGradient(
                                               begin: Alignment.topLeft,
@@ -129,7 +130,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               ],
                                             ),
                                             borderRadius: BorderRadius.vertical(
-                                                bottom: Radius.elliptical(500, localHeight * 0.40)),
+                                                bottom: Radius.elliptical(webWidth, localHeight * 0.40)),
                                           ),
                                           child: Column(
                                             children: [
@@ -137,9 +138,9 @@ class _WelcomePageState extends State<WelcomePage> {
                                               Row(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  const SizedBox(width: 500 * 0.04),
+                                                  const SizedBox(width: webWidth * 0.04),
                                                   Container(
-                                                    width: 500 * 0.3,
+                                                    width: webWidth * 0.3,
                                                     height: MediaQuery.of(context).size.height * 0.04,
                                                     decoration: const BoxDecoration(
                                                       image: DecorationImage(
@@ -153,7 +154,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                               ),
                                               SizedBox(height: localHeight * 0.08),
                                               Container(
-                                                width: 500 * 0.53,
+                                                width: webWidth * 0.53,
                                                 height: localHeight * 0.135,
                                                 decoration: const BoxDecoration(
                                                   image: DecorationImage(
@@ -183,16 +184,16 @@ class _WelcomePageState extends State<WelcomePage> {
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(
-                                              left: 500 / 15,
-                                              right: 500 / 15),
+                                              left: webWidth / 15,
+                                              right: webWidth / 15),
                                           child: Column(children: [
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
                                             Container(
                                               padding: const EdgeInsets.only(
-                                                  left: 500 / 15,
-                                                  right: 500 / 15),
+                                                  left: webWidth / 15,
+                                                  right: webWidth / 15),
                                               child: Align(
                                                 alignment: Alignment.center,
                                                 child: ElevatedButton(
@@ -234,16 +235,16 @@ class _WelcomePageState extends State<WelcomePage> {
                                         ),
                                         Container(
                                           padding: const EdgeInsets.only(
-                                              left: 500 / 15,
-                                              right: 500 / 15),
+                                              left: webWidth / 15,
+                                              right: webWidth / 15),
                                           child: Column(children: [
                                             SizedBox(
                                               height: localHeight * 0.02,
                                             ),
                                             Container(
                                                 padding: const EdgeInsets.only(
-                                                    left: 500 / 15,
-                                                    right: 500 / 15),
+                                                    left: webWidth / 15,
+                                                    right: webWidth / 15),
                                                 child: Align(
                                                   alignment: Alignment.center,
                                                   child: ElevatedButton(
@@ -371,7 +372,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           ),
                                         ),
                                         SizedBox(
-                                          height: localHeight * 0.16,
+                                          height: localHeight * 0.06,
                                         ),
                                         Text(
                                             AppLocalizations.of(context)!

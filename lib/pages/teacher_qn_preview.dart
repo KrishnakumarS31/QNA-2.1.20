@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherPreparePreview extends StatefulWidget {
   TeacherPreparePreview(
       {super.key,
@@ -39,10 +39,10 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -51,7 +51,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                       body: Center(
                         child: SizedBox(
                           height: height * 0.81,
-                          width: 500 * 0.888,
+                          width: webWidth * 0.888,
                           child: Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15.0),
@@ -59,8 +59,8 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                               elevation: 12,
                               color: const Color.fromRGBO(255, 255, 255, 1),
                               margin: EdgeInsets.only(
-                                  left: 500 * 0.030,
-                                  right: 500 * 0.030,
+                                  left: webWidth * 0.030,
+                                  right: webWidth * 0.030,
                                   bottom: height * 0.015,
                                   top: height * 0.025),
                               //padding: const EdgeInsets.all(40),
@@ -70,7 +70,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   //ChooseWidget(question: question, selected: selected, height: height, width: width),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 500 * 0.03, top: height * 0.02),
+                                        left: webWidth * 0.03, top: height * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('${widget.finalQuestion.questionType}',
@@ -84,7 +84,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        left: 500 * 0.03, top: height * 0.02),
+                                        left: webWidth * 0.03, top: height * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text('${widget.finalQuestion.question}',
@@ -105,7 +105,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                       child: ChooseWidget(
                                         selected: selected,
                                         height: height,
-                                        width: 500,
+                                        width: webWidth,
                                         finalQuestion: widget.finalQuestion,
                                       ),
                                     ),
@@ -114,7 +114,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                     height: height * 0.03,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 500 * 0.03),
+                                    padding: const EdgeInsets.only(left: webWidth * 0.03),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -130,7 +130,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 500 * 0.03, right: 500 * 0.03),
+                                        left: webWidth * 0.03, right: webWidth * 0.03),
                                     child: TextFormField(
                                       controller: adviceController,
                                       enabled: false,
@@ -151,7 +151,7 @@ class TeacherPreparePreviewState extends State<TeacherPreparePreview> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 500 * 0.03, right: 500 * 0.03),
+                                        left: webWidth * 0.03, right: webWidth * 0.03),
                                     child: TextFormField(
                                       controller: urlController,
                                       enabled: false,

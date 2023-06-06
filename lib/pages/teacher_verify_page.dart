@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherVerifyOtpPage extends StatefulWidget {
   const TeacherVerifyOtpPage(
       {Key? key, required this.email,})
@@ -57,10 +57,10 @@ class TeacherVerifyOtpPageState extends State<TeacherVerifyOtpPage> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

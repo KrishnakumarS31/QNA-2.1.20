@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
-
+import '../DataSource/http_url.dart';
 class StudentGuestLogin extends StatefulWidget {
   const StudentGuestLogin({super.key,});
 
@@ -59,10 +59,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -93,7 +93,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                             children: [
                               Container(
                                 height: height * 0.3,
-                                width: 500,
+                                width: webWidth,
                                 decoration: BoxDecoration(
                                   gradient: const LinearGradient(
                                     begin: Alignment.topLeft,
@@ -105,7 +105,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       bottom:
-                                      Radius.elliptical(500, height * 0.30)),
+                                      Radius.elliptical(webWidth, height * 0.30)),
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,13 +114,13 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                     Center(
                                       child: SizedBox(
                                         height: height * 0.25,
-                                        width: 500 * 0.22,
+                                        width: webWidth * 0.22,
                                         child: Image.asset(
                                             "assets/images/question_mark_logo.png"),
                                       ),
                                     ),
                                     Container(
-                                      width: 500 * 0.03,
+                                      width: webWidth * 0.03,
                                     )
                                   ],
                                 ),
@@ -138,7 +138,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                               ),
                               SizedBox(height: height * 0.07),
                               SizedBox(
-                                width: 500 * 0.8,
+                                width: webWidth * 0.8,
                                 child: Form(
                                   key: formKey,
                                   child: Column(
@@ -336,7 +336,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                               },
                                             ),
                                           ),
-                                          const SizedBox(width: 500 * 0.05),
+                                          const SizedBox(width: webWidth * 0.05),
                                           Flexible(
                                             child: RichText(
                                                 text: TextSpan(children: [

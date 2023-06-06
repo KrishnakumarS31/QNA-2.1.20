@@ -11,6 +11,9 @@ import '../Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../DataSource/http_url.dart';
+
+
 class TeacherQuestionBank extends StatefulWidget {
   const TeacherQuestionBank({
     Key? key,
@@ -92,10 +95,10 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -204,7 +207,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                         AppLocalizations.of(context)!.only_my_qns,
                                         //'Only My Questions',
                                         textAlign: TextAlign.left,
-                                        style: const TextStyle(fontSize: 500 * 0.03),
+                                        style: const TextStyle(fontSize: webWidth * 0.03),
                                       )
                                     ],
                                   )
@@ -235,7 +238,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                   suffixIcon: Column(children: [
                                     Container(
                                         height: height * 0.073,
-                                        width: 500 * 0.13,
+                                        width: webWidth * 0.13,
                                         decoration: const BoxDecoration(
                                           borderRadius:
                                           BorderRadius.all(Radius.circular(8.0)),
@@ -335,7 +338,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 for (Question i in questionList)
                                   QuestionPreview(
                                     height: height,
-                                    width: 500,
+                                    width: webWidth,
                                     question: i,
                                   ),
                                 SizedBox(height: height * 0.02),
@@ -367,7 +370,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                 SizedBox(height: height * 0.02),
                                 Center(
                                   child: SizedBox(
-                                    width: 500 * 0.8,
+                                    width: webWidth * 0.8,
                                     child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor:
@@ -391,7 +394,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                             AppLocalizations.of(context)!.prepare_new_qn,
                                             //'Prepare New Questions',
                                             style: const TextStyle(
-                                                fontSize: 500 * 0.06,
+                                                fontSize: webWidth * 0.06,
                                                 fontFamily: "Inter",
                                                 color: Color.fromRGBO(
                                                     255, 255, 255, 1),
@@ -400,7 +403,7 @@ class TeacherQuestionBankState extends State<TeacherQuestionBank> {
                                           const Icon(
                                             Icons.chevron_right,
                                             color: Color.fromRGBO(255, 255, 255, 1),
-                                            size: 500 * 0.06,
+                                            size: webWidth * 0.06,
                                           )
                                         ],
                                       ),

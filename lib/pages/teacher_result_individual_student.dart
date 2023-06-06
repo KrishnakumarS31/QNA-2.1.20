@@ -792,11 +792,11 @@ class _QuesAndAnsState extends State<QuesAndAns> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return
           Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:
             Column(
           children: [

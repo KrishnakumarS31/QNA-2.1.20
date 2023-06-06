@@ -7,7 +7,7 @@ import '../Components/end_drawer_menu_student.dart';
 import '../Entity/question_paper_model.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
-
+import '../DataSource/http_url.dart';
 class StudentAssessment extends StatefulWidget {
   StudentAssessment(
       {Key? key,
@@ -51,10 +51,10 @@ class StudentAssessmentState extends State<StudentAssessment> {
     double localHeight = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -94,7 +94,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        500, localHeight * 0.35)),
+                                        webWidth, localHeight * 0.35)),
                               ),
                               child: Column(
                                 //crossAxisAlignment: CrossAxisAlignment.center,
@@ -105,7 +105,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                     child: Container(
                                       padding: const EdgeInsets.all(0.0),
                                       height: localHeight * 0.20,
-                                      width: 400 * 0.30,
+                                      width: webWidth * 0.30,
                                       child: Image.asset(
                                           "assets/images/question_mark_logo.png"),
                                     ),
@@ -115,7 +115,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                               ),
                             ),
                             Container(
-                              width: 500,
+                              width: webWidth,
                               margin: const EdgeInsets.all(15),
                               child: Column(children: [
                                 Align(
@@ -143,7 +143,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                           color: Color.fromRGBO(28, 78, 80, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 24)),
                                     )),
                                 SizedBox(
@@ -475,7 +475,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                       color: Color.fromRGBO(28, 78, 80, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
-                                      letterSpacing: -0.02,
+                                      
                                       fontSize: 24)),
                                 )),
                             SizedBox(

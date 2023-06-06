@@ -7,6 +7,7 @@ import '../Components/custom_incorrect_popup.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/user_details.dart';
 import '../Providers/LanguageChangeProvider.dart';
+import '../DataSource/http_url.dart';
 
 //AppLocalizations.of(context)!.agree_privacy_terms
 class ChangeEmailStudent extends StatefulWidget {
@@ -45,10 +46,10 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > webWidth) {
             return Center(
                 child: SizedBox(
-                width: 500,
+                width: webWidth,
                 child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -267,7 +268,7 @@ class ChangeEmailStudentState extends State<ChangeEmailStudent> {
                                   backgroundColor:
                                   const Color.fromRGBO(82, 165, 160, 1),
                                   minimumSize: Size(
-                                      400 * 0.77, height * 0.06),
+                                      webWidth * 0.77, height * 0.06),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(39),
                                   ),

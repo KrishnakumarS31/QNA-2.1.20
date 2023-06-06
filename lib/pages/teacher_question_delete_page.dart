@@ -10,6 +10,8 @@ import '../Providers/question_prepare_provider.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Providers/question_prepare_provider_final.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../DataSource/http_url.dart';
+
 class TeacherQuesDelete extends StatefulWidget {
   TeacherQuesDelete({
     Key? key,
@@ -329,10 +331,10 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > webWidth) {
             return Center(
               child: SizedBox(
-                  width: 500,
+                  width: webWidth,
                 child: WillPopScope(
                     onWillPop: () async => false,
                     child: Scaffold(
@@ -537,8 +539,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               //SizedBox(width: width * 0.10),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 500 * 0.02,
-                                                    left: 500 * 0.02),
+                                                    right: webWidth * 0.02,
+                                                    left: webWidth * 0.02),
                                                 child: Text("Subject and Topic",
                                                     style: TextStyle(
                                                         color: const Color.fromRGBO(
@@ -573,8 +575,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                     //SizedBox(width: width * 0.10),
                                                     Padding(
                                                       padding: const EdgeInsets.only(
-                                                          right: 500 * 0.02,
-                                                          left: 500 * 0.02),
+                                                          right: webWidth * 0.02,
+                                                          left: webWidth * 0.02),
                                                       child: Text("Subject and Topic",
                                                           style: TextStyle(
                                                               color: const Color.fromRGBO(
@@ -758,7 +760,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 Container(
                                   alignment: Alignment.centerLeft,
                                   margin: const EdgeInsets.only(
-                                      left: 500 * 0.05, right: 500 * 0.04),
+                                      left: webWidth * 0.05, right: webWidth * 0.04),
                                   child: Column(
                                     children: [
                                       Row(children: [
@@ -771,7 +773,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        const SizedBox(width: 500 * 0.03),
+                                        const SizedBox(width: webWidth * 0.03),
                                         const Expanded(child: Divider()),
                                       ]),
                                       SizedBox(height: height * 0.010),
@@ -823,7 +825,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                     : _groupValue == "Survey"
                                     ? Container(
                                   margin: const EdgeInsets.only(
-                                      left: 500 * 0.05, right: 500 * 0.04),
+                                      left: webWidth * 0.05, right: webWidth * 0.04),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -844,7 +846,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         ),
                                       ),
                                       const SizedBox(
-                                        width: 500 * 0.02,
+                                        width: webWidth * 0.02,
                                       ),
                                       Text(
                                         AppLocalizations.of(context)!.delete,
@@ -861,7 +863,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                 )
                                     : Container(
                                   margin: const EdgeInsets.only(
-                                      left: 500 * 0.05, right: 500 * 0.04),
+                                      left: webWidth * 0.05, right: webWidth * 0.04),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -882,7 +884,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 500 * 0.15,
+                                        width: webWidth * 0.15,
                                         child: Text(
                                           AppLocalizations.of(context)!.correct_answer,
                                           textAlign: TextAlign.center,
@@ -896,7 +898,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                         ),
                                       ),
                                       SizedBox(
-                                        width: 500 * 0.12,
+                                        width: webWidth * 0.12,
                                         child: Text(
                                           AppLocalizations.of(context)!.delete,
                                           textAlign: TextAlign.center,
@@ -960,7 +962,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                 ),
                                               ),
                                               const SizedBox(
-                                                width: 500 * 0.01,
+                                                width: webWidth * 0.01,
                                               ),
                                               IconButton(
                                                 onPressed: () {
@@ -972,7 +974,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                 ),
                                               ),
                                               const SizedBox(
-                                                width: 500 * 0.02,
+                                                width: webWidth * 0.02,
                                               )
 
                                             ],
@@ -988,8 +990,8 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                       for (int i = 0; i < chooses.length; i++)
                                         Padding(
                                           padding: EdgeInsets.only(bottom: height * 0.02,
-                                              left: 500 * 0.04,
-                                              right: 500 * 0.04),
+                                              left: webWidth * 0.04,
+                                              right: webWidth * 0.04),
                                           child: Row(
                                             children: [
                                               Expanded(
@@ -1023,7 +1025,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 500 * 0.15,
+                                                width: webWidth * 0.15,
                                                 child: IconButton(
                                                   onPressed: () {
                                                     _onRadioChange(i);
@@ -1040,7 +1042,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                                 ),
                                               ),
                                               SizedBox(
-                                                width: 500 * 0.12,
+                                                width: webWidth * 0.12,
                                                 child: IconButton(
                                                   onPressed: () {
                                                     removeItem(i);
@@ -1082,7 +1084,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                       Container(
                                         alignment: Alignment.centerLeft,
                                         margin: const EdgeInsets.only(
-                                            left: 500 * 0.05, right: 500 * 0.04),
+                                            left: webWidth * 0.05, right: webWidth * 0.04),
                                         child: Row(children: [
                                           Text(
                                             "Advisor",
@@ -1093,7 +1095,7 @@ class TeacherQuesDeleteState extends State<TeacherQuesDelete> {
                                               fontWeight: FontWeight.w700,
                                             ),
                                           ),
-                                          const SizedBox(width: 400 * 0.03),
+                                          const SizedBox(width: webWidth * 0.03),
                                           const Expanded(child: Divider()),
                                         ]),
                                       )

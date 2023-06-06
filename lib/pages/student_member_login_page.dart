@@ -8,7 +8,7 @@ import 'package:qna_test/Components/preference.dart';
 import 'package:qna_test/Services/qna_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../DataSource/http_url.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
@@ -92,10 +92,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
     double localHeight = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -133,7 +133,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        500, localHeight * 0.35)),
+                                        webWidth, localHeight * 0.35)),
                               ),
                               child: Column(
                                 children: [
@@ -142,7 +142,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     alignment: Alignment.topCenter,
                                     child: SizedBox(
                                       height: localHeight * 0.20,
-                                      width: 500 * 0.30,
+                                      width: webWidth * 0.30,
                                       child: Image.asset(
                                           "assets/images/question_mark_logo.png"),
                                     ),
@@ -164,7 +164,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             ),
                             SizedBox(height: localHeight * 0.06),
                             SizedBox(
-                              width: 500 * 0.8,
+                              width: webWidth * 0.8,
                               child: Form(
                                 key: formKey,
                                 child: Column(
@@ -292,7 +292,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 0.3),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: 500 * 0.016),
+                                                    fontSize: webWidth * 0.016),
                                                 hintText:
                                                 AppLocalizations.of(context)!
                                                     .your_password,
@@ -428,7 +428,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                 });
                                               },
                                             )),
-                                        const SizedBox(width: 500 * 0.05),
+                                        const SizedBox(width: webWidth * 0.05),
                                         Flexible(
                                           child: RichText(
                                               text: TextSpan(children: [
@@ -716,7 +716,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                       color: const Color.fromRGBO(141, 167, 167, 1),
                                                       size: localHeight * 0.034,
                                                     ))),
-                                            SizedBox(width: 500 * 0.005),
+                                            SizedBox(width: webWidth * 0.005),
                                             // IconButton(
                                             //   icon: const Icon(
                                             //     Icons.edit_calendar_sharp,
@@ -1024,7 +1024,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                   fontWeight: FontWeight.w400,
                                                   fontStyle: FontStyle.italic,
                                                   fontSize:
-                                                  localHeight * 0.014)),
+                                                  localHeight * 0.016)),
                                         )),
                                   ],
                                 ),

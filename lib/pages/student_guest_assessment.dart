@@ -42,10 +42,10 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -83,16 +83,16 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     height: height / 6,
                                     child: Row(
                                         children: [
-                                          const SizedBox(width: 500 * 0.1),
+                                          const SizedBox(width: webWidth * 0.1),
                                           CircleAvatar(
                                             backgroundColor:
                                             const Color.fromRGBO(0, 106, 100, 0),
-                                            radius: 500 * 0.05,
+                                            radius: webWidth * 0.05,
                                             child: Image.asset(
                                               "assets/images/ProfilePic_Avatar.png",
                                             ),
                                           ),
-                                          const SizedBox(width: 500 * 0.03),
+                                          const SizedBox(width: webWidth * 0.03),
                                           Text(
                                             widget.name,
                                             style: Theme.of(context)
@@ -102,7 +102,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                 color: Color.fromRGBO(255, 255, 255, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
-                                                letterSpacing: -0.02,
+                                                
                                                 fontSize: 16)),
                                           ),
                                         ]),
@@ -111,14 +111,14 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                   Column(
                                     children: [
                                       Container(
-                                          padding: const EdgeInsets.only(left: 500 * 0.09),
+                                          padding: const EdgeInsets.only(left: webWidth * 0.09),
                                           child: Text(
                                             AppLocalizations.of(context)!.student,
                                             style: const TextStyle(
                                                 color: Color.fromRGBO(221, 221, 221, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w500,
-                                                letterSpacing: -0.02,
+                                                
                                                 fontSize: 12),
                                           )),
                                     ],
@@ -139,7 +139,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: textColor,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16),
                                       ),
                                       trailing: const Icon(Icons.navigate_next,
@@ -165,7 +165,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: textColor,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16),
                                       ),
                                       trailing: const Icon(Icons.navigate_next,
@@ -190,7 +190,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: textColor,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16),
                                       ),
                                       trailing: const Icon(Icons.navigate_next,
@@ -214,7 +214,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: textColor,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16),
                                       ),
                                       trailing: const Icon(Icons.navigate_next,
@@ -243,7 +243,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: textColor,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16)),
                                       ),
                                       trailing: const Icon(Icons.navigate_next,
@@ -266,7 +266,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: textColor,
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16),
                                       ),
                                       trailing: const Icon(Icons.navigate_next,
@@ -292,7 +292,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           color: Color.fromRGBO(226, 68, 0, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     onTap: () async {
@@ -300,7 +300,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         context: context,
                                         builder: (context) => AlertDialog(
                                           insetPadding: const EdgeInsets.only(
-                                              left: 500 * 0.13, right: 500 * 0.13),
+                                              left: webWidth * 0.13, right: webWidth * 0.13),
                                           title: Row(children: [
                                             SizedBox(width: height * 0.030),
                                             Container(
@@ -309,7 +309,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                 color: Color.fromRGBO(82, 165, 160, 1),
                                               ),
                                               height: height * 0.1,
-                                              width: 500 * 0.1,
+                                              width: webWidth * 0.1,
                                               child: const Icon(
                                                 Icons.info_outline_rounded,
                                                 color: Color.fromRGBO(255, 255, 255, 1),
@@ -328,7 +328,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           content:
                                           const Text("Are you sure you want to logout ?"),
                                           actions: <Widget>[
-                                            const SizedBox(width: 500 * 0.020),
+                                            const SizedBox(width: webWidth * 0.020),
                                             ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
@@ -350,7 +350,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                 Navigator.of(context).pop();
                                               },
                                             ),
-                                            const SizedBox(width: 500 * 0.005),
+                                            const SizedBox(width: webWidth * 0.005),
                                             ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
                                                   backgroundColor:
@@ -384,7 +384,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                           color: Color.fromRGBO(180, 180, 180, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                   ),
@@ -410,7 +410,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                 ),
                                 borderRadius: BorderRadius.vertical(
                                     bottom: Radius.elliptical(
-                                        500, height * 0.35)),
+                                        webWidth, height * 0.35)),
                               ),
                               child: Column(
                                 //crossAxisAlignment: CrossAxisAlignment.center,
@@ -421,7 +421,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                     child: Container(
                                       padding: const EdgeInsets.all(0.0),
                                       height: height * 0.20,
-                                      width: 500 * 0.30,
+                                      width: webWidth * 0.30,
                                       child: Image.asset(
                                           "assets/images/question_mark_logo.png"),
                                     ),
@@ -431,7 +431,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                               ),
                             ),
                             Container(
-                              width: 500,
+                              width: webWidth,
                               margin: const EdgeInsets.all(15),
                               child: Column(children: [
                                 Align(
@@ -759,7 +759,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: Color.fromRGBO(255, 255, 255, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 16)),
                                       ),
                                     ]),
@@ -775,7 +775,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: Color.fromRGBO(221, 221, 221, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-                                            letterSpacing: -0.02,
+                                            
                                             fontSize: 12),
                                       )),
                                 ],
@@ -796,7 +796,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -822,7 +822,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -847,7 +847,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -871,7 +871,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -900,7 +900,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16)),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -923,7 +923,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -949,7 +949,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       color: Color.fromRGBO(226, 68, 0, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: -0.02,
+                                      
                                       fontSize: 16),
                                 ),
                                 onTap: () async {
@@ -1041,7 +1041,7 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                       color: Color.fromRGBO(180, 180, 180, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-                                      letterSpacing: -0.02,
+                                      
                                       fontSize: 16),
                                 ),
                               ),

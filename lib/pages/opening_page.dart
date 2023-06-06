@@ -41,17 +41,17 @@ class SplashScreenState extends State<SplashScreen> {
     });
   }
 
-  getConnectivity() => subscription = Connectivity()
-      .onConnectivityChanged
-      .listen((ConnectivityResult result) async {
-    isDeviceConnected = await InternetConnectionChecker().hasConnection;
-    if (!isDeviceConnected && isAlertSet == false) {
-      showDialogBox();
-      setState(() {
-        isAlertSet = true;
-      });
-    } else {}
-  });
+  // getConnectivity() => subscription = Connectivity()
+  //     .onConnectivityChanged
+  //     .listen((ConnectivityResult result) async {
+  //   isDeviceConnected = await InternetConnectionChecker().hasConnection;
+  //   if (!isDeviceConnected && isAlertSet == false) {
+  //     showDialogBox();
+  //     setState(() {
+  //       isAlertSet = true;
+  //     });
+  //   } else {}
+  // });
 
   @override
   void dispose() {
@@ -95,52 +95,55 @@ class SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  showDialogBox() => showCupertinoDialog<String>(
-      context: context,
-      builder: (BuildContext context) => CupertinoAlertDialog(
-        title: const Text(
-          "NO CONNECTION",
-          style: TextStyle(
-            color: Color.fromRGBO(82, 165, 160, 1),
-            fontSize: 25,
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        content: const Text(
-          "Please check your internet connectivity",
-          style: TextStyle(
-            color: Color.fromRGBO(82, 165, 160, 1),
-            fontSize: 16,
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context, 'Cancel');
-              setState(() {
-                isAlertSet = false;
-              });
-              isDeviceConnected =
-              await InternetConnectionChecker().hasConnection;
-              if (!isDeviceConnected) {
-                showDialogBox();
-                setState(() {
-                  isAlertSet = true;
-                });
-              }
-            },
-            child: const Text(
-              "OK",
-              style: TextStyle(
-                color: Color.fromRGBO(82, 165, 160, 1),
-                fontSize: 20,
-                fontFamily: "Inter",
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          )
-        ],
-      ));}
+  // showDialogBox() =>
+  //     showCupertinoDialog<String>(
+  //     context: context,
+  //     builder: (BuildContext context) => CupertinoAlertDialog(
+  //       title: const Text(
+  //         "NO CONNECTION",
+  //         style: TextStyle(
+  //           color: Color.fromRGBO(82, 165, 160, 1),
+  //           fontSize: 25,
+  //           fontFamily: "Inter",
+  //           fontWeight: FontWeight.w600,
+  //         ),
+  //       ),
+  //       content: const Text(
+  //         "Please check your internet connectivity",
+  //         style: TextStyle(
+  //           color: Color.fromRGBO(82, 165, 160, 1),
+  //           fontSize: 16,
+  //           fontFamily: "Inter",
+  //           fontWeight: FontWeight.w600,
+  //         ),
+  //       ),
+  //       actions: <Widget>[
+  //         TextButton(
+  //           onPressed: () async {
+  //             Navigator.pop(context, 'Cancel');
+  //             setState(() {
+  //               isAlertSet = false;
+  //             });
+  //             isDeviceConnected =
+  //             await InternetConnectionChecker().hasConnection;
+  //             if (!isDeviceConnected) {
+  //               showDialogBox();
+  //               setState(() {
+  //                 isAlertSet = true;
+  //               });
+  //             }
+  //           },
+  //           child: const Text(
+  //             "OK",
+  //             style: TextStyle(
+  //               color: Color.fromRGBO(82, 165, 160, 1),
+  //               fontSize: 20,
+  //               fontFamily: "Inter",
+  //               fontWeight: FontWeight.w600,
+  //             ),
+  //           ),
+  //         )
+  //       ],
+  //     ));
+
+}

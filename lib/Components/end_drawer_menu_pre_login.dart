@@ -46,7 +46,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           color: textColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
+                          
                           fontSize: 16),
                     ),
                     trailing: const Icon(Icons.navigate_next,
@@ -72,7 +72,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           color: textColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
+                          
                           fontSize: 16),
                     ),
                     trailing: const Icon(Icons.navigate_next,
@@ -97,7 +97,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           color: textColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
+                          
                           fontSize: 16),
                     ),
                     trailing: const Icon(Icons.navigate_next,
@@ -121,7 +121,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           color: textColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
+                          
                           fontSize: 16),
                     ),
                     trailing: const Icon(Icons.navigate_next,
@@ -150,7 +150,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                               color: textColor,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
-                              letterSpacing: -0.02,
+                              
                               fontSize: 16)),
                     ),
                     trailing: const Icon(Icons.navigate_next,
@@ -173,7 +173,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           color: textColor,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
-                          letterSpacing: -0.02,
+                          
                           fontSize: 16),
                     ),
                     trailing: const Icon(Icons.navigate_next,
@@ -196,7 +196,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                         color: Color.fromRGBO(180, 180, 180, 1),
                         fontFamily: 'Inter',
                         fontWeight: FontWeight.w500,
-                        letterSpacing: -0.02,
+                        
                         fontSize: 16),
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import '../DataSource/http_url.dart';
 class HelpPageHamburger extends StatefulWidget {
   const HelpPageHamburger({
     Key? key,
@@ -24,10 +24,10 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > webWidth) {
             return Center(
                 child: SizedBox(
-                width: 500,
+                width: webWidth,
                 child:  Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
@@ -85,11 +85,6 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         ),
                         SizedBox(height: height * 0.03),
                         Center(
-                          // padding: EdgeInsets.only(left:
-                          // constraints.maxWidth > 700
-                          // ? height * 0.9
-                          // : height * 0.03
-                          // ),
                           child: Text(
                             AppLocalizations.of(context)!.can_help,
                             //"How can we help you ?",
@@ -102,10 +97,6 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         ),
                         SizedBox(height: height * 0.02),
                         Center(
-                          // padding: EdgeInsets.only(left:
-                          // constraints.maxWidth > 700
-                          //     ? height * 0.7
-                          // : height * 0.03),
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
@@ -113,13 +104,8 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                                 child: RichText(
                                     text: TextSpan(children: [
                                       TextSpan(
-                                          text:
-                                          constraints.maxWidth > 700
-                                              ? AppLocalizations.of(context)!
-                                              .find_answers_web
-                                              : AppLocalizations.of(context)!
-                                              .find_answers,
-                                          // "If you are unable to find answers to your\n queries related to the QNATest App,please\n feel free to\t\t",
+                                          text: AppLocalizations.of(context)!
+                                              .find_answers_web,
                                           style: TextStyle(
                                               color:
                                               const Color.fromRGBO(
@@ -205,11 +191,6 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         ),
                         SizedBox(height: height * 0.03),
                         Center(
-                          // padding: EdgeInsets.only(left:
-                          // constraints.maxWidth > 700
-                          // ? height * 0.9
-                          // : height * 0.03
-                          // ),
                           child: Text(
                             AppLocalizations.of(context)!.can_help,
                             //"How can we help you ?",
@@ -222,10 +203,6 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         ),
                         SizedBox(height: height * 0.02),
                         Center(
-                          // padding: EdgeInsets.only(left:
-                          // constraints.maxWidth > 700
-                          //     ? height * 0.7
-                          // : height * 0.03),
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
@@ -233,11 +210,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                                 child: RichText(
                                     text: TextSpan(children: [
                                       TextSpan(
-                                          text:
-                                          constraints.maxWidth > 700
-                                              ? AppLocalizations.of(context)!
-                                              .find_answers_web
-                                              : AppLocalizations.of(context)!
+                                          text: AppLocalizations.of(context)!
                                               .find_answers,
                                           // "If you are unable to find answers to your\n queries related to the QNATest App,please\n feel free to\t\t",
                                           style: TextStyle(

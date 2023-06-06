@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../Components/end_drawer_menu_teacher.dart';
 import '../Entity/question_paper_model.dart';
 import '../Services/qna_service.dart';
+import '../DataSource/http_url.dart';
 
 class StudentLooqSelectedAssessment extends StatefulWidget {
   const StudentLooqSelectedAssessment({Key? key,})
@@ -36,10 +37,10 @@ class StudentLooqSelectedAssessmentState
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
           onWillPop: () async => false,
           child: Scaffold(

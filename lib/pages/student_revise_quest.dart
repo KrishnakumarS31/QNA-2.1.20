@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 import '../Entity/question_paper_model.dart';
 import 'package:intl/intl.dart';
 import '../Services/qna_service.dart';
-
+import '../DataSource/http_url.dart';
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
@@ -86,10 +86,10 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     double localWidth = MediaQuery.of(context).size.width;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
               child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
               onWillPop: () async => false, child: Scaffold(
               resizeToAvoidBottomInset: true,
@@ -101,7 +101,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         children: [
                           Container(
                             height: localHeight * 0.25,
-                            width: 400 * 1,
+                            width: webWidth * 1,
                             decoration: BoxDecoration(
                               gradient: const LinearGradient(
                                 begin: Alignment.topLeft,
@@ -113,7 +113,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                               ),
                               borderRadius: BorderRadius.vertical(
                                   bottom: Radius.elliptical(
-                                      400 * 2.0,
+                                      webWidth * 2.0,
                                       localHeight * 0.6)
                               ),
                             ),
@@ -227,7 +227,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                       child: GestureDetector(
                                         onTap: () {},
                                         child: Container(
-                                          width: 400,
+                                          width: webWidth,
                                             margin: const EdgeInsets.all(5),
                                             padding: const EdgeInsets.all(5),
                                             child:

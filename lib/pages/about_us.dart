@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../DataSource/http_url.dart';
 
 class AboutUs extends StatefulWidget {
   const AboutUs({
@@ -33,10 +34,10 @@ class AboutUsState extends State<AboutUs> {
     ];
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child:  Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,

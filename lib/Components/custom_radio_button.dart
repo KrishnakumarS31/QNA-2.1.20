@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../DataSource/http_url.dart';
+
 class CustomRadioButton<T> extends StatelessWidget {
   final T value;
   final T? groupValue;
@@ -25,8 +27,8 @@ class CustomRadioButton<T> extends StatelessWidget {
   Widget _buildLabel() {
     final bool isSelected = value == groupValue;
     return Container(
-      width: width > 500
-          ? 400 * 0.05
+      width: width > webWidth
+          ? webWidth * 0.05
           : width * 0.09,
       height: height * 0.04,
       decoration: ShapeDecoration(
@@ -38,7 +40,7 @@ class CustomRadioButton<T> extends StatelessWidget {
       ),
       child: Center(
           child: isSelected
-              ? const Icon(Icons.done, size: 25,
+              ? const Icon(Icons.done, size: 20,
               color: Colors.white)
               : null),
     );

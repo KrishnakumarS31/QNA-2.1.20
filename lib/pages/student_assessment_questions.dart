@@ -5,7 +5,7 @@ import 'package:qna_test/Entity/question_paper_model.dart';
 import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../DataSource/http_url.dart';
 class StudQuestion extends StatefulWidget {
   StudQuestion(
       {Key? key,
@@ -51,10 +51,10 @@ class StudQuestionState extends State<StudQuestion> {
   void initState() {
     setTime();
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if (MediaQuery.of(context).copyWith().size.width > 500){
+      if (MediaQuery.of(context).copyWith().size.width > webWidth){
         showModalBottomSheet(
           constraints: const BoxConstraints(
-            maxWidth: 500
+            maxWidth: webWidth
           ),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
@@ -64,7 +64,7 @@ class StudQuestionState extends State<StudQuestion> {
             context: context,
             builder: (builder) {
               return Container(
-                width: 500,
+                width: webWidth,
                 decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.white,
@@ -76,7 +76,7 @@ class StudQuestionState extends State<StudQuestion> {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left:
-                      500 * 0.10),
+                      webWidth * 0.10),
                   child: Column(
                     children: [
                       SizedBox(
@@ -85,8 +85,7 @@ class StudQuestionState extends State<StudQuestion> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            right:
-                            500 *
+                            right: webWidth *
                                 0.055),
                         child: Align(
                           alignment: Alignment.topRight,
@@ -95,7 +94,7 @@ class StudQuestionState extends State<StudQuestion> {
                               Icons.close,
                               color: Color.fromRGBO(82, 165, 160, 1),
                               size:
-                              500 *
+                              webWidth *
                                   0.055,
                             ),
                             onPressed: () {
@@ -117,7 +116,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     .copyWith()
                                     .size
                                     .height *
-                                    0.005,
+                                    0.003,
                                 child: Icon(
                                   Icons.question_mark,
                                   color: const Color.fromRGBO(255, 153, 0, 1),
@@ -198,8 +197,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     0.016)),
                           ),
                           const SizedBox(
-                            width:
-                            500 *
+                            width: webWidth *
                                 0.052,
                           ),
                           //Image.asset("assets/images/testIcon.png"),
@@ -292,16 +290,8 @@ class StudQuestionState extends State<StudQuestion> {
                               color: Color.fromRGBO(255, 153, 0, 1),
                             ),
                             Positioned(
-                                left: MediaQuery.of(context)
-                                        .copyWith()
-                                        .size
-                                        .width *
-                                    0.008,
-                                top: MediaQuery.of(context)
-                                        .copyWith()
-                                        .size
-                                        .height *
-                                    0.005,
+                                left: webWidth * 0.015,
+                                top: MediaQuery.of(context).copyWith().size.height * 0.012,
                                 child: Icon(
                                   Icons.question_mark,
                                   color: const Color.fromRGBO(255, 153, 0, 1),
@@ -528,10 +518,10 @@ class StudQuestionState extends State<StudQuestion> {
     // });
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -542,26 +532,24 @@ class StudQuestionState extends State<StudQuestion> {
                         centerTitle: true,
                         title: Column(
                           children:[
-                            const SizedBox(height: 20),
                             Text(
                               widget.assessmentId,
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontSize: height * 0.023,
+                              style: const TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: 25,
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             Text(
                               values.data!.subject!,
-                              style: TextStyle(
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontSize: height * 0.023,
+                              style: const TextStyle(
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                fontSize: 20,
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(height: height * 0.010)
                           ],),
                         flexibleSpace: Banner(
                           color: values.data!.assessmentType == 'test'
@@ -635,7 +623,7 @@ class StudQuestionState extends State<StudQuestion> {
                               ),
                               Container(
                                 height: height * 0.6675,
-                                width: 500 * 0.855,
+                                width: webWidth * 0.855,
                                 decoration: const BoxDecoration(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -659,7 +647,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         children: [
                                           SizedBox(
                                             height: height * 0.0625,
-                                            width: 500 * 0.2277,
+                                            width: webWidth * 0.2277,
                                             child: Center(
                                               child: Text(
                                                 "${context.watch<QuestionNumProvider>().questionNum}",
@@ -683,7 +671,7 @@ class StudQuestionState extends State<StudQuestion> {
                                               color: Color.fromRGBO(28, 78, 80, 1),
                                             ),
                                             height: height * 0.0625,
-                                            width: 500 * 0.2277,
+                                            width: webWidth * 0.2277,
                                             child: Row(
                                               mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -745,7 +733,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             bottom: height * 0.025),
                                         child: SizedBox(
                                           height: height * 0.16,
-                                          width: 500 * 0.744,
+                                          width: webWidth * 0.744,
                                           child: SingleChildScrollView(
                                             scrollDirection: Axis.vertical,
                                             child: Text(
@@ -853,14 +841,14 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: 500),
+                                              width: webWidth),
                                         ),
                                       ),
                                       Align(
                                         alignment: Alignment.bottomRight,
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.only(right: 500 * 0.05),
+                                          const EdgeInsets.only(right: webWidth * 0.05),
                                           child: Column(
                                             mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -929,11 +917,11 @@ class StudQuestionState extends State<StudQuestion> {
                                                     '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
                                                         ? NotSureEnabled(
                                                       height: height,
-                                                      width: 500,
+                                                      width: webWidth,
                                                     )
                                                         : NotSureDisabled(
                                                       height: height,
-                                                      width: 500,
+                                                      width: webWidth,
                                                     ),
                                                   )),
                                               Text(
@@ -1061,7 +1049,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           },
                                           child: Container(
                                             height: height * 0.0475,
-                                            width: 500 * 0.3,
+                                            width: webWidth * 0.3,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                               const BorderRadius.all(
@@ -1262,8 +1250,8 @@ class StudQuestionState extends State<StudQuestion> {
                     automaticallyImplyLeading: false,
                     centerTitle: true,
                     title: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children:[
-                        const SizedBox(height: 20),
                         Text(
                           widget.assessmentId,
                           style: TextStyle(
@@ -1282,7 +1270,6 @@ class StudQuestionState extends State<StudQuestion> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        SizedBox(height: height * 0.010)
                       ],),
                     flexibleSpace: Banner(
                       color: values.data!.assessmentType == 'test'
@@ -1356,7 +1343,7 @@ class StudQuestionState extends State<StudQuestion> {
                           ),
                           Container(
                             height: height * 0.6675,
-                            width: 500 * 0.855,
+                            width: webWidth * 0.855,
                             decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15)),
@@ -1380,7 +1367,7 @@ class StudQuestionState extends State<StudQuestion> {
                                     children: [
                                       SizedBox(
                                         height: height * 0.0625,
-                                        width: 500 * 0.2277,
+                                        width: webWidth * 0.2277,
                                         child: Center(
                                           child: Text(
                                             "${context.watch<QuestionNumProvider>().questionNum}",
@@ -1404,7 +1391,7 @@ class StudQuestionState extends State<StudQuestion> {
                                           color: Color.fromRGBO(28, 78, 80, 1),
                                         ),
                                         height: height * 0.0625,
-                                        width: 500 * 0.2277,
+                                        width: webWidth * 0.2277,
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -1466,7 +1453,7 @@ class StudQuestionState extends State<StudQuestion> {
                                         bottom: height * 0.025),
                                     child: SizedBox(
                                       height: height * 0.16,
-                                      width: 500 * 0.744,
+                                      width: webWidth * 0.744,
                                       child: SingleChildScrollView(
                                         scrollDirection: Axis.vertical,
                                         child: Text(
@@ -1574,14 +1561,14 @@ class StudQuestionState extends State<StudQuestion> {
                                               question: values,
                                               selected: selected,
                                               height: height,
-                                              width: 500),
+                                              width: webWidth),
                                     ),
                                   ),
                                   Align(
                                     alignment: Alignment.bottomRight,
                                     child: Padding(
                                       padding:
-                                          const EdgeInsets.only(right: 500 * 0.05),
+                                          const EdgeInsets.only(right: webWidth * 0.05),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
@@ -1650,11 +1637,11 @@ class StudQuestionState extends State<StudQuestion> {
                                                     '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}'][2]
                                                 ? NotSureEnabled(
                                                     height: height,
-                                                    width: 500,
+                                                    width: webWidth,
                                                   )
                                                 : NotSureDisabled(
                                                     height: height,
-                                                    width: 500,
+                                                    width: webWidth,
                                                   ),
                                           )),
                                           Text(
@@ -1782,7 +1769,7 @@ class StudQuestionState extends State<StudQuestion> {
                                             },
                                             child: Container(
                                               height: height * 0.0475,
-                                              width: 500 * 0.3,
+                                              width: webWidth * 0.3,
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     const BorderRadius.all(
@@ -2115,7 +2102,7 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                                       .choiceText))
                                   ? const Color.fromRGBO(255, 255, 255, 1)
                                   : const Color.fromRGBO(102, 102, 102, 1),
-                              fontSize: widget.width >= 700
+                              fontSize: widget.width >= webWidth
                                   ? widget.height * 0.0262
                                   : widget.height * 0.0162,
                               fontFamily: "Inter",

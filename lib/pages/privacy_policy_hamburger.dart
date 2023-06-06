@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../DataSource/http_url.dart';
 class PrivacyPolicyHamburger extends StatefulWidget {
   const PrivacyPolicyHamburger({
     Key? key,
@@ -27,10 +27,10 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > webWidth) {
             return Center(
                 child: SizedBox(
-                width: 500,
+                width: webWidth,
                 child: Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qna_test/Entity/Teacher/question_entity.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../Components/end_drawer_menu_teacher.dart';
+import '../DataSource/http_url.dart';
 
 class TeacherLooqClonePreview extends StatefulWidget {
   const TeacherLooqClonePreview({
@@ -36,10 +37,10 @@ class TeacherLooqClonePreviewState extends State<TeacherLooqClonePreview> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

@@ -8,7 +8,7 @@ import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherRegistrationOtpPage extends StatefulWidget {
   const TeacherRegistrationOtpPage({Key? key, required this.student})
       : super(key: key);
@@ -60,10 +60,10 @@ class TeacherRegistrationOtpPageState
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
         {
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > webWidth) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: webWidth,
                 child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

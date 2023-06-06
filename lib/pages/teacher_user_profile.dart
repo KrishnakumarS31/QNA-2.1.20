@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../EntityModel/user_data_model.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../DataSource/http_url.dart';
+
+
 class TeacherUserProfile extends StatefulWidget {
   TeacherUserProfile({Key? key, required this.userDataModel}) : super(key: key);
   UserDataModel userDataModel = UserDataModel(code: 0, message: '');
@@ -28,10 +31,10 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -39,8 +42,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                 backgroundColor: Colors.white,
                 body: Column(
                   children: [
-                    constraints.maxWidth > 700
-                        ?
                     Container(
                       height: height * 0.3,
                       decoration: const BoxDecoration(
@@ -134,101 +135,6 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                           ),
                           SizedBox(
                             height: height * 0.002,
-                          ),
-                        ],
-                      ),
-                    )
-
-                        : Container(
-                      height: height * 0.25,
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              end: Alignment.topCenter,
-                              begin: Alignment.bottomCenter,
-                              colors: [
-                                Color.fromRGBO(82, 165, 160, 1),
-                                Color.fromRGBO(0, 106, 100, 1),
-                              ])),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: height * 0.05,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: width * 0.3,
-                                child: IconButton(
-                                  alignment: Alignment.centerLeft,
-                                  icon: const Icon(
-                                    Icons.chevron_left,
-                                    size: 40.0,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ),
-                              Container(
-                                width: width * 0.4,
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: height * 0.01),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.user_profile,
-                                    //'USER PROFILE',
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          255, 255, 255, 1),
-                                      fontSize: height * 0.025,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.005,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(width: width * 0.025),
-                              Icon(
-                                Icons.account_circle_outlined,
-                                size: width * 0.15,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
-                              SizedBox(width: width * 0.04),
-                              Text(
-                                '${widget.userDataModel.data?.firstName}',
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontSize: height * 0.03,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.002,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(width: width * 0.2),
-                              Text(
-                                AppLocalizations.of(context)!.teacher,
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(255, 255, 255, 1),
-                                  fontSize: height * 0.025,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
                           ),
                         ],
                       ),
@@ -471,107 +377,7 @@ class TeacherUserProfileState extends State<TeacherUserProfile> {
                 backgroundColor: Colors.white,
                 body: Column(
                   children: [
-                    constraints.maxWidth > 700
-                        ?
                     Container(
-                      height: height * 0.3,
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              end: Alignment.topCenter,
-                              begin: Alignment.bottomCenter,
-                              colors: [
-                                Color.fromRGBO(82, 165, 160, 1),
-                                Color.fromRGBO(0, 106, 100, 1),
-                              ])),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: height * 0.05,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: width * 0.3,
-                                child: IconButton(
-                                  alignment: Alignment.centerLeft,
-                                  icon: const Icon(
-                                    Icons.chevron_left,
-                                    size: 40.0,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ),
-                              Container(
-                                width: width * 0.4,
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: height * 0.01),
-                                  child: Text(
-                                    AppLocalizations.of(context)!.user_profile,
-                                    //'USER PROFILE',
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          255, 255, 255, 1),
-                                      fontSize: height * 0.025,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.005,
-                          ),
-                          Row(
-                            children: [
-                              SizedBox(width: width * 0.025),
-                              Icon(
-                                Icons.account_circle_outlined,
-                                size: width * 0.06,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                              ),
-                              SizedBox(width: width * 0.010),
-                              Column(
-                                children: [
-                                  SizedBox(width: width * 0.02),
-                                  Text(
-                                    '${widget.userDataModel.data?.firstName}',
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          255, 255, 255, 1),
-                                      fontSize: height * 0.03,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(height: height * 0.02),
-                                  Text(
-                                    AppLocalizations.of(context)!.teacher,
-                                    style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          255, 255, 255, 1),
-                                      fontSize: height * 0.03,
-                                      fontFamily: "Inter",
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: height * 0.002,
-                          ),
-                        ],
-                      ),
-                    )
-
-                        : Container(
                       height: height * 0.25,
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(

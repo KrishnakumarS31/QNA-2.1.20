@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-
+import '../DataSource/http_url.dart';
 class CookiePolicy extends StatefulWidget {
   const CookiePolicy({
     Key? key,
@@ -25,10 +25,10 @@ class CookiePolicyState extends State<CookiePolicy> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child:   Scaffold(
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
@@ -188,11 +188,7 @@ class CookiePolicyState extends State<CookiePolicy> {
                     SizedBox(height: height * 0.03),
                     Align(
                       alignment: Alignment.topCenter,
-                      child: Text(
-                        constraints.maxWidth > 500
-                            ? AppLocalizations.of(context)!
-                            .cookie_policy_description_web
-                            : AppLocalizations.of(context)!
+                      child: Text(AppLocalizations.of(context)!
                             .cookie_policy_description,
                         //"QNATest apps will not request cookies to\nbe set on your device. We do not use\n cookies, when you visit QNATEST web\n site or deploy the app.  There are no\n settings related to cookie preferences.",
                         style: TextStyle(

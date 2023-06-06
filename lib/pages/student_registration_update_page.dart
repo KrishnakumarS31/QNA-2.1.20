@@ -9,7 +9,7 @@ import '../Entity/custom_http_response.dart';
 import '../EntityModel/login_entity.dart';
 import '../EntityModel/student_registration_model.dart';
 import '../Services/qna_service.dart';
-
+import '../DataSource/http_url.dart';
 class StudentRegistrationUpdatePage extends StatefulWidget {
   const StudentRegistrationUpdatePage({Key? key, required this.userData, required this.isEdit})
       : super(key: key);
@@ -357,10 +357,10 @@ class StudentRegistrationUpdatePageState
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -404,7 +404,7 @@ class StudentRegistrationUpdatePageState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 500 * 0.8,
+                        width: webWidth * 0.8,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -752,7 +752,7 @@ class StudentRegistrationUpdatePageState
                                       ),
                                     ),
                                     Positioned(
-                                      left: 500 * 0.038,
+                                      left: webWidth * 0.038,
                                       child: Container(
                                         color: Colors.white,
                                         child: RichText(
@@ -860,7 +860,7 @@ class StudentRegistrationUpdatePageState
                                       ),
                                     ),
                                     Positioned(
-                                      left: 500 * 0.038,
+                                      left: webWidth * 0.038,
                                       child: Container(
                                         color: Colors.white,
                                         child: RichText(
@@ -974,7 +974,7 @@ class StudentRegistrationUpdatePageState
                                       ),
                                     ),
                                     Positioned(
-                                      left: 500 * 0.038,
+                                      left: webWidth * 0.038,
                                       child: Container(
                                         color: Colors.white,
                                         child: RichText(

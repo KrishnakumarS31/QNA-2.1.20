@@ -4,6 +4,7 @@ import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../DataSource/http_url.dart';
 
 class TeacherQuestionPreviewDelete extends StatefulWidget {
   const TeacherQuestionPreviewDelete(
@@ -45,10 +46,10 @@ class TeacherQuestionPreviewDeleteState
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -57,7 +58,7 @@ class TeacherQuestionPreviewDeleteState
                 body: Center(
                   child: SizedBox(
                     height: height * 0.85,
-                    width: 500 * 0.888,
+                    width: webWidth * 0.888,
                     child: Card(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15.0),
@@ -65,8 +66,8 @@ class TeacherQuestionPreviewDeleteState
                         elevation: 12,
                         color: const Color.fromRGBO(255, 255, 255, 1),
                         margin: EdgeInsets.only(
-                            left: 500 * 0.030,
-                            right: 500 * 0.030,
+                            left: webWidth * 0.030,
+                            right: webWidth * 0.030,
                             bottom: height * 0.015,
                             top: height * 0.025),
                         child: Column(
@@ -74,7 +75,7 @@ class TeacherQuestionPreviewDeleteState
                           children: [
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 500 * 0.03, top: height * 0.02),
+                                  left: webWidth * 0.03, top: height * 0.02),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment
                                     .spaceBetween,
@@ -99,7 +100,7 @@ class TeacherQuestionPreviewDeleteState
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                  left: 500 * 0.03, top: height * 0.02),
+                                  left: webWidth * 0.03, top: height * 0.02),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text('${widget.question.question}',
@@ -125,14 +126,14 @@ class TeacherQuestionPreviewDeleteState
                                     question: widget.question,
                                     selected: selected,
                                     height: height,
-                                    width: 500),
+                                    width: webWidth),
                               ),
                             ),
                             SizedBox(
                               height: height * 0.03,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 500 * 0.03),
+                              padding: const EdgeInsets.only(left: webWidth * 0.03),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -147,8 +148,8 @@ class TeacherQuestionPreviewDeleteState
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  left: 500 * 0.03, right: 500 * 0.03),
+                              padding: const EdgeInsets.only(
+                                  left: webWidth * 0.03, right: webWidth * 0.03),
                               child: TextFormField(
                                 controller: adviceController,
                                 enabled: false,
@@ -169,8 +170,8 @@ class TeacherQuestionPreviewDeleteState
                               height: height * 0.03,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(
-                                  left: 500 * 0.03, right: 500 * 0.03),
+                              padding: const EdgeInsets.only(
+                                  left: webWidth * 0.03, right: webWidth * 0.03),
                               child: TextFormField(
                                 controller: urlController,
                                 enabled: false,

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:qna_test/Pages/teacher_qn_preview.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Components/custom_radio_option.dart';
+import '../DataSource/http_url.dart';
 import '../Entity/Teacher/choice_entity.dart';
 import '../Entity/Teacher/question_entity.dart';
 import '../Components/end_drawer_menu_teacher.dart';
@@ -227,10 +228,10 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-       if (constraints.maxWidth > 500) {
+       if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-                width: 500,
+                width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -389,7 +390,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                       ?Container(
                                       color: const Color.fromRGBO(82, 165, 160, 1),
                                       child: Padding(
-                                        padding: const EdgeInsets.only(right: 500 * 0.02,left: 500 * 0.02),
+                                        padding: const EdgeInsets.only(right: webWidth * 0.02,left: webWidth * 0.02),
                                         child: Row(
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
@@ -422,7 +423,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     Container(
                                         color: const Color.fromRGBO(82, 165, 160, 1),
                                         child: Padding(
-                                          padding: const EdgeInsets.only(right: 500 * 0.02,left: 500 * 0.02),
+                                          padding: const EdgeInsets.only(right: webWidth * 0.02,left: webWidth * 0.02),
                                           child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
@@ -466,7 +467,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                   fontSize: height * 0.018),
                                               decoration: InputDecoration(
                                                 label: SizedBox(
-                                                  width: 500 * 0.22,
+                                                  width: webWidth * 0.22,
                                                   child: Row(
                                                     children: [
                                                       Text(
@@ -614,7 +615,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                                   fontSize: height * 0.018),
                                               decoration: InputDecoration(
                                                 label: SizedBox(
-                                                  width: 500 * 0.33,
+                                                  width: webWidth * 0.33,
                                                   child: Row(
                                                     children: [
                                                       Text(
@@ -685,7 +686,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                               Container(
                                 alignment: Alignment.centerLeft,
                                 margin: const EdgeInsets.only(
-                                    left: 500 * 0.04, right: 500 * 0.04),
+                                    left: webWidth * 0.04, right: webWidth * 0.04),
                                 child: Column(
                                   children: [
                                     Row(children: [
@@ -699,7 +700,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           fontWeight: FontWeight.w700,
                                         ),
                                       ),
-                                      const SizedBox(width: 500 * 0.03),
+                                      const SizedBox(width: webWidth * 0.03),
                                       const Expanded(child: Divider()),
                                     ]),
                                     SizedBox(height: height * 0.010),
@@ -757,7 +758,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           ),
                                         ),
                                         const SizedBox(
-                                          width: 500 * 0.02,
+                                          width: webWidth * 0.02,
                                         ),
                                         Text(
                                           AppLocalizations.of(context)!.delete,
@@ -791,7 +792,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 500 * 0.13,
+                                          width: webWidth * 0.13,
                                           child: Text(
                                             textAlign: TextAlign.center,
                                             AppLocalizations.of(context)!.correct_answer,
@@ -805,7 +806,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                           ),
                                         ),
                                         SizedBox(
-                                          width: 500 * 0.11,
+                                          width: webWidth * 0.11,
                                           child: Text(
                                             AppLocalizations.of(context)!.delete,
                                             textAlign: TextAlign.center,
@@ -870,7 +871,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 500 * 0.01,
+                                              width: webWidth * 0.01,
                                             ),
                                             IconButton(
                                               onPressed: () {
@@ -882,7 +883,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               ),
                                             ),
                                             const SizedBox(
-                                              width: 500 * 0.04,
+                                              width: webWidth * 0.04,
                                             ),
                                           ],
                                         ),
@@ -897,7 +898,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     for (int i = 0; i < chooses.length; i++)
                                       Padding(
                                         padding: EdgeInsets.only(bottom: height * 0.02,
-                                            left: 500 * 0.04, right: 400 * 0.04),
+                                            left: webWidth * 0.04, right: webWidth * 0.04),
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.end,
                                           children: [
@@ -932,8 +933,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               ),
                                             ),
                                             SizedBox(
-
-                                              width: 400 * 0.13,
+                                              width: webWidth * 0.13,
                                               child: IconButton(
                                                 onPressed: () {
                                                   _onRadioChange(i);
@@ -949,7 +949,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                               ),
                                             ),
                                             SizedBox(
-                                              width: 400 * 0.11,
+                                              width: webWidth * 0.11,
                                               child: IconButton(
                                                 onPressed: () {
                                                   removeItem(i);
@@ -993,7 +993,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                     Container(
                                       alignment: Alignment.centerLeft,
                                       margin: const EdgeInsets.only(
-                                          left: 400 * 0.05, right: 400 * 0.04),
+                                          left: webWidth * 0.05, right: webWidth * 0.04),
                                       child: Row(children: [
                                         Text(
                                           AppLocalizations.of(context)!.advisor,
@@ -1005,7 +1005,7 @@ class TeacherPrepareQnBankState extends State<TeacherPrepareQnBank> {
                                             fontWeight: FontWeight.w700,
                                           ),
                                         ),
-                                        const SizedBox(width: 500 * 0.03),
+                                        const SizedBox(width: webWidth * 0.03),
                                         const Expanded(child: Divider()),
                                       ]),
                                     )

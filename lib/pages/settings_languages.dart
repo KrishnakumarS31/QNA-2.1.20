@@ -5,7 +5,7 @@ import '../DataSource/app_user_repo.dart';
 import '../Entity/app_user.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import '../DataSource/http_url.dart';
 class SettingsLanguages extends StatefulWidget {
   const SettingsLanguages({Key? key,})
       : super(key: key);
@@ -93,10 +93,10 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-    if(constraints.maxWidth > 500){
+    if(constraints.maxWidth > webWidth){
       return Center(
         child: SizedBox(
-          width: 500,
+          width: webWidth,
           child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -138,7 +138,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                   ),
                   body: Padding(
                     padding: EdgeInsets.only(
-                        right: 500 * 0.08, left: 500 * 0.08, top: height * 0.035),
+                        right: webWidth * 0.08, left: webWidth * 0.08, top: height * 0.035),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -240,7 +240,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                                         color: Color.fromRGBO(
                                                             0, 0, 0, 0.15)),
                                                   )),
-                                              width: 500 * 0.833,
+                                              width: webWidth * 0.833,
                                               height: height * 0.0775,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,

@@ -11,6 +11,7 @@ import '../EntityModel/student_registration_model.dart';
 import '../Services/qna_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
+import '../DataSource/http_url.dart';
 
 class TeacherRegistrationPage extends StatefulWidget {
   const TeacherRegistrationPage({super.key});
@@ -319,10 +320,10 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > 500) {
+          if (constraints.maxWidth > webWidth) {
             return Center(
                 child: SizedBox(
-                width: 400,
+                width: webWidth,
                 child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -742,10 +743,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: localWidth * 0.009,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -871,10 +869,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: localWidth * 0.009,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -1008,10 +1003,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: localWidth * 0.009,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -2094,10 +2086,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: localWidth * 0.025,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -2223,10 +2212,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: localWidth * 0.025,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(
@@ -2360,10 +2346,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                           ),
                                         ),
                                         Positioned(
-                                          left:
-                                          constraints.maxWidth > 700
-                                              ? localWidth * 0.009
-                                              : localWidth * 0.025,
+                                          left: localWidth * 0.025,
                                           child: Container(
                                             color: Colors.white,
                                             child: RichText(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../DataSource/http_url.dart';
 
 class StudentLooqLanding extends StatefulWidget {
   const StudentLooqLanding({Key? key,})
@@ -25,10 +26,10 @@ class StudentLooqLandingState extends State<StudentLooqLanding> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

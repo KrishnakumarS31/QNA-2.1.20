@@ -9,6 +9,8 @@ import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../DataSource/http_url.dart';
+
 class TeacherSubmittedQuestionPreview extends StatefulWidget {
   const TeacherSubmittedQuestionPreview({
     Key? key,
@@ -45,10 +47,10 @@ class TeacherSubmittedQuestionPreviewState extends State<TeacherSubmittedQuestio
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

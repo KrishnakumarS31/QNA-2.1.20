@@ -32,7 +32,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
   bool agree = false;
   bool? assessment = true;
   CreateAssessmentModel assessmentVal =
-      CreateAssessmentModel(questions: [], removeQuestions: []);
+  CreateAssessmentModel(questions: [], removeQuestions: []);
   TextEditingController subjectController = TextEditingController();
   TextEditingController classController = TextEditingController();
   TextEditingController topicController = TextEditingController();
@@ -50,13 +50,13 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
     setState(() {
       userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
       assessmentVal =
-        Provider.of<CreateAssessmentProvider>(context, listen: false)
-            .getAssessment;
-    subjectController.text = assessmentVal.subject!;
-    classController.text = assessmentVal.createAssessmentModelClass!;
-    topicController.text = assessmentVal.topic!;
-    subTopicController.text = assessmentVal.subTopic!;
-    newQuestions= Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+          Provider.of<CreateAssessmentProvider>(context, listen: false)
+              .getAssessment;
+      subjectController.text = assessmentVal.subject!;
+      classController.text = assessmentVal.createAssessmentModelClass!;
+      topicController.text = assessmentVal.topic!;
+      subTopicController.text = assessmentVal.subTopic!;
+      newQuestions= Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
     });
   }
 
@@ -65,7 +65,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     TextEditingController createAssessmentSearchController =
-        TextEditingController();
+    TextEditingController();
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           // if(constraints.maxWidth > 900) {
@@ -1956,7 +1956,8 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                 Center(
                                   child: SizedBox(
                                     width: webWidth * 0.888,
-                                    child: ElevatedButton(
+                                    child:
+                                    ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                         side: const BorderSide(
                                           color: Color.fromRGBO(82, 165, 160, 1),
@@ -1976,14 +1977,16 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                                             arguments: true
                                         );
                                       },
-                                      child: Text(
-                                        AppLocalizations.of(context)!.create_new_qn,
-                                        // 'Create New Question',
-                                        style: TextStyle(
-                                            fontSize: height * 0.025,
-                                            fontFamily: "Inter",
-                                            color: const Color.fromRGBO(82, 165, 160, 1),
-                                            fontWeight: FontWeight.w600),
+                                      child: FittedBox(
+                                        child:Text(
+                                          AppLocalizations.of(context)!.create_new_qn,
+                                          // 'Create New Question',
+                                          style: TextStyle(
+                                              fontSize: height * 0.025,
+                                              fontFamily: "Inter",
+                                              color: const Color.fromRGBO(82, 165, 160, 1),
+                                              fontWeight: FontWeight.w600),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -3128,7 +3131,7 @@ class TeacherCreateAssessmentState extends State<TeacherCreateAssessment> {
                   ),
                 ));
           }
-   });
+        });
   }
 }
 

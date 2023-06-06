@@ -9,7 +9,7 @@ import '../Entity/Teacher/response_entity.dart';
 import '../Entity/user_details.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherLooqQuestionBank extends StatefulWidget {
   TeacherLooqQuestionBank({
     Key? key,
@@ -134,10 +134,10 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-    if(constraints.maxWidth > 500){
+    if(constraints.maxWidth > webWidth){
       return Center(
         child: SizedBox(
-          width: 500,
+          width: webWidth,
           child: WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -219,7 +219,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                               suffixIcon: Column(children: [
                                 Container(
                                     height: height * 0.073,
-                                    width: 500 * 0.13,
+                                    width: webWidth * 0.13,
                                     decoration: const BoxDecoration(
                                       borderRadius:
                                       BorderRadius.all(Radius.circular(8.0)),
@@ -287,7 +287,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                     ),
                                   ),
                                   const SizedBox(
-                                    width: 500 * 0.01,
+                                    width: webWidth * 0.01,
                                   ),
                                   const Icon(
                                     Icons.circle_rounded,
@@ -314,7 +314,7 @@ class TeacherLooqQuestionBankState extends State<TeacherLooqQuestionBank> {
                                         },
                                         child: QuestionPreview(
                                           height: height,
-                                          width: 500,
+                                          width: webWidth,
                                           question: i,
                                         ))),
                             ],

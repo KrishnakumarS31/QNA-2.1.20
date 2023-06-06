@@ -11,7 +11,7 @@ import '../Services/qna_service.dart';
 import '../EntityModel/create_question_model.dart' as create_question_model;
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:qna_test/Components/today_date.dart';
-
+import '../DataSource/http_url.dart';
 class TeacherAddMyQuestionBank extends StatefulWidget {
   TeacherAddMyQuestionBank({
     Key? key,
@@ -160,10 +160,10 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
           child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
@@ -227,8 +227,8 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                           Padding(
                             padding: EdgeInsets.only(
                                 top: height * 0.0375,
-                                left: 500 * 0.055,
-                                right: 500 * 0.055),
+                                left: webWidth * 0.055,
+                                right: webWidth * 0.055),
                             child: Container(
                               height: height * 0.1412,
                               decoration: BoxDecoration(
@@ -243,7 +243,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.only(
-                                        left: 500 * 0.02, right: 500 * 0.02),
+                                        left: webWidth * 0.02, right: webWidth * 0.02),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -271,11 +271,11 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                   ),
                                   const Padding(
                                     padding: EdgeInsets.only(
-                                        left: 500 * 0.02, right: 500 * 0.02),
+                                        left: webWidth * 0.02, right: webWidth * 0.02),
                                     child: Divider(),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 500 * 0.02),
+                                    padding: const EdgeInsets.only(left: webWidth * 0.02),
                                     child: Row(
                                       children: [
                                         Text(
@@ -289,7 +289,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                               fontWeight: FontWeight.w700),
                                         ),
                                         const SizedBox(
-                                          width: 500 * 0.01,
+                                          width: webWidth * 0.01,
                                         ),
                                         Text(
                                           '|',
@@ -301,7 +301,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                               fontWeight: FontWeight.w700),
                                         ),
                                         const SizedBox(
-                                          width: 500 * 0.01,
+                                          width: webWidth * 0.01,
                                         ),
                                         Text(
                                           finalQuesList.isEmpty ? '' : finalQuesList[0]
@@ -317,7 +317,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 500 * 0.02),
+                                    padding: const EdgeInsets.only(left: webWidth * 0.02),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Text(
@@ -344,7 +344,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                             children: [
                               Container(
                                 padding: const EdgeInsets.only(
-                                    left: 500 * 0.055, right: 500 * 0.055),
+                                    left: webWidth * 0.055, right: webWidth * 0.055),
                                 height: height * 0.55,
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.vertical,
@@ -359,7 +359,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                                       for (int i = 0; i < finalQuesList.length; i++)
                                         QuestionPreview(
                                           height: height,
-                                          width: 500,
+                                          width: webWidth,
                                           question: finalQuesList[i],
                                           quesNum: i,
                                         ),
@@ -369,7 +369,7 @@ class TeacherAddMyQuestionBankState extends State<TeacherAddMyQuestionBank> {
                               ),
                               Positioned(
                                   top: height * 0.47,
-                                  left: 500 * 0.8,
+                                  left: webWidth * 0.8,
                                   child: MouseRegion(
                                       cursor: SystemMouseCursors.click,
                                       child: GestureDetector(

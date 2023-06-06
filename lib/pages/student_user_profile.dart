@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../EntityModel/user_data_model.dart';
-
+import '../DataSource/http_url.dart';
 class StudentUserProfile extends StatefulWidget {
   StudentUserProfile({Key? key, required this.userDataModel}) : super(key: key);
   UserDataModel userDataModel = UserDataModel(code: 0, message: '');
@@ -37,10 +37,10 @@ class StudentUserProfileState extends State<StudentUserProfile> {
         .height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -48,7 +48,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                 backgroundColor: Colors.white,
                 body: Column(
                   children: [
-                    constraints.maxWidth > 500
+                    constraints.maxWidth > webWidth
                         ?
                     Container(
                       height: height * 0.3,
@@ -68,7 +68,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           Row(
                             children: [
                               SizedBox(
-                                width: 500 * 0.3,
+                                width: webWidth * 0.3,
                                 child: IconButton(
                                   alignment: Alignment.centerLeft,
                                   icon: const Icon(
@@ -82,7 +82,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                                 ),
                               ),
                               Container(
-                                width: 500 * 0.4,
+                                width: webWidth * 0.4,
                                 alignment: Alignment.center,
                                 child: Padding(
                                   padding: EdgeInsets.only(top: height * 0.01),
@@ -105,16 +105,16 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                           ),
                           Row(
                             children: [
-                              const SizedBox(width: 500 * 0.025),
+                              const SizedBox(width: webWidth * 0.025),
                               const Icon(
                                 Icons.account_circle_outlined,
-                                size: 500 * 0.06,
+                                size: webWidth * 0.06,
                                 color: Color.fromRGBO(255, 255, 255, 1),
                               ),
-                              const SizedBox(width: 500 * 0.010),
+                              const SizedBox(width: webWidth * 0.010),
                               Column(
                                 children: [
-                                  const SizedBox(width: 500 * 0.02),
+                                  const SizedBox(width: webWidth * 0.02),
                                   Text(
                                     '${widget.userDataModel.data?.firstName}',
                                     style: TextStyle(
@@ -469,7 +469,7 @@ class StudentUserProfileState extends State<StudentUserProfile> {
                 backgroundColor: Colors.white,
                 body: Column(
                   children: [
-                    constraints.maxWidth > 500
+                    constraints.maxWidth > webWidth
                         ?
                     Container(
                       height: height * 0.3,

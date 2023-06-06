@@ -8,7 +8,7 @@ import '../Entity/Teacher/response_entity.dart';
 import '../Entity/user_details.dart';
 import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
-
+import '../DataSource/http_url.dart';
 
 class TeacherLooqPreview extends StatefulWidget {
   const TeacherLooqPreview({
@@ -51,10 +51,10 @@ class TeacherLooqPreviewState extends State<TeacherLooqPreview> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 400,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

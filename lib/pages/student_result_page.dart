@@ -72,10 +72,10 @@ class StudentResultPageState extends State<StudentResultPage> {
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false,
                   child: Scaffold(
@@ -83,7 +83,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                       child: Column(
                         children: [
                           Container(
-                            width: 500,
+                            width: webWidth,
                             decoration: const BoxDecoration(
                                 gradient: LinearGradient(
                                   begin: Alignment.topLeft,
@@ -104,7 +104,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                     CircleAvatar(
                                       backgroundColor:
                                       const Color.fromRGBO(0, 106, 100, 0),
-                                      radius: MediaQuery.of(context).size.width * 0.15,
+                                      radius: webWidth * 0.15,
                                       child: Image.asset(
                                         "assets/images/ProfilePic_Avatar.png",
                                       ),
@@ -119,7 +119,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: Color.fromRGBO(255, 255, 255, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16)),
                                     ),
                                   ]),
@@ -128,14 +128,14 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 Column(
                                   children: [
                                     Container(
-                                        padding: const EdgeInsets.only(left: 500 * 0.09),
+                                        padding: const EdgeInsets.only(left: webWidth * 0.09),
                                         child: Text(
                                           AppLocalizations.of(context)!.student,
                                           style: const TextStyle(
                                               color: Color.fromRGBO(221, 221, 221, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w500,
-                                              letterSpacing: -0.02,
+                                              
                                               fontSize: 12),
                                         )),
                                   ],
@@ -156,7 +156,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -182,7 +182,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -207,7 +207,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -231,7 +231,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -260,7 +260,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16)),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -283,7 +283,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -309,7 +309,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         color: Color.fromRGBO(226, 68, 0, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   onTap: () async {
@@ -317,7 +317,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       context: context,
                                       builder: (context) => AlertDialog(
                                         insetPadding: const EdgeInsets.only(
-                                            left: 500 * 0.13, right: 500 * 0.13),
+                                            left: webWidth * 0.13, right: webWidth * 0.13),
                                         title: Row(children: [
                                           SizedBox(width: localHeight * 0.030),
                                           Container(
@@ -326,7 +326,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               color: Color.fromRGBO(82, 165, 160, 1),
                                             ),
                                             height: localHeight * 0.1,
-                                            width: 500 * 0.1,
+                                            width: webWidth * 0.1,
                                             child: const Icon(
                                               Icons.info_outline_rounded,
                                               color: Color.fromRGBO(255, 255, 255, 1),
@@ -345,7 +345,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         content:
                                         const Text("Are you sure you want to logout ?"),
                                         actions: <Widget>[
-                                          const SizedBox(width: 500 * 0.020),
+                                          const SizedBox(width: webWidth * 0.020),
                                           ElevatedButton(
                                             style: ElevatedButton.styleFrom(
                                               backgroundColor:
@@ -367,7 +367,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               Navigator.of(context).pop();
                                             },
                                           ),
-                                          const SizedBox(width: 500 * 0.005),
+                                          const SizedBox(width: webWidth * 0.005),
                                           ElevatedButton(
                                               style: ElevatedButton.styleFrom(
                                                 backgroundColor:
@@ -404,7 +404,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         color: Color.fromRGBO(180, 180, 180, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                 ),
@@ -450,7 +450,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   ),
                                   borderRadius: BorderRadius.vertical(
                                       bottom: Radius.elliptical(
-                                          500, localHeight * 0.35)),
+                                          webWidth, localHeight * 0.35)),
                                 ),
                                 child: Column(
                                   children: [
@@ -460,7 +460,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       child: Container(
                                           padding: const EdgeInsets.all(0.0),
                                           height: localHeight * 0.20,
-                                          width: 500 * 0.30,
+                                          width: webWidth * 0.30,
                                           child: Column(
                                             children: [
                                               Text(
@@ -574,8 +574,8 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           builder: (context) =>
                                               AlertDialog(
                                                 insetPadding: const EdgeInsets.only(
-                                                    left: 500 * 0.13,
-                                                    right: 500 * 0.13),
+                                                    left: webWidth * 0.13,
+                                                    right: webWidth * 0.13),
                                                 title: Row(children: [
                                                   SizedBox(width: localHeight *
                                                       0.04),
@@ -586,7 +586,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           82, 165, 160, 1),
                                                     ),
                                                     height: localHeight * 0.1,
-                                                    width: 500 * 0.1,
+                                                    width: webWidth * 0.1,
                                                     child: const Icon(
                                                       Icons
                                                           .info_outline_rounded,
@@ -614,7 +614,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                 content: const Text(
                                                     "Are you sure you want to exit ?"),
                                                 actions: <Widget>[
-                                                  const SizedBox(width: 500 *
+                                                  const SizedBox(width: webWidth *
                                                       0.020),
                                                   ElevatedButton(
                                                     style: ElevatedButton
@@ -649,7 +649,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                           .pop();
                                                     },
                                                   ),
-                                                  const SizedBox(width: 500 *
+                                                  const SizedBox(width: webWidth *
                                                       0.005),
                                                   ElevatedButton(
                                                       style: ElevatedButton
@@ -737,7 +737,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                           right: localHeight * 0.010,
                           child: SizedBox(
                             height: localHeight * 0.60,
-                            width: 500 * 1.5,
+                            width: webWidth * 1.5,
                             child: Card(
                               elevation: 12,
                               child: Column(children: [
@@ -777,7 +777,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       children: [
                                         SizedBox(
                                           height: localHeight * 0.07,
-                                          width: 500 * 0.25,
+                                          width: webWidth * 0.25,
                                           child: Center(
                                             child: Text(
                                                     AppLocalizations.of(context)!
@@ -792,7 +792,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         ),
                                         SizedBox(
                                             height: localHeight * 0.07,
-                                            width: 500 * 0.25,
+                                            width: webWidth * 0.25,
                                           child:Center(
                                             child: Text(widget.date,
                                                 style: TextStyle(
@@ -809,7 +809,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       children: [
                                         SizedBox(
                                           height: localHeight * 0.07,
-                                          width: 500 * 0.25,
+                                          width: webWidth * 0.25,
                                           child: Center(
                                             child: Text(
                                                 AppLocalizations.of(context)!
@@ -824,7 +824,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         ),
                                         SizedBox(
                                             height: localHeight * 0.07,
-                                            width: 500 * 0.25,
+                                            width: webWidth * 0.25,
                                           child:Center(
                                             child: Text(widget.time,
                                                 style: TextStyle(
@@ -841,7 +841,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       children: [
                                         SizedBox(
                                           height: localHeight * 0.07,
-                                          width: 500 * 0.25,
+                                          width: webWidth * 0.25,
                                           child: Center(
                                             child: Text(
                                                 AppLocalizations.of(context)!
@@ -856,7 +856,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         ),
                                         SizedBox(
                                             height: localHeight * 0.07,
-                                            width: 500 * 0.25,
+                                            width: webWidth * 0.25,
                                           child:Center(
                                             child: Text(widget.endTime.substring(0, 7),
                                                 style: TextStyle(
@@ -953,7 +953,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                       ),
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.elliptical(
-                                              500 / 1.0,
+                                              webWidth / 1.0,
                                               localHeight * 0.3)),
                                     ),
                                     child: Row(
@@ -1026,7 +1026,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: Color.fromRGBO(255, 255, 255, 1),
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w600,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16)),
                                     ),
                                   ]),
@@ -1042,7 +1042,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                               color: Color.fromRGBO(221, 221, 221, 1),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w500,
-                                              letterSpacing: -0.02,
+                                              
                                               fontSize: 12),
                                         )),
                                   ],
@@ -1063,7 +1063,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -1089,7 +1089,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -1114,7 +1114,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -1138,7 +1138,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -1167,7 +1167,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16)),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -1190,7 +1190,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           color: textColor,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
-                                          letterSpacing: -0.02,
+                                          
                                           fontSize: 16),
                                     ),
                                     trailing: const Icon(Icons.navigate_next,
@@ -1216,7 +1216,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         color: Color.fromRGBO(226, 68, 0, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                   onTap: () async {
@@ -1311,7 +1311,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         color: Color.fromRGBO(180, 180, 180, 1),
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-                                        letterSpacing: -0.02,
+                                        
                                         fontSize: 16),
                                   ),
                                 ),

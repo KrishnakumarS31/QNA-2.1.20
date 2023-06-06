@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:qna_test/pages/student_looq_landing_page.dart';
-
+import '../DataSource/http_url.dart';
 class StudentSearchLibrary extends StatefulWidget {
   const StudentSearchLibrary({
     Key? key,
@@ -26,10 +26,10 @@ class StudentSearchLibraryState extends State<StudentSearchLibrary> {
     double width = MediaQuery.of(context).size.width;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child:  WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(

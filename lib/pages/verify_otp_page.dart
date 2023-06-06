@@ -5,6 +5,7 @@ import '../Components/custom_incorrect_popup.dart';
 import '../EntityModel/static_response.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import '../DataSource/http_url.dart';
 
 class VerifyOtpPage extends StatefulWidget {
   const VerifyOtpPage({
@@ -61,10 +62,10 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > 500) {
+      if (constraints.maxWidth > webWidth) {
         return Center(
             child: SizedBox(
-            width: 500,
+            width: webWidth,
             child: WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -115,7 +116,7 @@ class VerifyOtpPageState extends State<VerifyOtpPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 500 * 0.8,
+                            width: webWidth * 0.8,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [

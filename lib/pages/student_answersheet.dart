@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../Entity/question_paper_model.dart';
 import '../Providers/question_num_provider.dart';
-
+import '../DataSource/http_url.dart';
 class StudentMemAnswerSheet extends StatefulWidget {
   const StudentMemAnswerSheet(
       {Key? key, required this.questions, required this.assessmentId})
@@ -63,10 +63,10 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        if (constraints.maxWidth > 500) {
+        if (constraints.maxWidth > webWidth) {
           return Center(
             child: SizedBox(
-              width: 500,
+              width: webWidth,
               child: WillPopScope(
                   onWillPop: () async => false, child: Scaffold(
                   appBar: AppBar(
@@ -123,8 +123,8 @@ class StudentMemAnswerSheetState extends State<StudentMemAnswerSheet> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 400 * 0.35,
-                                    top: 400 * 0.056),
+                                    left: webWidth * 0.35,
+                                    top: webWidth * 0.056),
                                 child: Text(
                                   AppLocalizations.of(context)!.answer_sheet,
                                   style: TextStyle(
