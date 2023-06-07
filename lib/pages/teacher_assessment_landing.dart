@@ -11,6 +11,7 @@ import 'package:qna_test/Entity/user_details.dart';
 import 'package:qna_test/EntityModel/CreateAssessmentModel.dart';
 import 'package:qna_test/Providers/LanguageChangeProvider.dart';
 import 'package:qna_test/Providers/create_assessment_provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qna_test/Providers/edit_assessment_provider.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
@@ -55,7 +56,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   void initState() {
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     Future.delayed(const Duration(seconds: 0)).then((_) {
-      if (MediaQuery.of(context).copyWith().size.width > 500) {
+      if (MediaQuery.of(context).copyWith().size.width > 960) {
+        print("INSIDE IFF SJHD");
         showModalBottomSheet(
             constraints: const BoxConstraints(
                 maxWidth: 500.0
@@ -83,7 +85,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     .height * 0.245,
                 child: Padding(
                   padding: EdgeInsets.only(
-                      left: 500.0 * 0.10),
+                      left: 500.0 * 0.25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -139,7 +141,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         ),
                       ),
                       SizedBox(
-                     width: 500.0 * 0.052,
+                        width: 500.0 * 0.052,
                       ),
                       SizedBox(
                         height:
@@ -548,6 +550,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
               );
             });
       }
+
     });
     getData('');
     super.initState();
@@ -566,12 +569,12 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         PageTransition(
           type: PageTransitionType.rightToLeft,
           child: CustomDialog(
-            title: AppLocalizations.of(context)!.alert_popup,
-            //'Alert',
-            content: AppLocalizations.of(context)!.no_more_assessment,
-            //'No more assessments found.',
-            button: AppLocalizations.of(context)!.alert_popup
-           // "Retry",
+              title: AppLocalizations.of(context)!.alert_popup,
+              //'Alert',
+              content: AppLocalizations.of(context)!.no_more_assessment,
+              //'No more assessments found.',
+              button: AppLocalizations.of(context)!.alert_popup
+            // "Retry",
           ),
         ),
       );
@@ -601,22 +604,18 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    print(MediaQuery.of(context).size);
+    print("DDD");
+    print(width);
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        // Center(
-        //   child: Container(
-        //       width: kIsWeb ? 400.0 : double.infinity,
-        //       child: ListView.builder(...)
-        //   ),
-        // );
-        if (constraints.maxWidth > 500) {
-          print("INSIDE WEB");
-          print(constraints.maxWidth);
-          return
-            Center (child:
-            WillPopScope(onWillPop: () async => false ,
-            child:SizedBox(width: 500.0 ,
-            child: Scaffold(
+
+        if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+
+          print("INSIDE TABLET");
+          return WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
                 resizeToAvoidBottomInset: true,
                 backgroundColor: Colors.white,
                 endDrawer: const EndDrawerMenuTeacher(),
@@ -624,7 +623,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                   leading: IconButton(
                     icon: const Icon(
                       Icons.chevron_left,
-                      size: 30,
+                      size: 40.0,
                       color: Colors.white,
                     ),
                     onPressed: () {
@@ -669,8 +668,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 AppLocalizations.of(context)!.search,
@@ -690,8 +688,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     activeColor:
                                     const Color.fromRGBO(82, 165, 160, 1),
                                     fillColor:
-                                    MaterialStateProperty.resolveWith<
-                                        Color>(
+                                    MaterialStateProperty.resolveWith<Color>(
                                             (states) {
                                           if (states.contains(
                                               MaterialState.selected)) {
@@ -727,8 +724,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                         .only_my_assessments,
                                     //"Only My Assessments",
                                     style: TextStyle(
-                                      color: const Color.fromRGBO(
-                                          0, 0, 0, 1),
+                                      color: const Color.fromRGBO(0, 0, 0, 1),
                                       fontSize: height * 0.015,
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w400,
@@ -739,8 +735,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             ],
                           ),
                           Text(
-                            AppLocalizations.of(context)!
-                                .lib_of_assessments,
+                            AppLocalizations.of(context)!.lib_of_assessments,
                             //"Library of Assessments",
                             style: TextStyle(
                               color: const Color.fromRGBO(153, 153, 153, 1),
@@ -771,10 +766,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     width: width * 0.13,
                                     decoration: const BoxDecoration(
                                       borderRadius:
-                                      BorderRadius.all(
-                                          Radius.circular(8.0)),
-                                      color: Color.fromRGBO(
-                                          82, 165, 160, 1),
+                                      BorderRadius.all(Radius.circular(8.0)),
+                                      color: Color.fromRGBO(82, 165, 160, 1),
                                     ),
                                     child: IconButton(
                                       iconSize: height * 0.04,
@@ -813,8 +806,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               ]),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: const BorderSide(
-                                      color: Color.fromRGBO(
-                                          82, 165, 160, 1)),
+                                      color: Color.fromRGBO(82, 165, 160, 1)),
                                   borderRadius: BorderRadius.circular(15)),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(15)),
@@ -925,6 +917,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              // Expanded(
+                              //     child: Padding(
+                              //       padding: EdgeInsets.only(
+                              //           right: width * 0.05),
+                              //       child: const Divider(),
+                              //     )),
+
                               MouseRegion(
                                 cursor: SystemMouseCursors.click,
                                 child: GestureDetector(
@@ -946,8 +945,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                               ),
                               MouseRegion(
                                   cursor: SystemMouseCursors.click,
-                                  child: const Icon(
-                                      Icons.keyboard_arrow_down))
+                                  child: const Icon(Icons.chevron_right))
                             ],
                           ),
                           SizedBox(
@@ -980,14 +978,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                       builder: (BuildContext context) {
                                         return Dialog(
                                           shape: const RoundedRectangleBorder(
-                                              borderRadius: BorderRadius
-                                                  .all(
+                                              borderRadius: BorderRadius.all(
                                                   Radius.circular(17))),
                                           child: SingleChildScrollView(
                                             scrollDirection: Axis.vertical,
                                             child: Container(
                                               height: height * 0.7,
-                                              width: webWidth,
+                                              width: width * 0.88,
                                               decoration: BoxDecoration(
                                                 border: Border.all(
                                                     color: Colors.black38,
@@ -1009,11 +1006,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                     children: [
                                                       Align(
                                                         alignment:
-                                                        Alignment
-                                                            .centerLeft,
+                                                        Alignment.centerLeft,
                                                         child: Text(
-                                                          AppLocalizations
-                                                              .of(
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .assessment_title,
                                                           //'Assessment Title',
@@ -1032,18 +1027,15 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                       ),
                                                       Align(
                                                         alignment:
-                                                        Alignment
-                                                            .centerLeft,
+                                                        Alignment.centerLeft,
                                                         child: Text(
-                                                          AppLocalizations
-                                                              .of(
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .sub_class_others,
                                                           // 'Subject, Class and Other details',
                                                           style: TextStyle(
                                                               fontSize:
-                                                              height *
-                                                                  0.015,
+                                                              height * 0.015,
                                                               fontFamily: "Inter",
                                                               color: const Color
                                                                   .fromRGBO(
@@ -1055,8 +1047,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: height *
-                                                            0.05,
+                                                        height: height * 0.05,
                                                       ),
                                                       Align(
                                                         alignment: Alignment
@@ -1065,16 +1056,14 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           controller:
                                                           subjectController,
                                                           keyboardType:
-                                                          TextInputType
-                                                              .text,
+                                                          TextInputType.text,
                                                           decoration: InputDecoration(
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior
                                                                 .always,
-                                                            //labelText: "${AppLocalizations.of(context)!.sub_caps} *",
                                                             label: SizedBox(
                                                               width: width *
-                                                                  0.05,
+                                                                  0.2,
                                                               child: Row(
                                                                 children: [
                                                                   Text(
@@ -1132,8 +1121,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     102,
-                                                                    102,
-                                                                    102,
+                                                                    102, 102,
                                                                     0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight:
@@ -1188,8 +1176,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: height *
-                                                            0.02,
+                                                        height: height * 0.02,
                                                       ),
                                                       Align(
                                                         alignment: Alignment
@@ -1197,8 +1184,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         child: TextFormField(
                                                           controller: classController,
                                                           keyboardType:
-                                                          TextInputType
-                                                              .text,
+                                                          TextInputType.text,
                                                           decoration: InputDecoration(
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior
@@ -1206,7 +1192,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                             //labelText: "${AppLocalizations.of(context)!.class_caps} *",
                                                             label: SizedBox(
                                                               width: width *
-                                                                  0.07,
+                                                                  0.3,
                                                               child: Row(
                                                                 children: [
                                                                   Text(
@@ -1264,8 +1250,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     102,
-                                                                    102,
-                                                                    102,
+                                                                    102, 102,
                                                                     0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight:
@@ -1320,8 +1305,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: height *
-                                                            0.02,
+                                                        height: height * 0.02,
                                                       ),
                                                       Align(
                                                         alignment: Alignment
@@ -1329,8 +1313,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         child: TextFormField(
                                                           controller: topicController,
                                                           keyboardType:
-                                                          TextInputType
-                                                              .text,
+                                                          TextInputType.text,
                                                           decoration: InputDecoration(
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior
@@ -1357,8 +1340,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     102,
-                                                                    102,
-                                                                    102,
+                                                                    102, 102,
                                                                     0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight:
@@ -1396,8 +1378,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: height *
-                                                            0.02,
+                                                        height: height * 0.02,
                                                       ),
                                                       Align(
                                                         alignment: Alignment
@@ -1406,15 +1387,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           controller:
                                                           subTopicController,
                                                           keyboardType:
-                                                          TextInputType
-                                                              .text,
+                                                          TextInputType.text,
                                                           decoration: InputDecoration(
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior
                                                                 .always,
                                                             labelText: AppLocalizations
-                                                                .of(
-                                                                context)!
+                                                                .of(context)!
                                                                 .sub_topic_optional,
                                                             // 'SUB TOPIC (Optional)',
                                                             labelStyle: TextStyle(
@@ -1433,8 +1412,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                 color: const Color
                                                                     .fromRGBO(
                                                                     102,
-                                                                    102,
-                                                                    102,
+                                                                    102, 102,
                                                                     0.3),
                                                                 fontFamily: 'Inter',
                                                                 fontWeight:
@@ -1472,8 +1450,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                         ),
                                                       ),
                                                       SizedBox(
-                                                        height: height *
-                                                            0.02,
+                                                        height: height * 0.02,
                                                       ),
                                                       ElevatedButton(
                                                         style:
@@ -1485,8 +1462,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                               82, 165, 160,
                                                               1),
                                                           minimumSize:
-                                                          const Size(280,
-                                                              48),
+                                                          const Size(280, 48),
                                                           shape:
                                                           RoundedRectangleBorder(
                                                             borderRadius:
@@ -1519,8 +1495,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                 context,
                                                                 listen: false)
                                                                 .resetAssessment();
-                                                            assessment
-                                                                .topic =
+                                                            assessment.topic =
                                                                 topicController
                                                                     .text;
                                                             assessment
@@ -1553,8 +1528,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                                 .pushNamed(
                                                                 context,
                                                                 '/teacherCreateAssessment')
-                                                                .then((
-                                                                value) {
+                                                                .then((value) {
                                                               topicController
                                                                   .clear();
                                                               subjectController
@@ -1577,15 +1551,13 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                                           }
                                                         },
                                                         child: Text(
-                                                          AppLocalizations
-                                                              .of(
+                                                          AppLocalizations.of(
                                                               context)!
                                                               .save_continue,
                                                           //'Save & Continue',
                                                           style: TextStyle(
                                                               fontSize:
-                                                              height *
-                                                                  0.025,
+                                                              height * 0.025,
                                                               fontFamily: "Inter",
                                                               color: const Color
                                                                   .fromRGBO(
@@ -1606,8 +1578,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                       });
                                 },
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       AppLocalizations.of(context)!
@@ -1621,8 +1592,8 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                               255, 255, 255, 1),
                                           fontWeight: FontWeight.w600),
                                     ),
-                                    Icon(Icons.chevron_right,
-                                      size: height * 0.04,)
+                                    Icon(
+                                      Icons.chevron_right, size: height * 0.04,)
                                   ],
                                 ),
                               ),
@@ -1633,1014 +1604,1007 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                           ),
                         ],
                       )),
-                ))
-            )
-            ),
-            );
-            // WillPopScope(
-            //   onWillPop: () async => false,
-            //  );
+                ),
+              ));
         }
-        // else if(constraints.maxWidth > 500) {
-        //   print("INSIDE TAB");
-        //   print(constraints.maxWidth);
-        //   return WillPopScope(
-        //       onWillPop: () async => false,
-        //       child: Scaffold(
-        //         resizeToAvoidBottomInset: true,
-        //         backgroundColor: Colors.white,
-        //         endDrawer: const EndDrawerMenuTeacher(),
-        //         appBar: AppBar(
-        //           leading: IconButton(
-        //             icon: const Icon(
-        //               Icons.chevron_left,
-        //               size: 40.0,
-        //               color: Colors.white,
-        //             ),
-        //             onPressed: () {
-        //               Navigator.of(context).pop();
-        //             },
-        //           ),
-        //           toolbarHeight: height * 0.100,
-        //           centerTitle: true,
-        //           title: Column(
-        //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //               children: [
-        //                 Text(
-        //                   AppLocalizations.of(context)!.my_assessments,
-        //                   //"MY ASSESSMENTS",
-        //                   style: TextStyle(
-        //                     color: const Color.fromRGBO(255, 255, 255, 1),
-        //                     fontSize: height * 0.0225,
-        //                     fontFamily: "Inter",
-        //                     fontWeight: FontWeight.w400,
-        //                   ),
-        //                 ),
-        //               ]),
-        //           flexibleSpace: Container(
-        //             decoration: const BoxDecoration(
-        //                 gradient: LinearGradient(
-        //                     end: Alignment.bottomCenter,
-        //                     begin: Alignment.topCenter,
-        //                     colors: [
-        //                       Color.fromRGBO(0, 106, 100, 1),
-        //                       Color.fromRGBO(82, 165, 160, 1),
-        //                     ])),
-        //           ),
-        //         ),
-        //         body: SingleChildScrollView(
-        //           scrollDirection: Axis.vertical,
-        //           child: Padding(
-        //               padding: EdgeInsets.only(
-        //                   top: height * 0.023,
-        //                   left: height * 0.023,
-        //                   right: height * 0.023),
-        //               child: Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.start,
-        //                 children: [
-        //                   Row(
-        //                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                     children: [
-        //                       Text(
-        //                         AppLocalizations.of(context)!.search,
-        //                         //"Search",
-        //                         style: TextStyle(
-        //                           color: const Color.fromRGBO(
-        //                               82, 165, 160, 1),
-        //                           fontSize: height * 0.02,
-        //                           fontFamily: "Inter",
-        //                           fontWeight: FontWeight.w700,
-        //                         ),
-        //                       ),
-        //                       Row(
-        //                         mainAxisAlignment: MainAxisAlignment.end,
-        //                         children: [
-        //                           Checkbox(
-        //                             activeColor:
-        //                             const Color.fromRGBO(82, 165, 160, 1),
-        //                             fillColor:
-        //                             MaterialStateProperty.resolveWith<Color>(
-        //                                     (states) {
-        //                                   if (states.contains(
-        //                                       MaterialState.selected)) {
-        //                                     return const Color.fromRGBO(
-        //                                         82, 165, 160, 1);
-        //                                   }
-        //                                   return const Color.fromRGBO(
-        //                                       82, 165, 160, 1);
-        //                                 }),
-        //
-        //                             value: agree,
-        //                             onChanged: (val) {
-        //                               setState(() {
-        //                                 agree = val!;
-        //                                 if (!agree) {
-        //                                   setState(() {
-        //                                     pageLimit = 1;
-        //                                     assessments = [];
-        //                                     Navigator.pushNamed(
-        //                                       context,
-        //                                       '/teacherAssessmentSearched',
-        //                                       arguments: teacherQuestionBankSearchController
-        //                                           .text,);
-        //                                   });
-        //                                 } else {
-        //                                   getData('');
-        //                                 }
-        //                               });
-        //                             },
-        //                           ),
-        //                           Text(
-        //                             AppLocalizations.of(context)!
-        //                                 .only_my_assessments,
-        //                             //"Only My Assessments",
-        //                             style: TextStyle(
-        //                               color: const Color.fromRGBO(0, 0, 0, 1),
-        //                               fontSize: height * 0.015,
-        //                               fontFamily: "Inter",
-        //                               fontWeight: FontWeight.w400,
-        //                             ),
-        //                           ),
-        //                         ],
-        //                       )
-        //                     ],
-        //                   ),
-        //                   Text(
-        //                     AppLocalizations.of(context)!.lib_of_assessments,
-        //                     //"Library of Assessments",
-        //                     style: TextStyle(
-        //                       color: const Color.fromRGBO(153, 153, 153, 1),
-        //                       fontSize: height * 0.015,
-        //                       fontFamily: "Inter",
-        //                       fontWeight: FontWeight.w400,
-        //                     ),
-        //                   ),
-        //                   SizedBox(height: height * 0.02),
-        //                   TextField(
-        //                     controller: teacherQuestionBankSearchController,
-        //                     keyboardType: TextInputType.text,
-        //                     decoration: InputDecoration(
-        //                       floatingLabelBehavior: FloatingLabelBehavior
-        //                           .always,
-        //                       hintStyle: TextStyle(
-        //                           color: const Color.fromRGBO(
-        //                               102, 102, 102, 0.3),
-        //                           fontFamily: 'Inter',
-        //                           fontWeight: FontWeight.w400,
-        //                           fontSize: height * 0.016),
-        //                       hintText: AppLocalizations.of(context)!
-        //                           .sub_hint_text,
-        //                       //"Maths, 10th, 2022, CBSE, Science",
-        //                       suffixIcon: Column(children: [
-        //                         Container(
-        //                             height: height * 0.073,
-        //                             width: width * 0.13,
-        //                             decoration: const BoxDecoration(
-        //                               borderRadius:
-        //                               BorderRadius.all(Radius.circular(8.0)),
-        //                               color: Color.fromRGBO(82, 165, 160, 1),
-        //                             ),
-        //                             child: IconButton(
-        //                               iconSize: height * 0.04,
-        //                               color: const Color.fromRGBO(
-        //                                   255, 255, 255, 1),
-        //                               onPressed: () {
-        //                                 assessments = [];
-        //                                 pageLimit = 1;
-        //                                 agree
-        //                                     ? getData(
-        //                                     teacherQuestionBankSearchController
-        //                                         .text)
-        //                                     :
-        //
-        //                                 Navigator.pushNamed(
-        //                                   context,
-        //                                   '/teacherAssessmentSearched',
-        //                                   arguments: teacherQuestionBankSearchController
-        //                                       .text,);
-        //
-        //                                 // Navigator.push(
-        //                                 //         context,
-        //                                 //         PageTransition(
-        //                                 //           type:
-        //                                 //               PageTransitionType.rightToLeft,
-        //                                 //           child: TeacherAssessmentSearched(
-        //                                 //             search:
-        //                                 //                 teacherQuestionBankSearchController
-        //                                 //                     .text,
-        //                                 //           ),
-        //                                 //         ),
-        //                                 //       );
-        //                               },
-        //                               icon: const Icon(Icons.search),
-        //                             )),
-        //                       ]),
-        //                       focusedBorder: OutlineInputBorder(
-        //                           borderSide: const BorderSide(
-        //                               color: Color.fromRGBO(82, 165, 160, 1)),
-        //                           borderRadius: BorderRadius.circular(15)),
-        //                       border: OutlineInputBorder(
-        //                           borderRadius: BorderRadius.circular(15)),
-        //                     ),
-        //                     enabled: true,
-        //                     onChanged: (value) {},
-        //                   ),
-        //                   SizedBox(height: height * 0.04),
-        //                   Align(
-        //                       alignment: Alignment.center,
-        //                       child: RichText(
-        //                           textAlign: TextAlign.center,
-        //                           text: TextSpan(children: [
-        //                             TextSpan(
-        //                               text: AppLocalizations.of(context)!
-        //                                   .disclaimer_qn_prepare,
-        //                               //"DISCLAIMER:",
-        //                               style: TextStyle(
-        //                                   fontSize: height * 0.015,
-        //                                   fontWeight: FontWeight.w500,
-        //                                   color: const Color.fromRGBO(
-        //                                       82, 165, 160, 1),
-        //                                   fontFamily: "Inter"),
-        //                             ),
-        //                             TextSpan(
-        //                               text: AppLocalizations.of(context)!
-        //                                   .disclaimer_text_qn_prepare,
-        //                               //"\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
-        //                               style: TextStyle(
-        //                                   fontSize: height * 0.015,
-        //                                   fontWeight: FontWeight.w500,
-        //                                   color: const Color.fromRGBO(
-        //                                       153, 153, 153, 1),
-        //                                   fontFamily: "Inter"),
-        //                             ),
-        //                           ]))),
-        //                   SizedBox(height: height * 0.02),
-        //                   Text(
-        //                     AppLocalizations.of(context)!.tests,
-        //                     //"Tests",
-        //                     style: TextStyle(
-        //                       color: const Color.fromRGBO(82, 165, 160, 1),
-        //                       fontSize: height * 0.02,
-        //                       fontFamily: "Inter",
-        //                       fontWeight: FontWeight.w700,
-        //                     ),
-        //                   ),
-        //                   SizedBox(
-        //                     height: height * 0.02,
-        //                   ),
-        //                   Text(
-        //                     AppLocalizations.of(context)!.tap_to_review,
-        //                     //"Tap to Review/Edit/Delete",
-        //                     style: TextStyle(
-        //                       color: const Color.fromRGBO(153, 153, 153, 1),
-        //                       fontSize: height * 0.015,
-        //                       fontFamily: "Inter",
-        //                       fontWeight: FontWeight.w400,
-        //                     ),
-        //                   ),
-        //                   SizedBox(
-        //                     height: height * 0.02,
-        //                   ),
-        //                   assessmentPresent ?
-        //                   SizedBox(
-        //                     height: height * 0.35,
-        //                     child: ListView.builder(
-        //                       itemCount: assessments.length,
-        //                       itemBuilder: (context, index) =>
-        //                           Column(
-        //                             children: [
-        //                               CardInfo(
-        //                                 height: height,
-        //                                 width: width,
-        //                                 status: 'Active',
-        //                                 assessment: assessments[index],
-        //                               ),
-        //                               SizedBox(
-        //                                 height: height * 0.02,
-        //                               ),
-        //                             ],
-        //                           ),
-        //                     ),
-        //                   ) :
-        //                   Column(
-        //                     children: [
-        //                       SizedBox(height: height * 0.04),
-        //                       Center(
-        //                         child: Text(
-        //                           AppLocalizations.of(context)!
-        //                               .no_assessment_found_caps,
-        //                           //'NO ASSESSMENT FOUND',
-        //                           textAlign: TextAlign.center,
-        //                           style: TextStyle(
-        //                             color: const Color.fromRGBO(
-        //                                 28, 78, 80, 1),
-        //                             fontSize: height * 0.0175,
-        //                             fontFamily: "Inter",
-        //                             fontWeight: FontWeight.w700,
-        //                           ),
-        //                         ),
-        //                       ),
-        //                     ],
-        //                   ),
-        //                   SizedBox(
-        //                     height: height * 0.02,
-        //                   ),
-        //                   Row(
-        //                     mainAxisAlignment: MainAxisAlignment.center,
-        //                     children: [
-        //                       // Expanded(
-        //                       //     child: Padding(
-        //                       //       padding: EdgeInsets.only(
-        //                       //           right: width * 0.05),
-        //                       //       child: const Divider(),
-        //                       //     )),
-        //
-        //                       MouseRegion(
-        //                         cursor: SystemMouseCursors.click,
-        //                         child: GestureDetector(
-        //                           onTap: () {
-        //                             getQuestionData();
-        //                           },
-        //                           child: Text(
-        //                             AppLocalizations.of(context)!.view_more,
-        //                             //"View More",
-        //                             style: TextStyle(
-        //                               color: const Color.fromRGBO(
-        //                                   28, 78, 80, 1),
-        //                               fontSize: height * 0.0175,
-        //                               fontFamily: "Inter",
-        //                               fontWeight: FontWeight.w600,
-        //                             ),
-        //                           ),
-        //                         ),
-        //                       ),
-        //                       MouseRegion(
-        //                           cursor: SystemMouseCursors.click,
-        //                           child: const Icon(Icons.chevron_right))
-        //                     ],
-        //                   ),
-        //                   SizedBox(
-        //                     height: height * 0.02,
-        //                   ),
-        //                   Center(
-        //                     child: SizedBox(
-        //                       width: width * 0.888,
-        //                       child: ElevatedButton(
-        //                         style: ElevatedButton.styleFrom(
-        //                           backgroundColor:
-        //                           const Color.fromRGBO(82, 165, 160, 1),
-        //                           minimumSize: const Size(280, 48),
-        //                           shape: RoundedRectangleBorder(
-        //                             borderRadius: BorderRadius.circular(39),
-        //                           ),
-        //                         ),
-        //                         onPressed: () {
-        //                           Provider.of<CreateAssessmentProvider>(
-        //                               context,
-        //                               listen: false)
-        //                               .resetAssessment();
-        //                           assessment = Provider
-        //                               .of<CreateAssessmentProvider>(
-        //                               context,
-        //                               listen: false)
-        //                               .getAssessment;
-        //                           showDialog(
-        //                               context: context,
-        //                               builder: (BuildContext context) {
-        //                                 return Dialog(
-        //                                   shape: const RoundedRectangleBorder(
-        //                                       borderRadius: BorderRadius.all(
-        //                                           Radius.circular(17))),
-        //                                   child: SingleChildScrollView(
-        //                                     scrollDirection: Axis.vertical,
-        //                                     child: Container(
-        //                                       height: height * 0.7,
-        //                                       width: width * 0.88,
-        //                                       decoration: BoxDecoration(
-        //                                         border: Border.all(
-        //                                             color: Colors.black38,
-        //                                             width: 1),
-        //                                         borderRadius:
-        //                                         BorderRadius.circular(17),
-        //                                       ),
-        //                                       child: Padding(
-        //                                         padding: EdgeInsets.only(
-        //                                             left: width * 0.02,
-        //                                             right: width * 0.02,
-        //                                             top: height * 0.02,
-        //                                             bottom: height * 0.02),
-        //                                         child: Form(
-        //                                           key: formKey,
-        //                                           child: Column(
-        //                                             mainAxisAlignment:
-        //                                             MainAxisAlignment.start,
-        //                                             children: [
-        //                                               Align(
-        //                                                 alignment:
-        //                                                 Alignment.centerLeft,
-        //                                                 child: Text(
-        //                                                   AppLocalizations.of(
-        //                                                       context)!
-        //                                                       .assessment_title,
-        //                                                   //'Assessment Title',
-        //                                                   style: TextStyle(
-        //                                                       fontSize: height *
-        //                                                           0.02,
-        //                                                       fontFamily: "Inter",
-        //                                                       color: const Color
-        //                                                           .fromRGBO(
-        //                                                           82, 165,
-        //                                                           160, 1),
-        //                                                       fontWeight:
-        //                                                       FontWeight
-        //                                                           .w700),
-        //                                                 ),
-        //                                               ),
-        //                                               Align(
-        //                                                 alignment:
-        //                                                 Alignment.centerLeft,
-        //                                                 child: Text(
-        //                                                   AppLocalizations.of(
-        //                                                       context)!
-        //                                                       .sub_class_others,
-        //                                                   // 'Subject, Class and Other details',
-        //                                                   style: TextStyle(
-        //                                                       fontSize:
-        //                                                       height * 0.015,
-        //                                                       fontFamily: "Inter",
-        //                                                       color: const Color
-        //                                                           .fromRGBO(
-        //                                                           153, 153,
-        //                                                           153, 1),
-        //                                                       fontWeight:
-        //                                                       FontWeight
-        //                                                           .w400),
-        //                                                 ),
-        //                                               ),
-        //                                               SizedBox(
-        //                                                 height: height * 0.05,
-        //                                               ),
-        //                                               Align(
-        //                                                 alignment: Alignment
-        //                                                     .topLeft,
-        //                                                 child: TextFormField(
-        //                                                   controller:
-        //                                                   subjectController,
-        //                                                   keyboardType:
-        //                                                   TextInputType.text,
-        //                                                   decoration: InputDecoration(
-        //                                                     floatingLabelBehavior:
-        //                                                     FloatingLabelBehavior
-        //                                                         .always,
-        //                                                     label: SizedBox(
-        //                                                       width: width *
-        //                                                           0.2,
-        //                                                       child: Row(
-        //                                                         children: [
-        //                                                           Text(
-        //                                                             AppLocalizations
-        //                                                                 .of(
-        //                                                                 context)!
-        //                                                                 .sub_caps,
-        //                                                             //'SUBJECT',
-        //                                                             style: TextStyle(
-        //                                                                 fontSize:
-        //                                                                 height *
-        //                                                                     0.018,
-        //                                                                 fontFamily:
-        //                                                                 "Inter",
-        //                                                                 color: const Color
-        //                                                                     .fromRGBO(
-        //                                                                     51,
-        //                                                                     51,
-        //                                                                     51,
-        //                                                                     1),
-        //                                                                 fontWeight:
-        //                                                                 FontWeight
-        //                                                                     .w600),
-        //                                                           ),
-        //                                                           Text(
-        //                                                             '\t*',
-        //                                                             style: TextStyle(
-        //                                                                 fontSize:
-        //                                                                 height *
-        //                                                                     0.015,
-        //                                                                 fontFamily:
-        //                                                                 "Inter",
-        //                                                                 color: Colors
-        //                                                                     .red,
-        //                                                                 fontWeight:
-        //                                                                 FontWeight
-        //                                                                     .w600),
-        //                                                           ),
-        //                                                         ],
-        //                                                       ),
-        //                                                     ),
-        //                                                     labelStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             51, 51,
-        //                                                             51, 1),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w600,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.018),
-        //                                                     hintStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             102,
-        //                                                             102, 102,
-        //                                                             0.3),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w400,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.02),
-        //                                                     hintText:
-        //                                                     AppLocalizations
-        //                                                         .of(
-        //                                                         context)!
-        //                                                         .sub_hint,
-        //                                                     //'Type Subject Here',
-        //                                                     focusedBorder: OutlineInputBorder(
-        //                                                         borderSide:
-        //                                                         const BorderSide(
-        //                                                             color: Color
-        //                                                                 .fromRGBO(
-        //                                                                 82,
-        //                                                                 165,
-        //                                                                 160,
-        //                                                                 1)),
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                     border:
-        //                                                     OutlineInputBorder(
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                   ),
-        //                                                   validator: (value) {
-        //                                                     if (value!
-        //                                                         .isEmpty) {
-        //                                                       return AppLocalizations
-        //                                                           .of(
-        //                                                           context)!
-        //                                                           .enter_subject;
-        //                                                       //'Enter Subject';
-        //                                                     } else {
-        //                                                       return null;
-        //                                                     }
-        //                                                   },
-        //                                                   onChanged: (value) {
-        //                                                     formKey
-        //                                                         .currentState!
-        //                                                         .validate();
-        //                                                   },
-        //                                                 ),
-        //                                               ),
-        //                                               SizedBox(
-        //                                                 height: height * 0.02,
-        //                                               ),
-        //                                               Align(
-        //                                                 alignment: Alignment
-        //                                                     .topLeft,
-        //                                                 child: TextFormField(
-        //                                                   controller: classController,
-        //                                                   keyboardType:
-        //                                                   TextInputType.text,
-        //                                                   decoration: InputDecoration(
-        //                                                     floatingLabelBehavior:
-        //                                                     FloatingLabelBehavior
-        //                                                         .always,
-        //                                                     //labelText: "${AppLocalizations.of(context)!.class_caps} *",
-        //                                                     label: SizedBox(
-        //                                                       width: width *
-        //                                                           0.3,
-        //                                                       child: Row(
-        //                                                         children: [
-        //                                                           Text(
-        //                                                             AppLocalizations
-        //                                                                 .of(
-        //                                                                 context)!
-        //                                                                 .class_caps,
-        //                                                             // 'CLASS',
-        //                                                             style: TextStyle(
-        //                                                                 fontSize:
-        //                                                                 height *
-        //                                                                     0.018,
-        //                                                                 fontFamily:
-        //                                                                 "Inter",
-        //                                                                 color: const Color
-        //                                                                     .fromRGBO(
-        //                                                                     51,
-        //                                                                     51,
-        //                                                                     51,
-        //                                                                     1),
-        //                                                                 fontWeight:
-        //                                                                 FontWeight
-        //                                                                     .w600),
-        //                                                           ),
-        //                                                           Text(
-        //                                                             '\t*',
-        //                                                             style: TextStyle(
-        //                                                                 fontSize:
-        //                                                                 height *
-        //                                                                     0.015,
-        //                                                                 fontFamily:
-        //                                                                 "Inter",
-        //                                                                 color: Colors
-        //                                                                     .red,
-        //                                                                 fontWeight:
-        //                                                                 FontWeight
-        //                                                                     .w600),
-        //                                                           ),
-        //                                                         ],
-        //                                                       ),
-        //                                                     ),
-        //                                                     labelStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             51, 51,
-        //                                                             51, 1),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w600,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.018),
-        //                                                     hintStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             102,
-        //                                                             102, 102,
-        //                                                             0.3),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w400,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.02),
-        //                                                     hintText:
-        //                                                     AppLocalizations
-        //                                                         .of(
-        //                                                         context)!
-        //                                                         .type_here,
-        //                                                     //'Type Here',
-        //                                                     focusedBorder: OutlineInputBorder(
-        //                                                         borderSide:
-        //                                                         const BorderSide(
-        //                                                             color: Color
-        //                                                                 .fromRGBO(
-        //                                                                 82,
-        //                                                                 165,
-        //                                                                 160,
-        //                                                                 1)),
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                     border:
-        //                                                     OutlineInputBorder(
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                   ),
-        //                                                   validator: (value) {
-        //                                                     if (value!
-        //                                                         .isEmpty) {
-        //                                                       return AppLocalizations
-        //                                                           .of(
-        //                                                           context)!
-        //                                                           .enter_class;
-        //                                                       //'Enter Class';
-        //                                                     } else {
-        //                                                       return null;
-        //                                                     }
-        //                                                   },
-        //                                                   onChanged: (value) {
-        //                                                     formKey
-        //                                                         .currentState!
-        //                                                         .validate();
-        //                                                   },
-        //                                                 ),
-        //                                               ),
-        //                                               SizedBox(
-        //                                                 height: height * 0.02,
-        //                                               ),
-        //                                               Align(
-        //                                                 alignment: Alignment
-        //                                                     .topLeft,
-        //                                                 child: TextFormField(
-        //                                                   controller: topicController,
-        //                                                   keyboardType:
-        //                                                   TextInputType.text,
-        //                                                   decoration: InputDecoration(
-        //                                                     floatingLabelBehavior:
-        //                                                     FloatingLabelBehavior
-        //                                                         .always,
-        //                                                     labelText:
-        //                                                     AppLocalizations
-        //                                                         .of(
-        //                                                         context)!
-        //                                                         .topic_optional,
-        //                                                     //'TOPIC (Optional)',
-        //                                                     labelStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             51, 51,
-        //                                                             51, 1),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w600,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.018),
-        //                                                     hintStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             102,
-        //                                                             102, 102,
-        //                                                             0.3),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w400,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.02),
-        //                                                     hintText:
-        //                                                     AppLocalizations
-        //                                                         .of(
-        //                                                         context)!
-        //                                                         .topic_hint,
-        //                                                     //'Type Topic Here',
-        //                                                     focusedBorder: OutlineInputBorder(
-        //                                                         borderSide:
-        //                                                         const BorderSide(
-        //                                                             color: Color
-        //                                                                 .fromRGBO(
-        //                                                                 82,
-        //                                                                 165,
-        //                                                                 160,
-        //                                                                 1)),
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                     border:
-        //                                                     OutlineInputBorder(
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                   ),
-        //                                                 ),
-        //                                               ),
-        //                                               SizedBox(
-        //                                                 height: height * 0.02,
-        //                                               ),
-        //                                               Align(
-        //                                                 alignment: Alignment
-        //                                                     .topLeft,
-        //                                                 child: TextFormField(
-        //                                                   controller:
-        //                                                   subTopicController,
-        //                                                   keyboardType:
-        //                                                   TextInputType.text,
-        //                                                   decoration: InputDecoration(
-        //                                                     floatingLabelBehavior:
-        //                                                     FloatingLabelBehavior
-        //                                                         .always,
-        //                                                     labelText: AppLocalizations
-        //                                                         .of(context)!
-        //                                                         .sub_topic_optional,
-        //                                                     // 'SUB TOPIC (Optional)',
-        //                                                     labelStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             51, 51,
-        //                                                             51, 1),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w600,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.018),
-        //                                                     hintStyle: TextStyle(
-        //                                                         color: const Color
-        //                                                             .fromRGBO(
-        //                                                             102,
-        //                                                             102, 102,
-        //                                                             0.3),
-        //                                                         fontFamily: 'Inter',
-        //                                                         fontWeight:
-        //                                                         FontWeight
-        //                                                             .w400,
-        //                                                         fontSize:
-        //                                                         height *
-        //                                                             0.02),
-        //                                                     hintText:
-        //                                                     AppLocalizations
-        //                                                         .of(
-        //                                                         context)!
-        //                                                         .sub_topic_hint,
-        //                                                     //'Type Sub Topic Here',
-        //                                                     focusedBorder: OutlineInputBorder(
-        //                                                         borderSide:
-        //                                                         const BorderSide(
-        //                                                             color: Color
-        //                                                                 .fromRGBO(
-        //                                                                 82,
-        //                                                                 165,
-        //                                                                 160,
-        //                                                                 1)),
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                     border:
-        //                                                     OutlineInputBorder(
-        //                                                         borderRadius:
-        //                                                         BorderRadius
-        //                                                             .circular(
-        //                                                             15)),
-        //                                                   ),
-        //                                                 ),
-        //                                               ),
-        //                                               SizedBox(
-        //                                                 height: height * 0.02,
-        //                                               ),
-        //                                               ElevatedButton(
-        //                                                 style:
-        //                                                 ElevatedButton
-        //                                                     .styleFrom(
-        //                                                   backgroundColor:
-        //                                                   const Color
-        //                                                       .fromRGBO(
-        //                                                       82, 165, 160,
-        //                                                       1),
-        //                                                   minimumSize:
-        //                                                   const Size(280, 48),
-        //                                                   shape:
-        //                                                   RoundedRectangleBorder(
-        //                                                     borderRadius:
-        //                                                     BorderRadius
-        //                                                         .circular(
-        //                                                         39),
-        //                                                   ),
-        //                                                 ),
-        //                                                 onPressed: () async {
-        //                                                   bool valid = formKey
-        //                                                       .currentState!
-        //                                                       .validate();
-        //                                                   if (valid) {
-        //                                                     SharedPreferences
-        //                                                     loginData =
-        //                                                     await SharedPreferences
-        //                                                         .getInstance();
-        //                                                     Provider.of<
-        //                                                         NewQuestionProvider>(
-        //                                                         context,
-        //                                                         listen: false)
-        //                                                         .reSetQuestionList();
-        //                                                     Provider.of<
-        //                                                         QuestionPrepareProviderFinal>(
-        //                                                         context,
-        //                                                         listen: false)
-        //                                                         .reSetQuestionList();
-        //                                                     Provider.of<
-        //                                                         CreateAssessmentProvider>(
-        //                                                         context,
-        //                                                         listen: false)
-        //                                                         .resetAssessment();
-        //                                                     assessment.topic =
-        //                                                         topicController
-        //                                                             .text;
-        //                                                     assessment
-        //                                                         .subTopic =
-        //                                                         subTopicController
-        //                                                             .text;
-        //                                                     assessment
-        //                                                         .subject =
-        //                                                         subjectController
-        //                                                             .text;
-        //                                                     assessment
-        //                                                         .createAssessmentModelClass =
-        //                                                         classController
-        //                                                             .text;
-        //                                                     assessment
-        //                                                         .questions =
-        //                                                     [];
-        //                                                     assessment
-        //                                                         .userId =
-        //                                                         loginData
-        //                                                             .getInt(
-        //                                                             'userId');
-        //                                                     Provider.of<
-        //                                                         CreateAssessmentProvider>(
-        //                                                         context,
-        //                                                         listen: false)
-        //                                                         .updateAssessment(
-        //                                                         assessment);
-        //                                                     Navigator
-        //                                                         .pushNamed(
-        //                                                         context,
-        //                                                         '/teacherCreateAssessment')
-        //                                                         .then((value) {
-        //                                                       topicController
-        //                                                           .clear();
-        //                                                       subjectController
-        //                                                           .clear();
-        //                                                       subTopicController
-        //                                                           .clear();
-        //                                                       classController
-        //                                                           .clear();
-        //                                                     });
-        //                                                     // Navigator.push(
-        //                                                     //   context,
-        //                                                     //   PageTransition(
-        //                                                     //     type:
-        //                                                     //         PageTransitionType
-        //                                                     //             .rightToLeft,
-        //                                                     //     child: TeacherCreateAssessment(
-        //                                                     //         ),
-        //                                                     //   ),
-        //                                                     // );
-        //                                                   }
-        //                                                 },
-        //                                                 child: Text(
-        //                                                   AppLocalizations.of(
-        //                                                       context)!
-        //                                                       .save_continue,
-        //                                                   //'Save & Continue',
-        //                                                   style: TextStyle(
-        //                                                       fontSize:
-        //                                                       height * 0.025,
-        //                                                       fontFamily: "Inter",
-        //                                                       color: const Color
-        //                                                           .fromRGBO(
-        //                                                           255, 255,
-        //                                                           255, 1),
-        //                                                       fontWeight:
-        //                                                       FontWeight
-        //                                                           .w600),
-        //                                                 ),
-        //                                               ),
-        //                                             ],
-        //                                           ),
-        //                                         ),
-        //                                       ),
-        //                                     ),
-        //                                   ),
-        //                                 );
-        //                               });
-        //                         },
-        //                         child: Row(
-        //                           mainAxisAlignment: MainAxisAlignment.center,
-        //                           children: [
-        //                             Text(
-        //                               AppLocalizations.of(context)!
-        //                                   .prepare_new_assessment,
-        //                               //'Prepare New Assessment',
-        //                               style: TextStyle(
-        //                                   fontSize: height * 0.025,
-        //                                   fontFamily: "Inter",
-        //                                   color:
-        //                                   const Color.fromRGBO(
-        //                                       255, 255, 255, 1),
-        //                                   fontWeight: FontWeight.w600),
-        //                             ),
-        //                             Icon(
-        //                               Icons.chevron_right, size: height * 0.04,)
-        //                           ],
-        //                         ),
-        //                       ),
-        //                     ),
-        //                   ),
-        //                   SizedBox(
-        //                     height: height * 0.02,
-        //                   ),
-        //                 ],
-        //               )),
-        //         ),
-        //       ));
-        // }
-        else {
-          print("INSIDE MOBILE");
-          print(constraints.maxWidth);
+        else if(constraints.maxWidth > 960) {
+          print("INSIDE DESKTOP");
+          return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+              resizeToAvoidBottomInset: true,
+              backgroundColor: Colors.white,
+              endDrawer: const EndDrawerMenuTeacher(),
+              appBar: AppBar(
+                leading: IconButton(
+                  icon: const Icon(
+                    Icons.chevron_left,
+                    size: 40.0,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                toolbarHeight: height * 0.100,
+                centerTitle: true,
+                title: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.my_assessments,
+                        //"MY ASSESSMENTS",
+                        style: TextStyle(
+                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          fontSize: height * 0.0225,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ]),
+                flexibleSpace: Container(
+                  decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                          end: Alignment.bottomCenter,
+                          begin: Alignment.topCenter,
+                          colors: [
+                            Color.fromRGBO(0, 106, 100, 1),
+                            Color.fromRGBO(82, 165, 160, 1),
+                          ])),
+                ),
+              ),
+              body: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        top: height * 0.1,
+                        left: height * 0.5,
+                        right: height * 0.5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.search,
+                              //"Search",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(
+                                    82, 165, 160, 1),
+                                fontSize: height * 0.02,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Checkbox(
+                                  activeColor:
+                                  const Color.fromRGBO(82, 165, 160, 1),
+                                  fillColor:
+                                  MaterialStateProperty.resolveWith<Color>(
+                                          (states) {
+                                        if (states.contains(
+                                            MaterialState.selected)) {
+                                          return const Color.fromRGBO(
+                                              82, 165, 160, 1);
+                                        }
+                                        return const Color.fromRGBO(
+                                            82, 165, 160, 1);
+                                      }),
+
+                                  value: agree,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      agree = val!;
+                                      if (!agree) {
+                                        setState(() {
+                                          pageLimit = 1;
+                                          assessments = [];
+                                          Navigator.pushNamed(
+                                            context,
+                                            '/teacherAssessmentSearched',
+                                            arguments: teacherQuestionBankSearchController
+                                                .text,);
+                                        });
+                                      } else {
+                                        getData('');
+                                      }
+                                    });
+                                  },
+                                ),
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .only_my_assessments,
+                                  //"Only My Assessments",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(0, 0, 0, 1),
+                                    fontSize: height * 0.015,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.lib_of_assessments,
+                          //"Library of Assessments",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(height: height * 0.02),
+                        TextField(
+                          controller: teacherQuestionBankSearchController,
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            floatingLabelBehavior: FloatingLabelBehavior
+                                .always,
+                            hintStyle: TextStyle(
+                                color: const Color.fromRGBO(
+                                    102, 102, 102, 0.3),
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                                fontSize: height * 0.016),
+                            hintText: AppLocalizations.of(context)!
+                                .sub_hint_text,
+                            //"Maths, 10th, 2022, CBSE, Science",
+                            suffixIcon: Column(children: [
+                              Container(
+                                  height: height * 0.073,
+                                  width: width * 0.13,
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(8.0)),
+                                    color: Color.fromRGBO(82, 165, 160, 1),
+                                  ),
+                                  child: IconButton(
+                                    iconSize: height * 0.04,
+                                    color: const Color.fromRGBO(
+                                        255, 255, 255, 1),
+                                    onPressed: () {
+                                      assessments = [];
+                                      pageLimit = 1;
+                                      agree
+                                          ? getData(
+                                          teacherQuestionBankSearchController
+                                              .text)
+                                          :
+
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/teacherAssessmentSearched',
+                                        arguments: teacherQuestionBankSearchController
+                                            .text,);
+
+                                      // Navigator.push(
+                                      //         context,
+                                      //         PageTransition(
+                                      //           type:
+                                      //               PageTransitionType.rightToLeft,
+                                      //           child: TeacherAssessmentSearched(
+                                      //             search:
+                                      //                 teacherQuestionBankSearchController
+                                      //                     .text,
+                                      //           ),
+                                      //         ),
+                                      //       );
+                                    },
+                                    icon: const Icon(Icons.search),
+                                  )),
+                            ]),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(
+                                    color: Color.fromRGBO(82, 165, 160, 1)),
+                                borderRadius: BorderRadius.circular(15)),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          enabled: true,
+                          onChanged: (value) {},
+                        ),
+                        SizedBox(height: height * 0.04),
+                        Align(
+                            alignment: Alignment.center,
+                            child: RichText(
+                                textAlign: TextAlign.center,
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!
+                                        .disclaimer_qn_prepare,
+                                    //"DISCLAIMER:",
+                                    style: TextStyle(
+                                        fontSize: height * 0.015,
+                                        fontWeight: FontWeight.w500,
+                                        color: const Color.fromRGBO(
+                                            82, 165, 160, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                  TextSpan(
+                                    text: AppLocalizations.of(context)!
+                                        .disclaimer_text_qn_prepare,
+                                    //"\t ITNEducation is not responsible for the content and accuracy of the Questions & Answer available in the Library.",
+                                    style: TextStyle(
+                                        fontSize: height * 0.015,
+                                        fontWeight: FontWeight.w500,
+                                        color: const Color.fromRGBO(
+                                            153, 153, 153, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                ]))),
+                        SizedBox(height: height * 0.02),
+                        Text(
+                          AppLocalizations.of(context)!.tests,
+                          //"Tests",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontSize: height * 0.02,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.tap_to_review,
+                          //"Tap to Review/Edit/Delete",
+                          style: TextStyle(
+                            color: const Color.fromRGBO(153, 153, 153, 1),
+                            fontSize: height * 0.015,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        assessmentPresent ?
+                        SizedBox(
+                          height: height * 0.35,
+                          child: ListView.builder(
+                            itemCount: assessments.length,
+                            itemBuilder: (context, index) =>
+                                Column(
+                                  children: [
+                                    CardInfo(
+                                      height: height,
+                                      width: width,
+                                      status: 'Active',
+                                      assessment: assessments[index],
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.02,
+                                    ),
+                                  ],
+                                ),
+                          ),
+                        ) :
+                        Column(
+                          children: [
+                            SizedBox(height: height * 0.04),
+                            Center(
+                              child: Text(
+                                AppLocalizations.of(context)!
+                                    .no_assessment_found_caps,
+                                //'NO ASSESSMENT FOUND',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(
+                                      28, 78, 80, 1),
+                                  fontSize: height * 0.0175,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Expanded(
+                            //     child: Padding(
+                            //       padding: EdgeInsets.only(
+                            //           right: width * 0.05),
+                            //       child: const Divider(),
+                            //     )),
+
+                            MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  getQuestionData();
+                                },
+                                child: Text(
+                                  AppLocalizations.of(context)!.view_more,
+                                  //"View More",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(
+                                        28, 78, 80, 1),
+                                    fontSize: height * 0.0175,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: const Icon(Icons.chevron_right))
+                          ],
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                        SizedBox(
+                          width: width * 0.888,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                              const Color.fromRGBO(82, 165, 160, 1),
+                              minimumSize: const Size(280, 48),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(39),
+                              ),
+                            ),
+                            onPressed: () {
+                              Provider.of<CreateAssessmentProvider>(
+                                  context,
+                                  listen: false)
+                                  .resetAssessment();
+                              assessment = Provider
+                                  .of<CreateAssessmentProvider>(
+                                  context,
+                                  listen: false)
+                                  .getAssessment;
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Dialog(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(17))),
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Container(
+                                          height: height * 0.7,
+                                          width: width * 0.5,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.black38,
+                                                width: 1),
+                                            borderRadius:
+                                            BorderRadius.circular(17),
+                                          ),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                left: width * 0.070,
+                                                right: width * 0.070,
+                                                top: height * 0.070,
+                                                bottom: height * 0.070),
+                                            child: Form(
+                                              key: formKey,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                    Alignment.centerLeft,
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .assessment_title,
+                                                      //'Assessment Title',
+                                                      style: TextStyle(
+                                                          fontSize: height *
+                                                              0.02,
+                                                          fontFamily: "Inter",
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              82, 165,
+                                                              160, 1),
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w700),
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                    Alignment.centerLeft,
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .sub_class_others,
+                                                      // 'Subject, Class and Other details',
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                          height * 0.015,
+                                                          fontFamily: "Inter",
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              153, 153,
+                                                              153, 1),
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w400),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.05,
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment
+                                                        .topLeft,
+                                                    child: TextFormField(
+                                                      controller:
+                                                      subjectController,
+                                                      keyboardType:
+                                                      TextInputType.text,
+                                                      decoration: InputDecoration(
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        label: SizedBox(
+                                                          width: width *
+                                                              0.2,
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
+                                                                AppLocalizations
+                                                                    .of(
+                                                                    context)!
+                                                                    .sub_caps,
+                                                                //'SUBJECT',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    height *
+                                                                        0.018,
+                                                                    fontFamily:
+                                                                    "Inter",
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        51,
+                                                                        51,
+                                                                        51,
+                                                                        1),
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                              ),
+                                                              Text(
+                                                                '\t*',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    height *
+                                                                        0.015,
+                                                                    fontFamily:
+                                                                    "Inter",
+                                                                    color: Colors
+                                                                        .red,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        labelStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51,
+                                                                51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize:
+                                                            height *
+                                                                0.018),
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102,
+                                                                102, 102,
+                                                                0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            height *
+                                                                0.02),
+                                                        hintText:
+                                                        AppLocalizations
+                                                            .of(
+                                                            context)!
+                                                            .sub_hint,
+                                                        //'Type Subject Here',
+                                                        focusedBorder: OutlineInputBorder(
+                                                            borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                    82,
+                                                                    165,
+                                                                    160,
+                                                                    1)),
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                        border:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                      ),
+                                                      validator: (value) {
+                                                        if (value!
+                                                            .isEmpty) {
+                                                          return AppLocalizations
+                                                              .of(
+                                                              context)!
+                                                              .enter_subject;
+                                                          //'Enter Subject';
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                      onChanged: (value) {
+                                                        formKey
+                                                            .currentState!
+                                                            .validate();
+                                                      },
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment
+                                                        .topLeft,
+                                                    child: TextFormField(
+                                                      controller: classController,
+                                                      keyboardType:
+                                                      TextInputType.text,
+                                                      decoration: InputDecoration(
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        //labelText: "${AppLocalizations.of(context)!.class_caps} *",
+                                                        label: SizedBox(
+                                                          width: width *
+                                                              0.3,
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
+                                                                AppLocalizations
+                                                                    .of(
+                                                                    context)!
+                                                                    .class_caps,
+                                                                // 'CLASS',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    height *
+                                                                        0.018,
+                                                                    fontFamily:
+                                                                    "Inter",
+                                                                    color: const Color
+                                                                        .fromRGBO(
+                                                                        51,
+                                                                        51,
+                                                                        51,
+                                                                        1),
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                              ),
+                                                              Text(
+                                                                '\t*',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    height *
+                                                                        0.015,
+                                                                    fontFamily:
+                                                                    "Inter",
+                                                                    color: Colors
+                                                                        .red,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        labelStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51,
+                                                                51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize:
+                                                            height *
+                                                                0.018),
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102,
+                                                                102, 102,
+                                                                0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            height *
+                                                                0.02),
+                                                        hintText:
+                                                        AppLocalizations
+                                                            .of(
+                                                            context)!
+                                                            .type_here,
+                                                        //'Type Here',
+                                                        focusedBorder: OutlineInputBorder(
+                                                            borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                    82,
+                                                                    165,
+                                                                    160,
+                                                                    1)),
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                        border:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                      ),
+                                                      validator: (value) {
+                                                        if (value!
+                                                            .isEmpty) {
+                                                          return AppLocalizations
+                                                              .of(
+                                                              context)!
+                                                              .enter_class;
+                                                          //'Enter Class';
+                                                        } else {
+                                                          return null;
+                                                        }
+                                                      },
+                                                      onChanged: (value) {
+                                                        formKey
+                                                            .currentState!
+                                                            .validate();
+                                                      },
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment
+                                                        .topLeft,
+                                                    child: TextFormField(
+                                                      controller: topicController,
+                                                      keyboardType:
+                                                      TextInputType.text,
+                                                      decoration: InputDecoration(
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        labelText:
+                                                        AppLocalizations
+                                                            .of(
+                                                            context)!
+                                                            .topic_optional,
+                                                        //'TOPIC (Optional)',
+                                                        labelStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51,
+                                                                51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize:
+                                                            height *
+                                                                0.018),
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102,
+                                                                102, 102,
+                                                                0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            height *
+                                                                0.02),
+                                                        hintText:
+                                                        AppLocalizations
+                                                            .of(
+                                                            context)!
+                                                            .topic_hint,
+                                                        //'Type Topic Here',
+                                                        focusedBorder: OutlineInputBorder(
+                                                            borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                    82,
+                                                                    165,
+                                                                    160,
+                                                                    1)),
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                        border:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment
+                                                        .topLeft,
+                                                    child: TextFormField(
+                                                      controller:
+                                                      subTopicController,
+                                                      keyboardType:
+                                                      TextInputType.text,
+                                                      decoration: InputDecoration(
+                                                        floatingLabelBehavior:
+                                                        FloatingLabelBehavior
+                                                            .always,
+                                                        labelText: AppLocalizations
+                                                            .of(context)!
+                                                            .sub_topic_optional,
+                                                        // 'SUB TOPIC (Optional)',
+                                                        labelStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                51, 51,
+                                                                51, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w600,
+                                                            fontSize:
+                                                            height *
+                                                                0.018),
+                                                        hintStyle: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                102,
+                                                                102, 102,
+                                                                0.3),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            height *
+                                                                0.02),
+                                                        hintText:
+                                                        AppLocalizations
+                                                            .of(
+                                                            context)!
+                                                            .sub_topic_hint,
+                                                        //'Type Sub Topic Here',
+                                                        focusedBorder: OutlineInputBorder(
+                                                            borderSide:
+                                                            const BorderSide(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                    82,
+                                                                    165,
+                                                                    160,
+                                                                    1)),
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                        border:
+                                                        OutlineInputBorder(
+                                                            borderRadius:
+                                                            BorderRadius
+                                                                .circular(
+                                                                15)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: height * 0.02,
+                                                  ),
+                                                  ElevatedButton(
+                                                    style:
+                                                    ElevatedButton
+                                                        .styleFrom(
+                                                      backgroundColor:
+                                                      const Color
+                                                          .fromRGBO(
+                                                          82, 165, 160,
+                                                          1),
+                                                      minimumSize:
+                                                      const Size(280, 48),
+                                                      shape:
+                                                      RoundedRectangleBorder(
+                                                        borderRadius:
+                                                        BorderRadius
+                                                            .circular(
+                                                            39),
+                                                      ),
+                                                    ),
+                                                    onPressed: () async {
+                                                      bool valid = formKey
+                                                          .currentState!
+                                                          .validate();
+                                                      if (valid) {
+                                                        SharedPreferences
+                                                        loginData =
+                                                        await SharedPreferences
+                                                            .getInstance();
+                                                        Provider.of<
+                                                            NewQuestionProvider>(
+                                                            context,
+                                                            listen: false)
+                                                            .reSetQuestionList();
+                                                        Provider.of<
+                                                            QuestionPrepareProviderFinal>(
+                                                            context,
+                                                            listen: false)
+                                                            .reSetQuestionList();
+                                                        Provider.of<
+                                                            CreateAssessmentProvider>(
+                                                            context,
+                                                            listen: false)
+                                                            .resetAssessment();
+                                                        assessment.topic =
+                                                            topicController
+                                                                .text;
+                                                        assessment
+                                                            .subTopic =
+                                                            subTopicController
+                                                                .text;
+                                                        assessment
+                                                            .subject =
+                                                            subjectController
+                                                                .text;
+                                                        assessment
+                                                            .createAssessmentModelClass =
+                                                            classController
+                                                                .text;
+                                                        assessment
+                                                            .questions =
+                                                        [];
+                                                        assessment
+                                                            .userId =
+                                                            loginData
+                                                                .getInt(
+                                                                'userId');
+                                                        Provider.of<
+                                                            CreateAssessmentProvider>(
+                                                            context,
+                                                            listen: false)
+                                                            .updateAssessment(
+                                                            assessment);
+                                                        Navigator
+                                                            .pushNamed(
+                                                            context,
+                                                            '/teacherCreateAssessment')
+                                                            .then((value) {
+                                                          topicController
+                                                              .clear();
+                                                          subjectController
+                                                              .clear();
+                                                          subTopicController
+                                                              .clear();
+                                                          classController
+                                                              .clear();
+                                                        });
+                                                        // Navigator.push(
+                                                        //   context,
+                                                        //   PageTransition(
+                                                        //     type:
+                                                        //         PageTransitionType
+                                                        //             .rightToLeft,
+                                                        //     child: TeacherCreateAssessment(
+                                                        //         ),
+                                                        //   ),
+                                                        // );
+                                                      }
+                                                    },
+                                                    child: Text(
+                                                      AppLocalizations.of(
+                                                          context)!
+                                                          .save_continue,
+                                                      //'Save & Continue',
+                                                      style: TextStyle(
+                                                          fontSize:
+                                                          height * 0.025,
+                                                          fontFamily: "Inter",
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              255, 255,
+                                                              255, 1),
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w600),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(context)!
+                                      .prepare_new_assessment,
+                                  //'Prepare New Assessment',
+                                  style: TextStyle(
+                                      fontSize: height * 0.025,
+                                      fontFamily: "Inter",
+                                      color:
+                                      const Color.fromRGBO(
+                                          255, 255, 255, 1),
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Icon(
+                                  Icons.chevron_right, size: height * 0.04,)
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: height * 0.02,
+                        ),
+                      ],
+                    )),
+              ),
+            ),
+          );
+        }
+        else
+        {
+          print("INSIDE ELSE");
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -3931,36 +3895,36 @@ class _CardInfoState extends State<CardInfo> {
                       padding: EdgeInsets.only(left: widget.width * 0.02, right: widget.width * 0.02),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                          Text(AppLocalizations.of(context)!.assessment_id_caps,
-                            style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: widget.height * 0.015,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
+                          children: [
+                            Row(
+                              children: [
+                                Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(28, 78, 80, 1),
+                                    fontSize: widget.height * 0.015,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text("${widget.assessment.assessmentCode}",
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(82, 165, 160, 1),
+                                    fontSize: widget.height * 0.015,
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],),
+                            Text(
+                              datetime,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: widget.height * 0.015,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ),
-                          Text("${widget.assessment.assessmentCode}",
-                            style: TextStyle(
-                              color: const Color.fromRGBO(82, 165, 160, 1),
-                              fontSize: widget.height * 0.015,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          ],),
-                          Text(
-                            datetime,
-                            style: TextStyle(
-                              color: const Color.fromRGBO(28, 78, 80, 1),
-                              fontSize: widget.height * 0.015,
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                    ]),),
+                          ]),),
                   ],
                 ),
               ),
