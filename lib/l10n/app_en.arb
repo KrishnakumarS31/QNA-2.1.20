@@ -1,7 +1,7 @@
 {
   "language": "Select Language",
   "preferred_language": "Select your preferred language",
-  "welcome": "WELCOME",
+  "welcome": "Welcome!",
   "learner_applicant": "LEARNER/APPLICANT",
   "student": "Student",
   "instructor_examiner": "INSTRUCTOR/EXAMINER",
@@ -396,5 +396,8 @@
   "password_unchanged": "Password will remain unchanged.",
   "incorrect_email": "Incorrect Email",
   "email_changed": "Your Email has not been changed",
-  "update_email": "Update Email ID"
+  "update_email": "Update Email ID",
+  "continue_as": "Continue as,",
+  "product_of": "A Product of",
+  "itn_welcome": "ITNEducation"
 }

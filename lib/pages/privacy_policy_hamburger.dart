@@ -27,7 +27,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          if (constraints.maxWidth > webWidth) {
+          if(constraints.maxWidth <= 960 && constraints.maxWidth >=500){
             return Center(
                 child: SizedBox(
                 width: webWidth,
@@ -35,11 +35,12 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
               appBar: AppBar(
+                elevation: 0,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,
                     size: 40.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -54,7 +55,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         AppLocalizations.of(context)!.privacy_policy_caps,
                         //"PRIVACY POLICY",
                         style: TextStyle(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          color: Colors.black,
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
@@ -63,13 +64,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                     ]),
                 flexibleSpace: Container(
                   decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          end: Alignment.bottomCenter,
-                          begin: Alignment.topCenter,
-                          colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ])),
+                      color: Colors.white
+                  ),
                 ),
               ),
               body: SingleChildScrollView(
@@ -141,16 +137,127 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
               ),
             )));
           }
+          else if(constraints.maxWidth > 960) {
+            return Center(
+                child: SizedBox(
+                    width: webWidth,
+                    child: Scaffold(
+                      resizeToAvoidBottomInset: true,
+                      backgroundColor: Colors.white,
+                      appBar: AppBar(
+                        elevation: 0,
+                        leading: IconButton(
+                          icon: const Icon(
+                            Icons.chevron_left,
+                            size: 40.0,
+                            color: Colors.black,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        toolbarHeight: height * 0.100,
+                        centerTitle: true,
+                        title: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                AppLocalizations.of(context)!.privacy_policy_caps,
+                                //"PRIVACY POLICY",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: height * 0.0225,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ]),
+                        flexibleSpace: Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white
+                          ),
+                        ),
+                      ),
+                      body: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                                top: height * 0.023,
+                                left: height * 0.023,
+                                right: height * 0.023),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: height * 0.01),
+                                Center(
+                                  child: Image.asset("assets/images/privacyImage.png"),
+                                ),
+                                SizedBox(height: height * 0.03),
+                                Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Text(
+                                    AppLocalizations.of(context)!.privacy_text_web,
+                                    //"ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \n teachers / instructors to learn digitally and freely."
+                                    style: TextStyle(
+                                        fontSize: height * 0.018,
+                                        fontWeight: FontWeight.w500,
+                                        color: const Color.fromRGBO(153, 153, 153, 1),
+                                        fontFamily: "Inter"),
+                                  ),
+                                ),
+                                SizedBox(height: height * 0.05),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: _launchUrl,
+                                        child: RichText(
+                                            text: TextSpan(children: [
+                                              TextSpan(
+                                                  text: AppLocalizations.of(context)!
+                                                      .read_qna,
+                                                  //"Read QNATest\t\t",
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          102, 102, 102, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.018)),
+                                              TextSpan(
+                                                  text:
+                                                  AppLocalizations.of(context)!
+                                                      .privacy_Policy,
+                                                  //"Privacy Policy",
+                                                  recognizer: TapGestureRecognizer()
+                                                    ..onTap = _launchUrl,
+                                                  style: TextStyle(
+                                                      color: const Color.fromRGBO(
+                                                          0, 107, 232, 1),
+                                                      fontFamily: 'Inter',
+                                                      decoration: TextDecoration
+                                                          .underline,
+                                                      fontWeight: FontWeight.w400,
+                                                      fontSize: height * 0.018)),
+                                            ])),
+                                      )),
+                                ),
+                              ],
+                            )),
+                      ),
+                    )));
+          }
         else {
             return Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
               appBar: AppBar(
+                elevation: 0,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,
                     size: 40.0,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -165,7 +272,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         AppLocalizations.of(context)!.privacy_policy_caps,
                         //"PRIVACY POLICY",
                         style: TextStyle(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
+                          color: Colors.black,
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
@@ -174,13 +281,8 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                     ]),
                 flexibleSpace: Container(
                   decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          end: Alignment.bottomCenter,
-                          begin: Alignment.topCenter,
-                          colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ])),
+                      color: Colors.white
+                  ),
                 ),
               ),
               body: SingleChildScrollView(

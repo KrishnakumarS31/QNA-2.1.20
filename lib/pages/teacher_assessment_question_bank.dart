@@ -94,730 +94,961 @@ class TeacherAssessmentQuestionBankState
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          // if (constraints.maxWidth > 900) {
-          //   return  WillPopScope(child: Scaffold(
-          //     resizeToAvoidBottomInset: false,
-          //     backgroundColor: Colors.white,
-          //     endDrawer: const EndDrawerMenuTeacher(),
-          //     appBar: AppBar(
-          //       leading: IconButton(
-          //         icon: const Icon(
-          //           Icons.chevron_left,
-          //           size: 40.0,
-          //           color: Colors.white,
-          //         ),
-          //         onPressed: () {
-          //           widget.assessmentType=='inprogress'?Navigator.of(context).pop():
-          //           Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
-          //         },
-          //       ),
-          //       toolbarHeight: height * 0.100,
-          //       centerTitle: true,
-          //       title:
-          //       Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          //         Text(
-          //           AppLocalizations.of(context)!.search_results_caps,
-          //           //"SEARCH RESULTS",
-          //           style: TextStyle(
-          //             color: const Color.fromRGBO(255, 255, 255, 1),
-          //             fontSize: height * 0.0225,
-          //             fontFamily: "Inter",
-          //             fontWeight: FontWeight.w400,
-          //           ),
-          //         ),
-          //         Text(
-          //           AppLocalizations.of(context)!.my_qn_bank_caps,
-          //           //"MY QUESTION BANK",
-          //           style: TextStyle(
-          //             color: const Color.fromRGBO(255, 255, 255, 1),
-          //             fontSize: height * 0.0225,
-          //             fontFamily: "Inter",
-          //             fontWeight: FontWeight.w400,
-          //           ),
-          //         ),
-          //       ]),
-          //       flexibleSpace: Container(
-          //         decoration: const BoxDecoration(
-          //             gradient: LinearGradient(
-          //                 end: Alignment.bottomCenter,
-          //                 begin: Alignment.topCenter,
-          //                 colors: [
-          //                   Color.fromRGBO(0, 106, 100, 1),
-          //                   Color.fromRGBO(82, 165, 160, 1),
-          //                 ])),
-          //       ),
-          //     ),
-          //     body: Padding(
-          //       padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
-          //       child: Column(
-          //         children: [
-          //           SizedBox(
-          //             height: height * 0.02,
-          //           ),
-          //           TextField(
-          //             controller: teacherQuestionBankSearchController,
-          //             keyboardType: TextInputType.text,
-          //             decoration: InputDecoration(
-          //               floatingLabelBehavior: FloatingLabelBehavior.always,
-          //               hintStyle: TextStyle(
-          //                   color: const Color.fromRGBO(102, 102, 102, 0.3),
-          //                   fontFamily: 'Inter',
-          //                   fontWeight: FontWeight.w400,
-          //                   fontSize: height * 0.016),
-          //               hintText: AppLocalizations.of(context)!.sub_hint_text,
-          //               //"Maths, 10th, 2022, CBSE, Science",
-          //               suffixIcon: Column(children: [
-          //                 Container(
-          //                     height: height * 0.073,
-          //                     width: width * 0.13,
-          //                     decoration: const BoxDecoration(
-          //                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          //                       color: Color.fromRGBO(82, 165, 160, 1),
-          //                     ),
-          //                     child: IconButton(
-          //                       iconSize: height * 0.04,
-          //                       color: const Color.fromRGBO(255, 255, 255, 1),
-          //                       onPressed: () {
-          //                         questions = [];
-          //                         getData(teacherQuestionBankSearchController.text);
-          //                       },
-          //                       icon: const Icon(Icons.search),
-          //                     )),
-          //               ]),
-          //               focusedBorder: OutlineInputBorder(
-          //                   borderSide: const BorderSide(
-          //                       color: Color.fromRGBO(82, 165, 160, 1)),
-          //                   borderRadius: BorderRadius.circular(15)),
-          //               border:
-          //               OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-          //             ),
-          //             enabled: true,
-          //             onChanged: (value) {},
-          //           ),
-          //           SizedBox(
-          //             height: height * 0.015,
-          //           ),
-          //           Row(
-          //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //             children: [
-          //               Text(
-          //                 AppLocalizations.of(context)!.tap_to_review,
-          //                 //"Tap to Review/Edit/Delete",
-          //                 textAlign: TextAlign.left,
-          //                 style: TextStyle(
-          //                   color: const Color.fromRGBO(153, 153, 153, 1),
-          //                   fontSize: height * 0.015,
-          //                   fontFamily: "Inter",
-          //                   fontWeight: FontWeight.w400,
-          //                 ),
-          //               ),
-          //               Row(
-          //                 children: [
-          //                   Text(
-          //                     AppLocalizations.of(context)!.my_qns_small,
-          //                     //"My Questions",
-          //                     textAlign: TextAlign.left,
-          //                     style: TextStyle(
-          //                       color: const Color.fromRGBO(0, 0, 0, 1),
-          //                       fontSize: height * 0.015,
-          //                       fontFamily: "Inter",
-          //                       fontWeight: FontWeight.w400,
-          //                     ),
-          //                   ),
-          //                   SizedBox(
-          //                     width: width * 0.02,
-          //                   ),
-          //                   const Icon(
-          //                     Icons.circle_rounded,
-          //                     color: Color.fromRGBO(82, 165, 160, 1),
-          //                   )
-          //                 ],
-          //               )
-          //             ],
-          //           ),
-          //           SizedBox(
-          //             height: height * 0.015,
-          //           ),
-          //           SizedBox(
-          //             height: height * 0.6,
-          //             width: width * 0.9,
-          //             child: SingleChildScrollView(
-          //               scrollDirection: Axis.vertical,
-          //               child: Column(
-          //                 children: [
-          //                   for (Question i in questions)
-          //                     QuestionPreview(
-          //                       height: height,
-          //                       width: width,
-          //                       question: i,
-          //                       quesIdList: quesIdList,
-          //                     ),
-          //                 ],
-          //               ),
-          //             ),
-          //           ),
-          //           Center(
-          //             child: SizedBox(
-          //               width: width * 0.8,
-          //               child: ElevatedButton(
-          //                 style: ElevatedButton.styleFrom(
-          //                     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-          //                     minimumSize: const Size(280, 48),
-          //                     shape: RoundedRectangleBorder(
-          //                       borderRadius: BorderRadius.circular(39),
-          //                     ),
-          //                     side: const BorderSide(
-          //                       color: Color.fromRGBO(82, 165, 160, 1),
-          //                     )),
-          //                 onPressed: () {
-          //                   List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
-          //                   for(int i =0;i<quesList.length && i<otQues.length;i++){
-          //                     quesList[i].questionMark=otQues[i].questionMark;
-          //                   }
-          //                   createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-          //                   for(int i =0;i<assess.questions!.length;i++){
-          //                     Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
-          //                   }
-          //                   Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
-          //                   for(int i =0;i<quesList.length;i++){
-          //                     if(quesList[i].questionType=="MCQ"){
-          //                       int mark = 1;
-          //                       quesList[i].questionMark != 1
-          //                           ? mark = quesList[i].questionMark!
-          //                           : mark = 1;
-          //                       Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
-          //                       quesList[i].questionMark=mark;
-          //                       Provider.of<QuestionPrepareProviderFinal>(context,
-          //                           listen: false)
-          //                           .addQuestion(quesList[i]);
-          //                     }
-          //                     else{
-          //                       Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
-          //                       quesList[i].questionMark=0;
-          //                       Provider.of<QuestionPrepareProviderFinal>(context,
-          //                           listen: false)
-          //                           .addQuestion(quesList[i]);
-          //                     }
-          //
-          //                   }
-          //
-          //                   Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
-          //
-          //                   // Navigator.push(
-          //                   //   context,
-          //                   //   PageTransition(
-          //                   //     type: PageTransitionType.rightToLeft,
-          //                   //     child: TeacherSelectedQuestionAssessment(
-          //                   //         questions: questions,),
-          //                   //   ),
-          //                   // );
-          //                 },
-          //                 child: Text(
-          //                   AppLocalizations.of(context)!.add_small,
-          //                   //'Add',
-          //                   style: TextStyle(
-          //                       fontSize: height * 0.025,
-          //                       fontFamily: "Inter",
-          //                       color: const Color.fromRGBO(255, 255, 255, 1),
-          //                       fontWeight: FontWeight.w600),
-          //                 ),
-          //               ),
-          //             ),
-          //           ),
-          //           SizedBox(
-          //             height: height * 0.02,
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ), onWillPop: () async => false);
-          // }
-          if (constraints.maxWidth > 500) {
-            return  Center(
-              child: WillPopScope(child: Container(
-                width:webWidth,
-                child: Scaffold(
-                  resizeToAvoidBottomInset: false,
-                  backgroundColor: Colors.white,
-                  endDrawer: const EndDrawerMenuTeacher(),
-                  appBar: AppBar(
-                    leading: IconButton(
-                      icon: const Icon(
-                        Icons.chevron_left,
-                        size: 40.0,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        widget.assessmentType=='inprogress'?Navigator.of(context).pop():
-                        Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
-                      },
-                    ),
-                    toolbarHeight: height * 0.100,
-                    centerTitle: true,
-                    title:
-                    Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                      Text(
-                        AppLocalizations.of(context)!.search_results_caps,
-                        //"SEARCH RESULTS",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontSize: height * 0.0225,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      Text(
-                        AppLocalizations.of(context)!.my_qn_bank_caps,
-                        //"MY QUESTION BANK",
-                        style: TextStyle(
-                          color: const Color.fromRGBO(255, 255, 255, 1),
-                          fontSize: height * 0.0225,
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ]),
-                    flexibleSpace: Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              end: Alignment.bottomCenter,
-                              begin: Alignment.topCenter,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1),
-                              ])),
-                    ),
-                  ),
-                  body: Padding(
-                    padding: EdgeInsets.only(left: webWidth * 0.025, right: webWidth * 0.025),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                        TextField(
-                          controller: teacherQuestionBankSearchController,
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            floatingLabelBehavior: FloatingLabelBehavior.always,
-                            hintStyle: TextStyle(
-                                color: const Color.fromRGBO(102, 102, 102, 0.3),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w400,
-                                fontSize: height * 0.016),
-                            hintText: AppLocalizations.of(context)!.sub_hint_text,
-                            //"Maths, 10th, 2022, CBSE, Science",
-                            suffixIcon: Column(children: [
-                              Container(
-                                  height: height * 0.073,
-                                  width: webWidth * 0.13,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  ),
-                                  child: IconButton(
-                                    iconSize: height * 0.04,
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
-                                    onPressed: () {
-                                      questions = [];
-                                      getData(teacherQuestionBankSearchController.text);
-                                    },
-                                    icon: const Icon(Icons.search),
-                                  )),
-                            ]),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Color.fromRGBO(82, 165, 160, 1)),
-                                borderRadius: BorderRadius.circular(15)),
-                            border:
-                            OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                          ),
-                          enabled: true,
-                          onChanged: (value) {},
-                        ),
-                        SizedBox(
-                          height: height * 0.015,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.tap_to_review,
-                              //"Tap to Review/Edit/Delete",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: const Color.fromRGBO(153, 153, 153, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  AppLocalizations.of(context)!.my_qns_small,
-                                  //"My Questions",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: const Color.fromRGBO(0, 0, 0, 1),
-                                    fontSize: height * 0.015,
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: webWidth * 0.02,
-                                ),
-                                const Icon(
-                                  Icons.circle_rounded,
-                                  color: Color.fromRGBO(82, 165, 160, 1),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: height * 0.015,
-                        ),
-                        SizedBox(
-                          height: height * 0.6,
-                          width: webWidth * 0.9,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Column(
-                              children: [
-                                for (Question i in questions)
-                                  QuestionPreview(
-                                    height: height,
-                                    width: webWidth,
-                                    question: i,
-                                    quesIdList: quesIdList,
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.05,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width: webWidth * 0.8,
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                                  minimumSize: const Size(280, 48),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(39),
-                                  ),
-                                  side: const BorderSide(
-                                    color: Color.fromRGBO(82, 165, 160, 1),
-                                  )),
-                              onPressed: () {
-                                List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
-                                for(int i =0;i<quesList.length && i<otQues.length;i++){
-                                  quesList[i].questionMark=otQues[i].questionMark;
-                                }
-                                createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-                                for(int i =0;i<assess.questions!.length;i++){
-                                  Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
-                                }
-                                Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
-                                for(int i =0;i<quesList.length;i++){
-                                  if(quesList[i].questionType=="MCQ"){
-                                    int mark = 1;
-                                    quesList[i].questionMark != 1
-                                        ? mark = quesList[i].questionMark!
-                                        : mark = 1;
-                                    Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
-                                    quesList[i].questionMark=mark;
-                                    Provider.of<QuestionPrepareProviderFinal>(context,
-                                        listen: false)
-                                        .addQuestion(quesList[i]);
-                                  }
-                                  else{
-                                    Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
-                                    quesList[i].questionMark=0;
-                                    Provider.of<QuestionPrepareProviderFinal>(context,
-                                        listen: false)
-                                        .addQuestion(quesList[i]);
-                                  }
-
-                                }
-
-                                Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
-
-                                // Navigator.push(
-                                //   context,
-                                //   PageTransition(
-                                //     type: PageTransitionType.rightToLeft,
-                                //     child: TeacherSelectedQuestionAssessment(
-                                //         questions: questions,),
-                                //   ),
-                                // );
-                              },
-                              child: Text(
-                                AppLocalizations.of(context)!.add_small,
-                                //'Add',
-                                style: TextStyle(
-                                    fontSize: height * 0.025,
-                                    fontFamily: "Inter",
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                      ],
-                    ),
-                  ),
+      builder: (BuildContext context, BoxConstraints constraints) {
+        // if (constraints.maxWidth > 900) {
+        //   return  WillPopScope(child: Scaffold(
+        //     resizeToAvoidBottomInset: false,
+        //     backgroundColor: Colors.white,
+        //     endDrawer: const EndDrawerMenuTeacher(),
+        //     appBar: AppBar(
+        //       leading: IconButton(
+        //         icon: const Icon(
+        //           Icons.chevron_left,
+        //           size: 40.0,
+        //           color: Colors.white,
+        //         ),
+        //         onPressed: () {
+        //           widget.assessmentType=='inprogress'?Navigator.of(context).pop():
+        //           Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
+        //         },
+        //       ),
+        //       toolbarHeight: height * 0.100,
+        //       centerTitle: true,
+        //       title:
+        //       Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        //         Text(
+        //           AppLocalizations.of(context)!.search_results_caps,
+        //           //"SEARCH RESULTS",
+        //           style: TextStyle(
+        //             color: const Color.fromRGBO(255, 255, 255, 1),
+        //             fontSize: height * 0.0225,
+        //             fontFamily: "Inter",
+        //             fontWeight: FontWeight.w400,
+        //           ),
+        //         ),
+        //         Text(
+        //           AppLocalizations.of(context)!.my_qn_bank_caps,
+        //           //"MY QUESTION BANK",
+        //           style: TextStyle(
+        //             color: const Color.fromRGBO(255, 255, 255, 1),
+        //             fontSize: height * 0.0225,
+        //             fontFamily: "Inter",
+        //             fontWeight: FontWeight.w400,
+        //           ),
+        //         ),
+        //       ]),
+        //       flexibleSpace: Container(
+        //         decoration: const BoxDecoration(
+        //             gradient: LinearGradient(
+        //                 end: Alignment.bottomCenter,
+        //                 begin: Alignment.topCenter,
+        //                 colors: [
+        //                   Color.fromRGBO(0, 106, 100, 1),
+        //                   Color.fromRGBO(82, 165, 160, 1),
+        //                 ])),
+        //       ),
+        //     ),
+        //     body: Padding(
+        //       padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
+        //       child: Column(
+        //         children: [
+        //           SizedBox(
+        //             height: height * 0.02,
+        //           ),
+        //           TextField(
+        //             controller: teacherQuestionBankSearchController,
+        //             keyboardType: TextInputType.text,
+        //             decoration: InputDecoration(
+        //               floatingLabelBehavior: FloatingLabelBehavior.always,
+        //               hintStyle: TextStyle(
+        //                   color: const Color.fromRGBO(102, 102, 102, 0.3),
+        //                   fontFamily: 'Inter',
+        //                   fontWeight: FontWeight.w400,
+        //                   fontSize: height * 0.016),
+        //               hintText: AppLocalizations.of(context)!.sub_hint_text,
+        //               //"Maths, 10th, 2022, CBSE, Science",
+        //               suffixIcon: Column(children: [
+        //                 Container(
+        //                     height: height * 0.073,
+        //                     width: width * 0.13,
+        //                     decoration: const BoxDecoration(
+        //                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        //                       color: Color.fromRGBO(82, 165, 160, 1),
+        //                     ),
+        //                     child: IconButton(
+        //                       iconSize: height * 0.04,
+        //                       color: const Color.fromRGBO(255, 255, 255, 1),
+        //                       onPressed: () {
+        //                         questions = [];
+        //                         getData(teacherQuestionBankSearchController.text);
+        //                       },
+        //                       icon: const Icon(Icons.search),
+        //                     )),
+        //               ]),
+        //               focusedBorder: OutlineInputBorder(
+        //                   borderSide: const BorderSide(
+        //                       color: Color.fromRGBO(82, 165, 160, 1)),
+        //                   borderRadius: BorderRadius.circular(15)),
+        //               border:
+        //               OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+        //             ),
+        //             enabled: true,
+        //             onChanged: (value) {},
+        //           ),
+        //           SizedBox(
+        //             height: height * 0.015,
+        //           ),
+        //           Row(
+        //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //             children: [
+        //               Text(
+        //                 AppLocalizations.of(context)!.tap_to_review,
+        //                 //"Tap to Review/Edit/Delete",
+        //                 textAlign: TextAlign.left,
+        //                 style: TextStyle(
+        //                   color: const Color.fromRGBO(153, 153, 153, 1),
+        //                   fontSize: height * 0.015,
+        //                   fontFamily: "Inter",
+        //                   fontWeight: FontWeight.w400,
+        //                 ),
+        //               ),
+        //               Row(
+        //                 children: [
+        //                   Text(
+        //                     AppLocalizations.of(context)!.my_qns_small,
+        //                     //"My Questions",
+        //                     textAlign: TextAlign.left,
+        //                     style: TextStyle(
+        //                       color: const Color.fromRGBO(0, 0, 0, 1),
+        //                       fontSize: height * 0.015,
+        //                       fontFamily: "Inter",
+        //                       fontWeight: FontWeight.w400,
+        //                     ),
+        //                   ),
+        //                   SizedBox(
+        //                     width: width * 0.02,
+        //                   ),
+        //                   const Icon(
+        //                     Icons.circle_rounded,
+        //                     color: Color.fromRGBO(82, 165, 160, 1),
+        //                   )
+        //                 ],
+        //               )
+        //             ],
+        //           ),
+        //           SizedBox(
+        //             height: height * 0.015,
+        //           ),
+        //           SizedBox(
+        //             height: height * 0.6,
+        //             width: width * 0.9,
+        //             child: SingleChildScrollView(
+        //               scrollDirection: Axis.vertical,
+        //               child: Column(
+        //                 children: [
+        //                   for (Question i in questions)
+        //                     QuestionPreview(
+        //                       height: height,
+        //                       width: width,
+        //                       question: i,
+        //                       quesIdList: quesIdList,
+        //                     ),
+        //                 ],
+        //               ),
+        //             ),
+        //           ),
+        //           Center(
+        //             child: SizedBox(
+        //               width: width * 0.8,
+        //               child: ElevatedButton(
+        //                 style: ElevatedButton.styleFrom(
+        //                     backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+        //                     minimumSize: const Size(280, 48),
+        //                     shape: RoundedRectangleBorder(
+        //                       borderRadius: BorderRadius.circular(39),
+        //                     ),
+        //                     side: const BorderSide(
+        //                       color: Color.fromRGBO(82, 165, 160, 1),
+        //                     )),
+        //                 onPressed: () {
+        //                   List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+        //                   for(int i =0;i<quesList.length && i<otQues.length;i++){
+        //                     quesList[i].questionMark=otQues[i].questionMark;
+        //                   }
+        //                   createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+        //                   for(int i =0;i<assess.questions!.length;i++){
+        //                     Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
+        //                   }
+        //                   Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
+        //                   for(int i =0;i<quesList.length;i++){
+        //                     if(quesList[i].questionType=="MCQ"){
+        //                       int mark = 1;
+        //                       quesList[i].questionMark != 1
+        //                           ? mark = quesList[i].questionMark!
+        //                           : mark = 1;
+        //                       Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
+        //                       quesList[i].questionMark=mark;
+        //                       Provider.of<QuestionPrepareProviderFinal>(context,
+        //                           listen: false)
+        //                           .addQuestion(quesList[i]);
+        //                     }
+        //                     else{
+        //                       Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
+        //                       quesList[i].questionMark=0;
+        //                       Provider.of<QuestionPrepareProviderFinal>(context,
+        //                           listen: false)
+        //                           .addQuestion(quesList[i]);
+        //                     }
+        //
+        //                   }
+        //
+        //                   Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
+        //
+        //                   // Navigator.push(
+        //                   //   context,
+        //                   //   PageTransition(
+        //                   //     type: PageTransitionType.rightToLeft,
+        //                   //     child: TeacherSelectedQuestionAssessment(
+        //                   //         questions: questions,),
+        //                   //   ),
+        //                   // );
+        //                 },
+        //                 child: Text(
+        //                   AppLocalizations.of(context)!.add_small,
+        //                   //'Add',
+        //                   style: TextStyle(
+        //                       fontSize: height * 0.025,
+        //                       fontFamily: "Inter",
+        //                       color: const Color.fromRGBO(255, 255, 255, 1),
+        //                       fontWeight: FontWeight.w600),
+        //                 ),
+        //               ),
+        //             ),
+        //           ),
+        //           SizedBox(
+        //             height: height * 0.02,
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //   ), onWillPop: () async => false);
+        // }
+        if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+          print("INSIDE TABLET");
+          return  WillPopScope(child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            endDrawer: const EndDrawerMenuTeacher(),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  size: 40.0,
+                  color: Colors.white,
                 ),
-              ), onWillPop: () async => false),
-            );
-          }
-          else {
-            return  WillPopScope(child: Scaffold(
-              resizeToAvoidBottomInset: false,
-              backgroundColor: Colors.white,
-              endDrawer: const EndDrawerMenuTeacher(),
-              appBar: AppBar(
-                leading: IconButton(
-                  icon: const Icon(
-                    Icons.chevron_left,
-                    size: 40.0,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    widget.assessmentType=='inprogress'?Navigator.of(context).pop():
-                    Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
-                  },
-                ),
-                toolbarHeight: height * 0.100,
-                centerTitle: true,
-                title:
-                Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                  Text(
-                    AppLocalizations.of(context)!.search_results_caps,
-                    //"SEARCH RESULTS",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.my_qn_bank_caps,
-                    //"MY QUESTION BANK",
-                    style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                      fontSize: height * 0.0225,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ]),
-                flexibleSpace: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          end: Alignment.bottomCenter,
-                          begin: Alignment.topCenter,
-                          colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ])),
-                ),
+                onPressed: () {
+                  widget.assessmentType=='inprogress'?Navigator.of(context).pop():
+                  Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
+                },
               ),
-              body: Padding(
-                padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    TextField(
-                      controller: teacherQuestionBankSearchController,
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        hintStyle: TextStyle(
-                            color: const Color.fromRGBO(102, 102, 102, 0.3),
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w400,
-                            fontSize: height * 0.016),
-                        hintText: AppLocalizations.of(context)!.sub_hint_text,
-                        //"Maths, 10th, 2022, CBSE, Science",
-                        suffixIcon: Column(children: [
-                          Container(
-                              height: height * 0.073,
-                              width: width * 0.13,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              ),
-                              child: IconButton(
-                                iconSize: height * 0.04,
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                onPressed: () {
-                                  questions = [];
-                                  getData(teacherQuestionBankSearchController.text);
-                                },
-                                icon: const Icon(Icons.search),
-                              )),
-                        ]),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                                color: Color.fromRGBO(82, 165, 160, 1)),
-                            borderRadius: BorderRadius.circular(15)),
-                        border:
-                        OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
-                      ),
-                      enabled: true,
-                      onChanged: (value) {},
-                    ),
-                    SizedBox(
-                      height: height * 0.015,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)!.tap_to_review,
-                          //"Tap to Review/Edit/Delete",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: const Color.fromRGBO(153, 153, 153, 1),
-                            fontSize: height * 0.015,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              AppLocalizations.of(context)!.my_qns_small,
-                              //"My Questions",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                color: const Color.fromRGBO(0, 0, 0, 1),
-                                fontSize: height * 0.015,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            SizedBox(
-                              width: width * 0.02,
-                            ),
-                            const Icon(
-                              Icons.circle_rounded,
+              toolbarHeight: height * 0.100,
+              centerTitle: true,
+              title:
+              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                Text(
+                  AppLocalizations.of(context)!.search_results_caps,
+                  //"SEARCH RESULTS",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context)!.my_qn_bank_caps,
+                  //"MY QUESTION BANK",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ]),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomCenter,
+                        begin: Alignment.topCenter,
+                        colors: [
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
+              ),
+            ),
+            body: Padding(
+              padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  TextField(
+                    controller: teacherQuestionBankSearchController,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintStyle: TextStyle(
+                          color: const Color.fromRGBO(102, 102, 102, 0.3),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.016),
+                      hintText: AppLocalizations.of(context)!.sub_hint_text,
+                      //"Maths, 10th, 2022, CBSE, Science",
+                      suffixIcon: Column(children: [
+                        Container(
+                            height: height * 0.073,
+                            width: width * 0.13,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(8.0)),
                               color: Color.fromRGBO(82, 165, 160, 1),
-                            )
-                          ],
-                        )
-                      ],
+                            ),
+                            child: IconButton(
+                              iconSize: height * 0.04,
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              onPressed: () {
+                                questions = [];
+                                getData(teacherQuestionBankSearchController.text);
+                              },
+                              icon: const Icon(Icons.search),
+                            )),
+                      ]),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1)),
+                          borderRadius: BorderRadius.circular(15)),
+                      border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
                     ),
-                    SizedBox(
-                      height: height * 0.015,
-                    ),
-                    SizedBox(
-                      height: height * 0.6,
-                      width: width * 0.9,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                          children: [
-                            for (Question i in questions)
-                              QuestionPreview(
-                                height: height,
-                                width: width,
-                                question: i,
-                                quesIdList: quesIdList,
-                              ),
-                          ],
+                    enabled: true,
+                    onChanged: (value) {},
+                  ),
+                  SizedBox(
+                    height: height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.tap_to_review,
+                        //"Tap to Review/Edit/Delete",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(153, 153, 153, 1),
+                          fontSize: height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ),
-                    Center(
-                      child: SizedBox(
-                        width: width * 0.8,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: const Size(280, 48),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(39),
-                              ),
-                              side: const BorderSide(
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              )),
-                          onPressed: () {
-                            List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
-                            for(int i =0;i<quesList.length && i<otQues.length;i++){
-                              quesList[i].questionMark=otQues[i].questionMark;
-                            }
-                            createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
-                            for(int i =0;i<assess.questions!.length;i++){
-                              Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
-                            }
-                            Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
-                            for(int i =0;i<quesList.length;i++){
-                              if(quesList[i].questionType=="MCQ"){
-                                int mark = 1;
-                                quesList[i].questionMark != 1
-                                    ? mark = quesList[i].questionMark!
-                                    : mark = 1;
-                                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
-                                quesList[i].questionMark=mark;
-                                Provider.of<QuestionPrepareProviderFinal>(context,
-                                    listen: false)
-                                    .addQuestion(quesList[i]);
-                              }
-                              else{
-                                Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
-                                quesList[i].questionMark=0;
-                                Provider.of<QuestionPrepareProviderFinal>(context,
-                                    listen: false)
-                                    .addQuestion(quesList[i]);
-                              }
-
-                            }
-
-                            Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
-
-                            // Navigator.push(
-                            //   context,
-                            //   PageTransition(
-                            //     type: PageTransitionType.rightToLeft,
-                            //     child: TeacherSelectedQuestionAssessment(
-                            //         questions: questions,),
-                            //   ),
-                            // );
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.add_small,
-                            //'Add',
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.my_qns_small,
+                            //"My Questions",
+                            textAlign: TextAlign.left,
                             style: TextStyle(
-                                fontSize: height * 0.025,
-                                fontFamily: "Inter",
-                                color: const Color.fromRGBO(255, 255, 255, 1),
-                                fontWeight: FontWeight.w600),
+                              color: const Color.fromRGBO(0, 0, 0, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
+                          SizedBox(
+                            width: width * 0.02,
+                          ),
+                          const Icon(
+                            Icons.circle_rounded,
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.015,
+                  ),
+                  SizedBox(
+                    height: height * 0.6,
+                    width: width * 0.9,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          for (Question i in questions)
+                            QuestionPreview(
+                              height: height,
+                              width: width,
+                              question: i,
+                              quesIdList: quesIdList,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: width * 0.8,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            )),
+                        onPressed: () {
+                          List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+                          for(int i =0;i<quesList.length && i<otQues.length;i++){
+                            quesList[i].questionMark=otQues[i].questionMark;
+                          }
+                          createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+                          for(int i =0;i<assess.questions!.length;i++){
+                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
+                          }
+                          Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
+                          for(int i =0;i<quesList.length;i++){
+                            if(quesList[i].questionType=="MCQ"){
+                              int mark = 1;
+                              quesList[i].questionMark != 1
+                                  ? mark = quesList[i].questionMark!
+                                  : mark = 1;
+                              Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
+                              quesList[i].questionMark=mark;
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false)
+                                  .addQuestion(quesList[i]);
+                            }
+                            else{
+                              Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
+                              quesList[i].questionMark=0;
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false)
+                                  .addQuestion(quesList[i]);
+                            }
+
+                          }
+
+                          Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
+
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherSelectedQuestionAssessment(
+                          //         questions: questions,),
+                          //   ),
+                          // );
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.add_small,
+                          //'Add',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                ],
               ),
-            ), onWillPop: () async => false);
-          }
-        },
+            ),
+          ), onWillPop: () async => false);
+        }
+        else if(constraints.maxWidth > 960) {
+          return  WillPopScope(child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            endDrawer: const EndDrawerMenuTeacher(),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  size: 40.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  widget.assessmentType=='inprogress'?Navigator.of(context).pop():
+                  Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
+                },
+              ),
+              toolbarHeight: height * 0.100,
+              centerTitle: true,
+              title:
+              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                Text(
+                  AppLocalizations.of(context)!.search_results_caps,
+                  //"SEARCH RESULTS",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context)!.my_qn_bank_caps,
+                  //"MY QUESTION BANK",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ]),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomCenter,
+                        begin: Alignment.topCenter,
+                        colors: [
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
+              ),
+            ),
+            body: Padding(
+              padding: EdgeInsets.only(left: width * 0.25, right: width * 0.25),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  TextField(
+                    controller: teacherQuestionBankSearchController,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintStyle: TextStyle(
+                          color: const Color.fromRGBO(102, 102, 102, 0.3),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.016),
+                      hintText: AppLocalizations.of(context)!.sub_hint_text,
+                      //"Maths, 10th, 2022, CBSE, Science",
+                      suffixIcon: Column(children: [
+                        Container(
+                            height: height * 0.073,
+                            width: width * 0.13,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            child: IconButton(
+                              iconSize: height * 0.04,
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              onPressed: () {
+                                questions = [];
+                                getData(teacherQuestionBankSearchController.text);
+                              },
+                              icon: const Icon(Icons.search),
+                            )),
+                      ]),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1)),
+                          borderRadius: BorderRadius.circular(15)),
+                      border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    enabled: true,
+                    onChanged: (value) {},
+                  ),
+                  SizedBox(
+                    height: height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.tap_to_review,
+                        //"Tap to Review/Edit/Delete",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(153, 153, 153, 1),
+                          fontSize: height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.my_qns_small,
+                            //"My Questions",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(0, 0, 0, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.02,
+                          ),
+                          const Icon(
+                            Icons.circle_rounded,
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.015,
+                  ),
+                  SizedBox(
+                    height: height * 0.6,
+                    width: width * 0.9,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          for (Question i in questions)
+                            QuestionPreview(
+                              height: height,
+                              width: width,
+                              question: i,
+                              quesIdList: quesIdList,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: width * 0.8,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            )),
+                        onPressed: () {
+                          List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+                          for(int i =0;i<quesList.length && i<otQues.length;i++){
+                            quesList[i].questionMark=otQues[i].questionMark;
+                          }
+                          createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+                          for(int i =0;i<assess.questions!.length;i++){
+                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
+                          }
+                          Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
+                          for(int i =0;i<quesList.length;i++){
+                            if(quesList[i].questionType=="MCQ"){
+                              int mark = 1;
+                              quesList[i].questionMark != 1
+                                  ? mark = quesList[i].questionMark!
+                                  : mark = 1;
+                              Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
+                              quesList[i].questionMark=mark;
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false)
+                                  .addQuestion(quesList[i]);
+                            }
+                            else{
+                              Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
+                              quesList[i].questionMark=0;
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false)
+                                  .addQuestion(quesList[i]);
+                            }
+
+                          }
+
+                          Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
+
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherSelectedQuestionAssessment(
+                          //         questions: questions,),
+                          //   ),
+                          // );
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.add_small,
+                          //'Add',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                ],
+              ),
+            ),
+          ), onWillPop: () async => false);
+        }
+        else {
+          return  WillPopScope(child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            backgroundColor: Colors.white,
+            endDrawer: const EndDrawerMenuTeacher(),
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.chevron_left,
+                  size: 40.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  widget.assessmentType=='inprogress'?Navigator.of(context).pop():
+                  Navigator.of(context).pushReplacementNamed('/teacherCreateAssessment');
+                },
+              ),
+              toolbarHeight: height * 0.100,
+              centerTitle: true,
+              title:
+              Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                Text(
+                  AppLocalizations.of(context)!.search_results_caps,
+                  //"SEARCH RESULTS",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text(
+                  AppLocalizations.of(context)!.my_qn_bank_caps,
+                  //"MY QUESTION BANK",
+                  style: TextStyle(
+                    color: const Color.fromRGBO(255, 255, 255, 1),
+                    fontSize: height * 0.0225,
+                    fontFamily: "Inter",
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ]),
+              flexibleSpace: Container(
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        end: Alignment.bottomCenter,
+                        begin: Alignment.topCenter,
+                        colors: [
+                          Color.fromRGBO(0, 106, 100, 1),
+                          Color.fromRGBO(82, 165, 160, 1),
+                        ])),
+              ),
+            ),
+            body: Padding(
+              padding: EdgeInsets.only(left: width * 0.025, right: width * 0.025),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                  TextField(
+                    controller: teacherQuestionBankSearchController,
+                    keyboardType: TextInputType.text,
+                    decoration: InputDecoration(
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      hintStyle: TextStyle(
+                          color: const Color.fromRGBO(102, 102, 102, 0.3),
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                          fontSize: height * 0.016),
+                      hintText: AppLocalizations.of(context)!.sub_hint_text,
+                      //"Maths, 10th, 2022, CBSE, Science",
+                      suffixIcon: Column(children: [
+                        Container(
+                            height: height * 0.073,
+                            width: width * 0.13,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            ),
+                            child: IconButton(
+                              iconSize: height * 0.04,
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              onPressed: () {
+                                questions = [];
+                                getData(teacherQuestionBankSearchController.text);
+                              },
+                              icon: const Icon(Icons.search),
+                            )),
+                      ]),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1)),
+                          borderRadius: BorderRadius.circular(15)),
+                      border:
+                      OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
+                    ),
+                    enabled: true,
+                    onChanged: (value) {},
+                  ),
+                  SizedBox(
+                    height: height * 0.015,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)!.tap_to_review,
+                        //"Tap to Review/Edit/Delete",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: const Color.fromRGBO(153, 153, 153, 1),
+                          fontSize: height * 0.015,
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.my_qns_small,
+                            //"My Questions",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: const Color.fromRGBO(0, 0, 0, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(
+                            width: width * 0.02,
+                          ),
+                          const Icon(
+                            Icons.circle_rounded,
+                            color: Color.fromRGBO(82, 165, 160, 1),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: height * 0.015,
+                  ),
+                  SizedBox(
+                    height: height * 0.6,
+                    width: width * 0.9,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Column(
+                        children: [
+                          for (Question i in questions)
+                            QuestionPreview(
+                              height: height,
+                              width: width,
+                              question: i,
+                              quesIdList: quesIdList,
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: width * 0.8,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromRGBO(82, 165, 160, 1),
+                            minimumSize: const Size(280, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(39),
+                            ),
+                            side: const BorderSide(
+                              color: Color.fromRGBO(82, 165, 160, 1),
+                            )),
+                        onPressed: () {
+                          List<Question> quesList=Provider.of<NewQuestionProvider>(context, listen: false).getAllQuestion;
+                          for(int i =0;i<quesList.length && i<otQues.length;i++){
+                            quesList[i].questionMark=otQues[i].questionMark;
+                          }
+                          createassessmentmodel.CreateAssessmentModel assess=Provider.of<CreateAssessmentProvider>(context, listen: false).getAssessment;
+                          for(int i =0;i<assess.questions!.length;i++){
+                            Provider.of<QuestionPrepareProviderFinal>(context, listen: false).removeQuestion(assess.questions![i].questionId!);
+                          }
+                          Provider.of<CreateAssessmentProvider>(context, listen: false).clearQuestion();
+                          for(int i =0;i<quesList.length;i++){
+                            if(quesList[i].questionType=="MCQ"){
+                              int mark = 1;
+                              quesList[i].questionMark != 1
+                                  ? mark = quesList[i].questionMark!
+                                  : mark = 1;
+                              Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, mark);
+                              quesList[i].questionMark=mark;
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false)
+                                  .addQuestion(quesList[i]);
+                            }
+                            else{
+                              Provider.of<CreateAssessmentProvider>(context, listen: false).addQuestion(quesList[i].questionId, 0);
+                              quesList[i].questionMark=0;
+                              Provider.of<QuestionPrepareProviderFinal>(context,
+                                  listen: false)
+                                  .addQuestion(quesList[i]);
+                            }
+
+                          }
+
+                          Navigator.pushNamed(context, '/teacherSelectedQuestionAssessment',arguments: [questions,widget.assessmentType]);
+
+                          // Navigator.push(
+                          //   context,
+                          //   PageTransition(
+                          //     type: PageTransitionType.rightToLeft,
+                          //     child: TeacherSelectedQuestionAssessment(
+                          //         questions: questions,),
+                          //   ),
+                          // );
+                        },
+                        child: Text(
+                          AppLocalizations.of(context)!.add_small,
+                          //'Add',
+                          style: TextStyle(
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              color: const Color.fromRGBO(255, 255, 255, 1),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
+                ],
+              ),
+            ),
+          ), onWillPop: () async => false);
+        }
+      },
     );
 
   }

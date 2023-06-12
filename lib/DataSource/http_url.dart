@@ -13,5 +13,5 @@ const questionUrl = '$assessmentDomain/questions';
 const allQuestionUrl = '$assessmentDomain/questions/all';
 const assessmentLooqUrl = '$assessmentDomain/assessments-looq';
 const resultsUrl = '$assessmentDomain/results';
-const version = "1.0.77";
+const version = "2.0.0";
 const double webWidth = 500.0;

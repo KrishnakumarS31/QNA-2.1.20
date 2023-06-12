@@ -42,11 +42,12 @@ class AboutUsState extends State<AboutUs> {
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
+            elevation: 0,
             leading: IconButton(
               icon: const Icon(
                 Icons.chevron_left,
                 size: 40.0,
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -61,7 +62,7 @@ class AboutUsState extends State<AboutUs> {
                     AppLocalizations.of(context)!.about_us_caps,
                     // "ABOUT US",
                     style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      color: Colors.black,
                       fontSize: height * 0.0225,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400,
@@ -70,13 +71,8 @@ class AboutUsState extends State<AboutUs> {
                 ]),
             flexibleSpace: Container(
               decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: Alignment.bottomCenter,
-                      begin: Alignment.topCenter,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ])),
+                  color: Colors.white
+              ),
             ),
           ),
           body: SingleChildScrollView(
@@ -147,11 +143,12 @@ class AboutUsState extends State<AboutUs> {
           resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
+            elevation: 0,
             leading: IconButton(
               icon: const Icon(
                 Icons.chevron_left,
                 size: 40.0,
-                color: Colors.white,
+                color: Colors.black,
               ),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -166,7 +163,7 @@ class AboutUsState extends State<AboutUs> {
                     AppLocalizations.of(context)!.about_us_caps,
                     // "ABOUT US",
                     style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      color: Colors.black,
                       fontSize: height * 0.0225,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w400,
@@ -175,13 +172,8 @@ class AboutUsState extends State<AboutUs> {
                 ]),
             flexibleSpace: Container(
               decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: Alignment.bottomCenter,
-                      begin: Alignment.topCenter,
-                      colors: [
-                        Color.fromRGBO(0, 106, 100, 1),
-                        Color.fromRGBO(82, 165, 160, 1),
-                      ])),
+                  color: Colors.white
+              ),
             ),
           ),
           body: SingleChildScrollView(

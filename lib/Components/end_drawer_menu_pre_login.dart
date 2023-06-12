@@ -27,13 +27,8 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
       child: Column(
         children: [
           Container(
-              color: const Color.fromRGBO(0, 106, 100, 1),
-              height: localHeight * 0.055),
-          Image.asset(
-            "assets/images/rectangle_qna.png",
-            fit: BoxFit.fill,
-            width: 310,
-          ),
+              color: Colors.white,
+              height: localHeight * 0.07),
           Flexible(
             child: ListView(
               children: [

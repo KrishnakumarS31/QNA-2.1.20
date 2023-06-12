@@ -11,13 +11,11 @@ import 'package:qna_test/Entity/user_details.dart';
 import 'package:qna_test/EntityModel/CreateAssessmentModel.dart';
 import 'package:qna_test/Providers/LanguageChangeProvider.dart';
 import 'package:qna_test/Providers/create_assessment_provider.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qna_test/Providers/edit_assessment_provider.dart';
 import 'package:qna_test/Providers/question_prepare_provider_final.dart';
 import '../Services/qna_service.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherAssessmentLanding extends StatefulWidget {
   const TeacherAssessmentLanding({
@@ -57,7 +55,6 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     Future.delayed(const Duration(seconds: 0)).then((_) {
       if (MediaQuery.of(context).copyWith().size.width > 960) {
-        print("INSIDE IFF SJHD");
         showModalBottomSheet(
             constraints: const BoxConstraints(
                 maxWidth: 500.0
@@ -84,7 +81,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                     .size
                     .height * 0.245,
                 child: Padding(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left: 500.0 * 0.25),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -98,7 +95,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                             .height * 0.026,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             right:500.0 *
                                 0.055),
                         child: Align(
@@ -140,7 +137,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                   0.02)),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 500.0 * 0.052,
                       ),
                       SizedBox(
@@ -182,7 +179,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     .height *
                                     0.016)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width:500.0 *
                                 0.165,
                           ),
@@ -255,7 +252,7 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                     .height *
                                     0.016)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 500.0 *
                                 0.16,
                           ),
@@ -604,15 +601,11 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print(MediaQuery.of(context).size);
-    print("DDD");
-    print(width);
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
 
         if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
 
-          print("INSIDE TABLET");
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -943,9 +936,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                   ),
                                 ),
                               ),
-                              MouseRegion(
+                              const MouseRegion(
                                   cursor: SystemMouseCursors.click,
-                                  child: const Icon(Icons.chevron_right))
+                                  child: Icon(Icons.chevron_right))
                             ],
                           ),
                           SizedBox(
@@ -1608,7 +1601,6 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
               ));
         }
         else if(constraints.maxWidth > 960) {
-          print("INSIDE DESKTOP");
           return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
@@ -1939,9 +1931,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                 ),
                               ),
                             ),
-                            MouseRegion(
+                            const MouseRegion(
                                 cursor: SystemMouseCursors.click,
-                                child: const Icon(Icons.chevron_right))
+                                child: Icon(Icons.chevron_right))
                           ],
                         ),
                         SizedBox(
@@ -2604,7 +2596,6 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
         }
         else
         {
-          print("INSIDE ELSE");
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -2935,9 +2926,9 @@ class TeacherAssessmentLandingState extends State<TeacherAssessmentLanding> {
                                   ),
                                 ),
                               ),
-                              MouseRegion(
+                              const MouseRegion(
                                   cursor: SystemMouseCursors.click,
-                                  child: const Icon(Icons.chevron_right))
+                                  child: Icon(Icons.chevron_right))
                             ],
                           ),
                           SizedBox(

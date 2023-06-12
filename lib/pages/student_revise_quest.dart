@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -13,6 +15,8 @@ import '../Entity/question_paper_model.dart';
 import 'package:intl/intl.dart';
 import '../Services/qna_service.dart';
 import '../DataSource/http_url.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
@@ -39,12 +43,31 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   List<List<dynamic>> options = [];
   PostAssessmentModel assessment = PostAssessmentModel(assessmentResults: []);
   UserDetails userDetails=UserDetails();
+  StreamSubscription? connection;
+  bool isOffline = false;
+
+
+
+
   getData(){
     submit();
   }
 
   @override
   void initState() {
+
+    connection = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+      if(result == ConnectivityResult.none){
+        setState(() {
+          isOffline = true;
+        });
+      }
+    else {
+        setState(() {
+          isOffline = false;
+        });
+    }
+    });
     super.initState();
     userDetails=Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
     values = widget.questions;
@@ -78,6 +101,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
     if(widget.submit == true){
       getData();
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    connection?.cancel();
+    super.dispose();
   }
 
   @override
@@ -427,7 +457,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         )
                                     ),
                                     onPressed: () {
-                                      _showMyDialog();
+                                      var result = Connectivity().checkConnectivity();
+                                      if(result == ConnectivityResult.none){
+                                        showDialogBox();
+                                      }
+                                      else {
+                                        _showMyDialog();
+                                      }
                                     }
                                 ),
                               )
@@ -772,7 +808,13 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                         )
                                     ),
                                     onPressed: () {
-                                      _showMyDialog();
+                                      var result = Connectivity().checkConnectivity();
+                                      if(result == ConnectivityResult.none){
+                                        showDialogBox();
+                                      }
+                                      else {
+                                        _showMyDialog();
+                                      }
                                     }
                                 ),
                               )
@@ -867,6 +909,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                           )
                       ),
                       onPressed: () async {
+                        var result = await Connectivity().checkConnectivity();
                         Provider.of<Questions>(context, listen: false).updateAssessmentSubmit(true);
                         String message = '';
                         int ansCorrect = 0;
@@ -987,7 +1030,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         double g = totalMark * f;
                         int percent =g.round();
                         assessment.attemptPercentage = percent;
-                        assessment.attemptScore=ansCorrect;
+                        assessment.attemptScore=totalMark;
 
                         if (percent == 100) {
                           assessment.assessmentScoreId =
@@ -1009,19 +1052,23 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                         final DateFormat timeFormatter = DateFormat('hh:mm a');
                         final String formatted = formatter.format(now);
                         final String time = timeFormatter.format(now);
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return const Center(
-                                  child: CircularProgressIndicator(
-                                    color: Color.fromRGBO(
-                                        48, 145, 139, 1),
-                                  ));
-                            });
+                        if(result == ConnectivityResult.none){
+                          showDialogBox();
+                        }
+                        else {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return const Center(
+                                    child: CircularProgressIndicator(
+                                      color: Color.fromRGBO(
+                                          48, 145, 139, 1),
+                                    ));
+                              });
                         LoginModel loginResponse = await QnaService
                             .postAssessmentService(assessment, values,userDetails);
                         Navigator.of(context).pop();
-                        if (loginResponse.code == 200) {
+                        if (loginResponse.code == 200){
                           Navigator.pushNamed(
                               context,
                               '/studentResultPage',
@@ -1052,7 +1099,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                             ),
                           );
                         }
-                      }
+                      }}
                   ),
                   SizedBox(width: localHeight * 0.030),
                 ],
@@ -1187,7 +1234,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       percent = g.round();
     }
     assessment.attemptPercentage = percent;
-    assessment.attemptScore=ansCorrect;
+    assessment.attemptScore=totalMark;
     if (percent == 100) {
       assessment.assessmentScoreId =
           values.data!.assessmentScoreMessage![0]
@@ -1243,6 +1290,59 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
       }
     }
   }
+
+
+showDialogBox() => showCupertinoDialog<String>(
+    context: context,
+    builder: (BuildContext context) =>  AlertDialog(
+      title: Text(
+        AppLocalizations.of(context)!.no_connection,
+        //"NO CONNECTION",
+        style: const TextStyle(
+          color: Color.fromRGBO(82, 165, 160, 1),
+          fontSize: 25,
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      content: Text(
+        AppLocalizations.of(context)!.check_internet,
+        //"Please check your internet connectivity",
+        style: const TextStyle(
+          color: Color.fromRGBO(82, 165, 160, 1),
+          fontSize: 16,
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+     actions: <Widget>[
+        const SizedBox(width: webWidth * 0.020),
+        Center(
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor:
+            const Color.fromRGBO(255, 255, 255, 1),
+            minimumSize: const Size(90, 30),
+            side: const BorderSide(
+              width: 1.5,
+              color: Color.fromRGBO(82, 165, 160, 1),
+            ),
+          ),
+          child: Text(AppLocalizations.of(context)!.ok_caps,
+              style: const TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: webWidth * 0.018,
+                  color:
+                  Color.fromRGBO(82, 165, 160, 1),
+                  fontWeight: FontWeight.w500)),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        )),
+        const SizedBox(width: webWidth * 0.005),
+      ],
+  ));
+
 }
 
 class QuestionModel {
