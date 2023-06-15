@@ -452,8 +452,9 @@ class StudentRegistrationUpdatePageState
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: localHeight * 0.016),
-                                      hintText: AppLocalizations.of(context)!
-                                          .first_name_hint,
+                                      hintText: AppLocalizations.of(
+                                          context)!
+                                          .enter_here,
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               color:
@@ -1704,8 +1705,9 @@ class StudentRegistrationUpdatePageState
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w400,
                                           fontSize: localHeight * 0.016),
-                                      hintText: AppLocalizations.of(context)!
-                                          .first_name_hint,
+                                      hintText: AppLocalizations.of(
+                                          context)!
+                                          .enter_here,
                                       focusedBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               color:

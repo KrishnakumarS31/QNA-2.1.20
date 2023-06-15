@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import '../DataSource/http_url.dart';
 
 class TermsOfServiceHamburger extends StatefulWidget {
   const TermsOfServiceHamburger({
@@ -29,14 +28,12 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if(constraints.maxWidth <= 960 && constraints.maxWidth >=500){
-            return Center(
-                child: SizedBox(
-                width: webWidth,
-                child: Scaffold(
+            return Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,
@@ -116,17 +113,15 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                       ],
                     )),
               ),
-            )));
+            );
           }
           else if(constraints.maxWidth > 960) {
-            return Center(
-                child: SizedBox(
-                    width: webWidth,
-                    child: Scaffold(
+            return Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: Colors.white,
                       appBar: AppBar(
                         elevation: 0,
+                        backgroundColor: Colors.transparent,
                         leading: IconButton(
                           icon: const Icon(
                             Icons.chevron_left,
@@ -206,7 +201,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                               ],
                             )),
                       ),
-                    )));
+                    );
           }
           else{
             return Scaffold(
@@ -214,6 +209,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,

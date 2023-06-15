@@ -101,6 +101,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                   backgroundColor: Colors.white,
                   appBar: AppBar(
                     elevation: 0,
+                    backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: const Icon(
                         Icons.chevron_left,
@@ -131,7 +132,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                   ),
                   body: Padding(
                     padding: EdgeInsets.only(
-                        right: webWidth * 0.08, left: webWidth * 0.08, top: height * 0.035),
+                        right: width * 0.03, left: width * 0.05, top: height * 0.035),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -233,7 +234,6 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                                                         color: Color.fromRGBO(
                                                             0, 0, 0, 0.15)),
                                                   )),
-                                              width: webWidth * 0.833,
                                               height: height * 0.0775,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
@@ -280,6 +280,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                 backgroundColor: Colors.white,
                 appBar: AppBar(
                   elevation: 0,
+                  backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: const Icon(
                       Icons.chevron_left,
@@ -308,9 +309,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                     ),
                   ),
                 ),
-                body: Padding(
-                  padding: EdgeInsets.only(
-                      right: webWidth * 0.08, left: webWidth * 0.08, top: height * 0.035),
+                body: Center(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -459,6 +458,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,

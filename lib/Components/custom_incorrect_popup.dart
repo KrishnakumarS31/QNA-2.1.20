@@ -34,7 +34,7 @@ class _CustomDialogState extends State<CustomDialog> {
             border: Border.all(color: Colors.black12, width: 2.0),
             color: Colors.white,
             borderRadius: const BorderRadius.all(
-              Radius.circular(20),
+              Radius.circular(10),
             ),
             boxShadow: const <BoxShadow>[
               BoxShadow(
@@ -45,22 +45,41 @@ class _CustomDialogState extends State<CustomDialog> {
             ],
           ),
           margin: const EdgeInsets.all(5.0),
-          height: height * 0.1925,
-          width: width * 0.88,
+          height: height * 0.2,
+          width: width * 0.56,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.015,
               ),
-              Text(
-                widget.title,
-                style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
-                    const TextStyle(
-                        color: Color.fromRGBO(51, 51, 51, 1),
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children:[
+                  SizedBox(width: width * 0.1),
+                  Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Color.fromRGBO(226, 68, 0, 1),
+                  ),
+                  height: height * 0.05,
+                  width: width * 0.05,
+                  child: const Icon(
+                    Icons.info_outline_rounded,
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                  ),
+                ),
+                  SizedBox(width: width * 0.01),
+                  Text(
+                    widget.title,
+                    style: Theme.of(context).primaryTextTheme.bodyLarge?.merge(
+                        const TextStyle(
+                            color: Color.fromRGBO(51, 51, 51, 1),
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15)),
+                  ),
+              ]
               ),
               SizedBox(
                 height: height * 0.015,
@@ -107,25 +126,25 @@ class _CustomDialogState extends State<CustomDialog> {
             ],
           ),
         ),
-        Positioned(
-            top: height * 0.365,
-            left: width * 0.10,
-            child: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: height * 0.045,
-              child: Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Color.fromRGBO(226, 68, 0, 1),
-                ),
-                height: height * 0.10,
-                width: width * 0.10,
-                child: const Icon(
-                  Icons.info_outline_rounded,
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                ),
-              ),
-            ))
+        // Positioned(
+        //     top: height * 0.365,
+        //     left: width * 0.10,
+        //     child: CircleAvatar(
+        //       backgroundColor: Colors.transparent,
+        //       radius: height * 0.045,
+        //       child: Container(
+        //         decoration: const BoxDecoration(
+        //           shape: BoxShape.circle,
+        //           color: Color.fromRGBO(226, 68, 0, 1),
+        //         ),
+        //         height: height * 0.10,
+        //         width: width * 0.10,
+        //         child: const Icon(
+        //           Icons.info_outline_rounded,
+        //           color: Color.fromRGBO(255, 255, 255, 1),
+        //         ),
+        //       ),
+        //     ))
       ]),
     );
   }

@@ -84,7 +84,6 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     double localHeight = MediaQuery.of(context).size.height;
     double localWidth = MediaQuery.of(context).size.width;
-    // const iconAsset = "assets/images/bg.png";
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
@@ -112,7 +111,11 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                   ),
                   endDrawer: const EndDrawerMenuPreLogin(),
-                  body: SingleChildScrollView(
+                  body:
+                  Padding(
+                      padding: EdgeInsets.only(left: localHeight * 0.1),
+                      child:
+                      SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Column(
                         children: [
@@ -120,7 +123,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          SizedBox(width: localWidth * 0.05),
+                          // SizedBox(width: localWidth * 0.05),
                       Text(
                               AppLocalizations.of(context)!
                                   .welcome,
@@ -128,39 +131,37 @@ class _WelcomePageState extends State<WelcomePage> {
                                   color: const Color.fromRGBO(
                                       28, 78, 80, 1),
                                   fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w500,
                                   fontSize: localHeight * 0.035)),]),
                           SizedBox(
-                            height: localHeight * 0.25,
+                            height: localHeight * 0.20,
                           ),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                SizedBox(width: localWidth * 0.05),
                                 Text(
                                     AppLocalizations.of(context)!.continue_as,
                                     style: TextStyle(
                                         color: const Color.fromRGBO(
                                             28, 78, 80, 1),
                                         fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w500,
                                         fontSize: localHeight * 0.035)),]),
                           SizedBox(
-                            height: localHeight * 0.02,
+                            height: localHeight * 0.05,
                           ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: localWidth / 25,
-                                right: localWidth / 25),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          Row(
                                 children: [
                               ElevatedButton(
                                     style:
                                     ElevatedButton.styleFrom(
                                       backgroundColor: Colors.white,
+                                      side: const BorderSide(
+                                          width: 1, // the thickness
+                                          color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                      ),
                                       minimumSize:
-                                      const Size(200, 30),
+                                      const Size(144, 48),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -181,15 +182,20 @@ class _WelcomePageState extends State<WelcomePage> {
                                             color: const Color.fromRGBO(82, 165, 160, 1))),
                                     onPressed: () async {
                                       Navigator.pushNamed(context,
-                                          '/studentSelectionPage');
+                                          '/studentMemberLoginPage');
                                     },
                                   ),
+                                  const SizedBox(width: 30),
                                   ElevatedButton(
                                     style: ElevatedButton
                                         .styleFrom(
                                       backgroundColor: Colors.white,
+                                      side: const BorderSide(
+                                          width: 1, // the thickness
+                                          color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                      ),
                                       minimumSize:
-                                      const Size(200, 30),
+                                      const Size(144, 48),
                                       shape:
                                       RoundedRectangleBorder(
                                         borderRadius:
@@ -217,14 +223,12 @@ class _WelcomePageState extends State<WelcomePage> {
                                     },
                                   ),
                             ]),
-                          ),
                           SizedBox(
                             height: localHeight * 0.15,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .center,
                             children: [
+                              const SizedBox(width: 90),
                               MouseRegion(
                                   cursor: SystemMouseCursors
                                       .click,
@@ -278,8 +282,12 @@ class _WelcomePageState extends State<WelcomePage> {
                           SizedBox(
                             height: localHeight * 0.15,
                           ),
+                          Row(
+                            children: [
+                              const SizedBox(width: 90),
                           RichText(
-                              text: TextSpan(children: [
+                              text: TextSpan(
+                                  children: [
                                 TextSpan(
                                   text: AppLocalizations.of(context)!.product_of,
                                   style: TextStyle(
@@ -303,11 +311,239 @@ class _WelcomePageState extends State<WelcomePage> {
                                             .w700,
                                         fontSize: localHeight *
                                             0.018)),
-                              ])),
+                              ]))]),
                         ],
-                      ))));
+                      )))));
         }
         else if(constraints.maxWidth > 960) {
+          return
+            WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                  extendBodyBehindAppBar: true,
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    toolbarHeight: localHeight * 0.100,
+                    title:
+                    SizedBox(
+                        height: 50,
+                        child: Image.asset(
+                            "assets/images/qna_logo.png")),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                              end: Alignment.bottomCenter,
+                              begin: Alignment.topCenter,
+                              colors: [
+                                Color.fromRGBO(0, 106, 100, 1),
+                                Color.fromRGBO(82, 165, 160, 1),
+                              ])),
+                    ),
+                  ),
+                  endDrawer: const EndDrawerMenuPreLogin(),
+                  body:
+                  Padding(
+                          padding:EdgeInsets.only(left: localHeight * 0.8,right: localHeight * 0.2),
+                          child: SingleChildScrollView(
+                          physics: const ClampingScrollPhysics(),
+                          child: Column(
+                            children: [
+                              SizedBox(height: localHeight* 0.2),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .welcome,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: localHeight * 0.035)),]),
+                              SizedBox(
+                                height: localHeight * 0.20,
+                              ),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        AppLocalizations.of(context)!.continue_as,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: localHeight * 0.035)),]),
+                              SizedBox(
+                                height: localHeight * 0.05,
+                              ),
+                              Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style:
+                                      ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(144, 48),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              39),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(
+                                              context)!
+                                              .student,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize:
+                                              localHeight *
+                                                  0.03,
+                                              fontWeight: FontWeight
+                                                  .w600,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () async {
+                                        Navigator.pushNamed(context,
+                                            '/studentMemberLoginPage');
+                                      },
+                                    ),
+                                    const SizedBox(width: 30),
+                                    ElevatedButton(
+                                      style: ElevatedButton
+                                          .styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(144, 48),
+                                        shape:
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius
+                                              .circular(39),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(
+                                              context)!
+                                              .teacher,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight
+                                                  .w600,
+                                              fontSize:
+                                              localHeight *
+                                                  0.03,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () {
+                                        teacherClick == true;
+                                        Navigator.pushNamed(
+                                            context,
+                                            '/teacherLoginPage');
+                                      },
+                                    ),
+                                  ]),
+                              SizedBox(
+                                height: localHeight * 0.15,
+                              ),
+                              Row(
+                                children: [
+                                  const SizedBox(width: 90),
+                                  MouseRegion(
+                                      cursor: SystemMouseCursors
+                                          .click,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/settingsLanguages');
+                                          },
+                                          child: IconButton(
+                                            icon: const Icon(
+                                              Icons.translate,
+                                              color: Color.fromRGBO(
+                                                  141, 167, 167, 1),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  '/settingsLanguages');
+                                            },
+                                          ))),
+                                  MouseRegion(
+                                      cursor: SystemMouseCursors
+                                          .click,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/settingsLanguages');
+                                          },
+                                          child: Text(
+                                              AppLocalizations.of(
+                                                  context)!
+                                                  .select_language,
+                                              style: Theme
+                                                  .of(context)
+                                                  .primaryTextTheme
+                                                  .bodyLarge
+                                                  ?.merge(TextStyle(
+                                                  color: const Color
+                                                      .fromRGBO(
+                                                      48, 145, 139,
+                                                      1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight
+                                                      .w500,
+                                                  fontSize: localHeight *
+                                                      0.023)))))
+                                ],
+                              ),
+                              SizedBox(
+                                height: localHeight * 0.15,
+                              ),
+                              Row(
+                                  children: [
+                                    const SizedBox(width: 90),
+                                    RichText(
+                                        text: TextSpan(
+                                            children: [
+                                              TextSpan(
+                                                text: AppLocalizations.of(context)!.product_of,
+                                                style: TextStyle(
+                                                    color: const Color
+                                                        .fromRGBO(
+                                                        48, 145, 139, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight
+                                                        .w400,
+                                                    fontSize: localHeight *
+                                                        0.018),
+                                              ),
+                                              TextSpan(
+                                                  text: AppLocalizations.of(context)!.itn_welcome,
+                                                  style: TextStyle(
+                                                      color: const Color
+                                                          .fromRGBO(
+                                                          28, 78, 80, 1),
+                                                      fontFamily: 'Inter',
+                                                      fontWeight: FontWeight
+                                                          .w700,
+                                                      fontSize: localHeight *
+                                                          0.018)),
+                                            ]))]),
+                            ],
+                          )))));
+        }
+        else {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -333,418 +569,210 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                   endDrawer: const EndDrawerMenuPreLogin(),
                   body: SingleChildScrollView(
-                      physics: const ClampingScrollPhysics(),
+                          physics: const ClampingScrollPhysics(),
+                          child:
+                          Column(
+                          children: [
+                          Padding(
+                          padding: EdgeInsets.only(left: localHeight * 0.03),
                       child: Column(
-                        children: [
-                          SizedBox(height: localHeight* 0.2),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(width: localWidth * 0.05),
-                                Text(
-                                    AppLocalizations.of(context)!
-                                        .welcome,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.035)),]),
-                          SizedBox(
-                            height: localHeight * 0.25,
-                          ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(width: localWidth * 0.05),
-                                Text(
-                                    AppLocalizations.of(context)!.continue_as,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.035)),]),
-                          SizedBox(
-                            height: localHeight * 0.02,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: localWidth / 25,
-                                right: localWidth / 25),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  ElevatedButton(
-                                    style:
-                                    ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      minimumSize:
-                                      const Size(200, 30),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            39),
-                                      ),
-                                    ),
-                                    child: Text(
-                                        AppLocalizations.of(
-                                            context)!
-                                            .student,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize:
-                                            localHeight *
-                                                0.03,
-                                            fontWeight: FontWeight
-                                                .w600,
-                                            color: const Color.fromRGBO(82, 165, 160, 1))),
-                                    onPressed: () async {
-                                      Navigator.pushNamed(context,
-                                          '/studentSelectionPage');
-                                    },
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton
-                                        .styleFrom(
-                                      backgroundColor: Colors.white,
-                                      minimumSize:
-                                      const Size(200, 30),
-                                      shape:
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius
-                                            .circular(39),
-                                      ),
-                                    ),
-                                    child: Text(
-                                        AppLocalizations.of(
-                                            context)!
-                                            .teacher,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight
-                                                .w600,
-                                            fontSize:
-                                            localHeight *
-                                                0.03,
-                                            color: const Color.fromRGBO(82, 165, 160, 1))),
-                                    onPressed: () {
-                                      teacherClick == true;
-                                      Navigator.pushNamed(
-                                          context,
-                                          '/teacherLoginPage');
-                                    },
-                                  ),
-                                ]),
-                          ),
-                          SizedBox(
-                            height: localHeight * 0.15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .center,
                             children: [
-                              MouseRegion(
-                                  cursor: SystemMouseCursors
-                                      .click,
-                                  child: GestureDetector(
-                                      onTap: () {
+                              SizedBox(height: localHeight* 0.2),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    // SizedBox(width: localWidth * 0.05),
+                                    Text(
+                                        AppLocalizations.of(context)!
+                                            .welcome,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: localHeight * 0.035)),]),
+                              SizedBox(
+                                height: localHeight * 0.20,
+                              ),
+                              Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        AppLocalizations.of(context)!.continue_as,
+                                        style: TextStyle(
+                                            color: const Color.fromRGBO(
+                                                28, 78, 80, 1),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: localHeight * 0.035)),]),
+                              SizedBox(
+                                height: localHeight * 0.05,
+                              ),
+                              Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style:
+                                      ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(144, 48),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              39),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(
+                                              context)!
+                                              .student,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize:
+                                              localHeight *
+                                                  0.03,
+                                              fontWeight: FontWeight
+                                                  .w600,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () async {
+                                        Navigator.pushNamed(context,
+                                            '/studentMemberLoginPage');
+                                      },
+                                    ),
+                                    const SizedBox(width: 30),
+                                    ElevatedButton(
+                                      style: ElevatedButton
+                                          .styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(144, 48),
+                                        shape:
+                                        RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius
+                                              .circular(39),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(
+                                              context)!
+                                              .teacher,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight
+                                                  .w600,
+                                              fontSize:
+                                              localHeight *
+                                                  0.03,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () {
+                                        teacherClick == true;
                                         Navigator.pushNamed(
                                             context,
-                                            '/settingsLanguages');
+                                            '/teacherLoginPage');
                                       },
-                                      child: IconButton(
-                                        icon: const Icon(
-                                          Icons.translate,
-                                          color: Color.fromRGBO(
-                                              141, 167, 167, 1),
-                                        ),
-                                        onPressed: () {
+                                    ),
+                                  ]),
+                              SizedBox(
+                                height: localHeight * 0.15,
+                              ),
+                            ],
+                          )),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MouseRegion(
+                                    cursor: SystemMouseCursors
+                                        .click,
+                                    child: GestureDetector(
+                                        onTap: () {
                                           Navigator.pushNamed(
                                               context,
                                               '/settingsLanguages');
                                         },
-                                      ))),
-                              MouseRegion(
-                                  cursor: SystemMouseCursors
-                                      .click,
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/settingsLanguages');
-                                      },
-                                      child: Text(
-                                          AppLocalizations.of(
-                                              context)!
-                                              .select_language,
-                                          style: Theme
-                                              .of(context)
-                                              .primaryTextTheme
-                                              .bodyLarge
-                                              ?.merge(TextStyle(
-                                              color: const Color
-                                                  .fromRGBO(
-                                                  48, 145, 139,
-                                                  1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight
-                                                  .w500,
-                                              fontSize: localHeight *
-                                                  0.023)))))
-                            ],
-                          ),
-                          SizedBox(
-                            height: localHeight * 0.15,
-                          ),
-                          RichText(
-                              text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!.product_of,
-                                  style: TextStyle(
-                                      color: const Color
-                                          .fromRGBO(
-                                          48, 145, 139, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight
-                                          .w400,
-                                      fontSize: localHeight *
-                                          0.018),
-                                ),
-                                TextSpan(
-                                    text: AppLocalizations.of(context)!.itn_welcome,
-                                    style: TextStyle(
-                                        color: const Color
-                                            .fromRGBO(
-                                            28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight
-                                            .w700,
-                                        fontSize: localHeight *
-                                            0.018)),
-                              ])),
-                        ],
-                      ))));
-        }
-        else {
-          return WillPopScope(
-              onWillPop: () async => false,
-              child: Scaffold(
-                  extendBodyBehindAppBar: true,
-                  appBar: AppBar(
-                automaticallyImplyLeading: false,
-                toolbarHeight: localHeight * 0.100,
-                title:
-                SizedBox(
-                    height: 50,
-                    child: Image.asset(
-                        "assets/images/qna_logo.png")),
-                flexibleSpace: Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                          end: Alignment.bottomCenter,
-                          begin: Alignment.topCenter,
-                          colors: [
-                            Color.fromRGBO(0, 106, 100, 1),
-                            Color.fromRGBO(82, 165, 160, 1),
-                          ])),
-                ),
-              ),
-                  endDrawer: const EndDrawerMenuPreLogin(),
-                  body: SingleChildScrollView(
-                      physics: const ClampingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          SizedBox(height: localHeight* 0.2),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(width: localWidth * 0.05),
-                                Text(
-                                    AppLocalizations.of(context)!
-                                        .welcome,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.035)),]),
-                          SizedBox(
-                            height: localHeight * 0.25,
-                          ),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                SizedBox(width: localWidth * 0.05),
-                                Text(
-                                    AppLocalizations.of(context)!.continue_as,
-                                    style: TextStyle(
-                                        color: const Color.fromRGBO(
-                                            28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: localHeight * 0.035)),]),
-                          SizedBox(
-                            height: localHeight * 0.02,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                left: localWidth / 25,
-                                right: localWidth / 25),
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  ElevatedButton(
-                                    style:
-                                    ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      minimumSize:
-                                      const Size(200, 30),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius.circular(
-                                            39),
-                                      ),
-                                    ),
-                                    child: Text(
-                                        AppLocalizations.of(
-                                            context)!
-                                            .student,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontSize:
-                                            localHeight *
-                                                0.03,
-                                            fontWeight: FontWeight
-                                                .w600,
-                                            color: const Color.fromRGBO(82, 165, 160, 1))),
-                                    onPressed: () async {
-                                      Navigator.pushNamed(context,
-                                          '/studentSelectionPage');
-                                    },
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton
-                                        .styleFrom(
-                                      backgroundColor: Colors.white,
-                                      minimumSize:
-                                      const Size(200, 30),
-                                      shape:
-                                      RoundedRectangleBorder(
-                                        borderRadius:
-                                        BorderRadius
-                                            .circular(39),
-                                      ),
-                                    ),
-                                    child: Text(
-                                        AppLocalizations.of(
-                                            context)!
-                                            .teacher,
-                                        style: TextStyle(
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight
-                                                .w600,
-                                            fontSize:
-                                            localHeight *
-                                                0.03,
-                                            color: const Color.fromRGBO(82, 165, 160, 1))),
-                                    onPressed: () {
-                                      teacherClick == true;
-                                      Navigator.pushNamed(
-                                          context,
-                                          '/teacherLoginPage');
-                                    },
-                                  ),
-                                ]),
-                          ),
-                          SizedBox(
-                            height: localHeight * 0.15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment
-                                .center,
-                            children: [
-                              MouseRegion(
-                                  cursor: SystemMouseCursors
-                                      .click,
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/settingsLanguages');
-                                      },
-                                      child: IconButton(
-                                        icon: const Icon(
-                                          Icons.translate,
-                                          color: Color.fromRGBO(
-                                              141, 167, 167, 1),
-                                        ),
-                                        onPressed: () {
+                                        child: IconButton(
+                                          icon: const Icon(
+                                            Icons.translate,
+                                            color: Color.fromRGBO(
+                                                141, 167, 167, 1),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/settingsLanguages');
+                                          },
+                                        ))),
+                                MouseRegion(
+                                    cursor: SystemMouseCursors
+                                        .click,
+                                    child: GestureDetector(
+                                        onTap: () {
                                           Navigator.pushNamed(
                                               context,
                                               '/settingsLanguages');
                                         },
-                                      ))),
-                              MouseRegion(
-                                  cursor: SystemMouseCursors
-                                      .click,
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/settingsLanguages');
-                                      },
-                                      child: Text(
-                                          AppLocalizations.of(
-                                              context)!
-                                              .select_language,
-                                          style: Theme
-                                              .of(context)
-                                              .primaryTextTheme
-                                              .bodyLarge
-                                              ?.merge(TextStyle(
-                                              color: const Color
-                                                  .fromRGBO(
-                                                  48, 145, 139,
-                                                  1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight
-                                                  .w500,
-                                              fontSize: localHeight *
-                                                  0.023)))))
-                            ],
-                          ),
-                          SizedBox(
-                            height: localHeight * 0.15,
-                          ),
-                          RichText(
-                              text: TextSpan(children: [
-                                TextSpan(
-                                  text: AppLocalizations.of(context)!.product_of,
-                                  style: TextStyle(
-                                      color: const Color
-                                          .fromRGBO(
-                                          48, 145, 139, 1),
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight
-                                          .w400,
-                                      fontSize: localHeight *
-                                          0.018),
-                                ),
-                                TextSpan(
-                                    text: AppLocalizations.of(context)!.itn_welcome,
-                                    style: TextStyle(
-                                        color: const Color
-                                            .fromRGBO(
-                                            28, 78, 80, 1),
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight
-                                            .w700,
-                                        fontSize: localHeight *
-                                            0.018)),
-                              ])),
-                        ],
+                                        child: Text(
+                                            AppLocalizations.of(
+                                                context)!
+                                                .select_language,
+                                            style: Theme
+                                                .of(context)
+                                                .primaryTextTheme
+                                                .bodyLarge
+                                                ?.merge(TextStyle(
+                                                color: const Color
+                                                    .fromRGBO(
+                                                    48, 145, 139,
+                                                    1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight
+                                                    .w500,
+                                                fontSize: localHeight *
+                                                    0.023)))))
+                              ],
+                            ),
+                            SizedBox(
+                              height: localHeight * 0.15,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  RichText(
+                                      text: TextSpan(
+                                          children: [
+                                            TextSpan(
+                                              text: AppLocalizations.of(context)!.product_of,
+                                              style: TextStyle(
+                                                  color: const Color
+                                                      .fromRGBO(
+                                                      48, 145, 139, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight
+                                                      .w400,
+                                                  fontSize: localHeight *
+                                                      0.018),
+                                            ),
+                                            TextSpan(
+                                                text: AppLocalizations.of(context)!.itn_welcome,
+                                                style: TextStyle(
+                                                    color: const Color
+                                                        .fromRGBO(
+                                                        28, 78, 80, 1),
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight
+                                                        .w700,
+                                                    fontSize: localHeight *
+                                                        0.018)),
+                                          ]))]),
+                      ]
                       ))));
         }
       },

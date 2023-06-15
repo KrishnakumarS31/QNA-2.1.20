@@ -29,26 +29,25 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
 
   @override
   Widget build(BuildContext context) {
-    //double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints)
     {
-      if (constraints.maxWidth > webWidth) {
-        return Center(
-            child: SizedBox(
-            width: webWidth,
-            child:  WillPopScope(
+      if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+        return WillPopScope(
             onWillPop: () async => false,
             child: Scaffold(
                 resizeToAvoidBottomInset: false,
                 backgroundColor: Colors.white,
                 appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -59,194 +58,283 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   title: Text(
                     AppLocalizations.of(context)!.forgot_password_caps,
                     style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      color: Colors.black,
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            end: Alignment.bottomRight,
-                            begin: Alignment.topLeft,
-                            colors: [
-                              Color.fromRGBO(82, 165, 160, 1),
-                              Color.fromRGBO(0, 106, 100, 1),
-                            ])),
+                    color: Colors.white,
                   ),
                 ),
                 body: Column(children: [
                   SizedBox(height: height * 0.1),
-                  Form(
-                    key: formKey,
-                    child: SizedBox(
-                      height: height * 0.45,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: height * 0.025, right: height * 0.025),
-                            child: TextFormField(
-                              controller: _controller,
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (val) {
-                                formKey.currentState!.validate();
-                              },
-                              decoration: InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior
-                                    .always,
-                                label: RichText(
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .enter_email_id,
-                                        style: TextStyle(
-                                            color:
-                                            const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.017),
-                                      ),
-                                      TextSpan(
-                                          text: "\t*",
-                                          style: TextStyle(
-                                              color:
-                                              const Color.fromRGBO(
-                                                  219, 35, 35, 1),
+                  Center(
+                      child:Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: kElevationToShadow[4],
+                          ),
+                          width: width * 0.75,
+                          child:
+                          Form(
+                            key: formKey,
+                            child: SizedBox(
+                              height: height * 0.3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                      height: height * 0.05),
+                                  SizedBox(
+                                      width: width * 0.6,
+                                      child:
+                                      TextFormField(
+                                        controller: _controller,
+                                        keyboardType: TextInputType.emailAddress,
+                                        onChanged: (val) {
+                                          formKey.currentState!.validate();
+                                        },
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior
+                                              .always,
+                                          label: Text(AppLocalizations.of(context)!
+                                              .email_id_caps,
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.020),
+                                          ),
+                                          helperText: AppLocalizations.of(context)!
+                                              .email_helper_text,
+                                          helperStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
                                               fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: height * 0.017)),
-                                    ])),
-                                helperText: 'an OTP will be sent to Email ID',
-                                helperStyle: TextStyle(
-                                    color: const Color.fromRGBO(
-                                        102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                                hintStyle: TextStyle(
-                                    color: const Color.fromRGBO(
-                                        102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                                hintText: "emailID@email.com",
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Color.fromRGBO(82, 165, 160, 1)),
-                                    borderRadius: BorderRadius.circular(15)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
+                                              fontStyle: FontStyle.italic,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                          suffixIcon: IconButton(
+                                            iconSize: height * 0.05,
+                                            icon: const Icon(Icons.arrow_circle_right,
+                                              color: Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                            ),
+                                            onPressed: () async {
+                                              bool valid = formKey.currentState!.validate();
+                                              if (valid) {
+                                                StaticResponse response = StaticResponse(
+                                                    code: 0, message: 'Incorrect Email');
+                                                response =
+                                                await QnaService.sendOtp(_controller.text);
+                                                if (response.code == 200) {
+                                                  showAlertDialog(context);
+                                                } else if (response.code != null &&
+                                                    response.code != 200) {
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType.rightToLeft,
+                                                      child: CustomDialog(
+                                                        title: AppLocalizations.of(context)!
+                                                            .alert_popup,
+                                                        //'Wrong password',
+                                                        content: response.message,
+                                                        //'please enter the correct password',
+                                                        button: AppLocalizations.of(context)!
+                                                            .retry,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              }
+                                            },
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.018),
+                                          hintText: AppLocalizations.of(context)!
+                                              .enter_here,
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(
+                                                  r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                  .hasMatch(value)) {
+                                            return AppLocalizations.of(context)!
+                                                .enter_valid_email;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.06,
+                                  ),
+                                ],
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty ||
-                                    !RegExp(
-                                        r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                        .hasMatch(value)) {
-                                  return AppLocalizations.of(context)!
-                                      .enter_valid_email;
-                                } else {
-                                  return null;
-                                }
-                              },
                             ),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: Size(webWidth * 0.77, height * 0.06),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(39),
-                              ),
-                            ),
-                            onPressed: () async {
-                              bool valid = formKey.currentState!.validate();
-                              if (valid) {
-                                StaticResponse response = StaticResponse(
-                                    code: 0, message: 'Incorrect Email');
-                                response =
-                                await QnaService.sendOtp(_controller.text);
-                                if (response.code == 200) {
-                                  showAlertDialog(context);
-                                } else if (response.code != null &&
-                                    response.code != 200) {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: CustomDialog(
-                                        title: AppLocalizations.of(context)!.alert_popup,
-                                        //'Wrong password',
-                                        content: response.message,
-                                        //'please enter the correct password',
-                                        button: AppLocalizations.of(context)!
-                                            .retry,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.send_otp,
-                              style: TextStyle(
-                                  fontSize: height * 0.024,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
-                      ),
+                          ))),
+                ])));
+      }
+      else if(constraints.maxWidth > 960) {
+        return WillPopScope(
+            onWillPop: () async => false,
+            child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                backgroundColor: Colors.white,
+                appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  leading: IconButton(
+                    icon: const Icon(
+                      Icons.chevron_left,
+                      size: 40.0,
+                      color: Colors.black,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  automaticallyImplyLeading: false,
+                  centerTitle: true,
+                  title: Text(
+                    AppLocalizations.of(context)!.forgot_password_caps,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: height * 0.025,
+                      fontFamily: "Inter",
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(
-                    height: height * 0.06,
+                  flexibleSpace: Container(
+                    color: Colors.white,
                   ),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            IconButton(
-                              //iconSize: GetPlatform.isWeb ?  height * 0.04 : height * 0.03,
-                              icon: const Icon(
-                                Icons.chevron_left,
-                                color: Color.fromRGBO(82, 165, 160, 1),
+                ),
+                body: Column(children: [
+                  SizedBox(height: height * 0.1),
+                  Center(
+                      child:Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: kElevationToShadow[4],
+                          ),
+                          width: width * 0.7,
+                          child:
+                          Form(
+                            key: formKey,
+                            child: SizedBox(
+                              height: height * 0.3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                      height: height * 0.05),
+                                  SizedBox(
+                                      width: width * 0.6,
+                                      child:
+                                      TextFormField(
+                                        controller: _controller,
+                                        keyboardType: TextInputType.emailAddress,
+                                        onChanged: (val) {
+                                          formKey.currentState!.validate();
+                                        },
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior
+                                              .always,
+                                          label: Text(AppLocalizations.of(context)!
+                                              .email_id_caps,
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.020),
+                                          ),
+                                          helperText: AppLocalizations.of(context)!
+                                              .email_helper_text,
+                                          helperStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontStyle: FontStyle.italic,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                          suffixIcon: IconButton(
+                                            iconSize: height * 0.05,
+                                            icon: const Icon(Icons.arrow_circle_right,
+                                              color: Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                            ),
+                                            onPressed: () async {
+                                              bool valid = formKey.currentState!.validate();
+                                              if (valid) {
+                                                StaticResponse response = StaticResponse(
+                                                    code: 0, message: 'Incorrect Email');
+                                                response =
+                                                await QnaService.sendOtp(_controller.text);
+                                                if (response.code == 200) {
+                                                  showAlertDialog(context);
+                                                } else if (response.code != null &&
+                                                    response.code != 200) {
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType.rightToLeft,
+                                                      child: CustomDialog(
+                                                        title: AppLocalizations.of(context)!
+                                                            .alert_popup,
+                                                        //'Wrong password',
+                                                        content: response.message,
+                                                        //'please enter the correct password',
+                                                        button: AppLocalizations.of(context)!
+                                                            .retry,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              }
+                                            },
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.018),
+                                          hintText: AppLocalizations.of(context)!
+                                              .enter_here,
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(
+                                                  r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                  .hasMatch(value)) {
+                                            return AppLocalizations.of(context)!
+                                                .enter_valid_email;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.06,
+                                  ),
+                                ],
                               ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
                             ),
-                            Text(AppLocalizations.of(context)!.back,
-                                style: Theme
-                                    .of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(const TextStyle(
-                                    color: Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16))),
-                          ]
-                      ),
-                      // child: Row(
-                      //   //mainAxisAlignment: MainAxisAlignment.center,
-                      //   mainAxisSize: MainAxisSize.min,
-                      //   children: [
-                      //
-                      //   ],
-                      // ),
-                    ),
-                  )
-                ])))));
+                          ))),
+                ])));
       }
       else {
         return WillPopScope(
@@ -255,11 +343,13 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                 resizeToAvoidBottomInset: false,
                 backgroundColor: Colors.white,
                 appBar: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -270,194 +360,131 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   title: Text(
                     AppLocalizations.of(context)!.forgot_password_caps,
                     style: TextStyle(
-                      color: const Color.fromRGBO(255, 255, 255, 1),
+                      color: Colors.black,
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   flexibleSpace: Container(
-                    decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                            end: Alignment.bottomRight,
-                            begin: Alignment.topLeft,
-                            colors: [
-                              Color.fromRGBO(82, 165, 160, 1),
-                              Color.fromRGBO(0, 106, 100, 1),
-                            ])),
+                    color: Colors.white,
                   ),
                 ),
                 body: Column(children: [
                   SizedBox(height: height * 0.1),
-                  Form(
-                    key: formKey,
-                    child: SizedBox(
-                      height: height * 0.45,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: height * 0.025, right: height * 0.025),
-                            child: TextFormField(
-                              controller: _controller,
-                              keyboardType: TextInputType.emailAddress,
-                              onChanged: (val) {
-                                formKey.currentState!.validate();
-                              },
-                              decoration: InputDecoration(
-                                floatingLabelBehavior: FloatingLabelBehavior
-                                    .always,
-                                label: RichText(
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .enter_email_id,
-                                        style: TextStyle(
-                                            color:
-                                            const Color.fromRGBO(
-                                                102, 102, 102, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.017),
-                                      ),
-                                      TextSpan(
-                                          text: "\t*",
-                                          style: TextStyle(
-                                              color:
-                                              const Color.fromRGBO(
-                                                  219, 35, 35, 1),
+                  Center(
+                      child:Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: kElevationToShadow[4],
+                          ),
+                          width: width * 0.7,
+                          child:
+                          Form(
+                            key: formKey,
+                            child: SizedBox(
+                              height: height * 0.3,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                      height: height * 0.05),
+                                  SizedBox(
+                                      width: width * 0.6,
+                                      child:
+                                      TextFormField(
+                                        controller: _controller,
+                                        keyboardType: TextInputType.emailAddress,
+                                        onChanged: (val) {
+                                          formKey.currentState!.validate();
+                                        },
+                                        decoration: InputDecoration(
+                                          floatingLabelBehavior: FloatingLabelBehavior
+                                              .always,
+                                          label: Text(AppLocalizations.of(context)!
+                                              .email_id_caps,
+                                            style: TextStyle(
+                                                color:
+                                                const Color.fromRGBO(
+                                                    102, 102, 102, 1),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: height * 0.020),
+                                          ),
+                                          helperText: AppLocalizations.of(context)!
+                                              .email_helper_text,
+                                          helperStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
                                               fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: height * 0.017)),
-                                    ])),
-                                helperText: 'an OTP will be sent to Email ID',
-                                helperStyle: TextStyle(
-                                    color: const Color.fromRGBO(
-                                        102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                                hintStyle: TextStyle(
-                                    color: const Color.fromRGBO(
-                                        102, 102, 102, 0.3),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: height * 0.016),
-                                hintText: "emailID@email.com",
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Color.fromRGBO(82, 165, 160, 1)),
-                                    borderRadius: BorderRadius.circular(15)),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(15)),
+                                              fontStyle: FontStyle.italic,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.016),
+                                          suffixIcon: IconButton(
+                                            iconSize: height * 0.05,
+                                            icon: const Icon(Icons.arrow_circle_right,
+                                              color: Color.fromRGBO(
+                                                  82, 165, 160, 1),
+                                            ),
+                                            onPressed: () async {
+                                              bool valid = formKey.currentState!.validate();
+                                              if (valid) {
+                                                StaticResponse response = StaticResponse(
+                                                    code: 0, message: 'Incorrect Email');
+                                                response =
+                                                await QnaService.sendOtp(_controller.text);
+                                                if (response.code == 200) {
+                                                  showAlertDialog(context);
+                                                } else if (response.code != null &&
+                                                    response.code != 200) {
+                                                  Navigator.push(
+                                                    context,
+                                                    PageTransition(
+                                                      type: PageTransitionType.rightToLeft,
+                                                      child: CustomDialog(
+                                                        title: AppLocalizations.of(context)!
+                                                            .alert_popup,
+                                                        //'Wrong password',
+                                                        content: response.message,
+                                                        //'please enter the correct password',
+                                                        button: AppLocalizations.of(context)!
+                                                            .retry,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                              }
+                                            },
+                                          ),
+                                          hintStyle: TextStyle(
+                                              color: const Color.fromRGBO(
+                                                  102, 102, 102, 0.3),
+                                              fontFamily: 'Inter',
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: height * 0.018),
+                                          hintText: AppLocalizations.of(context)!
+                                              .enter_here,
+                                        ),
+                                        validator: (value) {
+                                          if (value!.isEmpty ||
+                                              !RegExp(
+                                                  r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                  .hasMatch(value)) {
+                                            return AppLocalizations.of(context)!
+                                                .enter_valid_email;
+                                          } else {
+                                            return null;
+                                          }
+                                        },
+                                      )),
+                                  SizedBox(
+                                    height: height * 0.06,
+                                  ),
+                                ],
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty ||
-                                    !RegExp(
-                                        r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                        .hasMatch(value)) {
-                                  return AppLocalizations.of(context)!
-                                      .enter_valid_email;
-                                } else {
-                                  return null;
-                                }
-                              },
                             ),
-                          ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                              const Color.fromRGBO(82, 165, 160, 1),
-                              minimumSize: Size(webWidth * 0.77, height * 0.06),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(39),
-                              ),
-                            ),
-                            onPressed: () async {
-                              bool valid = formKey.currentState!.validate();
-                              if (valid) {
-                                StaticResponse response = StaticResponse(
-                                    code: 0, message: 'Incorrect Email');
-                                response =
-                                await QnaService.sendOtp(_controller.text);
-                                if (response.code == 200) {
-                                  showAlertDialog(context);
-                                } else if (response.code != null &&
-                                    response.code != 200) {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: CustomDialog(
-                                        title: AppLocalizations.of(context)!
-                                            .alert_popup,
-                                        //'Wrong password',
-                                        content: response.message,
-                                        //'please enter the correct password',
-                                        button: AppLocalizations.of(context)!
-                                            .retry,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }
-                            },
-                            child: Text(
-                              AppLocalizations.of(context)!.send_otp,
-                              style: TextStyle(
-                                  fontSize: height * 0.024,
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height * 0.06,
-                  ),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            IconButton(
-                              //iconSize: GetPlatform.isWeb ?  height * 0.04 : height * 0.03,
-                              icon: const Icon(
-                                Icons.chevron_left,
-                                color: Color.fromRGBO(82, 165, 160, 1),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            Text(AppLocalizations.of(context)!.back,
-                                style: Theme
-                                    .of(context)
-                                    .primaryTextTheme
-                                    .bodyLarge
-                                    ?.merge(const TextStyle(
-                                    color: Color.fromRGBO(48, 145, 139, 1),
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16))),
-                          ]
-                      ),
-                      // child: Row(
-                      //   //mainAxisAlignment: MainAxisAlignment.center,
-                      //   mainAxisSize: MainAxisSize.min,
-                      //   children: [
-                      //
-                      //   ],
-                      // ),
-                    ),
-                  )
+                          ))),
                 ])));
       }
     }

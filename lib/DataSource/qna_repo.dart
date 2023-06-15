@@ -570,6 +570,25 @@ class QnaRepo {
     return allAssessment;
   }
 
+  static Future<ResponseEntity> getAssessmentHeader(String assessmentCode) async {
+    print("ASSESSMENT CODE");
+    print(assessmentCode);
+    ResponseEntity allAssessment = ResponseEntity();
+    //SharedPreferences loginData = await SharedPreferences.getInstance();
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://dev.qnatest.com/api/v1/assessment-details?code=$assessmentCode'));
+    http.StreamedResponse response = await request.send();
+    print("RESPONSE CODE");
+    print(response.statusCode);
+      String value = await response.stream.bytesToString();
+      allAssessment = responseEntityFromJson(value);
+
+    print(allAssessment);
+    return allAssessment;
+  }
+
   static Future<ResponseEntity> getSearchQuestion(
       int pageLimit, int pageNumber, String searchVal,UserDetails userDetails) async {
     ResponseEntity allAssessment = ResponseEntity();

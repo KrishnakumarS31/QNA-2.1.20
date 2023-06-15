@@ -58,7 +58,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
       return Drawer(
         child: Column(
           children: [
-            constraints.maxWidth > webWidth
+            constraints.maxWidth <= 960 && constraints.maxWidth >=500
                 ? Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(
@@ -106,7 +106,7 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                                       color: Color.fromRGBO(221, 221, 221, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
-                                      
+
                                       fontSize: 12),
                                 )),
                             Container(
@@ -126,7 +126,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                       ],
                     ),
                   )
-                : Container(
+                : constraints.maxWidth > 960
+            ? Container(
                     decoration: const BoxDecoration(
                         gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -193,7 +194,8 @@ class _EndDrawerMenuStudentState extends State<EndDrawerMenuStudent> {
                         //    )
                       ],
                     ),
-                  ),
+                  )
+            : Container(),
             Flexible(
               child: ListView(
                 children: [

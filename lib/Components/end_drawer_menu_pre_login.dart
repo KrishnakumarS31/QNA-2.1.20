@@ -24,14 +24,19 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
     double localHeight = MediaQuery.of(context).size.height;
     Color textColor = const Color.fromRGBO(48, 145, 139, 1);
     return Drawer(
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       child: Column(
         children: [
-          Container(
-              color: Colors.white,
-              height: localHeight * 0.07),
           Flexible(
             child: ListView(
               children: [
+                ListTile(
+                    leading: const Icon(Icons.chevron_left,
+                        size: 32,
+                        color: Color.fromRGBO(28, 78, 80, 1)),
+                    onTap: () async {
+                      Navigator.of(context).pop();
+                    }),
                 ListTile(
                     leading: const Icon(Icons.translate,
                         color: Color.fromRGBO(141, 167, 167, 1)),

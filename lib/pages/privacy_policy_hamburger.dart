@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
-import '../DataSource/http_url.dart';
 class PrivacyPolicyHamburger extends StatefulWidget {
   const PrivacyPolicyHamburger({
     Key? key,
@@ -28,14 +27,12 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
           if(constraints.maxWidth <= 960 && constraints.maxWidth >=500){
-            return Center(
-                child: SizedBox(
-                width: webWidth,
-                child: Scaffold(
+            return Scaffold(
               resizeToAvoidBottomInset: true,
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,
@@ -97,7 +94,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         ),
                         SizedBox(height: height * 0.05),
                         Align(
-                         alignment: Alignment.topLeft,
+                         alignment: Alignment.topCenter,
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(
@@ -135,17 +132,15 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                       ],
                     )),
               ),
-            )));
+            );
           }
           else if(constraints.maxWidth > 960) {
-            return Center(
-                child: SizedBox(
-                    width: webWidth,
-                    child: Scaffold(
+            return Scaffold(
                       resizeToAvoidBottomInset: true,
                       backgroundColor: Colors.white,
                       appBar: AppBar(
                         elevation: 0,
+                        backgroundColor: Colors.transparent,
                         leading: IconButton(
                           icon: const Icon(
                             Icons.chevron_left,
@@ -180,11 +175,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                       ),
                       body: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                                top: height * 0.023,
-                                left: height * 0.023,
-                                right: height * 0.023),
+                        child: Center(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -207,7 +198,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                                 ),
                                 SizedBox(height: height * 0.05),
                                 Align(
-                                  alignment: Alignment.topLeft,
+                                  alignment: Alignment.topCenter,
                                   child: MouseRegion(
                                       cursor: SystemMouseCursors.click,
                                       child: GestureDetector(
@@ -245,7 +236,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                               ],
                             )),
                       ),
-                    )));
+                    );
           }
         else {
             return Scaffold(
@@ -253,6 +244,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: const Icon(
                     Icons.chevron_left,
@@ -313,7 +305,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         ),
                         SizedBox(height: height * 0.05),
                         Align(
-                          alignment: Alignment.topLeft,
+                          alignment: Alignment.topCenter,
                           child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: GestureDetector(

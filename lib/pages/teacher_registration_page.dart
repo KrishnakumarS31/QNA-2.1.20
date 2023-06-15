@@ -425,7 +425,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               fontSize: localHeight * 0.016),
                                           hintText: AppLocalizations.of(
                                               context)!
-                                              .first_name_hint,
+                                              .enter_here,
                                           focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color:
@@ -1768,7 +1768,7 @@ class TeacherRegistrationPageState extends State<TeacherRegistrationPage> {
                                               fontSize: localHeight * 0.016),
                                           hintText: AppLocalizations.of(
                                               context)!
-                                              .first_name_hint,
+                                              .enter_here,
                                           focusedBorder: OutlineInputBorder(
                                               borderSide: const BorderSide(
                                                   color:
