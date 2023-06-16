@@ -6,6 +6,7 @@ import 'package:qna_test/Providers/question_num_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import '../DataSource/http_url.dart';
+import '../Entity/Teacher/get_assessment_header.dart';
 class StudQuestion extends StatefulWidget {
   StudQuestion(
       {Key? key,
@@ -14,6 +15,7 @@ class StudQuestion extends StatefulWidget {
       required this.userName,
         this.userId,
         required this.isMember,
+        required this.assessmentHeaders
       })
       : super(key: key);
   final String assessmentId;
@@ -21,6 +23,7 @@ class StudQuestion extends StatefulWidget {
   final String userName;
   int? userId;
   final bool isMember;
+  final GetAssessmentHeaderModel assessmentHeaders;
 
 
   @override
@@ -457,7 +460,8 @@ class StudQuestionState extends State<StudQuestion> {
                   values.data!.assessmentId!,
                   true,
                   widget.userId,
-                  widget.isMember
+                  widget.isMember,
+                  widget.assessmentHeaders
                 ]);
           }
 
@@ -481,7 +485,8 @@ class StudQuestionState extends State<StudQuestion> {
                 values.data!.assessmentId!,
                 true,
                 widget.userId,
-                widget.isMember
+                widget.isMember,
+                widget.assessmentHeaders
               ]);
         }
         myDuration = Duration(seconds: seconds);
@@ -1158,7 +1163,8 @@ class StudQuestionState extends State<StudQuestion> {
                                               values.data!.assessmentId!,
                                               false,
                                               widget.userId,
-                                              widget.isMember
+                                              widget.isMember,
+                                              widget.assessmentHeaders
                                             ]);
                                       },
                                     )
@@ -1878,7 +1884,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 values.data!.assessmentId!,
                                                 false,
                                                 widget.userId,
-                                                widget.isMember
+                                                widget.isMember,
+                                                widget.assessmentHeaders
                                               ]);
                                         },
                                       )

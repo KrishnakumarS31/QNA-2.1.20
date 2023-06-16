@@ -821,7 +821,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                   values,
                                                                   widget.name,
                                                                   null,
-                                                                  false
+                                                                  false,
+                                                                  assessmentHeaderValues
                                                                 ]);
                                                           }
                                                         }
@@ -1652,7 +1653,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                                     values,
                                                                     widget.name,
                                                                     null,
-                                                                    false
+                                                                    false,
+                                                                    assessmentHeaderValues
                                                                   ]);
                                                             }
                                                           }
@@ -1795,7 +1797,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: Color.fromRGBO(255, 255, 255, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w600,
-
                                             fontSize: 16)),
                                       ),
                                     ]),
@@ -1811,7 +1812,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                             color: Color.fromRGBO(221, 221, 221, 1),
                                             fontFamily: 'Inter',
                                             fontWeight: FontWeight.w500,
-
                                             fontSize: 12),
                                       )),
                                 ],
@@ -1832,7 +1832,6 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                         color: textColor,
                                         fontFamily: 'Inter',
                                         fontWeight: FontWeight.w500,
-
                                         fontSize: 16),
                                   ),
                                   trailing: const Icon(Icons.navigate_next,
@@ -2489,7 +2488,8 @@ class StudGuestAssessmentState extends State<StudGuestAssessment> {
                                                        values,
                                                        widget.name,
                                                        null,
-                                                       false
+                                                       false,
+                                                       assessmentHeaderValues
                                                      ]);
                                                }
                                              }

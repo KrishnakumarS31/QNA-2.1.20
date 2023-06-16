@@ -82,13 +82,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                       resizeToAvoidBottomInset: false,
                       extendBodyBehindAppBar: true,
                       appBar:AppBar(
-                        iconTheme: const IconThemeData(color: Colors.black),
+                        iconTheme: IconThemeData(
+                          color: Colors.black,
+                          size: localHeight * 0.05
+                        ),
                         elevation: 0,
                         backgroundColor: Colors.transparent,
                         leading: IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.chevron_left,
-                            size: 40.0,
+                            size: localHeight * 0.06,
                             color: Colors.black,
                           ),
                           onPressed: () {
@@ -129,7 +132,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               style: TextStyle(
                                 fontSize: localHeight * 0.02,
                                 color: const Color.fromRGBO(
-                                    28, 78, 80, 1),
+                                    102, 102, 102, 1),
                                 fontFamily: "Inter",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -165,7 +168,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               onChanged: (val) {
                                                 formKey.currentState!.validate();
                                               },
-                                              decoration: InputDecoration( floatingLabelBehavior:
+                                              decoration: InputDecoration(
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
                                                 helperStyle: TextStyle(
                                                     color: const Color.fromRGBO(
@@ -192,7 +197,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 0.3),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: localHeight * 0.02),
+                                                    fontSize: localHeight * 0.018),
                                               ),
                                               validator: (value) {
                                                 if (value!.isEmpty ||
@@ -223,6 +228,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               keyboardType: TextInputType.text,
                                               decoration: InputDecoration( floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   label: Text(
                                                     AppLocalizations.of(context)!
                                                         .password,
@@ -268,141 +274,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                     _isObscure = !_isObscure;
                                                                   });
                                                                 }),
-                                                            IconButton(
-                                                              icon: const Icon(Icons.arrow_circle_right,
-                                                                color: Color.fromRGBO(
-                                                                    82, 165, 160, 1),
-                                                              ),
-                                                              onPressed: () async {
-                                                                _prefService
-                                                                    .createCache(
-                                                                    passWordController.text)
-                                                                    .whenComplete(() async {
-                                                                  if (formKey.currentState!
-                                                                      .validate()) {
-                                                                    regNumber =
-                                                                        regNumberController.text;
-                                                                    passWord =
-                                                                        passWordController.text;
-                                                                    showDialog(
-                                                                        context: context,
-                                                                        builder: (context) {
-                                                                          return const Center(
-                                                                              child:
-                                                                              CircularProgressIndicator(
-                                                                                color: Color.fromRGBO(
-                                                                                    48, 145, 139, 1),
-                                                                              ));
-                                                                        });
-                                                                    LoginModel loginResponse =
-                                                                    await QnaService.logInUser(
-                                                                        regNumber,
-                                                                        passWord,
-                                                                        'student');
-                                                                    Navigator.of(context).pop();
-
-                                                                    if (loginResponse.code == 200) {
-                                                                      //UserDataModel userDataModel = UserDataModel();
-                                                                      //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
-                                                                      UserDetails userDetails=UserDetails();
-                                                                      userDetails.login=false;
-                                                                      userDetails.email=regNumber;
-                                                                      userDetails.password=passWord;
-                                                                      userDetails.role='student';
-                                                                      userDetails.firstName=loginResponse.data.firstName;
-                                                                      userDetails.lastName=loginResponse.data.lastName;
-                                                                      userDetails.token=loginResponse.data.accessToken;
-                                                                      userDetails.userId=loginResponse.data.userId;
-                                                                      Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
-                                                                      // loginData.setBool(
-                                                                      //     'login', false);
-                                                                      // loginData.setString(
-                                                                      //     'email', regNumber);
-                                                                      // loginData.setString(
-                                                                      //     'password', passWord);
-                                                                      // loginData.setString(
-                                                                      //     'role', 'student');
-                                                                      // loginData.setString(
-                                                                      //     'firstName',
-                                                                      //     loginResponse
-                                                                      //         .data.firstName);
-                                                                      // loginData.setString(
-                                                                      //     'lastName',
-                                                                      //     loginResponse
-                                                                      //         .data.lastName);
-                                                                      // loginData.setString(
-                                                                      //     'token',
-                                                                      //     loginResponse
-                                                                      //         .data.accessToken);
-                                                                      // loginData.setInt(
-                                                                      //     'userId',
-                                                                      //     loginResponse
-                                                                      //         .data.userId);
-                                                                      UserDataModel userDataModel =
-                                                                      await QnaService
-                                                                          .getUserDataService(
-                                                                          loginResponse
-                                                                              .data!
-                                                                              .userId,userDetails);
-                                                                      if (userDataModel.data!.role
-                                                                          .contains("student")) {
-                                                                        Navigator.pushNamed(context,
-                                                                            '/studentAssessment',
-                                                                            arguments: [regNumber,userDataModel])
-                                                                            .then((value) {
-                                                                          regNumberController.clear();
-                                                                          passWordController.clear();
-                                                                        });
-                                                                      }
-                                                                    } else if (loginResponse.code ==
-                                                                        400) {
-                                                                      Navigator.push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type: PageTransitionType
-                                                                              .rightToLeft,
-                                                                          child: CustomDialog(
-                                                                            title: "OOPS!",
-                                                                            //'Wrong password',
-                                                                            content:
-                                                                            "Invalid Role, CheckYour Login Data",
-                                                                            //'please enter the correct password',
-                                                                            button:
-                                                                            AppLocalizations.of(
-                                                                                context)!
-                                                                                .retry,
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    } else if (loginResponse.code ==
-                                                                        401) {
-                                                                      Navigator.push(
-                                                                        context,
-                                                                        PageTransition(
-                                                                          type: PageTransitionType
-                                                                              .rightToLeft,
-                                                                          child: CustomDialog(
-                                                                            title:
-                                                                            AppLocalizations.of(
-                                                                                context)!
-                                                                                .wrong_password,
-                                                                            //'Wrong password',
-                                                                            content: AppLocalizations
-                                                                                .of(context)!
-                                                                                .pls_enter_cr_pass,
-                                                                            //'please enter the correct password',
-                                                                            button:
-                                                                            AppLocalizations.of(
-                                                                                context)!
-                                                                                .retry,
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    }
-                                                                  }
-                                                                });
-                                                              },
-                                                            ),
                                                           ]
                                                       ))),
                                               validator: (value) {
@@ -456,7 +327,146 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 ),
                               ),
                             )),
-                            SizedBox(height: localHeight * 0.05),
+                                SizedBox(height: localHeight * 0.03),
+
+                      Center(
+                          child:IconButton(
+                                  icon: Icon(Icons.arrow_circle_right,
+                                    size: localHeight * 0.04,
+                                    color: const Color.fromRGBO(
+                                        82, 165, 160, 1),
+                                  ),
+                                  onPressed: () async {
+                                    _prefService
+                                        .createCache(
+                                        passWordController.text)
+                                        .whenComplete(() async {
+                                      if (formKey.currentState!
+                                          .validate()) {
+                                        regNumber =
+                                            regNumberController.text;
+                                        passWord =
+                                            passWordController.text;
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return const Center(
+                                                  child:
+                                                  CircularProgressIndicator(
+                                                    color: Color.fromRGBO(
+                                                        48, 145, 139, 1),
+                                                  ));
+                                            });
+                                        LoginModel loginResponse =
+                                        await QnaService.logInUser(
+                                            regNumber,
+                                            passWord,
+                                            'student');
+                                        Navigator.of(context).pop();
+
+                                        if (loginResponse.code == 200) {
+                                          //UserDataModel userDataModel = UserDataModel();
+                                          //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
+                                          UserDetails userDetails=UserDetails();
+                                          userDetails.login=false;
+                                          userDetails.email=regNumber;
+                                          userDetails.password=passWord;
+                                          userDetails.role='student';
+                                          userDetails.firstName=loginResponse.data.firstName;
+                                          userDetails.lastName=loginResponse.data.lastName;
+                                          userDetails.token=loginResponse.data.accessToken;
+                                          userDetails.userId=loginResponse.data.userId;
+                                          Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
+                                          // loginData.setBool(
+                                          //     'login', false);
+                                          // loginData.setString(
+                                          //     'email', regNumber);
+                                          // loginData.setString(
+                                          //     'password', passWord);
+                                          // loginData.setString(
+                                          //     'role', 'student');
+                                          // loginData.setString(
+                                          //     'firstName',
+                                          //     loginResponse
+                                          //         .data.firstName);
+                                          // loginData.setString(
+                                          //     'lastName',
+                                          //     loginResponse
+                                          //         .data.lastName);
+                                          // loginData.setString(
+                                          //     'token',
+                                          //     loginResponse
+                                          //         .data.accessToken);
+                                          // loginData.setInt(
+                                          //     'userId',
+                                          //     loginResponse
+                                          //         .data.userId);
+                                          UserDataModel userDataModel =
+                                          await QnaService
+                                              .getUserDataService(
+                                              loginResponse
+                                                  .data!
+                                                  .userId,userDetails);
+                                          if (userDataModel.data!.role
+                                              .contains("student")) {
+                                            Navigator.pushNamed(context,
+                                                '/studentAssessment',
+                                                arguments: [regNumber,userDataModel])
+                                                .then((value) {
+                                              regNumberController.clear();
+                                              passWordController.clear();
+                                            });
+                                          }
+                                        } else if (loginResponse.code ==
+                                            400) {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: CustomDialog(
+                                                title: "OOPS!",
+                                                //'Wrong password',
+                                                content:
+                                                "Invalid Role, CheckYour Login Data",
+                                                //'please enter the correct password',
+                                                button:
+                                                AppLocalizations.of(
+                                                    context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
+                                        } else if (loginResponse.code ==
+                                            401) {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType
+                                                  .rightToLeft,
+                                              child: CustomDialog(
+                                                title:
+                                                AppLocalizations.of(
+                                                    context)!
+                                                    .wrong_password,
+                                                //'Wrong password',
+                                                content: AppLocalizations
+                                                    .of(context)!
+                                                    .pls_enter_cr_pass,
+                                                //'please enter the correct password',
+                                                button:
+                                                AppLocalizations.of(
+                                                    context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                      }
+                                    });
+                                  },
+                                )),
+                                SizedBox(height: localHeight * 0.03),
                       Center(
                           child: Column(
                                   children: [
@@ -466,7 +476,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       style: TextStyle(
                                         fontSize: localHeight * 0.02,
                                         color: const Color.fromRGBO(
-                                            28, 78, 80, 1),
+                                            102, 102, 102, 1),
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w600,
                                       ),
@@ -504,7 +514,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             '/studentRegistrationPage');
                                       },
                                     ),
-                                    SizedBox(height: localHeight * 0.015),
+                                    SizedBox(height: localHeight * 0.01),
                                     ElevatedButton(
                                       style:
                                       ElevatedButton.styleFrom(
@@ -538,7 +548,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             '/studentGuestLogin');
                                       },
                                     ),
-                                    SizedBox(height: localHeight * 0.1),
+                                    SizedBox(height: localHeight * 0.05),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -581,13 +591,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 resizeToAvoidBottomInset: false,
                 extendBodyBehindAppBar: true,
                 appBar:AppBar(
-                  iconTheme: const IconThemeData(color: Colors.black),
+                  iconTheme: IconThemeData(color: Colors.black,
+                      size: localHeight * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.chevron_left,
-                      size: 40.0,
+                      size: localHeight * 0.06,
                       color: Colors.black,
                     ),
                     onPressed: () {
@@ -632,7 +643,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             style: TextStyle(
                               fontSize: localHeight * 0.02,
                               color: const Color.fromRGBO(
-                                  28, 78, 80, 1),
+                                  102, 102, 102, 1),
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600,
                             ),
@@ -670,6 +681,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             },
                                             decoration: InputDecoration( floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               helperStyle: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.3),
@@ -726,6 +738,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             keyboardType: TextInputType.text,
                                             decoration: InputDecoration( floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: Text(
                                                 AppLocalizations.of(context)!
                                                     .password,
@@ -771,141 +784,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                   _isObscure = !_isObscure;
                                                                 });
                                                               }),
-                                                          IconButton(
-                                                            icon: const Icon(Icons.arrow_circle_right,
-                                                              color: Color.fromRGBO(
-                                                                  82, 165, 160, 1),
-                                                            ),
-                                                            onPressed: () async {
-                                                              _prefService
-                                                                  .createCache(
-                                                                  passWordController.text)
-                                                                  .whenComplete(() async {
-                                                                if (formKey.currentState!
-                                                                    .validate()) {
-                                                                  regNumber =
-                                                                      regNumberController.text;
-                                                                  passWord =
-                                                                      passWordController.text;
-                                                                  showDialog(
-                                                                      context: context,
-                                                                      builder: (context) {
-                                                                        return const Center(
-                                                                            child:
-                                                                            CircularProgressIndicator(
-                                                                              color: Color.fromRGBO(
-                                                                                  48, 145, 139, 1),
-                                                                            ));
-                                                                      });
-                                                                  LoginModel loginResponse =
-                                                                  await QnaService.logInUser(
-                                                                      regNumber,
-                                                                      passWord,
-                                                                      'student');
-                                                                  Navigator.of(context).pop();
-
-                                                                  if (loginResponse.code == 200) {
-                                                                    //UserDataModel userDataModel = UserDataModel();
-                                                                    //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
-                                                                    UserDetails userDetails=UserDetails();
-                                                                    userDetails.login=false;
-                                                                    userDetails.email=regNumber;
-                                                                    userDetails.password=passWord;
-                                                                    userDetails.role='student';
-                                                                    userDetails.firstName=loginResponse.data.firstName;
-                                                                    userDetails.lastName=loginResponse.data.lastName;
-                                                                    userDetails.token=loginResponse.data.accessToken;
-                                                                    userDetails.userId=loginResponse.data.userId;
-                                                                    Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
-                                                                    // loginData.setBool(
-                                                                    //     'login', false);
-                                                                    // loginData.setString(
-                                                                    //     'email', regNumber);
-                                                                    // loginData.setString(
-                                                                    //     'password', passWord);
-                                                                    // loginData.setString(
-                                                                    //     'role', 'student');
-                                                                    // loginData.setString(
-                                                                    //     'firstName',
-                                                                    //     loginResponse
-                                                                    //         .data.firstName);
-                                                                    // loginData.setString(
-                                                                    //     'lastName',
-                                                                    //     loginResponse
-                                                                    //         .data.lastName);
-                                                                    // loginData.setString(
-                                                                    //     'token',
-                                                                    //     loginResponse
-                                                                    //         .data.accessToken);
-                                                                    // loginData.setInt(
-                                                                    //     'userId',
-                                                                    //     loginResponse
-                                                                    //         .data.userId);
-                                                                    UserDataModel userDataModel =
-                                                                    await QnaService
-                                                                        .getUserDataService(
-                                                                        loginResponse
-                                                                            .data!
-                                                                            .userId,userDetails);
-                                                                    if (userDataModel.data!.role
-                                                                        .contains("student")) {
-                                                                      Navigator.pushNamed(context,
-                                                                          '/studentAssessment',
-                                                                          arguments: [regNumber,userDataModel])
-                                                                          .then((value) {
-                                                                        regNumberController.clear();
-                                                                        passWordController.clear();
-                                                                      });
-                                                                    }
-                                                                  } else if (loginResponse.code ==
-                                                                      400) {
-                                                                    Navigator.push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .rightToLeft,
-                                                                        child: CustomDialog(
-                                                                          title: "OOPS!",
-                                                                          //'Wrong password',
-                                                                          content:
-                                                                          "Invalid Role, CheckYour Login Data",
-                                                                          //'please enter the correct password',
-                                                                          button:
-                                                                          AppLocalizations.of(
-                                                                              context)!
-                                                                              .retry,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  } else if (loginResponse.code ==
-                                                                      401) {
-                                                                    Navigator.push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .rightToLeft,
-                                                                        child: CustomDialog(
-                                                                          title:
-                                                                          AppLocalizations.of(
-                                                                              context)!
-                                                                              .wrong_password,
-                                                                          //'Wrong password',
-                                                                          content: AppLocalizations
-                                                                              .of(context)!
-                                                                              .pls_enter_cr_pass,
-                                                                          //'please enter the correct password',
-                                                                          button:
-                                                                          AppLocalizations.of(
-                                                                              context)!
-                                                                              .retry,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                }
-                                                              });
-                                                            },
-                                                          ),
                                                         ]
                                                     ))),
                                             validator: (value) {
@@ -956,7 +834,145 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               ),
                             ),
                           )),
-                      SizedBox(height: localHeight * 0.05),
+                      SizedBox(height: localHeight * 0.03),
+                Center(
+                    child: IconButton(
+                        icon: Icon(Icons.arrow_circle_right,
+                          size: localHeight * 0.06,
+                          color: const Color.fromRGBO(
+                              82, 165, 160, 1),
+                        ),
+                        onPressed: () async {
+                          _prefService
+                              .createCache(
+                              passWordController.text)
+                              .whenComplete(() async {
+                            if (formKey.currentState!
+                                .validate()) {
+                              regNumber =
+                                  regNumberController.text;
+                              passWord =
+                                  passWordController.text;
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const Center(
+                                        child:
+                                        CircularProgressIndicator(
+                                          color: Color.fromRGBO(
+                                              48, 145, 139, 1),
+                                        ));
+                                  });
+                              LoginModel loginResponse =
+                              await QnaService.logInUser(
+                                  regNumber,
+                                  passWord,
+                                  'student');
+                              Navigator.of(context).pop();
+
+                              if (loginResponse.code == 200) {
+                                //UserDataModel userDataModel = UserDataModel();
+                                //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
+                                UserDetails userDetails=UserDetails();
+                                userDetails.login=false;
+                                userDetails.email=regNumber;
+                                userDetails.password=passWord;
+                                userDetails.role='student';
+                                userDetails.firstName=loginResponse.data.firstName;
+                                userDetails.lastName=loginResponse.data.lastName;
+                                userDetails.token=loginResponse.data.accessToken;
+                                userDetails.userId=loginResponse.data.userId;
+                                Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
+                                // loginData.setBool(
+                                //     'login', false);
+                                // loginData.setString(
+                                //     'email', regNumber);
+                                // loginData.setString(
+                                //     'password', passWord);
+                                // loginData.setString(
+                                //     'role', 'student');
+                                // loginData.setString(
+                                //     'firstName',
+                                //     loginResponse
+                                //         .data.firstName);
+                                // loginData.setString(
+                                //     'lastName',
+                                //     loginResponse
+                                //         .data.lastName);
+                                // loginData.setString(
+                                //     'token',
+                                //     loginResponse
+                                //         .data.accessToken);
+                                // loginData.setInt(
+                                //     'userId',
+                                //     loginResponse
+                                //         .data.userId);
+                                UserDataModel userDataModel =
+                                await QnaService
+                                    .getUserDataService(
+                                    loginResponse
+                                        .data!
+                                        .userId,userDetails);
+                                if (userDataModel.data!.role
+                                    .contains("student")) {
+                                  Navigator.pushNamed(context,
+                                      '/studentAssessment',
+                                      arguments: [regNumber,userDataModel])
+                                      .then((value) {
+                                    regNumberController.clear();
+                                    passWordController.clear();
+                                  });
+                                }
+                              } else if (loginResponse.code ==
+                                  400) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType
+                                        .rightToLeft,
+                                    child: CustomDialog(
+                                      title: "OOPS!",
+                                      //'Wrong password',
+                                      content:
+                                      "Invalid Role, CheckYour Login Data",
+                                      //'please enter the correct password',
+                                      button:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .retry,
+                                    ),
+                                  ),
+                                );
+                              } else if (loginResponse.code ==
+                                  401) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType
+                                        .rightToLeft,
+                                    child: CustomDialog(
+                                      title:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .wrong_password,
+                                      //'Wrong password',
+                                      content: AppLocalizations
+                                          .of(context)!
+                                          .pls_enter_cr_pass,
+                                      //'please enter the correct password',
+                                      button:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .retry,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          });
+                        },
+                      )),
+                      SizedBox(height: localHeight * 0.03),
                       Center(
                           child: Column(
                             children: [
@@ -966,7 +982,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 style: TextStyle(
                                   fontSize: localHeight * 0.02,
                                   color: const Color.fromRGBO(
-                                      28, 78, 80, 1),
+                                      102, 102, 102, 1),
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -1038,7 +1054,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       '/studentGuestLogin');
                                 },
                               ),
-                              SizedBox(height: localHeight * 0.08),
+                              SizedBox(height: localHeight * 0.065),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -1081,13 +1097,13 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 resizeToAvoidBottomInset: false,
                 extendBodyBehindAppBar: true,
                 appBar:AppBar(
-                  iconTheme: const IconThemeData(color: Colors.black),
+                  iconTheme: IconThemeData(color: Colors.black,size: localHeight * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.chevron_left,
-                      size: 40.0,
+                      size: localHeight * 0.06,
                       color: Colors.black,
                     ),
                     onPressed: () {
@@ -1128,7 +1144,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             style: TextStyle(
                               fontSize: localHeight * 0.02,
                               color: const Color.fromRGBO(
-                                  28, 78, 80, 1),
+                                  102, 102, 102, 1),
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w600,
                             ),
@@ -1166,6 +1182,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             },
                                             decoration: InputDecoration( floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               helperStyle: TextStyle(
                                                   color: const Color.fromRGBO(
                                                       102, 102, 102, 0.3),
@@ -1222,6 +1239,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                             keyboardType: TextInputType.text,
                                             decoration: InputDecoration( floatingLabelBehavior:
                                           FloatingLabelBehavior.always,
+                                                labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                 label: Text(
                                                   AppLocalizations.of(context)!
                                                       .password,
@@ -1267,141 +1285,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                                   _isObscure = !_isObscure;
                                                                 });
                                                               }),
-                                                          IconButton(
-                                                            icon: const Icon(Icons.arrow_circle_right,
-                                                              color: Color.fromRGBO(
-                                                                  82, 165, 160, 1),
-                                                            ),
-                                                            onPressed: () async {
-                                                              _prefService
-                                                                  .createCache(
-                                                                  passWordController.text)
-                                                                  .whenComplete(() async {
-                                                                if (formKey.currentState!
-                                                                    .validate()) {
-                                                                  regNumber =
-                                                                      regNumberController.text;
-                                                                  passWord =
-                                                                      passWordController.text;
-                                                                  showDialog(
-                                                                      context: context,
-                                                                      builder: (context) {
-                                                                        return const Center(
-                                                                            child:
-                                                                            CircularProgressIndicator(
-                                                                              color: Color.fromRGBO(
-                                                                                  48, 145, 139, 1),
-                                                                            ));
-                                                                      });
-                                                                  LoginModel loginResponse =
-                                                                  await QnaService.logInUser(
-                                                                      regNumber,
-                                                                      passWord,
-                                                                      'student');
-                                                                  Navigator.of(context).pop();
-
-                                                                  if (loginResponse.code == 200) {
-                                                                    //UserDataModel userDataModel = UserDataModel();
-                                                                    //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
-                                                                    UserDetails userDetails=UserDetails();
-                                                                    userDetails.login=false;
-                                                                    userDetails.email=regNumber;
-                                                                    userDetails.password=passWord;
-                                                                    userDetails.role='student';
-                                                                    userDetails.firstName=loginResponse.data.firstName;
-                                                                    userDetails.lastName=loginResponse.data.lastName;
-                                                                    userDetails.token=loginResponse.data.accessToken;
-                                                                    userDetails.userId=loginResponse.data.userId;
-                                                                    Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
-                                                                    // loginData.setBool(
-                                                                    //     'login', false);
-                                                                    // loginData.setString(
-                                                                    //     'email', regNumber);
-                                                                    // loginData.setString(
-                                                                    //     'password', passWord);
-                                                                    // loginData.setString(
-                                                                    //     'role', 'student');
-                                                                    // loginData.setString(
-                                                                    //     'firstName',
-                                                                    //     loginResponse
-                                                                    //         .data.firstName);
-                                                                    // loginData.setString(
-                                                                    //     'lastName',
-                                                                    //     loginResponse
-                                                                    //         .data.lastName);
-                                                                    // loginData.setString(
-                                                                    //     'token',
-                                                                    //     loginResponse
-                                                                    //         .data.accessToken);
-                                                                    // loginData.setInt(
-                                                                    //     'userId',
-                                                                    //     loginResponse
-                                                                    //         .data.userId);
-                                                                    UserDataModel userDataModel =
-                                                                    await QnaService
-                                                                        .getUserDataService(
-                                                                        loginResponse
-                                                                            .data!
-                                                                            .userId,userDetails);
-                                                                    if (userDataModel.data!.role
-                                                                        .contains("student")) {
-                                                                      Navigator.pushNamed(context,
-                                                                          '/studentAssessment',
-                                                                          arguments: [regNumber,userDataModel])
-                                                                          .then((value) {
-                                                                        regNumberController.clear();
-                                                                        passWordController.clear();
-                                                                      });
-                                                                    }
-                                                                  } else if (loginResponse.code ==
-                                                                      400) {
-                                                                    Navigator.push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .rightToLeft,
-                                                                        child: CustomDialog(
-                                                                          title: "OOPS!",
-                                                                          //'Wrong password',
-                                                                          content:
-                                                                          "Invalid Role, CheckYour Login Data",
-                                                                          //'please enter the correct password',
-                                                                          button:
-                                                                          AppLocalizations.of(
-                                                                              context)!
-                                                                              .retry,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  } else if (loginResponse.code ==
-                                                                      401) {
-                                                                    Navigator.push(
-                                                                      context,
-                                                                      PageTransition(
-                                                                        type: PageTransitionType
-                                                                            .rightToLeft,
-                                                                        child: CustomDialog(
-                                                                          title:
-                                                                          AppLocalizations.of(
-                                                                              context)!
-                                                                              .wrong_password,
-                                                                          //'Wrong password',
-                                                                          content: AppLocalizations
-                                                                              .of(context)!
-                                                                              .pls_enter_cr_pass,
-                                                                          //'please enter the correct password',
-                                                                          button:
-                                                                          AppLocalizations.of(
-                                                                              context)!
-                                                                              .retry,
-                                                                        ),
-                                                                      ),
-                                                                    );
-                                                                  }
-                                                                }
-                                                              });
-                                                            },
-                                                          ),
                                                         ]
                                                     ))),
                                             validator: (value) {
@@ -1455,7 +1338,144 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               ),
                             ),
                           )),
-                      SizedBox(height: localHeight * 0.05),
+                      SizedBox(height: localHeight * 0.03),
+                      IconButton(
+                        icon: Icon(Icons.arrow_circle_right,
+                          size: localHeight * 0.04,
+                          color: const Color.fromRGBO(
+                              82, 165, 160, 1),
+                        ),
+                        onPressed: () async {
+                          _prefService
+                              .createCache(
+                              passWordController.text)
+                              .whenComplete(() async {
+                            if (formKey.currentState!
+                                .validate()) {
+                              regNumber =
+                                  regNumberController.text;
+                              passWord =
+                                  passWordController.text;
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return const Center(
+                                        child:
+                                        CircularProgressIndicator(
+                                          color: Color.fromRGBO(
+                                              48, 145, 139, 1),
+                                        ));
+                                  });
+                              LoginModel loginResponse =
+                              await QnaService.logInUser(
+                                  regNumber,
+                                  passWord,
+                                  'student');
+                              Navigator.of(context).pop();
+
+                              if (loginResponse.code == 200) {
+                                //UserDataModel userDataModel = UserDataModel();
+                                //userDataModel = await QnaService.getUserDataService(loginResponse.data.userId);
+                                UserDetails userDetails=UserDetails();
+                                userDetails.login=false;
+                                userDetails.email=regNumber;
+                                userDetails.password=passWord;
+                                userDetails.role='student';
+                                userDetails.firstName=loginResponse.data.firstName;
+                                userDetails.lastName=loginResponse.data.lastName;
+                                userDetails.token=loginResponse.data.accessToken;
+                                userDetails.userId=loginResponse.data.userId;
+                                Provider.of<LanguageChangeProvider>(context, listen: false).updateUserDetails(userDetails);
+                                // loginData.setBool(
+                                //     'login', false);
+                                // loginData.setString(
+                                //     'email', regNumber);
+                                // loginData.setString(
+                                //     'password', passWord);
+                                // loginData.setString(
+                                //     'role', 'student');
+                                // loginData.setString(
+                                //     'firstName',
+                                //     loginResponse
+                                //         .data.firstName);
+                                // loginData.setString(
+                                //     'lastName',
+                                //     loginResponse
+                                //         .data.lastName);
+                                // loginData.setString(
+                                //     'token',
+                                //     loginResponse
+                                //         .data.accessToken);
+                                // loginData.setInt(
+                                //     'userId',
+                                //     loginResponse
+                                //         .data.userId);
+                                UserDataModel userDataModel =
+                                await QnaService
+                                    .getUserDataService(
+                                    loginResponse
+                                        .data!
+                                        .userId,userDetails);
+                                if (userDataModel.data!.role
+                                    .contains("student")) {
+                                  Navigator.pushNamed(context,
+                                      '/studentAssessment',
+                                      arguments: [regNumber,userDataModel])
+                                      .then((value) {
+                                    regNumberController.clear();
+                                    passWordController.clear();
+                                  });
+                                }
+                              } else if (loginResponse.code ==
+                                  400) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType
+                                        .rightToLeft,
+                                    child: CustomDialog(
+                                      title: "OOPS!",
+                                      //'Wrong password',
+                                      content:
+                                      "Invalid Role, CheckYour Login Data",
+                                      //'please enter the correct password',
+                                      button:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .retry,
+                                    ),
+                                  ),
+                                );
+                              } else if (loginResponse.code ==
+                                  401) {
+                                Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    type: PageTransitionType
+                                        .rightToLeft,
+                                    child: CustomDialog(
+                                      title:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .wrong_password,
+                                      //'Wrong password',
+                                      content: AppLocalizations
+                                          .of(context)!
+                                          .pls_enter_cr_pass,
+                                      //'please enter the correct password',
+                                      button:
+                                      AppLocalizations.of(
+                                          context)!
+                                          .retry,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          });
+                        },
+                      ),
+                      SizedBox(height: localHeight * 0.03),
                       Center(
                           child: Column(
                             children: [
@@ -1465,7 +1485,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 style: TextStyle(
                                   fontSize: localHeight * 0.02,
                                   color: const Color.fromRGBO(
-                                      28, 78, 80, 1),
+                                      102, 102, 102, 1),
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600,
                                 ),

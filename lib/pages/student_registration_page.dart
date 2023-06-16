@@ -384,7 +384,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                     maxLengthEnforcement: MaxLengthEnforcement
                                                         .truncateAfterCompositionEnds,
                                                     keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
+                                                    decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       label:
                                                       Text(AppLocalizations.of(
                                                                   context)!
@@ -430,7 +431,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       child: TextFormField(
                                                     controller: studentLastNameController,
                                                     keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
+                                                    decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       label: Text(AppLocalizations.of(
                                                                   context)!
                                                                   .last_name_caps,
@@ -514,7 +516,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                 //     child: TextFormField(
                                                 //       controller: studentDobController,
                                                 //       keyboardType: TextInputType.datetime,
-                                                //       decoration: InputDecoration(
+                                                //       decoration: InputDecoration(   
+                                                //labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                 //         floatingLabelBehavior:
                                                 //             FloatingLabelBehavior.always,
                                                 //         label: RichText(
@@ -585,20 +588,18 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                   children: [
                                                     Row(
                                                       children:[
-                                                        Text(
-                                                          AppLocalizations.of(
-                                                          context)!
-                                                          .gender,
-                                                        style: TextStyle(
-                                                            color: const Color
-                                                                .fromRGBO(
-                                                                102, 102, 102, 1),
-                                                            fontFamily: 'Inter',
-                                                            fontWeight: FontWeight
-                                                                .w600,
-                                                            fontSize: localHeight *
-                                                                0.018),
-                                                      ),
+                                                        Text(AppLocalizations.of(
+                                                            context)!
+                                                            .gender,
+                                                          style: TextStyle(
+                                                              color: const Color
+                                                                  .fromRGBO(
+                                                                  102, 102, 102, 1),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight
+                                                                  .w600,
+                                                              fontSize: localHeight *
+                                                                  0.020),),
                                           ]
                                                     ),
                                                     Row(
@@ -687,12 +688,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                     Padding(
                                                       padding:
                                                       const EdgeInsets.only(
-                                                          left: 30, right: 30, top: 7),
+                                                          left: 30, right: 30, top: 13),
                                                       child: DropDownTextField(
                                                               controller: selectedCountryCitizen,
                                                               clearOption: true,
                                                               enableSearch: true,
-                                                              textFieldDecoration: InputDecoration(
+                                                              textFieldDecoration: InputDecoration(   
+                                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   floatingLabelBehavior:
                                                                   FloatingLabelBehavior
                                                                       .always,
@@ -713,7 +715,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   color: const Color
                                                                       .fromRGBO(
                                                                       102, 102, 102, 0.3)),
-                                                              searchDecoration: InputDecoration(
+                                                              searchDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   hintStyle: TextStyle(
                                                                       color: const Color
                                                                           .fromRGBO(
@@ -772,12 +775,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                     Padding(
                                                       padding:
                                                       const EdgeInsets.only(
-                                                          left: 30, right: 30, top: 7),
+                                                          left: 30, right: 30, top: 25),
                                                       child: DropDownTextField(
                                                               controller: selectedCountryResident,
                                                               clearOption: true,
                                                               enableSearch: true,
-                                                              textFieldDecoration: InputDecoration(
+                                                              textFieldDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   floatingLabelBehavior:
                                                                   FloatingLabelBehavior
                                                                       .always,
@@ -798,7 +802,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   color: const Color
                                                                       .fromRGBO(
                                                                       102, 102, 102, 0.3)),
-                                                              searchDecoration: InputDecoration(
+                                                              searchDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                   hintStyle: TextStyle(
                                                                       color: const Color
                                                                           .fromRGBO(
@@ -873,7 +878,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         maxLengthEnforcement: MaxLengthEnforcement
                                                             .truncateAfterCompositionEnds,
                                                         keyboardType: TextInputType.text,
-                                                        decoration: InputDecoration(
+                                                        decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: Text(AppLocalizations.of(
@@ -919,7 +925,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       child: TextFormField(
                                                     controller: studentRollNumberController,
                                                     keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
+                                                    decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
                                                       label: RichText(
@@ -938,6 +945,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   fontSize: localHeight *
                                                                       0.020),
                                                             ),
+                                                            TextSpan(
+                                                              text: AppLocalizations.of(
+                                                                  context)!
+                                                                  .optional,
+                                                              style: TextStyle(
+                                                                  color: const Color
+                                                                      .fromRGBO(
+                                                                      102, 102, 102, 1),
+                                                                  fontFamily: 'Inter',
+                                                                  fontWeight: FontWeight
+                                                                      .w600,
+                                                                  fontStyle: FontStyle.italic,
+                                                                  fontSize: localHeight *
+                                                                      0.020),
+                                                            ),
                                                             // TextSpan(
                                                             //     text: "\t*",
                                                             //     style: TextStyle(
@@ -947,13 +969,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                             //         fontWeight: FontWeight.w600,
                                                             //         fontSize: localHeight * 0.018)),
                                                           ])),
-                                                      labelStyle: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              51, 51, 51, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: localHeight * 0.018),
+                                                      // labelStyle: TextStyle(
+                                                      //     color:
+                                                      //     const Color.fromRGBO(
+                                                      //         51, 51, 51, 1),
+                                                      //     fontFamily: 'Inter',
+                                                      //     fontWeight: FontWeight.w600,
+                                                      //     fontSize: localHeight * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 0.3),
@@ -982,7 +1004,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         TextFormField(
                                                           controller: studentEmailController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: Text(
@@ -1003,13 +1026,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                             AppLocalizations.of(
                                                                 context)!.email_helper_text,
                                                             //'an OTP will be sent to Email ID',
-                                                            labelStyle: TextStyle(
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: localHeight * 0.016),
+                                                            // labelStyle: TextStyle(
+                                                            //     color:
+                                                            //     const Color.fromRGBO(
+                                                            //         51, 51, 51, 1),
+                                                            //     fontFamily: 'Inter',
+                                                            //     fontWeight: FontWeight.w600,
+                                                            //     fontSize: localHeight * 0.016),
                                                             helperStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -1051,7 +1074,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       child: TextFormField(
                                                     controller: studentPasswordController,
                                                     keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
+                                                    decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
                                                       label: Text(AppLocalizations.of(
@@ -1103,7 +1127,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                       child: TextFormField(
                                                     controller: studentconfirmPasswordController,
                                                     keyboardType: TextInputType.text,
-                                                    decoration: InputDecoration(
+                                                    decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       floatingLabelBehavior:
                                                       FloatingLabelBehavior.always,
                                                       label: Text(AppLocalizations.of(
@@ -1119,13 +1144,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   fontSize: localHeight *
                                                                       0.020),
                                                             ),
-                                                      labelStyle: TextStyle(
-                                                          color:
-                                                          const Color.fromRGBO(
-                                                              51, 51, 51, 1),
-                                                          fontFamily: 'Inter',
-                                                          fontWeight: FontWeight.w600,
-                                                          fontSize: localHeight * 0.018),
                                                       hintStyle: TextStyle(
                                                           color: const Color.fromRGBO(
                                                               102, 102, 102, 0.3),
@@ -1469,7 +1487,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           maxLengthEnforcement: MaxLengthEnforcement
                                                               .truncateAfterCompositionEnds,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             label:
                                                             Text(AppLocalizations.of(
                                                                 context)!
@@ -1514,7 +1533,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         child: TextFormField(
                                                           controller: studentLastNameController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .last_name_caps,
@@ -1664,7 +1684,7 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                       Padding(
                                                         padding:
                                                         const EdgeInsets.only(
-                                                            left: 30, right: 30, top: 7),
+                                                            left: 30, right: 30, top: 15),
                                                         child: DropDownTextField(
                                                           controller: selectedCountryCitizen,
                                                           clearOption: true,
@@ -1749,12 +1769,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                       Padding(
                                                         padding:
                                                         const EdgeInsets.only(
-                                                            left: 30, right: 30, top: 7),
+                                                            left: 30, right: 30, top: 15),
                                                         child: DropDownTextField(
                                                           controller: selectedCountryResident,
                                                           clearOption: true,
                                                           enableSearch: true,
-                                                          textFieldDecoration: InputDecoration(
+                                                          textFieldDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
                                                                   .always,
@@ -1850,7 +1871,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           maxLengthEnforcement: MaxLengthEnforcement
                                                               .truncateAfterCompositionEnds,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
                                                               label: Text(AppLocalizations.of(
@@ -1896,11 +1918,13 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         child: TextFormField(
                                                           controller: studentRollNumberController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: RichText(
-                                                                text: TextSpan(children: [
+                                                                text: TextSpan(
+                                                                    children: [
                                                                   TextSpan(
                                                                     text: AppLocalizations.of(
                                                                         context)!
@@ -1915,14 +1939,22 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                         fontSize: localHeight *
                                                                             0.020),
                                                                   ),
+                                                                      TextSpan(
+                                                                        text: AppLocalizations.of(
+                                                                            context)!
+                                                                            .optional,
+                                                                        style: TextStyle(
+                                                                            color: const Color
+                                                                                .fromRGBO(
+                                                                                102, 102, 102, 1),
+                                                                            fontFamily: 'Inter',
+                                                                            fontWeight: FontWeight
+                                                                                .w600,
+                                                                            fontStyle: FontStyle.italic,
+                                                                            fontSize: localHeight *
+                                                                                0.020),
+                                                                      ),
                                                                 ])),
-                                                            labelStyle: TextStyle(
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: localHeight * 0.018),
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -1951,7 +1983,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           TextFormField(
                                                             controller: studentEmailController,
                                                             keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
+                                                            decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
                                                               label: Text(
@@ -1971,13 +2004,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                               helperText: AppLocalizations.of(
                                                                   context)!.email_helper_text,
                                                               //'an OTP will be sent to Email ID',
-                                                              labelStyle: TextStyle(
-                                                                  color:
-                                                                  const Color.fromRGBO(
-                                                                      51, 51, 51, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w600,
-                                                                  fontSize: localHeight * 0.016),
                                                               helperStyle: TextStyle(
                                                                   color: const Color.fromRGBO(
                                                                       102, 102, 102, 0.3),
@@ -2019,7 +2045,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           child: TextFormField(
                                                             controller: studentPasswordController,
                                                             keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
+                                                            decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
                                                               label: Text(AppLocalizations.of(
@@ -2071,7 +2098,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         child: TextFormField(
                                                           controller: studentconfirmPasswordController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: Text(AppLocalizations.of(
@@ -2087,13 +2115,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   fontSize: localHeight *
                                                                       0.020),
                                                             ),
-                                                            labelStyle: TextStyle(
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: localHeight * 0.018),
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -2438,7 +2459,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           maxLengthEnforcement: MaxLengthEnforcement
                                                               .truncateAfterCompositionEnds,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             label:
                                                             Text(AppLocalizations.of(
                                                                 context)!
@@ -2483,7 +2505,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         child: TextFormField(
                                                           controller: studentLastNameController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             label: Text(AppLocalizations.of(
                                                                 context)!
                                                                 .last_name_caps,
@@ -2567,7 +2590,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                   //     child: TextFormField(
                                                   //       controller: studentDobController,
                                                   //       keyboardType: TextInputType.datetime,
-                                                  //       decoration: InputDecoration(
+                                                  //       decoration: InputDecoration(   
+                                                  //labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   //         floatingLabelBehavior:
                                                   //             FloatingLabelBehavior.always,
                                                   //         label: RichText(
@@ -2745,7 +2769,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           controller: selectedCountryCitizen,
                                                           clearOption: true,
                                                           enableSearch: true,
-                                                          textFieldDecoration: InputDecoration(
+                                                          textFieldDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
                                                                   .always,
@@ -2766,7 +2791,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 0.3)),
-                                                          searchDecoration: InputDecoration(
+                                                          searchDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               hintStyle: TextStyle(
                                                                   color: const Color
                                                                       .fromRGBO(
@@ -2830,7 +2856,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           controller: selectedCountryResident,
                                                           clearOption: true,
                                                           enableSearch: true,
-                                                          textFieldDecoration: InputDecoration(
+                                                          textFieldDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior
                                                                   .always,
@@ -2851,7 +2878,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                               color: const Color
                                                                   .fromRGBO(
                                                                   102, 102, 102, 0.3)),
-                                                          searchDecoration: InputDecoration(
+                                                          searchDecoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               hintStyle: TextStyle(
                                                                   color: const Color
                                                                       .fromRGBO(
@@ -2926,7 +2954,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           maxLengthEnforcement: MaxLengthEnforcement
                                                               .truncateAfterCompositionEnds,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
                                                               label: Text(AppLocalizations.of(
@@ -2972,7 +3001,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         child: TextFormField(
                                                           controller: studentRollNumberController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: RichText(
@@ -2991,6 +3021,21 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                         fontSize: localHeight *
                                                                             0.020),
                                                                   ),
+                                                                  TextSpan(
+                                                                    text: AppLocalizations.of(
+                                                                        context)!
+                                                                        .optional,
+                                                                    style: TextStyle(
+                                                                        color: const Color
+                                                                            .fromRGBO(
+                                                                            102, 102, 102, 1),
+                                                                        fontFamily: 'Inter',
+                                                                        fontWeight: FontWeight
+                                                                            .w600,
+                                                                        fontStyle: FontStyle.italic,
+                                                                        fontSize: localHeight *
+                                                                            0.020),
+                                                                  ),
                                                                   // TextSpan(
                                                                   //     text: "\t*",
                                                                   //     style: TextStyle(
@@ -3000,13 +3045,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   //         fontWeight: FontWeight.w600,
                                                                   //         fontSize: localHeight * 0.018)),
                                                                 ])),
-                                                            labelStyle: TextStyle(
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: localHeight * 0.018),
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),
@@ -3035,7 +3073,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           TextFormField(
                                                             controller: studentEmailController,
                                                             keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
+                                                            decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
                                                               label: Text(
@@ -3055,13 +3094,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                               helperText: AppLocalizations.of(
                                                                   context)!.email_helper_text,
                                                               //'An OTP will be sent to Email ID',
-                                                              labelStyle: TextStyle(
-                                                                  color:
-                                                                  const Color.fromRGBO(
-                                                                      51, 51, 51, 1),
-                                                                  fontFamily: 'Inter',
-                                                                  fontWeight: FontWeight.w600,
-                                                                  fontSize: localHeight * 0.016),
                                                               helperStyle: TextStyle(
                                                                   color: const Color.fromRGBO(
                                                                       102, 102, 102, 0.3),
@@ -3103,7 +3135,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                           child: TextFormField(
                                                             controller: studentPasswordController,
                                                             keyboardType: TextInputType.text,
-                                                            decoration: InputDecoration(
+                                                            decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               floatingLabelBehavior:
                                                               FloatingLabelBehavior.always,
                                                               label: Text(AppLocalizations.of(
@@ -3155,7 +3188,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                         child: TextFormField(
                                                           controller: studentconfirmPasswordController,
                                                           keyboardType: TextInputType.text,
-                                                          decoration: InputDecoration(
+                                                          decoration: InputDecoration(   
+labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                             floatingLabelBehavior:
                                                             FloatingLabelBehavior.always,
                                                             label: Text(AppLocalizations.of(
@@ -3171,13 +3205,6 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
                                                                   fontSize: localHeight *
                                                                       0.020),
                                                             ),
-                                                            labelStyle: TextStyle(
-                                                                color:
-                                                                const Color.fromRGBO(
-                                                                    51, 51, 51, 1),
-                                                                fontFamily: 'Inter',
-                                                                fontWeight: FontWeight.w600,
-                                                                fontSize: localHeight * 0.018),
                                                             hintStyle: TextStyle(
                                                                 color: const Color.fromRGBO(
                                                                     102, 102, 102, 0.3),

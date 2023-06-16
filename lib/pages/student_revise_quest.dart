@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
+import 'package:qna_test/Entity/Teacher/get_assessment_header.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
@@ -21,7 +22,7 @@ class StudentReviseQuest extends StatefulWidget {
   const StudentReviseQuest({Key? key,
     required this.questions, required this.userName, required this.assessmentID,
     required this.startTime, required this.assessmentCode,required this.submit,
-    this.userId,required this.isMember,
+    this.userId,required this.isMember,required this.assessmentHeaders
   }) : super(key: key);
   final QuestionPaperModel questions;
   final String userName;
@@ -31,6 +32,7 @@ class StudentReviseQuest extends StatefulWidget {
   final bool submit;
   final int? userId;
   final bool isMember;
+  final GetAssessmentHeaderModel assessmentHeaders;
 
 
 
@@ -45,8 +47,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   UserDetails userDetails=UserDetails();
   StreamSubscription? connection;
   bool isOffline = false;
-
-
 
 
   getData(){
@@ -1082,7 +1082,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                 message,
                                 endTimeTaken,
                                 givenMark,
-                                widget.isMember
+                                widget.isMember,
+                                widget.assessmentHeaders
                               ]);
                         }
                         else {
@@ -1270,7 +1271,8 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
             message,
             endTimeTaken,
             givenMark,
-            widget.isMember
+            widget.isMember,
+            widget.assessmentHeaders
           ]);
     }
     else {

@@ -65,13 +65,13 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                   child: Scaffold(
                       extendBodyBehindAppBar: true,
                       appBar:AppBar(
-                        iconTheme: const IconThemeData(color: Colors.black),
+                        iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
                         elevation: 0,
                         backgroundColor: Colors.transparent,
                         leading: IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.chevron_left,
-                            size: 40.0,
+                            size: height * 0.06,
                             color: Colors.black,
                           ),
                           onPressed: () {
@@ -134,6 +134,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                   formKey.currentState!.validate();
                                                 },
                                                 decoration: InputDecoration(
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                     floatingLabelBehavior:
                                                     FloatingLabelBehavior.always,
                                                   hintText:
@@ -182,6 +183,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 decoration: InputDecoration(
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   label: RichText(
                                                       text: TextSpan(children: [
                                                         TextSpan(
@@ -467,6 +469,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 decoration: InputDecoration(
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   hintText:
                                                   AppLocalizations.of(context)!
                                                       .your_name,
@@ -513,6 +516,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: RichText(
                                                   text: TextSpan(children: [
                                                     TextSpan(
@@ -796,6 +800,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                 decoration: InputDecoration(
                                                   floatingLabelBehavior:
                                                   FloatingLabelBehavior.always,
+                                                  labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                   hintText:
                                                   AppLocalizations.of(context)!
                                                       .your_name,
@@ -842,6 +847,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                             decoration: InputDecoration(
                                               floatingLabelBehavior:
                                               FloatingLabelBehavior.always,
+                                              labelStyle: Theme.of(context).textTheme.headlineMedium,
                                               label: RichText(
                                                   text: TextSpan(children: [
                                                     TextSpan(

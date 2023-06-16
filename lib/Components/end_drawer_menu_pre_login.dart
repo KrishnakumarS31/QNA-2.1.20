@@ -49,8 +49,6 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           
                           fontSize: 16),
                     ),
-                    trailing: const Icon(Icons.navigate_next,
-                        color: Color.fromRGBO(153, 153, 153, 1)),
                     onTap: () async {
                       Navigator.push(
                         context,
@@ -75,8 +73,6 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           
                           fontSize: 16),
                     ),
-                    trailing: const Icon(Icons.navigate_next,
-                        color: Color.fromRGBO(153, 153, 153, 1)),
                     onTap: () async {
                       Navigator.push(
                         context,
@@ -100,8 +96,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           
                           fontSize: 16),
                     ),
-                    trailing: const Icon(Icons.navigate_next,
-                        color: Color.fromRGBO(153, 153, 153, 1)),
+                    
                     onTap: () async {
                       Navigator.push(
                         context,
@@ -124,8 +119,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           
                           fontSize: 16),
                     ),
-                    trailing: const Icon(Icons.navigate_next,
-                        color: Color.fromRGBO(153, 153, 153, 1)),
+                    
                     onTap: () async {
                       Navigator.push(
                         context,
@@ -153,8 +147,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                               
                               fontSize: 16)),
                     ),
-                    trailing: const Icon(Icons.navigate_next,
-                        color: Color.fromRGBO(153, 153, 153, 1)),
+                    
                     onTap: () async {
                       Navigator.push(
                         context,
@@ -176,8 +169,7 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
                           
                           fontSize: 16),
                     ),
-                    trailing: const Icon(Icons.navigate_next,
-                        color: Color.fromRGBO(153, 153, 153, 1)),
+                    
                     onTap: () async {
                       Navigator.push(
                         context,

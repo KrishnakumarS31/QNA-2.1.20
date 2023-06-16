@@ -578,7 +578,7 @@ class QnaRepo {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://dev.qnatest.com/api/v1/assessment-details?code=$assessmentCode'));
+            '$domainName/api/v1/assessment-details?code=$assessmentCode'));
     http.StreamedResponse response = await request.send();
     print("RESPONSE CODE");
     print(response.statusCode);
