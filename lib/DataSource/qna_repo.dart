@@ -613,4 +613,34 @@ class QnaRepo {
     }
     return allAssessment;
   }
+
+  static Future<ResponseEntity> getSearchAssessmentForStudLooq(
+      int pageLimit, int pageNumber, String searchVal) async {
+    ResponseEntity allAssessment = ResponseEntity();
+    SharedPreferences loginData = await SharedPreferences.getInstance();
+    var headers = {'Authorization': 'Bearer ${loginData.getString('token')}'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            '$assessmentLooqUrl?page_limit=$pageLimit&page_number=$pageNumber&search=$searchVal'));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    print("INSIDE RESPONSE CODE");
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      String value = await response.stream.bytesToString();
+      allAssessment = responseEntityFromJson(value);
+    }
+    else if (response.statusCode == 401) {
+      String? email = loginData.getString('email');
+      String? pass = loginData.getString('password');
+      LoginModel loginModel = await logInUser(email!, pass!,"student");
+      getSearchAssessmentForStudLooq(pageLimit, pageNumber, searchVal);
+    } else {}
+    return allAssessment;
+  }
+
 }

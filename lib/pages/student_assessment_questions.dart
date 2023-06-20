@@ -52,6 +52,8 @@ class StudQuestionState extends State<StudQuestion> {
 
   @override
   void initState() {
+    print("INSIDE ASSESSMENT QUESTIONS WIDGET");
+    print(widget.isMember);
     setTime();
     Future.delayed(const Duration(seconds: 0)).then((_) {
       if (MediaQuery.of(context).copyWith().size.width > webWidth){
@@ -1826,7 +1828,8 @@ class StudQuestionState extends State<StudQuestion> {
                                             .watch<QuestionNumProvider>()
                                             .questionNum >=
                                         values.data!.questions!.length
-                                    ? IconButton(
+                                    ?
+                                IconButton(
                                         icon: Icon(
                                             Icons.arrow_right,
                                           color: const Color.fromRGBO(
@@ -1834,6 +1837,12 @@ class StudQuestionState extends State<StudQuestion> {
                                           size: height * 0.06,
                                         ),
                                         onPressed: () {
+                                          print("INSIDE FIRST BUTTON ONPRESSED");
+                                          print( Provider.of<Questions>(context,
+                                              listen: false)
+                                              .totalQuestion[
+                                          '${Provider.of<QuestionNumProvider>(context, listen: false).questionNum}']
+                                          [2]);
                                           if (Provider.of<Questions>(context,
                                                               listen: false)
                                                           .totalQuestion[
@@ -1849,7 +1858,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 const Color.fromRGBO(
                                                     239, 218, 30, 1),
                                                 true);
-                                          } else if (selected.isNotEmpty) {
+                                          }
+                                          else if (selected.isNotEmpty) {
                                             context.read<Questions>().selectOption(
                                                 Provider.of<QuestionNumProvider>(
                                                         context,
@@ -1889,11 +1899,16 @@ class StudQuestionState extends State<StudQuestion> {
                                               ]);
                                         },
                                       )
-                                    : IconButton(
+                                    :
+                                IconButton(
                                         onPressed: () {
-                                          context
-                                              .read<QuestionNumProvider>()
-                                              .increment();
+                                          print("Inside Second Button onpressed");
+                                          print(selected.isNotEmpty);
+                                          //print(Provider.of<Questions>(context, listen: false).totalQuestion['${Provider.of<QuestionNumProvider>(context, listen: false).questionNum - 1}'][2]);
+                                          //print(context.watch<QuestionNumProvider>().questionNum);
+
+                                          context.read<QuestionNumProvider>().increment();
+
                                           if (Provider.of<Questions>(context,
                                                               listen: false)
                                                           .totalQuestion[
@@ -1910,7 +1925,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 const Color.fromRGBO(
                                                     239, 218, 30, 1),
                                                 true);
-                                          } else if (selected.isNotEmpty) {
+                                          }
+                                          else if (selected.isNotEmpty) {
                                             context.read<Questions>().selectOption(
                                                 Provider.of<QuestionNumProvider>(
                                                             context,
@@ -1921,7 +1937,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                 const Color.fromRGBO(
                                                     82, 165, 160, 1),
                                                 false);
-                                          } else {
+                                          }
+                                          else {
                                             context.read<Questions>().selectOption(
                                                 Provider.of<QuestionNumProvider>(
                                                             context,
@@ -1938,7 +1955,8 @@ class StudQuestionState extends State<StudQuestion> {
                                                       context,
                                                       listen: false)
                                                   .questionNum)) {
-                                          } else {
+                                          }
+                                          else {
                                             tilecount.add(Provider.of<
                                                         QuestionNumProvider>(
                                                     context,
@@ -2025,7 +2043,8 @@ class _ChooseWidgetState extends State<ChooseWidget> {
                       widget.selected,
                       const Color.fromRGBO(219, 35, 35, 1),
                       false);
-                } else {
+                }
+                else {
                   context.read<Questions>().selectOption(
                       Provider.of<QuestionNumProvider>(context, listen: false)
                           .questionNum,

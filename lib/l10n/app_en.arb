@@ -58,7 +58,7 @@
   "hint_regId": "Enter here",
   "error_regID": "Enter Email ID",
   "error_password": "Password is required",
-  "enter_assId": "ENTER ASSESSMENT ID",
+  "enter_assId": "Please enter",
   "valid_assId": "Assessment ID must be greater than 8 characters",
   "user_profile": "User Profile",
   "change_password": "Change Password",
@@ -402,5 +402,6 @@
   "itn_welcome": "\t\tITNEducation",
   "no_account": "Don’t have an account?",
   "continue_as_guest": "Continue as Guest",
-  "optional": "\t(optional)"
+  "optional": "\t(optional)",
+  "search_criteria": "Please enter search criteria"
 }

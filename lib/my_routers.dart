@@ -193,7 +193,7 @@ class MyRoutes{
 
       case '/studentAssessment':{
         final arguments = settings.arguments as List<dynamic>;
-        return SlideRightRoute(widget: StudentAssessment(usedData: arguments[1]),settings: settings);
+        return SlideRightRoute(widget: StudentAssessment(usedData: arguments[0],assessment: arguments[1]),settings: settings);
       }
 
       case '/studentForgotPassword':{

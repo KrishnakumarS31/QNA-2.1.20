@@ -6,17 +6,22 @@ import 'package:qna_test/Components/custom_incorrect_popup.dart';
 import '../Components/end_drawer_menu_student.dart';
 import '../Components/today_date.dart';
 import '../Entity/Teacher/get_assessment_header.dart';
+import '../Entity/Teacher/get_assessment_model.dart';
 import '../Entity/Teacher/response_entity.dart';
 import '../Entity/question_paper_model.dart';
+import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
 import '../Services/qna_service.dart';
+
 class StudentAssessment extends StatefulWidget {
   StudentAssessment(
       {Key? key,
-        required this.usedData})
+        this.usedData,
+       this.assessment})
       : super(key: key);
 
   UserDataModel? usedData;
+  GetAssessmentModel? assessment;
 
   @override
   StudentAssessmentState createState() => StudentAssessmentState();
@@ -37,11 +42,29 @@ class StudentAssessmentState extends State<StudentAssessment> {
   bool _searchPressed = false;
   bool _notPressedYes = false;
   bool _notPressedNo = false;
+  bool _isAssessmentTextField = true;
+  bool _isSearchTextField = false;
+  int pageLimit = 1;
+  bool assessmentPresent = false;
+  bool looqSearch = false;
+  UserDetails userDetails=UserDetails();
+  List<GetAssessmentModel> assessments = [];
+  List<GetAssessmentModel> allAssessment = [];
+  String searchValue = '';
 
   @override
   void initState() {
     super.initState();
     getData();
+    print("INITIAL STAGE");
+    print(_isAssessmentTextField);
+    print(widget.usedData!.data!.firstName);
+    if(widget.assessment?.assessmentCode != null)
+    {
+      _isAssessmentTextField = true;
+      _searchPressed = true;
+      assessmentIdController.text = widget.assessment!.assessmentCode!;
+    }
   }
 
   getData() async {
@@ -50,6 +73,37 @@ class StudentAssessmentState extends State<StudentAssessment> {
       name = widget.usedData!.data!.firstName;
       email = widget.usedData!.data!.email;
     });
+  }
+
+  getAssessmentData(String searchVal) async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+                color: Color.fromRGBO(48, 145, 139, 1),
+              ));
+        });
+    pageLimit = 1;
+    ResponseEntity response =
+    await QnaService.getAssessmentsForStudentsLooq(5, pageLimit, searchVal);
+    if(response.data==null){
+      Navigator.of(context).pop();
+      setState(() {
+        looqSearch=false;
+      });
+    }
+    else{
+      allAssessment = List<GetAssessmentModel>.from(
+          response.data.map((x) => GetAssessmentModel.fromJson(x)));
+      Navigator.of(context).pop();
+      setState(() {
+        assessmentPresent=true;
+        searchValue = searchVal;
+        assessments.addAll(allAssessment);
+        pageLimit++;
+      });
+    }
   }
 
   @override
@@ -494,7 +548,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                   assessmentIdController.text,
                                                                   values,name,
                                                                   null,
-                                                                  false
+                                                                  false,
+                                                                  assessmentHeaderValues
                                                                 ]);
                                                           }
                                                         }
@@ -994,7 +1049,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                   values,
                                                                   name,
                                                                   null,
-                                                                  false
+                                                                  false,
+                                                                  assessmentHeaderValues
                                                                 ]);
                                                           }
                                                         }
@@ -1176,6 +1232,64 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                       SizedBox(
                                         height: height * 0.0016,
                                       ),
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: ()  {
+                                                setState(() {
+                                                  _isAssessmentTextField = !_isAssessmentTextField;
+                                                  _isSearchTextField = !_isSearchTextField;
+                                                });
+                                              },
+
+                                              style: ElevatedButton.styleFrom(
+                                                  minimumSize: Size(width * 0.3, height * 0.003),
+                                                  backgroundColor: _isAssessmentTextField ? const Color.fromRGBO(82, 165, 160, 1) : Colors.white,
+                                                  shape:const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.only(topLeft: Radius.zero,topRight: Radius.zero,bottomLeft: Radius.zero,bottomRight: Radius.zero),
+
+                                                  ) ),
+                                              child: Text("Assessment ID",style: TextStyle(
+                                                  color: _isAssessmentTextField ?  Colors.white : const Color.fromRGBO(82, 165, 160, 1)  ,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.023),
+                                              ),),
+                                            SizedBox(width:width * 0.1),
+                                            ElevatedButton(
+                                              onPressed: ()  {
+                                                setState(() {
+                                                  _isSearchTextField = !_isSearchTextField;
+                                                  _isAssessmentTextField = !_isAssessmentTextField;
+                                                });
+                                                print("ISSEARCHTEXTfiled");
+                                                print(_isSearchTextField);
+                                                print("ISassessmentfiled");
+                                                print(_isAssessmentTextField);
+                                              },
+
+                                              style: ElevatedButton.styleFrom(
+                                                  minimumSize: Size(width * 0.3, height * 0.003),
+                                                  backgroundColor: _isSearchTextField ? const Color.fromRGBO(82, 165, 160, 1) :Colors.white  ,
+                                                  shape:const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.only(topLeft: Radius.zero,topRight: Radius.zero,bottomLeft: Radius.zero,bottomRight: Radius.zero),
+
+                                                  ) ),
+                                              child: Text("Keywords",style: TextStyle(
+                                                  color: _isSearchTextField ? Colors.white : const Color.fromRGBO(82, 165, 160, 1),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: height * 0.023),
+                                              ),),
+                                        ],
+
+                                        ),
+                                      ),
+                                      _isAssessmentTextField ?
                                       Column(
                                         children: [
                                           Align(
@@ -1277,6 +1391,99 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                     ),
                                                                   );
                                                                 }
+                                                              },
+                                                              color:  const Color.fromRGBO(82, 165, 160, 1),
+                                                              icon: const Icon(Icons.search_rounded),),
+                                                          ),
+                                                          // prefixIcon:
+                                                          // const Icon(
+                                                          //     Icons.event_note_outlined,
+                                                          //     color: Color.fromRGBO(
+                                                          //         82, 165, 160, 1)),
+                                                        )),
+                                                  )
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ):
+                                      Column(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(right: height * 0.045),
+                                              child: Form(
+                                                  key: formKey,
+                                                  autovalidateMode:
+                                                  AutovalidateMode.disabled,
+                                                  child: SizedBox(
+                                                    width:width,
+                                                    child: TextFormField(
+                                                        validator: (value) {
+                                                          return value!.length < 2
+                                                              ? AppLocalizations.of(
+                                                              context)!
+                                                              .search_criteria
+                                                              : null;
+                                                        },
+                                                        controller: assessmentIdController,
+                                                        onChanged: (val) {
+                                                          formKey.currentState!
+                                                              .validate();
+                                                        },
+                                                        inputFormatters: [
+                                                          FilteringTextInputFormatter
+                                                              .allow(
+                                                              RegExp('[a-zA-Z0-9]')),
+                                                        ],
+                                                        keyboardType: TextInputType.text,
+                                                        decoration: InputDecoration(
+                                                          helperStyle: TextStyle(
+                                                              color: Colors.blue,
+                                                              // Color.fromRGBO(
+                                                              //     102, 102, 102, 0.3),
+                                                              fontFamily: 'Inter',
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: height * 0.016),
+                                                          hintText: "Subject,Topic,Degree,Semester",
+                                                          suffixIcon: GestureDetector(
+                                                            onTap: () async {
+                                                              assessmentvalues = await QnaService.getAssessmentHeader(assessmentIdController.text);
+                                                              if(assessmentvalues.code == 200) {
+                                                                setState(() {
+                                                                  assessmentHeaderValues =
+                                                                      GetAssessmentHeaderModel
+                                                                          .fromJson(
+                                                                          assessmentvalues
+                                                                              .data);
+                                                                  _searchPressed = true;
+                                                                });
+                                                              }
+                                                              else{
+                                                                Navigator.push(
+                                                                  context,
+                                                                  PageTransition(
+                                                                    type:
+                                                                    PageTransitionType.rightToLeft,
+                                                                    child: CustomDialog(
+                                                                      title: '${values.message}',
+                                                                      content: '',
+                                                                      button:
+                                                                      AppLocalizations.of(context)!
+                                                                          .retry,
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                            },
+                                                            child: IconButton(
+                                                              onPressed: () async {
+                                                                  setState(() {
+                                                                    _searchPressed = false;
+                                                                    looqSearch = true;
+                                                                  });
+                                                                  getAssessmentData(assessmentIdController.text);
                                                               },
                                                               color:  const Color.fromRGBO(82, 165, 160, 1),
                                                               icon: const Icon(Icons.search_rounded),),
@@ -1500,7 +1707,8 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                                   values,
                                                                   name,
                                                                   null,
-                                                                  false
+                                                                  true,
+                                                                  assessmentHeaderValues
                                                                 ]);
                                                           }
                                                         }
@@ -1566,10 +1774,207 @@ class StudentAssessmentState extends State<StudentAssessment> {
 
                                   ),
                                 )
-                                    : const SizedBox(),
+                                    :  looqSearch ?
+                                SizedBox(
+                                  height: height * 0.45,
+                                  child: ListView.builder(
+                                    itemCount: assessments.length,
+                                    itemBuilder: (context, index) => Column(
+                                      children: [
+                                        CardInfo(
+                                          height: height,
+                                          width: width,
+                                          status: 'Active',
+                                          assessment: assessments[index],
+                                          usedData: widget.usedData!,
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.02,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ) :
+                                Column(
+                                  children: [
+                                    SizedBox(height: height * 0.04),
+                                    Center(
+                                      child: Text(
+                                        AppLocalizations.of(context)!.no_assessment_found_caps,
+                                        //'NO ASSESSMENT FOUND',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: const Color.fromRGBO(28, 78, 80, 1),
+                                          fontSize: height * 0.0175,
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(),
                               ])))));
         }
       },
+    );
+  }
+}
+
+class CardInfo extends StatelessWidget {
+  const CardInfo(
+      {Key? key,
+        required this.height,
+        required this.width,
+        required this.status,
+        required this.assessment,
+        required this.usedData
+      })
+      : super(key: key);
+
+  final double height;
+  final double width;
+  final String status;
+  final GetAssessmentModel assessment;
+  final UserDataModel usedData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () async {
+              Navigator.pushNamed(context, "/studentAssessment",arguments: [usedData,assessment]);
+
+
+            },
+            child: Container(
+              height: height * 0.1087,
+              width: width * 0.888,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+                border: Border.all(
+                  color: const Color.fromRGBO(82, 165, 160, 0.15),
+                ),
+                color: const Color.fromRGBO(82, 165, 160, 0.1),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              assessment.subject!,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              " | ${assessment.topic}",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Icon(
+                          Icons.circle_rounded,
+                          color: assessment.assessmentStatus == 'inprogress'
+                              ? const Color.fromRGBO(255, 166, 0, 1)
+                              : assessment.assessmentType == 'practice'
+                              ? const Color.fromRGBO(42, 36, 186, 1)
+                              : assessment.assessmentStatus == 'active' && assessment.assessmentType == 'test'
+                              ? const Color.fromRGBO(60, 176, 0, 1)
+                              : assessment.assessmentStatus == 'inactive' && assessment.assessmentType == 'test'
+                              ? const Color.fromRGBO(136, 136, 136, 1)
+                              : const Color.fromRGBO(136, 136, 136, 1),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                    EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              assessment.subTopic!,
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            Text(
+                              " | ${assessment.getAssessmentModelClass}",
+                              style: TextStyle(
+                                color: const Color.fromRGBO(28, 78, 80, 1),
+                                fontSize: height * 0.0175,
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: width * 0.02, right: width * 0.02),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Text(AppLocalizations.of(context)!.assessment_id_caps,
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Text("${assessment.assessmentCode}",
+                                style: TextStyle(
+                                  color: const Color.fromRGBO(82, 165, 160, 1),
+                                  fontSize: height * 0.015,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],),
+                          Text(
+                            assessment.assessmentStartdate != null ? convertDate(assessment.assessmentStartdate) : " ",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.015,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ]),),
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

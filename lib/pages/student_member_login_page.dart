@@ -1418,9 +1418,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         .userId,userDetails);
                                 if (userDataModel.data!.role
                                     .contains("student")) {
+                                  print("INSIDE STUDENT");
+                                  print(userDataModel.data!.firstName);
                                   Navigator.pushNamed(context,
                                       '/studentAssessment',
-                                      arguments: [regNumber,userDataModel])
+                                      arguments: [userDataModel,null,regNumber])
                                       .then((value) {
                                     regNumberController.clear();
                                     passWordController.clear();

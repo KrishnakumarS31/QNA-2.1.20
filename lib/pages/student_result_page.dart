@@ -62,6 +62,8 @@ class StudentResultPageState extends State<StudentResultPage> {
     values = widget.questions;
     print("INSIDE INIT");
     print(widget.assessmentHeaders.getAssessmentModelClass);
+    print("IS WIDGET MEMBER INIT");
+    print(widget.isMember);
   }
 
   @override
@@ -2764,15 +2766,20 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                   // Navigator.of(context)
                                                   //     .pop();
                                                   if(widget.isMember) {
+                                                    print("INSIDE IS WIDGET MEMBER");
                                                     SharedPreferences loginData = await SharedPreferences.getInstance();
                                                     UserDetails userdata= Provider.of<LanguageChangeProvider>(context, listen: false).userDetails;
+                                                    print(userdata.userId);
+                                                    print("BEFORE API CALL");
+                                                    print(userdata.userId);
                                                     UserDataModel userDataModel =
                                                     await QnaService
                                                         .getUserDataService(userdata.userId,userdata);
+                                                    print(userDataModel!.data!.email);
                                                     Navigator.pushNamed(
                                                         context,
                                                         '/studentAssessment',
-                                                        arguments: [userdata.email,userDataModel]);
+                                                        arguments: [userDataModel,null,userdata.email]);
                                                   }
                                                   else {
                                                     Navigator.pushNamed(
