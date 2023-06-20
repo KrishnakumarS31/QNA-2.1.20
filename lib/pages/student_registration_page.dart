@@ -319,7 +319,8 @@ class StudentRegistrationPageState extends State<StudentRegistrationPage> {
             return WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(
-                  appBar: AppBar(
+                  appBar:
+                  AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
@@ -1742,7 +1743,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         ),
                                                       ),
                                                       Positioned(
-                                                        left: localWidth * 0.025,
+                                                        left: localWidth * 0.021,
                                                         child: Text(
                                                           AppLocalizations.of(
                                                               context)!
@@ -1836,7 +1837,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                         ),
                                                       ),
                                                       Positioned(
-                                                        left: localWidth * 0.025,
+                                                        left: localWidth * 0.021,
                                                         child: Container(
                                                           color: Colors.white,
                                                           child: Text(
@@ -3255,7 +3256,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                       crossAxisAlignment: CrossAxisAlignment
                                                           .center,
                                                       children: [
-                                                        SizedBox(width: localWidth * 0.03),
+                                                        SizedBox(width: localWidth * 0.01),
                                                         Transform.scale(
                                                             filterQuality: FilterQuality.high,
                                                             scale: 1.5,

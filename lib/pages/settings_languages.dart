@@ -118,7 +118,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                       AppLocalizations.of(context)!.language,
                       //"LANGUAGE",
                       style: TextStyle(
-                        color: Colors.black,
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                         fontSize: height * 0.025,
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w600,
@@ -297,7 +297,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                     AppLocalizations.of(context)!.language,
                     //"LANGUAGE",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
@@ -475,7 +475,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                   AppLocalizations.of(context)!.language,
                   //"LANGUAGE",
                   style: TextStyle(
-                    color: Colors.black,
+                    color: const Color.fromRGBO(28, 78, 80, 1),
                     fontSize: height * 0.025,
                     fontFamily: "Inter",
                     fontWeight: FontWeight.w600,

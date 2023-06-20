@@ -107,7 +107,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                 AppLocalizations.of(context)!.member_student,
                                 //"Student Login",
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: localHeight * 0.025,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w600,
@@ -121,7 +121,11 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                         ),
                       ),
                       endDrawer: const EndDrawerMenuPreLogin(),
-                      body: Column(
+                      body:
+                      SingleChildScrollView(
+                          physics: const ClampingScrollPhysics(),
+                          child:
+                      Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                             SizedBox(height: localHeight * 0.2),
@@ -197,7 +201,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 0.3),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w400,
-                                                    fontSize: localHeight * 0.018),
+                                                    fontSize: localHeight * 0.02),
                                               ),
                                               validator: (value) {
                                                 if (value!.isEmpty ||
@@ -328,7 +332,6 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                               ),
                             )),
                                 SizedBox(height: localHeight * 0.03),
-
                       Center(
                           child:IconButton(
                                   icon: Icon(Icons.arrow_circle_right,
@@ -425,14 +428,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                               type: PageTransitionType
                                                   .rightToLeft,
                                               child: CustomDialog(
-                                                title: "OOPS!",
-                                                //'Wrong password',
-                                                content:
-                                                "Invalid Role, CheckYour Login Data",
-                                                //'please enter the correct password',
-                                                button:
-                                                AppLocalizations.of(
-                                                    context)!
+                                                title: AppLocalizations.of(context)!
+                                                    .oops,
+                                                // "OOPS!",
+                                                content: AppLocalizations.of(context)!.invalid_role,
+                                                //"Invalid Role, Please Check Your Login Data",
+                                                button: AppLocalizations.of(context)!
                                                     .retry,
                                               ),
                                             ),
@@ -582,7 +583,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   ],
                                 )),
                           ])),
-          );
+          ));
         }
         else if(constraints.maxWidth > 960) {
           return WillPopScope(
@@ -614,7 +615,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           AppLocalizations.of(context)!.member_student,
                           //"Student Login",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: localHeight * 0.025,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w600,
@@ -629,7 +630,10 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 ),
                 endDrawer: const EndDrawerMenuPreLogin(),
                 body:
-            Container(
+                SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+        child:
+                Container(
                 padding:EdgeInsets.only(left: localHeight * 0.5,right: localHeight * 0.5),
         child: Column(
                     children: [
@@ -696,7 +700,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: localHeight * 0.025),
+                                                    fontSize: localHeight * 0.03),
                                               ),
                                               hintText:
                                               AppLocalizations.of(context)!
@@ -804,7 +808,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      SizedBox(width: localWidth * 0.02),
+                                      SizedBox(width: localWidth * 0.013),
                                       MouseRegion(
                                           cursor: SystemMouseCursors.click,
                                           child: GestureDetector(
@@ -931,14 +935,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     type: PageTransitionType
                                         .rightToLeft,
                                     child: CustomDialog(
-                                      title: "OOPS!",
-                                      //'Wrong password',
-                                      content:
-                                      "Invalid Role, CheckYour Login Data",
-                                      //'please enter the correct password',
-                                      button:
-                                      AppLocalizations.of(
-                                          context)!
+                                      title: AppLocalizations.of(context)!
+                                          .oops,
+                                      // "OOPS!",
+                                      content: AppLocalizations.of(context)!.invalid_role,
+                                      //"Invalid Role, Please Check Your Login Data",
+                                      button: AppLocalizations.of(context)!
                                           .retry,
                                     ),
                                   ),
@@ -1088,7 +1090,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             ],
                           )),
                     ]))),
-          );
+          ));
         }
         else {
           return WillPopScope(
@@ -1119,7 +1121,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           AppLocalizations.of(context)!.member_student,
                           //"Student Login",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: const Color.fromRGBO(28, 78, 80, 1),
                             fontSize: localHeight * 0.025,
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w600,
@@ -1133,12 +1135,16 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                   ),
                 ),
                 endDrawer: const EndDrawerMenuPreLogin(),
-                body: Column(
+                body:
+                SingleChildScrollView(
+                physics: const ClampingScrollPhysics(),
+        child:
+                Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: localHeight * 0.2),
                       Padding(
-                          padding: EdgeInsets.only(left: localWidth * 0.03),
+                          padding: EdgeInsets.only(left: localWidth * 0.055),
                           child: Text(
                             AppLocalizations.of(context)!.login_loginPage,
                             style: TextStyle(
@@ -1197,7 +1203,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                         102, 102, 102, 1),
                                                     fontFamily: 'Inter',
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: localHeight * 0.017),
+                                                    fontSize: localHeight * 0.02),
                                               ),
                                               hintText:
                                               AppLocalizations.of(context)!
@@ -1248,7 +1254,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                           102, 102, 102, 1),
                                                       fontFamily: 'Inter',
                                                       fontWeight: FontWeight.w600,
-                                                      fontSize: localHeight * 0.017),
+                                                      fontSize: localHeight * 0.02),
                                                 ),
                                                 helperStyle:TextStyle(
                                                     color: const Color.fromRGBO(
@@ -1267,12 +1273,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                     fontWeight: FontWeight.w400,
                                                     fontSize: localHeight * 0.02),
                                                 suffixIcon:
-                                                SizedBox(
+                                                Padding(
+                                                    padding: const EdgeInsets.only(top: 20),
                                                     child: Row(
                                                         mainAxisSize: MainAxisSize.min,
-                                                        mainAxisAlignment: MainAxisAlignment.end,
                                                         children:[
-                                                          IconButton(
+                                                         IconButton(
                                                               icon: Icon(
                                                                 _isObscure
                                                                     ? Icons.visibility
@@ -1339,7 +1345,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             ),
                           )),
                       SizedBox(height: localHeight * 0.03),
-                      IconButton(
+                Center(
+                    child: IconButton(
                         icon: Icon(Icons.arrow_circle_right,
                           size: localHeight * 0.04,
                           color: const Color.fromRGBO(
@@ -1418,11 +1425,9 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                         .userId,userDetails);
                                 if (userDataModel.data!.role
                                     .contains("student")) {
-                                  print("INSIDE STUDENT");
-                                  print(userDataModel.data!.firstName);
                                   Navigator.pushNamed(context,
                                       '/studentAssessment',
-                                      arguments: [userDataModel,null,regNumber])
+                                      arguments: [regNumber,userDataModel])
                                       .then((value) {
                                     regNumberController.clear();
                                     passWordController.clear();
@@ -1436,14 +1441,12 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     type: PageTransitionType
                                         .rightToLeft,
                                     child: CustomDialog(
-                                      title: "OOPS!",
-                                      //'Wrong password',
-                                      content:
-                                      "Invalid Role, CheckYour Login Data",
-                                      //'please enter the correct password',
-                                      button:
-                                      AppLocalizations.of(
-                                          context)!
+                                      title: AppLocalizations.of(context)!
+                                          .oops,
+                                      // "OOPS!",
+                                      content: AppLocalizations.of(context)!.invalid_role,
+                                      //"Invalid Role, Please Check Your Login Data",
+                                      button: AppLocalizations.of(context)!
                                           .retry,
                                     ),
                                   ),
@@ -1476,8 +1479,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             }
                           });
                         },
-                      ),
-                      SizedBox(height: localHeight * 0.03),
+                      )),
+                      SizedBox(height: localHeight * 0.02),
                       Center(
                           child: Column(
                             children: [
@@ -1559,7 +1562,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                       '/studentGuestLogin');
                                 },
                               ),
-                              SizedBox(height: localHeight * 0.1),
+                              SizedBox(height: localHeight * 0.05),
                               Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -1593,7 +1596,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                             ],
                           )),
                     ])),
-          );
+          ));
         }
       },
     );

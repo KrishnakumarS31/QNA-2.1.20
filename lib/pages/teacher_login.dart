@@ -1,11 +1,8 @@
-import 'package:decorated_icon/decorated_icon.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../Components/custom_incorrect_popup.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/login_entity.dart';
@@ -14,7 +11,6 @@ import '../Providers/LanguageChangeProvider.dart';
 import '../Services/qna_service.dart';
 import '../Components/end_drawer_menu_pre_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:qna_test/DataSource/http_url.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key,});
@@ -38,20 +34,6 @@ class TeacherLoginState extends State<TeacherLogin> {
   SharedPreferences? loginData;
   late bool newUser;
   UserDetails userDetails=UserDetails();
-
-  Future<void> _launchUrlTerms() async {
-    final Uri url = Uri.parse('https://www.itneducation.com/termsofservice');
-    if (!await launchUrl(url)) {
-      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
-    }
-  }
-
-  Future<void> _launchUrlPrivacy() async {
-    final Uri url = Uri.parse('https://www.itneducation.com/privacypolicy');
-    if (!await launchUrl(url)) {
-      throw Exception('${AppLocalizations.of(context)!.could_not_launch} $url');
-    }
-  }
 
   @override
   void initState() {
@@ -94,1123 +76,1359 @@ class TeacherLoginState extends State<TeacherLogin> {
 
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth > 500) {
-        return Center(
-            child: SizedBox(
-            width: webWidth,
-            child:  WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-                extendBodyBehindAppBar: true,
-                appBar: AppBar(
-                  systemOverlayStyle: const SystemUiOverlayStyle(
-                    statusBarColor: Colors.transparent,
-                  ),
-                  elevation: 0,
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.chevron_left,
-                      size: 30,
-                      color: Colors.white,
+          if(constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                  resizeToAvoidBottomInset: false,
+                  extendBodyBehindAppBar: true,
+                  appBar:AppBar(
+                    iconTheme: IconThemeData(
+                        color: Colors.black,
+                        size: height * 0.05
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  backgroundColor: Colors.transparent,
-                ),
-                endDrawer: const EndDrawerMenuPreLogin(),
-                backgroundColor: Colors.white,
-                body: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: height * 0.35,
-                          width: webWidth,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1)
-                              ],
-                            ),
-                            borderRadius: BorderRadius.vertical(
-                                bottom: Radius.elliptical(
-                                    width, height * 0.40)),
-                          ),
-                          child: Column(
-                            children: [
-                              SizedBox(height: height * 0.09),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                    padding: const EdgeInsets.all(0.0),
-                                    height: height * 0.2,
-                                    width: width * 0.45,
-                                    child:
-                                    Image.asset("assets/images/qna_logo.png")),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: height * 0.03),
-                        Text(
-                          AppLocalizations.of(context)!.teacher_caps,
-                          style: TextStyle(
-                            fontSize: height * 0.05,
-                            color: const Color.fromRGBO(
-                                28, 78, 80, 1),
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: height * 0.04),
-                        SizedBox(
-                          width: webWidth * 0.8,
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .email_id_caps,
-                                            style: Theme
-                                                .of(context)
-                                                .primaryTextTheme
-                                                .bodyLarge
-                                                ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.017)),
-                                          ),
-                                          const Text('\t*',
-                                              style: TextStyle(
-                                                  color: Colors.red)),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.0001,
-                                    ),
-                                    Align(
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                          keyboardType: TextInputType.text,
-                                          controller: emailController,
-                                          decoration: InputDecoration(
-                                            hintText: AppLocalizations.of(
-                                                context)!
-                                                .email_id,
-                                            hintStyle: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 0.3),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.02),
-                                            prefixIcon: Icon(
-                                              Icons.account_box_outlined,
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              size: height * 0.03,
-                                            ),
-                                          ),
-                                          onChanged: (value) {
-                                            formKey.currentState!.validate();
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty ||
-                                                !RegExp(
-                                                    r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                    .hasMatch(value)) {
-                                              return AppLocalizations.of(
-                                                  context)!
-                                                  .enter_valid_email;
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.0375),
-                                Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .password_caps,
-                                            style: Theme
-                                                .of(context)
-                                                .primaryTextTheme
-                                                .bodyLarge
-                                                ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.017)),
-                                          ),
-                                          const Text('\t*',
-                                              style: TextStyle(
-                                                  color: Colors.red)),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.0001,
-                                    ),
-                                    Align(
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                          obscureText: _isObscure,
-                                          controller: passwordController,
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            suffixIcon: IconButton(
-                                                icon: Icon(
-                                                  _isObscure
-                                                      ? Icons.visibility
-                                                      : Icons.visibility_off,
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                ),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _isObscure = !_isObscure;
-                                                  });
-                                                }),
-                                            hintText: AppLocalizations.of(
-                                                context)!
-                                                .your_password,
-                                            hintStyle: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 0.3),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.02),
-                                            prefixIcon: Icon(
-                                              Icons.lock,
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              size: height * 0.03,
-                                            ),
-                                          ),
-                                          onChanged: (value) {
-                                            formKey.currentState!.validate();
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return AppLocalizations.of(
-                                                  context)!
-                                                  .enter_your_password;
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.02),
-                                MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/forgotPasswordEmail',
-                                            arguments: false
-                                        );
-                                      },
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .forgot_password,
-                                          style: Theme
-                                              .of(context)
-                                              .primaryTextTheme
-                                              .bodyLarge
-                                              ?.merge(TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  48, 145, 139, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: height * 0.017)),
-                                        ),
-                                      ),
-                                    )),
-                                SizedBox(height: height * 0.01),
-                              ],
-                            ),
-                          ),
-                        ),
-                       SizedBox(
-                         width:webWidth * 0.8,
-                         child: RichText(
-                                  text: TextSpan(children: [
-                                    TextSpan(
-                                      text: AppLocalizations.of(context)!.certify,
-                                      //"CERTIFY",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              102, 102, 102, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017),
-                                    ),
-                                    TextSpan(
-                                        text: "\t *",
-                                        style: TextStyle(
-                                            color: const Color.fromRGBO(
-                                                219, 35, 35, 1),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: height * 0.017)),
-                                  ])),
-                       ),
-                        SizedBox(height: height * 0.01),
-                        Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Transform.scale(
-                                filterQuality: FilterQuality.high,
-                                scale: 1.2,
-                                child: Checkbox(
-                                  activeColor:
-                                  const Color.fromRGBO(82, 165, 160, 1),
-                                  fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                          (states) {
-                                        if (states.contains(
-                                            MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
-                                  value: agree,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      agree = val!;
-                                      if (agree) {}
-                                    });
-                                  },
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              Flexible(
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .agree_msg,
-                                        style: TextStyle(
-                                            fontSize: height * 0.02,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text:
-                                        AppLocalizations.of(context)!
-                                            .privacy_Policy,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = _launchUrlPrivacy,
-                                        style: TextStyle(
-                                            fontSize: height * 0.020,
-                                            fontWeight: FontWeight.w400,
-                                            decoration: TextDecoration
-                                                .underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!.and,
-                                        style: TextStyle(
-                                            fontSize: height * 0.020,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .terms_of_services,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = _launchUrlTerms,
-                                        style: TextStyle(
-                                            fontSize: height * 0.020,
-                                            fontWeight: FontWeight.w400,
-                                            decoration: TextDecoration
-                                                .underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                    ])),
-                              ),
-                            ],
-                          ),
-                        SizedBox(height: height * 0.02),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(
-                                82, 165, 160, 1),
-                            minimumSize: const Size(280, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(39),
-                            ),
-                          ),
-                          onPressed: () async {
-                            if (agree) {
-                              bool valid = formKey.currentState!.validate();
-                              if (valid == true) {
-                                regNumber = emailController.text;
-                                passWord = passwordController.text;
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return const Center(
-                                          child: CircularProgressIndicator(
-                                            color: Color.fromRGBO(
-                                                48, 145, 139, 1),
-                                          ));
-                                    });
-                                LoginModel loginResponse =
-                                await QnaService.logInUser(
-                                    regNumber, passWord, 'teacher');
-
-                                Navigator.of(context).pop();
-
-                                if (loginResponse.code == 200) {
-                                  UserDetails userDetails = UserDetails();
-                                  userDetails.login = false;
-                                  userDetails.email = regNumber;
-                                  userDetails.password = passWord;
-                                  userDetails.role = 'teacher';
-                                  userDetails.firstName =
-                                      loginResponse.data.firstName;
-                                  userDetails.lastName =
-                                      loginResponse.data.lastName;
-                                  userDetails.token =
-                                      loginResponse.data.accessToken;
-                                  userDetails.userId =
-                                      loginResponse.data.userId;
-                                  Provider.of<LanguageChangeProvider>(
-                                      context, listen: false).updateUserDetails(
-                                      userDetails);
-                                  final SharedPreferences loginData = await SharedPreferences
-                                      .getInstance();
-                                  loginData.setBool('login', false);
-                                  loginData.setString('email', regNumber);
-                                  loginData.setString('password', passWord);
-                                  loginData.setString('role', 'teacher');
-                                  loginData.setString(
-                                      'firstName',
-                                      loginResponse.data.firstName);
-                                  loginData.setString(
-                                      'lastName', loginResponse.data.lastName);
-                                  loginData.setString(
-                                      'token', loginResponse.data.accessToken);
-                                  loginData.setInt(
-                                      'userId', loginResponse.data.userId);
-                                  UserDataModel userDataModel = UserDataModel();
-                                  userDataModel =
-                                  await QnaService.getUserDataService(
-                                      loginResponse.data.userId, userDetails);
-                                  if (userDataModel.data!.role
-                                      .contains("teacher")) {
-                                    Navigator.pushNamed(
-                                        context,
-                                        '/teacherSelectionPage',
-                                        arguments: userDataModel
-                                    ).then((value) {
-                                      emailController.clear();
-                                      passwordController.clear();
-                                    });
-                                  }
-                                } else if (loginResponse.code == 400) {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: CustomDialog(
-                                        title: "OOPS!",
-                                        //'Wrong password',
-                                        content:
-                                        "Invalid Role, Please Check Your Login Data",
-                                        //'please enter the correct password',
-                                        button: AppLocalizations.of(context)!
-                                            .retry,
-                                      ),
-                                    ),
-                                  );
-                                } else if (loginResponse.code == 401) {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: CustomDialog(
-                                        title: 'Wrong password',
-                                        content:
-                                        'please enter the correct password',
-                                        button: AppLocalizations.of(context)!
-                                            .retry,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }
-                            } else {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: CustomDialog(
-                                      title: AppLocalizations.of(context)!
-                                          .agree_privacy_terms,
-                                      content: AppLocalizations.of(context)!
-                                          .error,
-                                      button: AppLocalizations.of(context)!
-                                          .retry),
-                                ),
-                              );
-                            }
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.login_loginPage,
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        size: height * 0.06,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    toolbarHeight: height * 0.100,
+                    centerTitle: true,
+                    title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.teacher_caps,
+                            //"Teacher Login",
                             style: TextStyle(
-                                fontSize: height * 0.03,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600),
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, '/teacherRegistrationPage');
-                                    },
-                                    child:
-                                    DecoratedIcon(
-                                      Icons.app_registration,
-                                      color: const Color.fromRGBO(
-                                          141, 167, 167, 1),
-                                      size: height * 0.034,
-                                    ))),
-                            SizedBox(width: webWidth * 0.005),
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, '/teacherRegistrationPage');
-                                  },
-                                  child: Text(
-                                      AppLocalizations.of(context)!.register,
-                                      style: Theme
-                                          .of(context)
-                                          .primaryTextTheme
-                                          .bodyLarge
-                                          ?.merge(TextStyle(
-                                          color:
-                                          const Color.fromRGBO(48, 145, 139, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.0225))),
-                                )),
-                          ],
-                        ),
-                      ]),
-                )))));
-      }
-      else {
-        return WillPopScope(
-            onWillPop: () async => false,
-            child: Scaffold(
-                extendBodyBehindAppBar: true,
-                appBar: AppBar(
-                  systemOverlayStyle: const SystemUiOverlayStyle(
-                    statusBarColor: Colors.transparent,
-                  ),
-                  elevation: 0,
-                  leading: IconButton(
-                    icon: const Icon(
-                      Icons.chevron_left,
-                      size: 30,
-                      color: Colors.white,
+                        ]),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
                   ),
-                  backgroundColor: Colors.transparent,
-                ),
-                endDrawer: const EndDrawerMenuPreLogin(),
-                backgroundColor: Colors.white,
-                body: SingleChildScrollView(
-                  physics: const ClampingScrollPhysics(),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: height * 0.35,
-                          width: width,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              colors: [
-                                Color.fromRGBO(0, 106, 100, 1),
-                                Color.fromRGBO(82, 165, 160, 1)
-                              ],
-                            ),
-                            borderRadius: BorderRadius.vertical(
-                                bottom: Radius.elliptical(
-                                    width, height * 0.40)),
-                          ),
-                          child: Column(
-                            children: [
-                              SizedBox(height: height * 0.09),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                    padding: const EdgeInsets.all(0.0),
-                                    height: height * 0.2,
-                                    width: width * 0.45,
+                  endDrawer: const EndDrawerMenuPreLogin(),
+                  body:
+                  SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child:
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: height * 0.2),
+                            Padding(
+                                padding: const EdgeInsets.only(left: 50),
+                                child: Text(
+                                  AppLocalizations.of(context)!.login_loginPage,
+                                  style: TextStyle(
+                                    fontSize: height * 0.02,
+                                    color: const Color.fromRGBO(
+                                        102, 102, 102, 1),
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )),
+                            SizedBox(height: height * 0.02),
+                            Center(
+                                child:
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: kElevationToShadow[4],
+                                  ),
+                                  width: width * 0.9,
+                                  child:
+                                  Form(
+                                    key: formKey,
                                     child:
-                                    Image.asset("assets/images/qna_logo.png")),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: height * 0.03),
-                        Text(
-                          AppLocalizations.of(context)!.teacher_caps,
-                          style: TextStyle(
-                            fontSize: height * 0.035,
-                            color: const Color.fromRGBO(
-                                28, 78, 80, 1),
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: height * 0.04),
-                        SizedBox(
-                          width: width * 0.8,
-                          child: Form(
-                            key: formKey,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .email_id_caps,
-                                            style: Theme
-                                                .of(context)
-                                                .primaryTextTheme
-                                                .bodyLarge
-                                                ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.017)),
-                                          ),
-                                          const Text('\t*',
-                                              style: TextStyle(
-                                                  color: Colors.red)),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.0001,
-                                    ),
-                                    Align(
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                          keyboardType: TextInputType.text,
-                                          controller: emailController,
-                                          decoration: InputDecoration(
-                                            hintText: AppLocalizations.of(
-                                                context)!
-                                                .email_id,
-                                            hintStyle: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 0.3),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.02),
-                                            prefixIcon: Icon(
-                                              Icons.account_box_outlined,
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              size: height * 0.03,
-                                            ),
-                                          ),
-                                          onChanged: (value) {
-                                            formKey.currentState!.validate();
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty ||
-                                                !RegExp(
-                                                    r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
-                                                    .hasMatch(value)) {
-                                              return AppLocalizations.of(
-                                                  context)!
-                                                  .enter_valid_email;
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.0375),
-                                Column(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            AppLocalizations.of(context)!
-                                                .password_caps,
-                                            style: Theme
-                                                .of(context)
-                                                .primaryTextTheme
-                                                .bodyLarge
-                                                ?.merge(TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 1),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.017)),
-                                          ),
-                                          const Text('\t*',
-                                              style: TextStyle(
-                                                  color: Colors.red)),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: height * 0.0001,
-                                    ),
-                                    Align(
-                                        alignment: Alignment.center,
-                                        child: TextFormField(
-                                          obscureText: _isObscure,
-                                          controller: passwordController,
-                                          keyboardType: TextInputType.text,
-                                          decoration: InputDecoration(
-                                            suffixIcon: IconButton(
-                                                icon: Icon(
-                                                  _isObscure
-                                                      ? Icons.visibility
-                                                      : Icons.visibility_off,
-                                                  color: const Color.fromRGBO(
-                                                      82, 165, 160, 1),
-                                                ),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    _isObscure = !_isObscure;
-                                                  });
-                                                }),
-                                            hintText: AppLocalizations.of(
-                                                context)!
-                                                .your_password,
-                                            hintStyle: TextStyle(
-                                                color: const Color.fromRGBO(
-                                                    102, 102, 102, 0.3),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: height * 0.02),
-                                            prefixIcon: Icon(
-                                              Icons.lock,
-                                              color: const Color.fromRGBO(
-                                                  82, 165, 160, 1),
-                                              size: height * 0.03,
-                                            ),
-                                          ),
-                                          onChanged: (value) {
-                                            formKey.currentState!.validate();
-                                          },
-                                          validator: (value) {
-                                            if (value!.isEmpty) {
-                                              return AppLocalizations.of(
-                                                  context)!
-                                                  .enter_your_password;
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(height: height * 0.02),
-                                MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context,
-                                            '/forgotPasswordEmail',
-                                            arguments: false
-                                        );
-                                      },
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                          AppLocalizations.of(context)!
-                                              .forgot_password,
-                                          style: Theme
-                                              .of(context)
-                                              .primaryTextTheme
-                                              .bodyLarge
-                                              ?.merge(TextStyle(
-                                              color: const Color.fromRGBO(
-                                                  48, 145, 139, 1),
-                                              fontFamily: 'Inter',
-                                              fontWeight: FontWeight.w400,
-                                              fontStyle: FontStyle.italic,
-                                              fontSize: height * 0.017)),
+                                    Column(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SizedBox(height: height * 0.05),
+                                            SizedBox(
+                                                width: width * 0.8,
+                                                child: TextFormField(
+                                                  keyboardType: TextInputType.text,
+                                                  controller: emailController,
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter.deny(
+                                                        ' ')
+                                                  ],
+                                                  onChanged: (val) {
+                                                    formKey.currentState!.validate();
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                    floatingLabelBehavior:
+                                                    FloatingLabelBehavior.always,
+                                                    helperStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.016),
+                                                    label: Text(
+                                                      AppLocalizations.of(context)!
+                                                          .regId_emailId,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize: height * 0.017),
+                                                    ),
+                                                    hintText:
+                                                    AppLocalizations.of(context)!
+                                                        .hint_regId,
+                                                    //Enter here
+                                                    hintStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.02),
+                                                  ),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty ||
+                                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                            .hasMatch(value)) {
+                                                      return AppLocalizations.of(
+                                                          context)!
+                                                          .error_regID;
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                ))
+                                          ],
                                         ),
-                                      ),
-                                    )),
-                                SizedBox(height: height * 0.01),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: width * 0.12),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: RichText(
-                                text: TextSpan(children: [
-                                  TextSpan(
-                                    text: AppLocalizations.of(context)!.certify,
-                                    //"CERTIFY",
-                                    style: TextStyle(
+                                        SizedBox(height: height * 0.06),
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                                width: width * 0.8,
+                                                child: TextFormField(
+                                                  controller: passwordController,
+                                                  obscureText: _isObscure,
+                                                  obscuringCharacter: "*",
+                                                  onChanged: (val) {
+                                                    formKey.currentState!.validate();
+                                                  },
+                                                  keyboardType: TextInputType.text,
+                                                  decoration: InputDecoration( floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                      label: Text(
+                                                        AppLocalizations.of(context)!
+                                                            .password,
+                                                        style: TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: height * 0.017),
+                                                      ),
+                                                      helperStyle:TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: width * 0.016),
+                                                      hintText:
+                                                      AppLocalizations.of(context)!
+                                                          .your_password,
+                                                      //Enter here
+                                                      hintStyle: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.02),
+                                                      suffixIcon:
+                                                      SizedBox(
+                                                          child: Row(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                              children:[
+                                                                IconButton(
+                                                                    icon: Icon(
+                                                                      _isObscure
+                                                                          ? Icons.visibility
+                                                                          : Icons.visibility_off,
+                                                                      color: const Color.fromRGBO(
+                                                                          82, 165, 160, 1),
+                                                                    ),
+                                                                    onPressed: () {
+                                                                      setState(() {
+                                                                        _isObscure = !_isObscure;
+                                                                      });
+                                                                    }),
+                                                              ]
+                                                          ))),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty ||
+                                                        value.length < 8) {
+                                                      return AppLocalizations.of(
+                                                          context)!
+                                                          .enter_pass_min;
+                                                      //"Enter password Min 8 Characters";
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                ))
+                                          ],
+                                        ),
+                                        SizedBox(height: height * 0.02),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            SizedBox(width: width * 0.05),
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        '/forgotPasswordEmail',
+                                                        arguments: false
+                                                    );
+                                                  },
+                                                  child: Text(
+                                                      AppLocalizations.of(context)!
+                                                          .forgot_password,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontStyle: FontStyle.italic,
+                                                          fontSize:
+                                                          height * 0.018)),
+                                                )),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.02,
+                                        ),
+                                        SizedBox(height: height * 0.03),
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                            SizedBox(height: height * 0.03),
+                            Center(
+                                child:IconButton(
+                                  icon: Icon(Icons.arrow_circle_right,
+                                    size: height * 0.04,
+                                    color: const Color.fromRGBO(
+                                        82, 165, 160, 1),
+                                  ),
+                                  onPressed: () async {
+                                    bool valid = formKey.currentState!.validate();
+                                        regNumber = emailController.text;
+                                        passWord = passwordController.text;
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return const Center(
+                                                  child: CircularProgressIndicator(
+                                                    color: Color.fromRGBO(
+                                                        48, 145, 139, 1),
+                                                  ));
+                                            });
+                                        LoginModel loginResponse =
+                                        await QnaService.logInUser(
+                                            regNumber, passWord, 'teacher');
+                                        Navigator.of(context).pop();
+                                        if (loginResponse.code == 200) {
+                                          UserDetails userDetails = UserDetails();
+                                          userDetails.login = false;
+                                          userDetails.email = regNumber;
+                                          userDetails.password = passWord;
+                                          userDetails.role = 'teacher';
+                                          userDetails.firstName =
+                                              loginResponse.data.firstName;
+                                          userDetails.lastName =
+                                              loginResponse.data.lastName;
+                                          userDetails.token =
+                                              loginResponse.data.accessToken;
+                                          userDetails.userId =
+                                              loginResponse.data.userId;
+                                          Provider.of<LanguageChangeProvider>(
+                                              context, listen: false).updateUserDetails(
+                                              userDetails);
+                                          final SharedPreferences loginData = await SharedPreferences
+                                              .getInstance();
+                                          loginData.setBool('login', false);
+                                          loginData.setString('email', regNumber);
+                                          loginData.setString('password', passWord);
+                                          loginData.setString('role', 'teacher');
+                                          loginData.setString(
+                                              'firstName',
+                                              loginResponse.data.firstName);
+                                          loginData.setString(
+                                              'lastName', loginResponse.data.lastName);
+                                          loginData.setString(
+                                              'token', loginResponse.data.accessToken);
+                                          loginData.setInt(
+                                              'userId', loginResponse.data.userId);
+                                          UserDataModel userDataModel = UserDataModel();
+                                          userDataModel =
+                                          await QnaService.getUserDataService(
+                                              loginResponse.data.userId, userDetails);
+                                          if (userDataModel.data!.role
+                                              .contains("teacher")) {
+                                            Navigator.pushNamed(
+                                                context,
+                                                '/teacherSelectionPage',
+                                                arguments: userDataModel
+                                            ).then((value) {
+                                              emailController.clear();
+                                              passwordController.clear();
+                                            });
+                                          }
+                                        }
+                                        else if (loginResponse.code == 400) {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(context)!
+                                                    .oops,
+                                               // "OOPS!",
+                                                content: AppLocalizations.of(context)!.invalid_role,
+                                                //"Invalid Role, Please Check Your Login Data",
+                                                button: AppLocalizations.of(context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        else if (loginResponse.code == 401) {
+                                          Navigator.push(
+                                            context,
+                                            PageTransition(
+                                              type: PageTransitionType.rightToLeft,
+                                              child: CustomDialog(
+                                                title: AppLocalizations.of(
+                                                    context)!
+                                                    .wrong_password,
+                                                //'Wrong password',
+                                                content: AppLocalizations
+                                                    .of(context)!
+                                                    .pls_enter_cr_pass,
+                                                //'please enter the correct password',
+                                                button: AppLocalizations.of(context)!
+                                                    .retry,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                    }
+                                )),
+                            SizedBox(height: height * 0.03),
+                            Center(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!.no_account,
+                                      //Don’t have an account?
+                                      style: TextStyle(
+                                        fontSize: height * 0.02,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
-                                        fontFamily: 'Inter',
+                                        fontFamily: "Inter",
                                         fontWeight: FontWeight.w600,
-                                        fontSize: height * 0.017),
-                                  ),
-                                  TextSpan(
-                                      text: "\t *",
-                                      style: TextStyle(
-                                          color: const Color.fromRGBO(
-                                              219, 35, 35, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: height * 0.017)),
-                                ])),
-                          ),
-                        ),
-                        SizedBox(height: height * 0.01),
-                        Padding(
-                          padding: EdgeInsets.only(left: width * 0.1),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(width: width * 0.02),
-                              Transform.scale(
-                                filterQuality: FilterQuality.high,
-                                scale: 1.5,
-                                child: Checkbox(
-                                  activeColor:
-                                  const Color.fromRGBO(82, 165, 160, 1),
-                                  fillColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                          (states) {
-                                        if (states.contains(
-                                            MaterialState.selected)) {
-                                          return const Color.fromRGBO(
-                                              82, 165, 160, 1);
-                                        }
-                                        return const Color.fromRGBO(
-                                            82, 165, 160, 1);
-                                      }),
-                                  value: agree,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      agree = val!;
-                                      if (agree) {}
-                                    });
-                                  },
-                                ),
-                              ),
-                              SizedBox(width: width * 0.02),
-                              Flexible(
-                                child: RichText(
-                                    text: TextSpan(children: [
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .agree_msg,
-                                        style: TextStyle(
-                                            fontSize: height * 0.02,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
                                       ),
-                                      TextSpan(
-                                        text:
-                                        AppLocalizations.of(context)!
-                                            .privacy_Policy,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = _launchUrlPrivacy,
-                                        style: TextStyle(
-                                            fontSize: height * 0.020,
-                                            fontWeight: FontWeight.w400,
-                                            decoration: TextDecoration
-                                                .underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
+                                    ),
+                                    SizedBox(height: height * 0.02),
+                                    ElevatedButton(
+                                      style:
+                                      ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(189, 37),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              39),
+                                        ),
                                       ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!.and,
-                                        style: TextStyle(
-                                            fontSize: height * 0.020,
-                                            fontWeight: FontWeight.w400,
-                                            color: const Color.fromRGBO(
-                                                51, 51, 51, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                      TextSpan(
-                                        text: AppLocalizations.of(context)!
-                                            .terms_of_services,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = _launchUrlTerms,
-                                        style: TextStyle(
-                                            fontSize: height * 0.020,
-                                            fontWeight: FontWeight.w400,
-                                            decoration: TextDecoration
-                                                .underline,
-                                            color: const Color.fromRGBO(
-                                                82, 165, 160, 1),
-                                            fontFamily: "Inter"),
-                                      ),
-                                    ])),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: height * 0.02),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(
-                                82, 165, 160, 1),
-                            minimumSize: const Size(280, 48),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(39),
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .register,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize:
+                                              height *
+                                                  0.02,
+                                              fontWeight: FontWeight
+                                                  .w400,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () async {
+                                        Navigator.pushNamed(context,
+                                            '/teacherRegistrationPage');
+                                      },
+                                    ),
+                                    SizedBox(height: height * 0.1),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          RichText(
+                                              text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: AppLocalizations.of(context)!.product_of,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              48, 145, 139, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight
+                                                              .w400,
+                                                          fontSize: height *
+                                                              0.018),
+                                                    ),
+                                                    TextSpan(
+                                                        text: AppLocalizations.of(context)!.itn_welcome,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                28, 78, 80, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w700,
+                                                            fontSize: height *
+                                                                0.018)),
+                                                  ]))]),
+                                  ],
+                                )),
+                          ])),
+                ));
+      }
+          else if(constraints.maxWidth > 960) {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                  resizeToAvoidBottomInset: false,
+                  extendBodyBehindAppBar: true,
+                  appBar:AppBar(
+                    iconTheme: IconThemeData(
+                        color: Colors.black,
+                        size: height * 0.05
+                    ),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        size: height * 0.06,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    toolbarHeight: height * 0.100,
+                    centerTitle: true,
+                    title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.teacher_caps,
+                            //"Teacher Login",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
-                          onPressed: () async {
-                            if (agree) {
-                              bool valid = formKey.currentState!.validate();
-                              if (valid == true) {
-                                regNumber = emailController.text;
-                                passWord = passwordController.text;
-                                showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return const Center(
-                                          child: CircularProgressIndicator(
-                                            color: Color.fromRGBO(
-                                                48, 145, 139, 1),
-                                          ));
-                                    });
-                                LoginModel loginResponse =
-                                await QnaService.logInUser(
-                                    regNumber, passWord, 'teacher');
-
-                                Navigator.of(context).pop();
-
-                                if (loginResponse.code == 200) {
-                                  UserDetails userDetails = UserDetails();
-                                  userDetails.login = false;
-                                  userDetails.email = regNumber;
-                                  userDetails.password = passWord;
-                                  userDetails.role = 'teacher';
-                                  userDetails.firstName =
-                                      loginResponse.data.firstName;
-                                  userDetails.lastName =
-                                      loginResponse.data.lastName;
-                                  userDetails.token =
-                                      loginResponse.data.accessToken;
-                                  userDetails.userId =
-                                      loginResponse.data.userId;
-                                  Provider.of<LanguageChangeProvider>(
-                                      context, listen: false).updateUserDetails(
-                                      userDetails);
-                                  final SharedPreferences loginData = await SharedPreferences
-                                      .getInstance();
-                                  loginData.setBool('login', false);
-                                  loginData.setString('email', regNumber);
-                                  loginData.setString('password', passWord);
-                                  loginData.setString('role', 'teacher');
-                                  loginData.setString(
-                                      'firstName',
-                                      loginResponse.data.firstName);
-                                  loginData.setString(
-                                      'lastName', loginResponse.data.lastName);
-                                  loginData.setString(
-                                      'token', loginResponse.data.accessToken);
-                                  loginData.setInt(
-                                      'userId', loginResponse.data.userId);
-                                  UserDataModel userDataModel = UserDataModel();
-                                  userDataModel =
-                                  await QnaService.getUserDataService(
-                                      loginResponse.data.userId, userDetails);
-                                  if (userDataModel.data!.role
-                                      .contains("teacher")) {
-                                    Navigator.pushNamed(
-                                        context,
-                                        '/teacherSelectionPage',
-                                        arguments: userDataModel
-                                    ).then((value) {
-                                      emailController.clear();
-                                      passwordController.clear();
-                                    });
-                                  }
-                                } else if (loginResponse.code == 400) {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: CustomDialog(
-                                        title: "OOPS!",
-                                        //'Wrong password',
-                                        content:
-                                        "Invalid Role, Please Check Your Login Data",
-                                        //'please enter the correct password',
-                                        button: AppLocalizations.of(context)!
-                                            .retry,
-                                      ),
-                                    ),
-                                  );
-                                } else if (loginResponse.code == 401) {
-                                  Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: CustomDialog(
-                                        title: 'Wrong password',
-                                        content:
-                                        'please enter the correct password',
-                                        button: AppLocalizations.of(context)!
-                                            .retry,
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }
-                            } else {
-                              Navigator.push(
-                                context,
-                                PageTransition(
-                                  type: PageTransitionType.rightToLeft,
-                                  child: CustomDialog(
-                                      title: AppLocalizations.of(context)!
-                                          .agree_privacy_terms,
-                                      content: AppLocalizations.of(context)!
-                                          .error,
-                                      button: AppLocalizations.of(context)!
-                                          .retry),
-                                ),
-                              );
-                            }
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)!.login_loginPage,
-                            style: TextStyle(
-                                fontSize: height * 0.03,
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height * 0.02,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                        ]),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white
+                      ),
+                    ),
+                  ),
+                  endDrawer: const EndDrawerMenuPreLogin(),
+          body:
+          SingleChildScrollView(
+          physics: const ClampingScrollPhysics(),
+          child:
+          Container(
+          padding:EdgeInsets.only(left: height * 0.5,right: height * 0.5),
+          child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                    onTap: () {
-                                      Navigator.pushNamed(
-                                          context, '/teacherRegistrationPage');
-                                    },
-                                    child:
-                                    DecoratedIcon(
-                                      Icons.app_registration,
+                            SizedBox(height: height * 0.2),
+                            Row(
+                                children:[
+                                  SizedBox(width: width * 0.08),
+                                  Text(
+                                    AppLocalizations.of(context)!.login_loginPage,
+                                    style: TextStyle(
+                                      fontSize: height * 0.02,
                                       color: const Color.fromRGBO(
-                                          141, 167, 167, 1),
-                                      size: height * 0.034,
-                                    ))),
-                            SizedBox(width: width * 0.005),
-                            MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, '/teacherRegistrationPage');
-                                  },
-                                  child: Text(
-                                      AppLocalizations.of(context)!.register,
-                                      style: Theme
-                                          .of(context)
-                                          .primaryTextTheme
-                                          .bodyLarge
-                                          ?.merge(TextStyle(
-                                          color:
-                                          const Color.fromRGBO(48, 145, 139, 1),
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: height * 0.0225))),
+                                          102, 102, 102, 1),
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  )]),
+                            SizedBox(height: height * 0.02),
+                            Center(
+                                child:
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: kElevationToShadow[4],
+                                  ),
+                                  width: width * 0.35,
+                                  child:
+                                  Form(
+                                    key: formKey,
+                                    child:
+                                    Column(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SizedBox(height: height * 0.05),
+                                            SizedBox(
+                                                width: width * 0.32,
+                                                child: TextFormField(
+                                                  keyboardType: TextInputType.text,
+                                                  controller: emailController,
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter.deny(
+                                                        ' ')
+                                                  ],
+                                                  onChanged: (val) {
+                                                    formKey.currentState!.validate();
+                                                  },
+                                                  decoration: InputDecoration( floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                    labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                    helperStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.016),
+                                                    label: Text(
+                                                      AppLocalizations.of(context)!
+                                                          .regId_emailId,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize: height * 0.03),
+                                                    ),
+                                                    hintText:
+                                                    AppLocalizations.of(context)!
+                                                        .hint_regId,
+                                                    //Enter here
+                                                    hintStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.02),
+                                                  ),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty ||
+                                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                            .hasMatch(value)) {
+                                                      return AppLocalizations.of(
+                                                          context)!
+                                                          .error_regID;
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                ))
+                                          ],
+                                        ),
+                                        SizedBox(height: height * 0.06),
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                                width: width * 0.32,
+                                                child: TextFormField(
+                                                  controller: passwordController,
+                                                  obscureText: _isObscure,
+                                                  obscuringCharacter: "*",
+                                                  onChanged: (val) {
+                                                    formKey.currentState!.validate();
+                                                  },
+                                                  keyboardType: TextInputType.text,
+                                                  decoration: InputDecoration( floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                      label: Text(
+                                                        AppLocalizations.of(context)!
+                                                            .password,
+                                                        style: TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: height * 0.025),
+                                                      ),
+                                                      helperStyle:TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: width * 0.016),
+                                                      hintText:
+                                                      AppLocalizations.of(context)!
+                                                          .your_password,
+                                                      //Enter here
+                                                      hintStyle: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.02),
+                                                      suffixIcon:
+                                                      SizedBox(
+                                                          child: Row(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                              children:[
+                                                                IconButton(
+                                                                    icon: Icon(
+                                                                      _isObscure
+                                                                          ? Icons.visibility
+                                                                          : Icons.visibility_off,
+                                                                      color: const Color.fromRGBO(
+                                                                          82, 165, 160, 1),
+                                                                    ),
+                                                                    onPressed: () {
+                                                                      setState(() {
+                                                                        _isObscure = !_isObscure;
+                                                                      });
+                                                                    }),
+                                                              ]
+                                                          ))),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty ||
+                                                        value.length < 8) {
+                                                      return AppLocalizations.of(
+                                                          context)!
+                                                          .enter_pass_min;
+                                                      //"Enter password Min 8 Characters";
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                ))
+                                          ],
+                                        ),
+                                        SizedBox(height: height * 0.02),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            SizedBox(width: width * 0.013),
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        '/forgotPasswordEmail',
+                                                        arguments: false
+                                                    );
+                                                  },
+                                                  child: Text(
+                                                      AppLocalizations.of(context)!
+                                                          .forgot_password,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontStyle: FontStyle.italic,
+                                                          fontSize: height * 0.018)),
+                                                )),
+                                          ],
+                                        ),
+                                        SizedBox(height: height * 0.03),
+                                      ],
+                                    ),
+                                  ),
                                 )),
-                          ],
-                        ),
-                      ]),
+                            SizedBox(height: height * 0.03),
+                            Center(
+                                child:IconButton(
+                                    icon: Icon(Icons.arrow_circle_right,
+                                      size: height * 0.04,
+                                      color: const Color.fromRGBO(
+                                          82, 165, 160, 1),
+                                    ),
+                                    onPressed: () async {
+                                      bool valid = formKey.currentState!.validate();
+                                      regNumber = emailController.text;
+                                      passWord = passwordController.text;
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return const Center(
+                                                child: CircularProgressIndicator(
+                                                  color: Color.fromRGBO(
+                                                      48, 145, 139, 1),
+                                                ));
+                                          });
+                                      LoginModel loginResponse =
+                                      await QnaService.logInUser(
+                                          regNumber, passWord, 'teacher');
+                                      Navigator.of(context).pop();
+                                      if (loginResponse.code == 200) {
+                                        UserDetails userDetails = UserDetails();
+                                        userDetails.login = false;
+                                        userDetails.email = regNumber;
+                                        userDetails.password = passWord;
+                                        userDetails.role = 'teacher';
+                                        userDetails.firstName =
+                                            loginResponse.data.firstName;
+                                        userDetails.lastName =
+                                            loginResponse.data.lastName;
+                                        userDetails.token =
+                                            loginResponse.data.accessToken;
+                                        userDetails.userId =
+                                            loginResponse.data.userId;
+                                        Provider.of<LanguageChangeProvider>(
+                                            context, listen: false).updateUserDetails(
+                                            userDetails);
+                                        final SharedPreferences loginData = await SharedPreferences
+                                            .getInstance();
+                                        loginData.setBool('login', false);
+                                        loginData.setString('email', regNumber);
+                                        loginData.setString('password', passWord);
+                                        loginData.setString('role', 'teacher');
+                                        loginData.setString(
+                                            'firstName',
+                                            loginResponse.data.firstName);
+                                        loginData.setString(
+                                            'lastName', loginResponse.data.lastName);
+                                        loginData.setString(
+                                            'token', loginResponse.data.accessToken);
+                                        loginData.setInt(
+                                            'userId', loginResponse.data.userId);
+                                        UserDataModel userDataModel = UserDataModel();
+                                        userDataModel =
+                                        await QnaService.getUserDataService(
+                                            loginResponse.data.userId, userDetails);
+                                        if (userDataModel.data!.role
+                                            .contains("teacher")) {
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/teacherSelectionPage',
+                                              arguments: userDataModel
+                                          ).then((value) {
+                                            emailController.clear();
+                                            passwordController.clear();
+                                          });
+                                        }
+                                      }
+                                      else if (loginResponse.code == 400) {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: CustomDialog(
+                                              title: AppLocalizations.of(context)!
+                                                  .oops,
+                                              // "OOPS!",
+                                              content: AppLocalizations.of(context)!.invalid_role,
+                                              //"Invalid Role, Please Check Your Login Data",
+                                              button: AppLocalizations.of(context)!
+                                                  .retry,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      else if (loginResponse.code == 401) {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: CustomDialog(
+                                              title: AppLocalizations.of(
+                                                  context)!
+                                                  .wrong_password,
+                                              //'Wrong password',
+                                              content: AppLocalizations
+                                                  .of(context)!
+                                                  .pls_enter_cr_pass,
+                                              //'please enter the correct password',
+                                              button: AppLocalizations.of(context)!
+                                                  .retry,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                )),
+                            SizedBox(height: height * 0.03),
+                            Center(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!.no_account,
+                                      //Don’t have an account?
+                                      style: TextStyle(
+                                        fontSize: height * 0.02,
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(height: height * 0.02),
+                                    ElevatedButton(
+                                      style:
+                                      ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(189, 37),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              39),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .register,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize:
+                                              height *
+                                                  0.02,
+                                              fontWeight: FontWeight
+                                                  .w400,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () async {
+                                        Navigator.pushNamed(context,
+                                            '/teacherRegistrationPage');
+                                      },
+                                    ),
+                                    SizedBox(height: height * 0.1),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          RichText(
+                                              text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: AppLocalizations.of(context)!.product_of,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              48, 145, 139, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight
+                                                              .w400,
+                                                          fontSize: height *
+                                                              0.018),
+                                                    ),
+                                                    TextSpan(
+                                                        text: AppLocalizations.of(context)!.itn_welcome,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                28, 78, 80, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w700,
+                                                            fontSize: height *
+                                                                0.018)),
+                                                  ]))]),
+                                  ],
+                                )),
+                          ])),
                 )));
+          }
+      else {
+            return WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                  resizeToAvoidBottomInset: false,
+                  extendBodyBehindAppBar: true,
+                  appBar:AppBar(
+                    iconTheme: IconThemeData(
+                        color: Colors.black,
+                        size: height * 0.05
+                    ),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.chevron_left,
+                        size: height * 0.06,
+                        color: Colors.black,
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    toolbarHeight: height * 0.100,
+                    centerTitle: true,
+                    title: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)!.teacher_caps,
+                            //"Teacher Login",
+                            style: TextStyle(
+                              color: const Color.fromRGBO(28, 78, 80, 1),
+                              fontSize: height * 0.025,
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ]),
+                    flexibleSpace: Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white
+                      ),
+                    ),
+                  ),
+                  endDrawer: const EndDrawerMenuPreLogin(),
+                  body:
+                  SingleChildScrollView(
+                      physics: const ClampingScrollPhysics(),
+                      child:
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: height * 0.2),
+                            Padding(
+                                padding: const EdgeInsets.only(left: 50),
+                                child: Text(
+                                  AppLocalizations.of(context)!.login_loginPage,
+                                  style: TextStyle(
+                                    fontSize: height * 0.02,
+                                    color: const Color.fromRGBO(
+                                        102, 102, 102, 1),
+                                    fontFamily: "Inter",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )),
+                            SizedBox(height: height * 0.02),
+                            Center(
+                                child:
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: kElevationToShadow[4],
+                                  ),
+                                  width: width * 0.9,
+                                  child:
+                                  Form(
+                                    key: formKey,
+                                    child:
+                                    Column(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            SizedBox(height: height * 0.05),
+                                            SizedBox(
+                                                width: width * 0.8,
+                                                child: TextFormField(
+                                                  keyboardType: TextInputType.text,
+                                                  controller: emailController,
+                                                  inputFormatters: [
+                                                    FilteringTextInputFormatter.deny(
+                                                        ' ')
+                                                  ],
+                                                  onChanged: (val) {
+                                                    formKey.currentState!.validate();
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                    floatingLabelBehavior:
+                                                    FloatingLabelBehavior.always,
+                                                    helperStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.016),
+                                                    label: Text(
+                                                      AppLocalizations.of(context)!
+                                                          .regId_emailId,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w600,
+                                                          fontSize: height * 0.017),
+                                                    ),
+                                                    hintText:
+                                                    AppLocalizations.of(context)!
+                                                        .hint_regId,
+                                                    //Enter here
+                                                    hintStyle: TextStyle(
+                                                        color: const Color.fromRGBO(
+                                                            102, 102, 102, 0.3),
+                                                        fontFamily: 'Inter',
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: height * 0.02),
+                                                  ),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty ||
+                                                        !RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+")
+                                                            .hasMatch(value)) {
+                                                      return AppLocalizations.of(
+                                                          context)!
+                                                          .error_regID;
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                ))
+                                          ],
+                                        ),
+                                        SizedBox(height: height * 0.06),
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                                width: width * 0.8,
+                                                child: TextFormField(
+                                                  controller: passwordController,
+                                                  obscureText: _isObscure,
+                                                  obscuringCharacter: "*",
+                                                  onChanged: (val) {
+                                                    formKey.currentState!.validate();
+                                                  },
+                                                  keyboardType: TextInputType.text,
+                                                  decoration: InputDecoration( floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                                      labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                                      label: Text(
+                                                        AppLocalizations.of(context)!
+                                                            .password,
+                                                        style: TextStyle(
+                                                            color: const Color.fromRGBO(
+                                                                102, 102, 102, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: height * 0.017),
+                                                      ),
+                                                      helperStyle:TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: width * 0.016),
+                                                      hintText:
+                                                      AppLocalizations.of(context)!
+                                                          .your_password,
+                                                      //Enter here
+                                                      hintStyle: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              102, 102, 102, 0.3),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontSize: height * 0.02),
+                                                      suffixIcon:
+                                                      SizedBox(
+                                                          child: Row(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                              children:[
+                                                                IconButton(
+                                                                    icon: Icon(
+                                                                      _isObscure
+                                                                          ? Icons.visibility
+                                                                          : Icons.visibility_off,
+                                                                      color: const Color.fromRGBO(
+                                                                          82, 165, 160, 1),
+                                                                    ),
+                                                                    onPressed: () {
+                                                                      setState(() {
+                                                                        _isObscure = !_isObscure;
+                                                                      });
+                                                                    }),
+                                                              ]
+                                                          ))),
+                                                  validator: (value) {
+                                                    if (value!.isEmpty ||
+                                                        value.length < 8) {
+                                                      return AppLocalizations.of(
+                                                          context)!
+                                                          .enter_pass_min;
+                                                      //"Enter password Min 8 Characters";
+                                                    } else {
+                                                      return null;
+                                                    }
+                                                  },
+                                                ))
+                                          ],
+                                        ),
+                                        SizedBox(height: height * 0.02),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            SizedBox(width: width * 0.05),
+                                            MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                  onTap: () {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        '/forgotPasswordEmail',
+                                                        arguments: false
+                                                    );
+                                                  },
+                                                  child: Text(
+                                                      AppLocalizations.of(context)!
+                                                          .forgot_password,
+                                                      style: TextStyle(
+                                                          color: const Color.fromRGBO(
+                                                              48, 145, 139, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight.w400,
+                                                          fontStyle: FontStyle.italic,
+                                                          fontSize:
+                                                          height * 0.018)),
+                                                )),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: height * 0.02,
+                                        ),
+                                        SizedBox(height: height * 0.03),
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                            SizedBox(height: height * 0.03),
+                            Center(
+                                child:IconButton(
+                                    icon: Icon(Icons.arrow_circle_right,
+                                      size: height * 0.04,
+                                      color: const Color.fromRGBO(
+                                          82, 165, 160, 1),
+                                    ),
+                                    onPressed: () async {
+                                      bool valid = formKey.currentState!.validate();
+                                      regNumber = emailController.text;
+                                      passWord = passwordController.text;
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return const Center(
+                                                child: CircularProgressIndicator(
+                                                  color: Color.fromRGBO(
+                                                      48, 145, 139, 1),
+                                                ));
+                                          });
+                                      LoginModel loginResponse =
+                                      await QnaService.logInUser(
+                                          regNumber, passWord, 'teacher');
+                                      Navigator.of(context).pop();
+                                      if (loginResponse.code == 200) {
+                                        UserDetails userDetails = UserDetails();
+                                        userDetails.login = false;
+                                        userDetails.email = regNumber;
+                                        userDetails.password = passWord;
+                                        userDetails.role = 'teacher';
+                                        userDetails.firstName =
+                                            loginResponse.data.firstName;
+                                        userDetails.lastName =
+                                            loginResponse.data.lastName;
+                                        userDetails.token =
+                                            loginResponse.data.accessToken;
+                                        userDetails.userId =
+                                            loginResponse.data.userId;
+                                        Provider.of<LanguageChangeProvider>(
+                                            context, listen: false).updateUserDetails(
+                                            userDetails);
+                                        final SharedPreferences loginData = await SharedPreferences
+                                            .getInstance();
+                                        loginData.setBool('login', false);
+                                        loginData.setString('email', regNumber);
+                                        loginData.setString('password', passWord);
+                                        loginData.setString('role', 'teacher');
+                                        loginData.setString(
+                                            'firstName',
+                                            loginResponse.data.firstName);
+                                        loginData.setString(
+                                            'lastName', loginResponse.data.lastName);
+                                        loginData.setString(
+                                            'token', loginResponse.data.accessToken);
+                                        loginData.setInt(
+                                            'userId', loginResponse.data.userId);
+                                        UserDataModel userDataModel = UserDataModel();
+                                        userDataModel =
+                                        await QnaService.getUserDataService(
+                                            loginResponse.data.userId, userDetails);
+                                        if (userDataModel.data!.role
+                                            .contains("teacher")) {
+                                          Navigator.pushNamed(
+                                              context,
+                                              '/teacherSelectionPage',
+                                              arguments: userDataModel
+                                          ).then((value) {
+                                            emailController.clear();
+                                            passwordController.clear();
+                                          });
+                                        }
+                                      }
+                                      else if (loginResponse.code == 400) {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: CustomDialog(
+                                              title: AppLocalizations.of(context)!
+                                                  .oops,
+                                              // "OOPS!",
+                                              content: AppLocalizations.of(context)!.invalid_role,
+                                              //"Invalid Role, Please Check Your Login Data",
+                                              button: AppLocalizations.of(context)!
+                                                  .retry,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      else if (loginResponse.code == 401) {
+                                        Navigator.push(
+                                          context,
+                                          PageTransition(
+                                            type: PageTransitionType.rightToLeft,
+                                            child: CustomDialog(
+                                              title: AppLocalizations.of(
+                                                  context)!
+                                                  .wrong_password,
+                                              //'Wrong password',
+                                              content: AppLocalizations
+                                                  .of(context)!
+                                                  .pls_enter_cr_pass,
+                                              //'please enter the correct password',
+                                              button: AppLocalizations.of(context)!
+                                                  .retry,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    }
+                                )),
+                            SizedBox(height: height * 0.03),
+                            Center(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      AppLocalizations.of(context)!.no_account,
+                                      //Don’t have an account?
+                                      style: TextStyle(
+                                        fontSize: height * 0.02,
+                                        color: const Color.fromRGBO(
+                                            102, 102, 102, 1),
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    SizedBox(height: height * 0.02),
+                                    ElevatedButton(
+                                      style:
+                                      ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.white,
+                                        side: const BorderSide(
+                                            width: 1, // the thickness
+                                            color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
+                                        ),
+                                        minimumSize:
+                                        const Size(189, 37),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(
+                                              39),
+                                        ),
+                                      ),
+                                      child: Text(
+                                          AppLocalizations.of(context)!
+                                              .register,
+                                          style: TextStyle(
+                                              fontFamily: 'Inter',
+                                              fontSize:
+                                              height *
+                                                  0.02,
+                                              fontWeight: FontWeight
+                                                  .w400,
+                                              color: const Color.fromRGBO(82, 165, 160, 1))),
+                                      onPressed: () async {
+                                        Navigator.pushNamed(context,
+                                            '/teacherRegistrationPage');
+                                      },
+                                    ),
+                                    SizedBox(height: height * 0.1),
+                                    Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          RichText(
+                                              text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: AppLocalizations.of(context)!.product_of,
+                                                      style: TextStyle(
+                                                          color: const Color
+                                                              .fromRGBO(
+                                                              48, 145, 139, 1),
+                                                          fontFamily: 'Inter',
+                                                          fontWeight: FontWeight
+                                                              .w400,
+                                                          fontSize: height *
+                                                              0.018),
+                                                    ),
+                                                    TextSpan(
+                                                        text: AppLocalizations.of(context)!.itn_welcome,
+                                                        style: TextStyle(
+                                                            color: const Color
+                                                                .fromRGBO(
+                                                                28, 78, 80, 1),
+                                                            fontFamily: 'Inter',
+                                                            fontWeight: FontWeight
+                                                                .w700,
+                                                            fontSize: height *
+                                                                0.018)),
+                                                  ]))]),
+                                  ],
+                                )),
+                          ])),
+                ));
       }
       }
     );}}

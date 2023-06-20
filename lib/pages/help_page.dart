@@ -49,7 +49,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         AppLocalizations.of(context)!.help,
                         //"HELP",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
@@ -152,7 +152,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         AppLocalizations.of(context)!.help,
                         //"HELP",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
@@ -256,7 +256,7 @@ class HelpPageHamburgerState extends State<HelpPageHamburger> {
                         AppLocalizations.of(context)!.help,
                         //"HELP",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,

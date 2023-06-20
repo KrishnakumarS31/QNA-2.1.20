@@ -93,10 +93,11 @@ class _WelcomePageState extends State<WelcomePage> {
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
+                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.04),
                     toolbarHeight: localHeight * 0.100,
                     title:
                     SizedBox(
-                        height: 50,
+                        height: localHeight * 0.08,
                         child: Image.asset(
                             "assets/images/qna_logo.png")),
                     flexibleSpace: Container(
@@ -113,7 +114,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   endDrawer: const EndDrawerMenuPreLogin(),
                   body:
                   Padding(
-                      padding: EdgeInsets.only(left: localHeight * 0.1),
+                      padding: EdgeInsets.only(left: localWidth * 0.3),
                       child:
                       SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
@@ -169,9 +170,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                       ),
                                     ),
                                     child: Text(
-                                        AppLocalizations.of(
-                                            context)!
-                                            .student,
+                                        AppLocalizations.of(context)!.student,
                                         style: TextStyle(
                                             fontFamily: 'Inter',
                                             fontSize:
@@ -324,9 +323,10 @@ class _WelcomePageState extends State<WelcomePage> {
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
                     toolbarHeight: localHeight * 0.100,
+                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.04),
                     title:
                     SizedBox(
-                        height: 50,
+                        height: localHeight * 0.08,
                         child: Image.asset(
                             "assets/images/qna_logo.png")),
                     flexibleSpace: Container(
@@ -551,9 +551,10 @@ class _WelcomePageState extends State<WelcomePage> {
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
                     toolbarHeight: localHeight * 0.100,
+                    iconTheme: IconThemeData(color: Colors.white,size: localHeight * 0.04),
                     title:
                     SizedBox(
-                        height: 50,
+                        height: localHeight * 0.08,
                         child: Image.asset(
                             "assets/images/qna_logo.png")),
                     flexibleSpace: Container(
@@ -609,6 +610,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                 height: localHeight * 0.05,
                               ),
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children: [
                                     ElevatedButton(
                                       style:
@@ -643,7 +645,6 @@ class _WelcomePageState extends State<WelcomePage> {
                                             '/studentMemberLoginPage');
                                       },
                                     ),
-                                    const SizedBox(width: 30),
                                     ElevatedButton(
                                       style: ElevatedButton
                                           .styleFrom(
@@ -680,6 +681,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                             '/teacherLoginPage');
                                       },
                                     ),
+                                    SizedBox(width: localWidth * 0.01)
                                   ]),
                               SizedBox(
                                 height: localHeight * 0.15,

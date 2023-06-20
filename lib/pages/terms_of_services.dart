@@ -53,7 +53,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                         AppLocalizations.of(context)!.terms_caps,
                         //"TERMS OF SERVICE",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
@@ -141,7 +141,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                                 AppLocalizations.of(context)!.terms_caps,
                                 //"TERMS OF SERVICE",
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.0225,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w400,
@@ -229,7 +229,7 @@ class TermsOfServiceHamburgerState extends State<TermsOfServiceHamburger> {
                         AppLocalizations.of(context)!.terms_caps,
                         //"TERMS OF SERVICE",
                         style: TextStyle(
-                          color:Colors.black,
+                          color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w400,
