@@ -11,7 +11,17 @@ String convertDate(int? date)
 {
   DateTime dateValue;
   dateValue = DateTime.fromMicrosecondsSinceEpoch(date!);
-  return  "${dateValue.day}/${dateValue.month}/${dateValue.year}";
+  String month = DateFormat('MMMM').format(DateTime(0, dateValue.month)).substring(0,3);
+  return  "${dateValue.day}-$month-${dateValue.year}";
+}
+
+String convertDateFromString(String date)
+{
+  String month = date.substring(3,5);
+  int m = int.parse(month);
+  month = DateFormat('MMMM').format(DateTime(0,m)).substring(0,3);
+  date =  date.replaceRange(3, 5, month);
+  return date;
 }
 
 String convertTime(int? date)
@@ -54,9 +64,9 @@ String convertAttemptDuration(int? duration) {
   }
 
   else if(duration == 60)
-    {
-      assessmentDuration = "01:00 hr";
-    }
+  {
+    assessmentDuration = "01:00 hr";
+  }
 
   else if (duration> 60) {
     int d=0;
@@ -82,9 +92,9 @@ String convertAttemptDuration(int? duration) {
     }}
 
     else if(ch.length ==1)
-      {
-        assessmentDuration ="$f:00 hrs";
-      }
+    {
+      assessmentDuration ="$f:00 hrs";
+    }
 
   }
 

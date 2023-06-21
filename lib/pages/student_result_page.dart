@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:qna_test/Components/today_date.dart';
 import 'package:qna_test/Entity/Teacher/get_assessment_header.dart';
+import 'package:qna_test/Pages/student_assessment_start.dart';
+import 'package:qna_test/pages/student_guest_assessment.dart';
 import '../Entity/question_paper_model.dart';
 import '../Entity/user_details.dart';
 import '../EntityModel/user_data_model.dart';
@@ -64,6 +67,8 @@ class StudentResultPageState extends State<StudentResultPage> {
     print(widget.assessmentHeaders.getAssessmentModelClass);
     print("IS WIDGET MEMBER INIT");
     print(widget.isMember);
+    print("DATE");
+    print(widget.date);
   }
 
   @override
@@ -516,7 +521,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           children: [
                                             Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(width:0.1),
-                                            Text(widget.date,
+                                            Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -992,7 +997,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                 // ),
               ));
         }
-        else if(constraints.maxWidth > 600) {
+        else if(constraints.maxWidth > 960) {
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -1353,11 +1358,11 @@ class StudentResultPageState extends State<StudentResultPage> {
                 body: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: localHeight * 0.0050, left: localHeight * 0.5,right: localHeight * 0.5),
+                      padding: EdgeInsets.only(bottom: localHeight * 0.00500, left: localHeight * 0.5,right: localHeight * 0.5),
                       child: Column(
                         children: [
                           SizedBox(
-                            height: localHeight * 0.62,
+                            height: localHeight * 0.64,
                             width: localWidth * 1.5,
                             child: Card(
                               elevation: 12,
@@ -1394,6 +1399,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                 const SizedBox(height: 1.0),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Column(
                                       children: [
@@ -1421,6 +1427,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         )
                                       ],
                                     ),
+                                    SizedBox(width:localWidth * 0.05),
                                     Column(
                                       children: [
                                         Row(
@@ -1428,7 +1435,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           children: [
                                             Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(width:0.1),
-                                            Text(widget.date,
+                                            Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -1438,6 +1445,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                         )
                                       ],
                                     ),
+                                    SizedBox(width:localWidth * 0.05),
                                     Column(
                                       children: [
                                         Row(
@@ -1472,7 +1480,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.only(left: localHeight * 0.05),
+                                      padding: EdgeInsets.only(left: localHeight * 0.15),
                                       child: Column(
                                         children: [
                                           Row(
@@ -1714,7 +1722,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                               //           arguments: [values,widget.assessmentCode]
                               //       );
                               //     }),
-                              SizedBox(height: localHeight * 0.09),
+                              SizedBox(height: localHeight * 0.05),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
@@ -2337,7 +2345,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                           children: [
                                             Icon(Icons.calendar_today_outlined,color:Color.fromRGBO(82, 165, 160, 1),size: localHeight *0.03,),
                                             SizedBox(width:0.1),
-                                            Text(widget.date,
+                                            Text(convertDateFromString(widget.date),
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(
                                                         102, 102, 102, 1),
@@ -2759,12 +2767,7 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                                   139, 1),
                                                             ));
                                                       });
-                                                  // Navigator.pushNamed(
-                                                  //     context,
-                                                  //     '/studGuestAssessment',
-                                                  //     arguments: widget.userName);
-                                                  // Navigator.of(context)
-                                                  //     .pop();
+
                                                   if(widget.isMember) {
                                                     print("INSIDE IS WIDGET MEMBER");
                                                     SharedPreferences loginData = await SharedPreferences.getInstance();
@@ -2776,16 +2779,15 @@ class StudentResultPageState extends State<StudentResultPage> {
                                                     await QnaService
                                                         .getUserDataService(userdata.userId,userdata);
                                                     print(userDataModel!.data!.email);
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studentAssessment',
-                                                        arguments: [userDataModel,null,userdata.email]);
+                                                    // Navigator.pushNamed(
+                                                    //     context,
+                                                    //     '/studentAssessment',
+                                                    //     arguments: [userDataModel,null,userdata.email]);
+                                                    //Navigator.of(context).pushNamedAndRemoveUntil('/studentAssessment', ModalRoute.withName('/studentMemberLoginPage'));
+                                                    Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => StudentAssessment(usedData : userDataModel)), ModalRoute.withName('/studentMemberLoginPage'));
                                                   }
                                                   else {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        '/studGuestAssessment',
-                                                        arguments: widget.userName);
+                                                    Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(builder: (context) => StudGuestAssessment(name : widget.userName)), ModalRoute.withName('/studentGuestLogin'));
                                                   }
                                                   // Navigator.push(
                                                   //   context,

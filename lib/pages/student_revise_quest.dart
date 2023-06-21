@@ -829,10 +829,7 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
   }
 
   Future<void> _showMyDialog() async {
-    double localHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double localHeight = MediaQuery.of(context).size.height;
 
     return showDialog<void>(
         context: context,
@@ -872,28 +869,6 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                 content:
                 Text(AppLocalizations.of(context)!.sure_to_submit),
                 actions: <Widget>[
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-                      minimumSize: const Size(90, 30),
-                      side: const BorderSide(
-                        width: 1.5,
-                        color: Color.fromRGBO(82, 165, 160, 1),
-                      ),
-                    ),
-                    child: Text(AppLocalizations.of(context)!.no,
-                        style: TextStyle(
-                            fontFamily: 'Inter',
-                            fontSize: localHeight * 0.018,
-                            color: const Color.fromRGBO(82, 165, 160, 1),
-                            fontWeight: FontWeight.w500
-                        )
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  const SizedBox(width: 5),
                   ElevatedButton(
                       style:
                       ElevatedButton.styleFrom(
@@ -1065,42 +1040,64 @@ class StudentReviseQuestState extends State<StudentReviseQuest> {
                                           48, 145, 139, 1),
                                     ));
                               });
-                        LoginModel loginResponse = await QnaService
-                            .postAssessmentService(assessment, values,userDetails);
-                        Navigator.of(context).pop();
-                        if (loginResponse.code == 200){
-                          Navigator.pushNamed(
+                          LoginModel loginResponse = await QnaService
+                              .postAssessmentService(assessment, values,userDetails);
+                          Navigator.of(context).pop();
+                          if (loginResponse.code == 200){
+                            Navigator.pushNamed(
+                                context,
+                                '/studentResultPage',
+                                arguments: [
+                                  totalMark,
+                                  formatted,
+                                  time,
+                                  values,
+                                  widget.assessmentID,
+                                  widget.userName,
+                                  message,
+                                  endTimeTaken,
+                                  givenMark,
+                                  widget.isMember,
+                                  widget.assessmentHeaders
+                                ]);
+                          }
+                          else {
+                            Navigator.push(
                               context,
-                              '/studentResultPage',
-                              arguments: [
-                                totalMark,
-                                formatted,
-                                time,
-                                values,
-                                widget.assessmentID,
-                                widget.userName,
-                                message,
-                                endTimeTaken,
-                                givenMark,
-                                widget.isMember,
-                                widget.assessmentHeaders
-                              ]);
-                        }
-                        else {
-                          Navigator.push(
-                            context,
-                            PageTransition(
-                              type: PageTransitionType.rightToLeft,
-                              child: CustomDialog(
-                                title: 'Answer not Submitted',
-                                content: 'please enter the',
-                                button: AppLocalizations.of(context)!
-                                    .retry,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: CustomDialog(
+                                  title: 'Answer not Submitted',
+                                  content: 'please enter the',
+                                  button: AppLocalizations.of(context)!
+                                      .retry,
+                                ),
                               ),
-                            ),
-                          );
-                        }
-                      }}
+                            );
+                          }
+                        }}
+                  ),
+                  const SizedBox(width: 5),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+                      minimumSize: const Size(90, 30),
+                      side: const BorderSide(
+                        width: 1.5,
+                        color: Color.fromRGBO(82, 165, 160, 1),
+                      ),
+                    ),
+                    child: Text(AppLocalizations.of(context)!.no,
+                        style: TextStyle(
+                            fontFamily: 'Inter',
+                            fontSize: localHeight * 0.018,
+                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            fontWeight: FontWeight.w500
+                        )
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                   SizedBox(width: localHeight * 0.030),
                 ],

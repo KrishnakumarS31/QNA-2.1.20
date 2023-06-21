@@ -1,5 +1,5 @@
-const domainName = "https://dev.qnatest.com";
-//const domainName = "https://sssuhe.qnatest.com";
+//const domainName = "https://dev.qnatest.com";
+const domainName = "https://sssuhe.qnatest.com";
 const usersDomain = "$domainName/api/v1/users";
 const assessmentDomain = "$domainName/api/v1/assessment";
 
@@ -13,5 +13,5 @@ const questionUrl = '$assessmentDomain/questions';
 const allQuestionUrl = '$assessmentDomain/quessstions/all';
 const assessmentLooqUrl = '$assessmentDomain/assessments-looq';
 const resultsUrl = '$assessmentDomain/results';
-const version = "2.0.31";
+const version = "2.0.32";
 const double webWidth = 500.0;

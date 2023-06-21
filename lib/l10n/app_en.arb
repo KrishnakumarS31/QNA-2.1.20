@@ -12,7 +12,7 @@
   "member": "Member",
   "login": "Continue",
   "select_language": "Select Language",
-  "name": "NAME",
+  "name": "Name",
   "your_name": "Enter here",
   "enter_your_name": "Enter your Name",
   "registrationIdRollNum": "Registration ID",
@@ -405,5 +405,6 @@
   "optional": "\t(optional)",
   "oops": "Oops!",
   "invalid_role": "Invalid Role. Check Your\nLogin Data",
-  "search_criteria": "Please enter search criteria"
+  "search_criteria": "Please enter search criteria",
+  "please_enter":"Please enter"
 }

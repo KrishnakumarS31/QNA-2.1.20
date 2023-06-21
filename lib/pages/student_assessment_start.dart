@@ -110,9 +110,12 @@ class StudentAssessmentState extends State<StudentAssessment> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxWidth <= 960 && constraints.maxWidth >=500) {
+          print("INSIDE IF");
+          print(width);
           return WillPopScope(
               onWillPop: () async => false,
               child: Scaffold(
@@ -120,16 +123,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon:  Icon(
-                        Icons.chevron_left,
-                        size: width * 0.08,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    automaticallyImplyLeading: false,
+                    // leading: IconButton(
+                    //   icon:  Icon(
+                    //     Icons.chevron_left,
+                    //     size: width * 0.08,
+                    //     color: Colors.black,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     toolbarHeight: height * 0.100,
                     centerTitle: true,
                     title: Column(
@@ -213,7 +217,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             text: TextSpan(children: [
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!
-                                                    .enter_assId,
+                                                    .please_enter,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                                     fontFamily: 'Inter',
@@ -419,7 +423,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                               ),
                                                             ),
                                                             Text(
-                                                              " | ${assessmentHeaderValues.getAssessmentModelClass}",
+                                                              " | ${assessmentHeaderValues.getAssessmentModelClass ?? " "}",
                                                               style: TextStyle(
                                                                 color: const Color.fromRGBO(28, 78, 80, 1),
                                                                 fontSize: height * 0.0175,
@@ -496,7 +500,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   child: Padding(
                                                     //alignment: Alignment.centerLeft,
                                                     padding:EdgeInsets.only(left: height * 0.01),
-                                                    child: Text("Please note, once you start a test, you"
+                                                    child: Text("Please note, once you start a test, you must complete it."
                                                       ,style: TextStyle(
                                                         color: const Color.fromRGBO(28, 78, 80, 1),
                                                         fontSize: height * 0.0195,
@@ -505,20 +509,20 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       ), ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width:width,
-                                                  child: Padding(
-                                                    //alignment: Alignment.centerLeft,
-                                                    padding:EdgeInsets.only(left: height * 0.01),
-                                                    child: Text("must complete it."
-                                                      ,style: TextStyle(
-                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                        fontSize: height * 0.0195,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w400,
-                                                      ), ),
-                                                  ),
-                                                ),
+                                                // SizedBox(
+                                                //   width:width,
+                                                //   child: Padding(
+                                                //     //alignment: Alignment.centerLeft,
+                                                //     padding:EdgeInsets.only(left: height * 0.01),
+                                                //     child: Text("must complete it."
+                                                //       ,style: TextStyle(
+                                                //         color: const Color.fromRGBO(28, 78, 80, 1),
+                                                //         fontSize: height * 0.0195,
+                                                //         fontFamily: "Inter",
+                                                //         fontWeight: FontWeight.w400,
+                                                //       ), ),
+                                                //   ),
+                                                // ),
                                                 SizedBox(height: height * 0.03)
                                                 ,                                     Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -627,16 +631,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon:  const Icon(
-                        Icons.chevron_left,
-                        size: 40.0,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    automaticallyImplyLeading: false,
+                    // leading: IconButton(
+                    //   icon:  const Icon(
+                    //     Icons.chevron_left,
+                    //     size: 40.0,
+                    //     color: Colors.black,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     toolbarHeight: height * 0.100,
                     centerTitle: true,
                     title: Column(
@@ -667,11 +672,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                           child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // SizedBox(height: width * 0.4),
-                                // Container(
-                                //   width: width,
-                                //   margin: EdgeInsets.only(left: width * 0.1),
-                                //child: Column(children: [
                                 Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -683,9 +683,6 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                         fontSize: height * 0.035),
                                   ),
                                 ),
-                                // SizedBox(
-                                //   height: height * 0.001,
-                                // ),
                                 SizedBox(
                                   width: width,
                                   child: Align(
@@ -714,7 +711,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             text: TextSpan(children: [
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!
-                                                    .enter_assId,
+                                                    .please_enter,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                                     fontFamily: 'Inter',
@@ -996,7 +993,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   child: Padding(
                                                     //alignment: Alignment.centerLeft,
                                                     padding:EdgeInsets.only(left: height * 0.01),
-                                                    child: Text("Please note, once you start a test, you"
+                                                    child: Text("Please note, once you start a test, you must complete it."
                                                       ,style: TextStyle(
                                                         color: const Color.fromRGBO(28, 78, 80, 1),
                                                         fontSize: height * 0.0195,
@@ -1005,20 +1002,20 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       ), ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width:width,
-                                                  child: Padding(
-                                                    //alignment: Alignment.centerLeft,
-                                                    padding:EdgeInsets.only(left: height * 0.01),
-                                                    child: Text("must complete it."
-                                                      ,style: TextStyle(
-                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                        fontSize: height * 0.0195,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w400,
-                                                      ), ),
-                                                  ),
-                                                ),
+                                                // SizedBox(
+                                                //   width:width,
+                                                //   child: Padding(
+                                                //     //alignment: Alignment.centerLeft,
+                                                //     padding:EdgeInsets.only(left: height * 0.01),
+                                                //     child: Text("must complete it."
+                                                //       ,style: TextStyle(
+                                                //         color: const Color.fromRGBO(28, 78, 80, 1),
+                                                //         fontSize: height * 0.0195,
+                                                //         fontFamily: "Inter",
+                                                //         fontWeight: FontWeight.w400,
+                                                //       ), ),
+                                                //   ),
+                                                // ),
                                                 SizedBox(height: height * 0.02),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -1127,16 +1124,17 @@ class StudentAssessmentState extends State<StudentAssessment> {
                   appBar: AppBar(
                     elevation: 0,
                     backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      icon:  Icon(
-                        Icons.chevron_left,
-                        size: width * 0.08,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    automaticallyImplyLeading: false,
+                    // leading: IconButton(
+                    //   icon:  Icon(
+                    //     Icons.chevron_left,
+                    //     size: width * 0.08,
+                    //     color: Colors.black,
+                    //   ),
+                    //   onPressed: () {
+                    //     Navigator.of(context).pop();
+                    //   },
+                    // ),
                     toolbarHeight: height * 0.100,
                     centerTitle: true,
                     title: Column(
@@ -1220,7 +1218,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                             text: TextSpan(children: [
                                               TextSpan(
                                                 text: AppLocalizations.of(context)!
-                                                    .enter_assId,
+                                                    .please_enter,
                                                 style: TextStyle(
                                                     color: const Color.fromRGBO(102, 102, 102, 1),
                                                     fontFamily: 'Inter',
@@ -1654,7 +1652,7 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                   child: Padding(
                                                     //alignment: Alignment.centerLeft,
                                                     padding:EdgeInsets.only(left: height * 0.01),
-                                                    child: Text("Please note, once you start a test, you"
+                                                    child: Text("Please note, once you start a test, you must complete it."
                                                       ,style: TextStyle(
                                                         color: const Color.fromRGBO(28, 78, 80, 1),
                                                         fontSize: height * 0.0195,
@@ -1663,20 +1661,20 @@ class StudentAssessmentState extends State<StudentAssessment> {
                                                       ), ),
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width:width,
-                                                  child: Padding(
-                                                    //alignment: Alignment.centerLeft,
-                                                    padding:EdgeInsets.only(left: height * 0.01),
-                                                    child: Text("must complete it."
-                                                      ,style: TextStyle(
-                                                        color: const Color.fromRGBO(28, 78, 80, 1),
-                                                        fontSize: height * 0.0195,
-                                                        fontFamily: "Inter",
-                                                        fontWeight: FontWeight.w400,
-                                                      ), ),
-                                                  ),
-                                                ),
+                                                // SizedBox(
+                                                //   width:width,
+                                                //   child: Padding(
+                                                //     //alignment: Alignment.centerLeft,
+                                                //     padding:EdgeInsets.only(left: height * 0.01),
+                                                //     child: Text("must complete it."
+                                                //       ,style: TextStyle(
+                                                //         color: const Color.fromRGBO(28, 78, 80, 1),
+                                                //         fontSize: height * 0.0195,
+                                                //         fontFamily: "Inter",
+                                                //         fontWeight: FontWeight.w400,
+                                                //       ), ),
+                                                //   ),
+                                                // ),
                                                 SizedBox(height: height * 0.03)
                                                 ,                                     Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

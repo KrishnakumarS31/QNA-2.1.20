@@ -112,17 +112,13 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                   ),
                   endDrawer: const EndDrawerMenuPreLogin(),
-                  body:
-                  Padding(
-                      padding: EdgeInsets.only(left: localWidth * 0.3),
-                      child:
-                      SingleChildScrollView(
+                  body: SingleChildScrollView(
                       physics: const ClampingScrollPhysics(),
                       child: Column(
                         children: [
-                          SizedBox(height: localHeight* 0.2),
+                          SizedBox(height: localHeight * 0.25),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           // SizedBox(width: localWidth * 0.05),
                       Text(
@@ -138,7 +134,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             height: localHeight * 0.20,
                           ),
                           Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                     AppLocalizations.of(context)!.continue_as,
@@ -152,7 +148,9 @@ class _WelcomePageState extends State<WelcomePage> {
                             height: localHeight * 0.05,
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  SizedBox(width: localWidth * 0.13),
                               ElevatedButton(
                                     style:
                                     ElevatedButton.styleFrom(
@@ -162,7 +160,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      const Size(144, 48),
+                                      Size(localWidth * 0.1,localWidth * 0.04),
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(
@@ -184,7 +182,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           '/studentMemberLoginPage');
                                     },
                                   ),
-                                  const SizedBox(width: 30),
+                                  SizedBox(width: localWidth * 0.03),
                                   ElevatedButton(
                                     style: ElevatedButton
                                         .styleFrom(
@@ -194,7 +192,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           color: Color.fromRGBO(82, 165, 160, 1) // the color of the border
                                       ),
                                       minimumSize:
-                                      const Size(144, 48),
+                                      Size(localWidth * 0.1,localWidth * 0.04),
                                       shape:
                                       RoundedRectangleBorder(
                                         borderRadius:
@@ -223,11 +221,12 @@ class _WelcomePageState extends State<WelcomePage> {
                                   ),
                             ]),
                           SizedBox(
-                            height: localHeight * 0.15,
+                            height: localHeight * 0.05,
                           ),
-                          Row(
+                         Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const SizedBox(width: 90),
+                              // const SizedBox(width: 90),
                               MouseRegion(
                                   cursor: SystemMouseCursors
                                       .click,
@@ -262,11 +261,7 @@ class _WelcomePageState extends State<WelcomePage> {
                                           AppLocalizations.of(
                                               context)!
                                               .select_language,
-                                          style: Theme
-                                              .of(context)
-                                              .primaryTextTheme
-                                              .bodyLarge
-                                              ?.merge(TextStyle(
+                                          style: TextStyle(
                                               color: const Color
                                                   .fromRGBO(
                                                   48, 145, 139,
@@ -275,15 +270,15 @@ class _WelcomePageState extends State<WelcomePage> {
                                               fontWeight: FontWeight
                                                   .w500,
                                               fontSize: localHeight *
-                                                  0.023)))))
+                                                  0.023))))
                             ],
                           ),
                           SizedBox(
-                            height: localHeight * 0.15,
+                            height: localHeight * 0.08,
                           ),
                           Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const SizedBox(width: 90),
                           RichText(
                               text: TextSpan(
                                   children: [
@@ -311,8 +306,11 @@ class _WelcomePageState extends State<WelcomePage> {
                                         fontSize: localHeight *
                                             0.018)),
                               ]))]),
+                          SizedBox(
+                            height: localHeight * 0.01,
+                          ),
                         ],
-                      )))));
+                      ))));
         }
         else if(constraints.maxWidth > 960) {
           return
@@ -343,7 +341,7 @@ class _WelcomePageState extends State<WelcomePage> {
                   endDrawer: const EndDrawerMenuPreLogin(),
                   body:
                   Padding(
-                          padding:EdgeInsets.only(left: localHeight * 0.8,right: localHeight * 0.2),
+                          padding:EdgeInsets.only(left: localWidth * 0.4,right: localWidth * 0.04),
                           child: SingleChildScrollView(
                           physics: const ClampingScrollPhysics(),
                           child: Column(
@@ -456,7 +454,7 @@ class _WelcomePageState extends State<WelcomePage> {
                               ),
                               Row(
                                 children: [
-                                  const SizedBox(width: 90),
+                                  const SizedBox(width: 70),
                                   MouseRegion(
                                       cursor: SystemMouseCursors
                                           .click,
@@ -508,11 +506,11 @@ class _WelcomePageState extends State<WelcomePage> {
                                 ],
                               ),
                               SizedBox(
-                                height: localHeight * 0.15,
+                                height: localHeight * 0.1,
                               ),
                               Row(
                                   children: [
-                                    const SizedBox(width: 90),
+                                    const SizedBox(width: 70),
                                     RichText(
                                         text: TextSpan(
                                             children: [
