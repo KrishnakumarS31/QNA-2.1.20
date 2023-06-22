@@ -65,14 +65,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                   child: Scaffold(
                       extendBodyBehindAppBar: true,
                       appBar:AppBar(
-                        iconTheme: IconThemeData(color: Colors.black,size: height * 0.05),
+                        iconTheme: IconThemeData(
+                            color: const Color.fromRGBO(28, 78, 80, 1),
+                            size: height * 0.05
+                        ),
                         elevation: 0,
                         backgroundColor: Colors.transparent,
                         leading: IconButton(
                           icon: Icon(
                             Icons.chevron_left,
                             size: height * 0.06,
-                            color: Colors.black,
+                            color: const Color.fromRGBO(28, 78, 80, 1),
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -327,7 +330,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                  Icons.arrow_circle_right
                                ),
                                 iconSize: height * 0.06,
-                                color: const Color.fromRGBO(82, 165, 160, 1),
+                                color:
+                                nameController.text.isNotEmpty
+                                    ? const Color.fromRGBO(82, 165, 160, 1)
+                                    : const Color.fromRGBO(153, 153, 153, 0.5),
                                 onPressed: () {
                                   if (agree) {
                                     if (formKey.currentState!.validate()) {
@@ -398,14 +404,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
               child: Scaffold(
                   extendBodyBehindAppBar: true,
                   appBar:AppBar(
-                    iconTheme: const IconThemeData(color: Colors.black),
+                    iconTheme: IconThemeData(
+                        color: const Color.fromRGBO(28, 78, 80, 1),
+                        size: height * 0.05
+                    ),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: const Icon(
                         Icons.chevron_left,
                         size: 40.0,
-                        color: Colors.black,
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -559,7 +568,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                           SizedBox(height: height * 0.04),
                           Row(
                               children:[
-                                SizedBox(width: width * 0.32),
+                                SizedBox(width: width * 0.33),
                                 Text(
                                   AppLocalizations.of(context)!
                                       .privacy_terms,
@@ -568,14 +577,14 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                           102, 102, 102, 1),
                                       fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
-                                      fontSize: height * 0.017),
+                                      fontSize: height * 0.02),
                                 ),
                               ]
                           ),
                           SizedBox(height: height * 0.02),
                           Row(
                             children: [
-                              SizedBox(width: width * 0.32),
+                              SizedBox(width: width * 0.33),
                               Transform.scale(
                                 scale: 1.5,
                                 child: Checkbox(
@@ -658,7 +667,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 Icons.arrow_circle_right
                             ),
                             iconSize: height * 0.06,
-                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            color:
+                            nameController.text.isNotEmpty
+                                ? const Color.fromRGBO(82, 165, 160, 1)
+                                : const Color.fromRGBO(153, 153, 153, 0.5),
                             onPressed: () {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {
@@ -729,14 +741,17 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
               child: Scaffold(
                   extendBodyBehindAppBar: true,
                   appBar:AppBar(
-                    iconTheme: const IconThemeData(color: Colors.black),
+                    iconTheme: IconThemeData(
+                        color: const Color.fromRGBO(28, 78, 80, 1),
+                        size: height * 0.05
+                    ),
                     elevation: 0,
                     backgroundColor: Colors.transparent,
                     leading: IconButton(
                       icon: const Icon(
                         Icons.chevron_left,
                         size: 40.0,
-                        color: Colors.black,
+                        color: const Color.fromRGBO(28, 78, 80, 1),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -812,7 +827,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: height * 0.017),
+                                                        fontSize: height * 0.02),
                                                   ),
                                                   hintStyle: TextStyle(
                                                       color: const Color.fromRGBO(
@@ -858,7 +873,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w600,
-                                                          fontSize: height * 0.017),
+                                                          fontSize: height * 0.02),
                                                     ),
                                                     TextSpan(
                                                         text: AppLocalizations.of(context)!
@@ -869,7 +884,7 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                                             fontFamily: 'Inter',
                                                             fontStyle: FontStyle.italic,
                                                             fontWeight: FontWeight.w600,
-                                                            fontSize: height * 0.017)),
+                                                            fontSize: height * 0.02)),
                                                   ])),
                                               hintText:
                                               AppLocalizations.of(context)!
@@ -991,7 +1006,10 @@ class StudentGuestLoginState extends State<StudentGuestLogin> {
                                 Icons.arrow_circle_right
                             ),
                             iconSize: height * 0.06,
-                            color: const Color.fromRGBO(82, 165, 160, 1),
+                            color:
+                            nameController.text.isNotEmpty
+                              ? const Color.fromRGBO(82, 165, 160, 1)
+                          : const Color.fromRGBO(153, 153, 153, 0.5),
                             onPressed: () {
                               if (agree) {
                                 if (formKey.currentState!.validate()) {

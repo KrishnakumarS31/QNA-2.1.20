@@ -106,7 +106,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                       icon: const Icon(
                         Icons.chevron_left,
                         size: 40.0,
-                        color: Colors.black,
+                        color: Color.fromRGBO(28, 78, 80, 1),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -285,7 +285,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.black,
+                      color: Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -463,7 +463,7 @@ class SettingsLanguagesState extends State<SettingsLanguages> {
                   icon: const Icon(
                     Icons.chevron_left,
                     size: 40.0,
-                    color: Colors.black,
+                    color: Color.fromRGBO(28, 78, 80, 1),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();

@@ -150,7 +150,6 @@ class _WelcomePageState extends State<WelcomePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SizedBox(width: localWidth * 0.13),
                               ElevatedButton(
                                     style:
                                     ElevatedButton.styleFrom(

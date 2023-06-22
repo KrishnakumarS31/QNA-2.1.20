@@ -83,7 +83,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 extendBodyBehindAppBar: true,
                 appBar:AppBar(
                   iconTheme: IconThemeData(
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       size: localHeight * 0.05
                   ),
                   elevation: 0,
@@ -92,7 +92,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     icon: Icon(
                       Icons.chevron_left,
                       size: localHeight * 0.06,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -190,7 +190,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                             102, 102, 102, 1),
                                                         fontFamily: 'Inter',
                                                         fontWeight: FontWeight.w600,
-                                                        fontSize: localHeight * 0.017),
+                                                      fontSize: localHeight * 0.025),
                                                   ),
                                                   hintText:
                                                   AppLocalizations.of(context)!
@@ -241,7 +241,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                                               102, 102, 102, 1),
                                                           fontFamily: 'Inter',
                                                           fontWeight: FontWeight.w600,
-                                                          fontSize: localHeight * 0.017),
+                                                        fontSize: localHeight * 0.025),
                                                     ),
                                                     helperStyle:TextStyle(
                                                         color: const Color.fromRGBO(
@@ -337,8 +337,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           SizedBox(height: localHeight * 0.03),
                           Center(
                               child:IconButton(
+                                iconSize: localHeight * 0.06,
                                 icon: Icon(Icons.arrow_circle_right,
-                                  size: localHeight * 0.04,
                                   color:
                                   ((passWordController.text.length > 7) && (regNumberController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(regNumberController.text)))
                                   ? const Color.fromRGBO(82, 165, 160, 1)
@@ -597,7 +597,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 resizeToAvoidBottomInset: false,
                 extendBodyBehindAppBar: true,
                 appBar:AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,
+                  iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),
                       size: localHeight * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
@@ -605,7 +605,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                     icon: Icon(
                       Icons.chevron_left,
                       size: localHeight * 0.06,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -649,7 +649,7 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                                     Text(
                                       AppLocalizations.of(context)!.login_loginPage,
                                       style: TextStyle(
-                                        fontSize: localHeight * 0.02,
+                                        fontSize: localHeight * 0.025,
                                         color: const Color.fromRGBO(
                                             102, 102, 102, 1),
                                         fontFamily: "Inter",
@@ -1108,14 +1108,14 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                 resizeToAvoidBottomInset: false,
                 extendBodyBehindAppBar: true,
                 appBar:AppBar(
-                  iconTheme: IconThemeData(color: Colors.black,size: localHeight * 0.05),
+                  iconTheme: IconThemeData(color: const Color.fromRGBO(28, 78, 80, 1),size: localHeight * 0.05),
                   elevation: 0,
                   backgroundColor: Colors.transparent,
                   leading: IconButton(
                     icon: Icon(
                       Icons.chevron_left,
                       size: localHeight * 0.06,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -1359,8 +1359,8 @@ class StudentMemberLoginPageState extends State<StudentMemberLoginPage> {
                           SizedBox(height: localHeight * 0.03),
                           Center(
                               child: IconButton(
+                                iconSize: localHeight * 0.06,
                                 icon: Icon(Icons.arrow_circle_right,
-                                  size: localHeight * 0.04,
                                   color:
                                   ((passWordController.text.length > 7) && (regNumberController.text.isNotEmpty || RegExp(r"^[a-zA-Z\d.a-zA-Z!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z\d]+\.[a-zA-Z]+").hasMatch(regNumberController.text)))
                                       ? const Color.fromRGBO(82, 165, 160, 1)

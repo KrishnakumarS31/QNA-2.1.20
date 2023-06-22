@@ -47,7 +47,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -58,7 +58,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   title: Text(
                     AppLocalizations.of(context)!.forgot_password_caps,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
@@ -77,7 +77,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: kElevationToShadow[4],
                           ),
-                          width: width * 0.75,
+                          width: width * 0.9,
                           child:
                           Form(
                             key: formKey,
@@ -89,7 +89,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                   SizedBox(
                                       height: height * 0.05),
                                   SizedBox(
-                                      width: width * 0.6,
+                                      width: width * 0.8,
                                       child:
                                       TextFormField(
                                         controller: _controller,
@@ -100,6 +100,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                         decoration: InputDecoration(
                                           floatingLabelBehavior: FloatingLabelBehavior
                                               .always,
+                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
                                           label: Text(AppLocalizations.of(context)!
                                               .email_id_caps,
                                             style: TextStyle(
@@ -198,7 +199,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -209,7 +210,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   title: Text(
                     AppLocalizations.of(context)!.forgot_password_caps,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
@@ -219,7 +220,11 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     color: Colors.white,
                   ),
                 ),
-                body: Column(children: [
+                body:
+    Container(
+    padding:EdgeInsets.only(left: height * 0.5,right: height * 0.5),
+    child:
+    Column(children: [
                   SizedBox(height: height * 0.1),
                   Center(
                       child:Container(
@@ -228,7 +233,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: kElevationToShadow[4],
                           ),
-                          width: width * 0.7,
+                          width: width * 0.35,
                           child:
                           Form(
                             key: formKey,
@@ -240,7 +245,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                   SizedBox(
                                       height: height * 0.05),
                                   SizedBox(
-                                      width: width * 0.6,
+                                      width: width * 0.3,
                                       child:
                                       TextFormField(
                                         controller: _controller,
@@ -251,8 +256,8 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                         decoration: InputDecoration(
                                           floatingLabelBehavior: FloatingLabelBehavior
                                               .always,
-                                          label: Text(AppLocalizations.of(context)!
-                                              .email_id_caps,
+                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
+                                          label: Text(AppLocalizations.of(context)!.email_id_caps,
                                             style: TextStyle(
                                                 color:
                                                 const Color.fromRGBO(
@@ -334,7 +339,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                               ),
                             ),
                           ))),
-                ])));
+                ]))));
       }
       else {
         return WillPopScope(
@@ -349,7 +354,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     icon: const Icon(
                       Icons.chevron_left,
                       size: 40.0,
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -360,7 +365,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                   title: Text(
                     AppLocalizations.of(context)!.forgot_password_caps,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: const Color.fromRGBO(28, 78, 80, 1),
                       fontSize: height * 0.025,
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w600,
@@ -370,8 +375,10 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                     color: Colors.white,
                   ),
                 ),
-                body: Column(children: [
-                  SizedBox(height: height * 0.1),
+                body: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: height * 0.1),
                   Center(
                       child:Container(
                           decoration: BoxDecoration(
@@ -379,19 +386,19 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                             borderRadius: BorderRadius.circular(10),
                             boxShadow: kElevationToShadow[4],
                           ),
-                          width: width * 0.7,
+                          width: width * 0.9,
                           child:
                           Form(
                             key: formKey,
-                            child: SizedBox(
-                              height: height * 0.3,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
+                            Column(
+                            children: [
                                   SizedBox(
                                       height: height * 0.05),
                                   SizedBox(
-                                      width: width * 0.6,
+                                      width: width * 0.7,
                                       child:
                                       TextFormField(
                                         controller: _controller,
@@ -402,6 +409,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                         decoration: InputDecoration(
                                           floatingLabelBehavior: FloatingLabelBehavior
                                               .always,
+                                          labelStyle: Theme.of(context).textTheme.headlineMedium,
                                           label: Text(AppLocalizations.of(context)!
                                               .email_id_caps,
                                             style: TextStyle(
@@ -410,7 +418,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                     102, 102, 102, 1),
                                                 fontFamily: 'Inter',
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: height * 0.020),
+                                                fontSize: height * 0.025),
                                           ),
                                           helperText: AppLocalizations.of(context)!
                                               .email_helper_text,
@@ -462,7 +470,7 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                                   102, 102, 102, 0.3),
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w400,
-                                              fontSize: height * 0.018),
+                                              fontSize: height * 0.02),
                                           hintText: AppLocalizations.of(context)!
                                               .enter_here,
                                         ),
@@ -483,9 +491,8 @@ class ForgotPasswordEmailState extends State<ForgotPasswordEmail> {
                                   ),
                                 ],
                               ),
-                            ),
-                          ))),
-                ])));
+                          ]))),
+        )])));
       }
     }
     );}

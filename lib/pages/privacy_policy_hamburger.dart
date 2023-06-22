@@ -37,7 +37,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                   icon: const Icon(
                     Icons.chevron_left,
                     size: 40.0,
-                    color: Colors.black,
+                    color: Color.fromRGBO(28, 78, 80, 1),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -55,7 +55,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                           color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ]),
@@ -83,7 +83,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                         Align(
                           alignment: Alignment.topCenter,
                           child: Text(
-                            AppLocalizations.of(context)!.privacy_text_web,
+                            AppLocalizations.of(context)!.privacy_text,
                             //"ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \n teachers / instructors to learn digitally and freely."
                             style: TextStyle(
                                 fontSize: height * 0.018,
@@ -145,7 +145,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                           icon: const Icon(
                             Icons.chevron_left,
                             size: 40.0,
-                            color: Colors.black,
+                            color: Color.fromRGBO(28, 78, 80, 1),
                           ),
                           onPressed: () {
                             Navigator.of(context).pop();
@@ -163,7 +163,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                                   color: const Color.fromRGBO(28, 78, 80, 1),
                                   fontSize: height * 0.0225,
                                   fontFamily: "Inter",
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             ]),
@@ -187,7 +187,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                                 Align(
                                   alignment: Alignment.topCenter,
                                   child: Text(
-                                    AppLocalizations.of(context)!.privacy_text_web,
+                                    AppLocalizations.of(context)!.privacy_text,
                                     //"ITNEducation Inc., builds range of IT in Education products and services that help millions of students / learners  and \n teachers / instructors to learn digitally and freely."
                                     style: TextStyle(
                                         fontSize: height * 0.018,
@@ -249,7 +249,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                   icon: const Icon(
                     Icons.chevron_left,
                     size: 40.0,
-                    color: Colors.black,
+                    color: Color.fromRGBO(28, 78, 80, 1),
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -267,7 +267,7 @@ class PrivacyPolicyHamburgerState extends State<PrivacyPolicyHamburger> {
                           color: const Color.fromRGBO(28, 78, 80, 1),
                           fontSize: height * 0.0225,
                           fontFamily: "Inter",
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ]),

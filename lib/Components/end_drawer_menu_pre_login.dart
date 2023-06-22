@@ -30,13 +30,13 @@ class _EndDrawerMenuPreLoginState extends State<EndDrawerMenuPreLogin> {
           Flexible(
             child: ListView(
               children: [
-                ListTile(
-                    leading: const Icon(Icons.chevron_left,
-                        size: 32,
-                        color: Color.fromRGBO(28, 78, 80, 1)),
-                    onTap: () async {
-                      Navigator.of(context).pop();
-                    }),
+                // ListTile(
+                //     leading: const Icon(Icons.chevron_left,
+                //         size: 40,
+                //         color: Color.fromRGBO(28, 78, 80, 1)),
+                //     onTap: () async {
+                //       Navigator.of(context).pop();
+                //     }),
                 ListTile(
                     leading: const Icon(Icons.translate,
                         color: Color.fromRGBO(141, 167, 167, 1)),

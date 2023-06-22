@@ -113,7 +113,7 @@
   "ins_org": "Institute / Organization Name",
   "reg_as_student": "Register me also as TEACHER",
   "pri_terms": "Privacy & Terms",
-  "agree_msg": "I hereby certify that I have read and AGREE to\nQNATest",
+  "agree_msg": "I hereby certify that I have read and AGREE to\nQNATest\t\t",
   "terms": "Terms",
   "services": "\tof Service",
   "and": " and ",

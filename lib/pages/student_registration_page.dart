@@ -600,7 +600,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                               fontWeight: FontWeight
                                                                   .w600,
                                                               fontSize: localHeight *
-                                                                  0.020),),
+                                                                  0.0155),),
                                           ]
                                                     ),
                                                     Row(
@@ -1595,7 +1595,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       fontWeight: FontWeight
                                                                           .w600,
                                                                       fontSize: localHeight *
-                                                                          0.018),
+                                                                          0.0155),
                                                                 ),
                                                               ]
                                                           ),
@@ -2675,7 +2675,7 @@ labelStyle: Theme.of(context).textTheme.headlineMedium,
                                                                       fontWeight: FontWeight
                                                                           .w600,
                                                                       fontSize: localHeight *
-                                                                          0.018),
+                                                                          0.0155),
                                                                 ),
                                                               ]
                                                           ),
